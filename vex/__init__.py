@@ -146,11 +146,16 @@ class Device:
     ...
 
 
-class DirectionType:
+class Enum:
+    ...
+
+
+class DirectionType(Enum):
     """
     The defined units for direction values.
     """
-    ...
+    FWD: int = 0   # A direction unit that is defined as forward.
+    REV: int = 1   # A direction unit that is defined as backward.
 
 
 class DistanceUnits:
@@ -159,9 +164,6 @@ class DistanceUnits:
     """
     ...
 
-
-class Enum:
-    ...
 
 
 class FadeType:
