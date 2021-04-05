@@ -3,6 +3,9 @@ VexIQ Python API B for Robot Mesh.
 """
 
 
+from __future__ import annotations
+
+
 # CLASSES
 # =======
 
@@ -13,7 +16,31 @@ class Brain:
     """
 
     def __init__(self):
-        ...
+        self._screen: BrainLcd = BrainLcd()
+        self._buttonCheck: BrainButton = BrainButton(id='CHECK')
+        self._buttonUp: BrainButton = BrainButton(id='UP')
+        self._buttonDown: BrainButton = BrainButton(id='DOWN')
+        self._sound: BrainSound = BrainSound()
+
+    @property
+    def screen(self) -> BrainLcd:
+        return self._screen
+
+    @property
+    def buttonCheck(self) -> BrainButton:
+        return self._buttonCheck
+
+    @property
+    def buttonUp(self) -> BrainButton:
+        return self._buttonUp
+
+    @property
+    def buttonDown(self) -> BrainButton:
+        return self._buttonDown
+
+    @property
+    def sound(self) -> BrainSound:
+        return self._sound
 
 
 class BrainButton:
