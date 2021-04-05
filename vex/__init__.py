@@ -4,6 +4,7 @@ VexIQ Python API B for Robot Mesh.
 
 
 from __future__ import annotations
+from enum import IntEnum
 from typing import Any
 
 
@@ -18,7 +19,7 @@ class Device:
     ...
 
 
-class Enum:
+class Enum(IntEnum):
     ...
 
 
@@ -231,11 +232,13 @@ class Ports(Enum):
     PORT12: int = 11
 
 
-class RotationUnits:
+class RotationUnits(Enum):
     """
     The measurement units for rotation values.
     """
-    ...
+    DEG: int = 0   # A rotation unit that is measured in degrees.
+    REV: int = 1   # A rotation unit that is measured in revolutions.
+    RAW: int = 99   # A rotation unit that is measured in raw data form.
 
 
 class Sonar:
