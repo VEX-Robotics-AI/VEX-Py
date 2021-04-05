@@ -11,6 +11,13 @@ from typing import Any
 # =======
 
 
+class Device:
+    """
+    Base class for all Vex IQ devices.
+    """
+    ...
+
+
 class Enum:
     ...
 
@@ -158,13 +165,6 @@ class ControllerButton:
     ...
 
 
-class Device:
-    """
-    Base class for all Vex IQ devices.
-    """
-    ...
-
-
 class DirectionType(Enum):
     """
     The defined units for direction values.
@@ -192,8 +192,10 @@ class Gyro:
     ...
 
 
-class GyroCalibrationType:
-    ...
+class GyroCalibrationType(Enum):
+    QUICK: int = 0
+    SLOW: int = 1
+    ACCURATE: int = 2
 
 
 class Motor:
