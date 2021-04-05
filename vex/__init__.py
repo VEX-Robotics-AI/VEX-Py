@@ -245,11 +245,12 @@ class Sonar:
     ...
 
 
-class TimeUnits:
+class TimeUnits(Enum):
     """
     The measurement units for time values.
     """
-    ...
+    SEC: int = 0   # A time unit that is measured in seconds.
+    MSEC: int = 1   # A time unit that is measured in milliseconds.
 
 
 class TorqueUnits:
