@@ -4,6 +4,7 @@ VexIQ Python API B for Robot Mesh.
 
 
 from __future__ import annotations
+from typing import Any
 
 
 # CLASSES
@@ -47,7 +48,17 @@ class BrainButton:
     """
     Use the button class to get values from the brain's buttons.
     """
-    ...
+    def __init__(self, id: Any):
+        self.id = id
+
+    def pressing(self) -> bool:
+        """
+        Gets the pressed status of a button.
+
+        Returns
+        True if pressed, False othewise.
+        """
+        ...
 
 
 class BrainLcd:
