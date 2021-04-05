@@ -70,7 +70,7 @@ class BrainButton:
         Gets the pressed status of a button.
 
         Returns
-        True if pressed, False othewise.
+        True if pressed, False otherwise.
         """
         return self._pressing
 
