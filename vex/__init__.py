@@ -11,6 +11,10 @@ from typing import Any
 # =======
 
 
+class Enum:
+    ...
+
+
 class Brain:
     """
     Use the Brain class to see battery information, or write to the screen.
@@ -95,11 +99,13 @@ class BrainSound:
     ...
 
 
-class BrakeType:
+class BrakeType(Enum):
     """
     The defined units for brake values.
     """
-    ...
+    COAST: int = 0   # A brake unit that is defined as coast.
+    BRAKE: int = 1   # A brake unit that is defined as brake.
+    HOLD: int = 2   # A brake unit that is defined as hold.
 
 
 class Bumper:
@@ -145,9 +151,6 @@ class Device:
     """
     ...
 
-
-class Enum:
-    ...
 
 
 class DirectionType(Enum):
