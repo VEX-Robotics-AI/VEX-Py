@@ -165,7 +165,6 @@ class Device:
     ...
 
 
-
 class DirectionType(Enum):
     """
     The defined units for direction values.
@@ -178,8 +177,9 @@ class DistanceUnits:
     """
     The measurement units for distance values.
     """
-    ...
-
+    MM: int = 0   # A distance unit that is measured in millimeters.
+    IN: int = 1   # A distance unit that is measured in inches.
+    CM: int = 2   # A distance unit that is measured in centimeters.
 
 
 class FadeType:
