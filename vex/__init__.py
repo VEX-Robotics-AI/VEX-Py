@@ -23,7 +23,7 @@ class Enum(IntEnum):
     ...
 
 
-class Brain:
+class Brain(Device):
     """
     Use the Brain class to see battery information, or write to the screen.
     """
@@ -116,7 +116,7 @@ class BrakeType(Enum):
     HOLD: int = 2   # A brake unit that is defined as hold.
 
 
-class Bumper:
+class Bumper(Device):
     ...
 
 
@@ -140,11 +140,11 @@ class ColorHue(Enum):
     WHITE: int = 13
 
 
-class Colorsensor:
+class Colorsensor(Device):
     ...
 
 
-class Controller:
+class Controller(Device):
     """
     Use the controller class to get values from the remote controller
     as well as write to the controller's screen.
@@ -174,7 +174,7 @@ class DirectionType(Enum):
     REV: int = 1   # A direction unit that is defined as backward.
 
 
-class DistanceUnits:
+class DistanceUnits(Enum):
     """
     The measurement units for distance values.
     """
@@ -183,13 +183,13 @@ class DistanceUnits:
     CM: int = 2   # A distance unit that is measured in centimeters.
 
 
-class FadeType:
+class FadeType(Enum):
     OFF: int = 0
     SLOW: int = 1
     FAST: int = 2
 
 
-class Gyro:
+class Gyro(Device):
     ...
 
 
@@ -199,7 +199,7 @@ class GyroCalibrationType(Enum):
     ACCURATE: int = 2
 
 
-class Motor:
+class Motor(Device):
     ...
 
 
@@ -241,7 +241,7 @@ class RotationUnits(Enum):
     RAW: int = 99   # A rotation unit that is measured in raw data form.
 
 
-class Sonar:
+class Sonar(Device):
     ...
 
 
@@ -261,7 +261,7 @@ class TorqueUnits(Enum):
     IN_LB: int = 1   # A torque unit that is measured in Inch Pounds.
 
 
-class Touchled:
+class Touchled(Device):
     """
     Use this class when programming with the touch LED device.
     """
