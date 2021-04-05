@@ -183,7 +183,9 @@ class DistanceUnits:
 
 
 class FadeType:
-    ...
+    OFF: int = 0
+    SLOW: int = 1
+    FAST: int = 2
 
 
 class Gyro:
