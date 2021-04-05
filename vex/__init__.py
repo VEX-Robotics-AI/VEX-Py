@@ -62,7 +62,8 @@ class BrainButton:
     """
 
     def __init__(self, id: Any):
-        self.id = id
+        self._id: Any = id
+        self._pressing: bool = False
 
     def pressing(self) -> bool:
         """
@@ -71,7 +72,7 @@ class BrainButton:
         Returns
         True if pressed, False othewise.
         """
-        ...
+        return self._pressing
 
 
 class BrainLcd:
