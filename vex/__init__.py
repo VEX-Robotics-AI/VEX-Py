@@ -253,11 +253,12 @@ class TimeUnits(Enum):
     MSEC: int = 1   # A time unit that is measured in milliseconds.
 
 
-class TorqueUnits:
+class TorqueUnits(Enum):
     """
     The measurement units for torque values.
     """
-    ...
+    NM: int = 0   # A torque unit that is measured in Newton Meters.
+    IN_LB: int = 1   # A torque unit that is measured in Inch Pounds.
 
 
 class Touchled:
