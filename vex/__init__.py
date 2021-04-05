@@ -268,11 +268,12 @@ class Touchled:
     ...
 
 
-class TurnType:
+class TurnType(Enum):
     """
     Left or right turn.
     """
-    ...
+    LEFT: int = 0
+    RIGHT: int = 1
 
 
 class VelocityUnits:
