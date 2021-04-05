@@ -276,11 +276,14 @@ class TurnType(Enum):
     RIGHT: int = 1
 
 
-class VelocityUnits:
+class VelocityUnits(Enum):
     """
     The measurement units for velocity values.
     """
-    ...
+    PCT: int = 0   # A velocity unit that is measured in percentage.
+    RPM: int = 1   # A velocity unit that is measured in rotations per minute.
+    DPS: int = 2   # A velocity unit that is measured in degrees per second.
+    RAW: int = 99   # A velocity unit that is measured in raw data form.
 
 
 # FUNCTIONS
