@@ -15,7 +15,9 @@ from .bumper_switch_sensor import Bumper
 from .color_sensor import ColorHue, Colorsensor
 from .controller import Controller, ControllerAxis, ControllerButton
 from .gyro_sensor import Gyro, GyroCalibrationType
-from .motor import BrakeType, DirectionType, Motor
+from .motor import (
+    BrakeType, DirectionType, Motor, TorqueUnits, TurnType, VelocityUnits
+)
 from .touch_led import FadeType, Touchled
 
 
@@ -61,33 +63,6 @@ class TimeUnits(Enum):
     """
     SEC: int = 0   # A time unit that is measured in seconds.
     MSEC: int = 1   # A time unit that is measured in milliseconds.
-
-
-class TorqueUnits(Enum):
-    """
-    The measurement units for torque values.
-    """
-    NM: int = 0   # A torque unit that is measured in Newton Meters.
-    IN_LB: int = 1   # A torque unit that is measured in Inch Pounds.
-
-
-
-class TurnType(Enum):
-    """
-    Left or right turn.
-    """
-    LEFT: int = 0
-    RIGHT: int = 1
-
-
-class VelocityUnits(Enum):
-    """
-    The measurement units for velocity values.
-    """
-    PCT: int = 0   # A velocity unit that is measured in percentage.
-    RPM: int = 1   # A velocity unit that is measured in rotations per minute.
-    DPS: int = 2   # A velocity unit that is measured in degrees per second.
-    RAW: int = 99   # A velocity unit that is measured in raw data form.
 
 
 # FUNCTIONS
