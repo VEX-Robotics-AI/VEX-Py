@@ -3,9 +3,6 @@ VexIQ Python API B for Robot Mesh.
 """
 
 
-from __future__ import annotations
-
-
 # CLASSES
 # =======
 from .abstract import Device, Enum
