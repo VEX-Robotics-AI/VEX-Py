@@ -11,11 +11,8 @@ from __future__ import annotations
 from .abstract import Device, Enum
 from .port import Ports
 from .brain import Brain, BrainButton, BrainLcd, BrainSound
+from .bumper_switch_sensor import Bumper
 from .motor import BrakeType, Motor
-
-
-class Bumper(Device):
-    ...
 
 
 class ColorHue(Enum):
