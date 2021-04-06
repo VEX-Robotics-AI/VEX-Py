@@ -10,7 +10,7 @@ from __future__ import annotations
 # =======
 from .abstract import Device, Enum
 from .port import Ports
-from .brain import Brain, BrainButton, BrainLcd, BrainSound
+from .brain import Brain, BrainButton, BrainLcd, BrainSound, NoteType
 from .bumper_switch_sensor import Bumper
 from .color_sensor import ColorHue, Colorsensor
 from .controller import Controller, ControllerAxis, ControllerButton
@@ -28,20 +28,6 @@ class DistanceUnits(Enum):
     MM: int = 0   # A distance unit that is measured in millimeters.
     IN: int = 1   # A distance unit that is measured in inches.
     CM: int = 2   # A distance unit that is measured in centimeters.
-
-
-class NoteType(Enum):
-    """
-    Musical note to play.
-    """
-    silence: int = 0   # Stop playing/play a silence.
-    C: int = 1
-    D: int = 2
-    E: int = 3
-    F: int = 4
-    G: int = 5
-    A: int = 6
-    B: int = 7
 
 
 class RotationUnits(Enum):

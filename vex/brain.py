@@ -86,3 +86,17 @@ class BrainLcd:
 
 class BrainSound:
     ...
+
+
+class NoteType(Enum):
+    """
+    Musical note to play.
+    """
+    silence: int = 0   # Stop playing/play a silence.
+    C: int = 1
+    D: int = 2
+    E: int = 3
+    F: int = 4
+    G: int = 5
+    A: int = 6
+    B: int = 7
