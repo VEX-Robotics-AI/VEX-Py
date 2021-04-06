@@ -1,10 +1,3 @@
-"""
-VexIQ Python API B for Robot Mesh.
-"""
-
-
-# CLASSES
-# =======
 from .abstract import Device, Enum
 from .port import Ports
 from .brain import Brain, BrainButton, BrainLcd, BrainSound, NoteType
@@ -38,8 +31,8 @@ class RotationUnits(Enum):
     RAW: int = 99   # A rotation unit that is measured in raw data form.
 
 
-# CONSTANTS/VARIABLES
-# ===================
+# CONSTANTS
+# =========
 INT29_MAX: int = 0x1FFFFFFF
 
 DEGREES: RotationUnits = RotationUnits.DEG

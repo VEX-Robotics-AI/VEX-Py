@@ -1,7 +1,3 @@
-"""
-VexIQ Python API B for Robot Mesh.
-"""
-
 from typing import Optional
 
 from vex import (
