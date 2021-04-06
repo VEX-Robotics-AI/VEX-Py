@@ -2,6 +2,7 @@
 VexIQ Python API B for Robot Mesh.
 """
 
+from typing import Optional
 
 from vex import (
     DirectionType,
@@ -37,12 +38,21 @@ class Drivetrain:
         gear_ratio: external gear ratio, usually 1.0
         """
 
-    def drive(self, directionType: DirectionType, velocity: int =None, velocityUnits=VelocityUnits.PCT):
+    def drive(
+            self,
+            directionType: DirectionType,
+            velocity: Optional[int] = None,
+            velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
         Turns the motors on and drives in the specified direction.
         """
 
-    def drive_for(self, directionType: DirectionType, distance, distanceUnits: DistanceUnits = DistanceUnits.MM, velocity: int =None, velocityUnits=VelocityUnits.PCT, waitForCompletion=True):
+    def drive_for(
+            self,
+            directionType: DirectionType,
+            distance: float,
+            distanceUnits: DistanceUnits = DistanceUnits.MM,
+            velocity: int =None, velocityUnits=VelocityUnits.PCT, waitForCompletion=True):
         """
         Drives for a specified distance.
         """
