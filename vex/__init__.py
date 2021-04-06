@@ -14,6 +14,7 @@ from .brain import Brain, BrainButton, BrainLcd, BrainSound
 from .bumper_switch_sensor import Bumper
 from .color_sensor import ColorHue, Colorsensor
 from .controller import Controller, ControllerAxis, ControllerButton
+from .gyro_sensor import Gyro, GyroCalibrationType
 from .motor import BrakeType, DirectionType, Motor
 from .touch_led import FadeType, Touchled
 
@@ -25,17 +26,6 @@ class DistanceUnits(Enum):
     MM: int = 0   # A distance unit that is measured in millimeters.
     IN: int = 1   # A distance unit that is measured in inches.
     CM: int = 2   # A distance unit that is measured in centimeters.
-
-
-
-class Gyro(Device):
-    ...
-
-
-class GyroCalibrationType(Enum):
-    QUICK: int = 0
-    SLOW: int = 1
-    ACCURATE: int = 2
 
 
 class NoteType(Enum):
