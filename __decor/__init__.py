@@ -1,10 +1,11 @@
 from typing import Any, Callable, TypeVar
 
 
-CallableType = TypeVar('CallableType', bound=Callable[..., Any])
+CallableTypeVar = TypeVar('CallableTypeVar', bound=Callable[..., Any])
 
 
-def return_qualname_and_args(func: CallableType) -> CallableType:
+def return_qualname_and_args(func: CallableTypeVar) \
+        -> CallableTypeVar:  # use same func type var for autocomplete to work
     def decor_func(*args):
         d = func.__annotations__.copy()
         n_args = len(d)
