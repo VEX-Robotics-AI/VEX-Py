@@ -77,13 +77,11 @@ class BrainLcd:
               "x: %g y: %g" % (x, y) -> "x: 123 y: 456"
               Supported format flags are g (all) x (hex) d (int) f (float)
         """
-        return ('print_line', {'number': number, 'text': text})
 
     def clear_screen(self):
         """
         Clears the whole screen.
         """
-        return ('clear_screen',)
 
 
 class BrainSound:

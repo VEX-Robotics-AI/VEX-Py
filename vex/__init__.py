@@ -8,6 +8,7 @@ from __future__ import annotations
 
 # CLASSES
 # =======
+from .abstract import Device, Enum
 from .brain import Brain, BrainButton, BrainLcd, BrainSound
 
 
