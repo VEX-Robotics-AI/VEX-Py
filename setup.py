@@ -1,4 +1,4 @@
-from setuptools import find_namespace_packages, setup
+from setuptools import find_packages, setup
 
 
 setup(
@@ -11,5 +11,5 @@ setup(
     url='https://GitHub.com/STEAMforVietnam/RobotMesh-VEXIQ-PyB-API-Stubs',
     download_url='https://GitHub.com/STEAMforVietnam/'
                  'RobotMesh-VEXIQ-PyB-API-Stubs/archive/main.zip',
-    packages=find_namespace_packages()
+    packages=find_packages(exclude=('tests',))
 )
