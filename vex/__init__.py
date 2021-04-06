@@ -20,6 +20,7 @@ from .motor import (
     BrakeType, DirectionType, Motor, TorqueUnits, TurnType, VelocityUnits
 )
 from .touch_led import FadeType, Touchled
+from .time import TimeUnits, wait
 
 
 class DistanceUnits(Enum):
@@ -40,34 +41,8 @@ class RotationUnits(Enum):
     RAW: int = 99   # A rotation unit that is measured in raw data form.
 
 
-class TimeUnits(Enum):
-    """
-    The measurement units for time values.
-    """
-    SEC: int = 0   # A time unit that is measured in seconds.
-    MSEC: int = 1   # A time unit that is measured in milliseconds.
-
-
-# FUNCTIONS
-# =========
-
-
-def wait(time: float, timeUnits: TimeUnits = TimeUnits.SEC):
-    """
-    Wait for a specific amount of time.
-    Identical to sys.sleep().
-
-    Parameters
-    time: The length of time to wait
-    timeUnits: The units of time (default seconds)
-    """
-    ...
-
-
 # CONSTANTS/VARIABLES
 # ===================
-
-
 INT29_MAX: int = 0x1FFFFFFF
 
 DEGREES: RotationUnits = RotationUnits.DEG
