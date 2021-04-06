@@ -1,3 +1,5 @@
+from typing import Optional
+
 from vex import (
     BrakeType,
     DirectionType,
