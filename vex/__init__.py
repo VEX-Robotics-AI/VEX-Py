@@ -10,15 +10,7 @@ from __future__ import annotations
 # =======
 from .abstract import Device, Enum
 from .brain import Brain, BrainButton, BrainLcd, BrainSound
-
-
-class BrakeType(Enum):
-    """
-    The defined units for brake values.
-    """
-    COAST: int = 0   # A brake unit that is defined as coast.
-    BRAKE: int = 1   # A brake unit that is defined as brake.
-    HOLD: int = 2   # A brake unit that is defined as hold.
+from .motor import BrakeType, Motor
 
 
 class Bumper(Device):
@@ -102,10 +94,6 @@ class GyroCalibrationType(Enum):
     QUICK: int = 0
     SLOW: int = 1
     ACCURATE: int = 2
-
-
-class Motor(Device):
-    ...
 
 
 class NoteType(Enum):
