@@ -1,4 +1,4 @@
-from abc import abstractproperty
+from abc import abstractmethod
 from enum import IntEnum
 
 
@@ -6,7 +6,8 @@ class Device:
     """
     Base class for all Vex IQ devices.
     """
-    @abstractproperty
+    @property
+    @abstractmethod
     def port(self):
         raise NotImplementedError
 
