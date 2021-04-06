@@ -14,17 +14,7 @@ from .brain import Brain, BrainButton, BrainLcd, BrainSound
 from .bumper_switch_sensor import Bumper
 from .color_sensor import ColorHue, Colorsensor
 from .controller import Controller, ControllerAxis, ControllerButton
-from .motor import BrakeType, Motor
-
-
-
-
-class DirectionType(Enum):
-    """
-    The defined units for direction values.
-    """
-    FWD: int = 0   # A direction unit that is defined as forward.
-    REV: int = 1   # A direction unit that is defined as backward.
+from .motor import BrakeType, DirectionType, Motor
 
 
 class DistanceUnits(Enum):

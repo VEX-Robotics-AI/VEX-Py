@@ -10,5 +10,13 @@ class BrakeType(Enum):
     HOLD: int = 2   # A brake unit that is defined as hold.
 
 
+class DirectionType(Enum):
+    """
+    The defined units for direction values.
+    """
+    FWD: int = 0   # A direction unit that is defined as forward.
+    REV: int = 1   # A direction unit that is defined as backward.
+
+
 class Motor(Device):
     ...
