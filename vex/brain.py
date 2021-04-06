@@ -4,10 +4,10 @@ from typing import Any
 
 from __decor import return_qualname_and_args
 
-from .abstract import Device, Enum
+from .abstract import Enum
 
 
-class Brain(Device):
+class Brain:
     """
     Use the Brain class to see battery information, or write to the screen.
     """
@@ -18,6 +18,9 @@ class Brain(Device):
         self._buttonUp: BrainButton = BrainButton(id='UP')
         self._buttonDown: BrainButton = BrainButton(id='DOWN')
         self._sound: BrainSound = BrainSound()
+
+    def __str__(self) -> str:
+        return type(self).__name__
 
     @property
     def screen(self) -> BrainLcd:

@@ -1,11 +1,10 @@
-from .abstract import Device
-
-
-class Controller(Device):
+class Controller:
     """
     Use the controller class to get values from the remote controller
     as well as write to the controller's screen.
     """
+    def __str__(self) -> str:
+        return type(self).__name__
 
 
 class ControllerAxis:
