@@ -15,6 +15,7 @@ from .bumper_switch_sensor import Bumper
 from .color_sensor import ColorHue, Colorsensor
 from .controller import Controller, ControllerAxis, ControllerButton
 from .motor import BrakeType, DirectionType, Motor
+from .touch_led import FadeType, Touchled
 
 
 class DistanceUnits(Enum):
