@@ -2,7 +2,9 @@ from __future__ import annotations
 
 from typing import Any
 
-from .abstract import Device
+from __decor import return_qualname_and_args
+
+from .abstract import Device, Enum
 
 
 class Brain(Device):
@@ -64,6 +66,7 @@ class BrainLcd:
     * 5 lines (1-5)
     """
 
+    @return_qualname_and_args
     def print_line(self, number: int, text: str):
         """
         Prints a number, string, or boolean at a particular line,
