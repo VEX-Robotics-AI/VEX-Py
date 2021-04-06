@@ -6,6 +6,7 @@ Modules not stubbed:
 - `dict`
 - `func`
 - `list`
+- `margin`
 - `math`
 - `random`
 - `string`
