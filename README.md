@@ -1,5 +1,7 @@
 # Robot Mesh VEX IQ Python B API Stubs
 
+These API stubs work with Python 3.
+
 Modules not stubbed:
 - `__bi` / `built_ins` (clash with Python's built-ins)
 - `dict`
