@@ -26,11 +26,6 @@ class DistanceUnits(Enum):
     CM: int = 2   # A distance unit that is measured in centimeters.
 
 
-class FadeType(Enum):
-    OFF: int = 0
-    SLOW: int = 1
-    FAST: int = 2
-
 
 class Gyro(Device):
     ...
@@ -84,12 +79,6 @@ class TorqueUnits(Enum):
     NM: int = 0   # A torque unit that is measured in Newton Meters.
     IN_LB: int = 1   # A torque unit that is measured in Inch Pounds.
 
-
-class Touchled(Device):
-    """
-    Use this class when programming with the touch LED device.
-    """
-    ...
 
 
 class TurnType(Enum):
