@@ -13,6 +13,7 @@ from .port import Ports
 from .brain import Brain, BrainButton, BrainLcd, BrainSound, NoteType
 from .bumper_switch_sensor import Bumper
 from .color_sensor import ColorHue, Colorsensor
+from .distance_sensor import Sonar
 from .controller import Controller, ControllerAxis, ControllerButton
 from .gyro_sensor import Gyro, GyroCalibrationType
 from .motor import (
@@ -37,10 +38,6 @@ class RotationUnits(Enum):
     DEG: int = 0   # A rotation unit that is measured in degrees.
     REV: int = 1   # A rotation unit that is measured in revolutions.
     RAW: int = 99   # A rotation unit that is measured in raw data form.
-
-
-class Sonar(Device):
-    ...
 
 
 class TimeUnits(Enum):
