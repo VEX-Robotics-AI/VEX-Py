@@ -81,6 +81,7 @@ class BrainLcd:
               Supported format flags are g (all) x (hex) d (int) f (float)
         """
 
+    @return_qualname_and_args
     def clear_screen(self):
         """
         Clears the whole screen.
