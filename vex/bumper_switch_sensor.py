@@ -10,7 +10,7 @@ class Bumper(Device):
         param:
         index: The port index for this bumper. The index is zero-based.
         """
-        self._port = index
+        self.port = index
         self._pressing = False
 
     def pressing(self) -> bool:
