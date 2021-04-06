@@ -13,29 +13,10 @@ from .port import Ports
 from .brain import Brain, BrainButton, BrainLcd, BrainSound
 from .bumper_switch_sensor import Bumper
 from .color_sensor import ColorHue, Colorsensor
+from .controller import Controller, ControllerAxis, ControllerButton
 from .motor import BrakeType, Motor
 
 
-class Controller(Device):
-    """
-    Use the controller class to get values from the remote controller
-    as well as write to the controller's screen.
-    """
-    ...
-
-
-class ControllerAxis:
-    """
-    Use the axis class to get values from one of the controller's joysticks.
-    """
-    ...
-
-
-class ControllerButton:
-    """
-    Use the button class to get values from the controller's buttons.
-    """
-    ...
 
 
 class DirectionType(Enum):
