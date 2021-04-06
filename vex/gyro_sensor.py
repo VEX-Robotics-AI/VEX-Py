@@ -1,4 +1,4 @@
-from .abstract import Device
+from .abstract import Device, Enum
 
 
 class Gyro(Device):
