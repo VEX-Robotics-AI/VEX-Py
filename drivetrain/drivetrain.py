@@ -3,17 +3,39 @@ VexIQ Python API B for Robot Mesh.
 """
 
 
-from __future__ import annotations
-from vex import Motor
-from vex import (DirectionType, DistanceUnits, RotationUnits, TimeUnits, VelocityUnits)
+from vex import (
+    DirectionType,
+    DistanceUnits,
+    Motor,
+    RotationUnits,
+    TimeUnits,
+    VelocityUnits
+)
 
-
-# CLASSES
-# =======
 
 class Drivetrain:
-    def __init__(self, left_motor: Motor, right_motor: Motor, wheel_travel: int = 200, track_width: int = 176, distanceUnits: DistanceUnits = DistanceUnits.MM, gear_ratio: double = 1.0):
-        pass
+    def __init__(
+            self,
+            left_motor: Motor,
+            right_motor: Motor,
+            wheel_travel: int = 200,
+            track_width: int = 176,
+            distanceUnits: DistanceUnits = DistanceUnits.MM,
+            gear_ratio: float = 1.0):
+        """
+        Creates a new drivetrain object.
+
+        Parameters:
+        left_motor: the motor, motor group or a list/tuple of motors
+                    driving the left side of the drivetrain
+        right_motor: the motor, motor group or a list/tuple of motors
+                     driving the right side of the drivetrain
+        wheel_travel: circumference of the wheel type used
+        track_width: distance between the wheels on opposite sides
+        distanceUnits: unit for wheel_travel and track_with,
+                       a DistanceUnits enum value
+        gear_ratio: external gear ratio, usually 1.0
+        """
 
     def drive(self, directionType: DirectionType, velocity: int =None, velocityUnits=VelocityUnits.PCT):
         """
