@@ -48,8 +48,8 @@ class BrainButton:
     Use the button class to get values from the brain's buttons.
     """
 
-    def __init__(self, id: Any):
-        self._id: Any = id
+    def __init__(self, id: str):
+        self.id: str = id
         self._pressing: bool = False
 
     def pressing(self) -> bool:
