@@ -4,23 +4,12 @@ VexIQ Python API B for Robot Mesh.
 
 
 from __future__ import annotations
-from enum import IntEnum
 from typing import Any
 
 
 # CLASSES
 # =======
 
-
-class Device:
-    """
-    Base class for all Vex IQ devices.
-    """
-    ...
-
-
-class Enum(IntEnum):
-    ...
 
 
 class Brain(Device):
