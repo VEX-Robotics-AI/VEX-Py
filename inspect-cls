@@ -28,6 +28,5 @@ for property_name, property in getmembers(cls, isdatadescriptor):
 
 print('\nMethods:')
 for method_name, method in getmembers(cls, isfunction):
-    if not method_name.startswith('_'):
-        print(f'\n- {method_name}{signature(method)}:'
-              f'\n    {getfullargspec(method)}')
+    print(f'\n- {method_name}{signature(method)}:'
+          f'\n    {getfullargspec(method)}')
