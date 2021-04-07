@@ -198,7 +198,10 @@ class Drivetrain:
         - gear_ratio: gear ratio value, usually 1.0
         """
 
-    def set_drive_velocity(self, velocity, velocityUnits=VelocityUnits.PCT):
+    def set_drive_velocity(
+            self,
+            velocity: float,
+            velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
         Sets the velocity of the drive.
 
