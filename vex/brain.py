@@ -2,11 +2,11 @@ from __future__ import annotations
 
 from __decor import return_qualname_and_args
 
-from .abstract import Enum
+from .abstract import DeviceWithoutPort, Enum
 
 
 @return_qualname_and_args
-class Brain:
+class Brain(DeviceWithoutPort):
     """
     Use the Brain class to see battery information, or write to the screen.
     """
@@ -17,9 +17,6 @@ class Brain:
         self._buttonUp: BrainButton = BrainButton(id='UP')
         self._buttonDown: BrainButton = BrainButton(id='DOWN')
         self._sound: BrainSound = BrainSound()
-
-    def __str__(self) -> str:
-        return type(self).__name__
 
     @property
     def screen(self) -> BrainLcd:
@@ -43,7 +40,7 @@ class Brain:
 
 
 @return_qualname_and_args
-class BrainButton:
+class BrainButton(DeviceWithoutPort):
     """
     Use the button class to get values from the brain's buttons.
     """
@@ -63,7 +60,7 @@ class BrainButton:
 
 
 @return_qualname_and_args
-class BrainLcd:
+class BrainLcd(DeviceWithoutPort):
     """
     Use this class to write or draw to the brain's LCD screen.
     * 21 characters wide
@@ -91,7 +88,7 @@ class BrainLcd:
 
 
 @return_qualname_and_args
-class BrainSound:
+class BrainSound(DeviceWithoutPort):
     ...
 
 

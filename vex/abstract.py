@@ -15,5 +15,10 @@ class Device:
         return f'{type(self).__name__}@{self.port}'
 
 
+class DeviceWithoutPort:
+    def __str__(self) -> str:
+        return type(self).__name__
+
+
 class Enum(IntEnum):
     ...
