@@ -1,7 +1,10 @@
+from __decor import return_qualname_and_args
+
 from .abstract import Device
 from .port import Ports
 
 
+@return_qualname_and_args
 class Bumper(Device):
     def __init__(self, index: Ports):
         """

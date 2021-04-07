@@ -1,3 +1,5 @@
+from __decor import return_qualname_and_args
+
 from .abstract import Device, Enum
 
 
@@ -21,5 +23,6 @@ class ColorHue(Enum):
     WHITE: int = 13
 
 
+@return_qualname_and_args
 class Colorsensor(Device):
     ...

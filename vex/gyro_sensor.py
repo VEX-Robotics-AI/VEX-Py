@@ -1,6 +1,9 @@
+from __decor import return_qualname_and_args
+
 from .abstract import Device, Enum
 
 
+@return_qualname_and_args
 class Gyro(Device):
     ...
 

@@ -1,3 +1,5 @@
+from __decor import return_qualname_and_args
+
 from .abstract import Device, Enum
 
 
@@ -18,6 +20,7 @@ class DirectionType(Enum):
     REV: int = 1   # A direction unit that is defined as backward.
 
 
+@return_qualname_and_args
 class Motor(Device):
     ...
 

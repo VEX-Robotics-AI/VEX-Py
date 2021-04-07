@@ -1,12 +1,11 @@
 from __future__ import annotations
 
-from typing import Any
-
 from __decor import return_qualname_and_args
 
 from .abstract import Enum
 
 
+@return_qualname_and_args
 class Brain:
     """
     Use the Brain class to see battery information, or write to the screen.
@@ -43,6 +42,7 @@ class Brain:
         return self._sound
 
 
+@return_qualname_and_args
 class BrainButton:
     """
     Use the button class to get values from the brain's buttons.
@@ -62,6 +62,7 @@ class BrainButton:
         return self._pressing
 
 
+@return_qualname_and_args
 class BrainLcd:
     """
     Use this class to write or draw to the brain's LCD screen.
@@ -89,6 +90,7 @@ class BrainLcd:
         """
 
 
+@return_qualname_and_args
 class BrainSound:
     ...
 
