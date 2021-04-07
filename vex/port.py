@@ -1,7 +1,7 @@
-from .abstract import Enum
+from enum import IntEnum
 
 
-class Ports(Enum):
+class Ports(IntEnum):
     PORT1: int = 0
     PORT2: int = 1
     PORT3: int = 2

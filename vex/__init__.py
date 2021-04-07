@@ -1,4 +1,6 @@
-from .abstract import Device, Enum
+from enum import IntEnum
+
+from .abstract import Device
 from .port import Ports
 from .brain import Brain, BrainButton, BrainLcd, BrainSound, NoteType
 from .bumper_switch_sensor import Bumper
@@ -13,7 +15,7 @@ from .touch_led import FadeType, Touchled
 from .time import TimeUnits, wait
 
 
-class DistanceUnits(Enum):
+class DistanceUnits(IntEnum):
     """
     The measurement units for distance values.
     """
@@ -22,7 +24,7 @@ class DistanceUnits(Enum):
     CM: int = 2   # A distance unit that is measured in centimeters.
 
 
-class RotationUnits(Enum):
+class RotationUnits(IntEnum):
     """
     The measurement units for rotation values.
     """

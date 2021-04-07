@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+from enum import IntEnum
+
 from __decor import return_qualname_and_args
 
-from .abstract import DeviceWithoutPort, Enum
+from .abstract import DeviceWithoutPort
 
 
 @return_qualname_and_args
@@ -92,7 +94,7 @@ class BrainSound(DeviceWithoutPort):
     ...
 
 
-class NoteType(Enum):
+class NoteType(IntEnum):
     """
     Musical note to play.
     """

@@ -1,9 +1,11 @@
+from enum import IntEnum
+
 from __decor import return_qualname_and_args
 
-from .abstract import Device, Enum
+from .abstract import Device
 
 
-class ColorHue(Enum):
+class ColorHue(IntEnum):
     """
     Defined color hue values.
     """

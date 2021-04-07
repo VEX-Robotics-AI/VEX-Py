@@ -1,9 +1,11 @@
+from enum import IntEnum
+
 from __decor import return_qualname_and_args
 
-from .abstract import Device, Enum
+from .abstract import Device
 
 
-class FadeType(Enum):
+class FadeType(IntEnum):
     OFF: int = 0
     SLOW: int = 1
     FAST: int = 2

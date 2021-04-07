@@ -1,7 +1,8 @@
+from enum import IntEnum
 from inspect import getfullargspec, getmembers, isclass, isfunction
 from typing import Any, Callable, TypeVar
 
-from vex.abstract import Device, DeviceWithoutPort, Enum
+from vex.abstract import Device, DeviceWithoutPort
 
 
 CallableTypeVar = TypeVar('CallableTypeVar', bound=Callable[..., Any])
@@ -9,7 +10,7 @@ CallableTypeVar = TypeVar('CallableTypeVar', bound=Callable[..., Any])
 
 def stringify_device_or_enum(obj: Any):
     return (str(obj)
-            if isinstance(obj, (Device, DeviceWithoutPort, Enum))
+            if isinstance(obj, (Device, DeviceWithoutPort, IntEnum))
             else obj)
 
 

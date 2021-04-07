@@ -1,9 +1,11 @@
+from enum import IntEnum
+
 from __decor import return_qualname_and_args
 
-from .abstract import Device, Enum
+from .abstract import Device
 
 
-class BrakeType(Enum):
+class BrakeType(IntEnum):
     """
     The defined units for brake values.
     """
@@ -12,7 +14,7 @@ class BrakeType(Enum):
     HOLD: int = 2   # A brake unit that is defined as hold.
 
 
-class DirectionType(Enum):
+class DirectionType(IntEnum):
     """
     The defined units for direction values.
     """
@@ -25,7 +27,7 @@ class Motor(Device):
     ...
 
 
-class TorqueUnits(Enum):
+class TorqueUnits(IntEnum):
     """
     The measurement units for torque values.
     """
@@ -33,7 +35,7 @@ class TorqueUnits(Enum):
     IN_LB: int = 1   # A torque unit that is measured in Inch Pounds.
 
 
-class TurnType(Enum):
+class TurnType(IntEnum):
     """
     Left or right turn.
     """
@@ -41,7 +43,7 @@ class TurnType(Enum):
     RIGHT: int = 1
 
 
-class VelocityUnits(Enum):
+class VelocityUnits(IntEnum):
     """
     The measurement units for velocity values.
     """

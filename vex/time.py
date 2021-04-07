@@ -1,9 +1,9 @@
 from __decor import return_qualname_and_args
 
-from .abstract import Enum
+from enum import IntEnum
 
 
-class TimeUnits(Enum):
+class TimeUnits(IntEnum):
     """
     The measurement units for time values.
     """
