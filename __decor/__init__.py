@@ -1,8 +1,16 @@
 from inspect import getfullargspec, getmembers, isclass, isfunction
 from typing import Any, Callable, TypeVar
 
+from vex.abstract import Device, DeviceWithoutPort, Enum
+
 
 CallableTypeVar = TypeVar('CallableTypeVar', bound=Callable[..., Any])
+
+
+def stringify_device_or_enum(obj: Any):
+    return (str(obj)
+            if isinstance(obj, (Device, DeviceWithoutPort, Enum))
+            else obj)
 
 
 def return_qualname_and_args(cls_or_func: CallableTypeVar) -> CallableTypeVar:
@@ -11,11 +19,16 @@ def return_qualname_and_args(cls_or_func: CallableTypeVar) -> CallableTypeVar:
     def decor_func(*given_args):
         arg_spec = getfullargspec(cls_or_func)
         arg_names = arg_spec.args
-        n_defaults_to_use = len(arg_names) - len(given_args)
-        result = (cls_or_func.__qualname__,
-                  {arg_names[i]: v for i, v in enumerate(given_args)} |
-                  dict(zip(arg_names[-n_defaults_to_use:],
-                           arg_spec.defaults[-n_defaults_to_use:])))
+
+        args_dict = {arg_names[i]: stringify_device_or_enum(v)
+                     for i, v in enumerate(given_args)}
+        if (n_defaults_to_use := len(arg_names) - len(given_args)):
+            args_dict.update(
+                zip(arg_names[-n_defaults_to_use:],
+                    map(stringify_device_or_enum,
+                        arg_spec.defaults[-n_defaults_to_use:])))
+
+        result = (cls_or_func.__qualname__, args_dict)
         print(result)
         return result
 
