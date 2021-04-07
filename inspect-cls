@@ -3,7 +3,11 @@
 
 from argparse import ArgumentParser
 from importlib import import_module
-from inspect import getmembers, isdatadescriptor, isfunction, signature
+from inspect import (
+    getfullargspec, getmembers,
+    isdatadescriptor, isfunction,
+    signature
+)
 
 
 arg_parser = ArgumentParser()
@@ -25,4 +29,5 @@ for property_name, property in getmembers(cls, isdatadescriptor):
 print('\nMethods:')
 for method_name, method in getmembers(cls, isfunction):
     if not method_name.startswith('_'):
-        print(f'- {method_name}: {signature(method)}')
+        print(f'\n- {method_name}{signature(method)}:'
+              f'\n    {getfullargspec(method)}')
