@@ -13,7 +13,7 @@ from vex import (
 )
 
 
-DrivetrainMotorType = Union[Motor, MotorGroup, list[MotorGroup], tuple[Motor]]
+DrivetrainMotorType = Union[Motor, MotorGroup, list[Motor], tuple[Motor]]
 
 
 class Drivetrain:
