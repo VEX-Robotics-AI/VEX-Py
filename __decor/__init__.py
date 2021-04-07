@@ -55,17 +55,26 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
     # (use same signature for IDE code autocomplete to work)
 
     @wraps(sensing_func)
-    def decor_sensing_func(*given_args):
+    def decor_sensing_func(*given_args, result=None):
         args_dict = args_dict_from_func_and_given_args(
                         func=sensing_func,
                         given_args=given_args)
+
         self_arg = args_dict.pop('self')
-        input_arg_strs = [f'{k}={v}' for k, v in args_dict.items()]
-        return_annotation = sensing_func.__annotations__.get('return')
-        return json.loads(input((f'SENSE: {self_arg}.{sensing_func.__name__}'
-                                 f"({', '.join(input_arg_strs)}) = ?") +
-                                (f' [{return_annotation}]'
-                                 if return_annotation
-                                 else '') + ' (in JSON)   '))
+        input_arg_strs = [f'{k}={v}' for k, v in args_dict.items()]        
+        print_str = (f'SENSE: {self_arg}.{sensing_func.__name__}'
+                     f"({', '.join(input_arg_strs)}) = ")
+
+        if result is None:
+            return_annotation = sensing_func.__annotations__.get('return')
+            return json.loads(input(f'{print_str}?' +
+                                    (f' [{return_annotation}]'
+                                     if return_annotation
+                                     else '') +
+                                    ' (in JSON)   '))
+
+        else:
+            print(f'{print_str}{result}')
+            return result
 
     return decor_sensing_func
