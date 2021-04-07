@@ -1,9 +1,7 @@
 from enum import IntEnum
+from functools import wraps
 from inspect import getfullargspec, getmembers, isclass, isfunction
-from typing import Any, Callable, TypeVar
-
-
-CallableTypeVar = TypeVar('CallableTypeVar', bound=Callable[..., Any])
+from typing import Any
 
 
 def stringify_device_or_enum(obj: Any):
@@ -14,9 +12,8 @@ def stringify_device_or_enum(obj: Any):
             else obj)
 
 
-def return_qualname_and_args(cls_or_func: CallableTypeVar) -> CallableTypeVar:
-    # (use same signature for IDE code autocomplete to work)
-
+def return_qualname_and_args(cls_or_func):
+    @wraps(cls_or_func)
     def decor_func(*given_args):
         arg_spec = getfullargspec(cls_or_func)
         arg_names = arg_spec.args
