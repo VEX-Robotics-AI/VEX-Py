@@ -1,5 +1,7 @@
 from typing import Optional
 
+from __decor import return_qualname_and_args
+
 from drivetrain import Drivetrain, DrivetrainMotorType
 from vex import (
     BrakeType,
@@ -13,6 +15,7 @@ from vex import (
 )
 
 
+@return_qualname_and_args
 class Smartdrive(Drivetrain):
     def __init__(
             self,

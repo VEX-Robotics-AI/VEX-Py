@@ -3,6 +3,10 @@ Timer module.
 """
 
 
+from __decor import return_qualname_and_args
+
+
+@return_qualname_and_args
 class Timer:
     def __init__(self):
         """

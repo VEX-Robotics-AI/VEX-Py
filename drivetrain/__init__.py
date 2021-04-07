@@ -1,5 +1,7 @@
 from typing import Optional, Union
 
+from __decor import return_qualname_and_args
+
 from motor_group import MotorGroup
 from vex import (
     BrakeType,
@@ -16,6 +18,7 @@ from vex import (
 DrivetrainMotorType = Union[Motor, MotorGroup, list[Motor], tuple[Motor]]
 
 
+@return_qualname_and_args
 class Drivetrain:
     def __init__(
             self,

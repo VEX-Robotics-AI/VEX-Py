@@ -2,9 +2,12 @@ from __future__ import annotations
 
 from typing import Optional
 
+from __decor import return_qualname_and_args
+
 from vex import Device, Ports
 
 
+@return_qualname_and_args
 class Vision(Device):
     def __init__(
             self,

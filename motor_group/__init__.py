@@ -1,5 +1,7 @@
 from typing import Optional
 
+from __decor import return_qualname_and_args
+
 from vex import (
     BrakeType,
     DirectionType,
@@ -11,6 +13,7 @@ from vex import (
 )
 
 
+@return_qualname_and_args
 class MotorGroup:
     def __init__(self, motors: list[Motor]):
         """
