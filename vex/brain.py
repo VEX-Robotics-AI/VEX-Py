@@ -4,11 +4,11 @@ from enum import IntEnum
 
 from __decor import act, sense
 
-from .abstract import DeviceWithoutPort
+from .abstract import SingletonDevice
 from .time import TimeUnits
 
 
-class Brain(DeviceWithoutPort):
+class Brain(SingletonDevice):
     """
     Use the Brain class to see battery information, or write to the screen.
     """
@@ -41,14 +41,16 @@ class Brain(DeviceWithoutPort):
         return self._sound
 
 
-class BrainButton(DeviceWithoutPort):
+class BrainButton:
     """
     Use the button class to get values from the brain's buttons.
     """
 
     def __init__(self, id: str):
         self.id: str = id
-        self._pressing: bool = False
+
+    def __str__(self) -> str:
+        return f'{type(self).__name__}({self.id})'
 
     @sense
     def pressing(self) -> bool:
@@ -58,10 +60,9 @@ class BrainButton(DeviceWithoutPort):
         Returns
         True if pressed, False otherwise.
         """
-        return self._pressing
 
 
-class BrainLcd(DeviceWithoutPort):
+class BrainLcd(SingletonDevice):
     """
     Use this class to write or draw to the brain's LCD screen.
     * 21 characters wide
@@ -90,7 +91,7 @@ class BrainLcd(DeviceWithoutPort):
         """
 
 
-class BrainSound(DeviceWithoutPort):
+class BrainSound(SingletonDevice):
     @act
     def play(
             self,

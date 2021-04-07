@@ -13,7 +13,6 @@ class Bumper(Device):
         index: The port index for this bumper. The index is zero-based.
         """
         self.port = index
-        self._pressing = False
 
     @sense
     def pressing(self) -> bool:
@@ -23,4 +22,3 @@ class Bumper(Device):
         Returns
         True if pressed, False otherwise.
         """
-        return self._pressing

@@ -17,6 +17,6 @@ class Device:
         return f'{type(self).__name__}({str(self.port)})'
 
 
-class DeviceWithoutPort:
+class SingletonDevice:
     def __str__(self) -> str:
         return type(self).__name__

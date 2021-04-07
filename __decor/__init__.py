@@ -9,10 +9,10 @@ CallableTypeVar = TypeVar('CallableTypeVar', bound=Callable[..., Any])
 
 
 def stringify_device_or_enum(obj: Any):
-    from vex.abstract import Device, DeviceWithoutPort   # avoid circ import
+    from vex.abstract import Device, SingletonDevice   # avoid circ import
 
     return (str(obj)
-            if isinstance(obj, (Device, DeviceWithoutPort, IntEnum))
+            if isinstance(obj, (Device, SingletonDevice, IntEnum))
             else obj)
 
 
