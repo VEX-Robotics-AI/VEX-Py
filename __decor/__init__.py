@@ -4,8 +4,9 @@ from typing import Any, Callable, TypeVar
 CallableTypeVar = TypeVar('CallableTypeVar', bound=Callable[..., Any])
 
 
-def return_qualname_and_args(func: CallableTypeVar) \
-        -> CallableTypeVar:  # use same func type var for autocomplete to work
+def return_qualname_and_args(func: CallableTypeVar) -> CallableTypeVar:
+    # (use same func type var for IDE code autocomplete to work)
+
     def decor_func(*args):
         d = func.__annotations__.copy()
         n_args = len(d)
