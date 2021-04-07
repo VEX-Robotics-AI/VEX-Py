@@ -1,11 +1,10 @@
 from enum import IntEnum
 
-from __decor import return_qualname_and_args
+from __decor import act, sense
 
 from .abstract import Device
 
 
-@return_qualname_and_args
 class Gyro(Device):
     ...
 

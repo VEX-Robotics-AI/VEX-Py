@@ -2,13 +2,12 @@ from __future__ import annotations
 
 from enum import IntEnum
 
-from __decor import return_qualname_and_args
+from __decor import act, sense
 
 from .abstract import DeviceWithoutPort
 from .time import TimeUnits
 
 
-@return_qualname_and_args
 class Brain(DeviceWithoutPort):
     """
     Use the Brain class to see battery information, or write to the screen.
@@ -42,7 +41,6 @@ class Brain(DeviceWithoutPort):
         return self._sound
 
 
-@return_qualname_and_args
 class BrainButton(DeviceWithoutPort):
     """
     Use the button class to get values from the brain's buttons.
@@ -52,6 +50,7 @@ class BrainButton(DeviceWithoutPort):
         self.id: str = id
         self._pressing: bool = False
 
+    @sense
     def pressing(self) -> bool:
         """
         Gets the pressed status of a button.
@@ -62,7 +61,6 @@ class BrainButton(DeviceWithoutPort):
         return self._pressing
 
 
-@return_qualname_and_args
 class BrainLcd(DeviceWithoutPort):
     """
     Use this class to write or draw to the brain's LCD screen.
@@ -70,6 +68,7 @@ class BrainLcd(DeviceWithoutPort):
     * 5 lines (1-5)
     """
 
+    @act
     def print_line(self, number: int, text: str):
         """
         Prints a number, string, or boolean at a particular line,
@@ -84,14 +83,15 @@ class BrainLcd(DeviceWithoutPort):
               Supported format flags are g (all) x (hex) d (int) f (float)
         """
 
+    @act
     def clear_screen(self):
         """
         Clears the whole screen.
         """
 
 
-@return_qualname_and_args
 class BrainSound(DeviceWithoutPort):
+    @act
     def play(
             self,
             note: NoteType,
@@ -108,6 +108,7 @@ class BrainSound(DeviceWithoutPort):
         - timeUnits: of time for the duration. Default sec.
         """
 
+    @act
     def play_raw(
             self,
             note: NoteType,
@@ -122,6 +123,7 @@ class BrainSound(DeviceWithoutPort):
         - timeUnits: of time for the duration. Default sec.
         """
 
+    @act
     def play_wave(
             self,
             waveType: int,
@@ -134,6 +136,7 @@ class BrainSound(DeviceWithoutPort):
         - waitForCompletion: wait for the sample to finish playing
         """
 
+    @act
     def play_melody(self, melody: str):
         """
         Play a melody form a string in a quasi musical alphabet notation
@@ -147,6 +150,7 @@ class BrainSound(DeviceWithoutPort):
                        (in 1/8s: 1=eighth note...8 = full note)
         """
 
+    @act
     def set_sound_effect(self, effect: int):
         """
         set the sound effect type for subsequent notes played
@@ -155,6 +159,7 @@ class BrainSound(DeviceWithoutPort):
         - effect: effect type [0..15]
         """
 
+    @act
     def set_volume(self, volume: int):
         """
         set the sound volume [1-4]
@@ -163,6 +168,7 @@ class BrainSound(DeviceWithoutPort):
         - volume: value [1=low...4=high]
         """
 
+    @act
     def stop(self):
         """
         Stop playing music.

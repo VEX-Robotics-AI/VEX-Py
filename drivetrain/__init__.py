@@ -1,6 +1,6 @@
 from typing import Optional, Union
 
-from __decor import return_qualname_and_args
+from __decor import act, sense
 
 from motor_group import MotorGroup
 from vex import (
@@ -18,7 +18,6 @@ from vex import (
 DrivetrainMotorType = Union[Motor, MotorGroup, list[Motor], tuple[Motor]]
 
 
-@return_qualname_and_args
 class Drivetrain:
     def __init__(
             self,
@@ -43,6 +42,7 @@ class Drivetrain:
         gear_ratio: external gear ratio, usually 1.0
         """
 
+    @act
     def drive(
             self,
             directionType: DirectionType,
@@ -59,6 +59,7 @@ class Drivetrain:
                          a VelocityUnits enum value
         """
 
+    @act
     def drive_for(
             self,
             directionType: DirectionType,
@@ -87,6 +88,7 @@ class Drivetrain:
         True if the drivetrain has reached the target distance, False otherwise
         """
 
+    @act
     def start_drive_for(
             self,
             directionType: DirectionType,
@@ -108,6 +110,7 @@ class Drivetrain:
                          a VelocityUnits enum value
         """
 
+    @act
     def turn(
             self,
             turnType: TurnType,
@@ -123,6 +126,7 @@ class Drivetrain:
                          a VelocityUnits enum value
         """
 
+    @act
     def turn_for(
             self,
             turnType: TurnType,
@@ -152,6 +156,7 @@ class Drivetrain:
         Reimplemented in smartdrive.Smartdrive.
         """
 
+    @act
     def start_turn_for(
             self,
             turnType: TurnType,
@@ -174,6 +179,7 @@ class Drivetrain:
         Reimplemented in smartdrive.Smartdrive.
         """
 
+    @act
     def arcade(self, drivePower: float, turnPower: float):
         """
         Drive in arcade mode,
@@ -184,6 +190,7 @@ class Drivetrain:
         - turnPower: percent power to apply to turning, -100..100
         """
 
+    @act
     def stop(self, brakeType: Optional[BrakeType] = None):
         """
         Stops the drive using a specified brake mode.
@@ -193,6 +200,7 @@ class Drivetrain:
                      If omitted, the value set in set_stopping is used.
         """
 
+    @act
     def set_gear_ratio(self, gear_ratio):
         """
         Sets the external gear ratio of the drivetrain.
@@ -201,6 +209,7 @@ class Drivetrain:
         - gear_ratio: gear ratio value, usually 1.0
         """
 
+    @act
     def set_drive_velocity(
             self,
             velocity: float,
@@ -218,6 +227,7 @@ class Drivetrain:
                          a VelocityUnits enum value
         """
 
+    @act
     def set_turn_velocity(
             self,
             velocity: float,
@@ -233,6 +243,7 @@ class Drivetrain:
                          a VelocityUnits enum value
         """
 
+    @act
     def set_timeout(self, time: float, timeUnits: TimeUnits = TimeUnits.SEC):
         """
         Sets the timeout for the drivetrain.
@@ -250,11 +261,13 @@ class Drivetrain:
         Returns a timeout in given time units.
         """
 
+    @sense
     def did_timeout(self) -> bool:
         """
         True if the last drivetrain operation timed out, False otherwise.
         """
 
+    @sense
     def is_done(self) -> bool:
         """
         True if drivetrain is done driving/turning to a specified target,
@@ -263,6 +276,7 @@ class Drivetrain:
         Reimplemented in smartdrive.Smartdrive.
         """
 
+    @act
     def set_stopping(self, brakeType: BrakeType):
         """
         Sets the stopping mode of the motor group
@@ -273,6 +287,7 @@ class Drivetrain:
                      (coast, brake, or hold).
         """
 
+    @sense
     def velocity(
             self,
             velocityUnits: VelocityUnits = VelocityUnits.PCT) -> float:
@@ -286,6 +301,7 @@ class Drivetrain:
         - velocityUnits: The measurement unit for the velocity.
         """
 
+    @sense
     def current(self) -> float:
         """
         Gets the electrical current of all motors.

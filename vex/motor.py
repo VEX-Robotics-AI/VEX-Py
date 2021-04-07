@@ -1,6 +1,6 @@
 from enum import IntEnum
 
-from __decor import return_qualname_and_args
+from __decor import act, sense
 
 from .abstract import Device
 
@@ -22,7 +22,6 @@ class DirectionType(IntEnum):
     REV: int = 1   # A direction unit that is defined as backward.
 
 
-@return_qualname_and_args
 class Motor(Device):
     ...
 

@@ -1,4 +1,4 @@
-from __decor import return_qualname_and_args
+from __decor import act
 
 from enum import IntEnum
 
@@ -11,7 +11,7 @@ class TimeUnits(IntEnum):
     MSEC: int = 1   # A time unit that is measured in milliseconds.
 
 
-@return_qualname_and_args
+@act
 def wait(time: float, timeUnits: TimeUnits = TimeUnits.SEC):
     """
     Wait for a specific amount of time.

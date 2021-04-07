@@ -1,10 +1,9 @@
-from __decor import return_qualname_and_args
+from __decor import sense
 
 from .abstract import Device
 from .port import Ports
 
 
-@return_qualname_and_args
 class Bumper(Device):
     def __init__(self, index: Ports):
         """
@@ -16,6 +15,7 @@ class Bumper(Device):
         self.port = index
         self._pressing = False
 
+    @sense
     def pressing(self) -> bool:
         """
         Get the pressed status of the bumper device.

@@ -1,6 +1,7 @@
 from enum import IntEnum
 from functools import wraps
-from inspect import getfullargspec, getmembers, isclass, isfunction
+from inspect import getfullargspec
+import json
 from typing import Any, Callable, TypeVar
 
 
@@ -15,35 +16,47 @@ def stringify_device_or_enum(obj: Any):
             else obj)
 
 
-def return_qualname_and_args(cls_or_func: CallableTypeVar) -> CallableTypeVar:
+def args_dict_from_func_and_given_args(func, given_args):
+    arg_spec = getfullargspec(func)
+    arg_names = arg_spec.args
+
+    args_dict = {arg_names[i]: stringify_device_or_enum(v)
+                 for i, v in enumerate(given_args)}
+    if (n_defaults_to_use := len(arg_names) - len(given_args)) > 0:
+        args_dict.update(
+            zip(arg_names[-n_defaults_to_use:],
+                map(stringify_device_or_enum,
+                    arg_spec.defaults[-n_defaults_to_use:])))
+
+    return args_dict
+
+
+def act(actuating_func: CallableTypeVar) -> CallableTypeVar:
     # (use same signature for IDE code autocomplete to work)
 
-    @wraps(cls_or_func)
-    def decor_func(*given_args):
-        arg_spec = getfullargspec(cls_or_func)
-        arg_names = arg_spec.args
-
-        args_dict = {arg_names[i]: stringify_device_or_enum(v)
-                     for i, v in enumerate(given_args)}
-        if (n_defaults_to_use := len(arg_names) - len(given_args)) > 0:
-            args_dict.update(
-                zip(arg_names[-n_defaults_to_use:],
-                    map(stringify_device_or_enum,
-                        arg_spec.defaults[-n_defaults_to_use:])))
-
-        result = (cls_or_func.__qualname__, args_dict)
+    @wraps(actuating_func)
+    def decor_actuating_func(*given_args):
+        result = (actuating_func.__qualname__,
+                  args_dict_from_func_and_given_args(
+                    func=actuating_func,
+                    given_args=given_args))
         print(result)
         return result
 
-    if isfunction(cls_or_func):
-        return decor_func
+    return decor_actuating_func
 
-    else:
-        assert isclass(cls_or_func)
 
-        for method_name, method in getmembers(cls_or_func, isfunction):
-            if not method_name.startswith('_'):
-                setattr(cls_or_func, method_name,
-                        return_qualname_and_args(method))
+def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
+    # (use same signature for IDE code autocomplete to work)
 
-        return cls_or_func
+    @wraps(sensing_func)
+    def decor_sensing_func(*given_args):
+        args_dict = args_dict_from_func_and_given_args(
+                        func=sensing_func,
+                        given_args=given_args)
+        self_arg = args_dict.pop('self')
+        input_arg_strs = [f'{k}={v}' for k, v in args_dict.items()]
+        return json.loads(input(f'{self_arg}.{sensing_func.__name__}'
+                                f"({', '.join(input_arg_strs)}) = ?   "))
+
+    return decor_sensing_func

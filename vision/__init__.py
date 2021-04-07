@@ -2,12 +2,11 @@ from __future__ import annotations
 
 from typing import Optional
 
-from __decor import return_qualname_and_args
+from __decor import sense
 
 from vex import Device, Ports
 
 
-@return_qualname_and_args
 class Vision(Device):
     def __init__(
             self,
@@ -29,6 +28,7 @@ class Vision(Device):
         self.brightness = brightness
         self.signatures = signatures
 
+    @sense
     def take_snapshot(self, id: int, count: Optional[int] = None) -> int:
         """
         Takes a data sample from the vision sensor.

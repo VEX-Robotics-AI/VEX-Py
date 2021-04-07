@@ -1,6 +1,6 @@
 from typing import Optional
 
-from __decor import return_qualname_and_args
+from __decor import act, sense
 
 from vex import (
     BrakeType,
@@ -13,7 +13,6 @@ from vex import (
 )
 
 
-@return_qualname_and_args
 class MotorGroup:
     def __init__(self, motors: list[Motor]):
         """
@@ -22,6 +21,7 @@ class MotorGroup:
         param:
         - motors: a list or tuple of motors in the group
         """
+        self.motors = motors
 
     def count(self) -> int:
         """
@@ -30,7 +30,9 @@ class MotorGroup:
         Returns:
         number of motors
         """
+        return len(self.motors)
 
+    @act
     def set_velocity(self, velocity: float, velocityUnits=VelocityUnits.PCT):
         """
         Sets the velocity of the motor group
@@ -46,6 +48,7 @@ class MotorGroup:
                          a VelocityUnits enum value.
         """
 
+    @act
     def set_stopping(self, brakeType: BrakeType):
         """
         Sets the stopping mode of the motor group
@@ -56,11 +59,13 @@ class MotorGroup:
                      to BrakeType.COAST, BRAKE, or HOLD.
         """
 
+    @act
     def reset_rotation(self):
         """
         Resets all motor encoders to the value of zero.
         """
 
+    @act
     def set_rotation(self, value: float, rotationUnits=RotationUnits.DEG):
         """
         Sets the value of all motor encoders
@@ -72,6 +77,7 @@ class MotorGroup:
                          a RotationUnits enum value.
         """
 
+    @act
     def set_timeout(self, time: float, timeUnits=TimeUnits.SEC):
         """
         Sets the timeout for the motor group.
@@ -90,12 +96,14 @@ class MotorGroup:
         Returns a timeout in given time units
         """
 
+    @sense
     def did_timeout(self) -> bool:
         """
         Returns:
         True if the last motor operation on any motor timed out
         """
 
+    @act
     def spin(
             self,
             dir: DirectionType,
@@ -113,6 +121,7 @@ class MotorGroup:
                          a VelocityUnits enum value.
         """
 
+    @act
     def spin_to(
             self,
             rotation: float,
@@ -141,6 +150,7 @@ class MotorGroup:
                                         By default, this parameter is true.
         """
 
+    @act
     def spin_for(
             self,
             dir: DirectionType,
@@ -170,6 +180,7 @@ class MotorGroup:
                                         By default, this parameter is true.
         """
 
+    @act
     def spin_for_time(
             self,
             dir: DirectionType,
@@ -190,6 +201,7 @@ class MotorGroup:
                          a VelocityUnits enum value.
         """
 
+    @act
     def start_spin_to(
             self,
             rotation: float,
@@ -207,6 +219,7 @@ class MotorGroup:
         - velocityUnits: The measurement unit for the velocity value.
         """
 
+    @act
     def start_spin_for(
             self,
             dir: DirectionType,
@@ -226,6 +239,7 @@ class MotorGroup:
         - velocityUnits: The measurement unit for the velocity value.
         """
 
+    @sense
     def is_spinning(self) -> bool:
         """
         Determines if any motor in the group
@@ -235,6 +249,7 @@ class MotorGroup:
         True if any motors are spinning.
         """
 
+    @sense
     def is_done(self) -> bool:
         """
         Determines if a spin_for/spin_to command
@@ -245,6 +260,7 @@ class MotorGroup:
         True if all motors are done rotating to a target.
         """
 
+    @act
     def stop(self, brakeType: Optional[BrakeType] = None):
         """
         Stops all motors using the default brake mode.
@@ -254,6 +270,7 @@ class MotorGroup:
                      BrakeType.COAST, BRAKE, or HOLD.
         """
 
+    @act
     def set_max_torque_percent(self, value: float):
         """
         Sets the max torque of all motors as a percentage.
@@ -262,6 +279,7 @@ class MotorGroup:
         - value: Sets the amount of torque (0 to 100%)
         """
 
+    @act
     def set_max_torque(
             self,
             value: float,
@@ -274,6 +292,7 @@ class MotorGroup:
         - torqueUnits: The measurement unit for the torque value.
         """
 
+    @act
     def set_max_torque_current(self, value: float):
         """
         Sets the max torque of all motors.
@@ -282,6 +301,7 @@ class MotorGroup:
         - value: Sets the amount of torque in Amps (max 1.2A)
         """
 
+    @sense
     def rotation(
             self,
             rotationUnits: RotationUnits = RotationUnits.DEG) -> float:
@@ -296,6 +316,7 @@ class MotorGroup:
         - rotationUnits: The measurement unit for the rotation.
         """
 
+    @sense
     def velocity(
             self,
             velocityUnits: VelocityUnits = VelocityUnits.PCT) -> float:
@@ -310,5 +331,6 @@ class MotorGroup:
         - velocityUnits: The measurement unit for the velocity.
         """
 
+    @sense
     def current(self) -> float:
         ...
