@@ -69,7 +69,6 @@ class BrainLcd:
     * 5 lines (1-5)
     """
 
-    @return_qualname_and_args
     def print_line(self, number: int, text: str):
         """
         Prints a number, string, or boolean at a particular line,
@@ -84,7 +83,6 @@ class BrainLcd:
               Supported format flags are g (all) x (hex) d (int) f (float)
         """
 
-    @return_qualname_and_args
     def clear_screen(self):
         """
         Clears the whole screen.
