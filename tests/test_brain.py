@@ -1,5 +1,6 @@
-from vex import BrainLcd
+from vex import Brain
 
 
-screen = BrainLcd()
-print(screen.print_line(1, 'hello'))
+brain = Brain()
+
+brain.screen.print_line(1, 'hello')
