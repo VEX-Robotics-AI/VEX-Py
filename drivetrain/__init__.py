@@ -1,4 +1,4 @@
-from typing import Optional, TypeVar
+from typing import Optional, Union
 
 from motor_group import MotorGroup
 from vex import (
@@ -13,9 +13,7 @@ from vex import (
 )
 
 
-DrivetrainMotorType = \
-    TypeVar('DrivetrainMotorType',
-            Motor, MotorGroup, list[MotorGroup], tuple[Motor])
+DrivetrainMotorType = Union[Motor, MotorGroup, list[MotorGroup], tuple[Motor]]
 
 
 class Drivetrain:
