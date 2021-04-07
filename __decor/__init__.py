@@ -25,7 +25,7 @@ def return_qualname_and_args(cls_or_func: CallableTypeVar) -> CallableTypeVar:
 
         args_dict = {arg_names[i]: stringify_device_or_enum(v)
                      for i, v in enumerate(given_args)}
-        if (n_defaults_to_use := len(arg_names) - len(given_args)):
+        if (n_defaults_to_use := len(arg_names) - len(given_args)) > 0:
             args_dict.update(
                 zip(arg_names[-n_defaults_to_use:],
                     map(stringify_device_or_enum,
