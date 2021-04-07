@@ -24,7 +24,10 @@ cls = getattr(module, class_name)
 print('\nProperties:')
 for property_name, property in getmembers(cls, isdatadescriptor):
     if not property_name.startswith('_'):
-        print(f"- {property_name}: {property.fget.__annotations__['return']}")
+        return_annotation = property.fget.__annotations__.get('return')
+        print(f'- {property_name}: {return_annotation}'
+              if return_annotation
+              else f'- {property_name}')
 
 print('\nMethods:')
 for method_name, method in getmembers(cls, isfunction):
