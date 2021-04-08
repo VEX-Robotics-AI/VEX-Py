@@ -9,6 +9,7 @@ class Controller(SingletonDevice):
     as well as write to the controller's screen.
     """
     def __init__(self):
+        # !FIXME: mask="EUp", axtype="A" are assumptions
         self._buttonEUp: ControllerButton = ControllerButton(mask="EUp")
         self._buttonEDown: ControllerButton = ControllerButton(mask="EDown")
         self._buttonFUp: ControllerButton = ControllerButton(mask="FUp")
@@ -22,58 +23,61 @@ class Controller(SingletonDevice):
         self._axisC: ControllerAxis = ControllerAxis(axtype="C")
         self._axisD: ControllerAxis = ControllerAxis(axtype="D")
 
+    @act
     def set_deadband(self, deadband):
         """
         set the value of the controller axis deadband (minimum absolute threshold at which position is reported as non-zero) move to c-variable for deadband
         """
+        pass
 
-        @property
-        def buttonEUp(self) -> ControllerButton:
-            return self._buttonEUp
+    @property
+    def buttonEUp(self) -> ControllerButton:
+        return self._buttonEUp
 
-        @property
-        def buttonEDown(self) -> ControllerButton:
-            return self._buttonEDown
+    @property
+    def buttonEDown(self) -> ControllerButton:
+        return self._buttonEDown
 
-        @property
-        def buttonFUp(self) -> ControllerButton:
-            return self._buttonFUp
+    @property
+    def buttonFUp(self) -> ControllerButton:
+        return self._buttonFUp
 
-        @property
-        def buttonFDown(self) -> ControllerButton:
-            return self._buttonFDown
+    @property
+    def buttonFDown(self) -> ControllerButton:
+        return self._buttonFDown
 
-        @property
-        def buttonLUp(self) -> ControllerButton:
-            return self._buttonLUp
+    @property
+    def buttonLUp(self) -> ControllerButton:
+        return self._buttonLUp
 
-        @property
-        def buttonLDown(self) -> ControllerButton:
-            return self._buttonLDown
+    @property
+    def buttonLDown(self) -> ControllerButton:
+        return self._buttonLDown
 
-        @property
-        def buttonRUp(self) -> ControllerButton:
-            return self._buttonRUp
+    @property
+    def buttonRUp(self) -> ControllerButton:
+        return self._buttonRUp
 
-        @property
-        def buttonRDown(self) -> ControllerButton:
-            return self._buttonRDown
+    @property
+    def buttonRDown(self) -> ControllerButton:
+        return self._buttonRDown
 
-        @property
-        def axisA(self) -> ControllerAxis:
-            return self._axisA
+    @property
+    def axisA(self) -> ControllerAxis:
+        return self._axisA
 
-        @property
-        def axisB(self) -> ControllerAxis:
-            return self._axisB
+    @property
+    def axisB(self) -> ControllerAxis:
+        return self._axisB
 
-        @property
-        def axisC(self) -> ControllerAxis:
-            return self._axisC
+    @property
+    def axisC(self) -> ControllerAxis:
+        return self._axisC
 
-        @property
-        def axisD(self) -> ControllerAxis:
-            return self._axisD
+    @property
+    def axisD(self) -> ControllerAxis:
+        return self._axisD
+
 
 class ControllerAxis:
     """
@@ -81,40 +85,45 @@ class ControllerAxis:
     """
     def __init__ (self, parent, axtype):
         """"""
+        pass
 
-    @property
-    def value(self):
+    @sense
+    def value(self) -> int:
         """
         Gets the value of the joystick axis on a scale from -127 to 127.
 
         Returns
         an integer that represents the value of the joystick axis.
         """
+        pass
 
-    @property
-    def position(self):
+    @sense
+    def position(self) -> int:
         """
         Gets the position of the joystick axis on a scale from -100 to 100.
 
         Returns
         an integer that represents the position of the joystick axis.
         """
+        pass
+
 
 class ControllerButton:
     """
     Use the button class to get values from the controller's buttons.
     """
     def __init__(self, mask):
-        self.mask: str = mask
+        self.mask = mask
 
     def __str__(self) -> str:
         return f'{type(self).__name__}({self.id})'
 
     @sense
-    def pressing(self):
+    def pressing(self) -> bool:
         """
         Gets the status of a button
 
         Returns:
         True if pressed, false otherwise
         """
+        pass

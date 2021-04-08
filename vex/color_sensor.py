@@ -26,65 +26,87 @@ class ColorHue(IntEnum):
 
 
 class Colorsensor(Device):
-    """Color Sensor"""
-    def __init__(self, index, is_grayscale=False, proximity=700):
+    """
+    Color Sensor
+    """
+    def __init__(
+            self,
+            index: IntEnum,
+            is_grayscale: boolean=False,
+            proximity: float=700):
         """
-        Creates a new color sensor object on the port specified in the parameter.
+        Creates a new color sensor object on
+        the port specified in the parameter.
 
-        :params:
-        index: The port index (zero-based)
-        is_grayscale: Whether grayscale mode (LED on), default false
-        proximity: threshold (default 700)
+        Parameters:
+        - index: The port index (zero-based)
+        - is_grayscale: Whether grayscale mode (LED on), default false
+        - proximity: threshold (default 700)
         """
+        pass
 
-    def colorname3(self):
+    @sense
+    def colorname3(self) -> IntEnum:
         """
         Gets the name of the detected color.
 
-        return:
-        enum value for the closest color detected out of ColorHue.RED, GREEN or BLUE (or NONE).
+        Returns:
+        enum value for the closest color detected
+        out of ColorHue.RED, GREEN or BLUE (or NONE).
         """
+        pass
 
-    def colorname12(self):
+    @sense
+    def colorname12(self) -> IntEnum:
         """
         Gets the name of the detected color.
 
-        return:
-        enum value of the closest color detected out of 12 possible values of ColorType (or NONE).
+        Returns:
+        enum value of the closest color detected out of 12
+        possible values of ColorType (or NONE).
         """
+        pass
 
-    def grayscale(self, raw=False):
+    @sense
+    def grayscale(self, raw=False) -> int:
         """
         Gets the grayscale value detected by the color sensor.
 
-        params:
-        raw: if True, raw value will be returned, otherwise a percentage
+        Parameters:
+        - raw: if True, raw value will be returned, otherwise a percentage
 
-        return:
-        integer that represents the detected grayscale value (percentage 0-100 or raw 0-1024).
+        Returns:
+        integer that represents the detected grayscale value
+        (percentage 0-100 or raw 0-1024).
         """
+        pass
 
-    def near(self):
+    @act
+    def near(self) -> bool:
         """
         Check to see if an object is detected by the color sensor.
 
-        return:
+        Returns:
         True if an object has been detected, False otherwise
         """
+        pass
 
+    @act
     def set_proximity_threshold(self, proximity):
         """
         Set the near threshold setting.
 
-        params:
-        proximity: threshold (higher is closer) (default 700)
+        Parameters:
+        - proximity: threshold (higher is closer) (default 700)
         """
+        pass
 
-
+    @act
     def led(self, state):
         """
         Turns the led on the color sensor on or off.
 
-        params:
-        state: if True, LED will be turned on
+        Parameters:
+        - state: if True, LED will be turned on
         """
+        pass

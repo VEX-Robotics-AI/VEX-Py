@@ -8,27 +8,29 @@ class Sonar(Device):
         """
         Creates a new sonar sensor object on the port specified in the parameter.
 
-        Params:
-        index: to the brain port.
+        Parameters:
+        - index: to the brain port.
         """
+        pass
 
     @act
-    def set_maximum(self, distance, distanceUnits=DistanceUnits.MM):
+    def set_maximum(self, distance, distanceUnits: DistanceUnits = DistanceUnits.MM):
         """
         Sets the maximum distance (default 2.5m)
 
-        Params:
-        distance: maximum distance to be measured in units
-        distanceUnits: a DistanceUnits enum value for the measurement unit.
+        Parameters:
+        - distance: maximum distance to be measured in units
+        - distanceUnits: a DistanceUnits enum value for the measurement unit.
         """"
+        pass
 
-    @property
-    def distance(self, distanceUnits=DistanceUnits.MM):
+    @sense
+    def distance(self, distanceUnits=DistanceUnits.MM) -> int:
         """
         Gets the value of the sonar sensor.
 
-        Params:
-        distanceUnits: The measurement unit for the sonar device, DistanceUnits enum value.
+        Parameters:
+        - distanceUnits: The measurement unit for the sonar device, DistanceUnits enum value.
 
         Returns:
         an integer that represents the unit value specified by the parameter.
