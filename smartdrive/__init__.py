@@ -323,7 +323,7 @@ class Smartdrive(Drivetrain):
         - timeUnits: unit for the time parameter, a TimeUnits enum value
         """
 
-    def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC):
+    def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC) -> float:
         """
         Returns a timeout in given time units.
         """

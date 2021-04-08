@@ -90,7 +90,7 @@ class MotorGroup:
         - timeUnits: The measurement unit for the time, a TimeUnits enum value.
         """
 
-    def timeout(self, timeUnits=TimeUnits.SEC):
+    def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC) -> float:
         """
         Returns:
         Returns a timeout in given time units
