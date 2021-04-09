@@ -21,7 +21,15 @@ class MotorGroup:
         param:
         - motors: a list or tuple of motors in the group
         """
-        self.motors = motors
+        self.motors: list[Motor] = motors
+        self.rotations: dict[Motor, dict[RotationUnits, float]] = \
+            {motor: {} for motor in motors}
+
+        self.velocities: dict[VelocityUnits, float] = \
+            dict[VelocityUnits, float]()
+        self.stopping: Optional[BrakeType] = None
+        self.timeouts: dict[TimeUnits, float] = dict[TimeUnits, float]()
+        self.max_torque: dict[TorqueUnits, float] = dict[TorqueUnits, float]()
 
     def count(self) -> int:
         """
@@ -47,6 +55,7 @@ class MotorGroup:
         - velocityUnits: The measurement unit for velocity,
                          a VelocityUnits enum value.
         """
+        self.velocities[velocityUnits]: float = velocity
 
     @act
     def set_stopping(self, brakeType: BrakeType):
@@ -58,12 +67,16 @@ class MotorGroup:
         - brakeType: The stopping mode can be set
                      to BrakeType.COAST, BRAKE, or HOLD.
         """
+        self.stopping: BrakeType = brakeType
 
     @act
     def reset_rotation(self):
         """
         Resets all motor encoders to the value of zero.
         """
+        for motor in self.motors:
+            for rotation_unit in self.rotations[motor]:
+                self.rotations[motor][rotation_unit]: float = 0
 
     @act
     def set_rotation(self, value: float, rotationUnits=RotationUnits.DEG):
@@ -76,6 +89,8 @@ class MotorGroup:
         - rotationUnits: The measurement unit for the rotation,
                          a RotationUnits enum value.
         """
+        for motor in self.motors:
+            self.rotations[motor][rotationUnits]: float = value
 
     @act
     def set_timeout(self, time: float, timeUnits=TimeUnits.SEC):
@@ -89,12 +104,15 @@ class MotorGroup:
         - time: Sets the amount of time.
         - timeUnits: The measurement unit for the time, a TimeUnits enum value.
         """
+        self.timeouts[timeUnits]: float = time
 
+    @sense
     def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC) -> float:
         """
         Returns:
         Returns a timeout in given time units
         """
+        return self.timeouts[timeUnits]
 
     @sense
     def did_timeout(self) -> bool:
@@ -105,8 +123,7 @@ class MotorGroup:
 
     @act
     def spin(
-            self,
-            dir: DirectionType,
+            self, dir: DirectionType,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
@@ -124,8 +141,7 @@ class MotorGroup:
     @act
     def spin_to(
             self,
-            rotation: float,
-            rotationUnits: RotationUnits = RotationUnits.DEG,
+            rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True) -> bool:
@@ -152,13 +168,11 @@ class MotorGroup:
 
     @act
     def spin_for(
-            self,
-            dir: DirectionType,
-            rotation: float,
-            rotationUnits: RotationUnits = RotationUnits.DEG,
+            self, dir: DirectionType,
+            rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True):
+            waitForCompletion: bool = True) -> bool:
         """
         Turn on the motors and spin them to a relative target rotation value
         at a specified velocity.
@@ -182,10 +196,8 @@ class MotorGroup:
 
     @act
     def spin_for_time(
-            self,
-            dir: DirectionType,
-            time: float,
-            timeUnits: TimeUnits = TimeUnits.SEC,
+            self, dir: DirectionType,
+            time: float, timeUnits: TimeUnits = TimeUnits.SEC,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
@@ -204,8 +216,7 @@ class MotorGroup:
     @act
     def start_spin_to(
             self,
-            rotation: float,
-            rotationUnits: RotationUnits = RotationUnits.DEG,
+            rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
@@ -221,10 +232,8 @@ class MotorGroup:
 
     @act
     def start_spin_for(
-            self,
-            dir: DirectionType,
-            rotation: float,
-            rotationUnits: RotationUnits = RotationUnits.DEG,
+            self, dir: DirectionType,
+            rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
@@ -278,12 +287,12 @@ class MotorGroup:
         Parameters:
         - value: Sets the amount of torque (0 to 100%)
         """
+        self.max_torque[TorqueUnits.PCT]: float = value
 
     @act
     def set_max_torque(
             self,
-            value: float,
-            torqueUnits: TorqueUnits = TorqueUnits.NM):
+            value: float, torqueUnits: TorqueUnits = TorqueUnits.NM):
         """
         Sets the max torque of all motors.
 
@@ -291,6 +300,7 @@ class MotorGroup:
         - value: Sets the amount of torque (max 0.414 Nm)
         - torqueUnits: The measurement unit for the torque value.
         """
+        self.max_torque[torqueUnits]: float = value
 
     @act
     def set_max_torque_current(self, value: float):
@@ -300,6 +310,7 @@ class MotorGroup:
         Parameters:
         - value: Sets the amount of torque in Amps (max 1.2A)
         """
+        self.max_torque_current: float = value
 
     @sense
     def rotation(

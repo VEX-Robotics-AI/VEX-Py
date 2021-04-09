@@ -3,6 +3,7 @@ from enum import IntEnum
 from __decor import act, sense
 
 from .abstract import Device
+from .port import Ports
 
 
 class ColorHue(IntEnum):
@@ -26,4 +27,80 @@ class ColorHue(IntEnum):
 
 
 class Colorsensor(Device):
-    ...
+    def __init__(
+            self, index: Ports,
+            is_grayscale: bool = False,
+            proximity: float = 700):
+        """
+        Creates a new color sensor object on
+        the port specified in the parameter.
+
+        Parameters:
+        - index: The port index (zero-based)
+        - is_grayscale: Whether grayscale mode (LED on), default false
+        - proximity: threshold (default 700)
+        """
+        self.port: Ports = index
+        self.is_grayscale: bool = is_grayscale
+        self.proximity: float = proximity
+
+    @sense
+    def colorname3(self) -> int:
+        """
+        Gets the name of the detected color.
+
+        Returns:
+        enum value for the closest color detected
+        out of ColorHue.RED, GREEN or BLUE (or NONE).
+        """
+
+    @sense
+    def colorname12(self) -> int:
+        """
+        Gets the name of the detected color.
+
+        Returns:
+        enum value of the closest color detected out of 12
+        possible values of ColorType (or NONE).
+        """
+
+    @sense
+    def grayscale(self, raw: bool = False) -> int:
+        """
+        Gets the grayscale value detected by the color sensor.
+
+        Parameters:
+        - raw: if True, raw value will be returned, otherwise a percentage
+
+        Returns:
+        integer that represents the detected grayscale value
+        (percentage 0-100 or raw 0-1024).
+        """
+
+    @sense
+    def near(self) -> bool:
+        """
+        Check to see if an object is detected by the color sensor.
+
+        Returns:
+        True if an object has been detected, False otherwise
+        """
+
+    @act
+    def set_proximity_threshold(self, proximity: float = 700):
+        """
+        Set the near threshold setting.
+
+        Parameters:
+        - proximity: threshold (higher is closer) (default 700)
+        """
+        self.proximity: float = proximity
+
+    @act
+    def led(self, state: bool):
+        """
+        Turns the led on the color sensor on or off.
+
+        Parameters:
+        - state: if True, LED will be turned on
+        """

@@ -3,12 +3,16 @@
 
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": false,
+    // false positives in Py3.9
   "python.linting.flake8Enabled": true,
-  "python.linting.mypyEnabled": true,
+  "python.linting.mypyEnabled": false,
+    // false positives: EOL while scanning string literal
   "python.linting.pydocstyleEnabled": false,
   "python.linting.pycodestyleEnabled": true,
   "python.linting.pylamaEnabled": true,
   "python.linting.banditEnabled": true,
 
-  "python.pythonPath": "/usr/local/bin/python3"
+  "python.pythonPath": "/usr/local/bin/python3",
+
+  "restructuredtext.languageServer.disabled": true
 }

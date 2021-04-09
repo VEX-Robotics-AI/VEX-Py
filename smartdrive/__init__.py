@@ -18,11 +18,9 @@ from vex import (
 class Smartdrive(Drivetrain):
     def __init__(
             self,
-            left_motor: DrivetrainMotorType,
-            right_motor: DrivetrainMotorType,
+            left_motor: DrivetrainMotorType, right_motor: DrivetrainMotorType,
             gyro: Gyro,
-            wheel_travel: float = 200,
-            track_width: float = 176,
+            wheel_travel: float = 200, track_width: float = 176,
             distanceUnits: DistanceUnits = DistanceUnits.MM,
             gear_ratio: float = 1):
         """
@@ -40,12 +38,25 @@ class Smartdrive(Drivetrain):
                          a DistanceUnits enum value
         - gear_ratio: external gear ratio, usually 1.0
         """
+        self.left_motor: DrivetrainMotorType = left_motor
+        self.right_motor: DrivetrainMotorType = right_motor
+        self.gyro: Gyro = gyro
+        self.wheel_travel: float = wheel_travel
+        self.track_width: float = track_width
+        self.distance_unit: DistanceUnits = distanceUnits
+        self.gear_ratio: float = gear_ratio
+
+        self.drive_velocities: dict[VelocityUnits, float] = \
+            dict[VelocityUnits, float]()
+        self.turn_velocities: dict[VelocityUnits, float] = \
+            dict[VelocityUnits, float]()
+        self.timeouts: dict[TimeUnits, float] = dict[TimeUnits, float]()
+        self.stopping: Optional[BrakeType] = None
 
     @act
     def turn_to_heading(
             self,
-            angle: float,
-            angleUnits: RotationUnits = RotationUnits.DEG,
+            angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True) -> bool:
@@ -71,22 +82,19 @@ class Smartdrive(Drivetrain):
     @act
     def turn_to_rotation(
             self,
-            angle: float,
-            angleUnits: RotationUnits = RotationUnits.DEG,
+            angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True):
+            waitForCompletion: bool = True) -> bool:
         ...
 
     @act
     def turn_for(
-            self,
-            turnType: TurnType,
-            angle: float,
-            angleUnits: RotationUnits = RotationUnits.DEG,
+            self, turnType: TurnType,
+            angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True):
+            waitForCompletion: bool = True) -> bool:
         """
         Turn the drivetrain left or right until the specified angle is reached.
 
@@ -111,8 +119,7 @@ class Smartdrive(Drivetrain):
     @act
     def start_turn_to_heading(
             self,
-            angle: float,
-            angleUnits: RotationUnits = RotationUnits.DEG,
+            angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         ...
@@ -120,18 +127,15 @@ class Smartdrive(Drivetrain):
     @act
     def start_turn_to_rotation(
             self,
-            angle: float,
-            angleUnits: RotationUnits = RotationUnits.DEG,
+            angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         ...
 
     @act
     def start_turn_for(
-            self,
-            turnType: TurnType,
-            angle: float,
-            angleUnits: RotationUnits = RotationUnits.DEG,
+            self, turnType: TurnType,
+            angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
@@ -163,8 +167,7 @@ class Smartdrive(Drivetrain):
 
     @act
     def drive(
-            self,
-            directionType: DirectionType,
+            self, directionType: DirectionType,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
@@ -180,10 +183,8 @@ class Smartdrive(Drivetrain):
 
     @act
     def drive_for(
-            self,
-            directionType: DirectionType,
-            distance: float,
-            distanceUnits: DistanceUnits = DistanceUnits.MM,
+            self, directionType: DirectionType,
+            distance: float, distanceUnits: DistanceUnits = DistanceUnits.MM,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True) -> bool:
@@ -210,10 +211,8 @@ class Smartdrive(Drivetrain):
 
     @act
     def start_drive_for(
-            self,
-            directionType: DirectionType,
-            distance: float,
-            distanceUnits: DistanceUnits = DistanceUnits.MM,
+            self, directionType: DirectionType,
+            distance: float, distanceUnits: DistanceUnits = DistanceUnits.MM,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
@@ -232,8 +231,7 @@ class Smartdrive(Drivetrain):
 
     @act
     def turn(
-            self,
-            turnType: TurnType,
+            self, turnType: TurnType,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
@@ -275,12 +273,12 @@ class Smartdrive(Drivetrain):
         Parameters:
         - gear_ratio: gear ratio value, usually 1.0
         """
+        self.gear_ratio: float = gear_ratio
 
     @act
     def set_drive_velocity(
             self,
-            velocity: float,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT):
+            velocity: float, velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
         Sets the velocity of the drive.
 
@@ -293,12 +291,12 @@ class Smartdrive(Drivetrain):
         - velocityUnits: unit for the velocity parameter,
                          a VelocityUnits enum value
         """
+        self.drive_velocities[velocityUnits]: float = velocity
 
     @act
     def set_turn_velocity(
             self,
-            velocity: float,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT):
+            velocity: float, velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
         Sets the velocity of the turn.
 
@@ -309,6 +307,7 @@ class Smartdrive(Drivetrain):
         - velocityUnits: unit for the velocity parameter,
                          a VelocityUnits enum value
         """
+        self.turn_velocities[velocityUnits]: float = velocity
 
     @act
     def set_timeout(self, time: float, timeUnits: TimeUnits = TimeUnits.SEC):
@@ -322,11 +321,14 @@ class Smartdrive(Drivetrain):
         - time: the amount of time.
         - timeUnits: unit for the time parameter, a TimeUnits enum value
         """
+        self.timeouts[timeUnits]: float = time
 
+    @sense
     def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC) -> float:
         """
         Returns a timeout in given time units.
         """
+        return self.timeouts[timeUnits]
 
     @sense
     def did_timeout(self) -> bool:
@@ -344,6 +346,7 @@ class Smartdrive(Drivetrain):
         - brakeType: the stopping mode,
                      a BrakeType enum value (coast, brake, or hold).
         """
+        self.stopping: BrakeType = brakeType
 
     @sense
     def velocity(
@@ -369,5 +372,9 @@ class Smartdrive(Drivetrain):
         """
 
     @property
-    def gyro(self):
-        ...
+    def gyro(self) -> Gyro:
+        return self._gyro
+
+    @gyro.setter
+    def gyro(self, gyro: Gyro):
+        self._gyro: Gyro = gyro
