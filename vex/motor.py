@@ -24,6 +24,25 @@ class DirectionType(IntEnum):
     REV: int = 1   # A direction unit that is defined as backward.
 
 
+class TorqueUnits(IntEnum):
+    """
+    The measurement units for torque values.
+    """
+    NM: int = 0   # A torque unit that is measured in Newton Meters.
+    IN_LB: int = 1   # A torque unit that is measured in Inch Pounds.
+    PCT: int = 2
+
+
+class VelocityUnits(IntEnum):
+    """
+    The measurement units for velocity values.
+    """
+    PCT: int = 0   # A velocity unit that is measured in percentage.
+    RPM: int = 1   # A velocity unit that is measured in rotations per minute.
+    DPS: int = 2   # A velocity unit that is measured in degrees per second.
+    RAW: int = 99   # A velocity unit that is measured in raw data form.
+
+
 class Motor(Device):
     def __init__(self, index: Ports, reverse: bool = False):
         """
@@ -352,27 +371,9 @@ class Motor(Device):
         """
 
 
-class TorqueUnits(IntEnum):
-    """
-    The measurement units for torque values.
-    """
-    NM: int = 0   # A torque unit that is measured in Newton Meters.
-    IN_LB: int = 1   # A torque unit that is measured in Inch Pounds.
-
-
 class TurnType(IntEnum):
     """
     Left or right turn.
     """
     LEFT: int = 0
     RIGHT: int = 1
-
-
-class VelocityUnits(IntEnum):
-    """
-    The measurement units for velocity values.
-    """
-    PCT: int = 0   # A velocity unit that is measured in percentage.
-    RPM: int = 1   # A velocity unit that is measured in rotations per minute.
-    DPS: int = 2   # A velocity unit that is measured in degrees per second.
-    RAW: int = 99   # A velocity unit that is measured in raw data form.
