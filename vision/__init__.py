@@ -9,8 +9,7 @@ from vex import Device, Ports
 
 class Vision(Device):
     def __init__(
-            self,
-            index: Ports,
+            self, index: Ports,
             brightness: Optional[int] = None,
             signatures: Optional[list] = None):
         """
@@ -24,9 +23,9 @@ class Vision(Device):
         - signatures: List of signature objects
                       used to setup the detection signatures for this sensor.
         """
-        self.port = index
-        self.brightness = brightness
-        self.signatures = signatures
+        self.port: Ports = index
+        self.brightness: Optional[int] = brightness
+        self.signatures: Optional[list] = signatures
 
     @sense
     def take_snapshot(self, id: int, count: Optional[int] = None) -> int:
