@@ -5,6 +5,8 @@ from __decor import act, sense
 
 from .abstract import Device
 from .port import Ports
+from .time import TimeUnits
+from .units_common import RotationUnits
 
 
 class BrakeType(IntEnum):
@@ -54,6 +56,16 @@ class Motor(Device):
         - reverse: Sets the reverse flag for the new motor object.
         """
         self.port: Ports = index
+        self.reverse: bool = reverse
+
+        self.velocities: dict[VelocityUnits, float] = \
+            dict[VelocityUnits, float]()
+        self.stopping: Optional[BrakeType] = None
+        self.rotations: dict[RotationUnits, float] = \
+            dict[RotationUnits, float]()
+        self.timeouts: dict[TimeUnits, float] = dict[TimeUnits, float]()
+
+        self.max_torque: dict[TorqueUnits, float] = dict[TorqueUnits, float]()
 
     @act
     def set_reversed(self, is_reversed: bool):
@@ -65,15 +77,16 @@ class Motor(Device):
         - is_reversed: If set to True, motor commands
                        spin the motor in the opposite direction.
         """
+        self.reverse: bool = is_reversed
 
     @act
     def set_velocity(
             self,
-            velocity: float,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT):
+            velocity: float, velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
         Sets the velocity of the motor based on
         the parameters set in the command.
+
         This command will not run the motor.
         Any subsequent call that does not contain
         a specified motor velocity will use this value.
@@ -83,6 +96,7 @@ class Motor(Device):
         - velocityUnits: The measurement unit for the velocity,
                          a VelocityUnits enum value.
         """
+        self.velocities[velocityUnits]: float = velocity
 
     @act
     def set_stopping(self, brakeType: BrakeType):
@@ -90,22 +104,26 @@ class Motor(Device):
         Sets the stopping mode of the motor
         by passing a brake mode as a parameter.
 
+        (note this will stop the motor if it's spinning)
+
         Parameters:
         - brakeType: The stopping mode can be set to
                      BrakeType.COAST, BRAKE, or HOLD.
         """
+        self.stopping: BrakeType = brakeType
 
     @act
     def reset_rotation(self):
         """
         Resets the motor's encoder to the value of zero.
         """
+        for rotation_unit in self.rotations:
+            self.rotations[rotation_unit]: float = 0
 
     @act
     def set_rotation(
             self,
-            value: float,
-            rotationUnits: RotationUnits = RotationUnits.DEG):
+            value: float, rotationUnits: RotationUnits = RotationUnits.DEG):
         """
         Sets the value of the motor's encoder
         to the value specified in the parameter.
@@ -115,6 +133,7 @@ class Motor(Device):
         - rotationUnits: The measurement unit for the rotation,
                          a RotationUnits enum value.
         """
+        self.rotations[rotationUnits]: float = value
 
     @act
     def set_timeout(self, time: float, timeUnits: TimeUnits = TimeUnits.SEC):
@@ -127,12 +146,14 @@ class Motor(Device):
         - time: Sets the amount of time.
         - timeUnits: The measurement unit for the time, a TimeUnits enum value.
         """
+        self.timeouts[timeUnits]: float = time
 
     @sense
     def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC) -> float:
         """
         Returns a timeout in given time units
         """
+        return self.timeouts[timeUnits]
 
     @sense
     def did_timeout(self) -> bool:
@@ -142,10 +163,8 @@ class Motor(Device):
 
     @act
     def spin(
-            self,
-            dir: DirectionType,
-            velocity: float,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT):
+            self, dir: DirectionType,
+            velocity: float, velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
         Turns on the motor and spins it in a
         specified direction and a specified velocity.
@@ -160,11 +179,10 @@ class Motor(Device):
     @act
     def spin_to(
             self,
-            rotation: float,
-            rotationUnits: RotationUnits = RotationUnits.DEG,
+            rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True):
+            waitForCompletion: bool = True) -> bool:
         """
         Turns on the motor and spins it to an absolute target
         rotation value at a specified velocity.
@@ -183,10 +201,8 @@ class Motor(Device):
 
     @act
     def spin_for(
-            self,
-            dir: DirectionType,
-            rotation: float,
-            rotationUnits: RotationUnits = RotationUnits.DEG,
+            self, dir: DirectionType,
+            rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True) -> bool:
@@ -213,10 +229,8 @@ class Motor(Device):
 
     @act
     def spin_for_time(
-            self,
-            dir: Optional[DirectionType] = None,
-            time: str,
-            timeUnits: TimeUnits = TimeUnits.SEC,
+            self, dir: DirectionType,
+            time: str, timeUnits: TimeUnits = TimeUnits.SEC,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
@@ -234,8 +248,7 @@ class Motor(Device):
     @act
     def start_spin_to(
             self,
-            rotation: float,
-            rotationUnits: RotationUnits = RotationUnits.DEG,
+            rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
@@ -251,10 +264,8 @@ class Motor(Device):
 
     @act
     def start_spin_for(
-            self,
-            dir: DirectionType,
-            rotation: float,
-            rotationUnits: RotationUnits = RotationUnits.DEG,
+            self, dir: DirectionType,
+            rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
@@ -291,7 +302,7 @@ class Motor(Device):
         """
 
     @act
-    def stop(self, brakeType: Optional[brakeType] = None):
+    def stop(self, brakeType: Optional[BrakeType] = None):
         """
         Stops the motor using the default brake mode.
 
@@ -308,12 +319,12 @@ class Motor(Device):
         Parameters:
         - value: Sets the amount of torque (0 to 100%)
         """
+        self.max_torque[TorqueUnits.PCT]: float = value
 
     @act
     def set_max_torque(
             self,
-            value: float,
-            torqueUnits: TorqueUnits = TorqueUnits.NM):
+            value: float, torqueUnits: TorqueUnits = TorqueUnits.NM):
         """
         Sets the max torque of the motor.
 
@@ -321,6 +332,7 @@ class Motor(Device):
         - value: Sets the amount of torque (max 0.414 Nm)
         - torqueUnits: The measurement unit for the torque value.
         """
+        self.max_torque[torqueUnits]: float = value
 
     @act
     def set_max_torque_current(self, value: float):
@@ -330,6 +342,7 @@ class Motor(Device):
         Parameters:
         - value: Sets the amount of torque in Amps (max 1.2A)
         """
+        self.max_torque_current: float = value
 
     @sense
     def rotation(
