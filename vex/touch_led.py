@@ -30,6 +30,7 @@ class Touchled(Device):
         - fadeType: The type of fade the touchled
                     will use: FadeType.SLOW, FAST or OFF
         """
+        self.fade_type: FadeType = fadeType
 
     @sense
     def pressing(self) -> bool:
@@ -100,10 +101,8 @@ class Touchled(Device):
 
     @act
     def blink_hue(
-            self,
-            colorHue: ColorHue,
-            on_time: float = 0.25,
-            off_time: float = 0.25):
+            self, colorHue: ColorHue,
+            on_time: float = 0.25, off_time: float = 0.25):
         """
         Set the led in the touchled sensor as blinking.
 
@@ -115,12 +114,8 @@ class Touchled(Device):
 
     @act
     def blink_rgb(
-            self,
-            red: int,
-            green: int,
-            blue: int,
-            on_time: float = 0.25,
-            off_time: float = 0.25):
+            self, red: int, green: int, blue: int,
+            on_time: float = 0.25, off_time: float = 0.25):
         """
         Set the led in the touchled sensor as blinking.
 
