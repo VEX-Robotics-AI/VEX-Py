@@ -23,7 +23,12 @@ class Gyro(Device):
         - calibrate: set to calibrate the sensor now
         """
         self.port: Ports = index
-        self.calibrate: bool = callable
+        self.calibrate: bool = calibrate
+
+        self.headings: dict[RotationUnits, float] = \
+            dict[RotationUnits, float]()
+        self.rotations: dict[RotationUnits, float] = \
+            dict[RotationUnits, float]()
 
     @act
     def start_calibration(
@@ -62,6 +67,7 @@ class Gyro(Device):
         - value: The new heading for the gyro
         - rotationUnits: The rotation unit for the heading
         """
+        self.headings[rotationUnits]: float = value
 
     @act
     def set_rotation(
@@ -75,6 +81,7 @@ class Gyro(Device):
         - value: The new absolute angle for the gyro
         - rotationUnits: The rotation unit for the angle
         """
+        self.rotations[rotationUnits]: float = value
 
     @sense
     def heading(self, rotationUnits: RotationUnits = RotationUnits.DEG):
