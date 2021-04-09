@@ -39,11 +39,21 @@ class Drivetrain:
                          a DistanceUnits enum value
         - gear_ratio: external gear ratio, usually 1.0
         """
+        self.left_motor: DrivetrainMotorType = left_motor
+        self.right_motor: DrivetrainMotorType = right_motor
+        self.wheel_travel: float = wheel_travel
+        self.track_width: float = track_width
+        self.distance_unit: DistanceUnits = distanceUnits
+        self.gear_ratio: float = gear_ratio
+
+        self.drive_velocities = dict[VelocityUnits, float]()
+        self.turn_velocities = dict[VelocityUnits, float]()
+        self.timeouts = dict[TimeUnits, float]()
+        self.stopping: Optional[BrakeType] = None
 
     @act
     def drive(
-            self,
-            directionType: DirectionType,
+            self, directionType: DirectionType,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
@@ -59,10 +69,8 @@ class Drivetrain:
 
     @act
     def drive_for(
-            self,
-            directionType: DirectionType,
-            distance: float,
-            distanceUnits: DistanceUnits = DistanceUnits.MM,
+            self, directionType: DirectionType,
+            distance: float, distanceUnits: DistanceUnits = DistanceUnits.MM,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True) -> bool:
@@ -88,10 +96,8 @@ class Drivetrain:
 
     @act
     def start_drive_for(
-            self,
-            directionType: DirectionType,
-            distance: float,
-            distanceUnits: DistanceUnits = DistanceUnits.MM,
+            self, directionType: DirectionType,
+            distance: float, distanceUnits: DistanceUnits = DistanceUnits.MM,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
@@ -110,8 +116,7 @@ class Drivetrain:
 
     @act
     def turn(
-            self,
-            turnType: TurnType,
+            self, turnType: TurnType,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
@@ -126,10 +131,8 @@ class Drivetrain:
 
     @act
     def turn_for(
-            self,
-            turnType: TurnType,
-            angle: float,
-            rotationUnits: RotationUnits = RotationUnits.DEG,
+            self, turnType: TurnType,
+            angle: float, rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True) -> bool:
@@ -156,10 +159,8 @@ class Drivetrain:
 
     @act
     def start_turn_for(
-            self,
-            turnType: TurnType,
-            angle: float,
-            angleUnits: RotationUnits = RotationUnits.DEG,
+            self, turnType: TurnType,
+            angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
@@ -206,12 +207,12 @@ class Drivetrain:
         Parameters:
         - gear_ratio: gear ratio value, usually 1.0
         """
+        self.gear_ratio: float = gear_ratio
 
     @act
     def set_drive_velocity(
             self,
-            velocity: float,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT):
+            velocity: float, velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
         Sets the velocity of the drive.
 
@@ -224,12 +225,12 @@ class Drivetrain:
         - velocityUnits: unit for the velocity parameter,
                          a VelocityUnits enum value
         """
+        self.drive_velocities[velocityUnits]: float = velocity
 
     @act
     def set_turn_velocity(
             self,
-            velocity: float,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT):
+            velocity: float, velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
         Sets the velocity of the turn.
 
@@ -240,6 +241,7 @@ class Drivetrain:
         - velocityUnits: unit for the velocity parameter,
                          a VelocityUnits enum value
         """
+        self.turn_velocities[velocityUnits]: float = velocity
 
     @act
     def set_timeout(self, time: float, timeUnits: TimeUnits = TimeUnits.SEC):
@@ -253,12 +255,14 @@ class Drivetrain:
         - time: the amount of time.
         - timeUnits: unit for the time parameter, a TimeUnits enum value
         """
+        self.timeouts[timeUnits]: float = time
 
     @sense
     def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC) -> float:
         """
         Returns a timeout in given time units.
         """
+        return self.timeouts[timeUnits]
 
     @sense
     def did_timeout(self) -> bool:
@@ -285,6 +289,7 @@ class Drivetrain:
         - brakeType: the stopping mode, a BrakeType enum value
                      (coast, brake, or hold).
         """
+        self.stopping: BrakeType = brakeType
 
     @sense
     def velocity(
