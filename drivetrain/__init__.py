@@ -46,9 +46,11 @@ class Drivetrain:
         self.distance_unit: DistanceUnits = distanceUnits
         self.gear_ratio: float = gear_ratio
 
-        self.drive_velocities = dict[VelocityUnits, float]()
-        self.turn_velocities = dict[VelocityUnits, float]()
-        self.timeouts = dict[TimeUnits, float]()
+        self.drive_velocities: dict[VelocityUnits, float] = \
+            dict[VelocityUnits, float]()
+        self.turn_velocities: dict[VelocityUnits, float] = \
+            dict[VelocityUnits, float]()
+        self.timeouts: dict[TimeUnits, float] = dict[TimeUnits, float]()
         self.stopping: Optional[BrakeType] = None
 
     @act
