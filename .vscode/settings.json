@@ -5,7 +5,7 @@
   "python.linting.pylintEnabled": false,
     // false positives in Py3.9
   "python.linting.flake8Enabled": true,
-  "python.linting.mypyEnabled": true,
+  "python.linting.mypyEnabled": false,
     // false positives: EOL while scanning string literal
   "python.linting.pydocstyleEnabled": false,
   "python.linting.pycodestyleEnabled": true,
