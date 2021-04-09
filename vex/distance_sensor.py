@@ -2,6 +2,7 @@ from __decor import act, sense
 
 from .abstract import Device
 from .port import Ports
+from .units_common import DistanceUnits
 
 
 class Sonar(Device):
@@ -13,7 +14,10 @@ class Sonar(Device):
         Parameters:
         - index: to the brain port.
         """
-        self.port: int = index
+        self.port: Ports = index
+
+        self.max_distances: dict[DistanceUnits, float] = \
+            dict[DistanceUnits, float]()
 
     @act
     def set_maximum(
@@ -26,7 +30,8 @@ class Sonar(Device):
         Parameters:
         - distance: maximum distance to be measured in units
         - distanceUnits: a DistanceUnits enum value for the measurement unit.
-        """"
+        """
+        self.max_distances[distanceUnits]: float = distance
 
     @sense
     def distance(
@@ -41,4 +46,4 @@ class Sonar(Device):
 
         Returns:
         an integer that represents the unit value specified by the parameter.
-        """"
+        """
