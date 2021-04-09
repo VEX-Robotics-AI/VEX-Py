@@ -27,12 +27,8 @@ class ColorHue(IntEnum):
 
 
 class Colorsensor(Device):
-    """
-    Color Sensor
-    """
     def __init__(
-            self,
-            index: Ports,
+            self, index: Ports,
             is_grayscale: bool = False,
             proximity: float = 700):
         """
@@ -46,7 +42,7 @@ class Colorsensor(Device):
         """
         self.port: Ports = index
         self.is_grayscale: bool = is_grayscale
-        self.proximity = proximity
+        self.proximity: float = proximity
 
     @sense
     def colorname3(self) -> int:
@@ -98,6 +94,7 @@ class Colorsensor(Device):
         Parameters:
         - proximity: threshold (higher is closer) (default 700)
         """
+        self.proximity: float = proximity
 
     @act
     def led(self, state: bool):
