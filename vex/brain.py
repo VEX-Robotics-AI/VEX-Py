@@ -94,11 +94,8 @@ class BrainLcd(SingletonDevice):
 class BrainSound(SingletonDevice):
     @act
     def play(
-            self,
-            note: NoteType,
-            octave: int = 3,
-            duration: float = 0.5,
-            timeUnits: TimeUnits = TimeUnits.SEC):
+            self, note: NoteType, octave: int = 3,
+            duration: float = 0.5, timeUnits: TimeUnits = TimeUnits.SEC):
         """
         Play a musical note on the speaker.
 
@@ -111,10 +108,8 @@ class BrainSound(SingletonDevice):
 
     @act
     def play_raw(
-            self,
-            note: NoteType,
-            duration: float = 0.5,
-            timeUnits: TimeUnits = TimeUnits.SEC):
+            self, note: NoteType,
+            duration: float = 0.5, timeUnits: TimeUnits = TimeUnits.SEC):
         """
         Play a musical note on the speaker.
 
@@ -125,10 +120,7 @@ class BrainSound(SingletonDevice):
         """
 
     @act
-    def play_wave(
-            self,
-            waveType: int,
-            waitForCompletion: bool = True):
+    def play_wave(self, waveType: int, waitForCompletion: bool = True):
         """
         play the wave sample
 
@@ -159,6 +151,7 @@ class BrainSound(SingletonDevice):
         Parameters
         - effect: effect type [0..15]
         """
+        self.sound_effect: int = effect
 
     @act
     def set_volume(self, volume: int):
@@ -168,6 +161,7 @@ class BrainSound(SingletonDevice):
         Parameters
         - volume: value [1=low...4=high]
         """
+        self.volume: int = volume
 
     @act
     def stop(self):
