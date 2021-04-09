@@ -21,7 +21,7 @@ class MotorGroup:
         param:
         - motors: a list or tuple of motors in the group
         """
-        self.motors = motors
+        self.motors: list[Motor] = motors
 
     def count(self) -> int:
         """
@@ -90,6 +90,7 @@ class MotorGroup:
         - timeUnits: The measurement unit for the time, a TimeUnits enum value.
         """
 
+    @sense
     def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC) -> float:
         """
         Returns:
@@ -158,7 +159,7 @@ class MotorGroup:
             rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True):
+            waitForCompletion: bool = True) -> bool:
         """
         Turn on the motors and spin them to a relative target rotation value
         at a specified velocity.
