@@ -11,26 +11,26 @@ class Controller(SingletonDevice):
     as well as write to the controller's screen.
     """
     def __init__(self):
-        self._buttonEUp: ControllerButton = ControllerButton(mask="EUp")
-        self._buttonEDown: ControllerButton = ControllerButton(mask="EDown")
-        self._buttonFUp: ControllerButton = ControllerButton(mask="FUp")
-        self._buttonFDown: ControllerButton = ControllerButton(mask="FDown")
-        self._buttonLUp: ControllerButton = ControllerButton(mask="LUp")
-        self._buttonLDown: ControllerButton = ControllerButton(mask="LDown")
-        self._buttonRUp: ControllerButton = ControllerButton(mask="RUp")
-        self._buttonRDown: ControllerButton = ControllerButton(mask="RDown")
-        self._axisA: ControllerAxis = ControllerAxis(axtype="A")
-        self._axisB: ControllerAxis = ControllerAxis(axtype="B")
-        self._axisC: ControllerAxis = ControllerAxis(axtype="C")
-        self._axisD: ControllerAxis = ControllerAxis(axtype="D")
+        self._axisA: ControllerAxis = ControllerAxis(parent=self, axtype='A')
+        self._axisB: ControllerAxis = ControllerAxis(parent=self, axtype='B')
+        self._axisC: ControllerAxis = ControllerAxis(parent=self, axtype='C')
+        self._axisD: ControllerAxis = ControllerAxis(parent=self, axtype='D')
+        self._buttonEUp: ControllerButton = ControllerButton(mask='EUp')
+        self._buttonEDown: ControllerButton = ControllerButton(mask='EDown')
+        self._buttonFUp: ControllerButton = ControllerButton(mask='FUp')
+        self._buttonFDown: ControllerButton = ControllerButton(mask='FDown')
+        self._buttonLUp: ControllerButton = ControllerButton(mask='LUp')
+        self._buttonLDown: ControllerButton = ControllerButton(mask='LDown')
+        self._buttonRUp: ControllerButton = ControllerButton(mask='RUp')
+        self._buttonRDown: ControllerButton = ControllerButton(mask='RDown')
 
     @act
     def set_deadband(self, deadband: float):
         """
         set the value of the controller axis deadband
-        (minimum absolute threshold at which position
-        is reported as non-zero) move to c-variable for deadband
+        (minimum absolute threshold at which position is reported as non-zero)
         """
+        self.deadband: float = deadband
 
     @property
     def buttonEUp(self) -> ControllerButton:
@@ -90,6 +90,9 @@ class ControllerAxis:
         self.parent: Controller = parent
         self.axtype: str = axtype
 
+    def __str__(self):
+        return f'{type(self).__name__}({self.axtype})'
+
     @sense
     def value(self) -> int:
         """
@@ -113,11 +116,12 @@ class ControllerButton:
     """
     Use the button class to get values from the controller's buttons.
     """
+
     def __init__(self, mask: str):
         self.mask: str = mask
 
     def __str__(self) -> str:
-        return f'{type(self).__name__} "{self.mask}"'
+        return f'{type(self).__name__}({self.mask})'
 
     @sense
     def pressing(self) -> bool:
