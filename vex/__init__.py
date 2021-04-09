@@ -13,24 +13,7 @@ from .motor import (
 )
 from .touch_led import FadeType, Touchled
 from .time import TimeUnits, wait
-
-
-class DistanceUnits(IntEnum):
-    """
-    The measurement units for distance values.
-    """
-    MM: int = 0   # A distance unit that is measured in millimeters.
-    IN: int = 1   # A distance unit that is measured in inches.
-    CM: int = 2   # A distance unit that is measured in centimeters.
-
-
-class RotationUnits(IntEnum):
-    """
-    The measurement units for rotation values.
-    """
-    DEG: int = 0   # A rotation unit that is measured in degrees.
-    REV: int = 1   # A rotation unit that is measured in revolutions.
-    RAW: int = 99   # A rotation unit that is measured in raw data form.
+from .units_common import DistanceUnits, RotationUnits
 
 
 # CONSTANTS

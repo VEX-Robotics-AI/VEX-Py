@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from __decor import act, sense
 
 from vex.abstract import SingletonDevice
@@ -9,7 +11,6 @@ class Controller(SingletonDevice):
     as well as write to the controller's screen.
     """
     def __init__(self):
-        # !FIXME: mask="EUp", axtype="A" are assumptions
         self._buttonEUp: ControllerButton = ControllerButton(mask="EUp")
         self._buttonEDown: ControllerButton = ControllerButton(mask="EDown")
         self._buttonFUp: ControllerButton = ControllerButton(mask="FUp")
@@ -24,11 +25,12 @@ class Controller(SingletonDevice):
         self._axisD: ControllerAxis = ControllerAxis(axtype="D")
 
     @act
-    def set_deadband(self, deadband):
+    def set_deadband(self, deadband: float):
         """
-        set the value of the controller axis deadband (minimum absolute threshold at which position is reported as non-zero) move to c-variable for deadband
+        set the value of the controller axis deadband
+        (minimum absolute threshold at which position
+        is reported as non-zero) move to c-variable for deadband
         """
-        pass
 
     @property
     def buttonEUp(self) -> ControllerButton:
@@ -83,9 +85,10 @@ class ControllerAxis:
     """
     Use the axis class to get values from one of the controller's joysticks.
     """
-    def __init__ (self, parent, axtype):
-        """"""
-        pass
+
+    def __init__(self, parent: Controller, axtype: str):
+        self.parent: Controller = parent
+        self.axtype: str = axtype
 
     @sense
     def value(self) -> int:
@@ -95,7 +98,6 @@ class ControllerAxis:
         Returns
         an integer that represents the value of the joystick axis.
         """
-        pass
 
     @sense
     def position(self) -> int:
@@ -105,18 +107,17 @@ class ControllerAxis:
         Returns
         an integer that represents the position of the joystick axis.
         """
-        pass
 
 
 class ControllerButton:
     """
     Use the button class to get values from the controller's buttons.
     """
-    def __init__(self, mask):
-        self.mask = mask
+    def __init__(self, mask: str):
+        self.mask: str = mask
 
     def __str__(self) -> str:
-        return f'{type(self).__name__}({self.id})'
+        return f'{type(self).__name__} "{self.mask}"'
 
     @sense
     def pressing(self) -> bool:
@@ -126,4 +127,3 @@ class ControllerButton:
         Returns:
         True if pressed, false otherwise
         """
-        pass

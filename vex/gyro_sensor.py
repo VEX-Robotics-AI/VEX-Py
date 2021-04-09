@@ -4,9 +4,17 @@ from __decor import act, sense
 
 from .abstract import Device
 from .port import Ports
+from .units_common import RotationUnits
+
+
+class GyroCalibrationType(IntEnum):
+    QUICK: int = 0
+    SLOW: int = 1
+    ACCURATE: int = 2
+
 
 class Gyro(Device):
-    def __init__(self, index: Ports, calibrate=True):
+    def __init__(self, index: Ports, calibrate: bool = True):
         """
         Creates a new gyro object on the port specified in the parameter.
 
@@ -14,13 +22,15 @@ class Gyro(Device):
         - index: index to the brain port.
         - calibrate: set to calibrate the sensor now
         """
-        pass
+        self.port: Ports = index
+        self.calibrate: bool = callable
 
     @act
     def start_calibration(
             self,
-            gyroCalibrationType=GyroCalibrationType.QUICK,
-            waitForCompletion=True):
+            gyroCalibrationType: GyroCalibrationType
+            = GyroCalibrationType.QUICK,
+            waitForCompletion: bool = True):
         """
         Starts recalibration of the gyro.
 
@@ -29,8 +39,6 @@ class Gyro(Device):
                                GyroCalibrationType enum value.
         - waitForCompletion: wait for calibration to complete
         """
-        pass
-
 
     @sense
     def is_calibrating(self) -> bool:
@@ -41,10 +49,12 @@ class Gyro(Device):
 
         Returns True if gyro is still calibrating.
         """
-        pass
 
     @act
-    def set_heading(self, value=0, rotationUnits=RotationUnits.DEG):
+    def set_heading(
+            self,
+            value: float = 0,
+            rotationUnits: RotationUnits = RotationUnits.DEG):
         """
         Set the gyro sensor angle to angle.
 
@@ -52,10 +62,12 @@ class Gyro(Device):
         - value: The new heading for the gyro
         - rotationUnits: The rotation unit for the heading
         """
-        pass
 
     @act
-    def set_rotation(self, value=0, rotationUnits=RotationUnits.DEG):
+    def set_rotation(
+            self,
+            value: float = 0,
+            rotationUnits: RotationUnits = RotationUnits.DEG):
         """
         Set the gyro sensor rotation to angle.
 
@@ -63,30 +75,21 @@ class Gyro(Device):
         - value: The new absolute angle for the gyro
         - rotationUnits: The rotation unit for the angle
         """
-        pass
 
     @sense
-    def heading(self, rotationUnits=RotationUnits.DEG):
+    def heading(self, rotationUnits: RotationUnits = RotationUnits.DEG):
         """
         Gets the angle of the gyro sensor.
 
         Parameters:
         - rotationUnits: The measurement unit for the gyro device.
         """
-        pass
 
     @sense
-    def rotation(self, rotationUnits=RotationUnits.DEG):
+    def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG):
         """
         Gets the absolute angle of the gyro sensor.
 
         Parameters:
         - rotationUnits: The measurement unit for the gyro device.
         """
-        pass
-
-
-class GyroCalibrationType(IntEnum):
-    QUICK: int = 0
-    SLOW: int = 1
-    ACCURATE: int = 2

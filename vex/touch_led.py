@@ -3,6 +3,8 @@ from enum import IntEnum
 from __decor import act, sense
 
 from .abstract import Device
+from .color_sensor import ColorHue
+from .port import Ports
 
 
 class FadeType(IntEnum):
@@ -15,12 +17,12 @@ class Touchled(Device):
     """
     Use this class when programming with the touch LED device.
     """
-    def __init__ (self, index):
-        """"""
-        pass
+
+    def __init__(self, index: Ports):
+        self.port: Ports = index
 
     @act
-    def default_fade(self, fadeType):
+    def default_fade(self, fadeType: FadeType):
         """
         Sets the default fade time for the touchled sensor.
 
@@ -28,20 +30,18 @@ class Touchled(Device):
         - fadeType: The type of fade the touchled
                     will use: FadeType.SLOW, FAST or OFF
         """
-        pass
 
     @sense
-    def pressing(self):
+    def pressing(self) -> bool:
         """
         Get the pressed status of the touchled device.
 
         Returns:
         True if pressed, False otherwise
         """
-        pass
 
     @act
-    def on(self, color, brightness=100):
+    def on(self, color: hex, brightness: int = 100):
         """
         Turn on the led in the touchled sensor.
 
@@ -49,10 +49,9 @@ class Touchled(Device):
         - color: color value: 0xRRGGBB
         - brightness: The brightness for the led
         """
-        pass
 
     @act
-    def on_hue(self, colorHue, brightness=100):
+    def on_hue(self, colorHue: ColorHue, brightness: int = 100):
         """
         Turn on the led in the touchled sensor.
 
@@ -60,10 +59,9 @@ class Touchled(Device):
         - colorHue: The color of the led: ColorHue enum value
         - brightness: The brightness for the led
         """
-        pass
 
     @act
-    def on_rgb(self, red, green, blue, brightness=100):
+    def on_rgb(self, red: int, green: int, blue: int, brightness: int = 100):
         """
         Turn on the led in the touchled sensor.
 
@@ -73,27 +71,24 @@ class Touchled(Device):
         - blue: The blue value of the led, 0-255
         - brightness: The brightness for the led, 0-100
         """
-        pass
 
     @act
     def off(self):
         """
         Turn off the led in the touchled sensor.
         """
-        pass
 
     @act
-    def brightness(self, brightness):
+    def brightness(self, brightness: int):
         """
         Turn on the led in the touchled sensor, or change current brightness.
 
         Parameters:
         - brightness: The brightness for the led 0-100
         """
-        pass
 
     @act
-    def blink(self, color, on_time=0.25, off_time=0.25):
+    def blink(self, color: hex, on_time: float = 0.25, off_time: float = 0.25):
         """
         Set the led in the touchled sensor as blinking.
 
@@ -102,10 +97,13 @@ class Touchled(Device):
         - on_time: The time the led should remain on in seconds
         - off_time: The time the led should remain off in seconds
         """
-        pass
 
     @act
-    def blink_hue(self, colorHue, on_time=0.25, off_time=0.25):
+    def blink_hue(
+            self,
+            colorHue: ColorHue,
+            on_time: float = 0.25,
+            off_time: float = 0.25):
         """
         Set the led in the touchled sensor as blinking.
 
@@ -114,10 +112,15 @@ class Touchled(Device):
         - on_time: The time the led should remain on in seconds
         - off_time: The time the led should remain off in seconds
         """
-        pass
 
     @act
-    def blink_rgb(self, red, green, blue, on_time=0.25, off_time=0.25):
+    def blink_rgb(
+            self,
+            red: int,
+            green: int,
+            blue: int,
+            on_time: float = 0.25,
+            off_time: float = 0.25):
         """
         Set the led in the touchled sensor as blinking.
 
@@ -128,4 +131,3 @@ class Touchled(Device):
         - on_time: The time the led should remain on in seconds
         - off_time: The time the led should remain off in seconds
         """
-        pass
