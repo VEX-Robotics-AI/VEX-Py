@@ -21,32 +21,30 @@ DrivetrainMotorType = Union[Motor, MotorGroup, list[Motor], tuple[Motor]]
 class Drivetrain:
     def __init__(
             self,
-            left_motor: DrivetrainMotorType,
-            right_motor: DrivetrainMotorType,
-            wheel_travel: float = 200,
-            track_width: float = 176,
+            left_motor: DrivetrainMotorType, right_motor: DrivetrainMotorType,
+            wheel_travel: float = 200, track_width: float = 176,
             distanceUnits: DistanceUnits = DistanceUnits.MM,
             gear_ratio: float = 1):
         """
         Creates a new drivetrain object.
 
         Parameters:
-        left_motor: the motor, motor group or a list/tuple of motors
-                    driving the left side of the drivetrain
-        right_motor: the motor, motor group or a list/tuple of motors
-                     driving the right side of the drivetrain
-        wheel_travel: circumference of the wheel type used
-        track_width: distance between the wheels on opposite sides
-        distanceUnits: unit for wheel_travel and track_with,
-                       a DistanceUnits enum value
-        gear_ratio: external gear ratio, usually 1.0
+        - left_motor: the motor, motor group or a list/tuple of motors
+                      driving the left side of the drivetrain
+        - right_motor: the motor, motor group or a list/tuple of motors
+                       driving the right side of the drivetrain
+        - wheel_travel: circumference of the wheel type used
+        - track_width: distance between the wheels on opposite sides
+        - distanceUnits: unit for wheel_travel and track_with,
+                         a DistanceUnits enum value
+        - gear_ratio: external gear ratio, usually 1.0
         """
 
     @act
     def drive(
             self,
             directionType: DirectionType,
-            velocity: Optional[int] = None,
+            velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
         Turns the motors on and drives in the specified direction.
@@ -201,7 +199,7 @@ class Drivetrain:
         """
 
     @act
-    def set_gear_ratio(self, gear_ratio):
+    def set_gear_ratio(self, gear_ratio: float):
         """
         Sets the external gear ratio of the drivetrain.
 
@@ -256,6 +254,7 @@ class Drivetrain:
         - timeUnits: unit for the time parameter, a TimeUnits enum value
         """
 
+    @sense
     def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC) -> float:
         """
         Returns a timeout in given time units.
