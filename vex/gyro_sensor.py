@@ -84,7 +84,9 @@ class Gyro(Device):
         self.rotations[rotationUnits]: float = value
 
     @sense
-    def heading(self, rotationUnits: RotationUnits = RotationUnits.DEG):
+    def heading(
+            self,
+            rotationUnits: RotationUnits = RotationUnits.DEG) -> float:
         """
         Gets the angle of the gyro sensor.
 
@@ -93,7 +95,9 @@ class Gyro(Device):
         """
 
     @sense
-    def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG):
+    def rotation(
+            self,
+            rotationUnits: RotationUnits = RotationUnits.DEG) -> float:
         """
         Gets the absolute angle of the gyro sensor.
 
