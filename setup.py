@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='RobotMesh-VEXIQ-PyB-API-Stubs',
-    version='0.0.0.dev0',
+    version='1.0.0',
     description='Robot Mesh VEX IQ Python B API Stubs',
     long_description='Robot Mesh VEX IQ Python B API Stubs',
     author='STEAM for Vietnam Foundation',
