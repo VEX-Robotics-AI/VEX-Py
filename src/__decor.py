@@ -54,27 +54,54 @@ def act(actuating_func: CallableTypeVar) -> CallableTypeVar:
 def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
     # (use same signature for IDE code autocomplete to work)
 
+    sensing_func_name = sensing_func.__name__
+
+    # name of private dict storing current sensing states
+    sensing_state_dict_name = f'_{sensing_func_name}'
+
     @wraps(sensing_func)
-    def decor_sensing_func(*given_args, result=None):
+    def decor_sensing_func(*given_args, set=None):
         args_dict = args_dict_from_func_and_given_args(
                         func=sensing_func,
                         given_args=given_args)
 
-        self_arg = args_dict.pop('self')
-        input_arg_strs = [f'{k}={v}' for k, v in args_dict.items()]
-        print_str = (f'SENSE: {self_arg}.{sensing_func.__name__}'
-                     f"({', '.join(input_arg_strs)}) = ")
+        # get self
+        self = args_dict.pop('self')
 
-        if result is None:
-            return_annotation = sensing_func.__annotations__.get('return')
-            return json.loads(input(f'{print_str}?' +
-                                    (f' [{return_annotation}]'
-                                     if return_annotation
-                                     else '') +
-                                    ' (in JSON)   '))
+        # private dict storing current sensing states
+        sensing_state_dict = getattr(self, sensing_state_dict_name, None)
+        if sensing_state_dict is None:
+            setattr(self, sensing_state_dict_name) = sensing_state_dict = {}
+
+        # tuple & str forms of input args
+        input_arg_dict_items = args_dict.items()
+        input_arg_tuple = tuple(input_arg_dict_items)
+        input_arg_strs = [f'{k}={v}' for k, v in input_arg_dict_items]
+
+        if set is None:
+            print_str = (f'SENSE: {self}.{sensing_func_name}'
+                         f"({', '.join(input_arg_strs)}) = ")
+
+            # if input_arg_tuple is in current sensing states,
+            # then pop and return corresponding value
+            if input_arg_tuple in sensing_state_dict:
+                value = sensing_state_dict.pop(input_arg_tuple)
+                print(f'{print_str}{value}')
+                return value
+
+            # else ask user for direct input
+            else:
+                return_annotation = sensing_func.__annotations__.get('return')
+                return json.loads(input(f'{print_str}?' +
+                                        (f' [{return_annotation}]'
+                                         if return_annotation
+                                         else '') +
+                                        ' (in JSON)   '))
 
         else:
-            print(f'{print_str}{result}')
-            return result
+            # set the provided value in current sensing states
+            sensing_state_dict[input_args_tuple] = set
+            print(f'SET: {self}.{sensing_state_dict_name}'
+                  f"[{', '.join(input_arg_strs)}] = {set}")
 
     return decor_sensing_func
