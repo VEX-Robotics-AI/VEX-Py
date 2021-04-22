@@ -61,7 +61,7 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
                         given_args=given_args)
 
         self_arg = args_dict.pop('self')
-        input_arg_strs = [f'{k}={v}' for k, v in args_dict.items()]        
+        input_arg_strs = [f'{k}={v}' for k, v in args_dict.items()]
         print_str = (f'SENSE: {self_arg}.{sensing_func.__name__}'
                      f"({', '.join(input_arg_strs)}) = ")
 
