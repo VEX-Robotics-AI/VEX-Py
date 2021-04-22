@@ -71,7 +71,8 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
         # private dict storing current sensing states
         sensing_state_dict = getattr(self, sensing_state_dict_name, None)
         if sensing_state_dict is None:
-            setattr(self, sensing_state_dict_name) = sensing_state_dict = {}
+            sensing_state_dict = {}
+            setattr(self, sensing_state_dict_name, sensing_state_dict)
 
         # tuple & str forms of input args
         input_arg_dict_items = args_dict.items()
