@@ -4,7 +4,7 @@
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
   "python.linting.flake8Enabled": true,
-  "python.linting.flake8Args": ["--ignore=N802,N803"],
+  "python.linting.flake8Args": ["--ignore=N802,N803,W504"],
   "python.linting.mypyEnabled": false,   // many false positives
   "python.linting.prospectorEnabled": true,
   "python.linting.pydocstyleEnabled": false,
