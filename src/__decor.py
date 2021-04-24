@@ -4,7 +4,7 @@ from inspect import getfullargspec
 import json
 from typing import Any, Callable, TypeVar
 
-from .vex import interactive
+from vex import interactive
 
 
 CallableTypeVar = TypeVar('CallableTypeVar', bound=Callable[..., Any])
