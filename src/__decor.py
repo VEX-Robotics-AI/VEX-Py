@@ -13,7 +13,9 @@ def stringify_device_or_enum(obj: Any):
 
     return (str(obj)
             if isinstance(obj, (Device, SingletonDevice, IntEnum))
-            else obj)
+            else (f'"{obj}"'
+                  if isinstance(obj, str)
+                  else obj))
 
 
 def args_dict_from_func_and_given_args(func, given_args):
