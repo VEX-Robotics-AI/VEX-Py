@@ -4,6 +4,8 @@ from inspect import getfullargspec
 import json
 from typing import Any, Callable, TypeVar
 
+from .vex import interactive
+
 
 CallableTypeVar = TypeVar('CallableTypeVar', bound=Callable[..., Any])
 
@@ -95,9 +97,13 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
                 print(f'{print_str}{value}')
                 return value
 
-            # else ask user for direct input
-            else:
+            # else if interactive.ON, ask user for direct input
+            elif interactive.ON:
                 return json.loads(input(f'{print_str}? (in JSON)   '))
+
+            # else return default sensing result
+            else:
+                return sensing_func(*given_args)
 
         else:
             # set the provided value in current sensing states
