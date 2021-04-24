@@ -34,9 +34,8 @@ def act(actuating_func: CallableTypeVar) -> CallableTypeVar:
 
     @wraps(actuating_func)
     def decor_actuating_func(*given_args):
-        args_dict = args_dict_from_func_and_given_args(
-                        func=actuating_func,
-                        given_args=given_args)
+        args_dict = args_dict_from_func_and_given_args(func=actuating_func,
+                                                       given_args=given_args)
 
         print_args = args_dict.copy()
         self_arg = print_args.pop('self', None)
@@ -60,9 +59,8 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
 
     @wraps(sensing_func)
     def decor_sensing_func(*given_args, set=None):
-        args_dict = args_dict_from_func_and_given_args(
-                        func=sensing_func,
-                        given_args=given_args)
+        args_dict = args_dict_from_func_and_given_args(func=sensing_func,
+                                                       given_args=given_args)
 
         # get self
         self = args_dict.pop('self')
