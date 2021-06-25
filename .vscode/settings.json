@@ -2,17 +2,23 @@
   "editor.rulers": [79],
 
   "python.linting.enabled": true,
+
   "python.linting.pylintEnabled": true,
+
   "python.linting.flake8Enabled": true,
   "python.linting.flake8Args": ["--ignore=N802,N803,W504"],
+
   "python.linting.mypyEnabled": false,   // many false positives
-  "python.linting.prospectorEnabled": true,
-  "python.linting.pydocstyleEnabled": false,
+
+  "python.linting.pydocstyleEnabled": true,
+
   "python.linting.pycodestyleEnabled": true,
+
+  "python.linting.prospectorEnabled": true,
+
   "python.linting.pylamaEnabled": true,
+
   "python.linting.banditEnabled": true,
 
   "python.pythonPath": "/usr/local/bin/python3",
-
-  "restructuredtext.languageServer.disabled": true
 }
