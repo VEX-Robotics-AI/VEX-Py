@@ -25,7 +25,7 @@ setup(
     install_requires=open('requirements.txt').readlines(),
     entry_points={},
     extras_require={'devtest': open('requirements-devtest.txt').readlines()},
-    python_requires='>= 3.8',
+    python_requires='>= 3.9',
     setup_requires=[],
     namespace_packages=[]
 )
