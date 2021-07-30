@@ -22,7 +22,8 @@
 
   "python.linting.pydocstyleEnabled": true,
   "python.linting.pydocstyleArgs": [
-    "--ignore=D103"
+    "--ignore=D100",
+    "--ignore=D103",
   ],
 
   "python.linting.pycodestyleEnabled": true,
@@ -32,6 +33,4 @@
   "python.linting.pylamaEnabled": true,
 
   "python.linting.banditEnabled": true,
-
-  "python.defaultInterpreterPath": "/usr/local/bin/python3",
 }
