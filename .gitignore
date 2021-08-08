@@ -3,3 +3,6 @@
 __pycache__/
 *.pyc
 .ropeproject/
+
+# Visual Studio Code
+*.code-workspace
