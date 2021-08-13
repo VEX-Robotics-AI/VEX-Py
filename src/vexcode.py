@@ -46,3 +46,7 @@ from drivetrain import Drivetrain
 
 drivetrain = Drivetrain(Motor(Ports.PORT1),
                         Motor(Ports.PORT6, True))
+
+
+def vr_thread(*args):
+    pass

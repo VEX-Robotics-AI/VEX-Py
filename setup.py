@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='RobotMesh-VEXIQ-PyB-API-Stubs',
-    version='1.0.3',
+    version='1.0.4',
     description='Robot Mesh VEX IQ Python B API Stubs',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
