@@ -18,7 +18,7 @@
     "--ignore=N802,N803,W504"
   ],
 
-  "python.linting.mypyEnabled": true,
+  "python.linting.mypyEnabled": false,
 
   "python.linting.pydocstyleEnabled": false,
 
