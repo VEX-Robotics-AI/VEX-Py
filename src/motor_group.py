@@ -55,7 +55,7 @@ class MotorGroup:
         - velocityUnits: The measurement unit for velocity,
                          a VelocityUnits enum value.
         """
-        self.velocities[velocityUnits]: float = velocity
+        self.velocities[velocityUnits] = velocity
 
     @act
     def set_stopping(self, brakeType: BrakeType):
@@ -76,7 +76,7 @@ class MotorGroup:
         """
         for motor in self.motors:
             for rotation_unit in self.rotations[motor]:
-                self.rotations[motor][rotation_unit]: float = 0
+                self.rotations[motor][rotation_unit] = 0
 
     @act
     def set_rotation(self, value: float, rotationUnits=RotationUnits.DEG):
@@ -90,7 +90,7 @@ class MotorGroup:
                          a RotationUnits enum value.
         """
         for motor in self.motors:
-            self.rotations[motor][rotationUnits]: float = value
+            self.rotations[motor][rotationUnits] = value
 
     @act
     def set_timeout(self, time: float, timeUnits=TimeUnits.SEC):
@@ -104,7 +104,7 @@ class MotorGroup:
         - time: Sets the amount of time.
         - timeUnits: The measurement unit for the time, a TimeUnits enum value.
         """
-        self.timeouts[timeUnits]: float = time
+        self.timeouts[timeUnits] = time
 
     @sense
     def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC) -> float:
@@ -287,7 +287,7 @@ class MotorGroup:
         Parameters:
         - value: Sets the amount of torque (0 to 100%)
         """
-        self.max_torque[TorqueUnits.PCT]: float = value
+        self.max_torque[TorqueUnits.PCT] = value
 
     @act
     def set_max_torque(
@@ -300,7 +300,7 @@ class MotorGroup:
         - value: Sets the amount of torque (max 0.414 Nm)
         - torqueUnits: The measurement unit for the torque value.
         """
-        self.max_torque[torqueUnits]: float = value
+        self.max_torque[torqueUnits] = value
 
     @act
     def set_max_torque_current(self, value: float):
