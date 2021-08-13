@@ -227,7 +227,7 @@ class Drivetrain:
         - velocityUnits: unit for the velocity parameter,
                          a VelocityUnits enum value
         """
-        self.drive_velocities[velocityUnits]: float = velocity
+        self.drive_velocities[velocityUnits] = velocity
 
     @act
     def set_turn_velocity(
@@ -243,7 +243,7 @@ class Drivetrain:
         - velocityUnits: unit for the velocity parameter,
                          a VelocityUnits enum value
         """
-        self.turn_velocities[velocityUnits]: float = velocity
+        self.turn_velocities[velocityUnits] = velocity
 
     @act
     def set_timeout(self, time: float, timeUnits: TimeUnits = TimeUnits.SEC):
@@ -257,7 +257,7 @@ class Drivetrain:
         - time: the amount of time.
         - timeUnits: unit for the time parameter, a TimeUnits enum value
         """
-        self.timeouts[timeUnits]: float = time
+        self.timeouts[timeUnits] = time
 
     @sense
     def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC) -> float:
