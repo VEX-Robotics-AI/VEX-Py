@@ -31,7 +31,7 @@ class Sonar(Device):
         - distance: maximum distance to be measured in units
         - distanceUnits: a DistanceUnits enum value for the measurement unit.
         """
-        self.max_distances[distanceUnits]: float = distance
+        self.max_distances[distanceUnits] = distance
 
     @sense
     def distance(
