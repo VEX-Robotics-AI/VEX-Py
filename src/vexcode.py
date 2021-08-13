@@ -16,8 +16,7 @@ __all__ = [
     'SECONDS',
     'INCHES', 'MM',
     'FORWARD', 'REVERSE',
-    'LEFT', 'RIGHT',
-    'drivetrain'
+    'LEFT', 'RIGHT'
 ]
 
 
