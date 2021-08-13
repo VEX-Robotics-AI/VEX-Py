@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='RobotMesh-VEXIQ-PyB-API-Stubs',
-    version='1.0.2',
+    version='1.0.3',
     description='Robot Mesh VEX IQ Python B API Stubs',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
@@ -14,7 +14,7 @@ setup(
                  'RobotMesh-VEXIQ-PyB-API-Stubs/archive/main.zip',
     packages=['vex'],
     py_modules=['drivetrain', 'motor_group', 'smartdrive', 'timer', 'vision',
-                '__decor'],
+                'vexcode', '__decor'],
     scripts=[],
     classifiers=[],
     license='MIT',
