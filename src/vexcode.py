@@ -43,6 +43,10 @@ from vex import (
 from drivetrain import Drivetrain
 
 
+MSEC = TimeUnits.MSEC
+SEC = SECONDS
+
+
 drivetrain = Drivetrain(Motor(Ports.PORT1),
                         Motor(Ports.PORT6, True))
 
