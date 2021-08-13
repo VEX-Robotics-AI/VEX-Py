@@ -67,7 +67,7 @@ class Gyro(Device):
         - value: The new heading for the gyro
         - rotationUnits: The rotation unit for the heading
         """
-        self.headings[rotationUnits]: float = value
+        self.headings[rotationUnits] = value
 
     @act
     def set_rotation(
@@ -81,7 +81,7 @@ class Gyro(Device):
         - value: The new absolute angle for the gyro
         - rotationUnits: The rotation unit for the angle
         """
-        self.rotations[rotationUnits]: float = value
+        self.rotations[rotationUnits] = value
 
     @sense
     def heading(
