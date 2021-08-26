@@ -4,8 +4,6 @@ from inspect import getfullargspec
 import json
 from typing import Any, Callable, TypeVar
 
-from vex import interactive
-
 
 CallableTypeVar = TypeVar('CallableTypeVar', bound=Callable[..., Any])
 
@@ -63,6 +61,8 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
 
     @wraps(sensing_func)
     def decor_sensing_func(*given_args, set=None):
+        from vex import interactive
+
         args_dict = args_dict_from_func_and_given_args(func=sensing_func,
                                                        given_args=given_args)
 
