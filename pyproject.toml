@@ -1,0 +1,53 @@
+[project]
+name = 'RobotMesh-VEXIQ-PyB-API-Stubs'
+version = '1.0.7'
+
+description = 'Robot Mesh VEX IQ Python B API Stubs'
+readme = {file = 'README.md', content-type = 'text/markdown', charset = 'UTF-8'}
+
+requires-python = '>= 3.9'
+
+license = {text = 'MIT'}
+
+authors = [
+  {name = 'STEAM for Vietnam Foundation', email = 'Edu.Robotics@STEAMforVietnam.org'}
+]
+maintainers = [
+  {name = 'STEAM for Vietnam Foundation', email = 'Edu.Robotics@STEAMforVietnam.org'}
+]
+
+keywords = ['Robot Mesh', 'VEX IQ', 'VEX Robotics']
+classifiers = [
+  'Development Status :: 4 - Beta', 
+  'Framework :: Robot Framework',
+  'Framework :: Robot Framework :: Library',
+  'Framework :: Robot Framework :: Tool',
+  'Intended Audience :: Education',
+  'Operating System :: MacOS',
+  'Operating System :: MacOS :: MacOS X',
+  'Operating System :: Microsoft :: Windows',
+  'Operating System :: POSIX :: Linux',
+  'Programming Language :: Python',
+  'Programming Language :: Python :: 3',
+  'Programming Language :: Python :: 3.9',
+  'Programming Language :: Python :: 3.10',
+  'Topic :: Education',
+  'Topic :: Scientific/Engineering',
+  'Topic :: Software Development :: Libraries :: Python Modules',
+]
+
+
+[project.urls]
+GitHub = 'https://GitHub.com/STEAMforVietnam/RobotMesh-VEXIQ-PyB-API-Stubs'
+Documentation = 'https://GitHub.com/STEAMforVietnam/RobotMesh-VEXIQ-PyB-API-Stubs'
+
+
+[project.dependencies]
+Decorator = '>= 5.1.0'
+Wrapt = '>= 1.12.1'
+
+[project.optional-dependencies]
+devtest = [
+  'Nose2 >= 0.10.0',
+  'PyTest >= 6.2.5'
+]

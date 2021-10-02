@@ -1,2 +1,0 @@
-Decorator >= 5.0.5
-Wrapt >= 1.12.1
