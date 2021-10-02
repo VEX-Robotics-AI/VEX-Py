@@ -51,3 +51,11 @@ devtest = [
   'Nose2 >= 0.10.0',
   'PyTest >= 6.2.5'
 ]
+
+
+[build-system]
+requires = [
+  'SetUpTools >= 58.2.0',
+  'Wheel >= 0.37.0'
+]
+build-backend = 'setuptools.build_meta'
