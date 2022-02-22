@@ -3,8 +3,9 @@ from functools import wraps
 from inspect import getfullargspec
 import json
 from typing import Any, Callable, TypeVar
+import re
 
-
+_OBJECT_MEMORY_PATTERN = " object at 0x([0-9]|[a-f]|[A-F])+"
 CallableTypeVar = TypeVar('CallableTypeVar', bound=Callable[..., Any])
 
 
@@ -30,6 +31,12 @@ def args_dict_from_func_and_given_args(func, given_args):
 
     return args_dict
 
+def sanitize_object_name(obj: Any):
+    if obj is None:
+        return None
+    name = str(obj)
+    sanitized_name = re.sub(_OBJECT_MEMORY_PATTERN, "", name)
+    return sanitized_name
 
 def act(actuating_func: CallableTypeVar) -> CallableTypeVar:
     # (use same signature for IDE code autocomplete to work)
@@ -43,7 +50,8 @@ def act(actuating_func: CallableTypeVar) -> CallableTypeVar:
         self_arg = print_args.pop('self', None)
         input_arg_strs = [f'{k}={stringify_device_or_enum(v)}'
                           for k, v in print_args.items()]
-        print((f'ACT: {self_arg}.' if self_arg else 'ACT: ') +
+        self_name = sanitize_object_name(self_arg)
+        print((f'ACT: {self_name}.' if self_name else 'ACT: ') +
               f"{actuating_func.__name__}({', '.join(input_arg_strs)})")
 
         return (actuating_func.__qualname__, args_dict)
