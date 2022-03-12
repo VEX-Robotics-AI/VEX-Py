@@ -99,9 +99,9 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
                          f'{return_annotation_str} = ')
 
             # if input_arg_tuple is in current sensing states,
-            # then pop and return corresponding value
+            # then get and return corresponding value
             if input_arg_tuple in sensing_state_dict:
-                value = sensing_state_dict.pop(input_arg_tuple)
+                value = sensing_state_dict.get(input_arg_tuple)
                 print(f'{print_str}{value}')
                 return value
 
