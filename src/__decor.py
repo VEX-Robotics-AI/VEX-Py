@@ -102,8 +102,15 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
             # then get and return corresponding value
             if input_arg_tuple in sensing_state_dict:
                 value = sensing_state_dict.get(input_arg_tuple)
-                print(f'{print_str}{value}')
-                return value
+                if isinstance(value, list):
+                    if len(value) == 0:
+                        return None
+                    return_value = value[0]
+                    sensing_state_dict[input_arg_tuple] = value[1:]
+                else:
+                    return_value = value
+                print(f'{print_str}{return_value}')
+                return return_value
 
             # else if interactive.ON, ask user for direct input
             elif interactive.ON:
