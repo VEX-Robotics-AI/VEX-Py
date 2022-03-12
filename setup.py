@@ -2,7 +2,7 @@ from setuptools import setup
 
 
 setup(name='RobotMesh-VEXIQ-PyB-API-Stubs',
-      version='1.0.8',
+      version='1.0.9',
       packages=['vex'],
       py_modules=['drivetrain', 'motor_group', 'smartdrive', 'timer', 'vision',
                   'vexcode', '__decor'],
