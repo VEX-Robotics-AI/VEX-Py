@@ -38,8 +38,8 @@ classifiers = [
 
 
 [project.urls]
-GitHub = 'https://GitHub.com/STEAMforVietnam/RobotMesh-VEXIQ-PyB-API-Stubs'
-Documentation = 'https://GitHub.com/STEAMforVietnam/RobotMesh-VEXIQ-PyB-API-Stubs'
+GitHub = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
+Documentation = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
 
 
 [project.dependencies]
