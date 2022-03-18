@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 
 
+# pylint: disable=invalid-name
+
+
+"""Utility script to inspect a class's methods and their return types."""
+
+
 from argparse import ArgumentParser
 from importlib import import_module
-from inspect import (
-    getfullargspec, getmembers,
-    isdatadescriptor, isfunction,
-    signature
-)
+from inspect import (getfullargspec, getmembers,
+                     isdatadescriptor, isfunction,
+                     signature)
 
 
 arg_parser = ArgumentParser()
@@ -22,12 +26,12 @@ module = import_module(name=module_name)
 cls = getattr(module, class_name)
 
 print('\nProperties:')
-for property_name, property in getmembers(cls, isdatadescriptor):
-    if not property_name.startswith('_'):
-        return_annotation = property.fget.__annotations__.get('return')
-        print(f'- {property_name}: {return_annotation}'
+for pty_name, pty in getmembers(cls, isdatadescriptor):
+    if not pty_name.startswith('_'):
+        return_annotation = pty.fget.__annotations__.get('return')
+        print(f'- {pty_name}: {return_annotation}'
               if return_annotation
-              else f'- {property_name}')
+              else f'- {pty_name}')
 
 print('\nMethods:')
 for method_name, method in getmembers(cls, isfunction):
