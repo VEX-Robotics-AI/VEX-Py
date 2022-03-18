@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from __decor import act, sense
+from __vex_decor import act, sense
 
 from vex.abstract import SingletonDevice
 

@@ -1,6 +1,6 @@
 from typing import Optional
 
-from __decor import act, sense
+from __vex_decor import act, sense
 
 from vex import (
     BrakeType,

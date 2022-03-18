@@ -1,6 +1,6 @@
 from typing import Optional
 
-from __decor import act, sense
+from __vex_decor import act, sense
 
 from drivetrain import Drivetrain, DrivetrainMotorType
 from vex import (

@@ -1,4 +1,4 @@
-from __decor import act
+from __vex_decor import act
 
 from enum import IntEnum
 

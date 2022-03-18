@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Optional
 
-from __decor import sense
+from __vex_decor import sense
 
 from vex import Device, Ports
 

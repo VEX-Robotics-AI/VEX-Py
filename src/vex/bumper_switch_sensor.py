@@ -1,4 +1,4 @@
-from __decor import sense
+from __vex_decor import sense
 
 from .abstract import Device
 from .port import Ports

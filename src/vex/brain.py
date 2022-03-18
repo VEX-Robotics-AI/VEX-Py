@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from enum import IntEnum
 
-from __decor import act, sense
+from __vex_decor import act, sense
 
 from .abstract import SingletonDevice
 from .time import TimeUnits
