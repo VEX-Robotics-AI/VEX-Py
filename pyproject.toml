@@ -43,19 +43,19 @@ Documentation = 'https://GitHub.com/STEAMforVietnam/RobotMesh-VEXIQ-PyB-API-Stub
 
 
 [project.dependencies]
-Decorator = '>= 5.1.0'
-Wrapt = '>= 1.12.1'
+Decorator = '>= 5.1.1'
+Wrapt = '>= 1.14.0'
 
 [project.optional-dependencies]
 devtest = [
-  'Nose2 >= 0.10.0',
-  'PyTest >= 6.2.5'
+  'Nose2 >= 0.11.0',
+  'PyTest >= 7.1.1',
 ]
 
 
 [build-system]
 requires = [
-  'SetUpTools >= 58.2.0',
-  'Wheel >= 0.37.0'
+  'SetUpTools >= 60.10.0',
+  'Wheel >= 0.37.1',
 ]
 build-backend = 'setuptools.build_meta'
