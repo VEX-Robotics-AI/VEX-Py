@@ -1,5 +1,9 @@
+"""VEX Brain."""
+
+
 from __future__ import annotations
 
+from collections.abc import Sequence
 from enum import IntEnum
 
 from __vex_decor import act, sense
@@ -8,12 +12,14 @@ from .abstract import SingletonDevice
 from .time import TimeUnits
 
 
+__all__: Sequence[str] = 'Brain', 'BrainButton', 'BrainLcd', 'BrainSound', 'NoteType'   # noqa: E501
+
+
 class Brain(SingletonDevice):
-    """
-    Use the Brain class to see battery information, or write to the screen.
-    """
+    """Use the Brain class to see battery information, or write to the screen."""   # noqa: E501
 
     def __init__(self):
+        """Initialize Brain."""
         self._screen: BrainLcd = BrainLcd()
         self._buttonCheck: BrainButton = BrainButton(id='CHECK')
         self._buttonUp: BrainButton = BrainButton(id='UP')
@@ -22,40 +28,45 @@ class Brain(SingletonDevice):
 
     @property
     def screen(self) -> BrainLcd:
+        """Brain LCD."""
         return self._screen
 
     @property
     def buttonCheck(self) -> BrainButton:
+        """Brain Button CHECK."""
         return self._buttonCheck
 
     @property
     def buttonUp(self) -> BrainButton:
+        """Brain Button UP."""
         return self._buttonUp
 
     @property
     def buttonDown(self) -> BrainButton:
+        """Brain Button DOWN."""
         return self._buttonDown
 
     @property
     def sound(self) -> BrainSound:
+        """Brain Sound."""
         return self._sound
 
 
 class BrainButton:
-    """
-    Use the button class to get values from the brain's buttons.
-    """
+    """Use the button class to get values from the brain's buttons."""
 
-    def __init__(self, id: str):
+    def __init__(self, id: str):   # pylint: disable=redefined-builtin
+        """Initialize BrainButton."""
         self.id: str = id
 
     def __str__(self) -> str:
+        """Return string representation."""
         return f'{type(self).__name__}({self.id})'
 
     @sense
     def pressing(self) -> bool:
         """
-        Gets the pressed status of a button.
+        Get the pressed status of a button.
 
         Returns
         True if pressed, False otherwise.
@@ -65,6 +76,7 @@ class BrainButton:
 class BrainLcd(SingletonDevice):
     """
     Use this class to write or draw to the brain's LCD screen.
+
     * 21 characters wide
     * 5 lines (1-5)
     """
@@ -72,8 +84,9 @@ class BrainLcd(SingletonDevice):
     @act
     def print_line(self, number: int, text: str):
         """
-        Prints a number, string, or boolean at a particular line,
-        clearing the rest of the line.
+        Print a number, string, or boolean at a particular line.
+
+        (clearing the rest of the line)
 
         Parameters
         number: Line to print on, 1 is top line.
@@ -86,12 +99,12 @@ class BrainLcd(SingletonDevice):
 
     @act
     def clear_screen(self):
-        """
-        Clears the whole screen.
-        """
+        """Clear the whole screen."""
 
 
 class BrainSound(SingletonDevice):
+    """Brain Sound."""
+
     @act
     def play(
             self, note: NoteType, octave: int = 3,
@@ -122,7 +135,7 @@ class BrainSound(SingletonDevice):
     @act
     def play_wave(self, waveType: int, waitForCompletion: bool = True):
         """
-        play the wave sample
+        Play the wave sample.
 
         Parameters:
         - waveType: type of the wave sample sound to play [0..15]
@@ -132,7 +145,8 @@ class BrainSound(SingletonDevice):
     @act
     def play_melody(self, melody: str):
         """
-        Play a melody form a string in a quasi musical alphabet notation
+        Play a melody form a string in a quasi musical alphabet notation.
+
         (cdefgab)
 
         Parameters:
@@ -146,34 +160,33 @@ class BrainSound(SingletonDevice):
     @act
     def set_sound_effect(self, effect: int):
         """
-        set the sound effect type for subsequent notes played
+        Set the sound effect type for subsequent notes played.
 
         Parameters
         - effect: effect type [0..15]
         """
+        # pylint: disable=attribute-defined-outside-init
         self.sound_effect: int = effect
 
     @act
     def set_volume(self, volume: int):
         """
-        set the sound volume [1-4]
+        Set the sound volume [1-4].
 
         Parameters
         - volume: value [1=low...4=high]
         """
+        # pylint: disable=attribute-defined-outside-init
         self.volume: int = volume
 
     @act
     def stop(self):
-        """
-        Stop playing music.
-        """
+        """Stop playing music."""
 
 
 class NoteType(IntEnum):
-    """
-    Musical note to play.
-    """
+    """Musical note to play."""
+
     silence: int = 0   # Stop playing/play a silence.
     C: int = 1
     D: int = 2

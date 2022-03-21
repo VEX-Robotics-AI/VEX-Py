@@ -13,6 +13,7 @@
 
   "python.linting.pylintEnabled": true,
   "python.linting.pylintArgs": [
+    "--disable", "invalid-name",
   ],
 
   "python.linting.flake8Enabled": true,
