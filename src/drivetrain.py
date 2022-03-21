@@ -1,32 +1,40 @@
+"""VEX Drivetrain."""
+
+
+from collections.abc import Sequence
 from typing import Optional, Union
 
 from __vex_decor import act, sense
 
 from motor_group import MotorGroup
-from vex import (
-    BrakeType,
-    DirectionType,
-    DistanceUnits,
-    Motor,
-    RotationUnits,
-    TimeUnits,
-    TurnType,
-    VelocityUnits
-)
+from vex import (BrakeType,
+                 DirectionType,
+                 DistanceUnits,
+                 Motor,
+                 RotationUnits,
+                 TimeUnits,
+                 TurnType,
+                 VelocityUnits)
+
+
+__all__: Sequence[str] = ('Drivetrain',)
 
 
 DrivetrainMotorType = Union[Motor, MotorGroup, list[Motor], tuple[Motor]]
 
 
 class Drivetrain:
-    def __init__(
+    # pylint: disable=too-many-instance-attributes
+    """VEX Drivetrain."""
+
+    def __init__(   # pylint: disable=too-many-arguments
             self,
             left_motor: DrivetrainMotorType, right_motor: DrivetrainMotorType,
             wheel_travel: float = 200, track_width: float = 176,
             distanceUnits: DistanceUnits = DistanceUnits.MM,
             gear_ratio: float = 1):
         """
-        Creates a new drivetrain object.
+        Create a new drivetrain object.
 
         Parameters:
         - left_motor: the motor, motor group or a list/tuple of motors
@@ -59,7 +67,7 @@ class Drivetrain:
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
-        Turns the motors on and drives in the specified direction.
+        Turn the motors on and drives in the specified direction.
 
         Parameters:
         - directionType: direction to drive in, forward or reverse,
@@ -70,14 +78,14 @@ class Drivetrain:
         """
 
     @act
-    def drive_for(
+    def drive_for(   # pylint: disable=too-many-arguments
             self, directionType: DirectionType,
             distance: float, distanceUnits: DistanceUnits = DistanceUnits.MM,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True) -> bool:
         """
-        Drives for a specified distance.
+        Drive for a specified distance.
 
         Parameters
         - directionType: direction to drive in, forward or reverse,
@@ -97,7 +105,7 @@ class Drivetrain:
         """
 
     @act
-    def start_drive_for(
+    def start_drive_for(   # pylint: disable=too-many-arguments
             self, directionType: DirectionType,
             distance: float, distanceUnits: DistanceUnits = DistanceUnits.MM,
             velocity: Optional[float] = None,
@@ -132,7 +140,7 @@ class Drivetrain:
         """
 
     @act
-    def turn_for(
+    def turn_for(   # pylint: disable=too-many-arguments
             self, turnType: TurnType,
             angle: float, rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
@@ -160,14 +168,15 @@ class Drivetrain:
         """
 
     @act
-    def start_turn_for(
+    def start_turn_for(   # pylint: disable=too-many-arguments
             self, turnType: TurnType,
             angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
-        Start turning the drivetrain left or right
-        until the specified angle is reached.
+        Start turning the drivetrain left or right.
+
+        (until the specified angle is reached)
 
         Parameters:
         - turnType: direction to turn in, left or right, a TurnType enum value
@@ -183,8 +192,9 @@ class Drivetrain:
     @act
     def arcade(self, drivePower: float, turnPower: float):
         """
-        Drive in arcade mode,
-        normally corresponding to two controller joystick axis values.
+        Drive in arcade mode.
+
+        (normally corresponding to two controller joystick axis values)
 
         Parameters:
         - drivePower: percent power to apply to driving, -100..100
@@ -194,7 +204,7 @@ class Drivetrain:
     @act
     def stop(self, brakeType: Optional[BrakeType] = None):
         """
-        Stops the drive using a specified brake mode.
+        Stop the drive using a specified brake mode.
 
         Parameters:
         - brakeType: brake mode, an BrakeType enum value.
@@ -204,7 +214,7 @@ class Drivetrain:
     @act
     def set_gear_ratio(self, gear_ratio: float):
         """
-        Sets the external gear ratio of the drivetrain.
+        Set the external gear ratio of the drivetrain.
 
         Parameters:
         - gear_ratio: gear ratio value, usually 1.0
@@ -216,7 +226,7 @@ class Drivetrain:
             self,
             velocity: float, velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
-        Sets the velocity of the drive.
+        Set the velocity of the drive.
 
         Will not run the motors.
         Any subsequent call that does not contain a specified velocity
@@ -234,7 +244,7 @@ class Drivetrain:
             self,
             velocity: float, velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
-        Sets the velocity of the turn.
+        Set the velocity of the turn.
 
         Will not run the motors.
 
@@ -248,7 +258,7 @@ class Drivetrain:
     @act
     def set_timeout(self, time: float, timeUnits: TimeUnits = TimeUnits.SEC):
         """
-        Sets the timeout for the drivetrain.
+        Set the timeout for the drivetrain.
 
         If the drivetrain does not reach its' commanded position
         prior to the completion of the timeout, the motors will stop.
@@ -261,21 +271,18 @@ class Drivetrain:
 
     @sense
     def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC) -> float:
-        """
-        Returns a timeout in given time units.
-        """
+        """Return a timeout in given time units."""
         return self.timeouts[timeUnits]
 
     @sense
     def did_timeout(self) -> bool:
-        """
-        True if the last drivetrain operation timed out, False otherwise.
-        """
+        """Return True if last drivetrain operation timed out, False otherwise."""   # noqa: E501
 
     @sense
     def is_done(self) -> bool:
         """
-        True if drivetrain is done driving/turning to a specified target,
+        Return True if drivetrain is done driving/turning to specified target.
+
         False otherwise.
 
         Reimplemented in smartdrive.Smartdrive.
@@ -284,8 +291,7 @@ class Drivetrain:
     @act
     def set_stopping(self, brakeType: BrakeType):
         """
-        Sets the stopping mode of the motor group
-        by passing a brake mode as a parameter.
+        Set stopping mode of motor group by passing brake mode as parameter.
 
         Parameters:
         - brakeType: the stopping mode, a BrakeType enum value
@@ -298,7 +304,7 @@ class Drivetrain:
             self,
             velocityUnits: VelocityUnits = VelocityUnits.PCT) -> float:
         """
-        Gets the average current velocity of all motors.
+        Get the average current velocity of all motors.
 
         Returns:
         a float that represents the average current velocity
@@ -310,7 +316,7 @@ class Drivetrain:
     @sense
     def current(self) -> float:
         """
-        Gets the electrical current of all motors.
+        Get the electrical current of all motors.
 
         Returns:
         a float that represents the electrical current of the motor in Amps.

@@ -1,22 +1,30 @@
+"""VEX Smart Drivetrain."""
+
+
+from collections.abc import Sequence
 from typing import Optional
 
 from __vex_decor import act, sense
 
 from drivetrain import Drivetrain, DrivetrainMotorType
-from vex import (
-    BrakeType,
-    DirectionType,
-    DistanceUnits,
-    Gyro,
-    RotationUnits,
-    TimeUnits,
-    TurnType,
-    VelocityUnits
-)
+from vex import (BrakeType,
+                 DirectionType,
+                 DistanceUnits,
+                 Gyro,
+                 RotationUnits,
+                 TimeUnits,
+                 TurnType,
+                 VelocityUnits)
+
+
+__all__: Sequence[str] = ('Smartdrive',)
 
 
 class Smartdrive(Drivetrain):
-    def __init__(
+    # pylint: disable=too-many-instance-attributes,too-many-public-methods
+    """VEX Smart Drivetrain."""
+
+    def __init__(   # pylint: disable=too-many-arguments
             self,
             left_motor: DrivetrainMotorType, right_motor: DrivetrainMotorType,
             gyro: Gyro,
@@ -24,7 +32,7 @@ class Smartdrive(Drivetrain):
             distanceUnits: DistanceUnits = DistanceUnits.MM,
             gear_ratio: float = 1):
         """
-        Creates a new smartdrive object.
+        Create a new smartdrive object.
 
         Parameters:
         - left_motor: the motor, motor group or a list/tuple of motors
@@ -38,6 +46,8 @@ class Smartdrive(Drivetrain):
                          a DistanceUnits enum value
         - gear_ratio: external gear ratio, usually 1.0
         """
+        # pylint: disable=super-init-not-called
+
         self.left_motor: DrivetrainMotorType = left_motor
         self.right_motor: DrivetrainMotorType = right_motor
         self.gyro: Gyro = gyro
@@ -54,7 +64,7 @@ class Smartdrive(Drivetrain):
         self.stopping: Optional[BrakeType] = None
 
     @act
-    def turn_to_heading(
+    def turn_to_heading(   # pylint: disable=too-many-arguments
             self,
             angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
@@ -80,16 +90,16 @@ class Smartdrive(Drivetrain):
         """
 
     @act
-    def turn_to_rotation(
+    def turn_to_rotation(   # pylint: disable=too-many-arguments
             self,
             angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True) -> bool:
-        ...
+        """Turn to rotation."""
 
     @act
-    def turn_for(
+    def turn_for(   # pylint: disable=arguments-renamed,too-many-arguments
             self, turnType: TurnType,
             angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
@@ -122,7 +132,7 @@ class Smartdrive(Drivetrain):
             angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
-        ...
+        """Start turn to heading."""
 
     @act
     def start_turn_to_rotation(
@@ -130,17 +140,18 @@ class Smartdrive(Drivetrain):
             angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
-        ...
+        """Start turn to rotation."""
 
     @act
-    def start_turn_for(
+    def start_turn_for(   # pylint: disable=too-many-arguments
             self, turnType: TurnType,
             angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
-        Start turning the drivetrain left or right
-        until the specified angle is reached.
+        Start turning drivetrain left or right.
+
+        (until specified angle is reached)
 
         Parameters:
         - turnType: direction to turn in, left or right, a TurnType enum value
@@ -156,8 +167,7 @@ class Smartdrive(Drivetrain):
     @sense
     def is_done(self) -> bool:
         """
-        Checks to see if the turnToHeading, turnToRotation or turnFor function
-        is still running.
+        Check if turnToHeading, turnToRotation or turnFor is still running.
 
         Returns:
         True if the motor is on and is rotating to a target, False otherwise.
@@ -171,7 +181,7 @@ class Smartdrive(Drivetrain):
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
-        Turns the motors on and drives in the specified direction.
+        Turn the motors on and drives in the specified direction.
 
         Parameters:
         - directionType: direction to drive in, forward or reverse,
@@ -182,7 +192,7 @@ class Smartdrive(Drivetrain):
         """
 
     @act
-    def drive_for(
+    def drive_for(   # pylint: disable=too-many-arguments
             self, directionType: DirectionType,
             distance: float, distanceUnits: DistanceUnits = DistanceUnits.MM,
             velocity: Optional[float] = None,
@@ -210,7 +220,7 @@ class Smartdrive(Drivetrain):
         """
 
     @act
-    def start_drive_for(
+    def start_drive_for(   # pylint: disable=too-many-arguments
             self, directionType: DirectionType,
             distance: float, distanceUnits: DistanceUnits = DistanceUnits.MM,
             velocity: Optional[float] = None,
@@ -247,8 +257,9 @@ class Smartdrive(Drivetrain):
     @act
     def arcade(self, drivePower: float, turnPower: float):
         """
-        Drive in arcade mode,
-        normally corresponding to two controller joystick axis values.
+        Drive in arcade mode.
+
+        (normally corresponding to two controller joystick axis values)
 
         Parameters:
         - drivePower: percent power to apply to driving, -100..100
@@ -258,7 +269,7 @@ class Smartdrive(Drivetrain):
     @act
     def stop(self, brakeType: Optional[BrakeType] = None):
         """
-        Stops the drive using a specified brake mode.
+        Stop the drive using a specified brake mode.
 
         Parameters:
         - brakeType: brake mode, an BrakeType enum value.
@@ -268,7 +279,7 @@ class Smartdrive(Drivetrain):
     @act
     def set_gear_ratio(self, gear_ratio: float):
         """
-        Sets the external gear ratio of the drivetrain.
+        Set the external gear ratio of the drivetrain.
 
         Parameters:
         - gear_ratio: gear ratio value, usually 1.0
@@ -280,7 +291,7 @@ class Smartdrive(Drivetrain):
             self,
             velocity: float, velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
-        Sets the velocity of the drive.
+        Set the velocity of the drive.
 
         Will not run the motors.
         Any subsequent call that does not contain a specified velocity
@@ -298,7 +309,7 @@ class Smartdrive(Drivetrain):
             self,
             velocity: float, velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
-        Sets the velocity of the turn.
+        Set the velocity of the turn.
 
         Will not run the motors.
 
@@ -312,7 +323,7 @@ class Smartdrive(Drivetrain):
     @act
     def set_timeout(self, time: float, timeUnits: TimeUnits = TimeUnits.SEC):
         """
-        Sets the timeout for the drivetrain.
+        Set the timeout for the drivetrain.
 
         If the drivetrain does not reach its' commanded position
         prior to the completion of the timeout, the motors will stop.
@@ -325,22 +336,17 @@ class Smartdrive(Drivetrain):
 
     @sense
     def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC) -> float:
-        """
-        Returns a timeout in given time units.
-        """
+        """Return a timeout in given time units."""
         return self.timeouts[timeUnits]
 
     @sense
     def did_timeout(self) -> bool:
-        """
-        True if the last drivetrain operation timed out, False otherwise.
-        """
+        """Return True if last drivetrain operation timed out, False otherwise."""   # noqa: E501
 
     @act
     def set_stopping(self, brakeType: BrakeType):
         """
-        Sets the stopping mode of the motor group
-        by passing a brake mode as a parameter.
+        Set stopping mode of motor group by passing brake mode as parameter.
 
         Parameters:
         - brakeType: the stopping mode,
@@ -353,7 +359,7 @@ class Smartdrive(Drivetrain):
             self,
             velocityUnits: VelocityUnits = VelocityUnits.PCT) -> float:
         """
-        Gets the average current velocity of all motors.
+        Get the average current velocity of all motors.
 
         Returns:
         a float that represents the average current velocity
@@ -365,7 +371,7 @@ class Smartdrive(Drivetrain):
     @sense
     def current(self) -> float:
         """
-        Gets the electrical current of all motors.
+        Get the electrical current of all motors.
 
         Returns:
         a float that represents the electrical current of the motor in Amps.
@@ -373,6 +379,7 @@ class Smartdrive(Drivetrain):
 
     @property
     def gyro(self) -> Gyro:
+        """Gyro Sensor."""
         return self._gyro
 
     @gyro.setter
