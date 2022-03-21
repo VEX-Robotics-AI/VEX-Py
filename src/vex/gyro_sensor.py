@@ -1,3 +1,7 @@
+"""VEX Gyro Sensor."""
+
+
+from collections.abc import Sequence
 from enum import IntEnum
 
 from __vex_decor import act, sense
@@ -7,16 +11,23 @@ from .port import Ports
 from .units_common import RotationUnits
 
 
+__all__: Sequence[str] = 'GyroCalibrationType', 'Gyro'
+
+
 class GyroCalibrationType(IntEnum):
+    """Gyro calibration types."""
+
     QUICK: int = 0
     SLOW: int = 1
     ACCURATE: int = 2
 
 
 class Gyro(Device):
+    """Gyro Sensor."""
+
     def __init__(self, index: Ports, calibrate: bool = True):
         """
-        Creates a new gyro object on the port specified in the parameter.
+        Create a new gyro object on the port specified in the parameter.
 
         Parameters:
         - index: index to the brain port.
@@ -25,19 +36,16 @@ class Gyro(Device):
         self.port: Ports = index
         self.calibrate: bool = calibrate
 
-        self.headings: dict[RotationUnits, float] = \
-            dict[RotationUnits, float]()
-        self.rotations: dict[RotationUnits, float] = \
-            dict[RotationUnits, float]()
+        self.headings: dict[RotationUnits, float] = dict[RotationUnits, float]()   # noqa: E501
+        self.rotations: dict[RotationUnits, float] = dict[RotationUnits, float]()   # noqa: E501
 
     @act
     def start_calibration(
             self,
-            gyroCalibrationType: GyroCalibrationType
-            = GyroCalibrationType.QUICK,
+            gyroCalibrationType: GyroCalibrationType = GyroCalibrationType.QUICK,   # noqa: E501
             waitForCompletion: bool = True):
         """
-        Starts recalibration of the gyro.
+        Start recalibration of the gyro.
 
         Parameters:
         - gyroCalibrationType: amount of time for calibration,
@@ -48,9 +56,9 @@ class Gyro(Device):
     @sense
     def is_calibrating(self) -> bool:
         """
-        Returns True while the gyro sensor is performing
-        a requested recalibration, changing to false
-        once recalibration has completed.
+        Return True while  gyro sensor is performing a requested recalibration.
+
+        (changing to false once recalibration has completed)
 
         Returns True if gyro is still calibrating.
         """
@@ -88,7 +96,7 @@ class Gyro(Device):
             self,
             rotationUnits: RotationUnits = RotationUnits.DEG) -> float:
         """
-        Gets the angle of the gyro sensor.
+        Get the angle of the gyro sensor.
 
         Parameters:
         - rotationUnits: The measurement unit for the gyro device.
@@ -99,7 +107,7 @@ class Gyro(Device):
             self,
             rotationUnits: RotationUnits = RotationUnits.DEG) -> float:
         """
-        Gets the absolute angle of the gyro sensor.
+        Get the absolute angle of the gyro sensor.
 
         Parameters:
         - rotationUnits: The measurement unit for the gyro device.
