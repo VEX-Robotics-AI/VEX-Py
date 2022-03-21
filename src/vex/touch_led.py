@@ -1,3 +1,7 @@
+"""VEX Touch LED."""
+
+
+from collections.abc import Sequence
 from enum import IntEnum
 
 from __vex_decor import act, sense
@@ -7,29 +11,34 @@ from .color_sensor import ColorHue
 from .port import Ports
 
 
+__all__: Sequence[str] = 'Touchled', 'FadeType'
+
+
 class FadeType(IntEnum):
+    """Fade types."""
+
     OFF: int = 0
     SLOW: int = 1
     FAST: int = 2
 
 
 class Touchled(Device):
-    """
-    Use this class when programming with the touch LED device.
-    """
+    """Use this class when programming with the touch LED device."""
 
     def __init__(self, index: Ports):
+        """Initialize Touch LED."""
         self.port: Ports = index
 
     @act
     def default_fade(self, fadeType: FadeType):
         """
-        Sets the default fade time for the touchled sensor.
+        Set the default fade time for the touchled sensor.
 
         Parameters:
         - fadeType: The type of fade the touchled
                     will use: FadeType.SLOW, FAST or OFF
         """
+        # pylint: disable=attribute-defined-outside-init
         self.fade_type: FadeType = fadeType
 
     @sense
@@ -75,9 +84,7 @@ class Touchled(Device):
 
     @act
     def off(self):
-        """
-        Turn off the led in the touchled sensor.
-        """
+        """Turn off the led in the touchled sensor."""
 
     @act
     def brightness(self, brightness: int):
@@ -113,7 +120,7 @@ class Touchled(Device):
         """
 
     @act
-    def blink_rgb(
+    def blink_rgb(   # pylint: disable=too-many-arguments
             self, red: int, green: int, blue: int,
             on_time: float = 0.25, off_time: float = 0.25):
         """
