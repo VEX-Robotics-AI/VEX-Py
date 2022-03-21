@@ -1,4 +1,25 @@
-__all__ = [
+"""VEX module."""
+
+
+from collections.abc import Sequence
+
+from .abstract import Device
+from .port import Ports
+from .brain import Brain, BrainButton, BrainLcd, BrainSound, NoteType
+from .bumper_switch_sensor import Bumper
+from .color_sensor import ColorHue, Colorsensor
+from .distance_sensor import Sonar
+from .controller import Controller, ControllerAxis, ControllerButton
+from .gyro_sensor import Gyro, GyroCalibrationType
+from .motor import (
+    BrakeType, DirectionType, Motor, TorqueUnits, TurnType, VelocityUnits
+)
+from .touch_led import FadeType, Touchled
+from .time import TimeUnits, wait
+from .units_common import DistanceUnits, RotationUnits
+
+
+__all__: Sequence[str] = (
     'Device',
     'Ports',
     'Brain', 'BrainButton', 'BrainLcd', 'BrainSound', 'NoteType',
@@ -17,24 +38,8 @@ __all__ = [
     'SECONDS',
     'INCHES', 'MM',
     'FORWARD', 'REVERSE',
-    'LEFT', 'RIGHT'
-]
-
-
-from .abstract import Device
-from .port import Ports
-from .brain import Brain, BrainButton, BrainLcd, BrainSound, NoteType
-from .bumper_switch_sensor import Bumper
-from .color_sensor import ColorHue, Colorsensor
-from .distance_sensor import Sonar
-from .controller import Controller, ControllerAxis, ControllerButton
-from .gyro_sensor import Gyro, GyroCalibrationType
-from .motor import (
-    BrakeType, DirectionType, Motor, TorqueUnits, TurnType, VelocityUnits
+    'LEFT', 'RIGHT',
 )
-from .touch_led import FadeType, Touchled
-from .time import TimeUnits, wait
-from .units_common import DistanceUnits, RotationUnits
 
 
 # CONSTANTS
