@@ -1,3 +1,7 @@
+"""Decorators."""
+
+
+from collections.abc import Sequence
 from enum import IntEnum
 from functools import wraps
 from inspect import getfullargspec
@@ -5,12 +9,18 @@ import json
 from typing import Any, Callable, TypeVar
 import re
 
+
+__all__: Sequence[str] = 'act', 'sense'
+
+
 _OBJECT_MEMORY_PATTERN = " object at 0x([0-9]|[a-f]|[A-F])+"
 CallableTypeVar = TypeVar('CallableTypeVar', bound=Callable[..., Any])
 
 
 def stringify_device_or_enum(obj: Any):
-    from vex.abstract import Device, SingletonDevice   # avoid circ import
+    """Stringify device or enum."""
+    # pylint: disable=import-outside-toplevel
+    from vex.abstract import Device, SingletonDevice   # avoid circular import
 
     return (str(obj)
             if isinstance(obj, (Device, SingletonDevice, IntEnum))
@@ -20,6 +30,7 @@ def stringify_device_or_enum(obj: Any):
 
 
 def args_dict_from_func_and_given_args(func, given_args):
+    """Get arguments dict from function and given arguments."""
     arg_spec = getfullargspec(func)
     arg_names = arg_spec.args
 
@@ -31,14 +42,18 @@ def args_dict_from_func_and_given_args(func, given_args):
 
     return args_dict
 
+
 def sanitize_object_name(obj: Any):
+    """Sanitize object name."""
     if obj is None:
         return None
     name = str(obj)
     sanitized_name = re.sub(_OBJECT_MEMORY_PATTERN, "", name)
     return sanitized_name
 
+
 def act(actuating_func: CallableTypeVar) -> CallableTypeVar:
+    """Actuation decorator."""
     # (use same signature for IDE code autocomplete to work)
 
     @wraps(actuating_func)
@@ -60,6 +75,7 @@ def act(actuating_func: CallableTypeVar) -> CallableTypeVar:
 
 
 def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
+    """Sensing decorator."""
     # (use same signature for IDE code autocomplete to work)
 
     sensing_func_name = sensing_func.__name__
@@ -69,6 +85,7 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
 
     @wraps(sensing_func)
     def decor_sensing_func(*given_args, set=None):
+        # pylint: disable=import-outside-toplevel,redefined-builtin
         from vex import interactive
 
         args_dict = args_dict_from_func_and_given_args(func=sensing_func,
@@ -113,17 +130,16 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
                 return return_value
 
             # else if interactive.ON, ask user for direct input
-            elif interactive.ON:
+            if interactive.ON:
                 return json.loads(input(f'{print_str}? (in JSON)   '))
 
             # else return default sensing result
-            else:
-                return sensing_func(*given_args)
+            return sensing_func(*given_args)
 
-        else:
-            # set the provided value in current sensing states
-            sensing_state_dict[input_arg_tuple] = set
-            print(f'SET: {self}.{sensing_state_dict_name}'
-                  f"[{', '.join(input_arg_strs)}] = {set}")
+        # else: set the provided value in current sensing states
+        sensing_state_dict[input_arg_tuple] = set
+        print(f'SET: {self}.{sensing_state_dict_name}'
+              f"[{', '.join(input_arg_strs)}] = {set}")
+        return None
 
     return decor_sensing_func
