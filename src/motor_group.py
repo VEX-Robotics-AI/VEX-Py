@@ -1,22 +1,29 @@
+"""VEX Motor Group."""
+
+
+from collections.abc import Sequence
 from typing import Optional
 
 from __vex_decor import act, sense
 
-from vex import (
-    BrakeType,
-    DirectionType,
-    Motor,
-    RotationUnits,
-    TimeUnits,
-    TorqueUnits,
-    VelocityUnits
-)
+from vex import (BrakeType,
+                 DirectionType,
+                 Motor,
+                 RotationUnits,
+                 TimeUnits,
+                 TorqueUnits,
+                 VelocityUnits)
+
+
+__all__: Sequence[str] = ('MotorGroup',)
 
 
 class MotorGroup:
+    """VEX Motor Group."""
+
     def __init__(self, motors: list[Motor]):
         """
-        Creates a new motor group with specified motors
+        Create a new motor group with specified motors.
 
         param:
         - motors: a list or tuple of motors in the group
@@ -33,7 +40,7 @@ class MotorGroup:
 
     def count(self) -> int:
         """
-        return the number of motors in the motor group
+        Return the number of motors in the motor group.
 
         Returns:
         number of motors
@@ -43,8 +50,7 @@ class MotorGroup:
     @act
     def set_velocity(self, velocity: float, velocityUnits=VelocityUnits.PCT):
         """
-        Sets the velocity of the motor group
-        based on the parameters set in the command.
+        Set velocity of motor group based on parameters set in command.
 
         This command will not run the motor.
         Any subsequent call that does not contain a specified motor velocity
@@ -60,8 +66,7 @@ class MotorGroup:
     @act
     def set_stopping(self, brakeType: BrakeType):
         """
-        Sets the stopping mode of the motor group
-        by passing a brake mode as a parameter.
+        Set stopping mode of motor group by passing brake mode as parameter.
 
         Parameters:
         - brakeType: The stopping mode can be set
@@ -71,9 +76,7 @@ class MotorGroup:
 
     @act
     def reset_rotation(self):
-        """
-        Resets all motor encoders to the value of zero.
-        """
+        """Reset all motor encoders to the value of zero."""
         for motor in self.motors:
             for rotation_unit in self.rotations[motor]:
                 self.rotations[motor][rotation_unit] = 0
@@ -81,8 +84,7 @@ class MotorGroup:
     @act
     def set_rotation(self, value: float, rotationUnits=RotationUnits.DEG):
         """
-        Sets the value of all motor encoders
-        to the value specified in the parameter.
+        Set value of all motor encoders to value specified in parameter.
 
         Parameters
         - value: Sets the amount of rotation.
@@ -95,7 +97,7 @@ class MotorGroup:
     @act
     def set_timeout(self, time: float, timeUnits=TimeUnits.SEC):
         """
-        Sets the timeout for the motor group.
+        Set the timeout for the motor group.
 
         If the motor group does not reach its commanded position
         prior to the completion of the timeout, the motors will stop.
@@ -108,27 +110,22 @@ class MotorGroup:
 
     @sense
     def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC) -> float:
-        """
-        Returns:
-        Returns a timeout in given time units
-        """
+        """Return a timeout in given time units."""
         return self.timeouts[timeUnits]
 
     @sense
     def did_timeout(self) -> bool:
-        """
-        Returns:
-        True if the last motor operation on any motor timed out
-        """
+        """Return True if the last motor operation on any motor timed out."""
 
     @act
     def spin(
-            self, dir: DirectionType,
+            self, dir: DirectionType,   # pylint: disable=redefined-builtin
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
-        Turn on the motors and spins them in the specified direction
-        and a specified velocity.
+        Turn on the motors and spins them.
+
+        (in the specified direction and a specified velocity)
 
         Parameters:
         - dir: The direction to spin the motors,
@@ -139,15 +136,16 @@ class MotorGroup:
         """
 
     @act
-    def spin_to(
+    def spin_to(   # pylint: disable=too-many-arguments
             self,
             rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True) -> bool:
         """
-        Turns on the motors and spin them to
-        an absolute target rotation value at a specified velocity.
+        Turn on the motors and spin them.
+
+        (to an absolute target rotation value at a specified velocity)
 
         Returns:
         Returns a Boolean that signifies when
@@ -167,15 +165,16 @@ class MotorGroup:
         """
 
     @act
-    def spin_for(
-            self, dir: DirectionType,
+    def spin_for(   # pylint: disable=too-many-arguments
+            self, dir: DirectionType,   # pylint: disable=redefined-builtin
             rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True) -> bool:
         """
-        Turn on the motors and spin them to a relative target rotation value
-        at a specified velocity.
+        Turn on the motors and spin them.
+
+        (to a relative target rotation value at a specified velocity)
 
         Returns:
         True if motors have reached the target rotation value, False otherwise.
@@ -195,8 +194,8 @@ class MotorGroup:
         """
 
     @act
-    def spin_for_time(
-            self, dir: DirectionType,
+    def spin_for_time(   # pylint: disable=too-many-arguments
+            self, dir: DirectionType,   # pylint: disable=redefined-builtin
             time: float, timeUnits: TimeUnits = TimeUnits.SEC,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
@@ -220,8 +219,9 @@ class MotorGroup:
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
-        Starts spinning motors to an absolute target rotation
-        but does not wait for the motors to reach that target.
+        Start spinning motors to an absolute target rotation.
+
+        (but does not wait for the motors to reach that target)
 
         Parameters:
         - rotation: Sets the amount of rotation.
@@ -231,14 +231,15 @@ class MotorGroup:
         """
 
     @act
-    def start_spin_for(
-            self, dir: DirectionType,
+    def start_spin_for(   # pylint: disable=too-many-arguments
+            self, dir: DirectionType,   # pylint: disable=redefined-builtin
             rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """
-        Starts spinning motors to a relative target rotation
-        but does not wait for the motors to reach that target.
+        Start spinning motors to a relative target rotation.
+
+        (but does not wait for the motors to reach that target)
 
         Parameters:
         - dir: direction to spin in, a DirectionType enum value or None.
@@ -251,8 +252,7 @@ class MotorGroup:
     @sense
     def is_spinning(self) -> bool:
         """
-        Determines if any motor in the group
-        is performing a spin_for/spin_to command.
+        Determine if any motor in group is performing spin_for/spin_to command.
 
         Returns:
         True if any motors are spinning.
@@ -261,8 +261,7 @@ class MotorGroup:
     @sense
     def is_done(self) -> bool:
         """
-        Determines if a spin_for/spin_to command
-        has reached its target position.
+        Determine if spin_for/spin_to command has reached its target position.
 
         Returns:
         False if any motor is on and is rotating to a target,
@@ -272,7 +271,7 @@ class MotorGroup:
     @act
     def stop(self, brakeType: Optional[BrakeType] = None):
         """
-        Stops all motors using the default brake mode.
+        Stop all motors using the default brake mode.
 
         Parameters:
         - brakeType: The brake mode can be set to
@@ -282,7 +281,7 @@ class MotorGroup:
     @act
     def set_max_torque_percent(self, value: float):
         """
-        Sets the max torque of all motors as a percentage.
+        Set the max torque of all motors as a percentage.
 
         Parameters:
         - value: Sets the amount of torque (0 to 100%)
@@ -294,7 +293,7 @@ class MotorGroup:
             self,
             value: float, torqueUnits: TorqueUnits = TorqueUnits.NM):
         """
-        Sets the max torque of all motors.
+        Set the max torque of all motors.
 
         Parameters:
         - value: Sets the amount of torque (max 0.414 Nm)
@@ -305,11 +304,12 @@ class MotorGroup:
     @act
     def set_max_torque_current(self, value: float):
         """
-        Sets the max torque of all motors.
+        Set the max torque of all motors.
 
         Parameters:
         - value: Sets the amount of torque in Amps (max 1.2A)
         """
+        # pylint: disable=attribute-defined-outside-init
         self.max_torque_current: float = value
 
     @sense
@@ -317,7 +317,7 @@ class MotorGroup:
             self,
             rotationUnits: RotationUnits = RotationUnits.DEG) -> float:
         """
-        Gets the current rotation of the first motor in the group's encoder.
+        Get the current rotation of the first motor in the group's encoder.
 
         Returns:
         Returns a float that represents the current rotation of the motor
@@ -332,7 +332,7 @@ class MotorGroup:
             self,
             velocityUnits: VelocityUnits = VelocityUnits.PCT) -> float:
         """
-        Gets the current velocity of the first motor in the group.
+        Get the current velocity of the first motor in the group.
 
         Returns:
         a float that represents the current velocity of the motor
@@ -344,4 +344,4 @@ class MotorGroup:
 
     @sense
     def current(self) -> float:
-        ...
+        """Get Current."""
