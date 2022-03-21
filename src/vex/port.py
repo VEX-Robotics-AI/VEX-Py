@@ -1,7 +1,16 @@
+"""VEX Ports."""
+
+
+from collections.abc import Sequence
 from enum import IntEnum
 
 
+__all__: Sequence[str] = ('Ports',)
+
+
 class Ports(IntEnum):
+    """VEX Ports."""
+
     PORT1: int = 0
     PORT2: int = 1
     PORT3: int = 2
