@@ -1,3 +1,7 @@
+"""VEX Color Sensor."""
+
+
+from collections.abc import Sequence
 from enum import IntEnum
 
 from __vex_decor import act, sense
@@ -6,10 +10,12 @@ from .abstract import Device
 from .port import Ports
 
 
+__all__: Sequence[str] = 'ColorHue', 'Colorsensor'
+
+
 class ColorHue(IntEnum):
-    """
-    Defined color hue values.
-    """
+    """Defined color hue values."""
+
     NONE: int = 0
     RED: int = 1
     RED_ORANGE: int = 2
@@ -27,13 +33,14 @@ class ColorHue(IntEnum):
 
 
 class Colorsensor(Device):
+    """VEX Color Sensor."""
+
     def __init__(
             self, index: Ports,
             is_grayscale: bool = False,
             proximity: float = 700):
         """
-        Creates a new color sensor object on
-        the port specified in the parameter.
+        Create new color sensor object on the port specified in the parameter.
 
         Parameters:
         - index: The port index (zero-based)
@@ -47,7 +54,7 @@ class Colorsensor(Device):
     @sense
     def colorname3(self) -> int:
         """
-        Gets the name of the detected color.
+        Get the name of the detected color.
 
         Returns:
         enum value for the closest color detected
@@ -57,7 +64,7 @@ class Colorsensor(Device):
     @sense
     def colorname12(self) -> int:
         """
-        Gets the name of the detected color.
+        Get the name of the detected color.
 
         Returns:
         enum value of the closest color detected out of 12
@@ -67,7 +74,7 @@ class Colorsensor(Device):
     @sense
     def grayscale(self, raw: bool = False) -> int:
         """
-        Gets the grayscale value detected by the color sensor.
+        Get the grayscale value detected by the color sensor.
 
         Parameters:
         - raw: if True, raw value will be returned, otherwise a percentage
@@ -99,7 +106,7 @@ class Colorsensor(Device):
     @act
     def led(self, state: bool):
         """
-        Turns the led on the color sensor on or off.
+        Turn the led on the color sensor on or off.
 
         Parameters:
         - state: if True, LED will be turned on
