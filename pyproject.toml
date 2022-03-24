@@ -54,7 +54,7 @@ devtest = [
 ]
 
 
-[tool.poetry.scripts]
+[project.scripts]
 robotmesh-vex = 'vex._cli:robotmesh_vex_cli'
 
 

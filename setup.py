@@ -12,4 +12,9 @@ setup(name='RobotMesh-VEX-PyB-API-Stubs',
       package_dir={'': 'src'},
       include_package_data=True,
       zip_safe=False,
-      namespace_packages=[])
+      namespace_packages=[],
+      entry_points=dict(
+          console_scripts=[
+              'robotmesh-vex=vex._cli:robotmesh_vex_cli'
+          ]
+      ))
