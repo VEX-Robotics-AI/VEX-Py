@@ -50,10 +50,10 @@ def inspect_robotmesh_vex_class(class_qualname: str):
         if not pty_name.startswith('_'):
             return_annotation = pty.fget.__annotations__.get('return')
             print(f'- {pty_name}: {return_annotation}'
-                if return_annotation
-                else f'- {pty_name}')
+                  if return_annotation
+                  else f'- {pty_name}')
 
     print('\nMethods:')
     for method_name, method in getmembers(cls, isfunction):
         print(f'\n- {method_name}{signature(method)}:'
-            f'\n    {getfullargspec(method)}')
+              f'\n    {getfullargspec(method)}')
