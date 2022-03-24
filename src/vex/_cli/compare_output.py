@@ -1,6 +1,8 @@
 """Compare output of 2 functions or scripts."""
 
 
+from typing import Optional
+
 import click
 
 
@@ -19,5 +21,36 @@ import click
                no_args_is_help=True,
                hidden=False,
                deprecated=False)
-def compare_output():
+@click.option('--context-file',
+              show_default=True,
+              prompt=False,
+              confirmation_prompt=False,
+              prompt_required=True,
+              hide_input=False,
+              is_flag=False,
+              flag_value=None,
+              multiple=False,
+              count=False,
+              allow_from_autoenv=True,
+              help='Context File Path',
+              hidden=False,
+              show_choices=True,
+              show_envvar=False,
+
+              type=str,
+              required=False,
+              default=None,
+              callback=None,
+              nargs=None,
+              # multiple=False,
+              metavar='CONTEXT_FILE_PATH',
+              expose_value=True,
+              is_eager=False,
+              envvar=None,
+              shell_complete=None,
+              autocompletion=None)
+def compare_output(context_file: Optional[str] = None):
     """Compare output of 2 functions or scripts."""
+    if context_file:
+        # pylint: disable=exec-used,unspecified-encoding
+        exec(open(context_file).read())

@@ -1,3 +1,6 @@
+"""Test Brain."""
+
+
 from vex import Brain
 
 
