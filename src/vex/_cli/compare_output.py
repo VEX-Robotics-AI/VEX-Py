@@ -1,7 +1,7 @@
 """Compare output of 2 functions or scripts."""
 
 
-from typing import Optional
+from typing import Optional, Tuple
 
 import click
 
@@ -21,6 +21,47 @@ import click
                no_args_is_help=True,
                hidden=False,
                deprecated=False)
+@click.argument('files',
+                type=str,
+                required=True,
+                default=None,
+                callback=None,
+                nargs=2,
+                # multiple=False,
+                metavar='SCRIPT_FILES',
+                expose_value=True,
+                is_eager=False,
+                envvar=None,
+                shell_complete=None,
+                autocompletion=None)
+@click.option('--func',
+              show_default=True,
+              prompt=False,
+              confirmation_prompt=False,
+              prompt_required=True,
+              hide_input=False,
+              is_flag=False,
+              flag_value=None,
+              multiple=False,
+              count=False,
+              allow_from_autoenv=True,
+              help='Function Name',
+              hidden=False,
+              show_choices=True,
+              show_envvar=False,
+
+              type=str,
+              required=False,
+              default=None,
+              callback=None,
+              nargs=None,
+              # multiple=False,
+              metavar='FUNCTION_NAME',
+              expose_value=True,
+              is_eager=False,
+              envvar=None,
+              shell_complete=None,
+              autocompletion=None)
 @click.option('--context-file',
               show_default=True,
               prompt=False,
@@ -49,8 +90,18 @@ import click
               envvar=None,
               shell_complete=None,
               autocompletion=None)
-def compare_output(context_file: Optional[str] = None):
+def compare_output(files: Tuple[str, str],
+                   func: Optional[str] = None,
+                   context_file: Optional[str] = None):
     """Compare output of 2 functions or scripts."""
-    if context_file:
-        # pylint: disable=exec-used,unspecified-encoding
-        exec(open(context_file).read())
+    script_file_path_0, script_file_path_1 = files
+
+    if func:
+        if context_file:
+            # pylint: disable=consider-using-with
+            # pylint: disable=exec-used
+            # pylint: disable=unspecified-encoding
+            exec(open(context_file).read())
+
+    else:
+        print(script_file_path_0, script_file_path_1)
