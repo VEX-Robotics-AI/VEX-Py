@@ -2,6 +2,7 @@
 
 
 from collections.abc import Sequence
+from importlib.metadata import version
 
 from .abstract import Device
 from .port import Ports
@@ -20,6 +21,7 @@ from .units_common import DistanceUnits, RotationUnits
 
 
 __all__: Sequence[str] = (
+    '__version__',
     'Device',
     'Ports',
     'Brain', 'BrainButton', 'BrainLcd', 'BrainSound', 'NoteType',
@@ -40,6 +42,9 @@ __all__: Sequence[str] = (
     'FORWARD', 'REVERSE',
     'LEFT', 'RIGHT',
 )
+
+
+__version__: str = version(distribution_name='RobotMesh-VEX-PyB-API-Stubs')
 
 
 # CONSTANTS
