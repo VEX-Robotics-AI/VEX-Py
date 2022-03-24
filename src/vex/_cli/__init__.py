@@ -3,12 +3,14 @@
 
 import click
 
+from .compare_output import compare_output
 from .inspect_class import inspect_robotmesh_vex_class
 
 
 @click.group(name='h1st',
              cls=click.Group,
              commands={
+                 'compare-output': compare_output,
                  'inspect-cls': inspect_robotmesh_vex_class,
              },
 
