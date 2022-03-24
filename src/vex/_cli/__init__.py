@@ -1,10 +1,15 @@
 """Robot Mesh VEX CLI."""
 
 
+from collections.abc import Sequence
+
 import click
 
 from .compare_output import compare_output
 from .inspect_class import inspect_robotmesh_vex_class
+
+
+__all__: Sequence[str] = ('robotmesh_vex_cli',)
 
 
 @click.group(name='h1st',

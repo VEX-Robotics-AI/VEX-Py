@@ -18,7 +18,7 @@
 
   "python.linting.flake8Enabled": true,
   "python.linting.flake8Args": [
-    "--ignore=N802,N803,W504"
+    "--ignore=N802,N803,W504",
   ],
 
   "python.linting.mypyEnabled": false,

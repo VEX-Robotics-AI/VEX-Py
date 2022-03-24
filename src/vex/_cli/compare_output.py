@@ -1,9 +1,13 @@
 """Compare output of 2 functions or scripts."""
 
 
+from collections.abc import Sequence
 from typing import Optional, Tuple
 
 import click
+
+
+__all__: Sequence[str] = ('compare_output',)
 
 
 @click.command(name='compare-output',

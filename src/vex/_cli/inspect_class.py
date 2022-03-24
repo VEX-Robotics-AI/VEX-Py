@@ -1,12 +1,16 @@
 """Inspect a Robot Mesh VEX class's methods and their return types."""
 
 
+from collections.abc import Sequence
 from importlib import import_module
 from inspect import (getfullargspec, getmembers,
                      isdatadescriptor, isfunction,
                      signature)
 
 import click
+
+
+__all__: Sequence[str] = ('inspect_robotmesh_vex_class',)
 
 
 @click.command(name='inspect-cls',
