@@ -1,8 +1,8 @@
 [project]
-name = 'RobotMesh-VEXIQ-PyB-API-Stubs'
+name = 'RobotMesh-VEX-PyB-API-Stubs'
 version = '1.0.8'
 
-description = 'Robot Mesh VEX IQ Python B API Stubs'
+description = 'Robot Mesh VEX Python B API Stubs'
 readme = {file = 'README.md', content-type = 'text/markdown', charset = 'UTF-8'}
 
 requires-python = '>= 3.9'
@@ -10,13 +10,17 @@ requires-python = '>= 3.9'
 license = {text = 'MIT'}
 
 authors = [
-  {name = 'STEAM for Vietnam Foundation', email = 'Edu.Robotics@STEAMforVietnam.org'}
+  {name = 'The Vinh LUONG (LƯƠNG Thế Vinh)', email = 'Vinh@STEAMforVietnam.org'}
 ]
 maintainers = [
-  {name = 'STEAM for Vietnam Foundation', email = 'Edu.Robotics@STEAMforVietnam.org'}
+  {name = 'The Vinh LUONG (LƯƠNG Thế Vinh)', email = 'Vinh@STEAMforVietnam.org'}
 ]
 
-keywords = ['Robot Mesh', 'VEX IQ', 'VEX Robotics']
+keywords = [
+  'Robot Mesh',
+  'VEX',
+  'Robotics',
+]
 classifiers = [
   'Development Status :: 4 - Beta', 
   'Framework :: Robot Framework',
@@ -38,8 +42,14 @@ classifiers = [
 
 
 [project.urls]
-GitHub = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
+Homepage = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
 Documentation = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
+GitHub = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
+Repository = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
+
+
+[project.scripts]
+robotmesh-vex = 'vex._cli:robotmesh_vex_cli'
 
 
 [project.dependencies]
@@ -52,10 +62,6 @@ devtest = [
   'Nose2 >= 0.11.0',
   'PyTest >= 7.1.1',
 ]
-
-
-[project.scripts]
-robotmesh-vex = 'vex._cli:robotmesh_vex_cli'
 
 
 [build-system]
