@@ -43,6 +43,7 @@ Documentation = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
 
 
 [project.dependencies]
+CLICK = '^8.0.4'
 Decorator = '>= 5.1.1'
 Wrapt = '>= 1.14.0'
 
@@ -51,6 +52,10 @@ devtest = [
   'Nose2 >= 0.11.0',
   'PyTest >= 7.1.1',
 ]
+
+
+[tool.poetry.scripts]
+robotmesh-vex = 'vex._cli:robotmesh_vex_cli'
 
 
 [build-system]
