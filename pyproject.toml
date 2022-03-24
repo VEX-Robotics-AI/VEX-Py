@@ -13,7 +13,8 @@ authors = [
   {name = 'The Vinh LUONG (LƯƠNG Thế Vinh)', email = 'Vinh@STEAMforVietnam.org'}
 ]
 maintainers = [
-  {name = 'The Vinh LUONG (LƯƠNG Thế Vinh)', email = 'Vinh@STEAMforVietnam.org'}
+  {name = 'The Vinh LUONG (LƯƠNG Thế Vinh)', email = 'Vinh@STEAMforVietnam.org'},
+  {name = 'STEAM for Vietnam Foundation: Robotics & AI Educational Initative', email = 'Edu.Robotics@STEAMforVietnam.org'}
 ]
 
 keywords = [
