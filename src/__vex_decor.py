@@ -77,27 +77,25 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
     """Sensing decorator."""
     # (use same signature for IDE code autocomplete to work)
 
-    sensing_func_name = sensing_func.__name__
-
     # name of private dict storing current sensing states
-    sensing_state_dict_name = f'_{sensing_func_name}'
+    sensing_state_dict_name: str = f'_{(sensing_func_name := sensing_func.__name__)}'   # noqa: E501
 
     @wraps(sensing_func)
     def decor_sensing_func(*given_args, set=None):
         # pylint: disable=import-outside-toplevel,redefined-builtin
         from vex import interactive
 
-        args_dict = args_dict_from_func_and_given_args(func=sensing_func,
-                                                       given_args=given_args)
+        args_dict: dict[str, Any] = \
+            args_dict_from_func_and_given_args(func=sensing_func,
+                                               given_args=given_args)
 
         # get self
-        self = args_dict.pop('self')
+        self: Any = args_dict.pop('self')
 
         # private dict storing current sensing states
-        sensing_state_dict = getattr(self, sensing_state_dict_name, None)
-        if sensing_state_dict is None:
-            sensing_state_dict = {}
-            setattr(self, sensing_state_dict_name, sensing_state_dict)
+        if (sensing_state_dict :=
+            getattr(self, sensing_state_dict_name, None)) is None:   # noqa: E129,E501
+            setattr(self, sensing_state_dict_name, (sensing_state_dict := {}))
 
         # tuple & str forms of input args
         input_arg_dict_items = args_dict.items()
