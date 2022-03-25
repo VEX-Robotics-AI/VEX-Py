@@ -1,6 +1,7 @@
 """Compare output of 2 functions or scripts."""
 
 
+from ast import parse, FunctionDef, Module
 from collections.abc import Sequence
 from typing import Optional, Tuple
 
@@ -100,12 +101,67 @@ def compare_output(scripts: Tuple[str, str],
     """Compare output of 2 functions or scripts."""
     script_file_path_0, script_file_path_1 = scripts
 
+    with open(file=script_file_path_0,
+              mode='rt',
+              buffering=-1,
+              encoding='utf-8',
+              errors='strict',
+              newline=None,
+              closefd=True,
+              opener=None) as f:
+        code_str_0: str = f.read()
+
+    with open(file=script_file_path_1,
+              mode='rt',
+              buffering=-1,
+              encoding='utf-8',
+              errors='strict',
+              newline=None,
+              closefd=True,
+              opener=None) as f:
+        code_str_1: str = f.read()
+
     if func:
+        code_0: Module = parse(source=code_str_0,
+                               filename=script_file_path_0,
+                               mode='exec',
+                               type_comments=False,
+                               feature_version=None)
+        try:
+            func_code_0 = next(i
+                               for i in code_0.body
+                               if isinstance(i, FunctionDef) and i.name == func)   # noqa: E501
+        except StopIteration as err:
+            raise ValueError(
+                f'*** {script_file_path_0} HAS NO `def {func}(...)` ***') \
+                from err
+
+        code_1: Module = parse(source=code_str_1,
+                               filename=script_file_path_1,
+                               mode='exec',
+                               type_comments=False,
+                               feature_version=None)
+        try:
+            func_code_1 = next(i
+                               for i in code_1.body
+                               if isinstance(i, FunctionDef) and i.name == func)   # noqa: E501
+        except StopIteration as err:
+            raise ValueError(
+                f'*** {script_file_path_1} HAS NO `def {func}(...)` ***') \
+                from err
+
+        print(func_code_0, func_code_1)
+
         if context_file:
-            # pylint: disable=consider-using-with
-            # pylint: disable=exec-used
-            # pylint: disable=unspecified-encoding
-            exec(open(context_file).read())
+            with open(file=context_file,
+                      mode='rt',
+                      buffering=-1,
+                      encoding='utf-8',
+                      errors='strict',
+                      newline=None,
+                      closefd=True,
+                      opener=None) as f:
+                _: str = f.read()
 
     else:
         print(script_file_path_0, script_file_path_1)
