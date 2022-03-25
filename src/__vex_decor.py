@@ -55,7 +55,7 @@ def act(actuating_func: CallableTypeVar) -> CallableTypeVar:
     # (use same signature for IDE code autocomplete to work)
 
     @wraps(actuating_func)
-    def decor_actuating_func(*given_args):
+    def decor_actuating_func(*given_args) -> tuple[str, dict[str, Any]]:
         args_dict: dict[str, Any] = \
             args_dict_from_func_and_given_args(func=actuating_func,
                                                given_args=given_args)
@@ -68,7 +68,7 @@ def act(actuating_func: CallableTypeVar) -> CallableTypeVar:
         print((f'ACT: {self_name}.' if self_name else 'ACT: ') +
               f"{actuating_func.__name__}({', '.join(input_arg_strs)})")
 
-        return (actuating_func.__qualname__, args_dict)
+        return actuating_func.__qualname__, args_dict
 
     return decor_actuating_func
 
