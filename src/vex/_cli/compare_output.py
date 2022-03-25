@@ -25,7 +25,7 @@ __all__: Sequence[str] = ('compare_output',)
                no_args_is_help=True,
                hidden=False,
                deprecated=False)
-@click.argument('files',
+@click.argument('scripts',
                 type=str,
                 required=True,
                 default=None,
@@ -94,11 +94,11 @@ __all__: Sequence[str] = ('compare_output',)
               envvar=None,
               shell_complete=None,
               autocompletion=None)
-def compare_output(files: Tuple[str, str],
+def compare_output(scripts: Tuple[str, str],
                    func: Optional[str] = None,
                    context_file: Optional[str] = None):
     """Compare output of 2 functions or scripts."""
-    script_file_path_0, script_file_path_1 = files
+    script_file_path_0, script_file_path_1 = scripts
 
     if func:
         if context_file:
