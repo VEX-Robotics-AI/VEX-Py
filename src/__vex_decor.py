@@ -13,11 +13,11 @@ import re
 __all__: Sequence[str] = 'act', 'sense'
 
 
-_OBJECT_MEMORY_PATTERN = " object at 0x([0-9]|[a-f]|[A-F])+"
+_OBJECT_MEMORY_PATTERN: str = ' object at 0x([0-9]|[a-f]|[A-F])+'
 CallableTypeVar = TypeVar('CallableTypeVar', bound=Callable[..., Any])
 
 
-def stringify_device_or_enum(obj: Any):
+def stringify_device_or_enum(obj: Any) -> str:
     """Stringify device or enum."""
     # pylint: disable=import-outside-toplevel
     from vex.abstract import Device, SingletonDevice   # avoid circular import
@@ -43,13 +43,11 @@ def args_dict_from_func_and_given_args(func, given_args):
     return args_dict
 
 
-def sanitize_object_name(obj: Any):
+def sanitize_object_name(obj: Any) -> Optional[str]:
     """Sanitize object name."""
-    if obj is None:
-        return None
-    name = str(obj)
-    sanitized_name = re.sub(_OBJECT_MEMORY_PATTERN, "", name)
-    return sanitized_name
+    return (None
+            if obj is None
+            else re.sub(_OBJECT_MEMORY_PATTERN, '', str(obj)))
 
 
 def act(actuating_func: CallableTypeVar) -> CallableTypeVar:
