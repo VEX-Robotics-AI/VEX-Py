@@ -98,19 +98,20 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
             setattr(self, sensing_state_dict_name, (sensing_state_dict := {}))
 
         # tuple & str forms of input args
-        input_arg_dict_items = args_dict.items()
-        input_arg_tuple = tuple(input_arg_dict_items)
-        input_arg_strs = [f'{k}={stringify_device_or_enum(v)}'
-                          for k, v in input_arg_dict_items]
+        input_arg_tuple: tuple[tuple[str, Any], ...] = \
+            tuple(input_arg_dict_items := args_dict.items())
+        input_arg_strs: list[str] = [f'{k}={stringify_device_or_enum(v)}'
+                                     for k, v in input_arg_dict_items]
 
         if set is None:
-            return_annotation = sensing_func.__annotations__.get('return')
-            return_annotation_str = (f': {return_annotation}'
-                                     if return_annotation
-                                     else '')
-            print_str = (f'SENSE: {self}.{sensing_func_name}'
-                         f"({', '.join(input_arg_strs)})"
-                         f'{return_annotation_str} = ')
+            return_annotation: Optional[type] = \
+                sensing_func.__annotations__.get('return')
+            return_annotation_str: str = (f': {return_annotation}'
+                                          if return_annotation
+                                          else '')
+            print_str: str = (f'SENSE: {self}.{sensing_func_name}'
+                              f"({', '.join(input_arg_strs)})"
+                              f'{return_annotation_str} = ')
 
             # if input_arg_tuple is in current sensing states,
             # then get and return corresponding value
