@@ -6,7 +6,7 @@ from enum import IntEnum
 from functools import wraps
 from inspect import FullArgSpec, getfullargspec
 import json
-from typing import Any, Callable, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 import re
 
 
@@ -56,14 +56,15 @@ def act(actuating_func: CallableTypeVar) -> CallableTypeVar:
 
     @wraps(actuating_func)
     def decor_actuating_func(*given_args):
-        args_dict = args_dict_from_func_and_given_args(func=actuating_func,
-                                                       given_args=given_args)
+        args_dict: dict[str, Any] = \
+            args_dict_from_func_and_given_args(func=actuating_func,
+                                               given_args=given_args)
 
-        print_args = args_dict.copy()
-        self_arg = print_args.pop('self', None)
-        input_arg_strs = [f'{k}={stringify_device_or_enum(v)}'
-                          for k, v in print_args.items()]
-        self_name = sanitize_object_name(self_arg)
+        print_args: dict[str, Any] = args_dict.copy()
+        self_arg: Optional[Any] = print_args.pop('self', None)
+        input_arg_strs: list[str] = [f'{k}={stringify_device_or_enum(v)}'
+                                     for k, v in print_args.items()]
+        self_name: Optional[str] = sanitize_object_name(self_arg)
         print((f'ACT: {self_name}.' if self_name else 'ACT: ') +
               f"{actuating_func.__name__}({', '.join(input_arg_strs)})")
 
