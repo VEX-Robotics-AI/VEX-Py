@@ -6,6 +6,8 @@ from importlib import import_module
 from inspect import (getfullargspec, getmembers,
                      isdatadescriptor, isfunction,
                      signature)
+from types import ModuleType
+from typing import Optional
 
 import click
 
@@ -46,13 +48,13 @@ def inspect_robotmesh_vex_class(class_qualname: str):
     print(class_qualname)
 
     module_name, class_name = class_qualname.rsplit('.', 1)
-    module = import_module(name=module_name)
-    cls = getattr(module, class_name)
+    module: ModuleType = import_module(name=module_name)
+    cls: type = getattr(module, class_name)
 
     print('\nProperties:')
     for pty_name, pty in getmembers(cls, isdatadescriptor):
         if not pty_name.startswith('_'):
-            return_annotation = pty.fget.__annotations__.get('return')
+            return_annotation: Optional[type] = pty.fget.__annotations__.get('return')  # noqa: E501
             print(f'- {pty_name}: {return_annotation}'
                   if return_annotation
                   else f'- {pty_name}')
