@@ -4,7 +4,7 @@
 from collections.abc import Sequence
 from enum import IntEnum
 from functools import wraps
-from inspect import getfullargspec
+from inspect import FullArgSpec, getfullargspec
 import json
 from typing import Any, Callable, TypeVar
 import re
@@ -29,16 +29,16 @@ def stringify_device_or_enum(obj: Any) -> str:
                   else obj))
 
 
-def args_dict_from_func_and_given_args(func, given_args):
+def args_dict_from_func_and_given_args(func: CallableTypeVar,
+                                       given_args: Sequence[Any]) -> dict[str, Any]:   # noqa: E501
     """Get arguments dict from function and given arguments."""
-    arg_spec = getfullargspec(func)
-    arg_names = arg_spec.args
+    arg_spec: FullArgSpec = getfullargspec(func)
+    arg_names: list[str] = arg_spec.args
 
-    args_dict = {arg_names[i]: v for i, v in enumerate(given_args)}
+    args_dict: dict[str, Any] = {arg_names[i]: v for i, v in enumerate(given_args)}   # noqa: E501
     if (n_defaults_to_use := len(arg_names) - len(given_args)) > 0:
-        args_dict.update(
-            zip(arg_names[-n_defaults_to_use:],
-                arg_spec.defaults[-n_defaults_to_use:]))
+        args_dict.update(zip(arg_names[-n_defaults_to_use:],
+                             arg_spec.defaults[-n_defaults_to_use:]))
 
     return args_dict
 
