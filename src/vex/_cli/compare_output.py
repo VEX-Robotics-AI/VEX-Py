@@ -95,6 +95,34 @@ __all__: Sequence[str] = ('compare_output',)
               envvar=None,
               shell_complete=None,
               autocompletion=None)
+@click.option('--func-args',
+              show_default=True,
+              prompt=False,
+              confirmation_prompt=False,
+              prompt_required=True,
+              hide_input=False,
+              is_flag=False,
+              flag_value=None,
+              multiple=False,
+              count=False,
+              allow_from_autoenv=True,
+              help='Function Arguments',
+              hidden=False,
+              show_choices=True,
+              show_envvar=False,
+
+              type=str,
+              required=False,
+              default=None,
+              callback=None,
+              nargs=None,
+              # multiple=False,
+              metavar='FUNCTION_ARGUMENTS',
+              expose_value=True,
+              is_eager=False,
+              envvar=None,
+              shell_complete=None,
+              autocompletion=None)
 def compare_output(scripts: Tuple[str, str],
                    func: Optional[str] = None,
                    context_file: Optional[str] = None):
@@ -128,13 +156,12 @@ def compare_output(scripts: Tuple[str, str],
                                type_comments=False,
                                feature_version=None)
         try:
-            func_code_0 = next(i
-                               for i in code_0.body
-                               if isinstance(i, FunctionDef) and i.name == func)   # noqa: E501
+            func_code_0: FunctionDef = next(i for i in code_0.body
+                                            if isinstance(i, FunctionDef)
+                                            and i.name == func)   # noqa: W503
         except StopIteration as err:
-            raise ValueError(
-                f'*** {script_file_path_0} HAS NO `def {func}(...)` ***') \
-                from err
+            raise ValueError(f'*** {script_file_path_0} HAS NO '
+                             f'`def {func}(...)` ***') from err
 
         code_1: Module = parse(source=code_str_1,
                                filename=script_file_path_1,
@@ -142,13 +169,12 @@ def compare_output(scripts: Tuple[str, str],
                                type_comments=False,
                                feature_version=None)
         try:
-            func_code_1 = next(i
-                               for i in code_1.body
-                               if isinstance(i, FunctionDef) and i.name == func)   # noqa: E501
+            func_code_1: FunctionDef = next(i for i in code_1.body
+                                            if isinstance(i, FunctionDef)
+                                            and i.name == func)   # noqa: W503
         except StopIteration as err:
-            raise ValueError(
-                f'*** {script_file_path_1} HAS NO `def {func}(...)` ***') \
-                from err
+            raise ValueError(f'*** {script_file_path_1} HAS NO '
+                             f'`def {func}(...)` ***') from err
 
         print(func_code_0, func_code_1)
 
