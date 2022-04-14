@@ -3,9 +3,10 @@
 
 from ast import parse, FunctionDef, Module
 from collections.abc import Sequence
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Union
 
 import click
+import json
 
 
 __all__: Sequence[str] = ('compare_output',)
@@ -125,7 +126,8 @@ __all__: Sequence[str] = ('compare_output',)
               autocompletion=None)
 def compare_output(scripts: Tuple[str, str],
                    func: Optional[str] = None,
-                   context_file: Optional[str] = None):
+                   context_file: Optional[str] = None,
+                   func_args: Optional[str] = None):
     """Compare output of 2 functions or scripts."""
     script_file_path_0, script_file_path_1 = scripts
 
@@ -188,6 +190,23 @@ def compare_output(scripts: Tuple[str, str],
                       closefd=True,
                       opener=None) as f:
                 _: str = f.read()
+
+        if func_args:
+            with open(file=context_file,
+                      mode='rt',
+                      buffering=-1,
+                      encoding='utf-8',
+                      errors='strict',
+                      newline=None,
+                      closefd=True,
+                      opener=None) as f:
+                func_args: Union[dict, list] = json.loads(s=func_args,
+                                                          cls=None,
+                                                          object_hook=None,
+                                                          parse_float=None,
+                                                          parse_int=None,
+                                                          parse_constant=None,
+                                                          object_pairs_hook=None)   # noqa: E501
 
     else:
         print(script_file_path_0, script_file_path_1)
