@@ -5,6 +5,7 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 from enum import IntEnum
+from typing import Any
 
 from __vex.decor import act, sense
 
@@ -58,6 +59,10 @@ class BrainButton:
     def __init__(self, id: str):   # pylint: disable=redefined-builtin
         """Initialize BrainButton."""
         self.id: str = id
+
+    def __eq__(self, other: Any) -> bool:
+        """Check Equality."""
+        return isinstance(other, BrainButton) and (other.id == self.id)
 
     def __str__(self) -> str:
         """Return string representation."""
