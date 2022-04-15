@@ -1,6 +1,8 @@
 """VEX Motor Group."""
 
 
+from __future__ import annotations
+
 from collections.abc import Sequence
 from typing import Optional
 
@@ -18,7 +20,7 @@ from vex import (BrakeType,
 __all__: Sequence[str] = ('MotorGroup',)
 
 
-class MotorGroup:
+class MotorGroup:   # pylint: disable=too-many-public-methods
     """VEX Motor Group."""
 
     def __init__(self, motors: list[Motor]):
@@ -37,6 +39,11 @@ class MotorGroup:
         self.stopping: Optional[BrakeType] = None
         self.timeouts: dict[TimeUnits, float] = dict[TimeUnits, float]()
         self.max_torque: dict[TorqueUnits, float] = dict[TorqueUnits, float]()
+
+    def __eq__(self, other: MotorGroup) -> bool:
+        """Check Equality."""
+        return isinstance(other, MotorGroup) and \
+            (set(other.motors) == set(self.motors))
 
     def count(self) -> int:
         """
