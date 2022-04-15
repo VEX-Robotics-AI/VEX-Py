@@ -1,6 +1,8 @@
 """VEX Smart Drivetrain."""
 
 
+from __future__ import annotations
+
 from collections.abc import Sequence
 from typing import Optional
 
@@ -62,6 +64,17 @@ class Smartdrive(Drivetrain):
             dict[VelocityUnits, float]()
         self.timeouts: dict[TimeUnits, float] = dict[TimeUnits, float]()
         self.stopping: Optional[BrakeType] = None
+
+    def __eq__(self, other: Smartdrive) -> bool:
+        """Check Equality."""
+        return isinstance(other, Smartdrive) and \
+            (other.left_motor == self.left_motor) and \
+            (other.right_motor == self.right_motor) and \
+            (other.gyro == self.gyro) and \
+            (other.wheel_travel == self.wheel_travel) and \
+            (other.track_width == self.track_width) and \
+            (other.distance_unit == self.distance_unit) and \
+            (other.gear_ratio == self.gear_ratio)
 
     @act
     def turn_to_heading(   # pylint: disable=too-many-arguments
