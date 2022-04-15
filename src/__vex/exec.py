@@ -1,7 +1,7 @@
 """Execution Utilities."""
 
 
-from ast import parse, Call, FunctionDef, Module
+from ast import Call, FunctionDef, Module, parse, unparse
 from copy import deepcopy
 from collections.abc import Sequence
 from pprint import pprint
@@ -16,8 +16,10 @@ __all__: Sequence[str] = ('exec_and_get_state_seq',)
 def exec_and_get_state_seq(
         module_obj_or_script_file_path: Union[Module, str]) -> list:
     """Execute Module object or script and get State Sequence."""
+    # pylint: disable=exec-used
+
     if isinstance(module_obj_or_script_file_path, Module):
-        exec(module_obj_or_script_file_path)   # pylint: disable=exec-used
+        exec(unparse(ast_obj=module_obj_or_script_file_path))
 
     else:
         assert isinstance(module_obj_or_script_file_path, str)
@@ -34,7 +36,7 @@ def exec_and_get_state_seq(
                   newline=None,
                   closefd=True,
                   opener=None) as f:
-            exec(f.read())   # pylint: disable=exec-used
+            exec(f.read())
 
     state_seq: list = __vex.decor.STATE_SEQ
     __vex.decor.STATE_SEQ = []
