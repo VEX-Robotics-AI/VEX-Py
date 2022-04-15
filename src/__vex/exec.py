@@ -3,7 +3,6 @@
 
 from ast import parse, Call, FunctionDef, Module
 from collections.abc import Sequence
-import json
 from pprint import pprint
 from typing import Optional, Union
 
@@ -122,27 +121,32 @@ def compare_output(script_file_paths: tuple[str, str],
                                    feature_version=None)
 
         if func_args:
-            with open(file=context_file_path,
-                      mode='rt',
-                      buffering=-1,
-                      encoding='utf-8',
-                      errors='strict',
-                      newline=None,
-                      closefd=True,
-                      opener=None) as f:
-                func_args: Union[dict, list] = json.loads(s=func_args,
-                                                          cls=None,
-                                                          object_hook=None,
-                                                          parse_float=None,
-                                                          parse_int=None,
-                                                          parse_constant=None,
-                                                          object_pairs_hook=None)   # noqa: E501
+            if isinstance(func_args, dict):
+                func_args: list = list(func_args.values())
 
-        return Call(module, func_def_0, func_def_1)
+        else:
+            func_args: list = []
 
-    print(result := (
-        exec_and_get_state_seq(module_obj_or_script_file_path=script_file_path_0) ==   # noqa: E501
-        exec_and_get_state_seq(module_obj_or_script_file_path=script_file_path_1)   # noqa: E501
-    ))
+        module_0: Module = module.copy()
+        module_0.body.extend((func_def_0,
+                              Call(func=func_def_0,
+                                   args=func_args, keywords=[])))
 
+        module_1: Module = module.copy()
+        module_1.body.extend((func_def_1,
+                              Call(func=func_def_1,
+                                   args=func_args, keywords=[])))
+
+        result: bool = (
+            exec_and_get_state_seq(module_obj_or_script_file_path=module_0) ==
+            exec_and_get_state_seq(module_obj_or_script_file_path=module_1)
+        )
+
+    else:
+        result: bool = (
+            exec_and_get_state_seq(module_obj_or_script_file_path=script_file_path_0) ==   # noqa: E501
+            exec_and_get_state_seq(module_obj_or_script_file_path=script_file_path_1)   # noqa: E501
+        )
+
+    print(result)
     return result

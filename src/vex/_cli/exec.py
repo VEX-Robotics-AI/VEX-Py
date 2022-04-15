@@ -2,7 +2,8 @@
 
 
 from collections.abc import Sequence
-from typing import Optional
+import json
+from typing import Optional, Union
 
 import click
 
@@ -163,6 +164,15 @@ def compare_output(scripts: tuple[str, str],
                    context_file: Optional[str] = None,
                    func_args: Optional[str] = None):
     """Compare output of 2 functions or scripts."""
+    if func_args:
+        func_args: Union[dict, list] = json.loads(s=func_args,
+                                                  cls=None,
+                                                  object_hook=None,
+                                                  parse_float=None,
+                                                  parse_int=None,
+                                                  parse_constant=None,
+                                                  object_pairs_hook=None)
+
     return _compare_output(script_file_paths=scripts,
                            func_name=func,
                            context_file_path=context_file,
