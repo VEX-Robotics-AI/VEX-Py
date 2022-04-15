@@ -21,6 +21,7 @@ def exec_and_get_state_seq(
 
     else:
         assert isinstance(module_obj_or_script_file_path, str)
+
         print('=========')
         print(f'EXECUTING {module_obj_or_script_file_path}...')
         print('---------')

@@ -2,6 +2,7 @@
 
 
 from collections.abc import Sequence
+from typing import Any
 
 from .port import Ports
 
@@ -28,6 +29,10 @@ class Device:
 
 class SingletonDevice:   # pylint: disable=too-few-public-methods
     """Singleton Device."""
+
+    def __eq__(self, other: Any) -> bool:
+        """Check Equality."""
+        return isinstance(other, type(self))
 
     def __str__(self) -> str:
         """Return string representation."""
