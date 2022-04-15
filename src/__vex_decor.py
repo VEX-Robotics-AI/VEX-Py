@@ -140,11 +140,13 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
 
                 print(f'{print_str}{return_value}')
 
-            else:
-                assert interactive.ON
-
+            elif interactive.ON:
                 # ask user for direct input
                 return_value = json.loads(input(f'{print_str}? (in JSON)   '))
+
+            else:
+                # return default sensing value
+                return_value = sensing_func(*given_args)
 
             global STATE_SEQ   # pylint: disable=global-variable-not-assigned
             STATE_SEQ.append((sensing_func.__qualname__, args_dict, return_value))   # noqa: E501
