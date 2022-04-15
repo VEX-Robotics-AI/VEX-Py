@@ -5,8 +5,7 @@ from collections.abc import Sequence
 
 import click
 
-from .exec import exec_and_get_state_seq
-from .compare_output import compare_output
+from .exec import exec_and_get_state_seq, compare_output
 from .inspect_class import inspect_robotmesh_vex_class
 
 
