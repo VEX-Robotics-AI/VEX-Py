@@ -1,7 +1,7 @@
 """Execution Utilities."""
 
 
-from ast import parse, FunctionDef, Module
+from ast import parse, Call, FunctionDef, Module
 from collections.abc import Sequence
 import json
 from pprint import pprint
@@ -103,7 +103,7 @@ def compare_output(script_file_paths: tuple[str, str],
                                                and i.name == func_name)   # noqa: E501,W503
             except StopIteration as err:
                 raise ValueError(f'*** {script_file_path_1} HAS NO '
-                                f'`def {func_name}(...)` ***') from err
+                                 f'`def {func_name}(...)` ***') from err
 
         assert context_file_path, \
             '*** context_file_path IS REQUIRED TO CHECK FUNCTION EQUALITY ***'
@@ -115,7 +115,11 @@ def compare_output(script_file_paths: tuple[str, str],
                   newline=None,
                   closefd=True,
                   opener=None) as f:
-            _: str = f.read()
+            module: Module = parse(source=f.read(),
+                                   filename=script_file_path_1,
+                                   mode='exec',
+                                   type_comments=False,
+                                   feature_version=None)
 
         if func_args:
             with open(file=context_file_path,
@@ -134,7 +138,7 @@ def compare_output(script_file_paths: tuple[str, str],
                                                           parse_constant=None,
                                                           object_pairs_hook=None)   # noqa: E501
 
-        return False
+        return Call(module, func_def_0, func_def_1)
 
     print(result := (
         exec_and_get_state_seq(module_obj_or_script_file_path=script_file_path_0) ==   # noqa: E501
