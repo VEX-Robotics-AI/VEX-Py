@@ -2,6 +2,7 @@
 
 
 from ast import parse, Call, FunctionDef, Module
+from copy import deepcopy
 from collections.abc import Sequence
 from pprint import pprint
 from typing import Optional, Union
@@ -127,12 +128,12 @@ def compare_output(script_file_paths: tuple[str, str],
         else:
             func_args: list = []
 
-        module_0: Module = module.copy()
+        module_0: Module = deepcopy(module)
         module_0.body.extend((func_def_0,
                               Call(func=func_def_0,
                                    args=func_args, keywords=[])))
 
-        module_1: Module = module.copy()
+        module_1: Module = deepcopy(module)
         module_1.body.extend((func_def_1,
                               Call(func=func_def_1,
                                    args=func_args, keywords=[])))
