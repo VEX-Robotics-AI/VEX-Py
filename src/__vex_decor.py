@@ -97,8 +97,10 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
             args_dict_from_func_and_given_args(func=sensing_func,
                                                given_args=given_args)
 
+        print_args: dict[str, Any] = args_dict.copy()
+
         # get self
-        self: Any = args_dict.pop('self')
+        self: Any = print_args.pop('self')
 
         # private dict storing current sensing states
         if (sensing_state_dict :=
@@ -107,7 +109,7 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
 
         # tuple & str forms of input args
         input_arg_tuple: tuple[tuple[str, Any], ...] = \
-            tuple(input_arg_dict_items := args_dict.items())
+            tuple(input_arg_dict_items := print_args.items())
         input_arg_strs: list[str] = [f'{k}={stringify_device_or_enum(v)}'
                                      for k, v in input_arg_dict_items]
 
