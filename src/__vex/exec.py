@@ -48,12 +48,12 @@ def exec_and_get_state_seq(
     return state_seq
 
 
-def compare_output(scripts: tuple[str, str],
-                   func: Optional[str] = None,
-                   context_file: Optional[str] = None,
-                   func_args: Optional[str] = None):
+def compare_output(script_file_paths: tuple[str, str],
+                   func_name: Optional[str] = None,
+                   context_file_path: Optional[str] = None,
+                   func_args: Optional[Union[dict, list, tuple]] = None):
     """Compare output of 2 functions or scripts."""
-    script_file_path_0, script_file_path_1 = scripts
+    script_file_path_0, script_file_path_1 = script_file_paths
 
     with open(file=script_file_path_0,
               mode='rt',
@@ -75,7 +75,7 @@ def compare_output(scripts: tuple[str, str],
               opener=None) as f:
         code_str_1: str = f.read()
 
-    if func:
+    if func_name:
         code_0: Module = parse(source=code_str_0,
                                filename=script_file_path_0,
                                mode='exec',
@@ -84,10 +84,10 @@ def compare_output(scripts: tuple[str, str],
         try:
             func_code_0: FunctionDef = next(i for i in code_0.body
                                             if isinstance(i, FunctionDef)
-                                            and i.name == func)   # noqa: W503
+                                            and i.name == func_name)   # noqa: W503
         except StopIteration as err:
             raise ValueError(f'*** {script_file_path_0} HAS NO '
-                             f'`def {func}(...)` ***') from err
+                             f'`def {func_name}(...)` ***') from err
 
         code_1: Module = parse(source=code_str_1,
                                filename=script_file_path_1,
@@ -97,15 +97,15 @@ def compare_output(scripts: tuple[str, str],
         try:
             func_code_1: FunctionDef = next(i for i in code_1.body
                                             if isinstance(i, FunctionDef)
-                                            and i.name == func)   # noqa: W503
+                                            and i.name == func_name)   # noqa: W503
         except StopIteration as err:
             raise ValueError(f'*** {script_file_path_1} HAS NO '
-                             f'`def {func}(...)` ***') from err
+                             f'`def {func_name}(...)` ***') from err
 
         print(func_code_0, func_code_1)
 
-        if context_file:
-            with open(file=context_file,
+        if context_file_path:
+            with open(file=context_file_path,
                       mode='rt',
                       buffering=-1,
                       encoding='utf-8',
@@ -116,7 +116,7 @@ def compare_output(scripts: tuple[str, str],
                 _: str = f.read()
 
         if func_args:
-            with open(file=context_file,
+            with open(file=context_file_path,
                       mode='rt',
                       buffering=-1,
                       encoding='utf-8',

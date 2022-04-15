@@ -162,7 +162,8 @@ def compare_output(scripts: tuple[str, str],
                    func: Optional[str] = None,
                    context_file: Optional[str] = None,
                    func_args: Optional[str] = None):
-    return _compare_output(scripts=scripts,
-                           func=func,
-                           context_file=context_file,
-                           func_args=func_args) 
+    """Compare output of 2 functions or scripts."""
+    return _compare_output(script_file_paths=scripts,
+                           func_name=func,
+                           context_file_path=context_file,
+                           func_args=func_args)
