@@ -3,7 +3,7 @@
 
 from collections.abc import Sequence
 
-from __vex_decor import act, sense
+from __vex.decor import act, sense
 
 
 __all__: Sequence[str] = ('Timer',)

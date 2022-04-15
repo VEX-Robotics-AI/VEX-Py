@@ -6,7 +6,7 @@ from __future__ import annotations
 from collections.abc import Sequence
 from typing import Optional
 
-from __vex_decor import sense
+from __vex.decor import sense
 
 from vex import Device, Ports
 

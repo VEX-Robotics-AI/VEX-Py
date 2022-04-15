@@ -4,7 +4,7 @@
 from collections.abc import Sequence
 from typing import Optional
 
-from __vex_decor import act, sense
+from __vex.decor import act, sense
 
 from vex import (BrakeType,
                  DirectionType,

@@ -4,7 +4,7 @@
 from collections.abc import Sequence
 from enum import IntEnum
 
-from __vex_decor import act
+from __vex.decor import act
 
 
 __all__: Sequence[str] = 'TimeUnits', 'wait'

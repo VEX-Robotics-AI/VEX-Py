@@ -6,7 +6,7 @@ from pprint import pprint
 
 import click
 
-import __vex_decor
+import __vex.decor
 
 
 __all__: Sequence[str] = ('exec_and_get_state_seq',)
@@ -52,8 +52,8 @@ def exec_and_get_state_seq(script_file_path: str):
               opener=None) as f:
         exec(f.read())   # pylint: disable=exec-used
 
-    state_seq: list = __vex_decor.STATE_SEQ
-    __vex_decor.STATE_SEQ = []
+    state_seq: list = __vex.decor.STATE_SEQ
+    __vex.decor.STATE_SEQ = []
 
     pprint(object=state_seq,
            stream=None,

@@ -4,7 +4,7 @@
 from collections.abc import Sequence
 from typing import Optional, Union
 
-from __vex_decor import act, sense
+from __vex.decor import act, sense
 
 from motor_group import MotorGroup
 from vex import (BrakeType,

@@ -3,7 +3,7 @@
 
 from collections.abc import Sequence
 
-from __vex_decor import act, sense
+from __vex.decor import act, sense
 
 from .abstract import Device
 from .port import Ports

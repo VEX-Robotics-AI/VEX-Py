@@ -6,7 +6,7 @@ from __future__ import annotations
 from collections.abc import Sequence
 from enum import IntEnum
 
-from __vex_decor import act, sense
+from __vex.decor import act, sense
 
 from .abstract import SingletonDevice
 from .time import TimeUnits
