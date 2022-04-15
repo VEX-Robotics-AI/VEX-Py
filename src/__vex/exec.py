@@ -13,9 +13,14 @@ __all__: Sequence[str] = ('exec_and_get_state_seq',)
 
 
 def exec_and_get_state_seq(
-        module_obj_or_script_file_path: Union[str, Module]) -> list:
+        module_obj_or_script_file_path: Union[Module, str]) -> list:
     """Execute Module object or script and get State Sequence."""
-    if isinstance(module_obj_or_script_file_path, str):
+    if isinstance(module_obj_or_script_file_path, Module):
+        exec(module_obj_or_script_file_path)   # pylint: disable=exec-used
+
+    else:
+        assert isinstance(module_obj_or_script_file_path, str)
+
         with open(file=module_obj_or_script_file_path,
                   mode='rt',
                   buffering=-1,
@@ -25,9 +30,6 @@ def exec_and_get_state_seq(
                   closefd=True,
                   opener=None) as f:
             exec(f.read())   # pylint: disable=exec-used
-
-    else:
-        exec(module_obj_or_script_file_path)   # pylint: disable=exec-used
 
     state_seq: list = __vex.decor.STATE_SEQ
     __vex.decor.STATE_SEQ = []
