@@ -1,8 +1,9 @@
 """VEX Abstract Base Classes."""
 
 
+from __future__ import annotations
+
 from collections.abc import Sequence
-from typing import Any
 
 from .port import Ports
 
@@ -13,7 +14,7 @@ __all__: Sequence[str] = 'Device', 'SingletonDevice'
 class Device:
     """Base class for all Vex IQ devices."""
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: Device) -> bool:
         """Check Equality."""
         return isinstance(other, type(self)) and (other.port == self.port)
 
@@ -34,7 +35,7 @@ class Device:
 class SingletonDevice:   # pylint: disable=too-few-public-methods
     """Singleton Device."""
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: SingletonDevice) -> bool:
         """Check Equality."""
         return isinstance(other, type(self))
 
