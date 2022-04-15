@@ -3,10 +3,10 @@
 
 from ast import parse, FunctionDef, Module
 from collections.abc import Sequence
+import json
 from typing import Optional, Tuple, Union
 
 import click
-import json
 
 
 __all__: Sequence[str] = ('compare_output',)
