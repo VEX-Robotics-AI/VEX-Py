@@ -41,4 +41,4 @@ __all__: Sequence[str] = ('exec_and_get_state_seq',)
                 autocompletion=None)
 def exec_and_get_state_seq(script_file_path: str):
     """Execute script and get State Sequence."""
-    return _exec_and_get_state_seq(module_obj_or_script_file_path=script_file_path)
+    return _exec_and_get_state_seq(module_obj_or_script_file_path=script_file_path)   # noqa: E501
