@@ -27,22 +27,22 @@ __all__: Sequence[str] = ('exec_and_get_state_seq',)
                no_args_is_help=True,
                hidden=False,
                deprecated=False)
-@click.argument('script',
+@click.argument('script_file_path',
                 type=str,
                 required=True,
                 default=None,
                 callback=None,
                 nargs=None,
                 # multiple=False,
-                metavar='SCRIPT_FILE',
+                metavar='SCRIPT_FILE_PATH',
                 expose_value=True,
                 is_eager=False,
                 envvar=None,
                 shell_complete=None,
                 autocompletion=None)
-def exec_and_get_state_seq(script: str):
+def exec_and_get_state_seq(script_file_path: str):
     """Execute script and get State Sequence."""
-    with open(file=script,
+    with open(file=script_file_path,
               mode='rt',
               buffering=-1,
               encoding='utf-8',
