@@ -144,8 +144,10 @@ def compare_output(script_file_paths: tuple[str, str],
 
     else:
         result: bool = (
-            exec_and_get_state_seq(module_obj_or_script_file_path=script_file_path_0) ==   # noqa: E501
-            exec_and_get_state_seq(module_obj_or_script_file_path=script_file_path_1)   # noqa: E501
+            exec_and_get_state_seq(
+                module_obj_or_script_file_path=script_file_path_0) ==
+            exec_and_get_state_seq(
+                module_obj_or_script_file_path=script_file_path_1)
         )
 
     print(result)
