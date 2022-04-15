@@ -33,6 +33,6 @@
 
   "python.linting.banditEnabled": true,
   "python.linting.banditArgs": [
-    "--skip=B102",
+    "--skip=B101,B102",
   ],
 }
