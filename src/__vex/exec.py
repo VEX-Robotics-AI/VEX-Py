@@ -21,6 +21,9 @@ def exec_and_get_state_seq(
 
     else:
         assert isinstance(module_obj_or_script_file_path, str)
+        print('=========')
+        print(f'EXECUTING {module_obj_or_script_file_path}...')
+        print('---------')
 
         with open(file=module_obj_or_script_file_path,
                   mode='rt',
@@ -35,6 +38,7 @@ def exec_and_get_state_seq(
     state_seq: list = __vex.decor.STATE_SEQ
     __vex.decor.STATE_SEQ = []
 
+    print()
     pprint(object=state_seq,
            stream=None,
            indent=1,
@@ -44,6 +48,7 @@ def exec_and_get_state_seq(
            sort_dicts=False,
            # underscore_numbers=True,   # Py3.10
            )
+    print()
 
     return state_seq
 
@@ -51,31 +56,32 @@ def exec_and_get_state_seq(
 def compare_output(script_file_paths: tuple[str, str],
                    func_name: Optional[str] = None,
                    context_file_path: Optional[str] = None,
-                   func_args: Optional[Union[dict, list, tuple]] = None):
+                   func_args: Optional[Union[dict, list, tuple]] = None) -> bool:   # noqa: E501
+    # pylint: disable=too-many-locals
     """Compare output of 2 functions or scripts."""
     script_file_path_0, script_file_path_1 = script_file_paths
 
-    with open(file=script_file_path_0,
-              mode='rt',
-              buffering=-1,
-              encoding='utf-8',
-              errors='strict',
-              newline=None,
-              closefd=True,
-              opener=None) as f:
-        code_str_0: str = f.read()
-
-    with open(file=script_file_path_1,
-              mode='rt',
-              buffering=-1,
-              encoding='utf-8',
-              errors='strict',
-              newline=None,
-              closefd=True,
-              opener=None) as f:
-        code_str_1: str = f.read()
-
     if func_name:
+        with open(file=script_file_path_0,
+                  mode='rt',
+                  buffering=-1,
+                  encoding='utf-8',
+                  errors='strict',
+                  newline=None,
+                  closefd=True,
+                  opener=None) as f:
+            code_str_0: str = f.read()
+
+        with open(file=script_file_path_1,
+                  mode='rt',
+                  buffering=-1,
+                  encoding='utf-8',
+                  errors='strict',
+                  newline=None,
+                  closefd=True,
+                  opener=None) as f:
+            code_str_1: str = f.read()
+
         code_0: Module = parse(source=code_str_0,
                                filename=script_file_path_0,
                                mode='exec',
@@ -84,7 +90,7 @@ def compare_output(script_file_paths: tuple[str, str],
         try:
             func_code_0: FunctionDef = next(i for i in code_0.body
                                             if isinstance(i, FunctionDef)
-                                            and i.name == func_name)   # noqa: W503
+                                            and i.name == func_name)   # noqa: E501,W503
         except StopIteration as err:
             raise ValueError(f'*** {script_file_path_0} HAS NO '
                              f'`def {func_name}(...)` ***') from err
@@ -97,7 +103,7 @@ def compare_output(script_file_paths: tuple[str, str],
         try:
             func_code_1: FunctionDef = next(i for i in code_1.body
                                             if isinstance(i, FunctionDef)
-                                            and i.name == func_name)   # noqa: W503
+                                            and i.name == func_name)   # noqa: E501,W503
         except StopIteration as err:
             raise ValueError(f'*** {script_file_path_1} HAS NO '
                              f'`def {func_name}(...)` ***') from err
@@ -132,5 +138,11 @@ def compare_output(script_file_paths: tuple[str, str],
                                                           parse_constant=None,
                                                           object_pairs_hook=None)   # noqa: E501
 
-    else:
-        print(script_file_path_0, script_file_path_1)
+        return False
+
+    print(result := (
+        exec_and_get_state_seq(module_obj_or_script_file_path=script_file_path_0) ==   # noqa: E501
+        exec_and_get_state_seq(module_obj_or_script_file_path=script_file_path_1)   # noqa: E501
+    ))
+
+    return result
