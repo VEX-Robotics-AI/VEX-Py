@@ -71,7 +71,18 @@ def compare_output(script_file_paths: tuple[str, str],
                   newline=None,
                   closefd=True,
                   opener=None) as f:
-            code_str_0: str = f.read()
+            module_0: Module = parse(source=f.read(),
+                                     filename=script_file_path_0,
+                                     mode='exec',
+                                     type_comments=False,
+                                     feature_version=None)
+            try:
+                func_def_0: FunctionDef = next(i for i in module_0.body
+                                               if isinstance(i, FunctionDef)
+                                               and i.name == func_name)   # noqa: E501,W503
+            except StopIteration as err:
+                raise ValueError(f'*** {script_file_path_0} HAS NO '
+                                 f'`def {func_name}(...)` ***') from err
 
         with open(file=script_file_path_1,
                   mode='rt',
@@ -81,46 +92,30 @@ def compare_output(script_file_paths: tuple[str, str],
                   newline=None,
                   closefd=True,
                   opener=None) as f:
-            code_str_1: str = f.read()
+            module_1: Module = parse(source=f.read(),
+                                     filename=script_file_path_1,
+                                     mode='exec',
+                                     type_comments=False,
+                                     feature_version=None)
+            try:
+                func_def_1: FunctionDef = next(i for i in module_1.body
+                                               if isinstance(i, FunctionDef)
+                                               and i.name == func_name)   # noqa: E501,W503
+            except StopIteration as err:
+                raise ValueError(f'*** {script_file_path_1} HAS NO '
+                                f'`def {func_name}(...)` ***') from err
 
-        code_0: Module = parse(source=code_str_0,
-                               filename=script_file_path_0,
-                               mode='exec',
-                               type_comments=False,
-                               feature_version=None)
-        try:
-            func_code_0: FunctionDef = next(i for i in code_0.body
-                                            if isinstance(i, FunctionDef)
-                                            and i.name == func_name)   # noqa: E501,W503
-        except StopIteration as err:
-            raise ValueError(f'*** {script_file_path_0} HAS NO '
-                             f'`def {func_name}(...)` ***') from err
-
-        code_1: Module = parse(source=code_str_1,
-                               filename=script_file_path_1,
-                               mode='exec',
-                               type_comments=False,
-                               feature_version=None)
-        try:
-            func_code_1: FunctionDef = next(i for i in code_1.body
-                                            if isinstance(i, FunctionDef)
-                                            and i.name == func_name)   # noqa: E501,W503
-        except StopIteration as err:
-            raise ValueError(f'*** {script_file_path_1} HAS NO '
-                             f'`def {func_name}(...)` ***') from err
-
-        print(func_code_0, func_code_1)
-
-        if context_file_path:
-            with open(file=context_file_path,
-                      mode='rt',
-                      buffering=-1,
-                      encoding='utf-8',
-                      errors='strict',
-                      newline=None,
-                      closefd=True,
-                      opener=None) as f:
-                _: str = f.read()
+        assert context_file_path, \
+            '*** context_file_path IS REQUIRED TO CHECK FUNCTION EQUALITY ***'
+        with open(file=context_file_path,
+                  mode='rt',
+                  buffering=-1,
+                  encoding='utf-8',
+                  errors='strict',
+                  newline=None,
+                  closefd=True,
+                  opener=None) as f:
+            _: str = f.read()
 
         if func_args:
             with open(file=context_file_path,
