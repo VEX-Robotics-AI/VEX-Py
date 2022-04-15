@@ -13,6 +13,10 @@ __all__: Sequence[str] = 'Device', 'SingletonDevice'
 class Device:
     """Base class for all Vex IQ devices."""
 
+    def __eq__(self, other: Any) -> bool:
+        """Check Equality."""
+        return isinstance(other, type(self)) and (other.port == self.port)
+
     @property
     def port(self) -> Ports:
         """Port."""
