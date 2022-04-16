@@ -19,6 +19,8 @@ from .touch_led import FadeType, Touchled
 from .time import TimeUnits, wait
 from .units_common import DistanceUnits, RotationUnits
 
+from . import interactive
+
 
 __all__: Sequence[str] = (
     '__version__',
@@ -41,6 +43,7 @@ __all__: Sequence[str] = (
     'INCHES', 'MM',
     'FORWARD', 'REVERSE',
     'LEFT', 'RIGHT',
+    'interactive',
 )
 
 
