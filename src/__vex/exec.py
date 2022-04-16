@@ -20,7 +20,13 @@ def exec_and_get_state_seq(
     # pylint: disable=exec-used
 
     if isinstance(module_obj_or_script_file_path, Module):
-        exec(unparse(ast_obj=module_obj_or_script_file_path))
+        print('========================')
+        print('EXECUTING CODE MODULE...')
+        print('------------------------')
+        print((code_str := unparse(ast_obj=module_obj_or_script_file_path)))
+        print('------------------------')
+
+        exec(code_str)
 
     else:
         assert isinstance(module_obj_or_script_file_path, str)
