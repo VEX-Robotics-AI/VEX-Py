@@ -118,7 +118,7 @@ class ControllerAxis:
     def __eq__(self, other: ControllerAxis) -> bool:
         """Check Equality."""
         return isinstance(other, ControllerAxis) and \
-            (other.parent is self.parent) and (other.axtype == self.axtype)
+            (other.parent == self.parent) and (other.axtype == self.axtype)
 
     def __repr__(self):
         """Return string representation."""
