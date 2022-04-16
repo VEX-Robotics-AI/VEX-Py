@@ -1,17 +1,19 @@
 """Execution Utilities."""
 
 
-from ast import (Attribute, Call, Constant, Expr, FunctionDef, Load, Module, Name,   # noqa: E501
-                 parse, unparse)
-from copy import deepcopy
+from ast import (
+    Attribute, Call, Constant, Expr, FunctionDef, Load, Module, Name,
+    parse, unparse
+)
 from collections.abc import Sequence
+from copy import deepcopy
 from pprint import pprint
 from typing import Optional, Union
 
 import __vex.decor
 
 
-__all__: Sequence[str] = ('exec_and_get_state_seq',)
+__all__: Sequence[str] = 'exec_and_get_state_seq', 'name_or_attr_from_str'
 
 
 def exec_and_get_state_seq(
