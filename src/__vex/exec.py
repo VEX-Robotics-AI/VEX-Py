@@ -1,7 +1,8 @@
 """Execution Utilities."""
 
 
-from ast import Attribute, Call, FunctionDef, Load, Module, Name, parse, unparse   # noqa: E501
+from ast import (Attribute, Call, Constant, FunctionDef, Load, Module, Name,
+                 parse, unparse)
 from copy import deepcopy
 from collections.abc import Sequence
 from pprint import pprint
@@ -62,7 +63,7 @@ def name_or_attr_from_str(s: str, /) -> Union[Name, Attribute]:
 
     if len(str_components) == 1:
         return Name(id=str_components[0], ctx=Load())
-    
+
     assert len(str_components) == 2
     name, attr_name = str_components
     return Attribute(value=Name(id=name, ctx=Load()), attr=attr_name, ctx=Load())   # noqa: E501
@@ -136,9 +137,10 @@ def compare_output(script_file_paths: tuple[str, str],
                                    feature_version=None)
 
         if func_args:
-            func_args: list = [(name_or_attr_from_str(i)
-                                if isinstance(i, str)
-                                else i)
+            func_args: list = [(name_or_attr_from_str(i[1:-1])
+                                if isinstance(i, str) and
+                                i.startswith('`') and i.endswith('`')
+                                else Constant(value=i))
                                for i in (func_args.values()
                                          if isinstance(func_args, dict)
                                          else func_args)]
@@ -146,15 +148,14 @@ def compare_output(script_file_paths: tuple[str, str],
         else:
             func_args: list = []
 
+        func_call: Call = Call(func=Name(id=func_name, ctx=Load()),
+                               args=func_args, keywords=[])
+
         module_0: Module = deepcopy(module)
-        module_0.body.extend((func_def_0,
-                              Call(func=Name(id=func_name, ctx=Load()),
-                                   args=func_args, keywords=[])))
+        module_0.body.extend((func_def_0, func_call))
 
         module_1: Module = deepcopy(module)
-        module_1.body.extend((func_def_1,
-                              Call(func=Name(id=func_name, ctx=Load()),
-                                   args=func_args, keywords=[])))
+        module_1.body.extend((func_def_1, func_call))
 
         result: bool = (
             exec_and_get_state_seq(module_obj_or_script_file_path=module_0) ==
