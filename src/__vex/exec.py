@@ -13,7 +13,7 @@ from typing import Optional, Union
 import __vex.decor
 
 
-__all__: Sequence[str] = 'exec_and_get_state_seq', 'name_or_attr_from_str'
+__all__: Sequence[str] = 'exec_and_get_state_seq', 'compare_output'
 
 
 def exec_and_get_state_seq(
@@ -65,8 +65,7 @@ def exec_and_get_state_seq(
     return state_seq
 
 
-def name_or_attr_from_str(s: str, /) -> Union[Name, Attribute]:
-    """Return Name or Attribute from string."""
+def _name_or_attr_from_str(s: str, /) -> Union[Name, Attribute]:
     str_components = s.split(sep='.', maxsplit=1)
 
     if len(str_components) == 1:
@@ -145,7 +144,7 @@ def compare_output(script_file_paths: tuple[str, str],
                                    feature_version=None)
 
         if func_args:
-            func_args: list = [(name_or_attr_from_str(i[1:-1])
+            func_args: list = [(_name_or_attr_from_str(i[1:-1])
                                 if isinstance(i, str) and
                                 i.startswith('`') and i.endswith('`')
                                 else Constant(value=i))
