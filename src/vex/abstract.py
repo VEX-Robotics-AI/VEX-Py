@@ -27,7 +27,7 @@ class Device:
     def port(self, port: Ports):
         self._port = port
 
-    def __str__(self) -> str:
+    def __repr__(self) -> str:
         """Return string representation."""
         return f'{type(self).__name__}({self.port.name})'
 
@@ -39,6 +39,6 @@ class SingletonDevice:   # pylint: disable=too-few-public-methods
         """Check Equality."""
         return isinstance(other, type(self))
 
-    def __str__(self) -> str:
+    def __repr__(self) -> str:
         """Return string representation."""
         return type(self).__name__

@@ -115,7 +115,7 @@ class ControllerAxis:
         self.parent: Controller = parent
         self.axtype: str = axtype
 
-    def __str__(self):
+    def __repr__(self):
         """Return string representation."""
         return f'{type(self).__name__}({self.axtype})'
 
@@ -145,7 +145,7 @@ class ControllerButton:
         """Initialize Controller Button."""
         self.mask: str = mask
 
-    def __str__(self) -> str:
+    def __repr__(self) -> str:
         """Return string representation."""
         return f'{type(self).__name__}({self.mask})'
 
