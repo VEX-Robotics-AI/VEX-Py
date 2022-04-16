@@ -1,7 +1,7 @@
 """Execution Utilities."""
 
 
-from ast import Call, FunctionDef, Module, parse, unparse
+from ast import Attribute, Call, FunctionDef, Load, Module, Name, parse, unparse   # noqa: E501
 from copy import deepcopy
 from collections.abc import Sequence
 from pprint import pprint
@@ -54,6 +54,18 @@ def exec_and_get_state_seq(
     print()
 
     return state_seq
+
+
+def name_or_attr_from_str(s: str, /) -> Union[Name, Attribute]:
+    """Return Name or Attribute from string."""
+    str_components = s.split(sep='.', maxsplit=1)
+
+    if len(str_components) == 1:
+        return Name(id=str_components[0], ctx=Load())
+    
+    assert len(str_components) == 2
+    name, attr_name = str_components
+    return Attribute(value=Name(id=name, ctx=Load()), attr=attr_name, ctx=Load())   # noqa: E501
 
 
 def compare_output(script_file_paths: tuple[str, str],
@@ -124,20 +136,24 @@ def compare_output(script_file_paths: tuple[str, str],
                                    feature_version=None)
 
         if func_args:
-            if isinstance(func_args, dict):
-                func_args: list = list(func_args.values())
+            func_args: list = [(name_or_attr_from_str(i)
+                                if isinstance(i, str)
+                                else i)
+                               for i in (func_args.values()
+                                         if isinstance(func_args, dict)
+                                         else func_args)]
 
         else:
             func_args: list = []
 
         module_0: Module = deepcopy(module)
         module_0.body.extend((func_def_0,
-                              Call(func=func_def_0,
+                              Call(func=Name(id=func_name, ctx=Load()),
                                    args=func_args, keywords=[])))
 
         module_1: Module = deepcopy(module)
         module_1.body.extend((func_def_1,
-                              Call(func=func_def_1,
+                              Call(func=Name(id=func_name, ctx=Load()),
                                    args=func_args, keywords=[])))
 
         result: bool = (
