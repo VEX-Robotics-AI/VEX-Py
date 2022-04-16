@@ -115,6 +115,11 @@ class ControllerAxis:
         self.parent: Controller = parent
         self.axtype: str = axtype
 
+    def __eq__(self, other: ControllerAxis) -> bool:
+        """Check Equality."""
+        return isinstance(other, ControllerAxis) and \
+            (other.parent is self.parent) and (other.axtype == self.axtype)
+
     def __repr__(self):
         """Return string representation."""
         return f'{type(self).__name__}({self.axtype})'
@@ -144,6 +149,10 @@ class ControllerButton:
     def __init__(self, mask: str):
         """Initialize Controller Button."""
         self.mask: str = mask
+
+    def __eq__(self, other: ControllerButton) -> bool:
+        """Check Equality."""
+        return isinstance(other, ControllerButton) and (other.mask == self.mask)   # noqa: E501
 
     def __repr__(self) -> str:
         """Return string representation."""
