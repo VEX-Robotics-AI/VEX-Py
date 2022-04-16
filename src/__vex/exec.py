@@ -26,7 +26,7 @@ def exec_and_get_state_seq(
         print((code_str := unparse(ast_obj=module_obj_or_script_file_path)))
         print('------------------------')
 
-        exec(code_str)
+        exec(code_str, globals())
 
     else:
         assert isinstance(module_obj_or_script_file_path, str)
