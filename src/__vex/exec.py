@@ -1,7 +1,7 @@
 """Execution Utilities."""
 
 
-from ast import (Attribute, Call, Constant, FunctionDef, Load, Module, Name,
+from ast import (Attribute, Call, Constant, Expr, FunctionDef, Load, Module, Name,   # noqa: E501
                  parse, unparse)
 from copy import deepcopy
 from collections.abc import Sequence
@@ -148,8 +148,8 @@ def compare_output(script_file_paths: tuple[str, str],
         else:
             func_args: list = []
 
-        func_call: Call = Call(func=Name(id=func_name, ctx=Load()),
-                               args=func_args, keywords=[])
+        func_call: Expr = Expr(value=Call(func=Name(id=func_name, ctx=Load()),
+                                          args=func_args, keywords=[]))
 
         module_0: Module = deepcopy(module)
         module_0.body.extend((func_def_0, func_call))
