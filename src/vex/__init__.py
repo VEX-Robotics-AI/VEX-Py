@@ -47,7 +47,7 @@ __all__: Sequence[str] = (
 )
 
 
-# __version__: str = version(distribution_name='RobotMesh-VEX-PyB-API-Stubs')
+__version__: str = version(distribution_name='RobotMesh-VEX-PyB-API-Stubs')
 
 
 # CONSTANTS
