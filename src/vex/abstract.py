@@ -14,10 +14,6 @@ __all__: Sequence[str] = 'Device', 'SingletonDevice'
 class Device:
     """Base class for all Vex IQ devices."""
 
-    def __eq__(self, other: Device) -> bool:
-        """Check Equality."""
-        return isinstance(other, type(self)) and (other.port == self.port)
-
     @property
     def port(self) -> Ports:
         """Port."""
@@ -26,6 +22,10 @@ class Device:
     @port.setter
     def port(self, port: Ports):
         self._port = port
+
+    def __eq__(self, other: Device) -> bool:
+        """Check Equality."""
+        return isinstance(other, type(self)) and (other.port == self.port)
 
     def __repr__(self) -> str:
         """Return string representation."""

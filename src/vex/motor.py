@@ -1,6 +1,8 @@
 """VEX Motor."""
 
 
+from __future__ import annotations
+
 from collections.abc import Sequence
 from enum import IntEnum
 from typing import Optional
@@ -72,6 +74,17 @@ class Motor(Device):
         self.timeouts: dict[TimeUnits, float] = dict[TimeUnits, float]()
 
         self.max_torque: dict[TorqueUnits, float] = dict[TorqueUnits, float]()
+
+    def __eq__(self, other: Motor) -> bool:
+        """Check Equality."""
+        return (isinstance(other, type(self)) and
+                (other.port == self.port) and
+                (other.reverse == self.reverse))
+
+    def __repr__(self) -> str:
+        """Return string representation."""
+        return (f'{type(self).__name__}({self.port.name}' +
+                (', reverse)' if self.reverse else ')'))
 
     @act
     def set_reversed(self, is_reversed: bool):
