@@ -5,7 +5,7 @@ from ast import (
     Attribute, Call, Constant, Expr, FunctionDef, Load, Module, Name,
     parse, unparse
 )
-from collections.abc import Sequence
+from collections.abc import Collection, Sequence
 from copy import deepcopy
 from pprint import pprint
 from typing import Optional, Union
@@ -76,106 +76,119 @@ def _name_or_attr_from_str(s: str, /) -> Union[Name, Attribute]:
     return Attribute(value=Name(id=name, ctx=Load()), attr=attr_name, ctx=Load())   # noqa: E501
 
 
-def compare_output(script_file_paths: tuple[str, str],
+def compare_output(script_file_path: str,
+                   target_script_file_path: Union[str, Collection[str]],
+                   one_of: bool = False,
                    func_name: Optional[str] = None,
                    context_file_path: Optional[str] = None,
                    func_args: Optional[Union[dict, list, tuple]] = None) -> bool:   # noqa: E501
-    # pylint: disable=too-many-locals
-    """Compare output of 2 functions or scripts."""
-    script_file_path_0, script_file_path_1 = script_file_paths
+    # pylint: disable=too-many-arguments
+    """Compare output of a functions or script against target(s)."""
+    if isinstance(target_script_file_path, str):
+        if func_name:
+            with open(file=script_file_path,
+                      mode='rt',
+                      buffering=-1,
+                      encoding='utf-8',
+                      errors='strict',
+                      newline=None,
+                      closefd=True,
+                      opener=None) as f:
+                module: Module = parse(source=f.read(),
+                                       filename=script_file_path,
+                                       mode='exec',
+                                       type_comments=False,
+                                       feature_version=None)
+                try:
+                    func_def: FunctionDef = next(i for i in module.body
+                                                 if isinstance(i, FunctionDef)
+                                                 and i.name == func_name)   # noqa: E501,W503
+                except StopIteration as err:
+                    raise ValueError(f'*** {script_file_path} HAS NO '
+                                     f'`def {func_name}(...)` ***') from err
 
-    if func_name:
-        with open(file=script_file_path_0,
-                  mode='rt',
-                  buffering=-1,
-                  encoding='utf-8',
-                  errors='strict',
-                  newline=None,
-                  closefd=True,
-                  opener=None) as f:
-            module_0: Module = parse(source=f.read(),
-                                     filename=script_file_path_0,
-                                     mode='exec',
-                                     type_comments=False,
-                                     feature_version=None)
-            try:
-                func_def_0: FunctionDef = next(i for i in module_0.body
-                                               if isinstance(i, FunctionDef)
-                                               and i.name == func_name)   # noqa: E501,W503
-            except StopIteration as err:
-                raise ValueError(f'*** {script_file_path_0} HAS NO '
-                                 f'`def {func_name}(...)` ***') from err
+            with open(file=target_script_file_path,
+                      mode='rt',
+                      buffering=-1,
+                      encoding='utf-8',
+                      errors='strict',
+                      newline=None,
+                      closefd=True,
+                      opener=None) as f:
+                target_module: Module = parse(source=f.read(),
+                                              filename=target_script_file_path,
+                                              mode='exec',
+                                              type_comments=False,
+                                              feature_version=None)
+                try:
+                    target_func_def: FunctionDef = next(i for i in target_module.body   # noqa: E501
+                                                        if isinstance(i, FunctionDef)   # noqa: E501
+                                                        and i.name == func_name)   # noqa: E501,W503
+                except StopIteration as err:
+                    raise ValueError(f'*** {target_script_file_path} HAS NO '
+                                     f'`def {func_name}(...)` ***') from err
 
-        with open(file=script_file_path_1,
-                  mode='rt',
-                  buffering=-1,
-                  encoding='utf-8',
-                  errors='strict',
-                  newline=None,
-                  closefd=True,
-                  opener=None) as f:
-            module_1: Module = parse(source=f.read(),
-                                     filename=script_file_path_1,
-                                     mode='exec',
-                                     type_comments=False,
-                                     feature_version=None)
-            try:
-                func_def_1: FunctionDef = next(i for i in module_1.body
-                                               if isinstance(i, FunctionDef)
-                                               and i.name == func_name)   # noqa: E501,W503
-            except StopIteration as err:
-                raise ValueError(f'*** {script_file_path_1} HAS NO '
-                                 f'`def {func_name}(...)` ***') from err
+            assert context_file_path, \
+                '*** context_file_path IS REQUIRED TO CHECK FUNCTION EQUALITY ***'   # noqa: E501
+            with open(file=context_file_path,
+                      mode='rt',
+                      buffering=-1,
+                      encoding='utf-8',
+                      errors='strict',
+                      newline=None,
+                      closefd=True,
+                      opener=None) as f:
+                context_module: Module = parse(source=f.read(),
+                                               filename=target_script_file_path,   # noqa: E501
+                                               mode='exec',
+                                               type_comments=False,
+                                               feature_version=None)
 
-        assert context_file_path, \
-            '*** context_file_path IS REQUIRED TO CHECK FUNCTION EQUALITY ***'
-        with open(file=context_file_path,
-                  mode='rt',
-                  buffering=-1,
-                  encoding='utf-8',
-                  errors='strict',
-                  newline=None,
-                  closefd=True,
-                  opener=None) as f:
-            module: Module = parse(source=f.read(),
-                                   filename=script_file_path_1,
-                                   mode='exec',
-                                   type_comments=False,
-                                   feature_version=None)
+            if func_args:
+                func_args: list = [(_name_or_attr_from_str(i[1:-1])
+                                    if isinstance(i, str) and
+                                    i.startswith('`') and i.endswith('`')
+                                    else Constant(value=i))
+                                   for i in (func_args.values()
+                                             if isinstance(func_args, dict)
+                                             else func_args)]
 
-        if func_args:
-            func_args: list = [(_name_or_attr_from_str(i[1:-1])
-                                if isinstance(i, str) and
-                                i.startswith('`') and i.endswith('`')
-                                else Constant(value=i))
-                               for i in (func_args.values()
-                                         if isinstance(func_args, dict)
-                                         else func_args)]
+            else:
+                func_args: list = []
+
+            func_call: Expr = Expr(value=Call(func=Name(id=func_name, ctx=Load()),   # noqa: E501
+                                              args=func_args, keywords=[]))
+
+            module: Module = deepcopy(context_module)
+            module.body.extend((func_def, func_call))
+
+            target_module: Module = deepcopy(context_module)
+            target_module.body.extend((target_func_def, func_call))
+
+            result: bool = (
+                exec_and_get_state_seq(module_obj_or_script_file_path=module) ==   # noqa: E501
+                exec_and_get_state_seq(module_obj_or_script_file_path=target_module)   # noqa: E501
+            )
 
         else:
-            func_args: list = []
+            result: bool = (
+                exec_and_get_state_seq(
+                    module_obj_or_script_file_path=script_file_path) ==
+                exec_and_get_state_seq(
+                    module_obj_or_script_file_path=target_script_file_path)
+            )
 
-        func_call: Expr = Expr(value=Call(func=Name(id=func_name, ctx=Load()),
-                                          args=func_args, keywords=[]))
-
-        module_0: Module = deepcopy(module)
-        module_0.body.extend((func_def_0, func_call))
-
-        module_1: Module = deepcopy(module)
-        module_1.body.extend((func_def_1, func_call))
-
-        result: bool = (
-            exec_and_get_state_seq(module_obj_or_script_file_path=module_0) ==
-            exec_and_get_state_seq(module_obj_or_script_file_path=module_1)
-        )
+        print(result)
 
     else:
-        result: bool = (
-            exec_and_get_state_seq(
-                module_obj_or_script_file_path=script_file_path_0) ==
-            exec_and_get_state_seq(
-                module_obj_or_script_file_path=script_file_path_1)
-        )
+        result = (any if one_of else all)(
+            compare_output(script_file_path=script_file_path,
+                           target_script_file_path=_target_script_file_path,
+                           func_name=func_name,
+                           context_file_path=context_file_path,
+                           func_args=func_args)
+            for _target_script_file_path in target_script_file_path)
 
-    print(result)
+        print(f"COMBINED ({'any' if one_of else 'all'}): {result}")
+
     return result
