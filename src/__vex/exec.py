@@ -5,7 +5,7 @@ from ast import (
     Attribute, Call, Constant, Expr, FunctionDef, Load, Module, Name,
     parse, unparse
 )
-from collections.abc import Sequence
+from collections.abc import Collection, Sequence
 from copy import deepcopy
 from pprint import pprint
 from typing import Optional, Union
@@ -76,16 +76,24 @@ def _name_or_attr_from_str(s: str, /) -> Union[Name, Attribute]:
     return Attribute(value=Name(id=name, ctx=Load()), attr=attr_name, ctx=Load())   # noqa: E501
 
 
-def compare_output(script_file_paths: tuple[str, str],
+def compare_output(script_file_path: str,
+                   target_script_file_paths: Union[str, Collection[str]],
                    func_name: Optional[str] = None,
-                   context_file_path: Optional[str] = None,
+                   context_file_paths: Optional[Union[str, Collection[str]]] = None,   # noqa: E501
                    func_args: Optional[Union[dict, list, tuple]] = None) -> bool:   # noqa: E501
     # pylint: disable=too-many-locals
     """Compare output of 2 functions or scripts."""
-    script_file_path_0, script_file_path_1 = script_file_paths
+    if isinstance(target_script_file_paths, str):
+        target_script_file_paths: list[str] = [target_script_file_paths]
+
+    if context_file_paths:
+        pass
+
+    else:
+        context_file_paths: list[str] = []
 
     if func_name:
-        with open(file=script_file_path_0,
+        with open(file=script_file_path,
                   mode='rt',
                   buffering=-1,
                   encoding='utf-8',
@@ -94,7 +102,7 @@ def compare_output(script_file_paths: tuple[str, str],
                   closefd=True,
                   opener=None) as f:
             module_0: Module = parse(source=f.read(),
-                                     filename=script_file_path_0,
+                                     filename=script_file_path,
                                      mode='exec',
                                      type_comments=False,
                                      feature_version=None)
@@ -103,10 +111,10 @@ def compare_output(script_file_paths: tuple[str, str],
                                                if isinstance(i, FunctionDef)
                                                and i.name == func_name)   # noqa: E501,W503
             except StopIteration as err:
-                raise ValueError(f'*** {script_file_path_0} HAS NO '
+                raise ValueError(f'*** {script_file_path} HAS NO '
                                  f'`def {func_name}(...)` ***') from err
 
-        with open(file=script_file_path_1,
+        with open(file=target_script_file_paths,
                   mode='rt',
                   buffering=-1,
                   encoding='utf-8',
@@ -115,7 +123,7 @@ def compare_output(script_file_paths: tuple[str, str],
                   closefd=True,
                   opener=None) as f:
             module_1: Module = parse(source=f.read(),
-                                     filename=script_file_path_1,
+                                     filename=target_script_file_paths,
                                      mode='exec',
                                      type_comments=False,
                                      feature_version=None)
@@ -124,7 +132,7 @@ def compare_output(script_file_paths: tuple[str, str],
                                                if isinstance(i, FunctionDef)
                                                and i.name == func_name)   # noqa: E501,W503
             except StopIteration as err:
-                raise ValueError(f'*** {script_file_path_1} HAS NO '
+                raise ValueError(f'*** {target_script_file_paths} HAS NO '
                                  f'`def {func_name}(...)` ***') from err
 
         assert context_file_path, \
@@ -138,7 +146,7 @@ def compare_output(script_file_paths: tuple[str, str],
                   closefd=True,
                   opener=None) as f:
             module: Module = parse(source=f.read(),
-                                   filename=script_file_path_1,
+                                   filename=target_script_file_paths,
                                    mode='exec',
                                    type_comments=False,
                                    feature_version=None)
@@ -172,9 +180,9 @@ def compare_output(script_file_paths: tuple[str, str],
     else:
         result: bool = (
             exec_and_get_state_seq(
-                module_obj_or_script_file_path=script_file_path_0) ==
+                module_obj_or_script_file_path=script_file_path) ==
             exec_and_get_state_seq(
-                module_obj_or_script_file_path=script_file_path_1)
+                module_obj_or_script_file_path=target_script_file_paths)
         )
 
     print(result)
