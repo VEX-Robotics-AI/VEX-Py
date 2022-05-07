@@ -42,6 +42,12 @@ classifiers = [
   'Topic :: Software Development :: Libraries :: Python Modules',
 ]
 
+dependencies = [
+  'CLICK >= 8.1.3',
+  'Decorator >= 5.1.1',
+  'Wrapt >= 1.14.1',
+]
+
 
 [project.urls]
 Homepage = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
@@ -54,21 +60,16 @@ Repository = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
 robotmesh-vex = 'vex._cli:robotmesh_vex_cli'
 
 
-[project.dependencies]
-CLICK = '^8.0.4'
-Decorator = '>= 5.1.1'
-Wrapt = '>= 1.14.0'
-
 [project.optional-dependencies]
 devtest = [
   'Nose2 >= 0.11.0',
-  'PyTest >= 7.1.1',
+  'PyTest >= 7.1.2',
 ]
 
 
 [build-system]
 requires = [
-  'SetUpTools >= 60.10.0',
+  'SetUpTools >= 62.1.0',
   'Wheel >= 0.37.1',
 ]
 build-backend = 'setuptools.build_meta'
