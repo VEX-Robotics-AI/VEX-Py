@@ -41,8 +41,7 @@ __all__: Sequence[str] = ('inspect_robotmesh_vex_class',)
                 expose_value=True,
                 is_eager=False,
                 envvar=None,
-                shell_complete=None,
-                autocompletion=None)
+                shell_complete=None)
 def inspect_robotmesh_vex_class(class_qualname: str):
     """Inspect a Robot Mesh VEX class's methods and their return types."""
     print(class_qualname)

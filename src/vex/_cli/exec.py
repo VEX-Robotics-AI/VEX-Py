@@ -40,8 +40,7 @@ __all__: Sequence[str] = 'exec_and_get_state_seq', 'compare_output'
                 expose_value=True,
                 is_eager=False,
                 envvar=None,
-                shell_complete=None,
-                autocompletion=None)
+                shell_complete=None)
 def exec_and_get_state_seq(script_file_path: str):
     """Execute script and get State Sequence."""
     return _exec_and_get_state_seq(module_obj_or_script_file_path=script_file_path)   # noqa: E501
@@ -73,8 +72,7 @@ def exec_and_get_state_seq(script_file_path: str):
                 expose_value=True,
                 is_eager=False,
                 envvar=None,
-                shell_complete=None,
-                autocompletion=None)
+                shell_complete=None)
 @click.option('--func',
               show_default=True,
               prompt=False,
@@ -101,8 +99,7 @@ def exec_and_get_state_seq(script_file_path: str):
               expose_value=True,
               is_eager=False,
               envvar=None,
-              shell_complete=None,
-              autocompletion=None)
+              shell_complete=None)
 @click.option('--context-file',
               show_default=True,
               prompt=False,
@@ -129,8 +126,7 @@ def exec_and_get_state_seq(script_file_path: str):
               expose_value=True,
               is_eager=False,
               envvar=None,
-              shell_complete=None,
-              autocompletion=None)
+              shell_complete=None)
 @click.option('--func-args',
               show_default=True,
               prompt=False,
@@ -157,8 +153,7 @@ def exec_and_get_state_seq(script_file_path: str):
               expose_value=True,
               is_eager=False,
               envvar=None,
-              shell_complete=None,
-              autocompletion=None)
+              shell_complete=None)
 def compare_output(scripts: tuple[str, str],
                    func: Optional[str] = None,
                    context_file: Optional[str] = None,
