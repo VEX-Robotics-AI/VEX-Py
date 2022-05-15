@@ -3,6 +3,7 @@
 
 from collections.abc import Sequence
 from importlib.metadata import version
+import sys
 
 from .abstract import Device
 from .port import Ports
@@ -69,3 +70,8 @@ REVERSE: DirectionType = DirectionType.REV
 
 LEFT: TurnType = TurnType.LEFT
 RIGHT: TurnType = TurnType.RIGHT
+
+
+# ALIASES
+# =======
+sys.sleep = wait
