@@ -1,6 +1,6 @@
 [project]
 name = 'RobotMesh-VEX-PyB-API-Stubs'
-version = '1.0.11'
+version = '1.0.12'
 
 description = 'Robot Mesh VEX Python B API Stubs'
 readme = {file = 'README.md', content-type = 'text/markdown', charset = 'UTF-8'}
@@ -57,7 +57,7 @@ Repository = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
 
 
 [project.scripts]
-robotmesh-vex = 'vex._cli:robotmesh_vex_cli'
+robotmesh-vex = '__vex.cli:robotmesh_vex_cli'
 
 
 [project.optional-dependencies]
