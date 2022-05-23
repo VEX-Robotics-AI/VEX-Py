@@ -57,7 +57,7 @@ Repository = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
 
 
 [project.scripts]
-robotmesh-vex = 'vex._cli:robotmesh_vex_cli'
+robotmesh-vex = '__vex.cli:robotmesh_vex_cli'
 
 
 [project.optional-dependencies]
