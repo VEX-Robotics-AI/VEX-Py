@@ -1,6 +1,8 @@
 """VEX Color Sensor."""
 
 
+from __future__ import annotations
+
 from collections.abc import Sequence
 from enum import IntEnum
 
@@ -50,6 +52,13 @@ class Colorsensor(Device):
         self.port: Ports = index
         self.is_grayscale: bool = is_grayscale
         self.proximity: float = proximity
+
+    def __eq__(self, other: Colorsensor) -> bool:
+        """Check Equality."""
+        return (isinstance(other, type(self)) and
+                (other.port == self.port) and
+                (other.is_grayscale == self.is_grayscale) and
+                (other.proximity == self.proximity))
 
     @sense
     def colorname3(self) -> int:
