@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+
+python3 -m pip install PEP517 PIP SetUpTools Wheel --upgrade
+
+SETUPTOOLS_USE_DISTUTILS=stdlib \
+  python3 -m pip install -e . --upgrade --user
