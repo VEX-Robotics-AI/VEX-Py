@@ -7,6 +7,7 @@ from ast import (
 )
 from collections.abc import Sequence
 from copy import deepcopy
+from pathlib import Path
 from pprint import pprint
 from typing import Optional, Union
 
@@ -17,7 +18,7 @@ __all__: Sequence[str] = 'exec_and_get_state_seq', 'compare_output'
 
 
 def exec_and_get_state_seq(
-        module_obj_or_script_file_path: Union[Module, str]) -> list:
+        module_obj_or_script_file_path: Union[Module, Path, str]) -> list:
     """Execute Module object or script and get State Sequence."""
     # pylint: disable=exec-used
 
@@ -31,7 +32,7 @@ def exec_and_get_state_seq(
         exec(code_str, globals())
 
     else:
-        assert isinstance(module_obj_or_script_file_path, str)
+        assert isinstance(module_obj_or_script_file_path, (Path, str))
 
         print('=========')
         print(f'EXECUTING {module_obj_or_script_file_path}...')
