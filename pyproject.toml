@@ -1,6 +1,6 @@
 [project]
 name = 'RobotMesh-VEX-PyB-API-Stubs'
-version = '22.7.7'
+version = '22.8.8'
 
 description = 'Robot Mesh VEX Python B API Stubs'
 readme = {file = 'README.md', content-type = 'text/markdown', charset = 'UTF-8'}
@@ -62,14 +62,14 @@ robotmesh-vex = '__vex.cli:robotmesh_vex_cli'
 
 [project.optional-dependencies]
 devtest = [
-  'Nose2 >= 0.11.0',
+  'Nose2 >= 0.12.0',
   'PyTest >= 7.1.2',
 ]
 
 
 [build-system]
 requires = [
-  'SetUpTools >= 63.1.0',
+  'SetUpTools >= 63.4.2',
   'Wheel >= 0.37.1',
 ]
 build-backend = 'setuptools.build_meta'
