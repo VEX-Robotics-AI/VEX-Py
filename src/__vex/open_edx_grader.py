@@ -11,7 +11,9 @@ class StateSeqGrader(Grader):
         """Initialize State-Sequence Grader."""
         super().__init__()
 
-        self.add_test(Test(test_fn=test_fn,
+        self.add_preprocessor(fn=test_fn)
+
+        self.add_test(Test(test_fn=print,
                            short_description=test_fn.__doc__,
                            detailed_description=test_fn.__doc__,
                            compare=lambda _, actual: actual.endswith('True')))
