@@ -50,18 +50,20 @@ class StateSeqGrader(Grader):
                 s.write(
                     f'print({self.output_comp_func(student_submission_file_path)})')   # noqa: E501
 
-            pprint(run(grader_name=calling_from_file_path.stem,
-                       submission_name=self._SUBMISSION_MODULE_NAME)
-                   if submission_only
-                   else pprint(main(args=(calling_from_file_path.name,
-                                          self._SUBMISSION_MODULE_FILE_NAME))),
-                   stream=None,
-                   indent=2,
-                   width=80,
-                   depth=None,
-                   compact=False,
-                   sort_dicts=False,
-                   # underscore_numbers=True   # Py3.10+
-                   )
+            if submission_only:
+                pprint(run(grader_name=calling_from_file_path.stem,
+                           submission_name=self._SUBMISSION_MODULE_NAME),
+                       stream=None,
+                       indent=2,
+                       width=80,
+                       depth=None,
+                       compact=False,
+                       sort_dicts=False,
+                       # underscore_numbers=True   # Py3.10+
+                       )
+
+            else:
+                main(args=(calling_from_file_path.name,
+                           self._SUBMISSION_MODULE_FILE_NAME))
 
             os.remove(path=self._SUBMISSION_MODULE_FILE_NAME)
