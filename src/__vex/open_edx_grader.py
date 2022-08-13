@@ -86,6 +86,7 @@ class StateSeqGrader(Grader):
                        )
 
             else:
+                # pylint: disable=import-outside-toplevel
                 from xqueue_watcher.jailedgrader import main
 
                 main(args=(calling_from_file_path.name,
