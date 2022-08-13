@@ -14,8 +14,6 @@ from grader_support.gradelib import Grader
 from grader_support.graderutil import change_directory
 from grader_support.run import run
 
-from xqueue_watcher.jailedgrader import main
-
 
 OUTPUT_COMP_FUNC_TYPE: type = Callable[[Union[str, Path]], bool]
 
@@ -88,6 +86,8 @@ class StateSeqGrader(Grader):
                        )
 
             else:
+                from xqueue_watcher.jailedgrader import main
+
                 main(args=(calling_from_file_path.name,
                            self._SUBMISSION_MODULE_FILE_NAME))
 
