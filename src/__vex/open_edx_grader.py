@@ -48,6 +48,8 @@ class StateSeqGrader(Grader):
             f.write(student_submission_str)
 
         try:
+            # TODO: make this secure by CodeJail
+            # as this checking step is not run in a sandbox by JaledGrader
             if self.student_submission_file_test_func(f.name):
                 complaint_str: Optional[str] = None
             else:
