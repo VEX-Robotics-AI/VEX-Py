@@ -13,6 +13,7 @@
 
   "python.linting.pylintEnabled": true,
   "python.linting.pylintArgs": [
+    "--disable", "fixme",
     "--disable", "invalid-name",
   ],
 

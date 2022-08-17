@@ -100,7 +100,12 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
         print_args: dict[str, Any] = args_dict.copy()
 
         # get self
-        self: Any = print_args.pop('self')
+        if (self := print_args.pop('self', None)):
+            self_dot_str: str = f'{self}.'
+
+        else:
+            self: callable = sensing_func
+            self_dot_str: str = ''
 
         # private dict storing current sensing states
         if (sensing_state_dict :=
@@ -119,7 +124,7 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
             return_annotation_str: str = (f': {return_annotation}'
                                           if return_annotation
                                           else '')
-            print_str: str = (f'SENSE: {self}.{sensing_func_name}'
+            print_str: str = (f'SENSE: {self_dot_str}{sensing_func_name}'
                               f"({', '.join(input_arg_strs)})"
                               f'{return_annotation_str} = ')
 
@@ -145,8 +150,10 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
                 return_value = json.loads(input(f'{print_str}? (in JSON)   '))
 
             else:
-                # return default sensing value
+                # fully execute the sensing function on the given arguments
                 return_value = sensing_func(*given_args)
+
+                print(f'{print_str}{return_value}')
 
             global STATE_SEQ   # pylint: disable=global-variable-not-assigned
             STATE_SEQ.append((sensing_func.__qualname__, args_dict, return_value))   # noqa: E501
@@ -155,7 +162,7 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
 
         # else: set the provided value in current sensing states
         sensing_state_dict[input_arg_tuple] = set
-        print(f'SET: {self}.{sensing_state_dict_name}'
+        print(f'SET: {self_dot_str}{sensing_state_dict_name}'
               f"[{', '.join(input_arg_strs)}] = {set}")
         return None
 

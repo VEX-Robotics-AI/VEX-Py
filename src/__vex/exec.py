@@ -2,8 +2,9 @@
 
 
 from ast import (
-    Attribute, Call, Constant, Expr, FunctionDef, Load, Module, Name,
-    parse, unparse
+    Name, Load, Store,
+    Assign, Attribute, Call, Constant, Expr, FunctionDef, ImportFrom, Module,
+    alias, fix_missing_locations, parse, unparse,
 )
 from collections.abc import Sequence
 from copy import deepcopy
@@ -26,7 +27,8 @@ def exec_and_get_state_seq(
         print('========================')
         print('EXECUTING CODE MODULE...')
         print('------------------------')
-        print((code_str := unparse(ast_obj=module_obj_or_script_file_path)))
+        print(code_str :=   # bugs.python.org/issue44896
+              unparse(ast_obj=fix_missing_locations(module_obj_or_script_file_path)))   # noqa: E501
         print('------------------------')
 
         exec(code_str, globals())
@@ -138,32 +140,50 @@ def compare_output(script_file_paths: tuple[str, str],
                   newline=None,
                   closefd=True,
                   opener=None) as f:
-            module: Module = parse(source=f.read(),
-                                   filename=script_file_path_1,
-                                   mode='exec',
-                                   type_comments=False,
-                                   feature_version=None)
+            context_module: Module = parse(source=f.read(),
+                                           filename=context_file_path,
+                                           mode='exec',
+                                           type_comments=False,
+                                           feature_version=None)
 
         if func_args:
-            func_args: list = [(_name_or_attr_from_str(i[1:-1])
-                                if isinstance(i, str) and
-                                i.startswith('`') and i.endswith('`')
-                                else Constant(value=i))
-                               for i in (func_args.values()
-                                         if isinstance(func_args, dict)
-                                         else func_args)]
+            func_args: list = [(_name_or_attr_from_str(arg_value[1:-1])
+                                if isinstance(arg_value, str) and
+                                arg_value.startswith('`') and
+                                arg_value.endswith('`')
+                                else Constant(value=arg_value))
+                               for arg_value in (func_args.values()
+                                                 if isinstance(func_args, dict)
+                                                 else func_args)]
 
         else:
             func_args: list = []
 
+        decor_import: ImportFrom = ImportFrom(module='__vex.decor',
+                                              names=[alias(name=(decor_name :=
+                                                                 'sense'),
+                                                           asname=None)],
+                                              level=0)
+
+        func_decor: Assign = Assign(targets=[Name(id=func_name, ctx=Store())],
+                                    value=Call(func=Name(id=decor_name,
+                                                         ctx=Load()),
+                                               args=[Name(id=func_name,
+                                                          ctx=Load())],
+                                               keywords=[],
+                                               starargs=[],
+                                               kwargs=[]),
+                                    type_comment=None)
+
         func_call: Expr = Expr(value=Call(func=Name(id=func_name, ctx=Load()),
-                                          args=func_args, keywords=[]))
+                                          args=func_args, keywords=[],
+                                          starargs=[], kwargs=[]))
 
-        module_0: Module = deepcopy(module)
-        module_0.body.extend((func_def_0, func_call))
+        module_0: Module = deepcopy(context_module)
+        module_0.body.extend((func_def_0, decor_import, func_decor, func_call))
 
-        module_1: Module = deepcopy(module)
-        module_1.body.extend((func_def_1, func_call))
+        module_1: Module = deepcopy(context_module)
+        module_1.body.extend((func_def_1, decor_import, func_decor, func_call))
 
         result: bool = (
             exec_and_get_state_seq(module_obj_or_script_file_path=module_0) ==
