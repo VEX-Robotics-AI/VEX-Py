@@ -1,6 +1,8 @@
 """Timer."""
 
 
+from __future__ import annotations
+
 from collections.abc import Sequence
 
 from __vex.decor import act, sense
@@ -14,6 +16,14 @@ class Timer:
 
     def __init__(self):
         """Create the Timer class, does not start the timer."""
+
+    def __eq__(self, other: Timer) -> bool:
+        """Check Equality."""
+        return isinstance(other, type(self))
+
+    def __repr__(self) -> str:
+        """Return string representation."""
+        return type(self).__name__
 
     @act
     def reset(self):
