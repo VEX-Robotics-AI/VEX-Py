@@ -60,6 +60,10 @@ class Colorsensor(Device):
                 (other.is_grayscale == self.is_grayscale) and
                 (other.proximity == self.proximity))
 
+    def __hash__(self) -> int:
+        """Return Integer Hash."""
+        return hash((self.port, self.is_grayscale, self.proximity))
+
     @sense
     def colorname3(self) -> int:
         """

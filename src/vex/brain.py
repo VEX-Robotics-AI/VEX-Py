@@ -63,8 +63,12 @@ class BrainButton:
         """Check Equality."""
         return isinstance(other, BrainButton) and (other.id == self.id)
 
+    def __hash__(self) -> int:
+        """Return Integer Hash."""
+        return hash(self.id)
+
     def __repr__(self) -> str:
-        """Return string representation."""
+        """Return String Representation."""
         return f'{type(self).__name__}({self.id})'
 
     @sense

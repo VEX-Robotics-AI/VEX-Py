@@ -120,8 +120,12 @@ class ControllerAxis:
         return isinstance(other, ControllerAxis) and \
             (other.parent == self.parent) and (other.axtype == self.axtype)
 
+    def __hash__(self) -> int:
+        """Return Integer Hash."""
+        return hash((self.parent, self.axtype))
+
     def __repr__(self):
-        """Return string representation."""
+        """Return String Representation."""
         return f'{type(self).__name__}({self.axtype})'
 
     @sense
@@ -154,8 +158,12 @@ class ControllerButton:
         """Check Equality."""
         return isinstance(other, ControllerButton) and (other.mask == self.mask)   # noqa: E501
 
+    def __hash__(self) -> int:
+        """Return Integer Hash."""
+        return hash(self.mask)
+
     def __repr__(self) -> str:
-        """Return string representation."""
+        """Return String Representation."""
         return f'{type(self).__name__}({self.mask})'
 
     @sense

@@ -45,6 +45,10 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
         return isinstance(other, MotorGroup) and \
             (set(other.motors) == set(self.motors))
 
+    def __hash__(self) -> int:
+        """Return Integer Hash."""
+        return hash(set(self.motors))
+
     def count(self) -> int:
         """
         Return the number of motors in the motor group.

@@ -81,8 +81,12 @@ class Motor(Device):
                 (other.port == self.port) and
                 (other.reverse == self.reverse))
 
+    def __hash__(self) -> int:
+        """Return Integer Hash."""
+        return hash((self.port, self.reverse))
+
     def __repr__(self) -> str:
-        """Return string representation."""
+        """Return String Representation."""
         return (f'{type(self).__name__}({self.port.name}' +
                 (', reverse)' if self.reverse else ')'))
 

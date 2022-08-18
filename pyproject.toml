@@ -1,6 +1,6 @@
 [project]
 name = 'RobotMesh-VEX-PyB-API-Stubs'
-version = '22.8.18'
+version = '22.8.18.1'
 
 description = 'Robot Mesh VEX Python B API Stubs'
 readme = {file = 'README.md', content-type = 'text/markdown', charset = 'UTF-8'}

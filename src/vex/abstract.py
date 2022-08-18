@@ -27,8 +27,12 @@ class Device:
         """Check Equality."""
         return isinstance(other, type(self)) and (other.port == self.port)
 
+    def __hash__(self) -> int:
+        """Return Integer Hash."""
+        raise NotImplementedError
+
     def __repr__(self) -> str:
-        """Return string representation."""
+        """Return String Representation."""
         return f'{type(self).__name__}({self.port.name})'
 
 
@@ -39,6 +43,10 @@ class SingletonDevice:   # pylint: disable=too-few-public-methods
         """Check Equality."""
         return isinstance(other, type(self))
 
+    def __hash__(self) -> int:
+        """Return Integer Hash."""
+        return 0
+
     def __repr__(self) -> str:
-        """Return string representation."""
+        """Return String Representation."""
         return type(self).__name__

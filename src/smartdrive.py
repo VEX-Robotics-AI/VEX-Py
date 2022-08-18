@@ -76,6 +76,13 @@ class Smartdrive(Drivetrain):
             (other.distance_unit == self.distance_unit) and \
             (other.gear_ratio == self.gear_ratio)
 
+    def __hash__(self) -> int:
+        """Return Integer Hash."""
+        return hash((self.left_motor, self.right_motor,
+                     self.gyro,
+                     self.wheel_travel, self.track_width,
+                     self.distance_unit, self.gear_ratio))
+
     @act
     def turn_to_heading(   # pylint: disable=too-many-arguments
             self,

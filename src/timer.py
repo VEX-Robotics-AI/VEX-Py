@@ -21,8 +21,12 @@ class Timer:
         """Check Equality."""
         return isinstance(other, type(self))
 
+    def __hash__(self) -> int:
+        """Return Integer Hash."""
+        return 0
+
     def __repr__(self) -> str:
-        """Return string representation."""
+        """Return String Representation."""
         return type(self).__name__
 
     @act
