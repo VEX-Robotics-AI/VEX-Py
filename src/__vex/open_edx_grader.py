@@ -32,7 +32,6 @@ class StateSeqGrader(Grader):
             student_submission_file_test_func
 
         self.add_input_check(check=self.check_student_submission_str)
-        self.set_only_check_input(value=True)
 
     def check_student_submission_str(self, student_submission_str: str, /) -> bool:   # noqa: E501
         """Test student submission string."""
