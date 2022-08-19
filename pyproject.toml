@@ -1,5 +1,5 @@
 [project]
-name = 'RobotMesh-VEX-PyB-API-Stubs'
+name = 'VEX-Py'
 version = '22.8.19'
 
 description = 'Robot Mesh VEX Python B API Stubs'
@@ -53,10 +53,10 @@ dependencies = [
 
 
 [project.urls]
-Homepage = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
-Documentation = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
-GitHub = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
-Repository = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
+Homepage = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
+Documentation = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
+GitHub = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
+Repository = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
 
 
 [project.scripts]
