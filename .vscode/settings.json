@@ -8,6 +8,7 @@
     "**/__pycache__": true,
     "**/.pytest_cache": true,
     "**/.ropeproject": true,
+    ".vscode/*.log": true,
   },
 
   "python.linting.enabled": true,
