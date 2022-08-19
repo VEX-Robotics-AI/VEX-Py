@@ -2,6 +2,7 @@
   "editor.rulers": [79],
 
   "files.exclude": {
+    "**/*.egg-info": true,
     "**/.git": true,
     "**/.mypy_cache": true,
     "**/__pycache__": true,
