@@ -75,6 +75,8 @@ class StateSeqGrader(Grader):
                      dst=self._SUBMISSION_MODULE_FILE_NAME,
                      follow_symlinks=True)
 
+            # pylint: disable=import-outside-toplevel
+
             if submission_only:
                 pprint(run(grader_name=calling_from_file_path.stem,
                            submission_name=self._SUBMISSION_MODULE_NAME),
@@ -88,9 +90,7 @@ class StateSeqGrader(Grader):
                        )
 
             else:
-                from xqueue_watcher.jailedgrader import (
-                    # pylint: disable=import-outside-toplevel
-                    main)
+                from xqueue_watcher.jailedgrader import main
 
                 main(args=(calling_from_file_path.name,
                            self._SUBMISSION_MODULE_FILE_NAME))

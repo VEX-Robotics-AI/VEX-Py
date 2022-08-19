@@ -7,8 +7,8 @@ from typing import Optional, Union
 
 import click
 
-from ..exec import (exec_and_get_state_seq as _exec_and_get_state_seq,
-                    compare_output as _compare_output)
+from __vex.exec import (exec_and_get_state_seq as _exec_and_get_state_seq,
+                        compare_output as _compare_output)
 
 
 __all__: Sequence[str] = 'exec_and_get_state_seq', 'compare_output'
