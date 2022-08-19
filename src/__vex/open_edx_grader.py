@@ -32,7 +32,9 @@ class StateSeqGrader(Grader):
     _SUBMISSION_MODULE_NAME: str = '_submission'
     _SUBMISSION_MODULE_FILE_NAME: str = f'{_SUBMISSION_MODULE_NAME}.py'
 
-    def __init__(self, _unsafe_func: Callable[[Union[str, Path]], bool], /):
+    def __init__(self,
+                 _unsafe_submission_file_test_func:
+                 Callable[[Union[str, Path]], bool], /):
         """Initialize State-Sequence Grader."""
         super().__init__()
 
@@ -126,13 +128,12 @@ class StateSeqGrader(Grader):
                  *, submission_only: bool = False):
         """Run State-Sequence Grader."""
         with change_directory(self.file_path.parent):
-            copyfile(src=submission_file_path,
-                     dst=self._SUBMISSION_MODULE_FILE_NAME,
-                     follow_symlinks=True)
-
             # pylint: disable=import-outside-toplevel
-
             if submission_only:
+                copyfile(src=submission_file_path,
+                         dst=self._SUBMISSION_MODULE_FILE_NAME,
+                         follow_symlinks=True)
+
                 pprint(run(grader_name=self.file_path.stem,
                            submission_name=self._SUBMISSION_MODULE_NAME),
                        stream=None,
@@ -141,13 +142,12 @@ class StateSeqGrader(Grader):
                        depth=None,
                        compact=False,
                        sort_dicts=False,
-                       # underscore_numbers=True   # Py3.10+
-                       )
+                       underscore_numbers=True)
+
+                os.remove(path=self._SUBMISSION_MODULE_FILE_NAME)
 
             else:
                 from xqueue_watcher.jailedgrader import main
 
                 main(args=(self.file_path.name,
                            self._SUBMISSION_MODULE_FILE_NAME))
-
-            os.remove(path=self._SUBMISSION_MODULE_FILE_NAME)
