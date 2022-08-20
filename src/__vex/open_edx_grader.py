@@ -122,7 +122,14 @@ class StateSeqGrader(Grader):
                       extra_files=None)
 
         except SafeExecException as err:
-            complaint_str: str = str(err)
+            if (complaint_str := str(err)) in (
+                    "Couldn't execute jailed code: "
+                    "stdout: b'', stderr: b'' with status code: -9",    # Linux
+                    "Couldn't execute jailed code: "
+                    "stdout: b'', stderr: b'' with status code: -24",   # MacOS
+                ):
+                complaint_str = ('*** SUBMISSION TAKES TOO LONG TO RUN '
+                                 '(LIKELY INFINITE LOOP) ***')
 
         finally:
             os.remove(path=f.name)
