@@ -110,7 +110,7 @@ class StateSeqGrader(Grader):
                       files=None,
                       python_path=None,
                       limit_overrides_context=None,
-                      slug=__name__,
+                      slug=f'{__name__}.{type(self).__qualname__}',
                       extra_files=None)
 
         except SafeExecException as err:
@@ -124,8 +124,8 @@ class StateSeqGrader(Grader):
                     if _globals[self._SUBMISSION_FILE_TEST_RESULT_VAR_NAME]
                     else '*** INCORRECT ***')
 
-        except KeyError as err:
-            return complaint_str
+        except KeyError:
+            return complaint_str   # pylint: disable=used-before-assignment
 
     def __call__(self, submission_file_path: Union[str, Path], /,
                  *, submission_only: bool = False):
