@@ -26,8 +26,9 @@ class StateSeqGrader(Grader):
 
     _GRADER_VAR_NAME: str = 'grader'
 
-    _SUBMISSION_FILE_TEST_FUNC_VAR_NAME: str = '__SUBMISSION_FILE_TEST_FUNC__'
-    _SUBMISSION_FILE_TEST_RESULT_VAR_NAME: str = '__SUBMISSION_FILE_TEST_RESULT__'   # noqa: E501
+    _SUBMISSION_FILE_TEST_FUNC_VAR_NAME: str = 'SUBMISSION_FILE_TEST_FUNC'
+    _SUBMISSION_FILE_TEST_RESULT_VAR_NAME: str = \
+        f'{_SUBMISSION_FILE_TEST_FUNC_VAR_NAME}_RESULT'
 
     _SUBMISSION_MODULE_NAME: str = '_submission'
     _SUBMISSION_MODULE_FILE_NAME: str = f'{_SUBMISSION_MODULE_NAME}.py'
@@ -61,9 +62,10 @@ class StateSeqGrader(Grader):
                                         feature_version=None)
 
             # REQUIRED assignment to variable named `grader`
-            grader_assignment: Assign = next(i for i in self.module.body
-                                             if isinstance(i, Assign) and
-                                             i.targets[0].id == self._GRADER_VAR_NAME)  # noqa: E501
+            self.module.body.remove(
+                grader_assignment := next(i for i in self.module.body
+                                          if isinstance(i, Assign) and
+                                          i.targets[0].id == self._GRADER_VAR_NAME))   # noqa: E501
 
             # REQUIRED instantiation of StateSeqGrader class instance
             # with 1 single lambda positional argument
@@ -149,5 +151,4 @@ class StateSeqGrader(Grader):
             else:
                 from xqueue_watcher.jailedgrader import main
 
-                main(args=(self.file_path.name,
-                           self._SUBMISSION_MODULE_FILE_NAME))
+                main(args=(self.file_path.name, submission_file_path))
