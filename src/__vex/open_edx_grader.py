@@ -6,6 +6,7 @@ from ast import (Name, Load, Store,
                  fix_missing_locations, parse, unparse)
 from collections.abc import Callable
 from copy import copy
+from getpass import getuser
 from inspect import stack
 import os
 from pathlib import Path
@@ -21,7 +22,7 @@ from grader_support.run import run
 
 from codejail.jail_code import configure
 
-configure(command='python', bin_path=executable, user=None)
+configure(command='python', bin_path=executable, user=getuser())
 
 # pylint: disable=wrong-import-position
 from codejail.safe_exec import SafeExecException, safe_exec   # noqa: E402
@@ -42,7 +43,7 @@ class StateSeqGrader(Grader):
     _SUBMISSION_MODULE_FILE_NAME: str = f'{_SUBMISSION_MODULE_NAME}.py'
 
     def __init__(self,
-                 _unsafe_submission_file_test_func:
+                 _unsafe_submission_file_test_func:  # must not be run directly
                  Callable[[Union[str, Path]], bool], /):
         """Initialize State-Sequence Grader."""
         super().__init__()
