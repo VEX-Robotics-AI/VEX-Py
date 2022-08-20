@@ -14,7 +14,7 @@ from shutil import copyfile
 from tempfile import NamedTemporaryFile
 from typing import Optional, Union
 
-from codejail.safe_exec import safe_exec
+from codejail.safe_exec import SafeExecException, safe_exec
 
 from grader_support.gradelib import Grader
 from grader_support.graderutil import change_directory
@@ -105,24 +105,25 @@ class StateSeqGrader(Grader):
                    type_comment=None))
 
         try:
-            safe_exec(code=unparse(ast_obj=fix_missing_locations(node=_module)),   # noqa: E501
-                      globals_dict=globals(),
+            safe_exec(code=(unparse(ast_obj=fix_missing_locations(node=_module))   # noqa: E501
+                            .replace('__file__', f"'{self.file_path}'")),
+                      globals_dict=(_globals := {}),
                       files=None,
                       python_path=None,
                       limit_overrides_context=None,
                       slug=None,
                       extra_files=None)
 
-        except Exception as err:   # pylint: disable=broad-except
+            complaint_str: Optional[str] = (
+                None
+                if _globals[self._SUBMISSION_FILE_TEST_RESULT_VAR_NAME]
+                else '*** INCORRECT ***')
+
+        except SafeExecException as err:
             complaint_str: str = str(err)
 
         finally:
             os.remove(path=f.name)
-
-        complaint_str: Optional[str] = (
-            None
-            if globals()[self._SUBMISSION_FILE_TEST_RESULT_VAR_NAME]
-            else '*** INCORRECT ***')
 
         return complaint_str
 
