@@ -5,7 +5,7 @@ from ast import (Name, Load, Store,
                  Assign, Call, Constant, Lambda, Module,
                  fix_missing_locations, parse, unparse)
 from collections.abc import Callable
-from copy import deepcopy
+from copy import copy
 from inspect import stack
 import os
 from pathlib import Path
@@ -62,16 +62,16 @@ class StateSeqGrader(Grader):
                                         feature_version=None)
 
             # REQUIRED assignment to variable named `grader`
-            self.module.body.remove(
-                grader_assignment := next(i for i in self.module.body
-                                          if isinstance(i, Assign) and
-                                          i.targets[0].id == self._GRADER_VAR_NAME))   # noqa: E501
+            grader_assignment: Assign = self.module.body.pop(
+                next(i for i, node in enumerate(self.module.body)
+                     if isinstance(node, Assign) and
+                     node.targets[0].id == self._GRADER_VAR_NAME))
 
             # REQUIRED instantiation of StateSeqGrader class instance
             # with 1 single lambda positional argument
             assert isinstance(submission_file_test_func_code :=
                               grader_assignment.value.args[0], Lambda), \
-                '*** SUBMISSION FILE TEST FUNC MUST BE A LAMBDA ***'
+                '*** SUBMISSION FILE TESTING FUNCTION MUST BE A LAMBDA ***'
 
             self.module.body.append(
                 Assign(targets=[Name(id=self._SUBMISSION_FILE_TEST_FUNC_VAR_NAME,   # noqa: E501
@@ -92,8 +92,7 @@ class StateSeqGrader(Grader):
                                 errors='strict') as f:
             f.write(submission_str)
 
-        _module: Module = deepcopy(self.module)
-        _module.body.append(
+        (_module := copy(self.module)).body.append(
             Assign(targets=[Name(id=self._SUBMISSION_FILE_TEST_RESULT_VAR_NAME,
                                  ctx=Store())],
                    value=Call(func=Name(id=self._SUBMISSION_FILE_TEST_FUNC_VAR_NAME,   # noqa: E501
@@ -111,13 +110,8 @@ class StateSeqGrader(Grader):
                       files=None,
                       python_path=None,
                       limit_overrides_context=None,
-                      slug=None,
+                      slug=__name__,
                       extra_files=None)
-
-            complaint_str: Optional[str] = (
-                None
-                if _globals[self._SUBMISSION_FILE_TEST_RESULT_VAR_NAME]
-                else '*** INCORRECT ***')
 
         except SafeExecException as err:
             complaint_str: str = str(err)
@@ -125,7 +119,13 @@ class StateSeqGrader(Grader):
         finally:
             os.remove(path=f.name)
 
-        return complaint_str
+        try:
+            return (None
+                    if _globals[self._SUBMISSION_FILE_TEST_RESULT_VAR_NAME]
+                    else '*** INCORRECT ***')
+
+        except KeyError as err:
+            return complaint_str
 
     def __call__(self, submission_file_path: Union[str, Path], /,
                  *, submission_only: bool = False):
