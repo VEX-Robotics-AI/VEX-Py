@@ -11,18 +11,26 @@ import os
 from pathlib import Path
 from pprint import pprint
 from shutil import copyfile
+from sys import executable
 from tempfile import NamedTemporaryFile
 from typing import Optional, Union
-
-from codejail.safe_exec import SafeExecException, safe_exec
 
 from grader_support.gradelib import Grader
 from grader_support.graderutil import change_directory
 from grader_support.run import run
 
+from codejail.jail_code import configure
+
+configure(command='python', bin_path=executable, user=None)
+
+# pylint: disable=wrong-import-position
+from codejail.safe_exec import SafeExecException, safe_exec   # noqa: E402
+
 
 class StateSeqGrader(Grader):
     """State-Sequence Grader."""
+
+    __full_qual_name__: str = f'{__name__}.{__qualname__}'
 
     _GRADER_VAR_NAME: str = 'grader'
 
@@ -110,7 +118,7 @@ class StateSeqGrader(Grader):
                       files=None,
                       python_path=None,
                       limit_overrides_context=None,
-                      slug=f'{__name__}.{type(self).__qualname__}',
+                      slug=self.__full_qual_name__,
                       extra_files=None)
 
         except SafeExecException as err:
