@@ -121,26 +121,23 @@ class StateSeqGrader(Grader):
                       slug=self.__full_qual_name__,
                       extra_files=None)
 
-        except SafeExecException as err:
-            if (complaint_str := str(err)) in (
-                    "Couldn't execute jailed code: "
-                    "stdout: b'', stderr: b'' with status code: -9",    # Linux
-                    "Couldn't execute jailed code: "
-                    "stdout: b'', stderr: b'' with status code: -24",   # MacOS
-                ):
-                complaint_str = ('*** SUBMISSION TAKES TOO LONG TO RUN '
-                                 '(LIKELY INFINITE LOOP) ***')
-
-        finally:
-            os.remove(path=f.name)
-
-        try:
             return (None
                     if _globals[self._SUBMISSION_FILE_TEST_RESULT_VAR_NAME]
                     else '*** INCORRECT ***')
 
-        except KeyError:
-            return complaint_str   # pylint: disable=used-before-assignment
+        except SafeExecException as err:
+            return (('*** SUBMISSION TAKES TOO LONG TO RUN '
+                     '(LIKELY INFINITE LOOP) ***')
+                    if (complaint_str := str(err)) in (
+                        "Couldn't execute jailed code: "   # Linux
+                        "stdout: b'', stderr: b'' with status code: -9",
+                        "Couldn't execute jailed code: "   # MacOS
+                        "stdout: b'', stderr: b'' with status code: -24",
+                        )   # noqa: E123
+                    else complaint_str)
+
+        finally:
+            os.remove(path=f.name)
 
     def __call__(self, submission_file_path: Union[str, Path], /,
                  *, submission_only: bool = False):
