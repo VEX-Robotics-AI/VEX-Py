@@ -1,7 +1,11 @@
 """State-Sequence Grader."""
 
 
+from ast import (Name, Load, Store,
+                 Assign, Call, Constant, Lambda, Module,
+                 fix_missing_locations, parse, unparse)
 from collections.abc import Callable
+from copy import deepcopy
 from inspect import stack
 import os
 from pathlib import Path
@@ -10,32 +14,73 @@ from shutil import copyfile
 from tempfile import NamedTemporaryFile
 from typing import Optional, Union
 
+from codejail.safe_exec import SafeExecException, safe_exec
+
 from grader_support.gradelib import Grader
 from grader_support.graderutil import change_directory
 from grader_support.run import run
 
 
-OUTPUT_COMP_FUNC_TYPE: type = Callable[[Union[str, Path]], bool]
-
-
 class StateSeqGrader(Grader):
     """State-Sequence Grader."""
+
+    _GRADER_VAR_NAME: str = 'grader'
+
+    _SUBMISSION_FILE_TEST_FUNC_VAR_NAME: str = 'SUBMISSION_FILE_TEST_FUNC'
+    _SUBMISSION_FILE_TEST_RESULT_VAR_NAME: str = \
+        f'{_SUBMISSION_FILE_TEST_FUNC_VAR_NAME}_RESULT'
 
     _SUBMISSION_MODULE_NAME: str = '_submission'
     _SUBMISSION_MODULE_FILE_NAME: str = f'{_SUBMISSION_MODULE_NAME}.py'
 
-    def __init__(self, student_submission_file_test_func: OUTPUT_COMP_FUNC_TYPE, /):   # noqa: E501
+    def __init__(self,
+                 _unsafe_submission_file_test_func:
+                 Callable[[Union[str, Path]], bool], /):
         """Initialize State-Sequence Grader."""
         super().__init__()
 
-        self.student_submission_file_test_func: OUTPUT_COMP_FUNC_TYPE = \
-            student_submission_file_test_func
+        self.add_input_check(check=self.check_submission_str)
 
-        self.add_input_check(check=self.check_student_submission_str)
-        self.set_only_check_input(value=True)
+        if hasattr(self, 'set_only_check_input'):   # S4V customization
+            self.set_only_check_input(value=True)
 
-    def check_student_submission_str(self, student_submission_str: str, /) -> bool:   # noqa: E501
-        """Test student submission string."""
+        # stackoverflow.com/a/56764010
+        self.file_path: Path = Path(stack()[1].filename)
+
+        with open(file=self.file_path,
+                  mode='rt',
+                  buffering=-1,
+                  encoding='utf-8',
+                  errors='strict',
+                  newline=None,
+                  closefd=True,
+                  opener=None) as f:
+            self.module: Module = parse(source=f.read(),
+                                        filename=self.file_path,
+                                        mode='exec',
+                                        type_comments=False,
+                                        feature_version=None)
+
+            # REQUIRED assignment to variable named `grader`
+            self.module.body.remove(
+                grader_assignment := next(i for i in self.module.body
+                                          if isinstance(i, Assign) and
+                                          i.targets[0].id == self._GRADER_VAR_NAME))   # noqa: E501
+
+            # REQUIRED instantiation of StateSeqGrader class instance
+            # with 1 single lambda positional argument
+            assert isinstance(submission_file_test_func_code :=
+                              grader_assignment.value.args[0], Lambda), \
+                '*** SUBMISSION FILE TEST FUNC MUST BE A LAMBDA ***'
+
+            self.module.body.append(
+                Assign(targets=[Name(id=self._SUBMISSION_FILE_TEST_FUNC_VAR_NAME,   # noqa: E501
+                                     ctx=Store())],
+                       value=submission_file_test_func_code,
+                       type_comment=None))
+
+    def check_submission_str(self, submission_str: str, /) -> Optional[str]:
+        """Test submission string."""
         with NamedTemporaryFile(mode='wt',
                                 buffering=-1,
                                 encoding='utf-8',
@@ -45,40 +90,54 @@ class StateSeqGrader(Grader):
                                 dir=None,
                                 delete=False,
                                 errors='strict') as f:
-            f.write(student_submission_str)
+            f.write(submission_str)
+
+        _module: Module = deepcopy(self.module)
+        _module.body.append(
+            Assign(targets=[Name(id=self._SUBMISSION_FILE_TEST_RESULT_VAR_NAME,
+                                 ctx=Store())],
+                   value=Call(func=Name(id=self._SUBMISSION_FILE_TEST_FUNC_VAR_NAME,   # noqa: E501
+                                        ctx=Load()),
+                              args=[Constant(value=f.name)],
+                              keywords=[],
+                              starargs=[],
+                              kwargs=[]),
+                   type_comment=None))
 
         try:
-            # TODO: make this secure by CodeJail
-            # as this checking step is not run in a sandbox by JaledGrader
-            if self.student_submission_file_test_func(f.name):
-                complaint_str: Optional[str] = None
-            else:
-                complaint_str: Optional[str] = '*** INCORRECT ***'
+            safe_exec(code=(unparse(ast_obj=fix_missing_locations(node=_module))   # noqa: E501
+                            .replace('__file__', f"'{self.file_path}'")),
+                      globals_dict=(_globals := {}),
+                      files=None,
+                      python_path=None,
+                      limit_overrides_context=None,
+                      slug=None,
+                      extra_files=None)
 
-        except Exception as err:   # pylint: disable=broad-except
-            complaint_str: Optional[str] = str(err)
+            complaint_str: Optional[str] = (
+                None
+                if _globals[self._SUBMISSION_FILE_TEST_RESULT_VAR_NAME]
+                else '*** INCORRECT ***')
+
+        except SafeExecException as err:
+            complaint_str: str = str(err)
 
         finally:
             os.remove(path=f.name)
 
         return complaint_str
 
-    def __call__(self,
-                 student_submission_file_path: Union[str, Path], /,
+    def __call__(self, submission_file_path: Union[str, Path], /,
                  *, submission_only: bool = False):
         """Run State-Sequence Grader."""
-        # ref: stackoverflow.com/a/56764010
-        calling_from_file_path: Path = Path(stack()[1].filename)
-
-        with change_directory(calling_from_file_path.parent):
-            copyfile(src=student_submission_file_path,
-                     dst=self._SUBMISSION_MODULE_FILE_NAME,
-                     follow_symlinks=True)
-
+        with change_directory(self.file_path.parent):
             # pylint: disable=import-outside-toplevel
-
             if submission_only:
-                pprint(run(grader_name=calling_from_file_path.stem,
+                copyfile(src=submission_file_path,
+                         dst=self._SUBMISSION_MODULE_FILE_NAME,
+                         follow_symlinks=True)
+
+                pprint(run(grader_name=self.file_path.stem,
                            submission_name=self._SUBMISSION_MODULE_NAME),
                        stream=None,
                        indent=2,
@@ -86,13 +145,11 @@ class StateSeqGrader(Grader):
                        depth=None,
                        compact=False,
                        sort_dicts=False,
-                       # underscore_numbers=True   # Py3.10+
-                       )
+                       underscore_numbers=True)
+
+                os.remove(path=self._SUBMISSION_MODULE_FILE_NAME)
 
             else:
                 from xqueue_watcher.jailedgrader import main
 
-                main(args=(calling_from_file_path.name,
-                           self._SUBMISSION_MODULE_FILE_NAME))
-
-            os.remove(path=self._SUBMISSION_MODULE_FILE_NAME)
+                main(args=(self.file_path.name, submission_file_path))

@@ -1,6 +1,6 @@
 [project]
-name = 'RobotMesh-VEX-PyB-API-Stubs'
-version = '22.8.18.1'
+name = 'VEX-Py'
+version = '22.8.19'
 
 description = 'Robot Mesh VEX Python B API Stubs'
 readme = {file = 'README.md', content-type = 'text/markdown', charset = 'UTF-8'}
@@ -44,16 +44,19 @@ classifiers = [
 
 dependencies = [
   'CLICK >= 8.1.3',
+
   'Decorator >= 5.1.1',
   'Wrapt >= 1.14.1',
+
+  'EdX-CodeJail >= 3.2.0',
 ]
 
 
 [project.urls]
-Homepage = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
-Documentation = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
-GitHub = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
-Repository = 'https://GitHub.com/VEX-Robotics-AI/RobotMesh-VEX-PyB-API-Stubs'
+Homepage = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
+Documentation = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
+GitHub = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
+Repository = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
 
 
 [project.scripts]
@@ -69,7 +72,7 @@ devtest = [
 
 [build-system]
 requires = [
-  'SetUpTools >= 65.0.2',
+  'SetUpTools >= 65.1.0',
   'Wheel >= 0.37.1',
 ]
 build-backend = 'setuptools.build_meta'
