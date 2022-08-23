@@ -1,10 +1,9 @@
 """VEX Drivetrain."""
 
 
-from __future__ import annotations
-
 from collections.abc import Sequence
 from typing import Optional
+from typing_extensions import Self   # pylint: disable=no-name-in-module
 
 from __vex.decor import act, sense
 
@@ -63,7 +62,7 @@ class Drivetrain:
         self.timeouts: dict[TimeUnits, float] = dict[TimeUnits, float]()
         self.stopping: Optional[BrakeType] = None
 
-    def __eq__(self, other: Drivetrain) -> bool:
+    def __eq__(self, other: Self) -> bool:
         """Check Equality."""
         return isinstance(other, Drivetrain) and \
             (other.left_motor == self.left_motor) and \

@@ -34,7 +34,7 @@ def exec_and_get_state_seq(
         exec(code_str, globals())
 
     else:
-        assert isinstance(module_obj_or_script_file_path, (Path, str))
+        assert isinstance(module_obj_or_script_file_path, Path | str)
 
         print('=========')
         print(f'EXECUTING {module_obj_or_script_file_path}...')

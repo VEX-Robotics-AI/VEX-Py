@@ -1,6 +1,6 @@
 [project]
 name = 'VEX-Py'
-version = '22.8.22'
+version = '22.8.22.1'
 
 description = 'Robot Mesh VEX Python B API Stubs'
 readme = {file = 'README.md', content-type = 'text/markdown', charset = 'UTF-8'}
@@ -42,6 +42,8 @@ classifiers = [
 ]
 
 dependencies = [
+  'Typing-Extensions >= 4.3.0',
+
   'CLICK >= 8.1.3',
 
   'Decorator >= 5.1.1',

@@ -1,10 +1,9 @@
 """VEX Motor Group."""
 
 
-from __future__ import annotations
-
 from collections.abc import Sequence
 from typing import Optional
+from typing_extensions import Self   # pylint: disable=no-name-in-module
 
 from __vex.decor import act, sense
 
@@ -40,7 +39,7 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
         self.timeouts: dict[TimeUnits, float] = dict[TimeUnits, float]()
         self.max_torque: dict[TorqueUnits, float] = dict[TorqueUnits, float]()
 
-    def __eq__(self, other: MotorGroup) -> bool:
+    def __eq__(self, other: Self) -> bool:
         """Check Equality."""
         return isinstance(other, MotorGroup) and \
             (set(other.motors) == set(self.motors))
