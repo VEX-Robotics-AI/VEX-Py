@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
-from typing import Optional, Union
+from typing import Optional
 
 from __vex.decor import act, sense
 
@@ -22,7 +22,7 @@ from vex import (BrakeType,
 __all__: Sequence[str] = ('Drivetrain',)
 
 
-DrivetrainMotorType = Union[Motor, MotorGroup, list[Motor], tuple[Motor]]
+DrivetrainMotorType = Motor | MotorGroup | list[Motor] | tuple[Motor]
 
 
 class Drivetrain:

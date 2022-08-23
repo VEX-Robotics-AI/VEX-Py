@@ -10,7 +10,7 @@ from collections.abc import Sequence
 from copy import deepcopy
 from pathlib import Path
 from pprint import pprint
-from typing import Optional, Union
+from typing import Optional
 
 import __vex.decor
 
@@ -19,7 +19,7 @@ __all__: Sequence[str] = 'exec_and_get_state_seq', 'compare_output'
 
 
 def exec_and_get_state_seq(
-        module_obj_or_script_file_path: Union[Module, Path, str]) -> list:
+        module_obj_or_script_file_path: Module | Path | str) -> list:
     """Execute Module object or script and get State Sequence."""
     # pylint: disable=exec-used
 
@@ -68,7 +68,7 @@ def exec_and_get_state_seq(
     return state_seq
 
 
-def _name_or_attr_from_str(s: str, /) -> Union[Name, Attribute]:
+def _name_or_attr_from_str(s: str, /) -> Name | Attribute:
     str_components = s.split(sep='.', maxsplit=1)
 
     if len(str_components) == 1:
@@ -82,7 +82,7 @@ def _name_or_attr_from_str(s: str, /) -> Union[Name, Attribute]:
 def compare_output(script_file_paths: tuple[str, str],
                    func_name: Optional[str] = None,
                    context_file_path: Optional[str] = None,
-                   func_args: Optional[Union[dict, list, tuple]] = None) -> bool:   # noqa: E501
+                   func_args: Optional[dict | list | tuple] = None) -> bool:
     # pylint: disable=too-many-locals
     """Compare output of 2 functions or scripts."""
     script_file_path_0, script_file_path_1 = script_file_paths
