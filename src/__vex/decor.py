@@ -26,7 +26,7 @@ def stringify_device_or_enum(obj: Any) -> str:
     from vex.abstract import Device, SingletonDevice   # avoid circular import
 
     return (str(obj)
-            if isinstance(obj, Device | SingletonDevice | IntEnum)
+            if isinstance(obj, (Device, SingletonDevice, IntEnum))
             else (f'"{obj}"'
                   if isinstance(obj, str)
                   else obj))
@@ -91,7 +91,6 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
     @wraps(sensing_func)
     def decor_sensing_func(*given_args, set=None):
         # pylint: disable=import-outside-toplevel,redefined-builtin
-        # pylint: disable=too-many-locals
         from vex import interactive
 
         args_dict: dict[str, Any] = \

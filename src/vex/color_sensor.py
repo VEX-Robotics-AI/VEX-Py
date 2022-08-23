@@ -1,9 +1,10 @@
 """VEX Color Sensor."""
 
 
+from __future__ import annotations
+
 from collections.abc import Sequence
 from enum import IntEnum
-from typing_extensions import Self   # pylint: disable=no-name-in-module
 
 from __vex.decor import act, sense
 
@@ -52,7 +53,7 @@ class Colorsensor(Device):
         self.is_grayscale: bool = is_grayscale
         self.proximity: float = proximity
 
-    def __eq__(self, other: Self) -> bool:
+    def __eq__(self, other: Colorsensor) -> bool:
         """Check Equality."""
         return (isinstance(other, type(self)) and
                 (other.port == self.port) and

@@ -5,7 +5,6 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 from enum import IntEnum
-from typing_extensions import Self   # pylint: disable=no-name-in-module
 
 from __vex.decor import act, sense
 
@@ -60,7 +59,7 @@ class BrainButton:
         """Initialize BrainButton."""
         self.id: str = id
 
-    def __eq__(self, other: Self) -> bool:
+    def __eq__(self, other: BrainButton) -> bool:
         """Check Equality."""
         return isinstance(other, BrainButton) and (other.id == self.id)
 

@@ -1,8 +1,9 @@
 """VEX Abstract Base Classes."""
 
 
+from __future__ import annotations
+
 from collections.abc import Sequence
-from typing_extensions import Self   # pylint: disable=no-name-in-module
 
 from .port import Ports
 
@@ -22,7 +23,7 @@ class Device:
     def port(self, port: Ports):
         self._port = port
 
-    def __eq__(self, other: Self) -> bool:
+    def __eq__(self, other: Device) -> bool:
         """Check Equality."""
         return isinstance(other, type(self)) and (other.port == self.port)
 
@@ -38,7 +39,7 @@ class Device:
 class SingletonDevice:   # pylint: disable=too-few-public-methods
     """Singleton Device."""
 
-    def __eq__(self, other: Self) -> bool:
+    def __eq__(self, other: SingletonDevice) -> bool:
         """Check Equality."""
         return isinstance(other, type(self))
 

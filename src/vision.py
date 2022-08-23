@@ -5,7 +5,6 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 from typing import Optional
-from typing_extensions import Self   # pylint: disable=no-name-in-module
 
 from __vex.decor import sense
 
@@ -36,17 +35,6 @@ class Vision(Device):
         self.port: Ports = index
         self.brightness: Optional[int] = brightness
         self.signatures: Optional[list] = signatures
-
-    def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
-        return (isinstance(other, Vision) and
-                (other.port == self.port) and
-                (other.brightness == self.brightness) and
-                (other.signatures == self.signatures))
-
-    def __hash__(self) -> int:
-        """Return Integer Hash."""
-        return hash((self.port, self.brightness, self.signatures))
 
     @sense
     def take_snapshot(self,

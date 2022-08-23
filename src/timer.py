@@ -1,8 +1,9 @@
 """Timer."""
 
 
+from __future__ import annotations
+
 from collections.abc import Sequence
-from typing_extensions import Self   # pylint: disable=no-name-in-module
 
 from __vex.decor import act, sense
 
@@ -16,7 +17,7 @@ class Timer:
     def __init__(self):
         """Create the Timer class, does not start the timer."""
 
-    def __eq__(self, other: Self) -> bool:
+    def __eq__(self, other: Timer) -> bool:
         """Check Equality."""
         return isinstance(other, type(self))
 
