@@ -168,3 +168,11 @@ def sense(sensing_func: CallableTypeVar) -> CallableTypeVar:
         return None
 
     return decor_sensing_func
+
+
+def robotmesh_doc():
+    """Decorate to add Robot Mesh VEX Python B API docstring."""
+
+
+def vexcode_doc():
+    """Decorate to add VEXcode Python B API docstring."""
