@@ -9,8 +9,8 @@ from typing_extensions import Self   # pylint: disable=no-name-in-module
 
 from __vex.decor import act, sense
 
-from .abstract import SingletonDevice
-from .time import TimeUnits
+from ..abstract import SingletonDevice
+from ..time import TimeUnits
 
 
 __all__: Sequence[str] = 'Brain', 'BrainButton', 'BrainLcd', 'BrainSound', 'NoteType'   # noqa: E501
