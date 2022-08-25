@@ -1,8 +1,8 @@
 [project]
 name = 'VEX-Py'
-version = '22.8.22.1'
+version = '22.8.25'
 
-description = 'Robot Mesh VEX Python B API Stubs'
+description = 'API Stubs for VEXcode Python & Robot Mesh VEX Python B'
 readme = {file = 'README.md', content-type = 'text/markdown', charset = 'UTF-8'}
 
 requires-python = '>= 3.10'

@@ -1,6 +1,9 @@
-# Robot Mesh VEX IQ Python B API Stubs
+# API Stubs for VEXcode Python & Robot Mesh VEX Python B
 
-These API stubs work with Python 3.9 and later.
+These API stubs work with Python 3.10 and later.
+
+
+##  Robot Mesh VEX Python B
 
 Modules not stubbed:
 - `__bi` / `built_ins` (subset of Python's built-ins)
