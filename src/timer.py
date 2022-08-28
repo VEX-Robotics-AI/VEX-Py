@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing_extensions import Self   # pylint: disable=no-name-in-module
+from typing_extensions import Self
 
 from abm.decor import act, sense
 

@@ -9,6 +9,7 @@ from enum import IntEnum
 from abm.decor import act
 
 from ..abstract import SingletonDevice
+from ..time import TimeUnits
 
 
 __all__: Sequence[str] = 'BrainSound', 'NoteType'

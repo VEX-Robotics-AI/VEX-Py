@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 from typing import Optional
-from typing_extensions import Self   # pylint: disable=no-name-in-module
+from typing_extensions import Self
 
 from abm.decor import sense
 

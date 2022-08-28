@@ -1,7 +1,5 @@
 # API Stubs for VEXcode Python & Robot Mesh VEX Python B
 
-These API stubs work with Python 3.10 and later.
-
 
 ##  Robot Mesh VEX Python B
 
