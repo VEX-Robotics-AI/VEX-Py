@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 
-from __vex.decor import act, sense
+from abm.decor import act, sense
 
 from vex.abstract import SingletonDevice
 

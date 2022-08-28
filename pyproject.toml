@@ -61,7 +61,6 @@ Repository = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
 
 
 [project.scripts]
-robotmesh-vex = '__vex.cli:robotmesh_vex_cli'
 
 
 [project.optional-dependencies]

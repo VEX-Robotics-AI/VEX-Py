@@ -5,7 +5,7 @@ from collections.abc import Sequence
 from enum import IntEnum
 from typing_extensions import Self   # pylint: disable=no-name-in-module
 
-from __vex.decor import act, sense
+from abm.decor import act, sense
 
 from .abstract import Device
 from .port import Ports

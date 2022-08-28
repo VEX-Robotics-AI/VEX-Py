@@ -5,7 +5,7 @@ from collections.abc import Sequence
 from typing import Optional
 from typing_extensions import Self   # pylint: disable=no-name-in-module
 
-from __vex.decor import act, sense
+from abm.decor import act, sense
 
 from drivetrain import Drivetrain, DrivetrainMotorType
 from vex import (BrakeType,
