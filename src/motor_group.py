@@ -3,9 +3,9 @@
 
 from collections.abc import Sequence
 from typing import Optional
-from typing_extensions import Self   # pylint: disable=no-name-in-module
+from typing_extensions import Self
 
-from __vex.decor import act, sense
+from abm.decor import act, sense
 
 from vex import (BrakeType,
                  DirectionType,

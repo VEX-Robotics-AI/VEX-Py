@@ -4,8 +4,9 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
+from typing_extensions import Self
 
-from __vex.decor import act, sense
+from abm.decor import act, sense
 
 from vex.abstract import SingletonDevice
 
@@ -115,7 +116,7 @@ class ControllerAxis:
         self.parent: Controller = parent
         self.axtype: str = axtype
 
-    def __eq__(self, other: ControllerAxis) -> bool:
+    def __eq__(self, other: Self) -> bool:
         """Check Equality."""
         return isinstance(other, ControllerAxis) and \
             (other.parent == self.parent) and (other.axtype == self.axtype)
@@ -154,7 +155,7 @@ class ControllerButton:
         """Initialize Controller Button."""
         self.mask: str = mask
 
-    def __eq__(self, other: ControllerButton) -> bool:
+    def __eq__(self, other: Self) -> bool:
         """Check Equality."""
         return isinstance(other, ControllerButton) and (other.mask == self.mask)   # noqa: E501
 
