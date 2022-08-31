@@ -8,7 +8,7 @@ from typing_extensions import Self
 
 from abm.decor import act, sense
 
-from vex.abstract import SingletonDevice
+from ._abstract import SingletonDevice
 
 
 __all__: Sequence[str] = 'Controller', 'ControllerButton', 'ControllerAxis'

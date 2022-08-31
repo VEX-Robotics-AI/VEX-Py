@@ -8,7 +8,7 @@ from typing_extensions import Self
 
 from abm.decor import act, sense
 
-from .abstract import Device
+from ._abstract import Device
 from .port import Ports
 from .time import TimeUnits
 from .units_common import RotationUnits

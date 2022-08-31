@@ -8,7 +8,7 @@ from enum import IntEnum
 
 from abm.decor import act
 
-from ..abstract import SingletonDevice
+from .._abstract import SingletonDevice
 from ..time import TimeUnits
 
 

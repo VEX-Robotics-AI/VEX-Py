@@ -3,7 +3,7 @@
 
 from abm.decor import act
 
-from ..abstract import SingletonDevice
+from .._abstract import SingletonDevice
 
 
 class BrainLcd(SingletonDevice):

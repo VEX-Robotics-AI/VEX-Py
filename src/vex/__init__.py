@@ -5,7 +5,7 @@ from collections.abc import Sequence
 from importlib.metadata import version
 import sys
 
-from .abstract import Device
+from ._abstract import Device
 from .port import Ports
 from .brain import Brain, BrainButton, BrainLcd, BrainSound, NoteType
 from .bumper_switch_sensor import Bumper

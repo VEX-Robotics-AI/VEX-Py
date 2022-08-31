@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 
-from ..abstract import SingletonDevice
+from .._abstract import SingletonDevice
 from .button import BrainButton
 from .screen import BrainLcd
 from .sound import BrainSound, NoteType

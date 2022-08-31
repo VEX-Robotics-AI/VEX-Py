@@ -5,7 +5,7 @@ from collections.abc import Sequence
 
 from abm.decor import sense
 
-from .abstract import Device
+from ._abstract import Device
 from .port import Ports
 
 
