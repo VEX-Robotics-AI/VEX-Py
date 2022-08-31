@@ -24,6 +24,10 @@ class Bumper(Device):
         """
         self.port: Ports = index
 
+    def __hash__(self) -> int:
+        """Return Integer Hash."""
+        raise hash(self.port)
+
     @sense
     def pressing(self) -> bool:
         """
