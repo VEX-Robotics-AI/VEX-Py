@@ -8,6 +8,13 @@
 # sphinx-doc.org/en/master/usage/configuration.html
 
 
+from datetime import date
+from importlib.metadata import metadata
+import os
+
+import vex
+
+
 # -- Path setup --------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -22,12 +29,16 @@
 # -- Project information -----------------------------------------------------
 # sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project: str = 'Robot Mesh VEX IQ Python B API Stubs'
-copyright: str = '2021, STEAM for Vietnam'   # pylint: disable=redefined-builtin
-author: str = 'STEAM for Vietnam'
+METADATA: dict[str, str] = metadata(distribution_name='DjAI')
+
+project: str = METADATA['Name']
+author: str = METADATA['Author']
+
+# pylint: disable=redefined-builtin
+copyright: str = f'{date.today().year}, {author}'
 
 # The full version, including alpha/beta/rc tags
-release: str = '0.0.0.dev0'
+release: str = vex.__version__
 
 
 # -- General configuration ---------------------------------------------------
@@ -37,6 +48,32 @@ release: str = '0.0.0.dev0'
 # They can be extensions coming with Sphinx (named 'sphinx.ext.*')
 # or your custom ones.
 extensions: list[str] = [
+    'sphinx.ext.autodoc',   # Include documentation from docstrings
+    'sphinx.ext.autosectionlabel',   # Allow reference sections using its title
+    'sphinx.ext.autosummary',   # Generate autodoc summaries
+
+    'sphinx.ext.coverage',   # Collect doc coverage stats
+    'sphinx.ext.doctest',   # Test snippets in the documentation
+    'sphinx.ext.duration',   # Measure durations of Sphinx processing
+    'sphinx.ext.extlinks',   # Markup to shorten external links
+    'sphinx.ext.githubpages',   # Publish HTML docs in GitHub Pages
+    'sphinx.ext.graphviz',   # Add Graphviz graphs
+    'sphinx.ext.ifconfig',   # Include content based on configuration
+    'sphinx.ext.imgconverter',   # reference image converter using Imagemagick
+    'sphinx.ext.inheritance_diagram',   # Include inheritance diagrams
+    'sphinx.ext.intersphinx',   # Link to other projects’ documentation
+    # 'sphinx.ext.linkcode',   # Add external links to source code
+    # TODO: provide linkcode_resolve function
+
+    'sphinx.ext.imgmath',   # Render math as images
+    'sphinx.ext.mathjax',   # Render math via JavaScript
+    'sphinxcontrib.jsmath',   # Render math via JavaScript
+
+    'sphinx.ext.napoleon',   # Support for NumPy and Google style docstrings
+    'sphinx.ext.todo',   # Support for todo items
+    'sphinx.ext.viewcode',   # Add links to highlighted source code
+
+    'myst_parser',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -59,3 +96,14 @@ html_theme: str = 'alabaster'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path: list[str] = ['_static']
+
+for _html_static_path in html_static_path:
+    os.makedirs(name=_html_static_path, exist_ok=True)
+
+
+# Math rRnderer
+html_math_renderer: str = 'mathjax'
+
+
+# Source Parsers
+source_suffix: dict[str, str] = {'.md': 'markdown', '.rst': 'restructuredtext'}
