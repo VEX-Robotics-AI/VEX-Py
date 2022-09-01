@@ -4,6 +4,12 @@ __pycache__/
 *.pyc
 .ropeproject/
 
+
+# Documentation
+docs/_build/
+docs/*.rst
+
+
 # Visual Studio Code
 .vscode/*.log
 *.code-workspace
