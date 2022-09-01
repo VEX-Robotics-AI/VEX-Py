@@ -3,6 +3,7 @@
 
   "files.exclude": {
     "dist": true,
+    "docs/_build": true,
     "docs/*.rst": true,
     "**/*.egg-info": true,
     "**/.git": true,
