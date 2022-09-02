@@ -1,4 +1,8 @@
-"""VEX module."""
+"""VEX module.
+
+Robot Mesh Python B:
+robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacevex.html
+"""
 
 
 from collections.abc import Sequence
