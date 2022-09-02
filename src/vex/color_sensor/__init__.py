@@ -18,6 +18,9 @@ from .color_hue import ColorHue
 __all__: Sequence[str] = 'Colorsensor', 'ColorHue'
 
 
+@robotmesh_doc("""
+    robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_colorsensor.html
+""")
 class Colorsensor(Device):
     """VEX Color Sensor."""
 

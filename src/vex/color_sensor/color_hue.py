@@ -12,6 +12,8 @@ __all__: Sequence[str] = ('ColorHue',)
 
 @robotmesh_doc("""
     Defined color hue values.
+
+    robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_color_hue.html
 """)
 class ColorHue(IntEnum):
     """Color Hue."""
