@@ -10,44 +10,29 @@ from abm.decor import act, sense
 from ._abstract import Device
 from .port import Ports
 
+# pylint: disable=unused-import
+from .util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
 
-__all__: Sequence[str] = 'ColorHue', 'Colorsensor'
 
-
-class ColorHue(IntEnum):
-    """Defined color hue values."""
-
-    NONE: int = 0
-    RED: int = 1
-    RED_ORANGE: int = 2
-    ORANGE: int = 3
-    YELLOW_ORANGE: int = 4
-    YELLOW: int = 5
-    YELLOW_GREEN: int = 6
-    GREEN: int = 7
-    BLUE_GREEN: int = 8
-    BLUE: int = 9
-    BLUE_VIOLET: int = 10
-    VIOLET: int = 11
-    RED_VIOLET: int = 12
-    WHITE: int = 13
+__all__: Sequence[str] = 'Colorsensor', 'ColorHue'
 
 
 class Colorsensor(Device):
     """VEX Color Sensor."""
 
-    def __init__(
-            self, index: Ports,
-            is_grayscale: bool = False,
-            proximity: float = 700):
-        """
+    @robotmesh_doc("""
         Create new color sensor object on the port specified in the parameter.
 
         Parameters:
         - index: The port index (zero-based)
         - is_grayscale: Whether grayscale mode (LED on), default false
         - proximity: threshold (default 700)
-        """
+    """)
+    def __init__(
+            self, index: Ports,
+            is_grayscale: bool = False,
+            proximity: float = 700):
+        """Initialize Color Sensor."""
         self.port: Ports = index
         self.is_grayscale: bool = is_grayscale
         self.proximity: float = proximity
@@ -63,29 +48,29 @@ class Colorsensor(Device):
         """Return Integer Hash."""
         return hash((self.port, self.is_grayscale, self.proximity))
 
-    @sense
-    def colorname3(self) -> int:
-        """
+    @robotmesh_doc("""
         Get the name of the detected color.
 
         Returns:
         enum value for the closest color detected
         out of ColorHue.RED, GREEN or BLUE (or NONE).
-        """
-
+    """)
     @sense
-    def colorname12(self) -> int:
-        """
+    def colorname3(self) -> int:
+        """Return one of RED, GREEN and BLUE."""
+
+    @robotmesh_doc("""
         Get the name of the detected color.
 
         Returns:
         enum value of the closest color detected out of 12
         possible values of ColorType (or NONE).
-        """
-
+    """)
     @sense
-    def grayscale(self, raw: bool = False) -> int:
-        """
+    def colorname12(self) -> int:
+        """Return one of 12 colors or NONE."""
+
+    @robotmesh_doc("""
         Get the grayscale value detected by the color sensor.
 
         Parameters:
@@ -94,32 +79,60 @@ class Colorsensor(Device):
         Returns:
         integer that represents the detected grayscale value
         (percentage 0-100 or raw 0-1024).
-        """
-
+    """)
     @sense
-    def near(self) -> bool:
-        """
+    def grayscale(self, raw: bool = False) -> int:
+        """Return grayscale value."""
+
+    @robotmesh_doc("""
         Check to see if an object is detected by the color sensor.
 
         Returns:
         True if an object has been detected, False otherwise
-        """
+    """)
+    @sense
+    def near(self) -> bool:
+        """Check if there is a nearly object."""
 
-    @act
-    def set_proximity_threshold(self, proximity: float = 700):
-        """
-        Set the near threshold setting.
+    @robotmesh_doc("""
+        Set the `near` threshold setting.
 
         Parameters:
         - proximity: threshold (higher is closer) (default 700)
-        """
+    """)
+    @act
+    def set_proximity_threshold(self, proximity: float = 700):
+        """Set threshold for proximity."""
         self.proximity: float = proximity
 
-    @act
-    def led(self, state: bool):
-        """
+    @robotmesh_doc("""
         Turn the led on the color sensor on or off.
 
         Parameters:
         - state: if True, LED will be turned on
-        """
+    """)
+    @act
+    def led(self, state: bool):
+        """Set LED state."""
+
+
+@robotmesh_doc("""
+    Defined color hue values.
+""")
+class ColorHue(IntEnum):
+    """Color Hue."""
+
+    NONE: int = 0
+    RED: int = 1
+    RED_ORANGE: int = 2
+    ORANGE: int = 3
+    YELLOW_ORANGE: int = 4
+    YELLOW: int = 5
+    YELLOW_GREEN: int = 6
+    GREEN: int = 7
+    BLUE_GREEN: int = 8
+    BLUE: int = 9
+    BLUE_VIOLET: int = 10
+    VIOLET: int = 11
+    RED_VIOLET: int = 12
+    WHITE: int = 13
