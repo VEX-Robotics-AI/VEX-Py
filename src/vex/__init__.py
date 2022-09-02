@@ -74,4 +74,4 @@ RIGHT: TurnType = TurnType.RIGHT
 
 # ALIASES
 # =======
-sys.sleep = wait
+sys.sleep: callable = wait

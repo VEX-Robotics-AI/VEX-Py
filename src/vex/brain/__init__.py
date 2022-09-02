@@ -10,8 +10,7 @@ from .button import BrainButton
 from .screen import BrainLcd
 from .sound import BrainSound, NoteType
 
-# pylint: disable=unused-import
-from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from ..util.doc import robotmesh_doc
 
 
 __all__: Sequence[str] = (
