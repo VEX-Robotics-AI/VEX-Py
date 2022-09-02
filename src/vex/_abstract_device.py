@@ -1,17 +1,24 @@
-"""VEX Abstract Base Classes."""
+"""VEX Abstract Device Base Classes."""
 
 
 from collections.abc import Sequence
 from typing_extensions import Self
 
-from .port import Ports
+from .brain.port import Ports
+
+from .util.doc import robotmesh_doc
 
 
 __all__: Sequence[str] = 'Device', 'SingletonDevice'
 
 
+@robotmesh_doc("""
+    Base class for all VEX devices.
+
+    robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_device.html
+""")
 class Device:
-    """Base class for all Vex IQ devices."""
+    """Base Device Class."""
 
     @property
     def port(self) -> Ports:

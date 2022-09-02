@@ -1,11 +1,11 @@
-"""VEX Ports."""
+"""Ports."""
 
 
 from collections.abc import Sequence
 from enum import IntEnum
 
 # pylint: disable=unused-import
-from .util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
 
 
 __all__: Sequence[str] = ('Ports',)
@@ -15,7 +15,7 @@ __all__: Sequence[str] = ('Ports',)
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_ports.html
 """)
 class Ports(IntEnum):
-    """VEX Ports."""
+    """Ports."""
 
     PORT1: int = 0
     PORT2: int = 1

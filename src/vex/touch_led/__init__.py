@@ -5,9 +5,9 @@ from collections.abc import Sequence
 
 from abm.decor import act, sense
 
-from .._abstract import Device
+from .._abstract_device import Device
 from ..color_sensor import ColorHue
-from ..port import Ports
+from ..brain.port import Ports
 
 # pylint: disable=unused-import
 from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401

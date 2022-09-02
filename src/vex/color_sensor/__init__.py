@@ -6,8 +6,8 @@ from typing_extensions import Self
 
 from abm.decor import act, sense
 
-from .._abstract import Device
-from ..port import Ports
+from .._abstract_device import Device
+from ..brain.port import Ports
 
 # pylint: disable=unused-import
 from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401

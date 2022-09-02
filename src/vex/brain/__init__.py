@@ -5,10 +5,10 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 
-from .._abstract import SingletonDevice
+from .._abstract_device import SingletonDevice
 from .button import BrainButton
 from .screen import BrainLcd
-from .sound import BrainSound, NoteType
+from .sound import BrainSound, NoteType, SoundType
 
 from ..util.doc import robotmesh_doc
 
@@ -17,8 +17,7 @@ __all__: Sequence[str] = (
     'Brain',
     'BrainButton',
     'BrainLcd',
-    'BrainSound',
-    'NoteType',
+    'BrainSound', 'NoteType', 'SoundType',
 )
 
 

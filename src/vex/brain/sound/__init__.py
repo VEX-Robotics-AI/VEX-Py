@@ -7,7 +7,7 @@ from collections.abc import Sequence
 
 from abm.decor import act
 
-from ..._abstract import SingletonDevice
+from ..._abstract_device import SingletonDevice
 from ...time import TimeUnits
 
 from ...util.doc import robotmesh_doc

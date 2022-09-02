@@ -7,7 +7,7 @@ from collections.abc import Sequence
 
 from abm.decor import act
 
-from .._abstract import SingletonDevice
+from .._abstract_device import SingletonDevice
 
 # pylint: disable=unused-import
 from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401

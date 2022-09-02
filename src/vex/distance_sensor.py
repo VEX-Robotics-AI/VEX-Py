@@ -5,8 +5,8 @@ from collections.abc import Sequence
 
 from abm.decor import act, sense
 
-from ._abstract import Device
-from .port import Ports
+from ._abstract_device import Device
+from .brain.port import Ports
 from .units_common import DistanceUnits
 
 # pylint: disable=unused-import
@@ -16,6 +16,9 @@ from .util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
 __all__: Sequence[str] = ('Sonar',)
 
 
+@robotmesh_doc("""
+    robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_sonar.html
+""")
 class Sonar(Device):
     """Sonar (Distance Sensor)."""
 

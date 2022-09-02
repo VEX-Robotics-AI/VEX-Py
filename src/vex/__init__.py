@@ -9,18 +9,17 @@ from collections.abc import Sequence
 from importlib.metadata import version
 import sys
 
-from ._abstract import Device
-from .port import Ports
-from .brain import Brain, BrainButton, BrainLcd, BrainSound, NoteType
+from .brain import Brain, BrainButton, BrainLcd, BrainSound, NoteType, SoundType   # noqa: E501
+from .brain.port import Ports
 from .bumper_switch_sensor import Bumper
-from .color_sensor import ColorHue, Colorsensor
+from .color_sensor import Colorsensor, ColorHue
 from .distance_sensor import Sonar
 from .controller import Controller, ControllerAxis, ControllerButton
 from .gyro_sensor import Gyro, GyroCalibrationType
-from .motor import (
-    BrakeType, DirectionType, Motor, TorqueUnits, TurnType, VelocityUnits
-)
-from .touch_led import FadeType, Touchled
+from .motor import (Motor,
+                    BrakeType, DirectionType, TurnType,
+                    TorqueUnits, VelocityUnits)
+from .touch_led import Touchled, FadeType
 from .time import TimeUnits, wait
 from .units_common import DistanceUnits, RotationUnits
 
@@ -29,17 +28,15 @@ from . import interactive
 
 __all__: Sequence[str] = (
     '__version__',
-    'Device',
+    'Brain', 'BrainButton', 'BrainLcd', 'BrainSound', 'NoteType', 'SoundType',
     'Ports',
-    'Brain', 'BrainButton', 'BrainLcd', 'BrainSound', 'NoteType',
     'Bumper',
-    'ColorHue', 'Colorsensor',
+    'Colorsensor', 'ColorHue',
     'Sonar',
     'Controller', 'ControllerAxis', 'ControllerButton',
     'Gyro', 'GyroCalibrationType',
-    'Motor',
-    'BrakeType', 'DirectionType', 'TorqueUnits', 'TurnType', 'VelocityUnits',
-    'FadeType', 'Touchled',
+    'Motor', 'BrakeType', 'DirectionType', 'TorqueUnits', 'TurnType', 'VelocityUnits',  # noqa: E501
+    'Touchled', 'FadeType',
     'TimeUnits', 'wait',
     'DistanceUnits', 'RotationUnits',
     'DEGREES', 'TURNS',

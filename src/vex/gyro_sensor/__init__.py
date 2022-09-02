@@ -5,8 +5,8 @@ from collections.abc import Sequence
 
 from abm.decor import act, sense
 
-from .._abstract import Device
-from ..port import Ports
+from .._abstract_device import Device
+from ..brain.port import Ports
 from ..units_common import RotationUnits
 
 # pylint: disable=unused-import
@@ -15,7 +15,7 @@ from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
 from .calibration_type import GyroCalibrationType
 
 
-__all__: Sequence[str] = 'GyroCalibrationType', 'Gyro'
+__all__: Sequence[str] = 'Gyro', 'GyroCalibrationType'
 
 
 @robotmesh_doc("""

@@ -13,6 +13,8 @@ __all__: Sequence[str] = ('RotationUnits',)
 
 @robotmesh_doc("""
     The measurement units for rotation values.
+
+    robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_rotation_units.html
 """)
 class RotationUnits(IntEnum):
     """Rotation Units."""
