@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vex.brain package &#8212; DjAI 22.8.28 documentation</title>
+    <title>vex.brain package &#8212; VEX-Py 22.9.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -39,7 +39,12 @@
 <dt class="sig sig-object py" id="vex.brain.Brain">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.brain.</span></span><span class="sig-name descname"><span class="pre">Brain</span></span><a class="reference internal" href="_modules/vex/brain.html#Brain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.Brain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">SingletonDevice</span></code></p>
-<p>Use the Brain class to see battery information, or write to the screen.</p>
+<p>VEX Brain.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Use the Brain class to see battery information, or write to the screen.</p>
+<p>robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brain.html</p>
+</div></blockquote>
 <dl class="py property">
 <dt class="sig sig-object py" id="vex.brain.Brain.buttonCheck">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">buttonCheck</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="vex.brain.button.html#vex.brain.button.BrainButton" title="vex.brain.button.BrainButton"><span class="pre">BrainButton</span></a></em><a class="headerlink" href="#vex.brain.Brain.buttonCheck" title="Permalink to this definition">¶</a></dt>
@@ -76,13 +81,32 @@
 <dt class="sig sig-object py" id="vex.brain.BrainButton">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.brain.</span></span><span class="sig-name descname"><span class="pre">BrainButton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/brain/button.html#BrainButton"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.BrainButton" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Use the button class to get values from the brain’s buttons.</p>
+<p>Brain Button.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Use the Button class to get values from the Brain’s buttons.</p>
+<p>robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brain_button.html</p>
+</div></blockquote>
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.brain.BrainButton.pressing">
 <span class="sig-name descname"><span class="pre">pressing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/vex/brain/button.html#BrainButton.pressing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.BrainButton.pressing" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the pressed status of a button.</p>
-<p>Returns
-True if pressed, False otherwise.</p>
+<dd><p>Return Button’s pressed status.</p>
+<p>VEXCODE PYTHON:</p>
+<blockquote>
+<div><p>Reports if the specified button on the VEX IQ Brain is being pressed.</p>
+<p>Reports True if the specified Brain button is pressed.
+Reports False if the specified Brain button is not pressed.</p>
+<p>After <cite>brain.</cite> enter a Brain button to receive the pressed status on.</p>
+<p>Supported Brain buttons are as follows:
+- buttonUp / buttonLeft
+- buttonDown / buttonRight
+- buttonCheck</p>
+</div></blockquote>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Get the pressed status of a button.</p>
+<p>Returns: True if pressed, False otherwise.</p>
+</div></blockquote>
 </dd></dl>
 
 </dd></dl>
@@ -91,21 +115,40 @@ True if pressed, False otherwise.</p>
 <dt class="sig sig-object py" id="vex.brain.BrainLcd">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.brain.</span></span><span class="sig-name descname"><span class="pre">BrainLcd</span></span><a class="reference internal" href="_modules/vex/brain/screen.html#BrainLcd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.BrainLcd" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">SingletonDevice</span></code></p>
-<p>Use this class to write or draw to the brain’s LCD screen.</p>
+<p>Brain LCD Screen.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Use this class to write or draw to the brain’s LCD screen.</p>
 <ul class="simple">
 <li><p>21 characters wide</p></li>
 <li><p>5 lines (1-5)</p></li>
 </ul>
+<p>robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brain_lcd.html</p>
+</div></blockquote>
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.brain.BrainLcd.clear_screen">
 <span class="sig-name descname"><span class="pre">clear_screen</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/brain/screen.html#BrainLcd.clear_screen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.BrainLcd.clear_screen" title="Permalink to this definition">¶</a></dt>
-<dd><p>Clear the whole screen.</p>
+<dd><p>Clear Brain LCD Screen.</p>
+<p>VEXCODE PYTHON:</p>
+<blockquote>
+<div><p>Clears the entire VEX IQ Brain’s Screen.</p>
+<p>Clear Screen will not reset the Brain’s screen cursor.</p>
+<p>Use the Set Cursor command to set the Brain’s cursor
+to the desired position.</p>
+</div></blockquote>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Clear the whole screen.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.brain.BrainLcd.print_line">
 <span class="sig-name descname"><span class="pre">print_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/brain/screen.html#BrainLcd.print_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.BrainLcd.print_line" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print a number, string, or boolean at a particular line.</p>
+<dd><p>Print to a line on Brain LCD Screen.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Print a number, string, or boolean at a particular line.</p>
 <p>(clearing the rest of the line)</p>
 <p>Parameters
 number: Line to print on, 1 is top line.
@@ -116,6 +159,7 @@ For multiple arguments, use format like
 “x: %g y: %g” % (x, y) -&gt; “x: 123 y: 456”
 Supported format flags are g (all) x (hex) d (int) f (float)</p>
 </div></blockquote>
+</div></blockquote>
 </dd></dl>
 
 </dd></dl>
@@ -125,21 +169,32 @@ Supported format flags are g (all) x (hex) d (int) f (float)</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.brain.</span></span><span class="sig-name descname"><span class="pre">BrainSound</span></span><a class="reference internal" href="_modules/vex/brain/sound.html#BrainSound"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.BrainSound" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">SingletonDevice</span></code></p>
 <p>Brain Sound.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brain_sound.html</p>
+</div></blockquote>
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.brain.BrainSound.play">
-<span class="sig-name descname"><span class="pre">play</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">note</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.brain.sound.html#vex.brain.sound.NoteType" title="vex.brain.sound.NoteType"><span class="pre">NoteType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">octave</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.time.html#vex.time.TimeUnits" title="vex.time.TimeUnits"><span class="pre">TimeUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TimeUnits.SEC</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/brain/sound.html#BrainSound.play"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.BrainSound.play" title="Permalink to this definition">¶</a></dt>
-<dd><p>Play a musical note on the speaker.</p>
+<span class="sig-name descname"><span class="pre">play</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">note</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.brain.sound.note_type.html#vex.brain.sound.note_type.NoteType" title="vex.brain.sound.note_type.NoteType"><span class="pre">NoteType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">octave</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.time.time_units.html#vex.time.time_units.TimeUnits" title="vex.time.time_units.TimeUnits"><span class="pre">TimeUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TimeUnits.SEC</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/brain/sound.html#BrainSound.play"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.BrainSound.play" title="Permalink to this definition">¶</a></dt>
+<dd><p>Play note/sound on Brain Sound Speaker.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Play a musical note on the speaker.</p>
 <p>Parameters:
 - note: musical note to play: NoteType enum value
 - octave: octave of the note [1-7], optional
 - duration: time. 0 to start playing without blocking. Default 0.5
 - timeUnits: of time for the duration. Default sec.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.brain.BrainSound.play_melody">
 <span class="sig-name descname"><span class="pre">play_melody</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">melody</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/brain/sound.html#BrainSound.play_melody"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.BrainSound.play_melody" title="Permalink to this definition">¶</a></dt>
-<dd><p>Play a melody form a string in a quasi musical alphabet notation.</p>
+<dd><p>Play musical melody.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Play a melody form a string in a quasi musical alphabet notation.</p>
 <p>(cdefgab)</p>
 <p>Parameters:
 - melody: string [cdefgab]: musical alphabet for notes,</p>
@@ -151,56 +206,82 @@ Supported format flags are g (all) x (hex) d (int) f (float)</p>
 <div><p>(in 1/8s: 1=eighth note…8 = full note)</p>
 </div></blockquote>
 </div></blockquote>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.brain.BrainSound.play_raw">
-<span class="sig-name descname"><span class="pre">play_raw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">note</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.brain.sound.html#vex.brain.sound.NoteType" title="vex.brain.sound.NoteType"><span class="pre">NoteType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.time.html#vex.time.TimeUnits" title="vex.time.TimeUnits"><span class="pre">TimeUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TimeUnits.SEC</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/brain/sound.html#BrainSound.play_raw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.BrainSound.play_raw" title="Permalink to this definition">¶</a></dt>
-<dd><p>Play a musical note on the speaker.</p>
+<span class="sig-name descname"><span class="pre">play_raw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">note</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.brain.sound.note_type.html#vex.brain.sound.note_type.NoteType" title="vex.brain.sound.note_type.NoteType"><span class="pre">NoteType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.time.time_units.html#vex.time.time_units.TimeUnits" title="vex.time.time_units.TimeUnits"><span class="pre">TimeUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TimeUnits.SEC</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/brain/sound.html#BrainSound.play_raw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.BrainSound.play_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Play note/sound on Brain Sound Speaker.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Play a musical note on the speaker.</p>
 <p>Parameters
 - note: musical note to play: 0=silence/stop, [1-56] numeric value
 - duration: time. 0 to start playing without blocking. Default 0.5
 - timeUnits: of time for the duration. Default sec.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.brain.BrainSound.play_wave">
 <span class="sig-name descname"><span class="pre">play_wave</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waveType</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForCompletion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/brain/sound.html#BrainSound.play_wave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.BrainSound.play_wave" title="Permalink to this definition">¶</a></dt>
-<dd><p>Play the wave sample.</p>
+<dd><p>Play WAV.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Play the wave sample.</p>
 <p>Parameters:
 - waveType: type of the wave sample sound to play [0..15]
 - waitForCompletion: wait for the sample to finish playing</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.brain.BrainSound.set_sound_effect">
 <span class="sig-name descname"><span class="pre">set_sound_effect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">effect</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/brain/sound.html#BrainSound.set_sound_effect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.BrainSound.set_sound_effect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the sound effect type for subsequent notes played.</p>
+<dd><p>Set Sound Effect.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Set the sound effect type for subsequent notes played.</p>
 <p>Parameters
 - effect: effect type [0..15]</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.brain.BrainSound.set_volume">
 <span class="sig-name descname"><span class="pre">set_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">volume</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/brain/sound.html#BrainSound.set_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.BrainSound.set_volume" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the sound volume [1-4].</p>
+<dd><p>Set Sound Volume.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Set the sound volume [1-4].</p>
 <p>Parameters
 - volume: value [1=low…4=high]</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.brain.BrainSound.stop">
 <span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/brain/sound.html#BrainSound.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.BrainSound.stop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stop playing music.</p>
+<dd><p>Stop Sound.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Stop playing music.</p>
+</div></blockquote>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="vex.brain.NoteType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.brain.</span></span><span class="sig-name descname"><span class="pre">NoteType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/brain/sound.html#NoteType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.NoteType" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.brain.</span></span><span class="sig-name descname"><span class="pre">NoteType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/brain/sound/note_type.html#NoteType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.NoteType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
-<p>Musical note to play.</p>
+<p>Musical Note.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Musical note to play.</p>
+<p>robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_note_type.html</p>
+</div></blockquote>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="vex.brain.NoteType.A">
 <span class="sig-name descname"><span class="pre">A</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#vex.brain.NoteType.A" title="Permalink to this definition">¶</a></dt>
@@ -243,13 +324,119 @@ Supported format flags are g (all) x (hex) d (int) f (float)</p>
 
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="vex.brain.SoundType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.brain.</span></span><span class="sig-name descname"><span class="pre">SoundType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/brain/sound/sound_type.html#SoundType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.brain.SoundType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Sound Effect.</p>
+<p>VEXCODE PYTHON:</p>
+<blockquote>
+<div><p>Sound Effect</p>
+</div></blockquote>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.brain.SoundType.ALARM">
+<span class="sig-name descname"><span class="pre">ALARM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#vex.brain.SoundType.ALARM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.brain.SoundType.ALARM2">
+<span class="sig-name descname"><span class="pre">ALARM2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">15</span></em><a class="headerlink" href="#vex.brain.SoundType.ALARM2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.brain.SoundType.DOOR_CLOSE">
+<span class="sig-name descname"><span class="pre">DOOR_CLOSE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></em><a class="headerlink" href="#vex.brain.SoundType.DOOR_CLOSE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.brain.SoundType.FILLUP">
+<span class="sig-name descname"><span class="pre">FILLUP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#vex.brain.SoundType.FILLUP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.brain.SoundType.HEADLIGHTS_OFF">
+<span class="sig-name descname"><span class="pre">HEADLIGHTS_OFF</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#vex.brain.SoundType.HEADLIGHTS_OFF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.brain.SoundType.HEADLIGHTS_ON">
+<span class="sig-name descname"><span class="pre">HEADLIGHTS_ON</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#vex.brain.SoundType.HEADLIGHTS_ON" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.brain.SoundType.POWER_DOWN">
+<span class="sig-name descname"><span class="pre">POWER_DOWN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16</span></em><a class="headerlink" href="#vex.brain.SoundType.POWER_DOWN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.brain.SoundType.RATCHET">
+<span class="sig-name descname"><span class="pre">RATCHET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">11</span></em><a class="headerlink" href="#vex.brain.SoundType.RATCHET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.brain.SoundType.RATCHET2">
+<span class="sig-name descname"><span class="pre">RATCHET2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">14</span></em><a class="headerlink" href="#vex.brain.SoundType.RATCHET2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.brain.SoundType.SIREN">
+<span class="sig-name descname"><span class="pre">SIREN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#vex.brain.SoundType.SIREN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.brain.SoundType.SIREN2">
+<span class="sig-name descname"><span class="pre">SIREN2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">13</span></em><a class="headerlink" href="#vex.brain.SoundType.SIREN2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.brain.SoundType.TADA">
+<span class="sig-name descname"><span class="pre">TADA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">9</span></em><a class="headerlink" href="#vex.brain.SoundType.TADA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.brain.SoundType.TOLLBOOTH">
+<span class="sig-name descname"><span class="pre">TOLLBOOTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#vex.brain.SoundType.TOLLBOOTH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.brain.SoundType.WRENCH">
+<span class="sig-name descname"><span class="pre">WRENCH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">12</span></em><a class="headerlink" href="#vex.brain.SoundType.WRENCH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.brain.SoundType.WRONG_WAY">
+<span class="sig-name descname"><span class="pre">WRONG_WAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#vex.brain.SoundType.WRONG_WAY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.brain.SoundType.WRONG_WAY_SLOW">
+<span class="sig-name descname"><span class="pre">WRONG_WAY_SLOW</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#vex.brain.SoundType.WRONG_WAY_SLOW" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="vex.brain.sound.html">vex.brain.sound package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vex.brain.sound.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vex.brain.sound.note_type.html">vex.brain.sound.note_type module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vex.brain.sound.sound_type.html">vex.brain.sound.sound_type module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="vex.brain.button.html">vex.brain.button module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vex.brain.port.html">vex.brain.port module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vex.brain.screen.html">vex.brain.screen module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vex.brain.sound.html">vex.brain.sound module</a></li>
 </ul>
 </div>
 </div>
@@ -262,7 +449,7 @@ Supported format flags are g (all) x (hex) d (int) f (float)</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">DjAI</a></h1>
+<h1 class="logo"><a href="index.html">VEX-Py</a></h1>
 
 
 
@@ -303,7 +490,7 @@ Supported format flags are g (all) x (hex) d (int) f (float)</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2022, STEAM for Vietnam Foundation: AI & Robotics Educational Initiative.
+      &copy;2022, The Vinh LUONG (LƯƠNG Thế Vinh).
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>

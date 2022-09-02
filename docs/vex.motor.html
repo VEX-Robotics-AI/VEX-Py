@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vex.motor module &#8212; DjAI 22.8.28 documentation</title>
+    <title>vex.motor package &#8212; VEX-Py 22.9.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -33,13 +33,18 @@
           <div class="body" role="main">
             
   <div class="section" id="module-vex.motor">
-<span id="vex-motor-module"></span><h1>vex.motor module<a class="headerlink" href="#module-vex.motor" title="Permalink to this heading">¶</a></h1>
-<p>VEX Motor.</p>
+<span id="vex-motor-package"></span><h1>vex.motor package<a class="headerlink" href="#module-vex.motor" title="Permalink to this heading">¶</a></h1>
+<p>Motor.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="vex.motor.BrakeType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.motor.</span></span><span class="sig-name descname"><span class="pre">BrakeType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#BrakeType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.BrakeType" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.motor.</span></span><span class="sig-name descname"><span class="pre">BrakeType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor/brake_type.html#BrakeType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.BrakeType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
-<p>The defined units for brake values.</p>
+<p>Motor Brake Types.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>The defined units for brake values.</p>
+<p>robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brake_type.html</p>
+</div></blockquote>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="vex.motor.BrakeType.BRAKE">
 <span class="sig-name descname"><span class="pre">BRAKE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#vex.motor.BrakeType.BRAKE" title="Permalink to this definition">¶</a></dt>
@@ -59,9 +64,14 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="vex.motor.DirectionType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.motor.</span></span><span class="sig-name descname"><span class="pre">DirectionType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#DirectionType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.DirectionType" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.motor.</span></span><span class="sig-name descname"><span class="pre">DirectionType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor/direction_type.html#DirectionType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.DirectionType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
-<p>The defined units for direction values.</p>
+<p>Movement Direction Types.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>The defined units for direction values.</p>
+<p>robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_direction_type.html</p>
+</div></blockquote>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="vex.motor.DirectionType.FWD">
 <span class="sig-name descname"><span class="pre">FWD</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#vex.motor.DirectionType.FWD" title="Permalink to this definition">¶</a></dt>
@@ -76,87 +86,130 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="vex.motor.Motor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.motor.</span></span><span class="sig-name descname"><span class="pre">Motor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.port.html#vex.port.Ports" title="vex.port.Ports"><span class="pre">Ports</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="vex.html#vex.Device" title="vex._abstract.Device"><code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code></a></p>
-<p>VEX Motor.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.motor.</span></span><span class="sig-name descname"><span class="pre">Motor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.brain.port.html#vex.brain.port.Ports" title="vex.brain.port.Ports"><span class="pre">Ports</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code></p>
+<p>Motor.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_motor.html</p>
+</div></blockquote>
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.current">
 <span class="sig-name descname"><span class="pre">current</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/vex/motor.html#Motor.current"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.current" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the electrical current of the motor.</p>
+<dd><p>Return Motor’s Electrical Current.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Get the electrical current of the motor.</p>
 <p>Returns:
 a float that represents the electrical current of the motor in Amps.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.did_timeout">
 <span class="sig-name descname"><span class="pre">did_timeout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/vex/motor.html#Motor.did_timeout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.did_timeout" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return True if the last motor operation timed out.</p>
+<dd><p>Return whether Motor timed out.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Return True if the last motor operation timed out.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.is_done">
 <span class="sig-name descname"><span class="pre">is_done</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/vex/motor.html#Motor.is_done"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.is_done" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determine if spin_for/spin_to command has reached its target position.</p>
+<dd><p>Check if Motor has finished spinning.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Determine if spin_for/spin_to command has reached its target position.</p>
 <p>Returns:
 False if the motor is on and is rotating
 to a target, True if the motor is done rotating to a target.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.is_spinning">
 <span class="sig-name descname"><span class="pre">is_spinning</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/vex/motor.html#Motor.is_spinning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.is_spinning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determine if a spin_for/spin_to command is in progress.</p>
+<dd><p>Check if Motor is spinning.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Determine if a spin_for/spin_to command is in progress.</p>
 <p>Returns:
 True if the motor is on and is rotating to a target,
 False if the motor is done rotating to a target.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.reset_rotation">
 <span class="sig-name descname"><span class="pre">reset_rotation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.reset_rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.reset_rotation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reset the motor’s encoder to the value of zero.</p>
+<dd><p>Reset Motor Rotation Value to 0.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Reset the motor’s encoder to the value of zero.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.rotation">
-<span class="sig-name descname"><span class="pre">rotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rotationUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.units_common.html#vex.units_common.RotationUnits" title="vex.units_common.RotationUnits"><span class="pre">RotationUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">RotationUnits.DEG</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/vex/motor.html#Motor.rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.rotation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the current rotation of the motor’s encoder.</p>
+<span class="sig-name descname"><span class="pre">rotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rotationUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.units_common.rotation_units.html#vex.units_common.rotation_units.RotationUnits" title="vex.units_common.rotation_units.RotationUnits"><span class="pre">RotationUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">RotationUnits.DEG</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/vex/motor.html#Motor.rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.rotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Motor’s cumulative Rotation Angle Value.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Get the current rotation of the motor’s encoder.</p>
 <p>Parameters:
 rotationUnits: The measurement unit for the rotation.</p>
 <p>Returns:
 a float that represents the current rotation of
 the motor in the units defined in the parameter.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.set_max_torque">
-<span class="sig-name descname"><span class="pre">set_max_torque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">torqueUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vex.motor.TorqueUnits" title="vex.motor.TorqueUnits"><span class="pre">TorqueUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TorqueUnits.NM</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.set_max_torque"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.set_max_torque" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the max torque of the motor.</p>
+<span class="sig-name descname"><span class="pre">set_max_torque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">torqueUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.motor.torque_units.html#vex.motor.torque_units.TorqueUnits" title="vex.motor.torque_units.TorqueUnits"><span class="pre">TorqueUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TorqueUnits.NM</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.set_max_torque"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.set_max_torque" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set Max Torque.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Set the max torque of the motor.</p>
 <p>Parameters:
 - value: Sets the amount of torque (max 0.414 Nm)
 - torqueUnits: The measurement unit for the torque value.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.set_max_torque_current">
 <span class="sig-name descname"><span class="pre">set_max_torque_current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.set_max_torque_current"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.set_max_torque_current" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the max torque of the motor.</p>
+<dd><p>Set Max Torque Current.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Set the max torque of the motor.</p>
 <p>Parameters:
 - value: Sets the amount of torque in Amps (max 1.2A)</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.set_max_torque_percent">
 <span class="sig-name descname"><span class="pre">set_max_torque_percent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.set_max_torque_percent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.set_max_torque_percent" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the max torque of the motor as a percentage.</p>
+<dd><p>Set Max Torque Percent.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Set the max torque of the motor as a percentage.</p>
 <p>Parameters:
 - value: Sets the amount of torque (0 to 100%)</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.set_reversed">
 <span class="sig-name descname"><span class="pre">set_reversed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">is_reversed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.set_reversed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.set_reversed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the motor mode to “reverse”.</p>
+<dd><p>Set Reversed Mode.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Set the motor mode to “reverse”.</p>
 <p>(which will make motor commands
 spin the motor in the opposite direction)</p>
 <p>Parameters:
@@ -164,47 +217,63 @@ spin the motor in the opposite direction)</p>
 <blockquote>
 <div><p>spin the motor in the opposite direction.</p>
 </div></blockquote>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.set_rotation">
-<span class="sig-name descname"><span class="pre">set_rotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotationUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.units_common.html#vex.units_common.RotationUnits" title="vex.units_common.RotationUnits"><span class="pre">RotationUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">RotationUnits.DEG</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.set_rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.set_rotation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set value of motor’s encoder to value specified in parameter.</p>
+<span class="sig-name descname"><span class="pre">set_rotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotationUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.units_common.rotation_units.html#vex.units_common.rotation_units.RotationUnits" title="vex.units_common.rotation_units.RotationUnits"><span class="pre">RotationUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">RotationUnits.DEG</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.set_rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.set_rotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set Motor Rotation Value to specific value.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Set value of motor’s encoder to value specified in parameter.</p>
 <p>Parameters:
 - value: Sets the amount of rotation.
 - rotationUnits: The measurement unit for the rotation,</p>
 <blockquote>
 <div><p>a RotationUnits enum value.</p>
 </div></blockquote>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.set_stopping">
-<span class="sig-name descname"><span class="pre">set_stopping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">brakeType</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vex.motor.BrakeType" title="vex.motor.BrakeType"><span class="pre">BrakeType</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.set_stopping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.set_stopping" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set stopping mode of the motor by passing a brake mode as a parameter.</p>
+<span class="sig-name descname"><span class="pre">set_stopping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">brakeType</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.motor.brake_type.html#vex.motor.brake_type.BrakeType" title="vex.motor.brake_type.BrakeType"><span class="pre">BrakeType</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.set_stopping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.set_stopping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set Stopping Mode.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Set stopping mode of the motor by passing a brake mode as a parameter.</p>
 <p>(note this will stop the motor if it’s spinning)</p>
 <p>Parameters:
 - brakeType: The stopping mode can be set to</p>
 <blockquote>
 <div><p>BrakeType.COAST, BRAKE, or HOLD.</p>
 </div></blockquote>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.set_timeout">
-<span class="sig-name descname"><span class="pre">set_timeout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.time.html#vex.time.TimeUnits" title="vex.time.TimeUnits"><span class="pre">TimeUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TimeUnits.SEC</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.set_timeout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.set_timeout" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the timeout for the motor.</p>
+<span class="sig-name descname"><span class="pre">set_timeout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.time.time_units.html#vex.time.time_units.TimeUnits" title="vex.time.time_units.TimeUnits"><span class="pre">TimeUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TimeUnits.SEC</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.set_timeout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.set_timeout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set Motor Timeout Threshold.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Set the timeout for the motor.</p>
 <p>If the motor does not reach its commanded position prior
 to the completion of the timeout, the motor will stop.</p>
 <p>Parameters:
 - time: Sets the amount of time.
 - timeUnits: The measurement unit for the time, a TimeUnits enum value.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.set_velocity">
-<span class="sig-name descname"><span class="pre">set_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocityUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vex.motor.VelocityUnits" title="vex.motor.VelocityUnits"><span class="pre">VelocityUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">VelocityUnits.PCT</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.set_velocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.set_velocity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set velocity of the motor based on the parameters set in the command.</p>
+<span class="sig-name descname"><span class="pre">set_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocityUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.motor.velocity_units.html#vex.motor.velocity_units.VelocityUnits" title="vex.motor.velocity_units.VelocityUnits"><span class="pre">VelocityUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">VelocityUnits.PCT</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.set_velocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.set_velocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set Velocity.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Set velocity of the motor based on the parameters set in the command.</p>
 <p>This command will not run the motor.
 Any subsequent call that does not contain
 a specified motor velocity will use this value.</p>
@@ -214,12 +283,16 @@ a specified motor velocity will use this value.</p>
 <blockquote>
 <div><p>a VelocityUnits enum value.</p>
 </div></blockquote>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.spin">
-<span class="sig-name descname"><span class="pre">spin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vex.motor.DirectionType" title="vex.motor.DirectionType"><span class="pre">DirectionType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocityUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vex.motor.VelocityUnits" title="vex.motor.VelocityUnits"><span class="pre">VelocityUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">VelocityUnits.PCT</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.spin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.spin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Turn on the motor and spins it.</p>
+<span class="sig-name descname"><span class="pre">spin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.motor.direction_type.html#vex.motor.direction_type.DirectionType" title="vex.motor.direction_type.DirectionType"><span class="pre">DirectionType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocityUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.motor.velocity_units.html#vex.motor.velocity_units.VelocityUnits" title="vex.motor.velocity_units.VelocityUnits"><span class="pre">VelocityUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">VelocityUnits.PCT</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.spin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.spin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spin Motor.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Turn on the motor and spins it.</p>
 <p>(in a specified direction and a specified velocity)</p>
 <p>Parameters:
 - dir: The direction to spin the motor, DirectionType enum value.
@@ -228,12 +301,16 @@ a specified motor velocity will use this value.</p>
 <blockquote>
 <div><p>a VelocityUnits enum value.</p>
 </div></blockquote>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.spin_for">
-<span class="sig-name descname"><span class="pre">spin_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vex.motor.DirectionType" title="vex.motor.DirectionType"><span class="pre">DirectionType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotationUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.units_common.html#vex.units_common.RotationUnits" title="vex.units_common.RotationUnits"><span class="pre">RotationUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">RotationUnits.DEG</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocityUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vex.motor.VelocityUnits" title="vex.motor.VelocityUnits"><span class="pre">VelocityUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">VelocityUnits.PCT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForCompletion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/vex/motor.html#Motor.spin_for"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.spin_for" title="Permalink to this definition">¶</a></dt>
-<dd><p>Turn on the motor and spins it.</p>
+<span class="sig-name descname"><span class="pre">spin_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.motor.direction_type.html#vex.motor.direction_type.DirectionType" title="vex.motor.direction_type.DirectionType"><span class="pre">DirectionType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotationUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.units_common.rotation_units.html#vex.units_common.rotation_units.RotationUnits" title="vex.units_common.rotation_units.RotationUnits"><span class="pre">RotationUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">RotationUnits.DEG</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocityUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.motor.velocity_units.html#vex.motor.velocity_units.VelocityUnits" title="vex.motor.velocity_units.VelocityUnits"><span class="pre">VelocityUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">VelocityUnits.PCT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForCompletion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/vex/motor.html#Motor.spin_for"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.spin_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spin Motor for a certain Rotation Angle Value.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Turn on the motor and spins it.</p>
 <p>(to a relative target rotation value at a specified velocity)</p>
 <p>Parameters:
 - dir: The direction to spin the motor, DirectionType enum value.
@@ -251,12 +328,16 @@ By default, this parameter is true.</p>
 <p>Returns:
 Returns a Boolean that signifies when the motor
 has reached the target rotation value.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.spin_for_time">
-<span class="sig-name descname"><span class="pre">spin_for_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vex.motor.DirectionType" title="vex.motor.DirectionType"><span class="pre">DirectionType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.time.html#vex.time.TimeUnits" title="vex.time.TimeUnits"><span class="pre">TimeUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TimeUnits.SEC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocityUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vex.motor.VelocityUnits" title="vex.motor.VelocityUnits"><span class="pre">VelocityUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">VelocityUnits.PCT</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.spin_for_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.spin_for_time" title="Permalink to this definition">¶</a></dt>
-<dd><p>Turn on the motor and spins it.</p>
+<span class="sig-name descname"><span class="pre">spin_for_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.motor.direction_type.html#vex.motor.direction_type.DirectionType" title="vex.motor.direction_type.DirectionType"><span class="pre">DirectionType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.time.time_units.html#vex.time.time_units.TimeUnits" title="vex.time.time_units.TimeUnits"><span class="pre">TimeUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TimeUnits.SEC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocityUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.motor.velocity_units.html#vex.motor.velocity_units.VelocityUnits" title="vex.motor.velocity_units.VelocityUnits"><span class="pre">VelocityUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">VelocityUnits.PCT</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.spin_for_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.spin_for_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spin Motor for a certain Time Duration.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Turn on the motor and spins it.</p>
 <p>(to a relative target time value at a specified velocity)</p>
 <p>Parameters:
 - dir: direction to spin in, a DirectionType enum value or None.
@@ -264,12 +345,16 @@ has reached the target rotation value.</p>
 - timeUnits: The measurement unit for the time value.
 - velocity: Sets the amount of velocity.
 - velocityUnits: The measurement unit for the velocity value.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.spin_to">
-<span class="sig-name descname"><span class="pre">spin_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotationUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.units_common.html#vex.units_common.RotationUnits" title="vex.units_common.RotationUnits"><span class="pre">RotationUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">RotationUnits.DEG</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocityUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vex.motor.VelocityUnits" title="vex.motor.VelocityUnits"><span class="pre">VelocityUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">VelocityUnits.PCT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForCompletion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/vex/motor.html#Motor.spin_to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.spin_to" title="Permalink to this definition">¶</a></dt>
-<dd><p>Turn on the motor and spins it.</p>
+<span class="sig-name descname"><span class="pre">spin_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotationUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.units_common.rotation_units.html#vex.units_common.rotation_units.RotationUnits" title="vex.units_common.rotation_units.RotationUnits"><span class="pre">RotationUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">RotationUnits.DEG</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocityUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.motor.velocity_units.html#vex.motor.velocity_units.VelocityUnits" title="vex.motor.velocity_units.VelocityUnits"><span class="pre">VelocityUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">VelocityUnits.PCT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waitForCompletion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/vex/motor.html#Motor.spin_to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.spin_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spin Motor to target Rotation Angle Value.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Turn on the motor and spins it.</p>
 <p>(to an absolute target rotation value at a specified velocity)</p>
 <p>Parameters:
 - rotation: Sets the amount of rotation.
@@ -283,12 +368,16 @@ value. If false, the program will continue after
 calling this function.
 By default, this parameter is true.</p>
 </div></blockquote>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.start_spin_for">
-<span class="sig-name descname"><span class="pre">start_spin_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vex.motor.DirectionType" title="vex.motor.DirectionType"><span class="pre">DirectionType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotationUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.units_common.html#vex.units_common.RotationUnits" title="vex.units_common.RotationUnits"><span class="pre">RotationUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">RotationUnits.DEG</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocityUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vex.motor.VelocityUnits" title="vex.motor.VelocityUnits"><span class="pre">VelocityUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">VelocityUnits.PCT</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.start_spin_for"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.start_spin_for" title="Permalink to this definition">¶</a></dt>
-<dd><p>Start spinning a motor.</p>
+<span class="sig-name descname"><span class="pre">start_spin_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.motor.direction_type.html#vex.motor.direction_type.DirectionType" title="vex.motor.direction_type.DirectionType"><span class="pre">DirectionType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotationUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.units_common.rotation_units.html#vex.units_common.rotation_units.RotationUnits" title="vex.units_common.rotation_units.RotationUnits"><span class="pre">RotationUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">RotationUnits.DEG</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocityUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.motor.velocity_units.html#vex.motor.velocity_units.VelocityUnits" title="vex.motor.velocity_units.VelocityUnits"><span class="pre">VelocityUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">VelocityUnits.PCT</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.start_spin_for"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.start_spin_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start spinning motor for a certain Rotation Angle Value.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Start spinning a motor.</p>
 <p>(to a relative target rotation
 but does not wait for the motor to reach that target)</p>
 <p>Parameters:
@@ -297,12 +386,16 @@ but does not wait for the motor to reach that target)</p>
 - rotationUnits: The measurement unit for the rotation value.
 - velocity: Sets the amount of velocity.
 - velocityUnits: The measurement unit for the velocity value.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.start_spin_to">
-<span class="sig-name descname"><span class="pre">start_spin_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotationUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.units_common.html#vex.units_common.RotationUnits" title="vex.units_common.RotationUnits"><span class="pre">RotationUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">RotationUnits.DEG</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocityUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vex.motor.VelocityUnits" title="vex.motor.VelocityUnits"><span class="pre">VelocityUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">VelocityUnits.PCT</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.start_spin_to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.start_spin_to" title="Permalink to this definition">¶</a></dt>
-<dd><p>Start spinning a motor.</p>
+<span class="sig-name descname"><span class="pre">start_spin_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotationUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.units_common.rotation_units.html#vex.units_common.rotation_units.RotationUnits" title="vex.units_common.rotation_units.RotationUnits"><span class="pre">RotationUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">RotationUnits.DEG</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocityUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.motor.velocity_units.html#vex.motor.velocity_units.VelocityUnits" title="vex.motor.velocity_units.VelocityUnits"><span class="pre">VelocityUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">VelocityUnits.PCT</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.start_spin_to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.start_spin_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start spinning Motor to a certain Target Rotation Angle Value.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Start spinning a motor.</p>
 <p>(to an absolute target rotation
 but does not wait for the motor to reach that target)</p>
 <p>Params:
@@ -310,43 +403,61 @@ but does not wait for the motor to reach that target)</p>
 - rotationUnits: The measurement unit for the rotation value.
 - velocity: Sets the amount of velocity.
 - velocityUnits: The measurement unit for the velocity value.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.stop">
-<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">brakeType</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#vex.motor.BrakeType" title="vex.motor.BrakeType"><span class="pre">BrakeType</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.stop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stop the motor using the default brake mode.</p>
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">brakeType</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="vex.motor.brake_type.html#vex.motor.brake_type.BrakeType" title="vex.motor.brake_type.BrakeType"><span class="pre">BrakeType</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#Motor.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop Motor.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Stop the motor using the default brake mode.</p>
 <p>Parameters:
 - brakeType: The brake mode can be set to</p>
 <blockquote>
 <div><p>BrakeType.COAST, BRAKE, or HOLD.</p>
 </div></blockquote>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.timeout">
-<span class="sig-name descname"><span class="pre">timeout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.time.html#vex.time.TimeUnits" title="vex.time.TimeUnits"><span class="pre">TimeUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TimeUnits.SEC</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/vex/motor.html#Motor.timeout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.timeout" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a timeout in given time units.</p>
+<span class="sig-name descname"><span class="pre">timeout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.time.time_units.html#vex.time.time_units.TimeUnits" title="vex.time.time_units.TimeUnits"><span class="pre">TimeUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TimeUnits.SEC</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/vex/motor.html#Motor.timeout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.timeout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Motor Timeout.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Return a timeout in given time units.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="vex.motor.Motor.velocity">
-<span class="sig-name descname"><span class="pre">velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocityUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vex.motor.VelocityUnits" title="vex.motor.VelocityUnits"><span class="pre">VelocityUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">VelocityUnits.PCT</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/vex/motor.html#Motor.velocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.velocity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the current velocity of the motor.</p>
+<span class="sig-name descname"><span class="pre">velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocityUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.motor.velocity_units.html#vex.motor.velocity_units.VelocityUnits" title="vex.motor.velocity_units.VelocityUnits"><span class="pre">VelocityUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">VelocityUnits.PCT</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/vex/motor.html#Motor.velocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.Motor.velocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Motor’s Velocity.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Get the current velocity of the motor.</p>
 <p>Parameters:
 - velocityUnits: The measurement unit for the velocity.</p>
 <p>Returns:
 a float that represents the current velocity
 of the motor in the units defined in the parameter.</p>
+</div></blockquote>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="vex.motor.TorqueUnits">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.motor.</span></span><span class="sig-name descname"><span class="pre">TorqueUnits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#TorqueUnits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.TorqueUnits" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.motor.</span></span><span class="sig-name descname"><span class="pre">TorqueUnits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor/torque_units.html#TorqueUnits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.TorqueUnits" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
-<p>The measurement units for torque values.</p>
+<p>Torque Units.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>The measurement units for torque values.</p>
+<p>robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_torque_units.html</p>
+</div></blockquote>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="vex.motor.TorqueUnits.IN_LB">
 <span class="sig-name descname"><span class="pre">IN_LB</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#vex.motor.TorqueUnits.IN_LB" title="Permalink to this definition">¶</a></dt>
@@ -366,9 +477,14 @@ of the motor in the units defined in the parameter.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="vex.motor.TurnType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.motor.</span></span><span class="sig-name descname"><span class="pre">TurnType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#TurnType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.TurnType" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.motor.</span></span><span class="sig-name descname"><span class="pre">TurnType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor/turn_type.html#TurnType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.TurnType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
-<p>Left or right turn.</p>
+<p>Movement Turn Types.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Left or right turn.</p>
+<p>robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_turn_type.html</p>
+</div></blockquote>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="vex.motor.TurnType.LEFT">
 <span class="sig-name descname"><span class="pre">LEFT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#vex.motor.TurnType.LEFT" title="Permalink to this definition">¶</a></dt>
@@ -383,9 +499,14 @@ of the motor in the units defined in the parameter.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="vex.motor.VelocityUnits">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.motor.</span></span><span class="sig-name descname"><span class="pre">VelocityUnits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor.html#VelocityUnits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.VelocityUnits" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.motor.</span></span><span class="sig-name descname"><span class="pre">VelocityUnits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/motor/velocity_units.html#VelocityUnits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.motor.VelocityUnits" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
-<p>The measurement units for velocity values.</p>
+<p>Velocity Units.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>The measurement units for velocity values.</p>
+<p>robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_velocity_units.html</p>
+</div></blockquote>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="vex.motor.VelocityUnits.DPS">
 <span class="sig-name descname"><span class="pre">DPS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#vex.motor.VelocityUnits.DPS" title="Permalink to this definition">¶</a></dt>
@@ -408,6 +529,18 @@ of the motor in the units defined in the parameter.</p>
 
 </dd></dl>
 
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="vex.motor.brake_type.html">vex.motor.brake_type module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vex.motor.direction_type.html">vex.motor.direction_type module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vex.motor.torque_units.html">vex.motor.torque_units module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vex.motor.turn_type.html">vex.motor.turn_type module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vex.motor.velocity_units.html">vex.motor.velocity_units module</a></li>
+</ul>
+</div>
+</div>
 </div>
 
 
@@ -417,7 +550,7 @@ of the motor in the units defined in the parameter.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">DjAI</a></h1>
+<h1 class="logo"><a href="index.html">VEX-Py</a></h1>
 
 
 
@@ -458,7 +591,7 @@ of the motor in the units defined in the parameter.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2022, STEAM for Vietnam Foundation: AI & Robotics Educational Initiative.
+      &copy;2022, The Vinh LUONG (LƯƠNG Thế Vinh).
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
