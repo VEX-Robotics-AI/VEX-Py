@@ -4,10 +4,16 @@
 from collections.abc import Sequence
 from enum import IntEnum
 
+# pylint: disable=unused-import
+from .util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+
 
 __all__: Sequence[str] = ('Ports',)
 
 
+@robotmesh_doc("""
+    robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_ports.html
+""")
 class Ports(IntEnum):
     """VEX Ports."""
 
