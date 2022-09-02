@@ -24,6 +24,8 @@ __all__: Sequence[str] = (
 
 @robotmesh_doc("""
     Use the Brain class to see battery information, or write to the screen.
+
+    robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brain.html
 """)
 class Brain(SingletonDevice):
     """VEX Brain."""

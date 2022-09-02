@@ -14,6 +14,8 @@ __all__: Sequence[str] = ('BrainButton',)
 
 @robotmesh_doc("""
     Use the Button class to get values from the Brain's buttons.
+
+    robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brain_button.html
 """)
 class BrainButton:
     """Brain Button."""

@@ -17,6 +17,8 @@ __all__: Sequence[str] = ('BrainLcd',)
 
     * 21 characters wide
     * 5 lines (1-5)
+
+    robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brain_lcd.html
 """)
 class BrainLcd(SingletonDevice):
     """Brain LCD Screen."""

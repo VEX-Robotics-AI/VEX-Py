@@ -19,6 +19,9 @@ from .sound_type import SoundType
 __all__: Sequence[str] = 'BrainSound', 'NoteType', 'SoundType'
 
 
+@robotmesh_doc("""
+    robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brain_sound.html
+""")
 class BrainSound(SingletonDevice):
     """Brain Sound."""
 
