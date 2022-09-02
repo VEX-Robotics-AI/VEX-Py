@@ -19,7 +19,7 @@ rm $DOCS_BUILD_SOURCES_DIR/*.txt
 rm $DOCS_BUILD_STATIC_DIR/*
 
 
-$DOCS_DIR/parse-docstr
+$DOCS_DIR/bin/parse-docstr
 
 
 sphinx-autobuild $DOCS_DIR $DOCS_BUILD_DIR
