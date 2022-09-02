@@ -33,13 +33,11 @@ class BrainButton:
     @robotmesh_doc("""
         Get the pressed status of a button.
 
-        Returns
-        True if pressed, False otherwise.
+        Returns: True if pressed, False otherwise.
     """)
     @vexcode_doc("""
         Reports if the specified button on the VEX IQ Brain is being pressed.
 
-        How To Use:
         Reports True if the specified Brain button is pressed.
         Reports False if the specified Brain button is not pressed.
 
