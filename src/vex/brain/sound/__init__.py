@@ -4,14 +4,16 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
-from enum import Enum, IntEnum, auto
 
 from abm.decor import act
 
-from .._abstract import SingletonDevice
-from ..time import TimeUnits
+from ..._abstract import SingletonDevice
+from ...time import TimeUnits
 
-from ..util.doc import robotmesh_doc, vexcode_doc
+from ...util.doc import robotmesh_doc
+
+from .note_type import NoteType
+from .sound_type import SoundType
 
 
 __all__: Sequence[str] = 'BrainSound', 'NoteType', 'SoundType'
@@ -106,43 +108,3 @@ class BrainSound(SingletonDevice):
     @act
     def stop(self):
         """Stop Sound."""
-
-
-@robotmesh_doc("""
-    Musical note to play.
-""")
-class NoteType(IntEnum):
-    """Musical Note."""
-
-    silence: int = 0   # Stop playing/play a silence.
-    C: int = 1
-    D: int = 2
-    E: int = 3
-    F: int = 4
-    G: int = 5
-    A: int = 6
-    B: int = 7
-
-
-@vexcode_doc("""
-    Sound Effect
-""")
-class SoundType(Enum):
-    """Sound Effect."""
-
-    SIREN = auto()
-    WRONG_WAY = auto()
-    WRONG_WAY_SLOW = auto()
-    FILLUP = auto()
-    HEADLIGHTS_ON = auto()
-    HEADLIGHTS_OFF = auto()
-    TOLLBOOTH = auto()
-    ALARM = auto()
-    TADA = auto()
-    DOOR_CLOSE = auto()
-    RATCHET = auto()
-    WRENCH = auto()
-    SIREN2 = auto()
-    RATCHET2 = auto()
-    ALARM2 = auto()
-    POWER_DOWN = auto()
