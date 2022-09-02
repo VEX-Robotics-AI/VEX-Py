@@ -1,3 +1,4 @@
 pylint:
   disable:
+    - astroid-error
     - useless-suppression
