@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vex.touch_led module &#8212; DjAI 22.8.28 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-vex.touch_led">
+<span id="vex-touch-led-module"></span><h1>vex.touch_led module<a class="headerlink" href="#module-vex.touch_led" title="Permalink to this heading">¶</a></h1>
+<p>VEX Touch LED.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="vex.touch_led.FadeType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.touch_led.</span></span><span class="sig-name descname"><span class="pre">FadeType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/touch_led.html#FadeType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.touch_led.FadeType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>Fade types.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.touch_led.FadeType.FAST">
+<span class="sig-name descname"><span class="pre">FAST</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#vex.touch_led.FadeType.FAST" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.touch_led.FadeType.OFF">
+<span class="sig-name descname"><span class="pre">OFF</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#vex.touch_led.FadeType.OFF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="vex.touch_led.FadeType.SLOW">
+<span class="sig-name descname"><span class="pre">SLOW</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#vex.touch_led.FadeType.SLOW" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vex.touch_led.Touchled">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.touch_led.</span></span><span class="sig-name descname"><span class="pre">Touchled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.port.html#vex.port.Ports" title="vex.port.Ports"><span class="pre">Ports</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/touch_led.html#Touchled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.touch_led.Touchled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="vex.html#vex.Device" title="vex._abstract.Device"><code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code></a></p>
+<p>Use this class when programming with the touch LED device.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="vex.touch_led.Touchled.blink">
+<span class="sig-name descname"><span class="pre">blink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">hex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">off_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.25</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/touch_led.html#Touchled.blink"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.touch_led.Touchled.blink" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the led in the touchled sensor as blinking.</p>
+<p>Parameters:
+- color: color value: 0xRRGGBB
+- on_time: The time the led should remain on in seconds
+- off_time: The time the led should remain off in seconds</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vex.touch_led.Touchled.blink_hue">
+<span class="sig-name descname"><span class="pre">blink_hue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">colorHue</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.color_sensor.html#vex.color_sensor.ColorHue" title="vex.color_sensor.ColorHue"><span class="pre">ColorHue</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">off_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.25</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/touch_led.html#Touchled.blink_hue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.touch_led.Touchled.blink_hue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the led in the touchled sensor as blinking.</p>
+<p>Parameters:
+- colorHue: The color of the led: ColorHue enum value
+- on_time: The time the led should remain on in seconds
+- off_time: The time the led should remain off in seconds</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vex.touch_led.Touchled.blink_rgb">
+<span class="sig-name descname"><span class="pre">blink_rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">red</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">green</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blue</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">off_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.25</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/touch_led.html#Touchled.blink_rgb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.touch_led.Touchled.blink_rgb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the led in the touchled sensor as blinking.</p>
+<p>Parameters:
+- red: The red value of the led 0-255
+- green: The green value of the led 0-255
+- blue: The blue value of the led 0-255
+- on_time: The time the led should remain on in seconds
+- off_time: The time the led should remain off in seconds</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vex.touch_led.Touchled.brightness">
+<span class="sig-name descname"><span class="pre">brightness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">brightness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/touch_led.html#Touchled.brightness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.touch_led.Touchled.brightness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn on the led in the touchled sensor, or change current brightness.</p>
+<p>Parameters:
+- brightness: The brightness for the led 0-100</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vex.touch_led.Touchled.default_fade">
+<span class="sig-name descname"><span class="pre">default_fade</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fadeType</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#vex.touch_led.FadeType" title="vex.touch_led.FadeType"><span class="pre">FadeType</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/touch_led.html#Touchled.default_fade"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.touch_led.Touchled.default_fade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the default fade time for the touchled sensor.</p>
+<p>Parameters:
+- fadeType: The type of fade the touchled</p>
+<blockquote>
+<div><p>will use: FadeType.SLOW, FAST or OFF</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vex.touch_led.Touchled.off">
+<span class="sig-name descname"><span class="pre">off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/touch_led.html#Touchled.off"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.touch_led.Touchled.off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn off the led in the touchled sensor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vex.touch_led.Touchled.on">
+<span class="sig-name descname"><span class="pre">on</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">hex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brightness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/touch_led.html#Touchled.on"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.touch_led.Touchled.on" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn on the led in the touchled sensor.</p>
+<p>Parameters:
+- color: color value: 0xRRGGBB
+- brightness: The brightness for the led</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vex.touch_led.Touchled.on_hue">
+<span class="sig-name descname"><span class="pre">on_hue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">colorHue</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="vex.color_sensor.html#vex.color_sensor.ColorHue" title="vex.color_sensor.ColorHue"><span class="pre">ColorHue</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">brightness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/touch_led.html#Touchled.on_hue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.touch_led.Touchled.on_hue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn on the led in the touchled sensor.</p>
+<p>Parameters:
+- colorHue: The color of the led: ColorHue enum value
+- brightness: The brightness for the led</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vex.touch_led.Touchled.on_rgb">
+<span class="sig-name descname"><span class="pre">on_rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">red</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">green</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blue</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brightness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/touch_led.html#Touchled.on_rgb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.touch_led.Touchled.on_rgb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn on the led in the touchled sensor.</p>
+<p>Parameters:
+- red: The red value of the led, 0-255
+- green: The green value of the led, 0-255
+- blue: The blue value of the led, 0-255
+- brightness: The brightness for the led, 0-100</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vex.touch_led.Touchled.pressing">
+<span class="sig-name descname"><span class="pre">pressing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/vex/touch_led.html#Touchled.pressing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.touch_led.Touchled.pressing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the pressed status of the touchled device.</p>
+<p>Returns:
+True if pressed, False otherwise</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">DjAI</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, STEAM for Vietnam Foundation: AI & Robotics Educational Initiative.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/vex.touch_led.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
