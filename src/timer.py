@@ -9,7 +9,6 @@ from collections.abc import Sequence
 from typing_extensions import Self
 
 from abm.decor import act, sense
-from vex.units_common import rotation_units
 
 # pylint: disable=unused-import
 from vex.util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
