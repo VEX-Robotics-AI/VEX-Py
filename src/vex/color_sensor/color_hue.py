@@ -1,9 +1,13 @@
 """Color Hue."""
 
 
+from collections.abc import Sequence
 from enum import IntEnum
 
 from ..util.doc import robotmesh_doc
+
+
+__all__: Sequence[str] = ('ColorHue',)
 
 
 @robotmesh_doc("""
