@@ -29,7 +29,7 @@ import vex
 # -- Project information -----------------------------------------------------
 # sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-METADATA: dict[str, str] = metadata(distribution_name='DjAI')
+METADATA: dict[str, str] = metadata(distribution_name='VEX-Py')
 
 project: str = METADATA['Name']
 author: str = METADATA['Author']
