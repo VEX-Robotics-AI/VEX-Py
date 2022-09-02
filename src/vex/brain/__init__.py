@@ -10,6 +10,9 @@ from .button import BrainButton
 from .screen import BrainLcd
 from .sound import BrainSound, NoteType
 
+# pylint: disable=unused-import
+from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+
 
 __all__: Sequence[str] = (
     'Brain',
@@ -20,8 +23,11 @@ __all__: Sequence[str] = (
 )
 
 
+@robotmesh_doc("""
+    Use the Brain class to see battery information, or write to the screen.
+""")
 class Brain(SingletonDevice):
-    """Use the Brain class to see battery information, or write to the screen."""   # noqa: E501
+    """VEX Brain."""
 
     def __init__(self):
         """Initialize Brain."""
