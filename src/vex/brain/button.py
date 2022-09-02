@@ -1,11 +1,15 @@
 """Brain Buttons."""
 
 
+from collections.abc import Sequence
 from typing_extensions import Self
 
 from abm.decor import sense
 
 from ..util.doc import robotmesh_doc, vexcode_doc
+
+
+__all__: Sequence[str] = ('BrainButton',)
 
 
 @robotmesh_doc("""
