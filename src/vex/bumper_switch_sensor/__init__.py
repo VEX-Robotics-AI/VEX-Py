@@ -5,11 +5,11 @@ from collections.abc import Sequence
 
 from abm.decor import sense
 
-from ._abstract_device import Device
-from .brain.port import Ports
+from .._abstract_device import Device
+from ..brain.port import Ports
 
 # pylint: disable=unused-import
-from .util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
 
 
 __all__: Sequence[str] = ('Bumper',)
