@@ -19,13 +19,16 @@ from .button import ControllerButton
 __all__: Sequence[str] = 'Controller', 'ControllerButton', 'ControllerAxis'
 
 
-class Controller(SingletonDevice):
-    # pylint: disable=too-many-instance-attributes
-    """
-    Use the controller class to get values from the remote controller.
+@robotmesh_doc("""
+    Use the Controller class to get values from the remote controller.
 
     (as well as write to the controller's screen)
-    """
+
+    robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_controller.html
+""")
+class Controller(SingletonDevice):
+    # pylint: disable=too-many-instance-attributes
+    """Controller."""
 
     def __init__(self):
         """Initialize VEX Controller."""
@@ -42,13 +45,14 @@ class Controller(SingletonDevice):
         self._buttonRUp: ControllerButton = ControllerButton(mask='RUp')
         self._buttonRDown: ControllerButton = ControllerButton(mask='RDown')
 
-    @act
-    def set_deadband(self, deadband: float):
-        """
+    @robotmesh_doc("""
         Set the value of the controller axis deadband.
 
         (minimum absolute threshold at which position is reported as non-zero)
-        """
+    """)
+    @act
+    def set_deadband(self, deadband: float):
+        """Set Controller Axis Deadband Percent Threshold."""
         # pylint: disable=attribute-defined-outside-init
         self.deadband: float = deadband
 
