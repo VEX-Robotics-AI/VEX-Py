@@ -1,6 +1,6 @@
 [project]
 name = 'VEX-Py'
-version = '22.9.2'
+version = '22.9.3'
 
 description = 'API Stubs for VEXcode Python & Robot Mesh VEX Python B'
 readme = {file = 'README.md', content-type = 'text/markdown', charset = 'UTF-8'}

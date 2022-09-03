@@ -9,6 +9,8 @@ from collections.abc import Sequence
 from importlib.metadata import version
 import sys
 
+from abm import interactive
+
 from .brain import Brain, BrainButton, BrainLcd, BrainSound, NoteType, SoundType   # noqa: E501
 from .brain.port import Ports
 from .bumper_switch_sensor import Bumper
@@ -22,8 +24,6 @@ from .motor import (Motor,
 from .touch_led import Touchled, FadeType
 from .time import TimeUnits, wait
 from .units_common import DistanceUnits, RotationUnits
-
-from . import interactive
 
 
 __all__: Sequence[str] = (
