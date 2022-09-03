@@ -4,6 +4,8 @@
   "files.exclude": {
     "dist": true,
     "docs/_build": true,
+    "docs/_static": true,
+    "docs/*.html": true,
     "docs/*.rst": true,
     "**/*.egg-info": true,
     "**/.git": true,
