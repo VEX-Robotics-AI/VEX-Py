@@ -180,7 +180,7 @@ class Smartdrive(Drivetrain):
                                angle: float,
                                angleUnits: RotationUnits = RotationUnits.DEG,
                                velocity: Optional[float] = None,
-                               velocityUnits: VelocityUnits = VelocityUnits.PCT, /):   # noq: E501
+                               velocityUnits: VelocityUnits = VelocityUnits.PCT, /):   # noqa: E501
         """Start turning to target cumulative Rotation Angle."""
 
     @robotmesh_doc("""
