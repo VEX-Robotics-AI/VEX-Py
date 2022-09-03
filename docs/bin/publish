@@ -14,5 +14,6 @@ rsync --recursive --delete $DOCS_BUILD_STATIC_DIR/ $DOCS_STATIC_DIR/
 
 
 git add $DOCS_DIR/*.html $DOCS_STATIC_DIR/*
+git ls-files --deleted -- "$DOCS_DIR/*.html" | xargs git add
 git commit -m "update documentation"
 git push
