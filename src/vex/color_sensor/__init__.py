@@ -32,10 +32,8 @@ class Colorsensor(Device):
         - is_grayscale: Whether grayscale mode (LED on), default false
         - proximity: threshold (default 700)
     """)
-    def __init__(
-            self, index: Ports,
-            is_grayscale: bool = False,
-            proximity: float = 700):
+    def __init__(self, index: Ports,
+                 is_grayscale: bool = False, proximity: float = 700, /):
         """Initialize Color Sensor."""
         self.port: Ports = index
         self.is_grayscale: bool = is_grayscale
@@ -85,7 +83,7 @@ class Colorsensor(Device):
         (percentage 0-100 or raw 0-1024).
     """)
     @sense
-    def grayscale(self, raw: bool = False) -> int:
+    def grayscale(self, raw: bool = False, /) -> int:
         """Return grayscale value."""
 
     @robotmesh_doc("""
@@ -105,7 +103,7 @@ class Colorsensor(Device):
         - proximity: threshold (higher is closer) (default 700)
     """)
     @act
-    def set_proximity_threshold(self, proximity: float = 700):
+    def set_proximity_threshold(self, proximity: float = 700, /):
         """Set threshold for proximity."""
         self.proximity: float = proximity
 
@@ -116,5 +114,5 @@ class Colorsensor(Device):
         - state: if True, LED will be turned on
     """)
     @act
-    def led(self, state: bool):
+    def led(self, state: bool, /):
         """Set LED state."""

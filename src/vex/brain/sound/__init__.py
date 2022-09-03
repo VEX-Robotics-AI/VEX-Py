@@ -35,9 +35,8 @@ class BrainSound(SingletonDevice):
         - timeUnits: of time for the duration. Default sec.
     """)
     @act
-    def play(
-            self, note: NoteType, octave: int = 3,
-            duration: float = 0.5, timeUnits: TimeUnits = TimeUnits.SEC):
+    def play(self, note: NoteType, octave: int = 3,
+             duration: float = 0.5, timeUnits: TimeUnits = TimeUnits.SEC, /):
         """Play note/sound on Brain Sound Speaker."""
 
     @robotmesh_doc("""
@@ -49,9 +48,8 @@ class BrainSound(SingletonDevice):
         - timeUnits: of time for the duration. Default sec.
     """)
     @act
-    def play_raw(
-            self, note: NoteType,
-            duration: float = 0.5, timeUnits: TimeUnits = TimeUnits.SEC):
+    def play_raw(self, note: NoteType,
+                 duration: float = 0.5, timeUnits: TimeUnits = TimeUnits.SEC, /):   # noqa: E501
         """Play note/sound on Brain Sound Speaker."""
 
     @robotmesh_doc("""
@@ -62,7 +60,7 @@ class BrainSound(SingletonDevice):
         - waitForCompletion: wait for the sample to finish playing
     """)
     @act
-    def play_wave(self, waveType: int, waitForCompletion: bool = True):
+    def play_wave(self, waveType: int, waitForCompletion: bool = True, /):
         """Play WAV."""
 
     @robotmesh_doc("""
@@ -78,7 +76,7 @@ class BrainSound(SingletonDevice):
                        (in 1/8s: 1=eighth note...8 = full note)
     """)
     @act
-    def play_melody(self, melody: str):
+    def play_melody(self, melody: str, /):
         """Play musical melody."""
 
     @robotmesh_doc("""
@@ -88,7 +86,7 @@ class BrainSound(SingletonDevice):
         - effect: effect type [0..15]
     """)
     @act
-    def set_sound_effect(self, effect: int):
+    def set_sound_effect(self, effect: int, /):
         """Set Sound Effect."""
         # pylint: disable=attribute-defined-outside-init
         self.sound_effect: int = effect
@@ -100,7 +98,7 @@ class BrainSound(SingletonDevice):
         - volume: value [1=low...4=high]
     """)
     @act
-    def set_volume(self, volume: int):
+    def set_volume(self, volume: int, /):
         """Set Sound Volume."""
         # pylint: disable=attribute-defined-outside-init
         self.volume: int = volume

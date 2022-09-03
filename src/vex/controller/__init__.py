@@ -51,7 +51,7 @@ class Controller(SingletonDevice):
         (minimum absolute threshold at which position is reported as non-zero)
     """)
     @act
-    def set_deadband(self, deadband: float):
+    def set_deadband(self, deadband: float, /):
         """Set Controller Axis Deadband Percent Threshold."""
         # pylint: disable=attribute-defined-outside-init
         self.deadband: float = deadband

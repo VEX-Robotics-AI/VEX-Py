@@ -56,7 +56,7 @@ class Smartdrive(Drivetrain):
             gyro: Gyro,
             wheel_travel: float = 200, track_width: float = 176,
             distanceUnits: DistanceUnits = DistanceUnits.MM,
-            gear_ratio: float = 1):
+            gear_ratio: float = 1, /):
         """Initialize Smart Drivetrain."""
         # pylint: disable=super-init-not-called
 
@@ -117,7 +117,7 @@ class Smartdrive(Drivetrain):
             angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True) -> bool:
+            waitForCompletion: bool = True, /) -> bool:
         """Turn to Heading Angle."""
 
     @robotmesh_doc("""
@@ -129,7 +129,7 @@ class Smartdrive(Drivetrain):
             angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True) -> bool:
+            waitForCompletion: bool = True, /) -> bool:
         """Turn to cumulative Rotation Angle."""
 
     @robotmesh_doc("""
@@ -158,29 +158,29 @@ class Smartdrive(Drivetrain):
             angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True) -> bool:
+            waitForCompletion: bool = True, /) -> bool:
         """Turn for certain Rotation Angle."""
 
     @robotmesh_doc("""
         Start turn to heading.
     """)
     @act
-    def start_turn_to_heading(
-            self,
-            angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
-            velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT):
+    def start_turn_to_heading(self,
+                              angle: float,
+                              angleUnits: RotationUnits = RotationUnits.DEG,
+                              velocity: Optional[float] = None,
+                              velocityUnits: VelocityUnits = VelocityUnits.PCT, /):   # noqa: E501
         """Start turning to target Heading Angle."""
 
     @robotmesh_doc("""
         Start turn to rotation.
     """)
     @act
-    def start_turn_to_rotation(
-            self,
-            angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
-            velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT):
+    def start_turn_to_rotation(self,
+                               angle: float,
+                               angleUnits: RotationUnits = RotationUnits.DEG,
+                               velocity: Optional[float] = None,
+                               velocityUnits: VelocityUnits = VelocityUnits.PCT, /):   # noq: E501
         """Start turning to target cumulative Rotation Angle."""
 
     @robotmesh_doc("""
@@ -203,7 +203,7 @@ class Smartdrive(Drivetrain):
             self, turnType: TurnType,
             angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT):
+            velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Start turning for certain Rotation Angle."""
 
     @robotmesh_doc("""
@@ -229,10 +229,9 @@ class Smartdrive(Drivetrain):
                          a VelocityUnits enum value
     """)
     @act
-    def drive(
-            self, directionType: DirectionType,
-            velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT):
+    def drive(self, directionType: DirectionType,
+              velocity: Optional[float] = None,
+              velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Drive."""
 
     @robotmesh_doc("""
@@ -261,7 +260,7 @@ class Smartdrive(Drivetrain):
             distance: float, distanceUnits: DistanceUnits = DistanceUnits.MM,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True) -> bool:
+            waitForCompletion: bool = True, /) -> bool:
         """Drive a distance."""
 
     @robotmesh_doc("""
@@ -282,7 +281,7 @@ class Smartdrive(Drivetrain):
             self, directionType: DirectionType,
             distance: float, distanceUnits: DistanceUnits = DistanceUnits.MM,
             velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT):
+            velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Start driving a distance."""
 
     @robotmesh_doc("""
@@ -295,10 +294,9 @@ class Smartdrive(Drivetrain):
                          a VelocityUnits enum value
     """)
     @act
-    def turn(
-            self, turnType: TurnType,
-            velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT):
+    def turn(self, turnType: TurnType,
+             velocity: Optional[float] = None,
+             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Turn."""
 
     @robotmesh_doc("""
@@ -311,7 +309,7 @@ class Smartdrive(Drivetrain):
         - turnPower: percent power to apply to turning, -100..100
     """)
     @act
-    def arcade(self, drivePower: float, turnPower: float):
+    def arcade(self, drivePower: float, turnPower: float, /):
         """Arcade-drive."""
 
     @robotmesh_doc("""
@@ -322,7 +320,7 @@ class Smartdrive(Drivetrain):
                      If omitted, the value set in set_stopping is used.
     """)
     @act
-    def stop(self, brakeType: Optional[BrakeType] = None):
+    def stop(self, brakeType: Optional[BrakeType] = None, /):
         """Stop driving."""
 
     @robotmesh_doc("""
@@ -332,7 +330,7 @@ class Smartdrive(Drivetrain):
         - gear_ratio: gear ratio value, usually 1.0
     """)
     @act
-    def set_gear_ratio(self, gear_ratio: float):
+    def set_gear_ratio(self, gear_ratio: float, /):
         """Set Gear Ratio."""
         self.gear_ratio: float = gear_ratio
 
@@ -349,9 +347,8 @@ class Smartdrive(Drivetrain):
                          a VelocityUnits enum value
     """)
     @act
-    def set_drive_velocity(
-            self,
-            velocity: float, velocityUnits: VelocityUnits = VelocityUnits.PCT):
+    def set_drive_velocity(self, velocity: float,
+                           velocityUnits: VelocityUnits = VelocityUnits.PCT, /):   # noqa: E501
         """Set Driving Velocity."""
         self.drive_velocities[velocityUnits] = velocity
 
@@ -366,9 +363,8 @@ class Smartdrive(Drivetrain):
                          a VelocityUnits enum value
     """)
     @act
-    def set_turn_velocity(
-            self,
-            velocity: float, velocityUnits: VelocityUnits = VelocityUnits.PCT):
+    def set_turn_velocity(self, velocity: float,
+                          velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Set Turning Velocity."""
         self.turn_velocities[velocityUnits] = velocity
 
@@ -383,7 +379,7 @@ class Smartdrive(Drivetrain):
         - timeUnits: unit for the time parameter, a TimeUnits enum value
     """)
     @act
-    def set_timeout(self, time: float, timeUnits: TimeUnits = TimeUnits.SEC):
+    def set_timeout(self, time: float, timeUnits: TimeUnits = TimeUnits.SEC, /):   # noqa: E501
         """Set Motor Timeout."""
         self.timeouts[timeUnits] = time
 
@@ -391,7 +387,7 @@ class Smartdrive(Drivetrain):
         Return a timeout in given time units.
     """)
     @sense
-    def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC) -> float:
+    def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> float:
         """Return Motor Timeout."""
         return self.timeouts[timeUnits]
 
@@ -410,7 +406,7 @@ class Smartdrive(Drivetrain):
                      a BrakeType enum value (coast, brake, or hold).
     """)
     @act
-    def set_stopping(self, brakeType: BrakeType):
+    def set_stopping(self, brakeType: BrakeType, /):
         """Set Stopping Mode."""
         self.stopping: BrakeType = brakeType
 
@@ -424,9 +420,7 @@ class Smartdrive(Drivetrain):
         - velocityUnits: The measurement unit for the velocity.
     """)
     @sense
-    def velocity(
-            self,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT) -> float:
+    def velocity(self, velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:   # noqa: E501
         """Return Velocity."""
 
     @robotmesh_doc("""

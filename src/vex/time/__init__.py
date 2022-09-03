@@ -27,5 +27,5 @@ __all__: Sequence[str] = 'TimeUnits', 'wait'
     robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacevex.html#a6b9ca2db773bef3a3569a0d6b22f2749
 """)
 @act
-def wait(time: float, timeUnits: TimeUnits = TimeUnits.SEC):
+def wait(time: float, timeUnits: TimeUnits = TimeUnits.SEC, /):
     """Wait."""

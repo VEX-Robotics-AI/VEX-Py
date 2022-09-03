@@ -82,7 +82,7 @@ class Timer:
         Negative indices (from the end) supported. Time in seconds.
     """)
     @sense
-    def elapsed_time(self, lap_index: int = -1) -> float:
+    def elapsed_time(self, lap_index: int = -1, /) -> float:
         """Return Elapsed Time."""
 
     @robotmesh_doc("""

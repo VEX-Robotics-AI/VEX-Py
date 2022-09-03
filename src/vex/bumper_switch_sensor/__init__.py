@@ -27,7 +27,7 @@ class Bumper(Device):
         param:
         index: The port index for this bumper. The index is zero-based.
     """)
-    def __init__(self, index: Ports):
+    def __init__(self, index: Ports, /):
         """Initialize Bumper Switch Sensor."""
         self.port: Ports = index
 

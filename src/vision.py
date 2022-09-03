@@ -40,10 +40,9 @@ class Vision(Device):
         - signatures: List of signature objects
                       used to setup the detection signatures for this sensor.
     """)
-    def __init__(
-            self, index: Ports,
-            brightness: Optional[int] = None,
-            signatures: Optional[list] = None):
+    def __init__(self, index: Ports,
+                 brightness: Optional[int] = None,
+                 signatures: Optional[list] = None, /):
         """Initialize Vision Sensor."""
         self.port: Ports = index
         self.brightness: Optional[int] = brightness
@@ -72,9 +71,8 @@ class Vision(Device):
         The number of objects found from the ID passed in the parameter.
     """)
     @sense
-    def take_snapshot(self,
-                      id: int,   # pylint: disable=redefined-builtin
-                      count: Optional[int] = None) -> int:
+    def take_snapshot(self, id: int,   # pylint: disable=redefined-builtin
+                      count: Optional[int] = None, /) -> int:
         """Take Snapshot of current scene."""
 
     @robotmesh_doc("""

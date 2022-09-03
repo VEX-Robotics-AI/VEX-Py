@@ -42,7 +42,7 @@ class Touchled(Device):
                     will use: FadeType.SLOW, FAST or OFF
     """)
     @act
-    def default_fade(self, fadeType: FadeType):
+    def default_fade(self, fadeType: FadeType, /):
         """Set default Fade Type."""
         # pylint: disable=attribute-defined-outside-init
         self.fade_type: FadeType = fadeType
@@ -65,7 +65,7 @@ class Touchled(Device):
         - brightness: The brightness for the led
     """)
     @act
-    def on(self, color: hex, brightness: int = 100):
+    def on(self, color: hex, brightness: int = 100, /):
         """Turn on color."""
 
     @robotmesh_doc("""
@@ -76,7 +76,7 @@ class Touchled(Device):
         - brightness: The brightness for the led
     """)
     @act
-    def on_hue(self, colorHue: ColorHue, brightness: int = 100):
+    def on_hue(self, colorHue: ColorHue, brightness: int = 100, /):
         """Turn on Color Hue."""
 
     @robotmesh_doc("""
@@ -89,7 +89,7 @@ class Touchled(Device):
         - brightness: The brightness for the led, 0-100
     """)
     @act
-    def on_rgb(self, red: int, green: int, blue: int, brightness: int = 100):
+    def on_rgb(self, red: int, green: int, blue: int, brightness: int = 100, /):   # noqa: E501
         """Turn on RGB color."""
 
     @robotmesh_doc("""
@@ -106,7 +106,7 @@ class Touchled(Device):
         - brightness: The brightness for the led 0-100
     """)
     @act
-    def brightness(self, brightness: int):
+    def brightness(self, brightness: int, /):
         """Set Brightness Percent Level."""
 
     @robotmesh_doc("""
@@ -118,7 +118,7 @@ class Touchled(Device):
         - off_time: The time the led should remain off in seconds
     """)
     @act
-    def blink(self, color: hex, on_time: float = 0.25, off_time: float = 0.25):
+    def blink(self, color: hex, on_time: float = 0.25, off_time: float = 0.25, /):   # noqa: E501
         """Blink color."""
 
     @robotmesh_doc("""
@@ -130,9 +130,8 @@ class Touchled(Device):
         - off_time: The time the led should remain off in seconds
     """)
     @act
-    def blink_hue(
-            self, colorHue: ColorHue,
-            on_time: float = 0.25, off_time: float = 0.25):
+    def blink_hue(self, colorHue: ColorHue,
+                  on_time: float = 0.25, off_time: float = 0.25, /):
         """Blink Color Hue."""
 
     @robotmesh_doc("""
@@ -148,5 +147,5 @@ class Touchled(Device):
     @act
     def blink_rgb(   # pylint: disable=too-many-arguments
             self, red: int, green: int, blue: int,
-            on_time: float = 0.25, off_time: float = 0.25):
+            on_time: float = 0.25, off_time: float = 0.25, /):
         """Blink RGB Color."""

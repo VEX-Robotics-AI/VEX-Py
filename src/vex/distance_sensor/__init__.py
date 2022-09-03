@@ -28,7 +28,7 @@ class Sonar(Device):
         Parameters:
         - index: to the brain port.
     """)
-    def __init__(self, index: Ports):
+    def __init__(self, index: Ports, /):
         """Initialize Distance Sensor."""
         self.port: Ports = index
 
@@ -47,10 +47,8 @@ class Sonar(Device):
         - distanceUnits: a DistanceUnits enum value for the measurement unit.
     """)
     @act
-    def set_maximum(
-            self,
-            distance: float,
-            distanceUnits: DistanceUnits = DistanceUnits.MM):
+    def set_maximum(self, distance: float,
+                    distanceUnits: DistanceUnits = DistanceUnits.MM, /):
         """Set maximum measurable distance."""
         self.max_distances[distanceUnits] = distance
 
@@ -65,7 +63,5 @@ class Sonar(Device):
         an integer that represents the unit value specified by the parameter.
     """)
     @sense
-    def distance(
-            self,
-            distanceUnits: DistanceUnits = DistanceUnits.MM) -> int:
+    def distance(self, distanceUnits: DistanceUnits = DistanceUnits.MM, /) -> int:   # noqa: E501
         """Return measured distance to nearby object."""

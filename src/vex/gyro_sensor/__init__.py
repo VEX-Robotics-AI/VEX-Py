@@ -31,7 +31,7 @@ class Gyro(Device):
         - index: index to the brain port.
         - calibrate: set to calibrate the sensor now
     """)
-    def __init__(self, index: Ports, calibrate: bool = True):
+    def __init__(self, index: Ports, calibrate: bool = True, /):
         """Initialize Gyro Sensor."""
         self.port: Ports = index
         self.calibrate: bool = calibrate
@@ -55,7 +55,7 @@ class Gyro(Device):
     def start_calibration(
             self,
             gyroCalibrationType: GyroCalibrationType = GyroCalibrationType.QUICK,   # noqa: E501
-            waitForCompletion: bool = True):
+            waitForCompletion: bool = True, /):
         """Start calibrating Gyro Sensor."""
 
     @robotmesh_doc("""
@@ -77,10 +77,8 @@ class Gyro(Device):
         - rotationUnits: The rotation unit for the heading
     """)
     @act
-    def set_heading(
-            self,
-            value: float = 0,
-            rotationUnits: RotationUnits = RotationUnits.DEG):
+    def set_heading(self, value: float = 0,
+                    rotationUnits: RotationUnits = RotationUnits.DEG, /):
         """Set Gyro Heading Angle Value."""
         self.headings[rotationUnits] = value
 
@@ -92,10 +90,8 @@ class Gyro(Device):
         - rotationUnits: The rotation unit for the angle
     """)
     @act
-    def set_rotation(
-            self,
-            value: float = 0,
-            rotationUnits: RotationUnits = RotationUnits.DEG):
+    def set_rotation(self, value: float = 0,
+                     rotationUnits: RotationUnits = RotationUnits.DEG, /):
         """Set Gyro Cumulative Rotation Angle Value."""
         self.rotations[rotationUnits] = value
 
@@ -106,9 +102,7 @@ class Gyro(Device):
         - rotationUnits: The measurement unit for the gyro device.
     """)
     @sense
-    def heading(
-            self,
-            rotationUnits: RotationUnits = RotationUnits.DEG) -> float:
+    def heading(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:   # noqa: E501
         """Return Gyro Heading Angle Value."""
 
     @robotmesh_doc("""
@@ -118,7 +112,5 @@ class Gyro(Device):
         - rotationUnits: The measurement unit for the gyro device.
     """)
     @sense
-    def rotation(
-            self,
-            rotationUnits: RotationUnits = RotationUnits.DEG) -> float:
+    def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:   # noqa: E501
         """Return Gyro Cumulative Rotation Angle Value."""

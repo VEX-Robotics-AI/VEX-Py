@@ -37,7 +37,7 @@ class BrainLcd(SingletonDevice):
               Supported format flags are g (all) x (hex) d (int) f (float)
     """)
     @act
-    def print_line(self, number: int, text: str):
+    def print_line(self, number: int, text: str, /):
         """Print to a line on Brain LCD Screen."""
 
     @robotmesh_doc("""

@@ -42,7 +42,7 @@ class Motor(Device):
         - index: The port index for this motor. The index is zero-based.
         - reverse: Sets the reverse flag for the new motor object.
     """)
-    def __init__(self, index: Ports, reverse: bool = False):
+    def __init__(self, index: Ports, reverse: bool = False, /):
         """Initialize Motor."""
         self.port: Ports = index
         self.reverse: bool = reverse
@@ -80,7 +80,7 @@ class Motor(Device):
                        spin the motor in the opposite direction.
     """)
     @act
-    def set_reversed(self, is_reversed: bool):
+    def set_reversed(self, is_reversed: bool, /):
         """Set Reversed Mode."""
         self.reverse: bool = is_reversed
 
@@ -97,9 +97,8 @@ class Motor(Device):
                          a VelocityUnits enum value.
     """)
     @act
-    def set_velocity(
-            self,
-            velocity: float, velocityUnits: VelocityUnits = VelocityUnits.PCT):
+    def set_velocity(self, velocity: float,
+                     velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Set Velocity."""
         self.velocities[velocityUnits] = velocity
 
@@ -113,7 +112,7 @@ class Motor(Device):
                      BrakeType.COAST, BRAKE, or HOLD.
     """)
     @act
-    def set_stopping(self, brakeType: BrakeType):
+    def set_stopping(self, brakeType: BrakeType, /):
         """Set Stopping Mode."""
         self.stopping: BrakeType = brakeType
 
@@ -135,9 +134,8 @@ class Motor(Device):
                          a RotationUnits enum value.
     """)
     @act
-    def set_rotation(
-            self,
-            value: float, rotationUnits: RotationUnits = RotationUnits.DEG):
+    def set_rotation(self, value: float,
+                     rotationUnits: RotationUnits = RotationUnits.DEG, /):
         """Set Motor Rotation Value to specific value."""
         self.rotations[rotationUnits] = value
 
@@ -152,7 +150,7 @@ class Motor(Device):
         - timeUnits: The measurement unit for the time, a TimeUnits enum value.
     """)
     @act
-    def set_timeout(self, time: float, timeUnits: TimeUnits = TimeUnits.SEC):
+    def set_timeout(self, time: float, timeUnits: TimeUnits = TimeUnits.SEC, /):   # noqa: E501
         """Set Motor Timeout Threshold."""
         self.timeouts[timeUnits] = time
 
@@ -160,7 +158,7 @@ class Motor(Device):
         Return a timeout in given time units.
     """)
     @sense
-    def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC) -> float:
+    def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> float:
         """Return Motor Timeout."""
         return self.timeouts[timeUnits]
 
@@ -183,9 +181,8 @@ class Motor(Device):
                          a VelocityUnits enum value.
     """)
     @act
-    def spin(
-            self, dir: DirectionType,   # pylint: disable=redefined-builtin
-            velocity: float, velocityUnits: VelocityUnits = VelocityUnits.PCT):
+    def spin(self, dir: DirectionType,   # pylint: disable=redefined-builtin
+             velocity: float, velocityUnits: VelocityUnits = VelocityUnits.PCT, /):   # noqa: E501
         """Spin Motor."""
 
     @robotmesh_doc("""
@@ -210,7 +207,7 @@ class Motor(Device):
             rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True) -> bool:
+            waitForCompletion: bool = True, /) -> bool:
         """Spin Motor to target Rotation Angle Value."""
 
     @robotmesh_doc("""
@@ -240,7 +237,7 @@ class Motor(Device):
             rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True) -> bool:
+            waitForCompletion: bool = True, /) -> bool:
         """Spin Motor for a certain Rotation Angle Value."""
 
     @robotmesh_doc("""
@@ -260,7 +257,7 @@ class Motor(Device):
             self, dir: DirectionType,   # pylint: disable=redefined-builtin
             time: str, timeUnits: TimeUnits = TimeUnits.SEC,
             velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT):
+            velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Spin Motor for a certain Time Duration."""
 
     @robotmesh_doc("""
@@ -276,11 +273,11 @@ class Motor(Device):
         - velocityUnits: The measurement unit for the velocity value.
     """)
     @act
-    def start_spin_to(
-            self,
-            rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
-            velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT):
+    def start_spin_to(self,
+                      rotation: float,
+                      rotationUnits: RotationUnits = RotationUnits.DEG,
+                      velocity: Optional[float] = None,
+                      velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Start spinning Motor to a certain Target Rotation Angle Value."""
 
     @robotmesh_doc("""
@@ -301,7 +298,7 @@ class Motor(Device):
             self, dir: DirectionType,   # pylint: disable=redefined-builtin
             rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT):
+            velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Start spinning motor for a certain Rotation Angle Value."""
 
     @robotmesh_doc("""
@@ -334,7 +331,7 @@ class Motor(Device):
                      BrakeType.COAST, BRAKE, or HOLD.
     """)
     @act
-    def stop(self, brakeType: Optional[BrakeType] = None):
+    def stop(self, brakeType: Optional[BrakeType] = None, /):
         """Stop Motor."""
 
     @robotmesh_doc("""
@@ -344,7 +341,7 @@ class Motor(Device):
         - value: Sets the amount of torque (0 to 100%)
     """)
     @act
-    def set_max_torque_percent(self, value: float):
+    def set_max_torque_percent(self, value: float, /):
         """Set Max Torque Percent."""
         self.max_torque[TorqueUnits.PCT] = value
 
@@ -356,9 +353,8 @@ class Motor(Device):
         - torqueUnits: The measurement unit for the torque value.
     """)
     @act
-    def set_max_torque(
-            self,
-            value: float, torqueUnits: TorqueUnits = TorqueUnits.NM):
+    def set_max_torque(self, value: float,
+                       torqueUnits: TorqueUnits = TorqueUnits.NM, /):
         """Set Max Torque."""
         self.max_torque[torqueUnits] = value
 
@@ -369,7 +365,7 @@ class Motor(Device):
         - value: Sets the amount of torque in Amps (max 1.2A)
     """)
     @act
-    def set_max_torque_current(self, value: float):
+    def set_max_torque_current(self, value: float, /):
         """Set Max Torque Current."""
         # pylint: disable=attribute-defined-outside-init
         self.max_torque_current: float = value
@@ -385,9 +381,7 @@ class Motor(Device):
         the motor in the units defined in the parameter.
     """)
     @sense
-    def rotation(
-            self,
-            rotationUnits: RotationUnits = RotationUnits.DEG) -> float:
+    def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:   # noqa: E501
         """Return Motor's cumulative Rotation Angle Value."""
 
     @robotmesh_doc("""
@@ -401,9 +395,7 @@ class Motor(Device):
         of the motor in the units defined in the parameter.
     """)
     @sense
-    def velocity(
-            self,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT) -> float:
+    def velocity(self, velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:   # noqa: E501
         """Return Motor's Velocity."""
 
     @robotmesh_doc("""
