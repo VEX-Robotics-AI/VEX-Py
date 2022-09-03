@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vex.controller package &#8212; VEX-Py 22.9.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-vex.controller">
+<span id="vex-controller-package"></span><h1>vex.controller package<a class="headerlink" href="#module-vex.controller" title="Permalink to this heading">¶</a></h1>
+<p>VEX Controller.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="vex.controller.Controller">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.controller.</span></span><span class="sig-name descname"><span class="pre">Controller</span></span><a class="reference internal" href="_modules/vex/controller.html#Controller"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.controller.Controller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">SingletonDevice</span></code></p>
+<p>Controller.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Use the Controller class to get values from the remote controller.</p>
+<p>(as well as write to the controller’s screen)</p>
+<p>robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_controller.html</p>
+</div></blockquote>
+<dl class="py property">
+<dt class="sig sig-object py" id="vex.controller.Controller.axisA">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">axisA</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="vex.controller.axis.html#vex.controller.axis.ControllerAxis" title="vex.controller.axis.ControllerAxis"><span class="pre">ControllerAxis</span></a></em><a class="headerlink" href="#vex.controller.Controller.axisA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Controller Axis A.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vex.controller.Controller.axisB">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">axisB</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="vex.controller.axis.html#vex.controller.axis.ControllerAxis" title="vex.controller.axis.ControllerAxis"><span class="pre">ControllerAxis</span></a></em><a class="headerlink" href="#vex.controller.Controller.axisB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Controller Axis B.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vex.controller.Controller.axisC">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">axisC</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="vex.controller.axis.html#vex.controller.axis.ControllerAxis" title="vex.controller.axis.ControllerAxis"><span class="pre">ControllerAxis</span></a></em><a class="headerlink" href="#vex.controller.Controller.axisC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Controller Axis C.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vex.controller.Controller.axisD">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">axisD</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="vex.controller.axis.html#vex.controller.axis.ControllerAxis" title="vex.controller.axis.ControllerAxis"><span class="pre">ControllerAxis</span></a></em><a class="headerlink" href="#vex.controller.Controller.axisD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Controller Axis D.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vex.controller.Controller.buttonEDown">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">buttonEDown</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="vex.controller.button.html#vex.controller.button.ControllerButton" title="vex.controller.button.ControllerButton"><span class="pre">ControllerButton</span></a></em><a class="headerlink" href="#vex.controller.Controller.buttonEDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Controller Button E-Down.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vex.controller.Controller.buttonEUp">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">buttonEUp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="vex.controller.button.html#vex.controller.button.ControllerButton" title="vex.controller.button.ControllerButton"><span class="pre">ControllerButton</span></a></em><a class="headerlink" href="#vex.controller.Controller.buttonEUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Controller Button E-Up.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vex.controller.Controller.buttonFDown">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">buttonFDown</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="vex.controller.button.html#vex.controller.button.ControllerButton" title="vex.controller.button.ControllerButton"><span class="pre">ControllerButton</span></a></em><a class="headerlink" href="#vex.controller.Controller.buttonFDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Controller Button F-Down.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vex.controller.Controller.buttonFUp">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">buttonFUp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="vex.controller.button.html#vex.controller.button.ControllerButton" title="vex.controller.button.ControllerButton"><span class="pre">ControllerButton</span></a></em><a class="headerlink" href="#vex.controller.Controller.buttonFUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Controler Button F-Up.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vex.controller.Controller.buttonLDown">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">buttonLDown</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="vex.controller.button.html#vex.controller.button.ControllerButton" title="vex.controller.button.ControllerButton"><span class="pre">ControllerButton</span></a></em><a class="headerlink" href="#vex.controller.Controller.buttonLDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Controller Button L-Down.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vex.controller.Controller.buttonLUp">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">buttonLUp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="vex.controller.button.html#vex.controller.button.ControllerButton" title="vex.controller.button.ControllerButton"><span class="pre">ControllerButton</span></a></em><a class="headerlink" href="#vex.controller.Controller.buttonLUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Controller Button L-Up.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vex.controller.Controller.buttonRDown">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">buttonRDown</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="vex.controller.button.html#vex.controller.button.ControllerButton" title="vex.controller.button.ControllerButton"><span class="pre">ControllerButton</span></a></em><a class="headerlink" href="#vex.controller.Controller.buttonRDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Controller Button R-Down.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vex.controller.Controller.buttonRUp">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">buttonRUp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="vex.controller.button.html#vex.controller.button.ControllerButton" title="vex.controller.button.ControllerButton"><span class="pre">ControllerButton</span></a></em><a class="headerlink" href="#vex.controller.Controller.buttonRUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Controller Button R-Up.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vex.controller.Controller.set_deadband">
+<span class="sig-name descname"><span class="pre">set_deadband</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deadband</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/controller.html#Controller.set_deadband"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.controller.Controller.set_deadband" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set Controller Axis Deadband Percent Threshold.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Set the value of the controller axis deadband.</p>
+<p>(minimum absolute threshold at which position is reported as non-zero)</p>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vex.controller.ControllerAxis">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.controller.</span></span><span class="sig-name descname"><span class="pre">ControllerAxis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Controller</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/controller/axis.html#ControllerAxis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.controller.ControllerAxis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Controller Joystick Axis.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Use the Axis class to get values from one of the controller’s joysticks.</p>
+<p>robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_controller_axis.html</p>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="vex.controller.ControllerAxis.position">
+<span class="sig-name descname"><span class="pre">position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/vex/controller/axis.html#ControllerAxis.position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.controller.ControllerAxis.position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Controller Joystick Axis Percent Position.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Get the position of the joystick axis on a scale from -100 to 100.</p>
+<p>Returns
+an integer that represents the position of the joystick axis.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vex.controller.ControllerAxis.value">
+<span class="sig-name descname"><span class="pre">value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/vex/controller/axis.html#ControllerAxis.value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.controller.ControllerAxis.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Controller Joystick Axis Raw Value.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Get the value of the joystick axis on a scale from -127 to 127.</p>
+<p>Returns
+an integer that represents the value of the joystick axis.</p>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vex.controller.ControllerButton">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">vex.controller.</span></span><span class="sig-name descname"><span class="pre">ControllerButton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vex/controller/button.html#ControllerButton"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.controller.ControllerButton" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Controller Button.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Use the Button class to get values from the controller’s buttons.</p>
+<p>robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_controller_button.html</p>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="vex.controller.ControllerButton.pressing">
+<span class="sig-name descname"><span class="pre">pressing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/vex/controller/button.html#ControllerButton.pressing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vex.controller.ControllerButton.pressing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Controller Button’s pressed status.</p>
+<p>ROBOT MESH PYTHON B:</p>
+<blockquote>
+<div><p>Get the status of a button.</p>
+<p>Returns:
+True if pressed, false otherwise</p>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="vex.controller.axis.html">vex.controller.axis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vex.controller.button.html">vex.controller.button module</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">VEX-Py</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, The Vinh LUONG (LƯƠNG Thế Vinh).
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/vex.controller.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
