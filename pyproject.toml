@@ -45,7 +45,7 @@ classifiers = [
 dependencies = [
   'Typing-Extensions >= 4.3.0',
 
-  'Agent-Behavior-Model >= 22.9.2',
+  'Agent-Behavior-Model >= 22.9.3',
 ]
 
 
