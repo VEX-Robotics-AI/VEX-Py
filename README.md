@@ -1,6 +1,6 @@
 # API Stubs for VEXcode Python & Robot Mesh VEX Python B
 
-[![codecov](https://codecov.io/gh/VEX-Robotics-AI/VEX-Py/branch/master/graph/badge.svg)](https://codecov.io/gh/VEX-Robotics-AI/VEX-Py/tree/master)
+[![codecov](https://codecov.io/gh/VEX-Robotics-AI/VEX-Py/branch/main/graph/badge.svg)](https://codecov.io/gh/VEX-Robotics-AI/VEX-Py/)
 
 ##  Robot Mesh VEX Python B
 
