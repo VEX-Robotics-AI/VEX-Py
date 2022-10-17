@@ -15,3 +15,10 @@ Modules not stubbed:
 - `sys`: clash with Python's built-in `sys` module, with some extra funcs:
   - `run_in_thread`
   - `wait_for`
+
+
+# Testing
+
+```python
+  python3 -m pytest tests
+```
