@@ -1,5 +1,6 @@
 # API Stubs for VEXcode Python & Robot Mesh VEX Python B
 
+[![codecov](https://codecov.io/gh/VEX-Robotics-AI/VEX-Py/branch/master/graph/badge.svg)](https://codecov.io/gh/VEX-Robotics-AI/VEX-Py/tree/master)
 
 ##  Robot Mesh VEX Python B
 
@@ -15,3 +16,16 @@ Modules not stubbed:
 - `sys`: clash with Python's built-in `sys` module, with some extra funcs:
   - `run_in_thread`
   - `wait_for`
+
+
+# Testing
+
+Without coverage (fast):
+```bash
+  python3 -m pytest src/
+```
+
+With coverage:
+```bash
+  python3 -m pytest --cov src/
+```
