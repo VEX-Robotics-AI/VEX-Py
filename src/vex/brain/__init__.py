@@ -10,6 +10,7 @@ from .button import BrainButton
 from .screen import BrainLcd
 from .sound import BrainSound, NoteType, SoundType
 from ..time import TimeUnits
+from .timer import BrainTimer
 
 from ..util.doc import robotmesh_doc, vexcode_doc
 
@@ -41,6 +42,7 @@ class Brain(SingletonDevice):
         self._buttonUp: BrainButton = BrainButton(id="UP")
         self._buttonDown: BrainButton = BrainButton(id="DOWN")
         self._sound: BrainSound = BrainSound()
+        self._timer: BrainTimer = BrainTimer()
 
     @property
     def screen(self) -> BrainLcd:
@@ -66,6 +68,11 @@ class Brain(SingletonDevice):
     def sound(self) -> BrainSound:
         """Brain Sound."""
         return self._sound
+
+    @property
+    def timer(self) -> BrainTimer:
+        """Brain Timer."""
+        return self._timer
 
     @vexcode_doc(
         """
