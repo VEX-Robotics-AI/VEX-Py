@@ -13,7 +13,7 @@ class TestBrainTimmer(unittest.TestCase):
 
     def test_brain_timer_time(self):
         with replace_stdin("""1234"""):
-            assert self.brain.timer.time(SECONDS) == 1234
+            self.assertEqual(self.brain.timer.time(SECONDS), 1234)
 
 
 if __name__ == "__main__":

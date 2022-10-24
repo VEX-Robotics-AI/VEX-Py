@@ -20,35 +20,35 @@ class TestInertial(unittest.TestCase):
 
     def test_heading(self):
         with replace_stdin("""32.1"""):
-            assert self.inertial.heading(DEGREES) == 32.1
+            self.assertEqual(self.inertial.heading(DEGREES), 32.1)
 
     def test_rotation(self):
         with replace_stdin("""32.1"""):
-            assert self.inertial.rotation(DEGREES) == 32.1
+            self.assertEqual(self.inertial.rotation(DEGREES), 32.1)
 
     def test_acceleration(self):
         with replace_stdin("""32.1"""):
-            assert self.inertial.acceleration(XAXIS) == 32.1
+            self.assertEqual(self.inertial.acceleration(XAXIS), 32.1)
         with replace_stdin("""32.1"""):
-            assert self.inertial.acceleration(YAXIS) == 32.1
+            self.assertEqual(self.inertial.acceleration(YAXIS), 32.1)
         with replace_stdin("""32.1"""):
-            assert self.inertial.acceleration(ZAXIS) == 32.1
+            self.assertEqual(self.inertial.acceleration(ZAXIS), 32.1)
 
     def test_gyro_rate(self):
         with replace_stdin("""32.1"""):
-            assert self.inertial.gyro_rate(XAXIS, VelocityUnits.DPS) == 32.1
+            self.assertEqual(self.inertial.gyro_rate(XAXIS, VelocityUnits.DPS), 32.1)
         with replace_stdin("""32.1"""):
-            assert self.inertial.gyro_rate(YAXIS, VelocityUnits.DPS) == 32.1
+            self.assertEqual(self.inertial.gyro_rate(YAXIS, VelocityUnits.DPS), 32.1)
         with replace_stdin("""32.1"""):
-            assert self.inertial.gyro_rate(ZAXIS, VelocityUnits.DPS) == 32.1
+            self.assertEqual(self.inertial.gyro_rate(ZAXIS, VelocityUnits.DPS), 32.1)
 
     def test_orientation(self):
         with replace_stdin("""32.1"""):
-            assert self.inertial.orientation(PITCH, DEGREES) == 32.1
+            self.assertEqual(self.inertial.orientation(PITCH, DEGREES), 32.1)
         with replace_stdin("""32.1"""):
-            assert self.inertial.orientation(ROLL, DEGREES) == 32.1
+            self.assertEqual(self.inertial.orientation(ROLL, DEGREES), 32.1)
         with replace_stdin("""32.1"""):
-            assert self.inertial.orientation(YAW, DEGREES) == 32.1
+            self.assertEqual(self.inertial.orientation(YAW, DEGREES), 32.1)
 
 
 if __name__ == "__main__":
