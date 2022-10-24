@@ -5,8 +5,6 @@ from typing_extensions import Self
 from abm.decor import act, sense
 from vex.util.doc import vexcode_doc
 
-# from vex.util import SECONDS
-
 
 @vexcode_doc("""VEX brain.timer""")
 class BrainTimer:
@@ -49,5 +47,5 @@ class BrainTimer:
         The UNITS parameter accepts either SECONDS or MSEC (milliseconds) as a valid argument."""
     )
     @sense
-    def time(self, units=0) -> float:
+    def time(self, units) -> float:
         """Reports the value of the IQ Brain's timer."""
