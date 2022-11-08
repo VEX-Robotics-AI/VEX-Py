@@ -3,6 +3,7 @@
 .mypy_cache/
 __pycache__/
 .ropeproject/
+.coverage
 
 
 # Documentation
@@ -13,3 +14,7 @@ docs/*.rst
 # Visual Studio Code
 .vscode/*.log
 *.code-workspace
+
+
+# Others
+.DS_Store
