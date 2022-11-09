@@ -12,6 +12,7 @@ from ..util.doc import robotmesh_doc, vexcode_doc
 __all__: Sequence[str] = ("BrainLcd",)
 
 
+# TODO: add VEXcode features
 @robotmesh_doc(
     """
     Use this class to write or draw to the brain's LCD screen.
@@ -66,7 +67,7 @@ class BrainLcd(SingletonDevice):
     @vexcode_doc(
         """
         Set the cursor location for Brain's Print commands.
-        
+
         brain.screen.set_cursor(ROW, COL).
     """
     )
