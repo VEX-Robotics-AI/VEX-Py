@@ -9,7 +9,7 @@ from .._abstract_device import SingletonDevice
 from .battery import BrainBattery
 from .button import BrainButton
 from .screen import BrainLcd
-from .sound import BrainSound, NoteType, SoundType
+from .speaker import BrainSound, NoteType, SoundType
 from ..time import TimeUnits
 from .timer import BrainTimer
 
