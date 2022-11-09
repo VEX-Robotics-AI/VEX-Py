@@ -15,6 +15,7 @@ from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
 __all__: Sequence[str] = ('Bumper',)
 
 
+# TODO: add VEXcode doc
 @robotmesh_doc("""
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_bumper.html
 """)
