@@ -19,7 +19,9 @@ from .button import ControllerButton
 __all__: Sequence[str] = 'Controller', 'ControllerButton', 'ControllerAxis'
 
 
-# TODO: add VEXcode doc
+# TODO:
+# - add VEXcode doc
+# - add L3 & R3 buttons
 @robotmesh_doc("""
     Use the Controller class to get values from the remote controller.
 
