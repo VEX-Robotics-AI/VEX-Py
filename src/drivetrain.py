@@ -31,6 +31,7 @@ __all__: Sequence[str] = ('Drivetrain',)
 DrivetrainMotorType = Motor | MotorGroup | list[Motor] | tuple[Motor]
 
 
+# TODO: add VEXcode
 @robotmesh_doc("""
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classdrivetrain_1_1_drivetrain.html
 """)
