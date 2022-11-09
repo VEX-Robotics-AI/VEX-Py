@@ -1,4 +1,5 @@
-"""VEX Brain.Timer"""
+"""VEX Brain Timer."""
+
 
 from typing_extensions import Self
 
