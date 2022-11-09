@@ -8,7 +8,7 @@ from collections.abc import Sequence
 from .._abstract_device import SingletonDevice
 from .button import BrainButton
 from .screen import BrainLcd
-from .sound import BrainSound, NoteType, SoundType
+from .speaker import BrainSound, NoteType, SoundType
 from ..time import TimeUnits
 from .timer import BrainTimer
 
