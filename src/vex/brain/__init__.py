@@ -8,7 +8,7 @@ from collections.abc import Sequence
 from .._abstract_device import SingletonDevice
 from .button import BrainButton
 from .screen import BrainLcd
-from .sound import BrainSound, NoteType, SoundType
+from .speaker import BrainSound, NoteType, SoundType
 from ..time import TimeUnits
 from .timer import BrainTimer
 
@@ -96,6 +96,6 @@ class Brain(SingletonDevice):
         - duration: time. 0 to start playing without blocking. Default 0.5 ms.
         """
     )
-    def play_note(self, note: NoteType, octave: int = 3, duration: float = 0.5):
+    def play_note(self, note: NoteType, octave: int = 3, duration: float = 0.5):  # noqa: E501
         """Play a musical note on the speaker."""
         return self.sound.play(note, octave, duration, TimeUnits.MSEC)
