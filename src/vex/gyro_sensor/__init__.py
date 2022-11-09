@@ -18,6 +18,7 @@ from .calibration_type import GyroCalibrationType
 __all__: Sequence[str] = 'Gyro', 'GyroCalibrationType'
 
 
+# TODO: add VEXcode doc
 @robotmesh_doc("""
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_gyro.html
 """)
