@@ -18,15 +18,22 @@ from .brain import (
     BrainSound,
     NoteType,
     SoundType,
-)  # noqa: E501
+)
 from .brain.port import Ports
 from .bumper_switch_sensor import Bumper
-from .color_sensor import Colorsensor, ColorHue
+from .color_sensor import ColorSensor, Colorsensor, ColorHue
 from .distance_sensor import Sonar
 from .controller import Controller, ControllerAxis, ControllerButton
 from .inertial import Inertial, AxisType, OrientationType
 from .gyro_sensor import Gyro, GyroCalibrationType
-from .motor import Motor, BrakeType, DirectionType, TurnType, TorqueUnits, VelocityUnits
+from .motor import (
+    Motor,
+    BrakeType,
+    DirectionType,
+    TurnType,
+    TorqueUnits,
+    VelocityUnits,
+)
 from .touch_led import Touchled, FadeType
 from .time import TimeUnits, wait
 from .units_common import DistanceUnits, RotationUnits
@@ -42,7 +49,7 @@ __all__: Sequence[str] = (
     "SoundType",
     "Ports",
     "Bumper",
-    "Colorsensor",
+    "ColorSensor", "Colorsensor",
     "ColorHue",
     "Inertial",
     "AxisType",

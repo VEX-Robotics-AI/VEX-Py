@@ -21,7 +21,7 @@ __all__: Sequence[str] = 'Colorsensor', 'ColorHue'
 @robotmesh_doc("""
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_colorsensor.html
 """)
-class Colorsensor(Device):
+class ColorSensor(Device):
     """VEX Color Sensor."""
 
     @robotmesh_doc("""
@@ -116,3 +116,7 @@ class Colorsensor(Device):
     @act
     def led(self, state: bool, /):
         """Set LED state."""
+
+
+# alias
+Colorsensor = ColorSensor
