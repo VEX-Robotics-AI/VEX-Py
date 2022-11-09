@@ -18,6 +18,7 @@ from .fade_type import FadeType
 __all__: Sequence[str] = "Touchled", "FadeType"
 
 
+# TODO: add VEXcode doc
 @robotmesh_doc(
     """
     Use this class when programming with the touch LED device.
