@@ -1,4 +1,4 @@
-"""VEX Motor Group.
+"""Motor Group.
 
 Robot Mesh Python B:
 robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacemotor__group.html
@@ -19,16 +19,16 @@ from vex import (BrakeType,
                  TorqueUnits,
                  VelocityUnits)
 
-# pylint: disable=unused-import
-from vex.util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from vex.util.doc import robotmesh_doc, vexcode_doc
 
 
 __all__: Sequence[str] = ('MotorGroup',)
 
 
-# TODO: add VEXcode
 @robotmesh_doc("""
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classmotor__group_1_1_motor_group.html
+""")
+@vexcode_doc("""
 """)
 class MotorGroup:   # pylint: disable=too-many-public-methods
     """VEX Motor Group."""
