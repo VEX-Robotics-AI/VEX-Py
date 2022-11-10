@@ -1,4 +1,4 @@
-"""VEX Drivetrain.
+"""Drivetrain.
 
 Robot Mesh Python B:
 robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacedrivetrain.html
@@ -21,8 +21,7 @@ from vex import (BrakeType,
                  TurnType,
                  VelocityUnits)
 
-# pylint: disable=unused-import
-from vex.util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from vex.util.doc import robotmesh_doc, vexcode_doc
 
 
 __all__: Sequence[str] = ('Drivetrain',)
@@ -31,9 +30,10 @@ __all__: Sequence[str] = ('Drivetrain',)
 DrivetrainMotorType = Motor | MotorGroup | list[Motor] | tuple[Motor]
 
 
-# TODO: add VEXcode
 @robotmesh_doc("""
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classdrivetrain_1_1_drivetrain.html
+""")
+@vexcode_doc("""
 """)
 class Drivetrain:
     # pylint: disable=too-many-instance-attributes
@@ -76,13 +76,13 @@ class Drivetrain:
 
     def __eq__(self, other: Self) -> bool:
         """Check Equality."""
-        return isinstance(other, Drivetrain) and \
-            (other.left_motor == self.left_motor) and \
-            (other.right_motor == self.right_motor) and \
-            (other.wheel_travel == self.wheel_travel) and \
-            (other.track_width == self.track_width) and \
-            (other.distance_unit == self.distance_unit) and \
-            (other.gear_ratio == self.gear_ratio)
+        return (isinstance(other, Drivetrain) and
+                (other.left_motor == self.left_motor) and
+                (other.right_motor == self.right_motor) and
+                (other.wheel_travel == self.wheel_travel) and
+                (other.track_width == self.track_width) and
+                (other.distance_unit == self.distance_unit) and
+                (other.gear_ratio == self.gear_ratio))
 
     def __hash__(self) -> int:
         """Return Integer Hash."""
