@@ -24,7 +24,7 @@ from .bumper_switch_sensor import Bumper
 from .color_sensor import ColorSensor, Colorsensor, ColorHue
 from .distance_sensor import Sonar
 from .controller import Controller, ControllerAxis, ControllerButton
-from .inertial import Inertial, AxisType, OrientationType
+from .brain.inertial_sensor import Inertial, AxisType, OrientationType
 from .gyro_sensor import Gyro, GyroCalibrationType
 from .motor import (
     Motor,
@@ -49,7 +49,8 @@ __all__: Sequence[str] = (
     "SoundType",
     "Ports",
     "Bumper",
-    "ColorSensor", "Colorsensor",
+    "ColorSensor",
+    "Colorsensor",
     "ColorHue",
     "Inertial",
     "AxisType",
