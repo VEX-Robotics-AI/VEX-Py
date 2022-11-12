@@ -18,7 +18,7 @@ from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
 from .brake_type import BrakeType
 from .direction_type import DirectionType, FORWARD, REVERSE
 from .torque_units import TorqueUnits
-from .turn_type import TurnType
+from .turn_type import TurnType, LEFT, RIGHT
 from .velocity_units import VelocityUnits
 
 
@@ -26,7 +26,7 @@ __all__: Sequence[str] = ('Motor',
                           'BrakeType',
                           'DirectionType', 'FORWARD', 'REVERSE',
                           'TorqueUnits',
-                          'TurnType',
+                          'TurnType', 'LEFT', 'RIGHT',
                           'VelocityUnits')
 
 

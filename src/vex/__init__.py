@@ -21,7 +21,7 @@ from .gyro_sensor import Gyro, GyroCalibrationType
 from .motor import (Motor,
                     BrakeType,
                     DirectionType, FORWARD, REVERSE,
-                    TurnType,
+                    TurnType, LEFT, RIGHT,
                     TorqueUnits,
                     VelocityUnits)
 from .touch_led import Touchled, FadeType
@@ -39,7 +39,12 @@ __all__: Sequence[str] = (
     'Sonar',
     'Controller', 'ControllerAxis', 'ControllerButton',
     'Gyro', 'GyroCalibrationType',
-    'Motor', 'BrakeType', 'DirectionType', 'TorqueUnits', 'TurnType', 'VelocityUnits',  # noqa: E501
+    'Motor',
+    'BrakeType',
+    'DirectionType', 'FORWARD', 'REVERSE',
+    'TorqueUnits',
+    'TurnType', 'LEFT', 'RIGHT',
+    'VelocityUnits',
     'Touchled', 'FadeType',
     'TimeUnits', 'SECONDS', 'MSEC', 'wait',
     'DistanceUnits', 'MM', 'INCHES', 'CM',
@@ -59,9 +64,6 @@ __version__: str = version(distribution_name='VEX-Py')
 INT29_MAX: int = 0x1FFFFFFF
 
 PERCENT: VelocityUnits = VelocityUnits.PCT
-
-LEFT: TurnType = TurnType.LEFT
-RIGHT: TurnType = TurnType.RIGHT
 
 
 # ALIASES
