@@ -23,7 +23,8 @@ from .motor import (Motor,
                     TorqueUnits, VelocityUnits)
 from .touch_led import Touchled, FadeType
 from .time import TimeUnits, wait
-from .units_common import DistanceUnits, RotationUnits
+from .units_common import (DistanceUnits,
+                           RotationUnits, DEGREES, TURNS)
 
 
 __all__: Sequence[str] = (
@@ -55,9 +56,6 @@ __version__: str = version(distribution_name='VEX-Py')
 # CONSTANTS
 # =========
 INT29_MAX: int = 0x1FFFFFFF
-
-DEGREES: RotationUnits = RotationUnits.DEG
-TURNS: RotationUnits = RotationUnits.REV
 
 PERCENT: VelocityUnits = VelocityUnits.PCT
 
