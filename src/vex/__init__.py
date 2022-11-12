@@ -32,6 +32,7 @@ from .motor import (Motor,
                     TurnType, LEFT, RIGHT,
                     TorqueUnits,
                     VelocityUnits, PERCENT)
+from .optical_sensor import (OpticalSensor, LedStateType, GestureType)
 from .touch_led import Touchled, FadeType
 from .time import TimeUnits, SECONDS, MSEC, wait
 from .units_common import (DistanceUnits, MM, INCHES, CM,
@@ -47,6 +48,7 @@ __all__: Sequence[str] = (
     'OrientationType',
     'Bumper',
     'ColorSensor', 'Colorsensor', 'ColorHue',
+    'OpticalSensor', 'LedStateType', 'GestureType',
     'Sonar',
     'Controller', 'ControllerAxis', 'ControllerButton',
     'Gyro', 'GyroCalibrationType',
