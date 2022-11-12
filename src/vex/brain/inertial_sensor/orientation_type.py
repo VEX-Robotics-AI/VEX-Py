@@ -7,7 +7,7 @@ from enum import IntEnum, auto
 from ...util.doc import vexcode_doc
 
 
-__all__: Sequence[str] = ('OrientationType',)
+__all__: Sequence[str] = 'OrientationType', 'PITCH', 'ROLL', 'YAW'
 
 
 @vexcode_doc("""
@@ -24,3 +24,9 @@ class OrientationType(IntEnum):
 
     # Yaw is rotation around the vertical axis
     YAW: int = auto()
+
+
+# aliases
+PITCH: OrientationType = OrientationType.PITCH
+ROLL: OrientationType = OrientationType.ROLL
+YAW: OrientationType = OrientationType.YAW

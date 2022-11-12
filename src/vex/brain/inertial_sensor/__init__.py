@@ -7,20 +7,18 @@ from collections.abc import Sequence
 
 from abm.decor import act, sense
 
-from .axis_type import AxisType
-from .orientation_type import OrientationType
-
-from ...units_common import RotationUnits
-from ...motor import VelocityUnits
 from ..._abstract_device import SingletonDevice
-
+from ...motor import VelocityUnits
+from ...units_common import RotationUnits, DEGREES
 from ...util.doc import vexcode_doc
 
+from .axis_type import AxisType, XAXIS, YAXIS, ZAXIS
+from .orientation_type import OrientationType, PITCH, ROLL, YAW
 
-DEGREES = RotationUnits.DEG
 
-
-__all__: Sequence[str] = 'Inertial', 'AxisType', 'OrientationType'
+__all__: Sequence[str] = ('Inertial',
+                          'AxisType', 'XAXIS', 'YAXIS', 'ZAXIS',
+                          'OrientationType', 'PITCH', 'ROLL', 'YAW')
 
 
 def _check_rotation_unit(rotation_unit: RotationUnits):

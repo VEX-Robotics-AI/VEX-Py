@@ -7,7 +7,7 @@ from enum import IntEnum, auto
 from ...util.doc import vexcode_doc
 
 
-__all__: Sequence[str] = ('AxisType',)
+__all__: Sequence[str] = 'AxisType', 'XAXIS', 'YAXIS', 'ZAXIS'
 
 
 @vexcode_doc("""
@@ -24,3 +24,9 @@ class AxisType(IntEnum):
 
     # reports acceleration of up-to-down movements
     ZAXIS: int = auto()
+
+
+# aliases
+XAXIS: AxisType = AxisType.XAXIS
+YAXIS: AxisType = AxisType.YAXIS
+ZAXIS: AxisType = AxisType.ZAXIS
