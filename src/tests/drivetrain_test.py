@@ -1,7 +1,7 @@
 import unittest
 
 from ..drivetrain import Drivetrain
-from ..vex import Motor, Ports, DEGREES, PERCENT, FORWARD, REVERSE, MM, LEFT
+from ..vex import Motor, Ports, DEGREES, PERCENT, FORWARD, REVERSE, MM, LEFT, AMP
 from ..testing.io_utils import replace_stdin
 
 
@@ -82,6 +82,8 @@ class TestDrivetrain(unittest.TestCase):
     def test_current(self):
         with replace_stdin("34.5"):
             self.assertEqual(self.drivetrain.current(), 34.5)
+        with replace_stdin("34.5"):
+            self.assertEqual(self.drivetrain.current(AMP), 34.5)
 
 
 if __name__ == "__main__":

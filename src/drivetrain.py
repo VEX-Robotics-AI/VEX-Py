@@ -20,7 +20,7 @@ from vex import (BrakeType,
                  TimeUnits,
                  TurnType,
                  VelocityUnits,)
-
+from vex.units_common.current_units import CurrentUnits
 from vex.util.doc import robotmesh_doc, vexcode_doc
 
 
@@ -599,12 +599,11 @@ class Drivetrain:
         Returns:
         a float that represents the electrical current of the motor in Amps.
     """)
-    # TODO: new param (UNITS)
     @vexcode_doc("""
         Reports the amount of current that the Drivetrain is currently using.
             drivetrain.current(UNITS)
         Drive Current reports a range from 0.0 to 2.5 when CurrentUnits.AMP is passed as the UNITS parameter.
     """)
     @sense
-    def current(self) -> float:
+    def current(self, units : CurrentUnits = CurrentUnits.AMP) -> float:
         """Return Motors' Electrical Current."""
