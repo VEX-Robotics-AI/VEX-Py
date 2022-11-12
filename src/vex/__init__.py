@@ -23,7 +23,7 @@ from .motor import (Motor,
                     TorqueUnits, VelocityUnits)
 from .touch_led import Touchled, FadeType
 from .time import TimeUnits, wait
-from .units_common import (DistanceUnits,
+from .units_common import (DistanceUnits, MM, INCHES, CM,
                            RotationUnits, DEGREES, TURNS)
 
 
@@ -39,11 +39,10 @@ __all__: Sequence[str] = (
     'Motor', 'BrakeType', 'DirectionType', 'TorqueUnits', 'TurnType', 'VelocityUnits',  # noqa: E501
     'Touchled', 'FadeType',
     'TimeUnits', 'wait',
-    'DistanceUnits', 'RotationUnits',
-    'DEGREES', 'TURNS',
+    'DistanceUnits', 'MM', 'INCHES', 'CM',
+    'RotationUnits', 'DEGREES', 'TURNS',
     'PERCENT',
     'SECONDS',
-    'INCHES', 'MM',
     'FORWARD', 'REVERSE',
     'LEFT', 'RIGHT',
     'interactive',
@@ -60,9 +59,6 @@ INT29_MAX: int = 0x1FFFFFFF
 PERCENT: VelocityUnits = VelocityUnits.PCT
 
 SECONDS: TimeUnits = TimeUnits.SEC
-
-INCHES: DistanceUnits = DistanceUnits.IN
-MM: DistanceUnits = DistanceUnits.MM
 
 FORWARD: DirectionType = DirectionType.FWD
 REVERSE: DirectionType = DirectionType.REV
