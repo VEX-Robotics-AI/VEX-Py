@@ -5,13 +5,12 @@ from collections.abc import Sequence
 
 from abm.decor import act
 
-# pylint: disable=unused-import
-from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from ..util.doc import robotmesh_doc, vexcode_doc
 
-from .time_units import TimeUnits
+from .time_units import TimeUnits, SECONDS, MSEC
 
 
-__all__: Sequence[str] = 'TimeUnits', 'wait'
+__all__: Sequence[str] = 'TimeUnits', 'SECONDS', 'MSEC', 'wait'
 
 
 # pylint: disable=unused-argument
@@ -25,6 +24,12 @@ __all__: Sequence[str] = 'TimeUnits', 'wait'
     timeUnits: The units of time (default seconds)
 
     robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacevex.html#a6b9ca2db773bef3a3569a0d6b22f2749
+""")
+@vexcode_doc("""
+    Waits for a specific amount of time before moving to the next command.
+
+    Set an amount of time in SECONDS or MSEC on the UNITS parameter
+    to have your program wait before executing subsequent commands.
 """)
 @act
 def wait(time: float, timeUnits: TimeUnits = TimeUnits.SEC, /):

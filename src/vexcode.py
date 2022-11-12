@@ -1,4 +1,4 @@
-"""VEXcode."""
+"""VEXcode VR."""
 
 
 from collections.abc import Sequence
@@ -24,6 +24,7 @@ from vex import (
     LEFT, RIGHT,
 )
 from drivetrain import Drivetrain
+
 
 __all__: Sequence[str] = (
     'Ports',
