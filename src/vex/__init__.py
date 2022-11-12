@@ -19,11 +19,15 @@ from .distance_sensor import Sonar
 from .controller import Controller, ControllerAxis, ControllerButton
 from .gyro_sensor import Gyro, GyroCalibrationType
 from .motor import (Motor,
-                    BrakeType, DirectionType, TurnType,
-                    TorqueUnits, VelocityUnits)
+                    BrakeType,
+                    DirectionType, FORWARD, REVERSE,
+                    TurnType, LEFT, RIGHT,
+                    TorqueUnits,
+                    VelocityUnits, PERCENT)
 from .touch_led import Touchled, FadeType
-from .time import TimeUnits, wait
-from .units_common import DistanceUnits, RotationUnits
+from .time import TimeUnits, SECONDS, MSEC, wait
+from .units_common import (DistanceUnits, MM, INCHES, CM,
+                           RotationUnits, DEGREES, TURNS)
 
 
 __all__: Sequence[str] = (
@@ -35,16 +39,16 @@ __all__: Sequence[str] = (
     'Sonar',
     'Controller', 'ControllerAxis', 'ControllerButton',
     'Gyro', 'GyroCalibrationType',
-    'Motor', 'BrakeType', 'DirectionType', 'TorqueUnits', 'TurnType', 'VelocityUnits',  # noqa: E501
+    'Motor',
+    'BrakeType',
+    'DirectionType', 'FORWARD', 'REVERSE',
+    'TorqueUnits',
+    'TurnType', 'LEFT', 'RIGHT',
+    'VelocityUnits', 'PERCENT',
     'Touchled', 'FadeType',
-    'TimeUnits', 'wait',
-    'DistanceUnits', 'RotationUnits',
-    'DEGREES', 'TURNS',
-    'PERCENT',
-    'SECONDS',
-    'INCHES', 'MM',
-    'FORWARD', 'REVERSE',
-    'LEFT', 'RIGHT',
+    'TimeUnits', 'SECONDS', 'MSEC', 'wait',
+    'DistanceUnits', 'MM', 'INCHES', 'CM',
+    'RotationUnits', 'DEGREES', 'TURNS',
     'interactive',
 )
 
@@ -55,22 +59,6 @@ __version__: str = version(distribution_name='VEX-Py')
 # CONSTANTS
 # =========
 INT29_MAX: int = 0x1FFFFFFF
-
-DEGREES: RotationUnits = RotationUnits.DEG
-TURNS: RotationUnits = RotationUnits.REV
-
-PERCENT: VelocityUnits = VelocityUnits.PCT
-
-SECONDS: TimeUnits = TimeUnits.SEC
-
-INCHES: DistanceUnits = DistanceUnits.IN
-MM: DistanceUnits = DistanceUnits.MM
-
-FORWARD: DirectionType = DirectionType.FWD
-REVERSE: DirectionType = DirectionType.REV
-
-LEFT: TurnType = TurnType.LEFT
-RIGHT: TurnType = TurnType.RIGHT
 
 
 # ALIASES

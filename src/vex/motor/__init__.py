@@ -16,16 +16,18 @@ from ..units_common import RotationUnits
 from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
 
 from .brake_type import BrakeType
-from .direction_type import DirectionType
+from .direction_type import DirectionType, FORWARD, REVERSE
 from .torque_units import TorqueUnits
-from .turn_type import TurnType
-from .velocity_units import VelocityUnits
+from .turn_type import TurnType, LEFT, RIGHT
+from .velocity_units import VelocityUnits, PERCENT
 
 
-__all__: Sequence[str] = (
-    'Motor',
-    'BrakeType', 'DirectionType', 'TorqueUnits', 'TurnType', 'VelocityUnits',
-)
+__all__: Sequence[str] = ('Motor',
+                          'BrakeType',
+                          'DirectionType', 'FORWARD', 'REVERSE',
+                          'TorqueUnits',
+                          'TurnType', 'LEFT', 'RIGHT',
+                          'VelocityUnits', 'PERCENT')
 
 
 @robotmesh_doc("""
