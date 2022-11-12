@@ -11,10 +11,10 @@ __all__: Sequence[str] = ('AxisType',)
 
 
 @vexcode_doc("""
-    VEX IQ (2nd generation) Axis types.
+    VEX IQ (2nd generation) Axis Types.
 """)
 class AxisType(IntEnum):
-    """VEX IQ (2nd generation) Axis types."""
+    """VEX IQ (2nd generation) Axis Types."""
 
     # reports acceleration of forward-to-backward movements
     XAXIS: int = auto()
