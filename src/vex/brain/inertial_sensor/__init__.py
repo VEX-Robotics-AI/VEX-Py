@@ -5,6 +5,8 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 
+from abm.decor import act, sense
+
 from .axis_type import AxisType
 from .orientation_type import OrientationType
 
@@ -12,17 +14,13 @@ from ...units_common import RotationUnits
 from ...motor import VelocityUnits
 from ..._abstract_device import SingletonDevice
 
-from abm.decor import act, sense
-
 from ...util.doc import vexcode_doc
+
 
 DEGREES = RotationUnits.DEG
 
-__all__: Sequence[str] = (
-    "Inertial",
-    "AxisType",
-    "OrientationType",
-)
+
+__all__: Sequence[str] = 'Inertial', 'AxisType', 'OrientationType'
 
 
 def _check_rotation_unit(rotation_unit: RotationUnits):
@@ -30,10 +28,9 @@ def _check_rotation_unit(rotation_unit: RotationUnits):
         raise ValueError("Incorrect rotation unit. Only accepts DEGREES.")
 
 
-@vexcode_doc(
-    """VEX IQ (2nd generation) Brain's Inertial Sensor.
-    """
-)
+@vexcode_doc("""
+    VEX IQ (2nd generation) Brain's Inertial Sensor.
+""")
 class Inertial(SingletonDevice):
     """VEX IQ (2nd generation) Brain's Inertial Sensor."""
 
@@ -45,7 +42,7 @@ class Inertial(SingletonDevice):
         """
         Calibrates a VEX IQ (2nd generation) Brain's Inertial Sensor to reduce the amount of drift generated.
             brain_inertial.calibrate()
-        
+
         Drifting occurs when the IQ (2nd generation) Brain's Inertial Sensor incorrectly detects movement
         even though the sensor is not physically moving.
 
@@ -77,7 +74,7 @@ class Inertial(SingletonDevice):
         """
         Sets a VEX IQ (2nd generation) Brain's Inertial Sensor's angle of rotation to a specified rotation.
             brain_inertial.set_rotation(ROTATION, DEGREES)
-        
+
         The Inertial Set Rotation command can be used to set the IQ (2nd generation) Brain's Inertial Sensor's
         angle of rotation to any given positive (clockwise) or negative (counter-clockwise) value.
         """
@@ -150,15 +147,15 @@ class Inertial(SingletonDevice):
             while True:
                 brain.screen.clear_screen()
                 brain.screen.set_cursor(1, 1)
-                
+
                 # X Axis
                 brain.screen.print("X:", brain_inertial.acceleration(AxisType.XAXIS))
                 brain.screen.next_row()
-                
+
                 # Y Axis
                 brain.screen.print("Y:", brain_inertial.acceleration(AxisType.YAXIS))
                 brain.screen.next_row()
-                
+
                 # Z Axis
                 brain.screen.print("Z:", brain_inertial.acceleration(AxisType.ZAXIS))
                 brain.screen.next_row()
