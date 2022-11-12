@@ -11,6 +11,7 @@ from ..units_common import DistanceUnits
 
 # pylint: disable=unused-import
 from ..util.doc import robotmesh_doc, vexcode_doc  # noqa: F401
+from .object_size_type import ObjectSizeType
 
 
 __all__: Sequence[str] = ("Sonar",)
@@ -93,3 +94,48 @@ class Sonar(Device):
         self, distanceUnits: DistanceUnits = DistanceUnits.MM, /
     ) -> int:  # noqa: E501
         """Return measured distance to nearby object."""
+
+    @vexcode_doc(
+        """
+        Distance Object Velocity reports the current velocity of an object in m/s (meters per second).
+
+        The velocity of a detected object will change when the object is moving
+        while in the range of an IQ Distance Sensor (2nd generation).
+            brain.screen.print("Velocity:", distance.object_velocity())
+        """
+    )
+    @sense
+    def object_velocity(self) -> float:
+        """Reports the velocity of a detected object in m/s."""
+
+    @vexcode_doc(
+        """
+        Distance Object Size can be used to approximately determine if a detected object is of a certain size.
+
+        There are three defined sizes that can be used for comparison:
+            ObjectSizeType.SMALL
+            ObjectSizeType.MEDIUM
+            ObjectSizeType.LARGE
+
+        The example below prints "Large!" to a VEX IQ Brain's screen
+        if a large object is detected by an IQ Distance Sensor (2nd generation):
+            if distance.object_size() == ObjectSizeType.LARGE:
+                brain.screen.print("Large!")
+        """
+    )
+    @sense
+    def object_size(self) -> ObjectSizeType:
+        """Reports an estimation of the detected object's size."""
+
+    @vexcode_doc(
+        """
+        Distance Object Detected returns True if an object or surface is detected in its range, and False if not.
+
+        The example below prints "True" to a VEX IQ Brain's screen if an object or surface is detected by a Distance Sensor.
+            if dstance.is_object_detected():
+                brain.screen.print("True")
+        """
+    )
+    @sense
+    def is_object_detected(self) -> bool:
+        """Reports if a VEX IQ Distance Sensor (2nd generation) detects an object or surface in its range."""
