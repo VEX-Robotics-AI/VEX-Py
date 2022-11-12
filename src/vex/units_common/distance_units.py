@@ -4,11 +4,10 @@
 from collections.abc import Sequence
 from enum import IntEnum
 
-# pylint: disable=unused-import
-from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from ..util.doc import robotmesh_doc
 
 
-__all__: Sequence[str] = ('DistanceUnits',)
+__all__: Sequence[str] = 'DistanceUnits', 'MM', 'INCHES', 'CM'
 
 
 @robotmesh_doc("""
@@ -19,6 +18,12 @@ __all__: Sequence[str] = ('DistanceUnits',)
 class DistanceUnits(IntEnum):
     """Distance Units."""
 
-    MM: int = 0   # A distance unit that is measured in millimeters.
-    IN: int = 1   # A distance unit that is measured in inches.
-    CM: int = 2   # A distance unit that is measured in centimeters.
+    MM: int = 0   # A distance unit that is measured in millimeters
+    IN: int = 1   # A distance unit that is measured in inches
+    CM: int = 2   # A distance unit that is measured in centimeters
+
+
+# aliases
+MM: DistanceUnits = DistanceUnits.MM
+INCHES: DistanceUnits = DistanceUnits.IN
+CM: DistanceUnits = DistanceUnits.CM

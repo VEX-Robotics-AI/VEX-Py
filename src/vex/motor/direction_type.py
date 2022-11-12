@@ -7,7 +7,7 @@ from enum import IntEnum
 from ..util.doc import robotmesh_doc
 
 
-__all__: Sequence[str] = ('DirectionType',)
+__all__: Sequence[str] = 'DirectionType', 'FORWARD', 'REVERSE'
 
 
 @robotmesh_doc("""
@@ -18,5 +18,10 @@ __all__: Sequence[str] = ('DirectionType',)
 class DirectionType(IntEnum):
     """Movement Direction Types."""
 
-    FWD: int = 0   # A direction unit that is defined as forward.
-    REV: int = 1   # A direction unit that is defined as backward.
+    FWD: int = 0   # A direction unit that is defined as forward
+    REV: int = 1   # A direction unit that is defined as backward
+
+
+# aliases
+FORWARD: DirectionType = DirectionType.FWD
+REVERSE: DirectionType = DirectionType.REV
