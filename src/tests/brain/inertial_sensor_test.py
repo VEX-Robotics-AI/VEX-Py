@@ -1,11 +1,13 @@
 import unittest
 
 from ...vex import Inertial
-from ...vex import DEGREES, XAXIS, YAXIS, ZAXIS, PITCH, ROLL, YAW, VelocityUnits
+from ...vex import DEGREES, VelocityUnits
+from ...vex.brain.inertial_sensor.axis_type import XAXIS, YAXIS, ZAXIS
+from ...vex.brain.inertial_sensor.orientation_type import PITCH, ROLL, YAW
 from ...testing.io_utils import replace_stdin
 
 
-class TestInertial(unittest.TestCase):
+class TestInertialSensor(unittest.TestCase):
     def setUp(self):
         self.inertial = Inertial()
 
