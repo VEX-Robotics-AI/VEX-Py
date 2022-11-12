@@ -2,26 +2,25 @@
 
 
 from collections.abc import Sequence
-from enum import IntEnum
+from enum import IntEnum, auto
 
 from ...util.doc import vexcode_doc
 
 
-__all__: Sequence[str] = ("AxisType",)
+__all__: Sequence[str] = ('AxisType',)
 
 
-@vexcode_doc(
-    """VEX IQ (2nd generation) Axis types.
-    """
-)
+@vexcode_doc("""
+    VEX IQ (2nd generation) Axis types.
+""")
 class AxisType(IntEnum):
     """VEX IQ (2nd generation) Axis types."""
 
-    # reports acceleration of an Inertial Sensor's forward to backward movements.
-    XAXIS: int = 0
+    # reports acceleration of forward-to-backward movements
+    XAXIS: int = auto()
 
-    # reports acceleration of an Inertial Sensor's side to side movements
-    YAXIS: int = 1
+    # reports acceleration of side-to-side movements
+    YAXIS: int = auto()
 
-    # reports acceleration of an Inertial Sensor's up to down movements
-    ZAXIS: int = 2
+    # reports acceleration of up-to-down movements
+    ZAXIS: int = auto()
