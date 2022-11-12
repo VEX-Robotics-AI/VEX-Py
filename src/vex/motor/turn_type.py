@@ -7,7 +7,7 @@ from enum import IntEnum
 from ..util.doc import robotmesh_doc
 
 
-__all__: Sequence[str] = ('TurnType',)
+__all__: Sequence[str] = 'TurnType', 'LEFT', 'RIGHT'
 
 
 @robotmesh_doc("""
@@ -20,3 +20,8 @@ class TurnType(IntEnum):
 
     LEFT: int = 0
     RIGHT: int = 1
+
+
+# aliases
+LEFT: TurnType = TurnType.LEFT
+RIGHT: TurnType = TurnType.RIGHT
