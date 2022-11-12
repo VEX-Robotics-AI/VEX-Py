@@ -1,4 +1,4 @@
-"""VEX Brain."""
+"""Brain Inertial Sensor."""
 
 
 from __future__ import annotations
