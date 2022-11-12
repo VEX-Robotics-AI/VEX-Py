@@ -325,7 +325,7 @@ class Drivetrain:
         The Turn to Heading command will by default block proceeding commands until the Drivetrain turn has completed.
     """)
     @act
-    def turn_to_heading(self, heading: float, units: RotationUnits.DEG):
+    def turn_to_heading(self, heading: float, units: RotationUnits = RotationUnits.DEG):
         """Turns a Drivetrain to a specific heading, when using a Gyro or Inertial Sensor."""
 
     @vexcode_doc("""
@@ -359,7 +359,7 @@ class Drivetrain:
         The Turn to Rotationcommand will by default block proceeding commands until the Drivetrain turn has completed.
     """)
     @act
-    def turn_to_rotation(self, rotation: float, units: RotationUnits.DEG):
+    def turn_to_rotation(self, rotation: float, units: RotationUnits = RotationUnits.DEG):
         """Turns the Drivetrain to a specific angle of rotation when used with a Gyro or Inertial Sensor."""
 
     @robotmesh_doc("""
@@ -516,7 +516,7 @@ class Drivetrain:
             drivetrain.turn_to_heading(90, DEGREES)
     """)
     @act
-    def set_heading(self, heading: float, units: RotationUnits):
+    def set_heading(self, heading: float, units: RotationUnits = RotationUnits.DEG):
         """Sets the Drivetrain's Inertial or Gyro Sensor to the specified heading."""
 
     @vexcode_doc("""
@@ -531,7 +531,7 @@ class Drivetrain:
         the Drive Heading command reports an increase in heading when rotating clockwise.
     """)
     @sense
-    def heading(self, units: RotationUnits.DEG) -> float:
+    def heading(self, units: RotationUnits = RotationUnits.DEG) -> float:
         """Reports the direction that the Drivetrain is facing."""
 
     @vexcode_doc("""
@@ -554,7 +554,7 @@ class Drivetrain:
         based on the set rotation value from the previous command.
     """)
     @act
-    def set_rotation(self, rotation: float, units: RotationUnits):
+    def set_rotation(self, rotation: float, units: RotationUnits = RotationUnits.DEG):
         """Sets the Drivetrain's Inertial or Gyro Sensor to a specified rotation."""
 
     @vexcode_doc("""
@@ -568,7 +568,7 @@ class Drivetrain:
         an increasingly positive value when the Drivetrain turns in the clockwise direction.
     """)
     @sense
-    def rotation(self, units: RotationUnits.DEG) -> float:
+    def rotation(self, units: RotationUnits = RotationUnits.DEG) -> float:
         """Reports the Drivetrain's angle of rotation when configured with a Gyro or Inertial Sensor."""
 
     @robotmesh_doc("""
