@@ -22,7 +22,7 @@ from .motor import (Motor,
                     BrakeType, DirectionType, TurnType,
                     TorqueUnits, VelocityUnits)
 from .touch_led import Touchled, FadeType
-from .time import TimeUnits, wait
+from .time import TimeUnits, SECONDS, MSEC, wait
 from .units_common import (DistanceUnits, MM, INCHES, CM,
                            RotationUnits, DEGREES, TURNS)
 
@@ -38,11 +38,10 @@ __all__: Sequence[str] = (
     'Gyro', 'GyroCalibrationType',
     'Motor', 'BrakeType', 'DirectionType', 'TorqueUnits', 'TurnType', 'VelocityUnits',  # noqa: E501
     'Touchled', 'FadeType',
-    'TimeUnits', 'wait',
+    'TimeUnits', 'SECONDS', 'MSEC', 'wait',
     'DistanceUnits', 'MM', 'INCHES', 'CM',
     'RotationUnits', 'DEGREES', 'TURNS',
     'PERCENT',
-    'SECONDS',
     'FORWARD', 'REVERSE',
     'LEFT', 'RIGHT',
     'interactive',
@@ -58,7 +57,6 @@ INT29_MAX: int = 0x1FFFFFFF
 
 PERCENT: VelocityUnits = VelocityUnits.PCT
 
-SECONDS: TimeUnits = TimeUnits.SEC
 
 FORWARD: DirectionType = DirectionType.FWD
 REVERSE: DirectionType = DirectionType.REV
