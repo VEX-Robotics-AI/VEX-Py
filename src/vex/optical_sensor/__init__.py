@@ -189,16 +189,17 @@ class OpticalSensor(Device):
     def brightness(self) -> int:
         """Return brightness percentage."""
 
-    @vexcode_doc(
-        """
+    @vexcode_doc("""
+        Optical Hue
+
+        Reports the hue of the object detected by a VEX IQ Optical Sensor.
+
         Optical Hue reports a range of values from 0 to 359,
         which represents the location of the detected color on a color wheel.
-            brain.screen.print("Hue: ", optical.hue())
-        """
-    )
+    """)
     @sense
-    def hue(self) -> float:
-        """Reports a range of color hue from 0 to 359."""
+    def hue(self) -> int:
+        """Return color hue value between 0 and 359."""
 
     @vexcode_doc(
         """
