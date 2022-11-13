@@ -1,6 +1,8 @@
 """Optical Sensor Gesture Types."""
 
 
+from __future__ import annotations
+
 from collections.abc import Sequence
 from enum import IntEnum, auto
 
@@ -15,3 +17,8 @@ class GestureType(IntEnum):
     DOWN: int = auto()
     LEFT: int = auto()
     RIGHT: int = auto()
+
+    @property
+    def type(self) -> GestureType:
+        """Return Gesture Type."""
+        return self
