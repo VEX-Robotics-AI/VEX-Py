@@ -119,17 +119,20 @@ class OpticalSensor(Device):
         """Returns an object with gesture information."""
 
     @vexcode_doc("""
-        Set Optical Light allows you to turn the Optical Sensor's light on or off.
-        The light lets the sensor see objects if it is looking at an object in a dark area.
+        Set Optical Light
+
+        Sets the light on a VEX IQ Optical Sensor to on or off.
+
+        Set Optical Light allows you to turn the Optical Sensor's light
+        on or off. The light lets the sensor see objects if it is looking
+        at an object in a dark area.
 
         To turn the light on you pass LedStateType.ON as the STATE parameter.
-            optical.set_light(LedStateType.ON)
         To turn the light off you pass LedStateType.OFF as the STATE parameter.
-            optical.set_light(LedStateType.OFF)
     """)
     @act
-    def set_light(self, state: LedStateType):
-        """Sets light to state."""
+    def set_light(self, state: LedStateType, /):
+        """Set Optical Sensor light state."""
 
     @vexcode_doc("""
         Sets the light power of a VEX IQ Optical Sensor.
