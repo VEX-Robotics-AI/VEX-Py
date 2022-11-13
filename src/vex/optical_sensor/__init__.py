@@ -15,6 +15,7 @@ from ..color_sensor.color_hue import ColorHue
 from ..units_common.numeric import PERCENT
 from ..util.doc import vexcode_doc
 from .led_state_type import LedStateType
+from .gesture_info import GestureInfo
 from .gesture_type import GestureType
 
 
@@ -51,23 +52,6 @@ class OpticalSensor(Device):
         raise hash(self.port)
 
     @vexcode_doc("""
-        Optical Gesture Enable
-
-        Sets an IQ Optical Sensor to detect gestures.
-
-        The Optical Gesture Enable command allows you
-        to set an IQ Optical Sensor to detect gestures.
-
-        By default, an IQ Optical Sensor will be set to detect colors.
-
-        Before using any IQ Optical Sensor gesture commands,
-        an IQ Optical Sensor must be correctly set to detect gestures.
-    """)
-    @act
-    def gesture_enable(self):
-        """Enable gesture detection."""
-
-    @vexcode_doc("""
         Optical Gesture Disable
 
         Sets an IQ Optical Sensor to detect colors.
@@ -80,29 +64,6 @@ class OpticalSensor(Device):
     @act
     def gesture_disable(self):
         """Disable gesture detection."""
-
-    @vexcode_doc("""
-        The Optical Gesture Detected command returns an object with gesture information.
-        To check the type of the detected gesture, access the type property on the returned object.
-            optical.get_gesture().type
-
-        Before using any IQ Optical Sensor gesture commands, an IQ Optical Sensor must be
-        correctly set to detect gestures with the optical.gesture_enable() command.
-        Below are the gestures that an IQ Optical Sensor can detect:
-            GestureType.UP
-            GestureType.DOWN
-            GestureType.LEFT
-            GestureType.RIGHT
-
-        The example shows how to correctly set an IQ Optical Sensor to detect gestures before checking for gestures.
-            optical.gesture_enable()
-            while optical.get_gesture().type != GestureType.UP:
-                wait(0.1, SECONDS)
-            brain.screen.print("Up!")
-    """)
-    @sense
-    def get_gesture(self) -> GestureType:
-        """Returns an object with gesture information."""
 
     @vexcode_doc("""
         Set Optical Light
@@ -200,6 +161,46 @@ class OpticalSensor(Device):
     @sense
     def hue(self) -> int:
         """Return color hue value between 0 and 359."""
+
+    @vexcode_doc("""
+        Optical Gesture Enable
+
+        Sets an IQ Optical Sensor to detect gestures.
+
+        The Optical Gesture Enable command allows you
+        to set an IQ Optical Sensor to detect gestures.
+
+        By default, an IQ Optical Sensor will be set to detect colors.
+
+        Before using any IQ Optical Sensor gesture commands,
+        an IQ Optical Sensor must be correctly set to detect gestures.
+    """)
+    @act
+    def gesture_enable(self):
+        """Enable gesture detection."""
+
+    @vexcode_doc("""
+        Optical Gesture Detected
+
+        Reports detected gesture data from an IQ Optical Sensor.
+
+        The Optical Gesture Detected command returns an object
+        with gesture information. To check the type of the detected gesture,
+        access the type property on the returned object.
+
+        Before using any IQ Optical Sensor gesture commands,
+        an IQ Optical Sensor must be correctly set to detect gestures
+        with the optical.gesture_enable() command.
+
+        Below are the gestures that an IQ Optical Sensor can detect:
+            GestureType.UP
+            GestureType.DOWN
+            GestureType.LEFT
+            GestureType.RIGHT
+    """)
+    @sense
+    def get_gesture(self) -> GestureInfo:
+        """Return an object with gesture information."""
 
     @vexcode_doc(
         """
