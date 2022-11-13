@@ -149,16 +149,20 @@ class OpticalSensor(Device):
         assert unit is PERCENT, '*** UNIT MUST BE PERCENT ***'
 
     @vexcode_doc("""
-        Optical Is Near Object returns True if an object is detected, and returns False otherwise.
+        Optical Is Near Object
 
-        It should be used to check if an object is close to the IQ Optical Sensor so that
-        the color readings from the Optical Sensor's Color command is accurate.
-            if optical.is_near_object() and optical.color() == Color.Red:
-                brain.screen.print("Red object!")
+        Reports if a VEX IQ Optical Sensor detects an object in its range.
+
+        Optical Is Near Object returns True if an object is detected,
+        and returns False otherwise.
+
+        It should be used to check if an object is close
+        to the IQ Optical Sensor so that the color readings
+        from the Optical Sensor's color() command are accurate.
     """)
     @sense
     def is_near_object(self) -> bool:
-        """Returns True if an object is detected, and returns False otherwise."""
+        """Check if Optical Sensor is near an object."""
 
     @vexcode_doc("""
         The Optical Color command returns the closest color match base on the hue of a detected object.
