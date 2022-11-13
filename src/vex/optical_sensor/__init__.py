@@ -51,20 +51,21 @@ class OpticalSensor(Device):
         raise hash(self.port)
 
     @vexcode_doc("""
-        The Optical Gesture Enable command allows you to set an IQ Optical Sensor to detect gestures.
+        Optical Gesture Enable
+
+        Sets an IQ Optical Sensor to detect gestures.
+
+        The Optical Gesture Enable command allows you
+        to set an IQ Optical Sensor to detect gestures.
 
         By default, an IQ Optical Sensor will be set to detect colors.
-        Before using any IQ Optical Sensor gesture commands, an IQ Optical Sensor must be correctly set to detect gestures.
 
-        The example shows how to correctly set an IQ Optical Sensor to detect gestures before checking for gestures.
-            optical.gesture_enable()
-            while optical.get_gesture().type != GestureType.UP:
-                wait(0.1, SECONDS)
-            brain.screen.print("Up!")
+        Before using any IQ Optical Sensor gesture commands,
+        an IQ Optical Sensor must be correctly set to detect gestures.
     """)
     @act
     def gesture_enable(self):
-        """Enables gesture."""
+        """Enable gesture detection."""
 
     @vexcode_doc("""
         The Optical Gesture Disable command allows you to set an IQ Optical Sensor to detect colors.
