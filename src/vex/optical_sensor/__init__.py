@@ -176,15 +176,18 @@ class OpticalSensor(Device):
         """Return closest-matching color hue of detected object."""
 
     @vexcode_doc("""
+        Optical Brightness
+
+        Reports the amount of light detected by a VEX IQ Optical Sensor.
+
         Optical Brightness reports a range of values from 0 to 100 percent.
 
         A large amount of light detected will report a high brightness value.
         A small amount of light detected will report a low brightness value.
-            brain.screen.print("Brightness:", optical.brightness())
     """)
     @sense
-    def brightness(self) -> float:
-        """Reports a range of brightness from 0 to 100 percent."""
+    def brightness(self) -> int:
+        """Return brightness percentage."""
 
     @vexcode_doc(
         """
