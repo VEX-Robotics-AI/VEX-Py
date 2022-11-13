@@ -154,9 +154,15 @@ class OpticalSensor(Device):
         """Check if Optical Sensor is near an object."""
 
     @vexcode_doc("""
-        The Optical Color command returns the closest color match base on the hue of a detected object.
+        Optical Color
 
-        The following colors can be used as a comparison to the color detected by an IQ Optical Sensor:
+        Returns the color detected by a VEX IQ Optical Sensor.
+
+        The Optical Color command returns the closest color match
+        based on the hue of a detected object.
+
+        The following colors can be used
+        as a comparison to the color detected by an IQ Optical Sensor:
             Color.RED
             Color.GREEN
             Color.BLUE
@@ -164,14 +170,10 @@ class OpticalSensor(Device):
             Color.ORANGE
             Color.PURPLE
             Color.CYAN
-
-        The example prints to a VEX IQ Brain's screen if a red object is detected by an Optical Sensor.
-            if optical.color() == Color.RED:
-                brain.screen.print("Red!")
     """)
     @sense
     def color(self) -> ColorHue:
-        """Returns the closest color match base on the hue of a detected object."""
+        """Return closest-matching color hue of detected object."""
 
     @vexcode_doc("""
         Optical Brightness reports a range of values from 0 to 100 percent.
