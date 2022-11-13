@@ -5,14 +5,14 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
-from typing import Callable
+from typing import Callable, Literal
 
 from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
 from ..color_sensor.color_hue import ColorHue
-from ..motor.velocity_units import VelocityUnits, PERCENT
+from ..units_common.numeric import PERCENT
 from ..util.doc import vexcode_doc
 from .led_state_type import LedStateType
 from .gesture_type import GestureType
@@ -132,14 +132,21 @@ class OpticalSensor(Device):
         """Sets light to state."""
 
     @vexcode_doc("""
-        Set Optical Light Power will change the brightness of the light on an Optical Sensor.
+        Sets the light power of a VEX IQ Optical Sensor.
 
-        The command accepts a range of 0 to 100 percent for the POWER parameter, and PERCENT as the unit.
+        Set Optical Light Power will change the brightness of the light
+        on an Optical Sensor.
+
+        The command accepts a range of 0 to 100 percent for the POWER
+        parameter, and PERCENT as the unit.
+
         If the light is off, this command will turn the light on.
     """)
     @act
-    def set_light_power(self, power: float, units : VelocityUnits = PERCENT):
-        """Set the light power"""
+    def set_light_power(self, power: int, unit: Literal[PERCENT] = PERCENT, /):
+        # pylint: disable=unused-argument
+        """Set Optical Light Power."""
+        assert unit is PERCENT, '*** UNIT MUST BE PERCENT ***'
 
     @vexcode_doc("""
         Optical Is Near Object returns True if an object is detected, and returns False otherwise.

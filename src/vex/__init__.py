@@ -32,7 +32,7 @@ from .motor import (Motor,
                     TurnType, LEFT, RIGHT,
                     TorqueUnits,
                     VelocityUnits)
-from .optical_sensor import (OpticalSensor, LedStateType, GestureType)
+from .optical_sensor import OpticalSensor, LedStateType, GestureType
 from .touch_led import Touchled, FadeType
 from .time import TimeUnits, SECONDS, MSEC, wait
 from .units_common import (DistanceUnits, MM, INCHES, CM,
