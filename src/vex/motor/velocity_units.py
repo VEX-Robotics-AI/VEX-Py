@@ -1,13 +1,16 @@
 """Velocity Units."""
 
 
+from __future__ import annotations
+
 from collections.abc import Sequence
 from enum import IntEnum
 
+from ..units_common.numeric import PERCENT
 from ..util.doc import robotmesh_doc
 
 
-__all__: Sequence[str] = 'VelocityUnits', 'PERCENT'
+__all__: Sequence[str] = ('VelocityUnits',)
 
 
 @robotmesh_doc("""
@@ -18,11 +21,7 @@ __all__: Sequence[str] = 'VelocityUnits', 'PERCENT'
 class VelocityUnits(IntEnum):
     """Velocity Units."""
 
-    PCT: int = 0   # A velocity unit that is measured in percentage.
+    PCT: int = PERCENT   # A velocity unit that is measured in percentage.
     RPM: int = 1   # A velocity unit that is measured in rotations per minute.
     DPS: int = 2   # A velocity unit that is measured in degrees per second.
     RAW: int = 99   # A velocity unit that is measured in raw data form.
-
-
-# aliases
-PERCENT: VelocityUnits = VelocityUnits.PCT
