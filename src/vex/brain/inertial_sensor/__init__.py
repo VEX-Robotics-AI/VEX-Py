@@ -112,47 +112,27 @@ class Inertial(SingletonDevice):
         _check_rotation_unit(rotation_unit)
 
     @vexcode_doc("""
-        Reports the acceleration value from one of the axes (x, y, or z) on the VEX IQ (2nd generation) Brain's
-        Inertial Sensor.
-            brain_inertial.acceleration(AXIS)
+        Inertial Acceleration
 
-        Replace the AXIS parameter with one of the following options to get the acceleration values along
-        the selected axis:
-        * AxisType.XAXIS: reports acceleration of an Inertial Sensor's forward to backward movements
-        * AxisType.YAXIS: reports acceleration of an Inertial Sensor's side to side movements
-        * AxisType.ZAXIS: reports acceleration of an Inertial Sensor's up to down movements
-        * Inertial Acceleration returns a decimal value that ranges from -4.0 to 4.0 Gs.
+        Reports the acceleration value from one of the axes (x, y, or z)
+        on the VEX IQ (2nd generation) Brain's Inertial Sensor.
 
-        Example: prints an Inertial Sensor's acceleration values to the VEX IQ Brain in a loop:
-        ```
-            # Set a smaller font to ensure lines fit when printed
-            brain.screen.set_font(FontType.MONO12)
+        Replace the AXIS parameter with one of the following options
+        to get the acceleration values along the selected axis:
+        - AxisType.XAXIS:
+            reports acceleration of an Inertial Sensor's forward-to-backward
+            movements
+        - AxisType.YAXIS:
+            reports acceleration of an Inertial Sensor's side-to-side movements
+        - AxisType.ZAXIS:
+            reports acceleration of an Inertial Sensor's up-to-down movements
 
-            while True:
-                brain.screen.clear_screen()
-                brain.screen.set_cursor(1, 1)
-
-                # X Axis
-                brain.screen.print("X:", brain_inertial.acceleration(AxisType.XAXIS))
-                brain.screen.next_row()
-
-                # Y Axis
-                brain.screen.print("Y:", brain_inertial.acceleration(AxisType.YAXIS))
-                brain.screen.next_row()
-
-                # Z Axis
-                brain.screen.print("Z:", brain_inertial.acceleration(AxisType.ZAXIS))
-                brain.screen.next_row()
-
-                # Brief wait to prevent tearing when printing values
-                wait(0.1, SECONDS)
-        ```
+        Inertial Acceleration returns a decimal value that ranges
+        from -4.0 to 4.0 Gs.
     """)
     @sense
-    def acceleration(self, axis_type: AxisType = AxisType.XAXIS):
-        """Reports the acceleration value from one of the axes (x, y, or z) on the VEX IQ (2nd generation) Brain's
-        Inertial Sensor.
-        """
+    def acceleration(self, axis_type: AxisType, /) -> float:
+        """Return acceleration in one of the axes (x, y, or z)."""
 
     @vexcode_doc("""
         Inertial Gyro Rate
@@ -177,8 +157,7 @@ class Inertial(SingletonDevice):
     """)
     @sense
     def gyro_rate(
-            self,
-            axis_type: AxisType = AxisType.XAXIS,
+            self, axis_type: AxisType,
             velocity_unit: Literal[VelocityUnits.DPS] = VelocityUnits.DPS, /) \
             -> float:
         # pylint: disable=unused-argument
@@ -204,8 +183,7 @@ class Inertial(SingletonDevice):
             represents yaw, which reports a value between -180 to +180 degrees
     """)
     @sense
-    def orientation(self,
-                    orientation_type: OrientationType = OrientationType.ROLL,
+    def orientation(self, orientation_type: OrientationType,
                     rotation_unit: Literal[DEGREES] = DEGREES, /) -> int:
         # pylint: disable=unused-argument
         """Return orientation angle."""
