@@ -1,4 +1,4 @@
-"""VEX Smart Drivetrain.
+"""Smart Drivetrain.
 
 Robot Mesh Python B:
 robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacesmartdrive.html
@@ -21,8 +21,7 @@ from vex import (BrakeType,
                  TurnType,
                  VelocityUnits)
 
-# pylint: disable=unused-import
-from vex.util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from vex.util.doc import robotmesh_doc
 
 
 __all__: Sequence[str] = ('Smartdrive',)
@@ -77,14 +76,14 @@ class Smartdrive(Drivetrain):
 
     def __eq__(self, other: Self) -> bool:
         """Check Equality."""
-        return isinstance(other, Smartdrive) and \
-            (other.left_motor == self.left_motor) and \
-            (other.right_motor == self.right_motor) and \
-            (other.gyro == self.gyro) and \
-            (other.wheel_travel == self.wheel_travel) and \
-            (other.track_width == self.track_width) and \
-            (other.distance_unit == self.distance_unit) and \
-            (other.gear_ratio == self.gear_ratio)
+        return (isinstance(other, Smartdrive) and
+                (other.left_motor == self.left_motor) and
+                (other.right_motor == self.right_motor) and
+                (other.gyro == self.gyro) and
+                (other.wheel_travel == self.wheel_travel) and
+                (other.track_width == self.track_width) and
+                (other.distance_unit == self.distance_unit) and
+                (other.gear_ratio == self.gear_ratio))
 
     def __hash__(self) -> int:
         """Return Integer Hash."""
