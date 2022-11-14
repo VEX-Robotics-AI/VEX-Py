@@ -4,11 +4,11 @@ from ...vex import Brain, SECONDS
 from ...testing.io_utils import replace_stdin
 
 
-class TestBrainTimer(unittest.TestCase):
+class TestBrainTimmer(unittest.TestCase):
     def setUp(self):
         self.brain = Brain()
 
-    def test_brain_timer_clear(self):
+    def test_brain_timmer_clear(self):
         self.brain.timer.clear()
 
     def test_brain_timer_time(self):
