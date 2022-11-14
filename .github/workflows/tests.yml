@@ -3,12 +3,10 @@ name: Run tests
 on:
   push:
     branches:
-      - "main"
-      - "tests"
-      - "add-VEXcode-API"
+      - "*"
   pull_request:
     branches:
-      - "main"
+      - "*"
 
 jobs:
   test:

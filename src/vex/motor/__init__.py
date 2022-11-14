@@ -18,7 +18,7 @@ from .brake_type import BrakeType
 from .direction_type import DirectionType, FORWARD, REVERSE
 from .torque_units import TorqueUnits
 from .turn_type import TurnType, LEFT, RIGHT
-from .velocity_units import VelocityUnits, PERCENT
+from .velocity_units import VelocityUnits
 
 
 __all__: Sequence[str] = ('Motor',
@@ -26,7 +26,7 @@ __all__: Sequence[str] = ('Motor',
                           'DirectionType', 'FORWARD', 'REVERSE',
                           'TorqueUnits',
                           'TurnType', 'LEFT', 'RIGHT',
-                          'VelocityUnits', 'PERCENT')
+                          'VelocityUnits')
 
 
 @robotmesh_doc("""
