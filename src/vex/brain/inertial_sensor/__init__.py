@@ -34,18 +34,22 @@ class Inertial(SingletonDevice):
         """Initialize Brain-built-in Inertial Sensor."""
 
     @vexcode_doc("""
-        Calibrates a VEX IQ (2nd generation) Brain's Inertial Sensor to reduce the amount of drift generated.
-            brain_inertial.calibrate()
+        Inertial Calibrate
 
-        Drifting occurs when the IQ (2nd generation) Brain's Inertial Sensor incorrectly detects movement
-        even though the sensor is not physically moving.
+        Calibrates a VEX IQ (2nd generation) Brain's Inertial Sensor
+        to reduce the amount of drift generated.
 
-        The IQ (2nd generation) Brain's Inertial Sensor must remain still during the calibration process.
-        The calibration process will take approximately 2 seconds to complete.
+        Drifting occurs when the IQ (2nd generation) Brain's Inertial Sensor
+        incorrectly detects movement even though
+        the sensor is not physically moving.
+
+        The IQ (2nd generation) Brain's Inertial Sensor must remain still
+        during the calibration process. The calibration process will take
+        approximately 2 seconds to complete.
     """)
     @act
     def calibrate(self):
-        """Calibrates a VEX IQ (2nd generation) Brain's Inertial Sensor to reduce the amount of drift generated."""
+        """Calibrate to reduce amount of drift generated."""
 
     @vexcode_doc("""
         Inertial Set Heading
