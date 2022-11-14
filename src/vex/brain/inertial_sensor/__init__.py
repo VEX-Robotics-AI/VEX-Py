@@ -92,23 +92,20 @@ class Inertial(SingletonDevice):
         _check_rotation_unit(rotation_unit)
 
     @vexcode_doc("""
-        Reports a VEX IQ (2nd generation) Brain's Inertial Sensor's current angle of rotation in degrees.
-            brain_inertial.rotation(DEGREES)
+        Inertial Rotation
 
-        The Inertial Rotation command reports an increasingly positive value when the Inertial Sensor turns in the
-        clockwise direction.
-        Inertial Rotation reports an increasingly negative value when the Inertial Sensor turns in the
-        counter-clockwise direction.
+        Reports a VEX IQ (2nd generation) Brain's Inertial Sensor's
+        current angle of rotation in degrees.
 
-        Example: turning a Drivetrain until the Inertial Sensor's rotation value is > 180 degrees before stopping:
-            drivetrain.turn(RIGHT)
-            while not brain_inertial.rotation(DEGREES) > 180:
-                wait(0.1, SECONDS)
-            drivetrain.stop()
+        The Inertial Rotation command reports an increasingly positive value
+        when the Inertial Sensor turns in the clockwise direction.
+
+        Inertial Rotation reports an increasingly negative value
+        when the Inertial Sensor turns in the counter-clockwise direction.
     """)
     @sense
-    def rotation(self, rotation_unit: RotationUnits = DEGREES):
-        """Reports a VEX IQ (2nd generation) Brain's Inertial Sensor's current angle of rotation in degrees."""
+    def rotation(self, rotation_unit: Literal[DEGREES] = DEGREES, /) -> float:
+        """Return current angle of rotation in degrees."""
         _check_rotation_unit(rotation_unit)
 
     @vexcode_doc("""
