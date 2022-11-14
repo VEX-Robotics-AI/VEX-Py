@@ -20,7 +20,7 @@ from vex import (BrakeType,
                  TimeUnits,
                  TurnType,
                  VelocityUnits,)
-from vex.units_common.current_units import CurrentUnits
+from vex.units_common.electric import ElectricCurrentUnits
 from vex.util.doc import robotmesh_doc, vexcode_doc
 
 
@@ -155,7 +155,7 @@ class Drivetrain:
         - The second argument specifies the distance that the IQ Robot should drive.
         - The third argument specifies the unit of measurement that should be used.
             Valid inputs are either INCHES or MM (millimeters) in all-capital letters.
-        
+
         The DISTANCE parameter accepts numeric values.
         Negative values will cause the IQ Robot to drive in the opposite of the input DIRECTION.
             drivetrain.drive_for(REVERSE, 5.0, INCHES)
@@ -301,7 +301,7 @@ class Drivetrain:
     @vexcode_doc("""
         Turns a Drivetrain to a specific heading, when using a Gyro or Inertial Sensor.
             drivetrain.turn_to_heading(HEADING, DEGREES)
-        
+
         The Turn to Heading command can be used to turn the Drivetrain to any given clockwise
         or counter-clockwise positive heading, depending on whether a Gyro
         or Inertial Sensor is configured with the Drivetrain.
@@ -338,7 +338,7 @@ class Drivetrain:
         rotation values can either be counter-clockwise positive (Gyro), or clockwise positive (Inertial).
 
         Based on the current rotation of the Drivetrain, Turn to Rotation will determine which direction to turn.
-        
+
         The ROTATION parameter can accept numeric values.
         Numeric values are not limited to the range of 0 - 359.99 degrees.
         Turns will be absolute and may cause the robot to rotate more than once if necessary.
@@ -347,13 +347,13 @@ class Drivetrain:
             You can set a third parameter to wait=False to prevent the Turn to Rotation command
             from blocking proceeding commands until the Drivetrain turn is completed.
                 drivetrain.turn_to_rotation(180.0, DEGREES, wait=False)
-        
+
         This example will cause the Drivetrain to make four turns:
             drivetrain.turn_to_rotation(90.0, DEGREES)  # Right (clockwise) to 90 degrees
             drivetrain.turn_to_rotation(180, DEGREES)   # Right (clockwise) to 180 degrees
             drivetrain.turn_to_rotation(-45, DEGREES)   # Left (counter-clockwise) to -45 degrees
             drivetrain.turn_to_rotation(0, DEGREES)     # Right (clockwise) to 0 degrees
-            
+
         (The direction descriptions above are aligned with an IQ (2nd generation) Brain's Inertial Sensor
         being configured with the Drivetrain)
         The Turn to Rotationcommand will by default block proceeding commands until the Drivetrain turn has completed.
@@ -501,7 +501,7 @@ class Drivetrain:
     @vexcode_doc("""
         Sets the Drivetrain's Inertial or Gyro Sensor to the specified heading.
             drivetrain.set_heading(HEADING, DEGREES)
-        
+
         The Drivetrain's Set Heading command can be used to set the Drivetrain's heading to a specified value.
         This command can be used to reset the orientation of the Drivetrain's Inertial
         or Gyro Sensor when the heading is set to a value of 0.
@@ -523,7 +523,7 @@ class Drivetrain:
         Reports the direction that the Drivetrain is facing by using the Gyro
         or Inertial Sensor's current angular position.
             drivetrain.heading(DEGREES)
-        
+
         Drive heading reports a range from 0.00 to 359.99 degrees.
         When the Drivetrain is configured with a Gyro Sensor,
         the Drive Heading command reports an increase in heading when rotating counter-clockwise.
@@ -560,7 +560,7 @@ class Drivetrain:
     @vexcode_doc("""
         Reports the Drivetrain's angle of rotation when configured with a Gyro or Inertial Sensor.
             drivetrain.rotation(DEGREES)
-        
+
         When configured with a Gyro Sensor, the Drivetrain's Drive Rotation command reports
         an increasingly positive value when the Drivetrain turns in the counter-clockwise direction.
 
@@ -583,7 +583,7 @@ class Drivetrain:
     @vexcode_doc("""
         Reports the current velocity of the Drivetrain.
             drivetrain.velocity(UNITS)
-        
+
         Drive Velocity returns a decimal value representing the current velocity of the Drivetrain.
         Acceptable UNITS are PERCENT and RPM.
             - If the provided UNITS parameter is PERCENT, the reported values ranges between -100 to 100.
@@ -605,5 +605,5 @@ class Drivetrain:
         Drive Current reports a range from 0.0 to 2.5 when CurrentUnits.AMP is passed as the UNITS parameter.
     """)
     @sense
-    def current(self, units : CurrentUnits = CurrentUnits.AMP) -> float:
+    def current(self, units : ElectricCurrentUnits = ElectricCurrentUnits.AMP) -> float:
         """Return Motors' Electrical Current."""

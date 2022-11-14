@@ -1,5 +1,8 @@
 """Drive Train."""
 
 
-class DriveTrain:
+from .motor_group import MotorGroup
+
+
+class DriveTrain(MotorGroup):
     """Drive Train."""
