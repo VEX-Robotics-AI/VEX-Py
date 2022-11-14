@@ -26,102 +26,54 @@ from .distance_sensor import Sonar
 from .controller import Controller, ControllerAxis, ControllerButton
 from .inertial import Inertial, AxisType, OrientationType
 from .gyro_sensor import Gyro, GyroCalibrationType
-from .motor import (
-    Motor,
-    BrakeType,
-    DirectionType,
-    TurnType,
-    TorqueUnits,
-    VelocityUnits,
-)
+from .motor import (Motor,
+                    BrakeType,
+                    DirectionType, FORWARD, REVERSE,
+                    TurnType, LEFT, RIGHT,
+                    TorqueUnits,
+                    VelocityUnits)
+from .optical_sensor import OpticalSensor, LedStateType, GestureType
 from .touch_led import Touchled, FadeType
-from .time import TimeUnits, wait
-from .units_common import DistanceUnits, RotationUnits
+from .time import TimeUnits, SECONDS, MSEC, wait
+from .units_common import (DistanceUnits, MM, INCHES, CM,
+                           NumericUnits, PERCENT,
+                           RotationUnits, DEGREES, TURNS)
 
 
 __all__: Sequence[str] = (
-    "__version__",
-    "Brain",
-    "BrainButton",
-    "BrainLcd",
-    "BrainSound",
-    "NoteType",
-    "SoundType",
-    "Ports",
-    "Bumper",
-    "ColorSensor", "Colorsensor",
-    "ColorHue",
-    "Inertial",
-    "AxisType",
-    "XAXIS",
-    "YAXIS",
-    "ZAXIS",
-    "OrientationType",
-    "PITCH",
-    "ROLL",
-    "YAW",
-    "Sonar",
-    "Controller",
-    "ControllerAxis",
-    "ControllerButton",
-    "Gyro",
-    "GyroCalibrationType",
-    "Motor",
-    "BrakeType",
-    "DirectionType",
-    "TorqueUnits",
-    "TurnType",
-    "VelocityUnits",  # noqa: E501
-    "Touchled",
-    "FadeType",
-    "TimeUnits",
-    "wait",
-    "DistanceUnits",
-    "RotationUnits",
-    "DEGREES",
-    "TURNS",
-    "PERCENT",
-    "SECONDS",
-    "INCHES",
-    "MM",
-    "FORWARD",
-    "REVERSE",
-    "LEFT",
-    "RIGHT",
-    "interactive",
+    '__version__',
+    'Brain', 'BrainButton', 'BrainLcd', 'BrainSound', 'NoteType', 'SoundType',
+    'Ports',
+    'Inertial',
+    'AxisType',
+    'OrientationType',
+    'Bumper',
+    'ColorSensor', 'Colorsensor', 'ColorHue',
+    'OpticalSensor', 'LedStateType', 'GestureType',
+    'Sonar',
+    'Controller', 'ControllerAxis', 'ControllerButton',
+    'Gyro', 'GyroCalibrationType',
+    'Motor',
+    'BrakeType',
+    'DirectionType', 'FORWARD', 'REVERSE',
+    'TorqueUnits',
+    'TurnType', 'LEFT', 'RIGHT',
+    'VelocityUnits',
+    'Touchled', 'FadeType',
+    'TimeUnits', 'SECONDS', 'MSEC', 'wait',
+    'DistanceUnits', 'MM', 'INCHES', 'CM',
+    'NumericUnits', 'PERCENT',
+    'RotationUnits', 'DEGREES', 'TURNS',
+    'interactive',
 )
 
 
-__version__: str = version(distribution_name="VEX-Py")
+__version__: str = version(distribution_name='VEX-Py')
 
 
 # CONSTANTS
 # =========
 INT29_MAX: int = 0x1FFFFFFF
-
-DEGREES: RotationUnits = RotationUnits.DEG
-TURNS: RotationUnits = RotationUnits.REV
-
-PERCENT: VelocityUnits = VelocityUnits.PCT
-
-SECONDS: TimeUnits = TimeUnits.SEC
-
-INCHES: DistanceUnits = DistanceUnits.IN
-MM: DistanceUnits = DistanceUnits.MM
-
-FORWARD: DirectionType = DirectionType.FWD
-REVERSE: DirectionType = DirectionType.REV
-
-LEFT: TurnType = TurnType.LEFT
-RIGHT: TurnType = TurnType.RIGHT
-
-XAXIS: AxisType = AxisType.XAXIS
-YAXIS: AxisType = AxisType.YAXIS
-ZAXIS: AxisType = AxisType.ZAXIS
-
-PITCH: OrientationType = OrientationType.PITCH
-ROLL: OrientationType = OrientationType.ROLL
-YAW: OrientationType = OrientationType.YAW
 
 
 # ALIASES
