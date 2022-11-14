@@ -23,7 +23,7 @@ from .brain.port import Ports
 from .brain.inertial_sensor import Inertial, AxisType, OrientationType
 from .bumper_switch_sensor import Bumper
 from .color_sensor import ColorSensor, Colorsensor, ColorHue
-from .distance_sensor import Sonar
+from .distance_sensor import Distance, ObjectSizeType, Sonar
 from .controller import Controller, ControllerAxis, ControllerButton
 from .gyro_sensor import Gyro, GyroCalibrationType
 from .motor import (Motor,
@@ -50,6 +50,7 @@ __all__: Sequence[str] = (
     'Bumper',
     'ColorSensor', 'Colorsensor', 'ColorHue',
     'OpticalSensor', 'LedStateType', 'GestureType',
+    'Distance', 'ObjectSizeType',
     'Sonar',
     'Controller', 'ControllerAxis', 'ControllerButton',
     'Gyro', 'GyroCalibrationType',
