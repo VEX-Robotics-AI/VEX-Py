@@ -1,9 +1,10 @@
-"""Brain Inertial Sensor."""
+"""Brain-built-in Inertial Sensor."""
 
 
 from __future__ import annotations
 
 from collections.abc import Sequence
+from typing import Literal
 
 from abm.decor import act, sense
 
@@ -21,20 +22,16 @@ __all__: Sequence[str] = ('Inertial',
                           'OrientationType', 'PITCH', 'ROLL', 'YAW')
 
 
-def _check_rotation_unit(rotation_unit: RotationUnits):
-    if rotation_unit != DEGREES:
-        raise ValueError("Incorrect rotation unit. Only accepts DEGREES.")
+def _check_rotation_unit(rotation_unit: RotationUnits, /):
+    assert rotation_unit is DEGREES, ValueError('*** ROTATION UNIT MUST BE '
+                                                'DEGREES ***')
 
 
-@vexcode_doc("""
-    VEX IQ (2nd generation) Brain's Inertial Sensor.
-""")
 class Inertial(SingletonDevice):
-    """VEX IQ (2nd generation) Brain's Inertial Sensor."""
+    """Brain-built-in Inertial Sensor."""
 
     def __init__(self):
-        """Initialize Brain's Inertial Sensor."""
-        pass
+        """Initialize Brain-built-in Inertial Sensor."""
 
     @vexcode_doc("""
         Calibrates a VEX IQ (2nd generation) Brain's Inertial Sensor to reduce the amount of drift generated.

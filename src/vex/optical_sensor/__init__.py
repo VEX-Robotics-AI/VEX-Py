@@ -100,7 +100,7 @@ class OpticalSensor(Device):
     def set_light_power(self, power: int, unit: Literal[PERCENT] = PERCENT, /):
         # pylint: disable=unused-argument
         """Set Optical Light Power."""
-        assert unit is PERCENT, '*** UNIT MUST BE PERCENT ***'
+        assert unit is PERCENT, ValueError('*** UNIT MUST BE PERCENT ***')
 
     @vexcode_doc("""
         Optical Is Near Object

@@ -91,4 +91,5 @@ class Sonar(Device):
     @sense
     def distance(self, distanceUnits: DistanceUnits = DistanceUnits.MM, /) -> int:  # noqa: E501
         """Return measured distance to nearby object."""
-        assert distanceUnits in (MM, INCHES), '*** UNIT MUST BE MM OR INCHES ***'  # noqa: E501
+        assert distanceUnits in (MM, INCHES), ValueError('*** UNIT MUST BE '
+                                                         'MM OR INCHES ***')
