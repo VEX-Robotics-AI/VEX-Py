@@ -182,20 +182,26 @@ class Inertial(SingletonDevice):
             raise ValueError("Incorrect velocity unit. Only accepts DPS.")
 
     @vexcode_doc("""
-        Gets an orientation angle of the VEX IQ (2nd generation) Brain's Inertial Sensor.
-            brain_inertial.orientation(TYPE, DEGREES)
+        Inertial Orientation
 
-        The orientation reported is determined by the selected axis (x, y, or z).
+        Gets an orientation angle
+        of the VEX IQ (2nd generation) Brain's Inertial Sensor.
+
+        The orientation reported is determined by the selected axis
+        (x, y, or z).
+
         Replace the TYPE parameter with one of the following options:
-        * OrientationType.PITCH: represents pitch, which reports a value between -90 to +90 degrees.
-        * OrientationType.ROLL: represents roll, which reports a value between -180 to +180 degrees.
-        * OrientationType.YAW: represents yaw, which reports a value between -180 to +180 degrees.
+        - OrientationType.PITCH:
+            represents pitch, which reports a value between -90 to +90 degrees
+        - OrientationType.ROLL:
+            represents roll, which reports a value between -180 to +180 degrees
+        - OrientationType.YAW:
+            represents yaw, which reports a value between -180 to +180 degrees
     """)
     @sense
-    def orientation(
-        self,
-        orientation_type: OrientationType = OrientationType.ROLL,
-        rotation_unit: RotationUnits = DEGREES,
-    ):
-        """Gets an orientation angle of the VEX IQ (2nd generation) Brain's Inertial Sensor."""
+    def orientation(self,
+                    orientation_type: OrientationType = OrientationType.ROLL,
+                    rotation_unit: Literal[DEGREES] = DEGREES, /) -> int:
+        # pylint: disable=unused-argument
+        """Return orientation angle."""
         _check_rotation_unit(rotation_unit)
