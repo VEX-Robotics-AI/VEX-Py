@@ -1,18 +1,18 @@
-"""Current Units."""
+"""Electric Current Units."""
 
 
 from collections.abc import Sequence
 from enum import IntEnum, auto
 
 
-__all__: Sequence[str] = 'CurrentUnits', 'AMP'
+__all__: Sequence[str] = 'ElectricCurrentUnits', 'AMP'
 
 
-class CurrentUnits(IntEnum):
+class ElectricCurrentUnits(IntEnum):
     """Current Units."""
 
     AMP: int = auto()
 
 
 # aliases
-AMP: CurrentUnits = CurrentUnits.AMP
+AMP: ElectricCurrentUnits = ElectricCurrentUnits.AMP

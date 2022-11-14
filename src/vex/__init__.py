@@ -35,8 +35,8 @@ from .motor import (Motor,
 from .optical_sensor import OpticalSensor, LedStateType, GestureType
 from .touch_led import Touchled, FadeType
 from .time import TimeUnits, SECONDS, MSEC, wait
-from .units_common import (CurrentUnits, AMP,
-                           DistanceUnits, MM, INCHES, CM,
+from .units_common import (DistanceUnits, MM, INCHES, CM,
+                           ElectricCurrentUnits, AMP,
                            NumericUnits, PERCENT,
                            RotationUnits, DEGREES, TURNS)
 
@@ -64,9 +64,9 @@ __all__: Sequence[str] = (
     'Touchled', 'FadeType',
     'TimeUnits', 'SECONDS', 'MSEC', 'wait',
     'DistanceUnits', 'MM', 'INCHES', 'CM',
+    'ElectricCurrentUnits', 'AMP',
     'NumericUnits', 'PERCENT',
     'RotationUnits', 'DEGREES', 'TURNS',
-    'CurrentUnits', 'AMP',
     'interactive',
 )
 
