@@ -7,9 +7,8 @@ from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
-from ..units_common import DistanceUnits
-
-from ..util.doc import robotmesh_doc
+from ..units_common.distance import DistanceUnits, MM, INCHES
+from ..util.doc import robotmesh_doc, vexcode_doc
 
 
 __all__: Sequence[str] = ('Sonar',)
@@ -50,6 +49,22 @@ class Sonar(Device):
         """Set maximum measurable distance."""
         self.max_distances[distanceUnits] = distance
 
+    @vexcode_doc("""
+        Distance Found Object
+
+        Reports if a VEX IQ Distance Sensor (1st generation)
+        detects an object within its field of view.
+
+        Reports True when a Distance Sensor detects an object or surface
+        within its field of view.
+
+        Reports False when a Distance Sensor does not detect an object
+        or surface.
+    """)
+    @sense
+    def is_object_detected(self) -> bool:
+        """Check if an object is detected within range."""
+
     @robotmesh_doc("""
         Get the value of the sonar sensor.
 
@@ -60,6 +75,20 @@ class Sonar(Device):
         Returns:
         an integer that represents the unit value specified by the parameter.
     """)
+    @vexcode_doc("""
+        Distance From
+
+        Reports the distance of the nearest object
+        from a VEX IQ Distance Sensor (1st generation).
+
+        Distance From reports a range of values
+        between 24 to 1000 mm (millimeters) or 1 to 40 in (inches).
+
+        Specify whether the value returned by Distance From is reported
+        in inches or mm (millimeters) by replacing the UNITS parameter
+        with either INCHES or MM, respectively.
+    """)
     @sense
     def distance(self, distanceUnits: DistanceUnits = DistanceUnits.MM, /) -> int:  # noqa: E501
         """Return measured distance to nearby object."""
+        assert distanceUnits in (MM, INCHES), '*** UNIT MUST BE MM OR INCHES ***'  # noqa: E501
