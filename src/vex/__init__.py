@@ -31,12 +31,14 @@ from .motor import (Motor,
                     DirectionType, FORWARD, REVERSE,
                     TurnType, LEFT, RIGHT,
                     TorqueUnits,
-                    VelocityUnits, PERCENT)
+                    VelocityUnits)
+from .optical_sensor import OpticalSensor, LedStateType, GestureType
 from .touch_led import Touchled, FadeType
 from .time import TimeUnits, SECONDS, MSEC, wait
-from .units_common import (DistanceUnits, MM, INCHES, CM,
-                           RotationUnits, DEGREES, TURNS,
-                           CurrentUnits, AMP)
+from .units_common import (CurrentUnits, AMP,
+                           DistanceUnits, MM, INCHES, CM,
+                           NumericUnits, PERCENT,
+                           RotationUnits, DEGREES, TURNS)
 
 
 __all__: Sequence[str] = (
@@ -48,6 +50,7 @@ __all__: Sequence[str] = (
     'OrientationType',
     'Bumper',
     'ColorSensor', 'Colorsensor', 'ColorHue',
+    'OpticalSensor', 'LedStateType', 'GestureType',
     'Sonar',
     'Controller', 'ControllerAxis', 'ControllerButton',
     'Gyro', 'GyroCalibrationType',
@@ -56,17 +59,18 @@ __all__: Sequence[str] = (
     'DirectionType', 'FORWARD', 'REVERSE',
     'TorqueUnits',
     'TurnType', 'LEFT', 'RIGHT',
-    'VelocityUnits', 'PERCENT',
+    'VelocityUnits',
     'Touchled', 'FadeType',
     'TimeUnits', 'SECONDS', 'MSEC', 'wait',
     'DistanceUnits', 'MM', 'INCHES', 'CM',
+    'NumericUnits', 'PERCENT',
     'RotationUnits', 'DEGREES', 'TURNS',
     'CurrentUnits', 'AMP',
     'interactive',
 )
 
 
-__version__: str = version(distribution_name="VEX-Py")
+__version__: str = version(distribution_name='VEX-Py')
 
 
 # CONSTANTS
