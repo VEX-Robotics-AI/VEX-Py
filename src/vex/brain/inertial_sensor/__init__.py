@@ -155,31 +155,36 @@ class Inertial(SingletonDevice):
         """
 
     @vexcode_doc("""
-        Gets the rate of rotation for the specified axis (x, y, or z) on a VEX IQ (2nd generation) Brain's
-        Inertial Sensor.
-            brain_inertial.gyro_rate(AXIS, VelocityUnits.DPS)
+        Inertial Gyro Rate
 
-        Replace the AXIS parameter with one of the following options to get the gyro rate along an axis on the
-        Inertial Sensor:
-        * AxisType.XAXIS: reports rotation when the Inertial Sensor rotates in the X-Axis
+        Gets the rate of rotation for the specified axis (x, y, or z)
+        on a VEX IQ (2nd generation) Brain's Inertial Sensor.
+
+        Replace the AXIS parameter with one of the following options
+        to get the gyro rate along an axis on the Inertial Sensor:
+        - AxisType.XAXIS:
+            reports rotation when the Inertial Sensor rotates in the X-Axis
             (based on the orientation of the sensor)
-        * AxisType.YAXIS: reports rotation when the Inertial Sensor rotates in the Y-Axis
+        - AxisType.YAXIS:
+            reports rotation when the Inertial Sensor rotates in the Y-Axis
             (based on the orientation of the sensor)
-        * AxisType.ZAXIS: reports rotations when the Inertial Sensor rotates in the Z-Axis
+        - AxisType.ZAXIS:
+            reports rotations when the Inertial Sensor rotates in the Z-Axis
             (based on the orientation of the sensor)
-        Inertial Gyro Rate is used to return a range from -1000.0 to 1000.0 in dps (degrees per second).
+
+        Inertial Gyro Rate is used to return a range from -1000.0 to 1000.0
+        in dps (degrees per second)
     """)
     @sense
     def gyro_rate(
-        self,
-        axis_type: AxisType = AxisType.XAXIS,
-        velocity_unit: VelocityUnits = VelocityUnits.DPS,
-    ):
-        """Gets the rate of rotation for the specified axis (x, y, or z) on a VEX IQ (2nd generation) Brain's
-        Inertial Sensor.
-        """
-        if velocity_unit != VelocityUnits.DPS:
-            raise ValueError("Incorrect velocity unit. Only accepts DPS.")
+            self,
+            axis_type: AxisType = AxisType.XAXIS,
+            velocity_unit: Literal[VelocityUnits.DPS] = VelocityUnits.DPS, /) \
+            -> float:
+        # pylint: disable=unused-argument
+        """Return rate of rotation for specified axis (x, y, or z)."""
+        assert velocity_unit is VelocityUnits.DPS, \
+            ValueError('*** VELOCITY UNIT MUST BE DPS ***')
 
     @vexcode_doc("""
         Inertial Orientation
