@@ -3,7 +3,7 @@
 
 from collections.abc import Sequence
 
-from .current import CurrentUnits, AMP
+from .electric import CurrentUnits, AMP
 from .distance import DistanceUnits, MM, INCHES, CM
 from .numeric import NumericUnits, PERCENT
 from .rotation import RotationUnits, DEGREES, TURNS
