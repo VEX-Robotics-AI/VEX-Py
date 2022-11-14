@@ -48,17 +48,25 @@ class Inertial(SingletonDevice):
         """Calibrates a VEX IQ (2nd generation) Brain's Inertial Sensor to reduce the amount of drift generated."""
 
     @vexcode_doc("""
-        Sets a VEX IQ (2nd generation) Brain's Inertial Sensor's current heading position to a specified heading.
-            brain_inertial.set_heading(HEADING, DEGREES)
+        Inertial Set Heading
 
-        Inertial Set Heading can be used to set the IQ (2nd generation) Brain's Inertial Sensor's position
-        to any clockwise-positive heading. This command is typically used to reset the orientation of the
-        IQ (2nd generation) Brain Inertial Sensor when the heading is set to a value of 0.
-        Inertial Set Heading accepts a range of 0.0 to 359.99 for the HEADING parameter.
+        Sets a VEX IQ (2nd generation) Brain's Inertial Sensor's
+        current heading position to a specified heading.
+
+        Inertial Set Heading can be used
+        to set the IQ (2nd generation) Brain's Inertial Sensor's position
+        to any clockwise-positive heading. This command is typically used to
+        reset the orientation of the IQ (2nd generation) Brain Inertial Sensor
+        when the heading is set to a value of 0.
+
+        Inertial Set Heading accepts a range of 0.0 to 359.99
+        for the HEADING parameter.
     """)
     @act
-    def set_heading(self, heading: float = 0, rotation_unit: RotationUnits = DEGREES):
-        """Sets a VEX IQ (2nd generation) Brain's Inertial Sensor's current heading position to a specified heading."""
+    def set_heading(self, heading: float = 0,
+                    rotation_unit: Literal[DEGREES] = DEGREES, /):
+        # pylint: disable=unused-argument
+        """Set current heading position to specified value."""
         _check_rotation_unit(rotation_unit)
 
     @vexcode_doc("""
