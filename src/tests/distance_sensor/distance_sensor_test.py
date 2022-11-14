@@ -1,12 +1,12 @@
 import unittest
 
-from ...vex import Sonar, ObjectSizeType, Ports, MM
+from ...vex import Distance, ObjectSizeType, Ports, MM
 from ...testing.io_utils import replace_stdin
 
 
-class TestSonar(unittest.TestCase):
+class TestDistanceSensor(unittest.TestCase):
     def setUp(self):
-        self.distance_sensor = Sonar(Ports.PORT1)
+        self.distance_sensor = Distance(Ports.PORT1)
 
     def test_object_distance(self):
         with replace_stdin("123.4"):
