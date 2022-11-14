@@ -44,8 +44,7 @@ class Sonar(Device):
         - distanceUnits: a DistanceUnits enum value for the measurement unit.
     """)
     @act
-    def set_maximum(self, distance: float,
-                    distanceUnits: DistanceUnits = DistanceUnits.MM, /):
+    def set_maximum(self, distance: float, distanceUnits: DistanceUnits = MM, /):  # noqa: E501
         """Set maximum measurable distance."""
         self.max_distances[distanceUnits] = distance
 
@@ -89,7 +88,7 @@ class Sonar(Device):
         with either INCHES or MM, respectively.
     """)
     @sense
-    def distance(self, distanceUnits: DistanceUnits = DistanceUnits.MM, /) -> int:  # noqa: E501
+    def distance(self, distanceUnits: DistanceUnits = MM, /) -> int:
         """Return measured distance to nearby object."""
         assert distanceUnits in (MM, INCHES), ValueError('*** UNIT MUST BE '
                                                          'MM OR INCHES ***')

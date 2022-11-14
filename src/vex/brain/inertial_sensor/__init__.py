@@ -62,15 +62,21 @@ class Inertial(SingletonDevice):
         _check_rotation_unit(rotation_unit)
 
     @vexcode_doc("""
-        Sets a VEX IQ (2nd generation) Brain's Inertial Sensor's angle of rotation to a specified rotation.
-            brain_inertial.set_rotation(ROTATION, DEGREES)
+        Inertial Set Rotation
 
-        The Inertial Set Rotation command can be used to set the IQ (2nd generation) Brain's Inertial Sensor's
-        angle of rotation to any given positive (clockwise) or negative (counter-clockwise) value.
+        Sets a VEX IQ (2nd generation) Brain's Inertial Sensor's
+        angle of rotation to a specified rotation.
+
+        The Inertial Set Rotation command can be used
+        to set the IQ (2nd generation) Brain's Inertial Sensor's
+        angle of rotation to any given positive (clockwise)
+        or negative (counter-clockwise) value.
     """)
     @act
-    def set_rotation(self, rotation: float = 0, rotation_unit: RotationUnits = DEGREES):
-        """Sets a VEX IQ (2nd generation) Brain's Inertial Sensor's angle of rotation to a specified rotation."""
+    def set_rotation(self, rotation: float = 0,
+                     rotation_unit: Literal[DEGREES] = DEGREES, /):
+        # pylint: disable=unused-argument
+        """Set angle of rotation to specified value."""
         _check_rotation_unit(rotation_unit)
 
     @vexcode_doc("""
@@ -126,7 +132,7 @@ class Inertial(SingletonDevice):
         from -4.0 to 4.0 Gs.
     """)
     @sense
-    def acceleration(self, axis_type: AxisType, /) -> float:
+    def acceleration(self, axis_type: AxisType = AxisType.XAXIS, /) -> float:
         """Return acceleration in one of the axes (x, y, or z)."""
 
     @vexcode_doc("""
@@ -152,7 +158,7 @@ class Inertial(SingletonDevice):
     """)
     @sense
     def gyro_rate(
-            self, axis_type: AxisType,
+            self, axis_type: AxisType = AxisType.XAXIS,
             velocity_unit: Literal[VelocityUnits.DPS] = VelocityUnits.DPS, /) \
             -> float:
         # pylint: disable=unused-argument
@@ -178,7 +184,8 @@ class Inertial(SingletonDevice):
             represents yaw, which reports a value between -180 to +180 degrees
     """)
     @sense
-    def orientation(self, orientation_type: OrientationType,
+    def orientation(self,
+                    orientation_type: OrientationType = OrientationType.ROLL,
                     rotation_unit: Literal[DEGREES] = DEGREES, /) -> int:
         # pylint: disable=unused-argument
         """Return orientation angle."""

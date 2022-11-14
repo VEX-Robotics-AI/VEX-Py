@@ -82,7 +82,7 @@ class OpticalSensor(Device):
         To turn the light off you pass LedStateType.OFF as the STATE parameter.
     """)
     @act
-    def set_light(self, state: LedStateType, /):
+    def set_light(self, state: LedStateType = LedStateType.ON, /):
         """Set Optical Sensor light state."""
 
     @vexcode_doc("""
@@ -97,7 +97,7 @@ class OpticalSensor(Device):
         If the light is off, this command will turn the light on.
     """)
     @act
-    def set_light_power(self, power: int, unit: Literal[PERCENT] = PERCENT, /):
+    def set_light_power(self, power: int = 50, unit: Literal[PERCENT] = PERCENT, /):  # noqa: E501
         # pylint: disable=unused-argument
         """Set Optical Light Power."""
         assert unit is PERCENT, ValueError('*** UNIT MUST BE PERCENT ***')
