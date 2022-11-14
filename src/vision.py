@@ -16,8 +16,7 @@ from abm.decor import sense
 from vex._abstract_device import Device
 from vex import Ports
 
-# pylint: disable=unused-import
-from vex.util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from vex.util.doc import robotmesh_doc
 
 
 __all__: Sequence[str] = 'Vision', 'VisionObject'
