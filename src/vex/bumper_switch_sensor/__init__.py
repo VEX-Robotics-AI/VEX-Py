@@ -9,25 +9,22 @@ from .._abstract_device import Device
 from ..brain.port import Ports
 
 # pylint: disable=unused-import
-from ..util.doc import  vexcode_doc   # noqa: F401
+from ..util.doc import vexcode_doc   # noqa: F401
+ 
+
+__all__: Sequence[str] = ('Bumper')
 
 
-__all__: Sequence[str] = ('Bumper',)
-
-
-# TODO: add VEXcode doc
-@vexcode_doc("""
-    robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_bumper.html
-""")
 class Bumper(Device):
     """Bumper Switch Sensor."""
 
     @vexcode_doc("""
         Create a new bumper object on the port specified in the parameter.
 
-        param:
+        param: 
         index: The port index for this bumper. The index is zero-based.
-    """)
+    """
+    )
     def __init__(self, index: Ports, /):
         """Initialize Bumper Switch Sensor."""
         self.port: Ports = index
@@ -41,7 +38,13 @@ class Bumper(Device):
 
         Returns
         True if pressed, False otherwise.
-    """)
+    """ 
+    )
+
     @sense
     def pressing(self) -> bool:
         """Return Bumper's pressed status."""
+
+   
+
+
