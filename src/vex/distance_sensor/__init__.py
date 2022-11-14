@@ -1,95 +1,87 @@
-"""VEX Distance Sensor."""
+"""Distance Sensor."""
 
 
 from collections.abc import Sequence
 
-from abm.decor import act, sense
+from abm.decor import sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
-from ..units_common import DistanceUnits
-
-# pylint: disable=unused-import
-from ..util.doc import robotmesh_doc, vexcode_doc  # noqa: F401
-
-
-__all__: Sequence[str] = ("Sonar",)
+from ..units_common.distance import DistanceUnits
+from ..util.doc import vexcode_doc
+from .object_size_type import ObjectSizeType
+from .sonar import Sonar
 
 
-@robotmesh_doc(
-    """
-    robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_sonar.html
-"""
-)
-class Sonar(Device):
-    """Sonar (Distance Sensor)."""
+__all__: Sequence[str] = 'Distance', 'ObjectSizeType', 'Sonar'
 
-    @robotmesh_doc(
-        """
-        Create new sonar sensor object on the port specified in the parameter.
 
-        Parameters:
-        - index: to the brain port.
-    """
-    )
-    def __init__(self, index: Ports, /):
+class Distance(Device):
+    """Distance Sensor."""
+
+    def __init__(self, port: Ports, /):
         """Initialize Distance Sensor."""
-        self.port: Ports = index
-
-        self.max_distances: dict[DistanceUnits, float] = dict[DistanceUnits, float]()
+        self.port: Ports = port
 
     def __hash__(self) -> int:
         """Return Integer Hash."""
         raise hash(self.port)
 
-    @robotmesh_doc(
-        """
-        Set the maximum distance (default 2.5m).
+    @vexcode_doc("""
+        Distance Object Detected
 
-        Parameters:
-        - distance: maximum distance to be measured in units
-        - distanceUnits: a DistanceUnits enum value for the measurement unit.
-    """
-    )
-    @act
-    def set_maximum(
-        self, distance: float, distanceUnits: DistanceUnits = DistanceUnits.MM, /
-    ):
-        """Set maximum measurable distance."""
-        self.max_distances[distanceUnits] = distance
+        Reports if a VEX IQ Distance Sensor (2nd generation)
+        detects an object or surface in its range.
 
-    @robotmesh_doc(
-        """
-        Get the value of the sonar sensor.
-
-        Parameters:
-        - distanceUnits: The measurement unit for
-                         the sonar device, DistanceUnits enum value.
-
-        Returns:
-        an integer that represents the unit value specified by the parameter.
-    """
-    )
+        Distance Object Detected returns True if an object or surface
+        is detected in its range, and False if not.
+    """)
     @sense
-    def distance(
-        self, distanceUnits: DistanceUnits = DistanceUnits.MM, /
-    ) -> int:  # noqa: E501
+    def is_object_detected(self) -> bool:
+        """Check if an object is detected within range."""
+
+    @vexcode_doc("""
+        Distance Object Distance
+
+        Reports the distance of the nearest object or surface
+        from a VEX IQ Distance Sensor (2nd generation).
+
+        Distance Object Distance accepts MM or INCHES as the UNITS parameter
+        and reports a range from 20 to 2000 mm (millimeters)
+        or approximately 0.8 to 79.0 inches.
+    """)
+    @sense
+    def object_distance(self, unit: DistanceUnits = DistanceUnits.MM, /) -> int:  # noqa: E501
         """Return measured distance to nearby object."""
 
-    @vexcode_doc(
-        """
-        Get the value of the sonar sensor.
+    @vexcode_doc("""
+        Distance Object Velocity
 
-        Parameters:
-        - distanceUnits: The measurement unit for
-                         the sonar device, DistanceUnits enum value.
+        Reports the velocity of a detected object in m/s.
 
-        Returns:
-        an integer that represents the unit value specified by the parameter.
-    """
-    )
+        Distance Object Velocity reports
+        the current velocity of an object in m/s (meters per second).
+
+        The velocity of a detected object will change when the object is moving
+        while in the range of an IQ Distance Sensor (2nd generation).
+    """)
     @sense
-    def object_distance(
-        self, distanceUnits: DistanceUnits = DistanceUnits.MM, /
-    ) -> int:  # noqa: E501
-        """Return measured distance to nearby object."""
+    def object_velocity(self) -> float:
+        """Return velocity of detected object in m/s."""
+
+    @vexcode_doc("""
+        Distance Object Size
+
+        Reports an estimation of the detected object's size.
+
+        Distance Object Size can be used to approximately determine
+        if a detected object is of a certain size.
+
+        There are three defined sizes that can be used for comparison:
+            ObjectSizeType.SMALL
+            ObjectSizeType.MEDIUM
+            ObjectSizeType.LARGE
+    """)
+    @sense
+    def object_size(self) -> ObjectSizeType:
+        """Return an estimation of the detected object's size."""
