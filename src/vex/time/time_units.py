@@ -7,7 +7,7 @@ from enum import IntEnum
 from ..util.doc import robotmesh_doc
 
 
-__all__: Sequence[str] = ('TimeUnits',)
+__all__: Sequence[str] = 'TimeUnits', 'SECONDS', 'MSEC'
 
 
 @robotmesh_doc("""
@@ -18,5 +18,10 @@ __all__: Sequence[str] = ('TimeUnits',)
 class TimeUnits(IntEnum):
     """Time Units."""
 
-    SEC: int = 0   # A time unit that is measured in seconds.
-    MSEC: int = 1   # A time unit that is measured in milliseconds.
+    SEC: int = 0   # A time unit that is measured in seconds
+    MSEC: int = 1   # A time unit that is measured in milliseconds
+
+
+# aliases
+SECONDS: TimeUnits = TimeUnits.SEC
+MSEC: TimeUnits = TimeUnits.MSEC
