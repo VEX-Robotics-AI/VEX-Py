@@ -1,4 +1,3 @@
-
 """Optical Sensor."""
 
 
@@ -14,23 +13,30 @@ from ..brain.port import Ports
 from ..color_sensor.color_hue import ColorHue
 from ..units_common.numeric import PERCENT
 from ..util.doc import vexcode_doc
-from .led_state_type import LedStateType
 from .gesture_info import GestureInfo
 from .gesture_type import GestureType
+from .led_state_type import LedStateType
 
 
 __all__: Sequence[str] = 'OpticalSensor', 'GestureType', 'LedStateType'
 
 
-_GESTURE_CALLBACK_DOCSTRINGS = """
-    The Optical Gesture Detected command can be used to trigger actions
-    or behaviors when a gesture is detected by an IQ Optical Sensor.
+GESTURE_CALLBACK_DOCSTR: str = """
+    Optical Gesture Detected
+
+    Runs the callback function
+    when gesture is detected by an IQ Optical Sensor.
+
+    The Optical Gesture Detected command can be used to trigger
+    actions or behaviors when a gesture is detected by an IQ Optical Sensor.
 
     You will need to create a function to call when a gesture is detected.
-    Provide the name of the function that should run when the event occurs as the callback parameter.
+    Provide the name of the function that should run when the event occurs
+    as the callback parameter.
 
-    You will also need to ensure that the Optical Sensor is set to detect gestures
-    by calling optical.gesture_enable() before gesture commands are used.
+    You will also need to ensure that the Optical Sensor is set
+    to detect gestures by calling optical.gesture_enable()
+    before gesture commands are used.
 
     Optical Gesture Detected can be used to detect four different gestures:
         gesture_up
@@ -241,86 +247,26 @@ class OpticalSensor(Device):
         """Runs the callback function when a detected object is no longer being detected by an Optical Sensor."""
         callback()
 
-    @vexcode_doc(
-        f"""
-        {_GESTURE_CALLBACK_DOCSTRINGS}
-
-        Example:
-            # Function to run when the event occurs
-            def run_on_gesture_detected():
-                brain.screen.print("Up detected!")
-
-            # Set the Optical Sensor to detect gestures
-            optical.gesture_enable()
-
-            # Register an event with a callback function
-            optical.gesture_up(run_on_gesture_detected)
-        """
-    )
+    @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_up(self, callback: Callable):
-        """Runs the callback function when gesture is detected by an IQ Optical Sensor."""
+    def gesture_up(self, callback: Callable, /):
+        """Trigger the callback function upon detecting UP gesture."""
         callback()
 
-    @vexcode_doc(
-       f"""
-        {_GESTURE_CALLBACK_DOCSTRINGS}
-
-        Example:
-            # Function to run when the event occurs
-            def run_on_gesture_detected():
-                brain.screen.print("Down detected!")
-
-            # Set the Optical Sensor to detect gestures
-            optical.gesture_enable()
-
-            # Register an event with a callback function
-            optical.gesture_down(run_on_gesture_detected)
-        """
-    )
+    @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_down(self, callback: Callable):
-        """Runs the callback function when gesture is detected by an IQ Optical Sensor."""
+    def gesture_down(self, callback: Callable, /):
+        """Trigger the callback function upon detecting DOWN gesture."""
         callback()
 
-    @vexcode_doc(
-        f"""
-        {_GESTURE_CALLBACK_DOCSTRINGS}
-
-        Example:
-            # Function to run when the event occurs
-            def run_on_gesture_detected():
-                brain.screen.print("Left detected!")
-
-            # Set the Optical Sensor to detect gestures
-            optical.gesture_enable()
-
-            # Register an event with a callback function
-            optical.gesture_left(run_on_gesture_detected)
-        """
-    )
+    @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_left(self, callback: Callable):
-        """Runs the callback function when gesture is detected by an IQ Optical Sensor."""
+    def gesture_left(self, callback: Callable, /):
+        """Trigger the callback function upon detecting LEFT gesture."""
         callback()
 
-    @vexcode_doc(
-        f"""
-        {_GESTURE_CALLBACK_DOCSTRINGS}
-
-        Example:
-            # Function to run when the event occurs
-            def run_on_gesture_detected():
-                brain.screen.print("Right detected!")
-
-            # Set the Optical Sensor to detect gestures
-            optical.gesture_enable()
-
-            # Register an event with a callback function
-            optical.gesture_right(run_on_gesture_detected)
-        """
-    )
+    @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_right(self, callback: Callable):
-        """Runs the callback function when gesture is detected by an IQ Optical Sensor."""
+    def gesture_right(self, callback: Callable, /):
+        """Trigger the callback function upon detecting RIGHT gesture."""
         callback()
