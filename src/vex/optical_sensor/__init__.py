@@ -208,65 +208,63 @@ class OpticalSensor(Device):
     def get_gesture(self) -> GestureInfo:
         """Return an object with gesture information."""
 
-    @vexcode_doc(
-        """
-        The Optical Object Detected command can be used to trigger actions
-        or behaviors when an object is detected by an Optical Sensor.
+    @vexcode_doc("""
+        Optical Object Detected
+
+        Runs the callback function
+        when an object is detected by an Optical Sensor.
+
+        The Optical Object Detected command can be used to trigger
+        actions or behaviors when an object is detected by an Optical Sensor.
 
         You will need to create a function to call when an object is detected.
-        Provide the name of the function that should run when the event occurs as the callback parameter.
-            # Function to run when the event occurs
-            def run_on_event():
-                brain.screen.print("Object detected!")
-            # Register event with a callback function
-            optical.object_detected(run_on_event)
-        """
-    )
+        Provide the name of the function that should run when the event occurs
+        as the callback parameter.
+    """)
     @act
-    def object_detected(self, callback: Callable):
-        """Runs the callback function when an object is detected by an Optical Sensor."""
+    def object_detected(self, callback: Callable, /):
+        """Trigger callback function upon detecting an object."""
         callback()
 
-    @vexcode_doc(
-        """
-        The Optical Object Lost command can be used to trigger actions
-        or behaviors when an Optical Sensor no longer detects a previously-detected object.
+    @vexcode_doc("""
+        Optical Object Lost
 
-        You will need to create a function to call when the object is no longer being detected.
-        Provide the name of the function that should run when the event occurs as the callback parameter.
-            # Function to run when the event occurs
-            def run_on_event():
-                brain.screen.print("Object lost!")
+        Runs the callback function when
+        a detected object is no longer being detected by an Optical Sensor.
 
-            # Register event with a callback function
-            optical.object_lost(run_on_event)
-        """
-    )
+        The Optical Object Lost command can be used to trigger
+        actions or behaviors when an Optical Sensor no longer detects
+        a previously-detected object.
+
+        You will need to create a function to call when the object is no longer
+        being detected. Provide the name of the function that should run
+        when the event occurs as the callback parameter.
+    """)
     @act
     def object_lost(self, callback: Callable):
-        """Runs the callback function when a detected object is no longer being detected by an Optical Sensor."""
+        """Trigger callback function upon losing previously-detected object."""
         callback()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
     def gesture_up(self, callback: Callable, /):
-        """Trigger the callback function upon detecting UP gesture."""
+        """Trigger callback function upon detecting UP gesture."""
         callback()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
     def gesture_down(self, callback: Callable, /):
-        """Trigger the callback function upon detecting DOWN gesture."""
+        """Trigger callback function upon detecting DOWN gesture."""
         callback()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
     def gesture_left(self, callback: Callable, /):
-        """Trigger the callback function upon detecting LEFT gesture."""
+        """Trigger callback function upon detecting LEFT gesture."""
         callback()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
     def gesture_right(self, callback: Callable, /):
-        """Trigger the callback function upon detecting RIGHT gesture."""
+        """Trigger callback function upon detecting RIGHT gesture."""
         callback()
