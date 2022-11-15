@@ -5,6 +5,7 @@ from collections.abc import Sequence
 
 from abm.decor import act, sense
 
+from ..motor import Motor
 from ..motor.brake_type import BrakeType
 from ..motor.direction_type import DirectionType
 from ..motor.velocity_units import VelocityUnits
@@ -18,6 +19,11 @@ __all__: Sequence[str] = ('MotorGroup',)
 
 class MotorGroup:
     """Motor Group."""
+
+    def __init__(self, motor_a: Motor, motor_b: Motor, /):
+        """Initialize 2-Motor Group."""
+        self.motor_a: Motor = motor_a
+        self.motor_b: Motor = motor_b
 
     @sense
     def current(self, unit: ElectricCurrentUnits, /) -> float:
