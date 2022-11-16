@@ -14,8 +14,9 @@ from ..util.doc import robotmesh_doc, vexcode_doc  # noqa: F401
 
 from .fade_type import FadeType
 
+from .color import Color
 
-__all__: Sequence[str] = "Touchled", "FadeType"
+__all__: Sequence[str] = "Touchled", "FadeType", "Color"
 
 
 # TODO: add VEXcode doc
@@ -196,3 +197,67 @@ class Touchled(Device):
         /,
     ):
         """Blink RGB Color."""
+
+    @act
+    @vexcode_doc(
+        """
+        Set TouchLED Brightness
+            Sets the brightness of an IQ TouchLED.
+
+            touchled.set_brightness(BRIGHTNESS)
+        
+        How To Use
+            Set TouchLED Brightness accepts a range of 0 to 100 for the BRIGHTNESS parameter.
+
+            touchled.set_brightness(50)
+        
+        Example
+            This example will illuminate the TouchLED at 25 percent brightness.
+
+            touchled.set_brightness(25)
+    """
+    )
+    def set_brightness(self, brightness: int, /):
+        """Set Brightness Percent Level."""
+
+    @vexcode_doc("""
+        Defined color values.
+    """)
+    @act
+    def default_color(self, color: Color, /):
+        """Set default Fade Type."""
+        
+        self.color: Color = color
+
+    @vexcode_doc(
+        """
+        Set TouchLED Color
+        Sets the color of an IQ TouchLED.
+            touchled.set_color(COLOR)
+
+        How To Use
+        Replace the COLOR parameter with one of the following options:
+
+            Color.RED
+            Color.GREEN
+            Color.BLUE
+            Color.WHITE
+            Color.YELLOW
+            Color.ORANGE
+            Color.PURPLE
+            Color.RED_VIOLET
+            Color.VIOLET
+            Color.BLUE_VIOLET
+            Color.BLUE_GREEN
+            Color.YELLOW_GREEN
+            Color.YELLOW_ORANGE
+            Color.RED_ORANGE
+
+        To turn the TouchLED off, set the color to Color.BLACK.
+
+        touchled.set_color(Color.BLACK)
+        """
+
+    )
+    def set_color(self, color: Color):
+        """Set the color of an IQ TouchLED."""
