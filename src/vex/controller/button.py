@@ -4,11 +4,12 @@
 from collections.abc import Sequence
 from typing_extensions import Self
 
-from abm.decor import sense
+from abm.decor import sense, act
 
 # pylint: disable=unused-import
 from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
 
+from typing import Callable
 
 __all__: Sequence[str] = ('ControllerButton',)
 
@@ -46,3 +47,36 @@ class ControllerButton:
     @sense
     def pressing(self) -> bool:
         """Return Controller Button's pressed status."""
+    @vexcode_doc("""
+        Controller Button Pressed
+        Runs the callback function when the VEX IQ Controller button is pressed.
+
+            controller.button.pressed(callback)
+
+        How To Use
+        You will need to create a callback function that will be called when a Controller button is pressed.
+
+        Choose which Controller button to call the Controller Button Pressed function with:
+
+            buttonEUp
+            buttonEDown
+            buttonFUp
+            buttonFDown
+            buttonLUp
+            buttonLDown
+            buttonRUp
+            buttonRDown
+            buttonL3
+            buttonR3
+            Example
+        The example below prints to the IQ Brain's screen when the Controller's L3 button is pressed.
+
+            def button_pressed():
+                brain.screen.print("Button pressed")
+                
+            controller.buttonL3.pressed(button_pressed)""")
+    @act
+    def pressed(self, callback):
+        """Runs the callback function when the VEX IQ Controller button is pressed."""
+
+

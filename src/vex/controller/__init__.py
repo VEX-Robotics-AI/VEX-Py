@@ -19,9 +19,6 @@ from .button import ControllerButton
 __all__: Sequence[str] = 'Controller', 'ControllerButton', 'ControllerAxis'
 
 
-# TODO:
-# - add VEXcode doc
-# - add L3 & R3 buttons
 @robotmesh_doc("""
     Use the Controller class to get values from the remote controller.
 
@@ -47,6 +44,9 @@ class Controller(SingletonDevice):
         self._buttonLDown: ControllerButton = ControllerButton(mask='LDown')
         self._buttonRUp: ControllerButton = ControllerButton(mask='RUp')
         self._buttonRDown: ControllerButton = ControllerButton(mask='RDown')
+        self._buttonL3: ControllerButton = ControllerButton(mask='L3')
+        self._buttonR3: ControllerButton = ControllerButton(mask='R3')
+
 
     @robotmesh_doc("""
         Set the value of the controller axis deadband.
@@ -118,3 +118,13 @@ class Controller(SingletonDevice):
     def axisD(self) -> ControllerAxis:
         """Return Controller Axis D."""
         return self._axisD
+
+    @property
+    def buttonL3(self) -> ControllerButton:
+        """Return Controller Button L3."""
+        return self._buttonL3
+    
+    @property
+    def buttonR3(self) -> ControllerButton:
+        """Return Controller Button R3."""
+        return self._buttonR3
