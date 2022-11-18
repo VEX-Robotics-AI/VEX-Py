@@ -19,3 +19,5 @@ class GyroCalibrationType(IntEnum):
     QUICK: int = 0
     SLOW: int = 1
     ACCURATE: int = 2
+    NORMAL: int = 3
+    EXTENDED: int = 4
