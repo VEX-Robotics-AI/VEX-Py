@@ -1,7 +1,6 @@
 import unittest
 
-#import both Bumper and bumper_switch_sensor does not work
-#from ...vex import ColorHue
+
 from ...vex import Bumper, Ports
 
 
