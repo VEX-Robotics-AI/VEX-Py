@@ -12,7 +12,6 @@ from ..util.doc import robotmesh_doc, vexcode_doc
 __all__: Sequence[str] = ("BrainLcd",)
 
 
-# TODO: add VEXcode features
 @robotmesh_doc(
     """
     Use this class to write or draw to the brain's LCD screen.
@@ -74,8 +73,7 @@ class BrainLcd(SingletonDevice):
     @act
     def set_cursor(self, row, col):
         """Set the cursor location for Brain's Print commands."""
-    
-    
+
     @vexcode_doc(
         """
         Print
@@ -96,11 +94,10 @@ class BrainLcd(SingletonDevice):
         brain.screen.print(drivetrain.is_done())
         """
     )
-    #@act
-    #parameters of print
-    def print(self, *params):
+    @act
+    # TODO: should use *params instead, where @act supports.
+    def print(self, params):
         """Print values or text on the brain's screen"""
-        
 
     @vexcode_doc(
         """
@@ -193,7 +190,7 @@ class BrainLcd(SingletonDevice):
         """
     )
     @act
-    def draw_line(self, START_X: int, START_Y: int, END_X: int, END_Y:int ):
+    def draw_line(self, START_X: int, START_Y: int, END_X: int, END_Y: int):
         """Draw a line on the IQ Brain's screen"""
 
     @vexcode_doc(
@@ -276,7 +273,7 @@ class BrainLcd(SingletonDevice):
     )
     def set_font(self, FONT):
         """Set Font style and size used on the IQ Brain's screen when printing number or text"""
-        
+
     @vexcode_doc(
         """
         Brain Screen Set Pen Width
@@ -364,6 +361,3 @@ class BrainLcd(SingletonDevice):
     @act
     def set_fill_color(self, ColorHue):
         """Set the color that fills in the shapes drawn on the IQ brain's screen"""
-
-
-
