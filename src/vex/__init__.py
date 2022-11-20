@@ -27,7 +27,7 @@ from .distance_sensor import Distance, ObjectSizeType, Sonar
 from .controller import Controller, ControllerAxis, ControllerButton
 from .gyro_sensor import Gyro, GyroCalibrationType
 from .motor import (Motor,
-                    BrakeType,
+                    BrakeType, COAST, BRAKE, HOLD,
                     DirectionType, FORWARD, REVERSE,
                     TurnType, LEFT, RIGHT,
                     TorqueUnits,
@@ -56,7 +56,7 @@ __all__: Sequence[str] = (
     'Controller', 'ControllerAxis', 'ControllerButton',
     'Gyro', 'GyroCalibrationType',
     'Motor',
-    'BrakeType',
+    'BrakeType', 'COAST', 'BRAKE', 'HOLD',
     'DirectionType', 'FORWARD', 'REVERSE',
     'TorqueUnits',
     'TurnType', 'LEFT', 'RIGHT',

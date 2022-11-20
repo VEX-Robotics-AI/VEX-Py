@@ -14,7 +14,7 @@ from ..units_common import RotationUnits
 
 from ..util.doc import robotmesh_doc, vexcode_doc
 
-from .brake_type import BrakeType
+from .brake_type import BrakeType, COAST, BRAKE, HOLD
 from .direction_type import DirectionType, FORWARD, REVERSE
 from .torque_units import TorqueUnits
 from .turn_type import TurnType, LEFT, RIGHT
@@ -22,7 +22,7 @@ from .velocity_units import VelocityUnits
 
 
 __all__: Sequence[str] = ('Motor',
-                          'BrakeType',
+                          'BrakeType', 'COAST', 'BRAKE', 'HOLD',
                           'DirectionType', 'FORWARD', 'REVERSE',
                           'TorqueUnits',
                           'TurnType', 'LEFT', 'RIGHT',
