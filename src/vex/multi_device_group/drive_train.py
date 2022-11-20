@@ -167,3 +167,15 @@ class DriveTrain(MotorGroup):
         """Turn for an angle."""
         assert unit is DEGREES, ValueError('*** ANGULAR UNIT MUST BE DEGREES ***')  # noqa: E501
 
+    @vexcode_doc("""
+        Stop
+
+        Stops the Drivetrain.
+
+        The Stop command stops the Drivetrain.
+        It does not take any arguments in its parentheses.
+    """)
+    @act
+    def stop(self):
+        """Stop motors."""
+
