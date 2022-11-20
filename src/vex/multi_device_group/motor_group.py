@@ -1,4 +1,4 @@
-"""Motor Group."""
+"""2-Motor Group."""
 
 
 from collections.abc import Sequence
@@ -8,6 +8,7 @@ from abm.decor import act, sense
 from ..motor import Motor
 from ..motor.brake_type import BrakeType
 from ..motor.direction_type import DirectionType
+from ..motor.torque_units import TorqueUnits
 from ..motor.velocity_units import VelocityUnits
 from ..time.time_units import TimeUnits
 from ..units_common.electric import ElectricCurrentUnits
@@ -18,7 +19,7 @@ __all__: Sequence[str] = ('MotorGroup',)
 
 
 class MotorGroup:
-    """Motor Group."""
+    """2-Motor Group."""
 
     def __init__(self, motor_a: Motor, motor_b: Motor, /):
         """Initialize 2-Motor Group."""
@@ -31,18 +32,18 @@ class MotorGroup:
 
     @sense
     def is_done(self) -> bool:
-        """Check whether motors have finished spinning."""
+        """Check whether both motors have finished spinning."""
 
     @sense
     def is_spinning(self) -> bool:
-        """Check whether some of the motors are still spinning."""
+        """Check whether one or both of the motors is/are still spinning."""
 
     @sense
     def position(self, unit: RotationUnits, /) -> float:
         """Return rotational position."""
 
     @act
-    def set_max_torque(self, unit, /):
+    def set_max_torque(self, unit: TorqueUnits, /):
         """Set max torque limit."""
 
     @act
@@ -66,12 +67,18 @@ class MotorGroup:
         """Spin motors in specified direction."""
 
     @act
-    def spin_for(self,
-                 direction: DirectionType,
-                 angle: float, unit: RotationUnits,
-                 wait: bool = True):
+    def spin_for(self, direction: DirectionType,
+                 angle: float, unit: RotationUnits, wait: bool = True):
         """Spin motors in specified direction by specified angle."""
 
     @act
     def spin_to_position(self, angle: float, unit: RotationUnits, wait: bool = True):  # noqa: E501
         """Spin motors to specified rotational position."""
+
+    @act
+    def stop(self):
+        """Stop motors."""
+
+    @sense
+    def velocity(self, unit: VelocityUnits, /) -> float:
+        """Return velocity."""
