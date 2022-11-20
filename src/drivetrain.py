@@ -321,10 +321,6 @@ class Drivetrain:
     def did_timeout(self) -> bool:
         """Check whether motors timed out."""
 
-    @sense
-    def is_moving(self) -> bool:
-        """Reports if the Drivetrain is currently moving."""
-
     @robotmesh_doc("""
         Return True if drivetrain is done driving/turning to specified target.
 
@@ -347,22 +343,6 @@ class Drivetrain:
     def set_stopping(self, brakeType: BrakeType, /):
         """Set Motor Stopping Mode."""
         self.stopping: BrakeType = brakeType
-
-    @act
-    def set_heading(self, heading: float, units: RotationUnits = RotationUnits.DEG):
-        """Sets the Drivetrain's Inertial or Gyro Sensor to the specified heading."""
-
-    @sense
-    def heading(self, units: RotationUnits = RotationUnits.DEG) -> float:
-        """Reports the direction that the Drivetrain is facing."""
-
-    @act
-    def set_rotation(self, rotation: float, units: RotationUnits = RotationUnits.DEG):
-        """Sets the Drivetrain's Inertial or Gyro Sensor to a specified rotation."""
-
-    @sense
-    def rotation(self, units: RotationUnits = RotationUnits.DEG) -> float:
-        """Reports the Drivetrain's angle of rotation when configured with a Gyro or Inertial Sensor."""
 
     @robotmesh_doc("""
         Get the average current velocity of all motors.
