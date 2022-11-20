@@ -21,7 +21,9 @@ from .brain import (
     SoundType,
 )
 from .brain.port import Ports
-from .brain.inertial_sensor import Inertial, AxisType, OrientationType
+from .brain.inertial_sensor import (Inertial,
+                                    AxisType, XAXIS, YAXIS, ZAXIS,
+                                    OrientationType, PITCH, ROLL, YAW)
 from .bumper_switch_sensor import Bumper
 from .color_sensor import ColorSensor, Colorsensor, ColorHue
 from .distance_sensor import Distance, ObjectSizeType, Sonar
@@ -49,8 +51,8 @@ __all__: Sequence[str] = (
     'Ports',
     'Controller', 'ControllerAxis', 'ControllerButton',
     'Inertial',
-    'AxisType',
-    'OrientationType',
+    'AxisType', 'XAXIS', 'YAXIS', 'ZAXIS',
+    'OrientationType', 'PITCH', 'ROLL', 'YAW',
     'Motor',
     'BrakeType', 'COAST', 'BRAKE', 'HOLD',
     'CurrentUnits',
