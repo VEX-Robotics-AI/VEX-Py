@@ -35,7 +35,7 @@ DrivetrainMotorType = Motor | MotorGroup | list[Motor] | tuple[Motor]
 """)
 class Drivetrain:
     # pylint: disable=too-many-instance-attributes
-    """VEX Drivetrain."""
+    """Drivetrain."""
 
     @robotmesh_doc("""
         Create a new drivetrain object.
@@ -220,14 +220,6 @@ class Drivetrain:
             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Start turning an angle."""
 
-    @act
-    def turn_to_heading(self, heading: float, units: RotationUnits = RotationUnits.DEG):
-        """Turns a Drivetrain to a specific heading, when using a Gyro or Inertial Sensor."""
-
-    @act
-    def turn_to_rotation(self, rotation: float, units: RotationUnits = RotationUnits.DEG):
-        """Turns the Drivetrain to a specific angle of rotation when used with a Gyro or Inertial Sensor."""
-
     @robotmesh_doc("""
         Drive in arcade mode.
 
@@ -238,7 +230,7 @@ class Drivetrain:
         - turnPower: percent power to apply to turning, -100..100
     """)
     @act
-    def arcade(self, drivePower: float, turnPower: float, /):
+    def arcade(self, drivePower: int, turnPower: int, /):
         """Arcade-drive."""
 
     @robotmesh_doc("""
