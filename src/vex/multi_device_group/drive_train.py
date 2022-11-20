@@ -2,13 +2,13 @@
 
 
 from collections.abc import Sequence
-from typing import Literal
+from typing import Literal, Optional
 from typing_extensions import Self
 
 from abm.decor import act, sense
 
 from ..motor import Motor
-from ..motor.brake_type import BrakeType
+from ..motor.brake_type import BrakeType, BRAKE
 from ..motor.direction_type import DirectionType, FORWARD
 from ..motor.turn_type import TurnType, RIGHT
 from ..motor.velocity_units import VelocityUnits, PERCENT
@@ -27,13 +27,12 @@ __all__: Sequence[str] = ('DriveTrain',)
 class DriveTrain(MotorGroup):
     """Drive Train."""
 
-    def __init__(  # pylint: disable=super-init-not-called
-            self,
-            left_motor: Motor, right_motor: Motor,
-            wheel_base: float = 200, track_width: float = 176,
-            length_unit: DistanceUnits = MM,
-            gear_ratio: float = 1, /):
+    def __init__(self, left_motor: Motor, right_motor: Motor,
+                 wheel_base: float = 200, track_width: float = 176,
+                 length_unit: DistanceUnits = MM, gear_ratio: float = 1, /):
         """Initialize Drivetrain."""
+        super().__init__(motor_a=left_motor, motor_b=right_motor)
+
         self.left_motor: Motor = left_motor
         self.right_motor: Motor = right_motor
         self.wheel_base: float = wheel_base
@@ -45,6 +44,7 @@ class DriveTrain(MotorGroup):
             dict[VelocityUnits, float]()
         self.turn_velocities: dict[VelocityUnits, float] = \
             dict[VelocityUnits, float]()
+        self.stopping_mode: Optional[BrakeType] = None
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
@@ -79,7 +79,7 @@ class DriveTrain(MotorGroup):
         until a new drivetrain command is used, or the program is stopped.
     """)
     @act
-    def drive(self, directionType: DirectionType = FORWARD, /):
+    def drive(self, direction: DirectionType = FORWARD, /):
         """Drive in specified direction."""
 
     @vexcode_doc("""
@@ -116,7 +116,7 @@ class DriveTrain(MotorGroup):
         proceeding commands to run even before the Drivetrain is done moving.
     """)
     @act
-    def drive_for(self, direction: DirectionType,
+    def drive_for(self, direction: DirectionType = FORWARD,
                   distance: float = 200, unit: DistanceUnits = MM,
                   wait: bool = True, /):
         """Drive for a distance."""
@@ -242,4 +242,24 @@ class DriveTrain(MotorGroup):
     def set_turn_velocity(self, velocity: int, unit: VelocityUnits = PERCENT, /):  # noqa: E501
         """Set turning velocity."""
         self.turn_velocities[unit] = velocity
+
+    @vexcode_doc("""
+        Set Motor Stopping
+
+        Sets the behavior of an IQ Motor or Motor Group once it stops moving.
+
+        The MODE parameter can be replaced with any of the following options:
+        - BRAKE: will cause the Motor/Motor Group to come to an immediate stop.
+        - COAST: lets the Motor/Motor Group spin gradually to a stop.
+        - HOLD: will cause the Motor/Motor Group to come to an immediate stop,
+                and returns it to its stopped position if moved.
+
+        The stopping behavior set by this command
+        will apply to subsequent Motor/Motor Group Stop commands
+        for the entirety of the project, unless otherwise changed.
+    """)
+    @act
+    def set_stopping(self, mode: BrakeType = BRAKE, /):
+        """Set motor stopping mode."""
+        self.stopping: BrakeType = mode
 
