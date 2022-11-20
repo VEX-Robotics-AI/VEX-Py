@@ -11,6 +11,7 @@ import sys
 
 from abm import interactive
 
+from ._abstract_device import Device
 from .brain import (
     Brain,
     BrainButton,
@@ -32,7 +33,7 @@ from .motor import (Motor,
                     DirectionType, FORWARD, REVERSE,
                     TurnType, LEFT, RIGHT,
                     TorqueUnits,
-                    VelocityUnits)
+                    VelocityUnits, RPM, DPS)
 from .optical_sensor import Optical, LedStateType, GestureType
 from .touch_led import Touchled, FadeType
 from .time import TimeUnits, SECONDS, MSEC, wait
@@ -43,25 +44,26 @@ from .units_common import (PERCENT,
 
 __all__: Sequence[str] = (
     '__version__',
+    'Device',
     'Brain', 'BrainButton', 'BrainLcd', 'BrainSound', 'NoteType', 'SoundType',
     'Ports',
+    'Controller', 'ControllerAxis', 'ControllerButton',
     'Inertial',
     'AxisType',
     'OrientationType',
-    'Bumper',
-    'ColorSensor', 'Colorsensor', 'ColorHue',
-    'Optical', 'LedStateType', 'GestureType',
-    'Distance', 'ObjectSizeType',
-    'Sonar',
-    'Controller', 'ControllerAxis', 'ControllerButton',
-    'Gyro', 'GyroCalibrationType',
     'Motor',
     'BrakeType', 'COAST', 'BRAKE', 'HOLD',
     'CurrentUnits',
     'DirectionType', 'FORWARD', 'REVERSE',
     'TorqueUnits',
     'TurnType', 'LEFT', 'RIGHT',
-    'VelocityUnits',
+    'VelocityUnits', 'RPM', 'DPS',
+    'Bumper',
+    'ColorSensor', 'Colorsensor', 'ColorHue',
+    'Optical', 'LedStateType', 'GestureType',
+    'Distance', 'ObjectSizeType',
+    'Sonar',
+    'Gyro', 'GyroCalibrationType',
     'Touchled', 'FadeType',
     'TimeUnits', 'SECONDS', 'MSEC', 'wait',
     'PERCENT',
