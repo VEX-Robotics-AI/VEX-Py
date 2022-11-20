@@ -57,13 +57,13 @@ class Motor(Device):
         self.max_torque: dict[TorqueUnits, float] = dict[TorqueUnits, float]()
 
     def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
+        """Check equality."""
         return (isinstance(other, type(self)) and
                 (other.port == self.port) and
                 (other.reverse == self.reverse))
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         return hash((self.port, self.reverse))
 
     def __repr__(self) -> str:

@@ -28,13 +28,13 @@ class MotorGroup:
         self.motor_b: Motor = motor_b
 
     def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
+        """Check equality."""
         return (isinstance(other, MotorGroup) and
                 (other.motor_a == self.motor_a) and
                 (other.motor_b == self.motor_b))
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         return hash((self.motor_a, self.motor_b))
 
     @sense

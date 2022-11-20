@@ -72,7 +72,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         self.stopping: Optional[BrakeType] = None
 
     def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
+        """Check equality."""
         return (isinstance(other, Drivetrain) and
                 (other.left_motor == self.left_motor) and
                 (other.right_motor == self.right_motor) and
@@ -82,7 +82,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
                 (other.gear_ratio == self.gear_ratio))
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         return hash((self.left_motor, self.right_motor,
                      self.wheel_travel, self.track_width,
                      self.distance_unit, self.gear_ratio))

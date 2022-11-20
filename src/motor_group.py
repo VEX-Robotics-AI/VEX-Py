@@ -51,12 +51,12 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
         self.max_torque: dict[TorqueUnits, float] = dict[TorqueUnits, float]()
 
     def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
+        """Check equality."""
         return isinstance(other, MotorGroup) and \
             (set(other.motors) == set(self.motors))
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         return hash(set(self.motors))
 
     @robotmesh_doc("""

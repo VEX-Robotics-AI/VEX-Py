@@ -47,7 +47,7 @@ class DriveTrain(MotorGroup):
             dict[VelocityUnits, float]()
 
     def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
+        """Check equality."""
         return (isinstance(other, DriveTrain) and
                 (other.left_motor == self.left_motor) and
                 (other.right_motor == self.right_motor) and
@@ -57,7 +57,7 @@ class DriveTrain(MotorGroup):
                 (other.gear_ratio == self.gear_ratio))
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         return hash((self.left_motor, self.right_motor,
                      self.wheel_base, self.track_width,
                      self.length_unit, self.gear_ratio))
