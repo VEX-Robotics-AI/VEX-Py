@@ -36,8 +36,8 @@ from .optical_sensor import Optical, LedStateType, GestureType
 from .touch_led import Touchled, FadeType
 from .time import TimeUnits, SECONDS, MSEC, wait
 from .units_common import (PERCENT,
+                           CurrentUnits,
                            DistanceUnits, MM, INCHES,
-                           CurrentUnits, AMP,
                            RotationUnits, DEGREES, TURNS)
 
 
@@ -64,8 +64,8 @@ __all__: Sequence[str] = (
     'Touchled', 'FadeType',
     'TimeUnits', 'SECONDS', 'MSEC', 'wait',
     'PERCENT',
+    'CurrentUnits',
     'DistanceUnits', 'MM', 'INCHES',
-    'CurrentUnits', 'AMP',
     'RotationUnits', 'DEGREES', 'TURNS',
     'interactive',
 )
