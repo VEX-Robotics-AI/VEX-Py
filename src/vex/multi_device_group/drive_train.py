@@ -9,12 +9,12 @@ from abm.decor import act, sense
 
 from ..motor import Motor
 from ..motor.brake_type import BrakeType, BRAKE
+from ..motor.current_units import CurrentUnits
 from ..motor.direction_type import DirectionType, FORWARD
 from ..motor.turn_type import TurnType, RIGHT
 from ..motor.velocity_units import VelocityUnits, PERCENT
 from ..time.time_units import TimeUnits
 from ..units_common.distance import DistanceUnits, MM
-from ..units_common.electric import CurrentUnits
 from ..units_common.rotation import RotationUnits, DEGREES
 from ..util.doc import vexcode_doc
 

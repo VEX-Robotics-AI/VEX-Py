@@ -8,11 +8,11 @@ from abm.decor import act, sense
 
 from ..motor import Motor
 from ..motor.brake_type import BrakeType
+from ..motor.current_units import CurrentUnits
 from ..motor.direction_type import DirectionType
 from ..motor.torque_units import TorqueUnits
 from ..motor.velocity_units import VelocityUnits
 from ..time.time_units import TimeUnits
-from ..units_common.electric import CurrentUnits
 from ..units_common.rotation import RotationUnits
 
 

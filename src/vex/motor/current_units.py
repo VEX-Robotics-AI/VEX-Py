@@ -1,4 +1,4 @@
-"""Electric Current Units."""
+"""Current Units."""
 
 
 from collections.abc import Sequence
