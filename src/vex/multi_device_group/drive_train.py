@@ -10,7 +10,7 @@ from abm.decor import act, sense
 from ..motor import Motor
 from ..motor.brake_type import BrakeType
 from ..motor.direction_type import DirectionType, FORWARD
-from ..motor.turn_type import TurnType
+from ..motor.turn_type import TurnType, RIGHT
 from ..motor.velocity_units import VelocityUnits
 from ..time.time_units import TimeUnits
 from ..units_common.distance import DistanceUnits, MM
@@ -116,4 +116,23 @@ class DriveTrain(MotorGroup):
                   distance: float = 200, unit: DistanceUnits = MM,
                   wait: bool = True, /):
         """Drive for a distance."""
+
+    @vexcode_doc("""
+        Turn
+
+        Turns the Drivetrain to the right or left indefinitely.
+
+        The Turn command will rotate the Drivetrain in the given direction
+        forever until a new Drivetrain command is used,
+        or until the program is stopped.
+
+        Use the LEFT argument in all-capital letters
+        to turn the Drivetrain to the left.
+
+        Use the RIGHT argument in all-capital letters
+        to turn the Drivetrain to the right.
+    """)
+    @act
+    def turn(self, turnType: TurnType = RIGHT, /):
+        """Turn."""
 
