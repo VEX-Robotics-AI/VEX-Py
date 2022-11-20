@@ -58,3 +58,23 @@ class DriveTrain(MotorGroup):
                      self.wheel_base, self.track_width,
                      self.length_unit, self.gear_ratio))
 
+    @vexcode_doc("""
+        Drive
+
+        Moves the Drivetrain forever in the direction
+        specified inside the parentheses.
+
+        All Drivetrain motors run forward or in reverse
+        at the velocity set using the Drivetrain's Set Drive Velocity command.
+        The default velocity is 50%.
+
+        Negative values will cause the Drivetrain to
+        drive forward with a REVERSE input and in reverse with a FORWARD input.
+
+        The Drive command will run the Drivetrain forever,
+        until a new drivetrain command is used, or the program is stopped.
+    """)
+    @act
+    def drive(self, directionType: DirectionType = FORWARD, /):
+        """Drive in specified direction."""
+
