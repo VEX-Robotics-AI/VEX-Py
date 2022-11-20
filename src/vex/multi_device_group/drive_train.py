@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Optional
+from typing import Literal, Optional
 from typing_extensions import Self
 
 from abm.decor import act, sense
@@ -15,7 +15,7 @@ from ..motor.velocity_units import VelocityUnits
 from ..time.time_units import TimeUnits
 from ..units_common.distance import DistanceUnits, MM
 from ..units_common.electric import CurrentUnits
-from ..units_common.rotation import RotationUnits
+from ..units_common.rotation import RotationUnits, DEGREES
 from ..util.doc import vexcode_doc
 
 from .motor_group import MotorGroup
@@ -133,6 +133,37 @@ class DriveTrain(MotorGroup):
         to turn the Drivetrain to the right.
     """)
     @act
-    def turn(self, turnType: TurnType = RIGHT, /):
+    def turn(self, direction: TurnType = RIGHT, /):
         """Turn."""
+
+    @vexcode_doc("""
+        Turn For
+
+        Turns the Drivetrain in the specified direction
+        for a set number of degrees.
+
+        - The first argument specifies the turn direction: LEFT or RIGHT,
+          written in all-capital letters.
+
+        - The second argument specifies the turn angle as a numeric value;
+          this can be any number or numeric variable.
+
+        - The third argument is the turn unit.
+          This should be set as DEGREES in all-capital letters.
+
+        The Turn For command is by default a blocking command.
+        It prevents any proceeding code from executing until
+        the Drivetrain has completed its turn.
+
+        If the fourth argument is set to wait=False,
+        proceeding commands will be allowed to execute
+        even before the Drivetrain has completed its turn.
+    """)
+    @act
+    def turn_for(  # pylint: disable=unused-argument
+            self, direction: TurnType = RIGHT,
+            angle: float = 90, unit: Literal[DEGREES] = DEGREES,
+            wait: bool = True, /):
+        """Turn for an angle."""
+        assert unit is DEGREES, ValueError('*** ANGULAR UNIT MUST BE DEGREES ***')  # noqa: E501
 
