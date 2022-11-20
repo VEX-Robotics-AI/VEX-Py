@@ -33,8 +33,7 @@ DrivetrainMotorType = Motor | MotorGroup | list[Motor] | tuple[Motor]
 @robotmesh_doc("""
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classdrivetrain_1_1_drivetrain.html
 """)
-class Drivetrain:
-    # pylint: disable=too-many-instance-attributes
+class Drivetrain:  # pylint: disable=too-many-instance-attributes
     """Drivetrain."""
 
     @robotmesh_doc("""
@@ -51,7 +50,7 @@ class Drivetrain:
                          a DistanceUnits enum value
         - gear_ratio: external gear ratio, usually 1.0
     """)
-    def __init__(   # pylint: disable=too-many-arguments
+    def __init__(
             self,
             left_motor: DrivetrainMotorType, right_motor: DrivetrainMotorType,
             wheel_travel: float = 200, track_width: float = 176,
@@ -124,13 +123,13 @@ class Drivetrain:
         True if the drivetrain has reached the target distance, False otherwise
     """)
     @act
-    def drive_for(   # pylint: disable=too-many-arguments
+    def drive_for(
             self, directionType: DirectionType,
             distance: float, distanceUnits: DistanceUnits = DistanceUnits.MM,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True, /) -> bool:
-        """Drive a distance."""
+        """Drive for a distance."""
 
     @robotmesh_doc("""
         Start driving for a specified distance.
@@ -146,12 +145,12 @@ class Drivetrain:
                          a VelocityUnits enum value
     """)
     @act
-    def start_drive_for(   # pylint: disable=too-many-arguments
+    def start_drive_for(
             self, directionType: DirectionType,
             distance: float, distanceUnits: DistanceUnits = DistanceUnits.MM,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Start driving a distance."""
+        """Start driving for a distance."""
 
     @robotmesh_doc("""
         Turn the drivetrain left or right.
@@ -189,13 +188,12 @@ class Drivetrain:
         Reimplemented in smartdrive.Smartdrive.
     """)
     @act
-    def turn_for(   # pylint: disable=too-many-arguments
-            self, turnType: TurnType,
-            angle: float, rotationUnits: RotationUnits = RotationUnits.DEG,
-            velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True, /) -> bool:
-        """Turn an angle."""
+    def turn_for(self, turnType: TurnType,
+                 angle: float, rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
+                 velocity: Optional[float] = None,
+                 velocityUnits: VelocityUnits = VelocityUnits.PCT,
+                 waitForCompletion: bool = True, /) -> bool:
+        """Turn for an angle."""
 
     @robotmesh_doc("""
         Start turning the drivetrain left or right.
@@ -213,12 +211,11 @@ class Drivetrain:
         Reimplemented in smartdrive.Smartdrive.
     """)
     @act
-    def start_turn_for(   # pylint: disable=too-many-arguments
-            self, turnType: TurnType,
-            angle: float, angleUnits: RotationUnits = RotationUnits.DEG,
-            velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Start turning an angle."""
+    def start_turn_for(self, turnType: TurnType,
+                       angle: float, angleUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
+                       velocity: Optional[float] = None,
+                       velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+        """Start turning for an angle."""
 
     @robotmesh_doc("""
         Drive in arcade mode.
@@ -242,7 +239,7 @@ class Drivetrain:
     """)
     @act
     def stop(self, brakeType: Optional[BrakeType] = None, /):
-        """Stop driving."""
+        """Stop motors."""
 
     @robotmesh_doc("""
         Set the external gear ratio of the drivetrain.
@@ -252,7 +249,7 @@ class Drivetrain:
     """)
     @act
     def set_gear_ratio(self, gear_ratio: float, /):
-        """Set Gear Ratio."""
+        """Set gear ratio."""
         self.gear_ratio: float = gear_ratio
 
     @robotmesh_doc("""
@@ -268,10 +265,9 @@ class Drivetrain:
                          a VelocityUnits enum value
     """)
     @act
-    def set_drive_velocity(self,
-                           velocity: float,
-                           velocityUnits: VelocityUnits = VelocityUnits.PCT, /):   # noqa: E501
-        """Set Driving Velocity."""
+    def set_drive_velocity(self, velocity: float,
+                           velocityUnits: VelocityUnits = VelocityUnits.PCT, /):  # noqa: E501
+        """Set driving velocity."""
         self.drive_velocities[velocityUnits] = velocity
 
     @robotmesh_doc("""
@@ -285,10 +281,9 @@ class Drivetrain:
                          a VelocityUnits enum value
     """)
     @act
-    def set_turn_velocity(self,
-                          velocity: float,
+    def set_turn_velocity(self, velocity: float,
                           velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Set Turning Velocity."""
+        """Set turning velocity."""
         self.turn_velocities[velocityUnits] = velocity
 
     @robotmesh_doc("""
@@ -302,8 +297,8 @@ class Drivetrain:
         - timeUnits: unit for the time parameter, a TimeUnits enum value
     """)
     @act
-    def set_timeout(self, time: float, timeUnits: TimeUnits = TimeUnits.SEC, /):   # noqa: E501
-        """Set Motor Timeout."""
+    def set_timeout(self, time: float, timeUnits: TimeUnits = TimeUnits.SEC, /):  # noqa: E501
+        """Set motor timeout."""
         self.timeouts[timeUnits] = time
 
     @robotmesh_doc("""
@@ -311,7 +306,7 @@ class Drivetrain:
     """)
     @sense
     def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> float:
-        """Return Motor Timeout."""
+        """Return motor timeout."""
         return self.timeouts[timeUnits]
 
     @robotmesh_doc("""
@@ -330,7 +325,7 @@ class Drivetrain:
     """)
     @sense
     def is_done(self) -> bool:
-        """Check whether Drivetrain has finished driving/turning."""
+        """Check whether both motors have finished driving/turning."""
 
     @robotmesh_doc("""
         Set stopping mode of motor group by passing brake mode as parameter.
@@ -341,7 +336,7 @@ class Drivetrain:
     """)
     @act
     def set_stopping(self, brakeType: BrakeType, /):
-        """Set Motor Stopping Mode."""
+        """Set motor stopping mode."""
         self.stopping: BrakeType = brakeType
 
     @robotmesh_doc("""
@@ -354,8 +349,8 @@ class Drivetrain:
         - velocityUnits: The measurement unit for the velocity.
     """)
     @sense
-    def velocity(self, velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:   # noqa: E501
-        """Return Motor Velocity."""
+    def velocity(self, velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:  # noqa: E501
+        """Return motors' velocity."""
 
     @robotmesh_doc("""
         Get the electrical current of all motors.
@@ -365,4 +360,4 @@ class Drivetrain:
     """)
     @sense
     def current(self) -> float:
-        """Return Motors' Electrical Current."""
+        """Return motors' electric current."""
