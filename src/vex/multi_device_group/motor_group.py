@@ -12,7 +12,7 @@ from ..motor.direction_type import DirectionType
 from ..motor.torque_units import TorqueUnits
 from ..motor.velocity_units import VelocityUnits
 from ..time.time_units import TimeUnits
-from ..units_common.electric import ElectricCurrentUnits
+from ..units_common.electric import CurrentUnits
 from ..units_common.rotation import RotationUnits
 
 
@@ -38,7 +38,7 @@ class MotorGroup:
         return hash((self.motor_a, self.motor_b))
 
     @sense
-    def current(self, unit: ElectricCurrentUnits, /) -> float:
+    def current(self, unit: CurrentUnits, /) -> float:
         """Return electric current."""
 
     @sense
