@@ -82,3 +82,4 @@ INT29_MAX: int = 0x1FFFFFFF
 # ALIASES
 # =======
 sys.sleep: callable = wait
+sys.maxint: int = INT29_MAX
