@@ -19,8 +19,7 @@ from vex import (BrakeType,
                  TorqueUnits,
                  VelocityUnits)
 
-# pylint: disable=unused-import
-from vex.util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from vex.util.doc import robotmesh_doc
 
 
 __all__: Sequence[str] = ('MotorGroup',)
