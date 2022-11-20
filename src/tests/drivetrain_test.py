@@ -1,13 +1,13 @@
 import unittest
 
-from ..drivetrain import Drivetrain
-from ..vex import Motor, Ports, DEGREES, PERCENT, FORWARD, REVERSE, MM, LEFT, AMP
+from ..vex import DriveTrain
+from ..vex import Motor, Ports, DEGREES, PERCENT, FORWARD, REVERSE, MM, LEFT, CurrentUnits
 from ..testing.io_utils import replace_stdin
 
 
-class TestDrivetrain(unittest.TestCase):
+class TestDriveTrain(unittest.TestCase):
     def setUp(self):
-        self.drivetrain = Drivetrain(
+        self.drivetrain = DriveTrain(
             Motor(Ports.PORT1),  # left_motor
             [  # right_motor
                 Motor(Ports.PORT2),
@@ -60,7 +60,7 @@ class TestDrivetrain(unittest.TestCase):
             self.assertEqual(self.drivetrain.is_moving(), False)
         with replace_stdin("1"):
             self.assertEqual(self.drivetrain.is_moving(), True)
-        
+
     def test_heading(self):
         with replace_stdin("34.5"):
             self.assertEqual(self.drivetrain.heading(), 34.5)
@@ -83,7 +83,7 @@ class TestDrivetrain(unittest.TestCase):
         with replace_stdin("34.5"):
             self.assertEqual(self.drivetrain.current(), 34.5)
         with replace_stdin("34.5"):
-            self.assertEqual(self.drivetrain.current(AMP), 34.5)
+            self.assertEqual(self.drivetrain.current(CurrentUnits.AMP), 34.5)
 
 
 if __name__ == "__main__":
