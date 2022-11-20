@@ -12,23 +12,17 @@ import sys
 from abm import interactive
 
 from ._abstract_device import Device
-from .brain import (
-    Brain,
-    BrainButton,
-    BrainLcd,
-    BrainSound,
-    NoteType,
-    SoundType,
-)
+
+from .brain import Brain, BrainButton, BrainLcd, BrainSound, NoteType, SoundType  # noqa: E501
+
 from .brain.port import Ports
+
+from .controller import Controller, ControllerAxis, ControllerButton
+
 from .brain.inertial_sensor import (Inertial,
                                     AxisType, XAXIS, YAXIS, ZAXIS,
                                     OrientationType, PITCH, ROLL, YAW)
-from .bumper_switch_sensor import Bumper
-from .color_sensor import ColorSensor, Colorsensor, ColorHue
-from .distance_sensor import Distance, ObjectSizeType, Sonar
-from .controller import Controller, ControllerAxis, ControllerButton
-from .gyro_sensor import Gyro, GyroCalibrationType
+
 from .motor import (Motor,
                     BrakeType, COAST, BRAKE, HOLD,
                     CurrentUnits,
@@ -36,9 +30,18 @@ from .motor import (Motor,
                     TurnType, LEFT, RIGHT,
                     TorqueUnits,
                     VelocityUnits, RPM, DPS)
+
+from .bumper_switch_sensor import Bumper
+from .color_sensor import ColorSensor, Colorsensor, ColorHue
+from .distance_sensor import Distance, ObjectSizeType, Sonar
+from .gyro_sensor import Gyro, GyroCalibrationType
 from .optical_sensor import Optical, LedStateType, GestureType
 from .touch_led import Touchled, FadeType
+
+from .multi_device_group import MotorGroup, DriveTrain, SmartDrive
+
 from .time import TimeUnits, SECONDS, MSEC, wait
+
 from .units_common import (PERCENT,
                            DistanceUnits, MM, INCHES,
                            RotationUnits, DEGREES, TURNS)
@@ -46,13 +49,19 @@ from .units_common import (PERCENT,
 
 __all__: Sequence[str] = (
     '__version__',
+
     'Device',
+
     'Brain', 'BrainButton', 'BrainLcd', 'BrainSound', 'NoteType', 'SoundType',
+
     'Ports',
+
     'Controller', 'ControllerAxis', 'ControllerButton',
+
     'Inertial',
     'AxisType', 'XAXIS', 'YAXIS', 'ZAXIS',
     'OrientationType', 'PITCH', 'ROLL', 'YAW',
+
     'Motor',
     'BrakeType', 'COAST', 'BRAKE', 'HOLD',
     'CurrentUnits',
@@ -60,6 +69,7 @@ __all__: Sequence[str] = (
     'TorqueUnits',
     'TurnType', 'LEFT', 'RIGHT',
     'VelocityUnits', 'RPM', 'DPS',
+
     'Bumper',
     'ColorSensor', 'Colorsensor', 'ColorHue',
     'Optical', 'LedStateType', 'GestureType',
@@ -67,10 +77,15 @@ __all__: Sequence[str] = (
     'Sonar',
     'Gyro', 'GyroCalibrationType',
     'Touchled', 'FadeType',
+
+    'MotorGroup', 'DriveTrain', 'SmartDrive',
+
     'TimeUnits', 'SECONDS', 'MSEC', 'wait',
+
     'PERCENT',
     'DistanceUnits', 'MM', 'INCHES',
     'RotationUnits', 'DEGREES', 'TURNS',
+
     'interactive',
 )
 
