@@ -1,28 +1,26 @@
-"""VEX Color Sensor."""
+"""Color Sensor."""
 
 
 from collections.abc import Sequence
+from typing import Literal
 from typing_extensions import Self
 
 from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
-from ..units_common.color import ColorHue
-
-# pylint: disable=unused-import
-from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from ..units_common.numeric import PERCENT
+from ..util.doc import robotmesh_doc, vexcode_doc
 
 
-__all__: Sequence[str] = 'Colorsensor', 'ColorHue'
+__all__: Sequence[str] = 'ColorSensor', 'Colorsensor'
 
 
-# TODO: add VEXcode doc
 @robotmesh_doc("""
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_colorsensor.html
 """)
 class ColorSensor(Device):
-    """VEX Color Sensor."""
+    """Color Sensor."""
 
     @robotmesh_doc("""
         Create new color sensor object on the port specified in the parameter.
@@ -49,6 +47,24 @@ class ColorSensor(Device):
     def __hash__(self) -> int:
         """Return integer hash."""
         return hash((self.port, self.is_grayscale, self.proximity))
+
+    @vexcode_doc("""
+        Set Color Sensor Light
+
+        Sets the brightness of the VEX IQ Color Sensor's light.
+
+        The Color Sensor has a light source that can be adjusted
+        to help detect the color of an object or a surface.
+
+        Set Color Sensor Light accepts
+        a range of 0 to 100 for the BRIGHTNESS parameter.
+
+        The higher the value is set, the brighter the Color Sensor's
+        light source will shine.
+    """)
+    @act
+    def set_light(self, brightness: int = 50, unit: Literal[PERCENT] = PERCENT):  # noqa: E501
+        """Set light's brightness percentage level."""
 
     @robotmesh_doc("""
         Get the name of the detected color.
@@ -123,7 +139,7 @@ class ColorSensor(Device):
         Reports if a VEX IQ Color Sensor detects an object or surface.
 
             color.is_near_object()
-        
+
         How To Use
         Reports True when a Color Sensor detects an object or surface close to the front of the sensor.
 
