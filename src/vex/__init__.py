@@ -11,7 +11,7 @@ import sys
 
 from abm import interactive
 
-from ._abstract_device import Device
+# from ._abstract_device import Device
 
 from .brain import Brain, BrainButton, BrainLcd, BrainSound, NoteType, SoundType  # noqa: E501
 
@@ -50,7 +50,7 @@ from .units_common import (PERCENT,
 __all__: Sequence[str] = (
     '__version__',
 
-    'Device',
+    # 'Device',
 
     'Brain', 'BrainButton', 'BrainLcd', 'BrainSound', 'NoteType', 'SoundType',
 
