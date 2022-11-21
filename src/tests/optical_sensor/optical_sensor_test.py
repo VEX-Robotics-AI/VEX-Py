@@ -1,7 +1,7 @@
 import unittest
 
 from ...vex import (
-    OpticalSensor, Ports,
+    Optical, Ports,
     LedStateType, GestureType, ColorHue,
     PERCENT,
 )
@@ -14,7 +14,7 @@ def callback_func():
 
 class TestOpticalSensor(unittest.TestCase):
     def setUp(self):
-        self.optical = OpticalSensor(Ports.PORT1)
+        self.optical = Optical(Ports.PORT1)
 
     def test_act_methods(self):
         self.optical.gesture_enable()

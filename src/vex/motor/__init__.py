@@ -14,19 +14,21 @@ from ..units_common import RotationUnits
 
 from ..util.doc import robotmesh_doc, vexcode_doc
 
-from .brake_type import BrakeType
+from .brake_type import BrakeType, COAST, BRAKE, HOLD
+from .current_units import CurrentUnits
 from .direction_type import DirectionType, FORWARD, REVERSE
 from .torque_units import TorqueUnits
 from .turn_type import TurnType, LEFT, RIGHT
-from .velocity_units import VelocityUnits
+from .velocity_units import VelocityUnits, RPM, DPS
 
 
 __all__: Sequence[str] = ('Motor',
-                          'BrakeType',
+                          'BrakeType', 'COAST', 'BRAKE', 'HOLD',
+                          'CurrentUnits',
                           'DirectionType', 'FORWARD', 'REVERSE',
                           'TorqueUnits',
                           'TurnType', 'LEFT', 'RIGHT',
-                          'VelocityUnits')
+                          'VelocityUnits', 'RPM', 'DPS')
 
 
 @robotmesh_doc("""
@@ -57,13 +59,13 @@ class Motor(Device):
         self.max_torque: dict[TorqueUnits, float] = dict[TorqueUnits, float]()
 
     def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
+        """Check equality."""
         return (isinstance(other, type(self)) and
                 (other.port == self.port) and
                 (other.reverse == self.reverse))
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         return hash((self.port, self.reverse))
 
     def __repr__(self) -> str:

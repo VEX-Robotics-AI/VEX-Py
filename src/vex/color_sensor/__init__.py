@@ -41,14 +41,14 @@ class ColorSensor(Device):
         self.proximity: float = proximity
 
     def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
+        """Check equality."""
         return (isinstance(other, type(self)) and
                 (other.port == self.port) and
                 (other.is_grayscale == self.is_grayscale) and
                 (other.proximity == self.proximity))
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         return hash((self.port, self.is_grayscale, self.proximity))
 
     @robotmesh_doc("""

@@ -25,11 +25,11 @@ class BrainButton:
         self.id: str = id
 
     def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
+        """Check equality."""
         return isinstance(other, BrainButton) and (other.id == self.id)
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         return hash(self.id)
 
     def __repr__(self) -> str:
