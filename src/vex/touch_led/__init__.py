@@ -88,6 +88,24 @@ class Touchled(Device):
         """Set Brightness Percent Level."""
 
     @robotmesh_doc("""
+        Get the pressed status of the touchled device.
+
+        Returns:
+        True if pressed, False otherwise
+    """)
+    @vexcode_doc("""
+        TouchLED Pressing
+
+        Reports if a VEX IQ TouchLED is currently being pressed.
+
+        Reports True if the selected TouchLED is being pressed.
+        Reports False if the selected TouchLED is not being pressed.
+    """)
+    @sense
+    def pressing(self) -> bool:
+        """Return Touch LED's pressed status."""
+
+    @robotmesh_doc("""
         Set the default fade time for the touchled sensor.
 
         Parameters:
@@ -98,16 +116,6 @@ class Touchled(Device):
     def default_fade(self, fadeType: FadeType, /):
         """Set default fade type."""
         self.fade_type: FadeType = fadeType
-
-    @robotmesh_doc("""
-        Get the pressed status of the touchled device.
-
-        Returns:
-        True if pressed, False otherwise
-    """)
-    @sense
-    def pressing(self) -> bool:
-        """Return Touch LED's pressed status."""
 
     @robotmesh_doc("""
         Turn on the led in the touchled sensor.
@@ -200,11 +208,3 @@ class Touchled(Device):
     def blink_rgb(self, red: int, green: int, blue: int,
                   on_time: float = 0.25, off_time: float = 0.25, /):
         """Blink RGB Color."""
-
-    @vexcode_doc("""
-        Defined color values.
-    """)
-    @act
-    def default_color(self, color: Color, /):
-        """Set default Fade Type."""
-        self.color: Color = color
