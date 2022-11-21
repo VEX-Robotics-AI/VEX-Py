@@ -130,11 +130,24 @@ class Gyro(Device):
         - value: The new absolute angle for the gyro
         - rotationUnits: The rotation unit for the angle
     """)
+    @vexcode_doc("""
+        Gyro Set Rotation
+
+        Sets a VEX IQ Gyro Sensor's current angle of rotation
+        to the specified rotation.
+
+        The Gyro Set Rotation command can be used to set a Gyro Sensor's
+        angle of rotation to any given positive (counter-clockwise increasing)
+        or negative (clockwise decreasing) value.
+
+        Gyro Set Rotation accepts a range of any positive or negative decimal
+        or integer as the specified ROTATION.
+    """)
     @act
-    def set_rotation(self, value: float = 0,
-                     rotationUnits: RotationUnits = RotationUnits.DEG, /):
-        """Set Gyro Cumulative Rotation Angle Value."""
-        self.rotations[rotationUnits] = value
+    def set_rotation(self, rotation_value: float = 0,
+                     unit: Literal[DEGREES] = DEGREES, /):
+        """Set gyro cumulative rotation angle value."""
+        self.rotations[unit] = rotation_value
 
     @robotmesh_doc("""
         Get the angle of the gyro sensor.
