@@ -8,7 +8,7 @@ from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
-from ..color_sensor.color_hue import ColorHue
+from ..units_common.color import Color
 from ..units_common.numeric import PERCENT
 from ..util.doc import vexcode_doc
 from .gesture_info import GestureInfo
@@ -137,7 +137,7 @@ class Optical(Device):
             Color.CYAN
     """)
     @sense
-    def color(self) -> ColorHue:
+    def color(self) -> Color:
         """Return closest-matching color hue of detected object."""
 
     @vexcode_doc("""

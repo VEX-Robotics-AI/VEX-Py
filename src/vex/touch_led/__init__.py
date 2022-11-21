@@ -7,14 +7,13 @@ from typing import Optional
 from abm.decor import act, sense
 
 from .._abstract_device import Device
-from ..color_sensor import ColorHue
 from ..brain.port import Ports
+from ..units_common.color import Color, ColorHue
 from ..util.doc import robotmesh_doc, vexcode_doc
-from .color import Color
 from .fade_type import FadeType
 
 
-__all__: Sequence[str] = 'Touchled', 'Color', 'FadeType'
+__all__: Sequence[str] = 'Touchled', 'FadeType'
 
 
 @robotmesh_doc("""

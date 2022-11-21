@@ -8,11 +8,10 @@ from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
+from ..units_common.color import ColorHue
 
 # pylint: disable=unused-import
 from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
-
-from .color_hue import ColorHue
 
 
 __all__: Sequence[str] = 'Colorsensor', 'ColorHue'
