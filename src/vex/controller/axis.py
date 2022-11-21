@@ -7,8 +7,7 @@ from typing_extensions import Self
 
 from abm.decor import sense
 
-# pylint: disable=unused-import
-from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from ..util.doc import robotmesh_doc, vexcode_doc
 
 
 __all__: Sequence[str] = ('ControllerAxis',)
@@ -59,6 +58,22 @@ class ControllerAxis:
         Returns
         an integer that represents the position of the joystick axis.
     """)
+    @vexcode_doc("""
+        Controller Axis Position
+
+        Reports the position of a joystick on the VEX IQ Controller
+        along the specified axis.
+
+        Controller Axis Position reports a range between -100 to 100.
+
+        Controller Axis Position will report 0 when joystick axis is centered.
+
+        Choose which Controller axis to report.
+        - axisA: left joystick (up and down)
+        - axisB: left joystick (left and right)
+        - axisC: right joystick (left and right)
+        - axisD: right joystick (up and down)
+    """)
     @sense
     def position(self) -> int:
-        """Return Controller Joystick Axis Percent Position."""
+        """Return controller joystick axis percent position."""

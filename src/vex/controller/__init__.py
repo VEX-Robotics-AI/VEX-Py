@@ -9,8 +9,7 @@ from abm.decor import act
 
 from .._abstract_device import SingletonDevice
 
-# pylint: disable=unused-import
-from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from ..util.doc import robotmesh_doc
 
 from .axis import ControllerAxis
 from .button import ControllerButton
@@ -46,7 +45,6 @@ class Controller(SingletonDevice):
         self._buttonRDown: ControllerButton = ControllerButton(mask='RDown')
         self._buttonL3: ControllerButton = ControllerButton(mask='L3')
         self._buttonR3: ControllerButton = ControllerButton(mask='R3')
-
 
     @robotmesh_doc("""
         Set the value of the controller axis deadband.
@@ -123,7 +121,7 @@ class Controller(SingletonDevice):
     def buttonL3(self) -> ControllerButton:
         """Return Controller Button L3."""
         return self._buttonL3
-    
+
     @property
     def buttonR3(self) -> ControllerButton:
         """Return Controller Button R3."""
