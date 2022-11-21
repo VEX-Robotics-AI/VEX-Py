@@ -20,14 +20,14 @@ class TestDriveTrain(unittest.TestCase):
 
     def test_drive_for(self):
         self.drivetrain.drive_for(REVERSE, 12.3),
-        self.drivetrain.drive_for(REVERSE, 12.3, MM, PERCENT, True)
+        self.drivetrain.drive_for(REVERSE, 12.3, MM, True)
 
     def test_turn(self):
         self.drivetrain.turn(LEFT)
 
     def test_turn_for(self):
         self.drivetrain.turn_for(LEFT, 12.3, DEGREES),
-        self.drivetrain.turn_for(LEFT, 12.3, DEGREES, PERCENT, True)
+        self.drivetrain.turn_for(LEFT, 12.3, DEGREES, True)
 
     def test_turn_to_heading(self):
         self.assertEqual(
