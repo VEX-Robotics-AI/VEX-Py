@@ -57,18 +57,6 @@ class Touchled(Device):
     def pressing(self) -> bool:
         """Return Touch LED's pressed status."""
 
-    @vexcode_doc("""
-        Set fade time for the touchled sensor.
-
-        Parameters:
-        - fadeType: The type of fade the touchled
-                    will use: FadeType.SLOW, FAST or OFF
-    """)
-    @act
-    def set_fade(self, fadeType: FadeType, /):
-        """Set default Fade Type."""
-
-
     @robotmesh_doc("""
         Turn on the led in the touchled sensor.
 
@@ -80,21 +68,18 @@ class Touchled(Device):
     def on(self, color: hex, brightness: int = 100, /):
         """Turn on color."""
 
-    @robotmesh_doc(
-        """
+    @robotmesh_doc("""
         Turn on the led in the touchled sensor.
 
         Parameters:
         - colorHue: The color of the led: ColorHue enum value
         - brightness: The brightness for the led
-    """
-    )
+    """)
     @act
     def on_hue(self, colorHue: ColorHue, brightness: int = 100, /):
         """Turn on Color Hue."""
 
-    @robotmesh_doc(
-        """
+    @robotmesh_doc("""
         Turn on the led in the touchled sensor.
 
         Parameters:
@@ -102,31 +87,35 @@ class Touchled(Device):
         - green: The green value of the led, 0-255
         - blue: The blue value of the led, 0-255
         - brightness: The brightness for the led, 0-100
-    """
-    )
+    """)
     @act
-    def on_rgb(
-        self, red: int, green: int, blue: int, brightness: int = 100, /
-    ):  # noqa: E501
+    def on_rgb(self, red: int, green: int, blue: int, brightness: int = 100, /):  # noqa: E501
         """Turn on RGB color."""
 
-    @robotmesh_doc(
-        """
+    @robotmesh_doc("""
         Turn off the led in the touchled sensor.
-    """
-    )
+    """)
     @act
     def off(self):
         """Turn off LED."""
 
-    @robotmesh_doc(
-        """
+    @vexcode_doc("""
+        Set fade time for the touchled sensor.
+
+        Parameters:
+        - fadeType: The type of fade the touchled
+                    will use: FadeType.SLOW, FAST or OFF
+    """)
+    @act
+    def set_fade(self, fadeType: FadeType, /):
+        """Set default Fade Type."""
+
+    @robotmesh_doc("""
         Turn on the led in the touchled sensor, or change current brightness.
 
         Parameters:
         - brightness: The brightness for the led 0-100
-    """
-    )
+    """)
     @act
     def brightness(self, brightness: int, /):
         """Set Brightness Percent Level."""
