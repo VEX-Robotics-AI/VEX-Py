@@ -193,17 +193,14 @@ class Gyro(Device):
     def rotation(self, unit: Literal[DEGREES] = DEGREES, /) -> float:
         """Return cumulative rotation angle value."""
 
-    @vexcode_doc(
-        """
+    @vexcode_doc("""
         Gyro Rate
+
         Reports a VEX IQ Gyro Sensor's rate of angular velocity.
 
-            gyro.rate()
-
-        How To Use
-        Gyro Rate reports a range of values between 0 to 249.99 in degrees per second (DPS).
-        """
-    )
+        Gyro Rate reports a range of values between 0 to 249.99
+        in degrees per second (DPS).
+    """)
     @act
-    def rate(self):
+    def rate(self) -> float:
         """Return the Gyro Sensor's rate of angular velocity."""
