@@ -1,4 +1,4 @@
-"""VEX Motor Group.
+"""Motor Group.
 
 Robot Mesh Python B:
 robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacemotor__group.html
@@ -30,7 +30,7 @@ __all__: Sequence[str] = ('MotorGroup',)
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classmotor__group_1_1_motor_group.html
 """)
 class MotorGroup:   # pylint: disable=too-many-public-methods
-    """VEX Motor Group."""
+    """Motor Group."""
 
     @robotmesh_doc("""
         Create a new motor group with specified motors.

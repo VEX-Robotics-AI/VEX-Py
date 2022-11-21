@@ -24,7 +24,7 @@ from .motor_group import MotorGroup
 __all__: Sequence[str] = ('DriveTrain',)
 
 
-class DriveTrain(MotorGroup):
+class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
     """Drive Train."""
 
     def __init__(self, left_motor: Motor, right_motor: Motor,
