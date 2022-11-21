@@ -2,14 +2,14 @@
 
 
 from collections.abc import Sequence
-from typing import Optional, Tuple
+from typing import Literal, Optional, Tuple
 from typing_extensions import Self
 
 from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
-from ..time import TimeUnits
+from ..time import TimeUnits, SECONDS
 from .._common_enums.numeric import PERCENT
 from .._common_enums.rotation import RotationUnits
 
@@ -115,6 +115,33 @@ class Motor(Device):
         self.max_torque[unit] = amount_value
 
     @robotmesh_doc("""
+        Set the timeout for the motor.
+
+        If the motor does not reach its commanded position prior
+        to the completion of the timeout, the motor will stop.
+
+        Parameters:
+        - time: Sets the amount of time.
+        - timeUnits: The measurement unit for the time, a TimeUnits enum value.
+    """)
+    @vexcode_doc("""
+        Set Motor Timeout
+
+        Sets a time limit for an IQ Motor or Motor Group movement commands.
+
+        A Motor or Motor Group's Set Motor Timeout command is used to prevent
+        motion commands that do not reach their intended position from
+        preventing subsequent commands from running.
+
+        An example of a Motor not reaching its position is an Arm or Claw that
+        reaches its mechanical limit and cannot complete its movement.
+    """)
+    @act
+    def set_timeout(self, time: float, unit: Literal[SECONDS] = SECONDS, /):
+        """Set Motor Timeout Threshold."""
+        self.timeouts[unit] = time
+
+    @robotmesh_doc("""
         Set the motor mode to "reverse".
 
         (which will make motor commands
@@ -189,21 +216,6 @@ class Motor(Device):
                      rotationUnits: RotationUnits = RotationUnits.DEG, /):
         """Set motor rotation value to specific value."""
         self.rotations[rotationUnits] = value
-
-    @robotmesh_doc("""
-        Set the timeout for the motor.
-
-        If the motor does not reach its commanded position prior
-        to the completion of the timeout, the motor will stop.
-
-        Parameters:
-        - time: Sets the amount of time.
-        - timeUnits: The measurement unit for the time, a TimeUnits enum value.
-    """)
-    @act
-    def set_timeout(self, time: float, timeUnits: TimeUnits = TimeUnits.SEC, /):   # noqa: E501
-        """Set Motor Timeout Threshold."""
-        self.timeouts[timeUnits] = time
 
     @robotmesh_doc("""
         Return a timeout in given time units.
