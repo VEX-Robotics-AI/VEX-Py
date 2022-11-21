@@ -25,7 +25,6 @@ from vex.util.doc import robotmesh_doc
 __all__: Sequence[str] = ('MotorGroup',)
 
 
-# TODO: add VEXcode
 @robotmesh_doc("""
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classmotor__group_1_1_motor_group.html
 """)
