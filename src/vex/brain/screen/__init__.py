@@ -2,6 +2,7 @@
 
 
 from collections.abc import Sequence
+from typing import Optional
 
 from abm.decor import act
 
@@ -89,6 +90,8 @@ class BrainLcd(SingletonDevice):
         Clear the whole screen.
     """)
     @vexcode_doc("""
+        Clear Screen
+
         Clears the entire VEX IQ Brain's Screen.
 
         Clear Screen will not reset the Brain's screen cursor.
@@ -105,25 +108,13 @@ class BrainLcd(SingletonDevice):
 
         Clears the current row on the VEX IQ Brain's Screen.
 
-            brain.screen.clear_row()
-
         Clears a specified row on the VEX IQ Brain's screen.
 
-            brain.screen.clear_row(ROW)
-
-        How To Use
-        You can call the Clear Line command without any arguments to clear the current row.
-
-        Example
-        This example will print "Hello" on row 2, column 1, wait for three seconds, then clear row 2.
-
-        brain.screen.set_cursor(2, 1)
-        brain.screen.print("Hello")
-        wait(3, SECONDS)
-        brain.screen.clear_row(2)
+        You can call the Clear Line command without any arguments
+        to clear the current row.
     """)
     @act
-    def clear_row(self, row=None):
+    def clear_row(self, row: Optional[int] = None):
         """Clear the current row if specified, clear current row otherwise."""
 
     @vexcode_doc("""
