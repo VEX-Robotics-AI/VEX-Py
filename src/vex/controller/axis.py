@@ -5,7 +5,7 @@ from collections.abc import Sequence
 from typing import TypeVar
 from typing_extensions import Self
 
-from abm.decor import sense
+from abm.decor import act, sense
 
 from ..util.doc import robotmesh_doc, vexcode_doc
 
@@ -77,3 +77,27 @@ class ControllerAxis:
     @sense
     def position(self) -> int:
         """Return controller joystick axis percent position."""
+
+    @vexcode_doc("""
+        Controller Axis Changed
+
+        Runs the provided callback funtion
+        when the selected VEX IQ Controller's joystick axis is moved.
+
+        You will need to create a callback function to call
+        when a joystick axis on the Controller is moved.
+
+        Choose which Controller joystick axis
+        to use and pass the callback function:
+        - axisA
+        - axisB
+        - axisC
+        - axisD
+
+        A callback function is a function passed into another function
+        as an argument. The code inside the callback function will run
+        whenever the event occurs.
+    """)
+    @act
+    def changed(self, callback: callable, /):
+        """Trigger callback function when controller axis is changed."""
