@@ -1,4 +1,4 @@
-"""VEX Controller."""
+"""Controller."""
 
 
 from __future__ import annotations
@@ -30,7 +30,7 @@ class Controller(SingletonDevice):
     """Controller."""
 
     def __init__(self):
-        """Initialize VEX Controller."""
+        """Initialize Controller."""
         self._axisA: ControllerAxis = ControllerAxis(parent=self, axtype='A')
         self._axisB: ControllerAxis = ControllerAxis(parent=self, axtype='B')
         self._axisC: ControllerAxis = ControllerAxis(parent=self, axtype='C')
@@ -98,6 +98,16 @@ class Controller(SingletonDevice):
         return self._buttonRDown
 
     @property
+    def buttonL3(self) -> ControllerButton:
+        """Return Controller Button L3."""
+        return self._buttonL3
+
+    @property
+    def buttonR3(self) -> ControllerButton:
+        """Return Controller Button R3."""
+        return self._buttonR3
+
+    @property
     def axisA(self) -> ControllerAxis:
         """Return Controller Axis A."""
         return self._axisA
@@ -116,13 +126,3 @@ class Controller(SingletonDevice):
     def axisD(self) -> ControllerAxis:
         """Return Controller Axis D."""
         return self._axisD
-
-    @property
-    def buttonL3(self) -> ControllerButton:
-        """Return Controller Button L3."""
-        return self._buttonL3
-
-    @property
-    def buttonR3(self) -> ControllerButton:
-        """Return Controller Button R3."""
-        return self._buttonR3
