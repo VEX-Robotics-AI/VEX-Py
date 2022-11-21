@@ -24,7 +24,7 @@ class Distance(Device):
         self.port: Ports = port
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         raise hash(self.port)
 
     @vexcode_doc("""

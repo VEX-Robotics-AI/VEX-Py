@@ -7,7 +7,7 @@ from enum import IntEnum
 from ..util.doc import robotmesh_doc
 
 
-__all__: Sequence[str] = 'DistanceUnits', 'MM', 'INCHES', 'CM'
+__all__: Sequence[str] = 'DistanceUnits', 'MM', 'INCHES'
 
 
 @robotmesh_doc("""
@@ -26,4 +26,3 @@ class DistanceUnits(IntEnum):
 # aliases
 MM: DistanceUnits = DistanceUnits.MM
 INCHES: DistanceUnits = DistanceUnits.IN
-CM: DistanceUnits = DistanceUnits.CM

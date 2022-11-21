@@ -30,11 +30,11 @@ class Device:
         self._port = port
 
     def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
+        """Check equality."""
         return isinstance(other, type(self)) and (other.port == self.port)
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         raise NotImplementedError
 
     def __repr__(self) -> str:
@@ -46,11 +46,11 @@ class SingletonDevice:   # pylint: disable=too-few-public-methods
     """Singleton Device."""
 
     def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
+        """Check equality."""
         return isinstance(other, type(self))
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         return 0
 
     def __repr__(self) -> str:

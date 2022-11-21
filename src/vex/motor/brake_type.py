@@ -7,7 +7,7 @@ from enum import IntEnum
 from ..util.doc import robotmesh_doc
 
 
-__all__: Sequence[str] = ('BrakeType',)
+__all__: Sequence[str] = 'BrakeType', 'COAST', 'BRAKE', 'HOLD'
 
 
 @robotmesh_doc("""
@@ -18,6 +18,12 @@ __all__: Sequence[str] = ('BrakeType',)
 class BrakeType(IntEnum):
     """Motor Brake Types."""
 
-    COAST: int = 0   # A brake unit that is defined as coast.
-    BRAKE: int = 1   # A brake unit that is defined as brake.
-    HOLD: int = 2   # A brake unit that is defined as hold.
+    COAST: int = 0   # A brake unit that is defined as coast
+    BRAKE: int = 1   # A brake unit that is defined as brake
+    HOLD: int = 2   # A brake unit that is defined as hold
+
+
+# aliases
+COAST: BrakeType = BrakeType.COAST
+BRAKE: BrakeType = BrakeType.BRAKE
+HOLD: BrakeType = BrakeType.HOLD
