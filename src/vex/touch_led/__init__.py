@@ -105,6 +105,50 @@ class Touchled(Device):
     def pressing(self) -> bool:
         """Return Touch LED's pressed status."""
 
+    @vexcode_doc("""
+        TouchLED Pressed
+
+        Runs the specified callback function when an IQ TouchLED is pressed.
+
+        You will need to create a function to call
+        when the TouchLED is pressed.
+        Provide the name of the function that should run when the event occurs
+        as the callback parameter.
+
+        Then, the function is passed
+        as the parameter of the TouchLED Pressed function call.
+
+        A callback function is a function passed into another function
+        as an argument. The code inside the callback function will run
+        whenever the event occurs.
+    """)
+    @act
+    def pressed(self, callback: callable, /):
+        """Trigger callback function upon being pressed."""
+        callback()
+
+    @vexcode_doc("""
+        TouchLED Released
+
+        Runs the specified callback function when an IQ TouchLED is released.
+
+        You will need to create a function to call
+        when the TouchLED is released.
+        Provide the name of the function that should run
+        when the event occurs as the callback parameter.
+
+        Then, the function is passed as the parameter of the TouchLED Released
+        function call.
+
+        A callback function is a function passed into another function
+        as an argument. The code inside the callback function will run
+        whenever the event occurs.
+    """)
+    @act
+    def released(self, callback: callable, /):
+        """Trigger callback function upon being released."""
+        callback()
+
     @robotmesh_doc("""
         Set the default fade time for the touchled sensor.
 

@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Callable, Literal
+from typing import Literal
 
 from abm.decor import act, sense
 
@@ -220,7 +220,7 @@ class Optical(Device):
         as the callback parameter.
     """)
     @act
-    def object_detected(self, callback: Callable, /):
+    def object_detected(self, callback: callable, /):
         """Trigger callback function upon detecting an object."""
         callback()
 
@@ -239,30 +239,30 @@ class Optical(Device):
         when the event occurs as the callback parameter.
     """)
     @act
-    def object_lost(self, callback: Callable):
+    def object_lost(self, callback: callable, /):
         """Trigger callback function upon losing previously-detected object."""
         callback()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_up(self, callback: Callable, /):
+    def gesture_up(self, callback: callable, /):
         """Trigger callback function upon detecting UP gesture."""
         callback()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_down(self, callback: Callable, /):
+    def gesture_down(self, callback: callable, /):
         """Trigger callback function upon detecting DOWN gesture."""
         callback()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_left(self, callback: Callable, /):
+    def gesture_left(self, callback: callable, /):
         """Trigger callback function upon detecting LEFT gesture."""
         callback()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_right(self, callback: Callable, /):
+    def gesture_right(self, callback: callable, /):
         """Trigger callback function upon detecting RIGHT gesture."""
         callback()
