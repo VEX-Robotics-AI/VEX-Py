@@ -33,7 +33,7 @@ class BrainButton:
         return hash(self.id)
 
     def __repr__(self) -> str:
-        """Return String Representation."""
+        """Return string representation."""
         return f'{type(self).__name__}({self.id})'
 
     @robotmesh_doc("""

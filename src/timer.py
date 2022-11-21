@@ -37,7 +37,7 @@ class Timer:
         return 0
 
     def __repr__(self) -> str:
-        """Return String Representation."""
+        """Return string representation."""
         return type(self).__name__
 
     @robotmesh_doc("""

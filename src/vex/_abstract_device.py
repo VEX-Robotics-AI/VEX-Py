@@ -38,7 +38,7 @@ class Device:
         raise NotImplementedError
 
     def __repr__(self) -> str:
-        """Return String Representation."""
+        """Return string representation."""
         return f'{type(self).__name__}({self.port.name})'
 
 
@@ -54,5 +54,5 @@ class SingletonDevice:   # pylint: disable=too-few-public-methods
         return 0
 
     def __repr__(self) -> str:
-        """Return String Representation."""
+        """Return string representation."""
         return type(self).__name__

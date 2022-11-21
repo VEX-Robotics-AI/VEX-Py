@@ -39,7 +39,7 @@ class ControllerAxis:
         return hash((self.parent, self.axtype))
 
     def __repr__(self):
-        """Return String Representation."""
+        """Return string representation."""
         return f'{type(self).__name__}({self.axtype})'
 
     @robotmesh_doc("""
