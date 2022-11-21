@@ -10,7 +10,7 @@ from abm.decor import act
 from ..._abstract_device import SingletonDevice
 from ...time import TimeUnits
 
-from ...util.doc import robotmesh_doc
+from ...util.doc import robotmesh_doc, vexcode_doc
 
 from .note_type import NoteType
 from .sound_type import SoundType
@@ -24,6 +24,70 @@ __all__: Sequence[str] = 'BrainSound', 'NoteType', 'SoundType'
 """)
 class BrainSound(SingletonDevice):
     """Brain Sound."""
+
+    @vexcode_doc("""
+        Play Sound
+
+        Plays the specified sound effect.
+
+        Replace the SOUND parameter with one of the following sounds to play:
+        - SoundType.SIREN
+        - SoundType.WRONG_WAY
+        - SoundType.WRONG_WAY_SLOW
+        - SoundType.FILLUP
+        - SoundType.HEADLIGHTS_ON
+        - SoundType.HEADLIGHTS_OFF
+        - SoundType.TOLLBOOTH
+        - SoundType.ALARM
+        - SoundType.TADA
+        - SoundType.DOOR_CLOSE
+        - SoundType.RATCHET
+        - SoundType.WRENCH
+        - SoundType.SIREN2
+        - SoundType.RATCHET2
+        - SoundType.ALARM2
+        - SoundType.POWER_DOWN
+
+        Once a sound effect starts playing,
+        the proceeding command will begin executing immediately.
+    """)
+    @act
+    def play_sound(self, sound: SoundType = SoundType.SIREN, /):
+        """Play a sound effect."""
+
+    @vexcode_doc("""
+        Play Note
+
+        Plays the selected musical note.
+
+        Choose an octave to replace the OCTAVE parameter.
+        The lowest is 1 and the highest is 7.
+
+        Note: Octave is currently unsupported on IQ (2nd Generation) Brains
+
+        Choose a note to replace the NOTE parameter:
+        - 0 (C)
+        - 1 (D)
+        - 2 (E)
+        - 3 (F)
+        - 4 (G)
+        - 5 (A)
+        - 6 (B)
+
+        Choose a duration for the note to play in milliseconds.
+        You can use of the established options below for the DURATION param:
+        - 1000 (whole note plays for 1 second)
+        - 500 (half note plays for 0.5 seconds)
+        - 250 (quarter note plays for 0.25 seconds)
+
+        Alternatively, you can also use a custom duration
+        in the range of 0 to 1000 milliseconds.
+
+        Once a musical note starts playing,
+        the proceeding command will begin executing immediately.
+    """)
+    def play_note(self, octave: int = 3, note: int = 0, duration: int = 1000, /):  # noqa: E501
+        """Play a musical note on the speaker."""
 
     @robotmesh_doc("""
         Play a musical note on the speaker.
