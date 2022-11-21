@@ -120,6 +120,19 @@ class ColorSensor(Device):
     def brightness(self) -> int:
         """Return the amount of light detected by the Color Sensor."""
 
+    @vexcode_doc("""
+        Color Hue
+
+        Reports the hue of the color detected by a VEX IQ Color Sensor.
+
+        Color Hue reports a range of values from 0 to 360 degrees,
+        which represents the position of the color on the color wheel.
+
+    """)
+    @sense
+    def hue(self) -> int:
+        """Return the hue of the color detected by a VEX IQ Color Sensor."""
+
     @robotmesh_doc("""
         Get the name of the detected color.
 
@@ -186,26 +199,6 @@ class ColorSensor(Device):
     @act
     def led(self, state: bool, /):
         """Set LED state."""
-
-    @vexcode_doc(
-        """
-        Color Hue
-        Reports the hue of the color detected by a VEX IQ Color Sensor.
-
-            color.hue()
-
-        How To Use
-        Color Hue reports a range of values from 0 to 360 degrees, which represents the position of the color on the color wheel.
-
-        Example
-        The example prints the hue of the color detected by the Color Sensor.
-
-            brain.screen.print("Hue:", color.hue())
-        """
-    )
-    @sense
-    def hue(self):
-        """Return the hue of the color detected by a VEX IQ Color Sensor."""
 
 
 # alias
