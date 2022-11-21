@@ -53,7 +53,7 @@ class Motor(Device):
 
         self.selected_velocity_unit: VelocityUnits = None
         self.velocities: dict[VelocityUnits, float] = dict[VelocityUnits, float]()  # noqa: E501
-        self.stopping: Optional[BrakeType] = None
+        self.stopping_mode: Optional[BrakeType] = None
         self.rotations: dict[RotationUnits, float] = dict[RotationUnits, float]()  # noqa: E501
         self.timeouts: dict[TimeUnits, float] = dict[TimeUnits, float]()
 
@@ -91,6 +91,35 @@ class Motor(Device):
             velocityUnits = self.selected_velocity_unit  # noqa: N806
 
         return (velocity, velocityUnits)
+
+    @robotmesh_doc("""
+        Set stopping mode of the motor by passing a brake mode as a parameter.
+
+        (note this will stop the motor if it's spinning)
+
+        Parameters:
+        - brakeType: The stopping mode can be set to
+                     BrakeType.COAST, BRAKE, or HOLD.
+    """)
+    @vexcode_doc("""
+        Set Motor Stopping
+
+        Sets the behavior of an IQ Motor or Motor Group once it stops moving.
+
+        The MODE parameter can be replaced with any of the following options:
+        - BRAKE: will cause the Motor/Motor Group to come to an immediate stop.
+        - COAST: lets the Motor/Motor Group spin gradually to a stop.
+        - HOLD: will cause the Motor/Motor Group to come to an immediate stop,
+                and returns it to its stopped position if moved.
+
+        The stopping behavior set by this command will apply to subsequent
+        Motor/Motor Group Stop commands for the entirety of the project,
+        unless otherwise changed.
+    """)
+    @act
+    def set_stopping(self, mode: BrakeType, /):
+        """Set stopping mode."""
+        self.stopping_mode: BrakeType = mode
 
     @robotmesh_doc("""
         Set the max torque of the motor.
@@ -179,20 +208,6 @@ class Motor(Device):
     def _set_velocity(self, velocity: float,
                       velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Set Velocity."""
-
-    @robotmesh_doc("""
-        Set stopping mode of the motor by passing a brake mode as a parameter.
-
-        (note this will stop the motor if it's spinning)
-
-        Parameters:
-        - brakeType: The stopping mode can be set to
-                     BrakeType.COAST, BRAKE, or HOLD.
-    """)
-    @act
-    def set_stopping(self, brakeType: BrakeType, /):
-        """Set Stopping Mode."""
-        self.stopping: BrakeType = brakeType
 
     @robotmesh_doc("""
         Reset the motor's encoder to the value of zero.
