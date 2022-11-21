@@ -13,7 +13,7 @@ from ..motor.current_units import CurrentUnits
 from ..motor.direction_type import DirectionType, FORWARD
 from ..motor.turn_type import TurnType, RIGHT
 from ..motor.velocity_units import VelocityUnits, PERCENT
-from ..time.time_units import TimeUnits
+from ..time.time_units import TimeUnits, SECONDS
 from ..units_common.distance import DistanceUnits, MM
 from ..units_common.rotation import RotationUnits, DEGREES
 from ..util.doc import vexcode_doc
@@ -45,6 +45,7 @@ class DriveTrain(MotorGroup):
         self.turn_velocities: dict[VelocityUnits, float] = \
             dict[VelocityUnits, float]()
         self.stopping_mode: Optional[BrakeType] = None
+        self.timeout: Optional[float] = None
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
@@ -209,7 +210,7 @@ class DriveTrain(MotorGroup):
         from moving even if a Drive or Drive For command is used.
     """)
     @act
-    def set_drive_velocity(self, velocity: int, unit: VelocityUnits = PERCENT, /):  # noqa: E501
+    def set_drive_velocity(self, velocity: int = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
         """Set driving velocity."""
         self.drive_velocities[unit] = velocity
 
@@ -239,7 +240,7 @@ class DriveTrain(MotorGroup):
         will prevent the Drivetrain from turning.
     """)
     @act
-    def set_turn_velocity(self, velocity: int, unit: VelocityUnits = PERCENT, /):  # noqa: E501
+    def set_turn_velocity(self, velocity: int = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
         """Set turning velocity."""
         self.turn_velocities[unit] = velocity
 
@@ -261,5 +262,21 @@ class DriveTrain(MotorGroup):
     @act
     def set_stopping(self, mode: BrakeType = BRAKE, /):
         """Set motor stopping mode."""
-        self.stopping: BrakeType = mode
+        self.stopping_mode: BrakeType = mode
+
+    @vexcode_doc("""
+        Set Timeout
+
+        Sets a time limit for the Drivetrain's definite movement commands.
+
+        The command is used to prevent definite movement commands
+        that do not reach their position
+        from preventing other proceeding commands from running.
+
+        Specify the amount of time in SECONDS.
+    """)
+    @act
+    def set_timeout(self, time: float = 1, unit: Literal[SECONDS] = SECONDS, /):  # noqa: E501
+        """Set Motor Timeout."""
+        self.timeout: float = time
 
