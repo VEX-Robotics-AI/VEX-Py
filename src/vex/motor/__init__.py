@@ -179,6 +179,45 @@ class Motor(Device):
                  waitForCompletion: bool = True, /) -> bool:
         """Spin for specified rotation angle value."""
 
+    @robotmesh_doc("""
+        Turn on the motor and spins it.
+
+        (to a relative target rotation value at a specified velocity)
+
+        Parameters:
+        - dir: The direction to spin the motor, DirectionType enum value.
+        - rotation: Sets the amount of rotation.
+        - rotationUnits: The measurement unit for the rotation value.
+        - velocity: Sets the amount of velocity.
+        - velocityUnits: The measurement unit for the velocity value.
+        - waitForCompletion: (Optional) If True, your program will wait
+                             until the motor reaches the target rotational
+                             value. If false, the program will continue after
+                             calling this function.
+                             By default, this parameter is true.
+
+        Returns:
+        Returns a Boolean that signifies when the motor
+        has reached the target rotation value.
+    """)
+    @vexcode_doc("""
+        Spin For
+
+        This command spins an IQ Motor or Motor Group
+        for a given amount of degrees or turns.
+
+        Choose which DIRECTION the Motor or Motor Group will spin to:
+        FORWARD or REVERSE.
+
+        Choose the UNIT of measurement to be either DEGREES or TURNS.
+
+        Choose whether or not this command should be waited on
+        by proceeding commands by setting an optional fourth parameter
+        to either wait=True or wait=False.
+
+        By default, this command is a blocking command
+        unless wait=False is passed as the fourth parameter.
+    """)
     def spin_for(self, *args):
         """Spin for specified rotation angle value."""
         if (n_args := len(args)) == 0:
