@@ -1,5 +1,9 @@
 """VEX module.
 
+VEXcode IQ: codeiq.vex.com
+VEXcode V5: codev5.vex.com
+VEXcode VR: vr.vex.com
+
 Robot Mesh Python B:
 robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacevex.html
 """
