@@ -11,7 +11,9 @@ from abm.decor import sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
-from ..util.doc import robotmesh_doc, vexcode_doc
+
+from .._util.doc import robotmesh_doc, vexcode_doc
+
 from .vision_object import VisionObject
 
 
