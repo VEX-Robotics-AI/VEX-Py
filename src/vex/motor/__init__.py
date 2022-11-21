@@ -366,14 +366,13 @@ class Motor(Device):
                              By default, this parameter is true.
     """)
     @act
-    def spin_to(  # pylint: disable=too-many-arguments
-            self,
-            rotation: float,
-            rotationUnits: RotationUnits = RotationUnits.DEG,
-            velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True, /) -> bool:
-        """Spin Motor to target Rotation Angle Value."""
+    def spin_to(self,
+                rotation: float,
+                rotationUnits: RotationUnits = RotationUnits.DEG,
+                velocity: Optional[float] = None,
+                velocityUnits: VelocityUnits = VelocityUnits.PCT,
+                waitForCompletion: bool = True, /) -> bool:
+        """Spin motor to target rotation angle value."""
 
     @robotmesh_doc("""
         Turn on the motor and spins it.
