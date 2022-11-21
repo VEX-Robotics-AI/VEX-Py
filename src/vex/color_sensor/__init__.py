@@ -1,28 +1,27 @@
-"""VEX Color Sensor."""
+"""Color Sensor."""
 
 
 from collections.abc import Sequence
+from typing import Literal
 from typing_extensions import Self
 
 from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
-
-# pylint: disable=unused-import
-from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
-
-from .color_hue import ColorHue
+from ..units_common.color import Color
+from ..units_common.numeric import PERCENT
+from ..util.doc import robotmesh_doc, vexcode_doc
 
 
-__all__: Sequence[str] = 'Colorsensor', 'ColorHue'
+__all__: Sequence[str] = 'ColorSensor', 'Colorsensor'
 
 
 @robotmesh_doc("""
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_colorsensor.html
 """)
-class Colorsensor(Device):
-    """VEX Color Sensor."""
+class ColorSensor(Device):
+    """Color Sensor."""
 
     @robotmesh_doc("""
         Create new color sensor object on the port specified in the parameter.
@@ -40,15 +39,99 @@ class Colorsensor(Device):
         self.proximity: float = proximity
 
     def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
+        """Check equality."""
         return (isinstance(other, type(self)) and
                 (other.port == self.port) and
                 (other.is_grayscale == self.is_grayscale) and
                 (other.proximity == self.proximity))
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         return hash((self.port, self.is_grayscale, self.proximity))
+
+    @vexcode_doc("""
+        Set Color Sensor Light
+
+        Sets the brightness of the VEX IQ Color Sensor's light.
+
+        The Color Sensor has a light source that can be adjusted
+        to help detect the color of an object or a surface.
+
+        Set Color Sensor Light accepts
+        a range of 0 to 100 for the BRIGHTNESS parameter.
+
+        The higher the value is set, the brighter the Color Sensor's
+        light source will shine.
+    """)
+    @act
+    def set_light(self, brightness: int = 50, unit: Literal[PERCENT] = PERCENT):  # noqa: E501
+        """Set light's brightness percentage level."""
+
+    @vexcode_doc("""
+        Color Is Near Object
+
+        Reports if a VEX IQ Color Sensor detects an object or surface.
+
+        Reports True when a Color Sensor detects an object or surface
+        close to the front of the sensor.
+
+        Reports False when a Color Sensor does not detect an object or surface
+        close to the front of the sensor.
+    """)
+    @sense
+    def is_near_object(self) -> bool:
+        """Detect whether there is an object/surface near sensor's front."""
+
+    @vexcode_doc("""
+        Color
+
+        Reports the color currently being detected by a VEX IQ Color Sensor.
+
+        Compare the value returned by Color to one of the following colors
+        to check if a specific color is being detected:
+        - Color.RED
+        - Color.RED_VIOLET
+        - Color.VIOLET
+        - Color.BLUE_VIOLET
+        - Color.BLUE
+        - Color.BLUE_GREEN
+        - Color.GREEN
+        - Color.YELLOW_GREEN
+        - Color.YELLOW
+        - Color.YELLOW_ORANGE
+        - Color.ORANGE
+        - Color.RED_ORANGE
+    """)
+    @sense
+    def color(self) -> Color:
+        """Return the color currently being detected."""
+
+    @vexcode_doc("""
+        Color Brightness
+
+        Reports the amount of light detected by a VEX IQ Color Sensor.
+
+        Color Brightness reports a range of values from 0 to 100 percent.
+
+        A larger amount of light will report a higher value,
+        while a smaller amount of light will report a lower value.
+    """)
+    @sense
+    def brightness(self) -> int:
+        """Return the amount of light detected by the Color Sensor."""
+
+    @vexcode_doc("""
+        Color Hue
+
+        Reports the hue of the color detected by a VEX IQ Color Sensor.
+
+        Color Hue reports a range of values from 0 to 360 degrees,
+        which represents the position of the color on the color wheel.
+
+    """)
+    @sense
+    def hue(self) -> int:
+        """Return the hue of the color detected by a VEX IQ Color Sensor."""
 
     @robotmesh_doc("""
         Get the name of the detected color.
@@ -116,3 +199,7 @@ class Colorsensor(Device):
     @act
     def led(self, state: bool, /):
         """Set LED state."""
+
+
+# alias
+Colorsensor = ColorSensor

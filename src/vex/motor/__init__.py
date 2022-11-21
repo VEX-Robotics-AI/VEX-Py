@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Optional
+from typing import Optional, Tuple
 from typing_extensions import Self
 
 from abm.decor import act, sense
@@ -12,22 +12,23 @@ from ..brain.port import Ports
 from ..time import TimeUnits
 from ..units_common import RotationUnits
 
-# pylint: disable=unused-import
-from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from ..util.doc import robotmesh_doc, vexcode_doc
 
-from .brake_type import BrakeType
+from .brake_type import BrakeType, COAST, BRAKE, HOLD
+from .current_units import CurrentUnits
 from .direction_type import DirectionType, FORWARD, REVERSE
 from .torque_units import TorqueUnits
 from .turn_type import TurnType, LEFT, RIGHT
-from .velocity_units import VelocityUnits, PERCENT
+from .velocity_units import VelocityUnits, RPM, DPS
 
 
 __all__: Sequence[str] = ('Motor',
-                          'BrakeType',
+                          'BrakeType', 'COAST', 'BRAKE', 'HOLD',
+                          'CurrentUnits',
                           'DirectionType', 'FORWARD', 'REVERSE',
                           'TorqueUnits',
                           'TurnType', 'LEFT', 'RIGHT',
-                          'VelocityUnits', 'PERCENT')
+                          'VelocityUnits', 'RPM', 'DPS')
 
 
 @robotmesh_doc("""
@@ -49,27 +50,46 @@ class Motor(Device):
         self.port: Ports = index
         self.reverse: bool = reverse
 
-        self.velocities: dict[VelocityUnits, float] = dict[VelocityUnits, float]()   # noqa: E501
+        self.selected_velocity_unit: VelocityUnits = None
+        self.velocities: dict[VelocityUnits, float] = dict[VelocityUnits, float]()  # noqa: E501
         self.stopping: Optional[BrakeType] = None
-        self.rotations: dict[RotationUnits, float] = dict[RotationUnits, float]()   # noqa: E501
+        self.rotations: dict[RotationUnits, float] = dict[RotationUnits, float]()  # noqa: E501
         self.timeouts: dict[TimeUnits, float] = dict[TimeUnits, float]()
 
         self.max_torque: dict[TorqueUnits, float] = dict[TorqueUnits, float]()
 
     def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
+        """Check equality."""
         return (isinstance(other, type(self)) and
                 (other.port == self.port) and
                 (other.reverse == self.reverse))
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         return hash((self.port, self.reverse))
 
     def __repr__(self) -> str:
         """Return String Representation."""
-        return (f'{type(self).__name__}({self.port.name}' +
-                (', reverse)' if self.reverse else ')'))
+        return f'{type(self).__name__}({self.port.name}' + (', reverse)'
+                                                            if self.reverse
+                                                            else ')')
+
+    def _get_selected_velocity_and_unit(
+            self,
+            velocity: Optional[float],
+            velocityUnits: VelocityUnits) -> Tuple[float, VelocityUnits]:
+        if (velocity is None) or (type(velocity) not in (float, int)):
+            # VEX Py API v2
+            if (self.selected_velocity_unit is None) or (
+                    self.selected_velocity_unit not in self.velocities):
+                raise ValueError("You have not selected any velocity. "
+                                 "Please call "
+                                 "set_velocity(velocity, velocityUnits) first.")  # noqa: E501
+
+            velocity = self.velocities[self.selected_velocity_unit]
+            velocityUnits = self.selected_velocity_unit  # noqa: N806
+
+        return (velocity, velocityUnits)
 
     @robotmesh_doc("""
         Set the motor mode to "reverse".
@@ -98,11 +118,17 @@ class Motor(Device):
         - velocityUnits: The measurement unit for the velocity,
                          a VelocityUnits enum value.
     """)
-    @act
     def set_velocity(self, velocity: float,
                      velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Set Velocity."""
         self.velocities[velocityUnits] = velocity
+        self.selected_velocity_unit = velocityUnits
+        return self._set_velocity(velocity, velocityUnits)
+
+    @act
+    def _set_velocity(self, velocity: float,
+                      velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+        """Set Velocity."""
 
     @robotmesh_doc("""
         Set stopping mode of the motor by passing a brake mode as a parameter.
@@ -182,9 +208,33 @@ class Motor(Device):
         - velocityUnits: The measurement unit for the velocity,
                          a VelocityUnits enum value.
     """)
+    @vexcode_doc("""
+        Turn on the motor and spins it.
+
+        (in a specified direction and a specified velocity)
+
+        Must call set_velocity(velocity, velocityUnits)
+        before calling this method.
+
+        Parameters:
+        - dir: The direction to spin the motor, DirectionType enum value.
+        - velocity: Sets the amount of velocity.
+        - velocityUnits: The measurement unit for the velocity,
+                         a VelocityUnits enum value.
+    """)
+    def spin(self, dir: DirectionType,  # pylint: disable=redefined-builtin
+             velocity: Optional[float] = None,
+             velocityUnits: VelocityUnits = VelocityUnits.PCT):
+        """Spin Motor."""
+        velocity, velocityUnits = self._get_selected_velocity_and_unit(  # noqa: E501,N806
+            velocity, velocityUnits)
+
+        return self._spin(dir, velocity, velocityUnits)
+
     @act
-    def spin(self, dir: DirectionType,   # pylint: disable=redefined-builtin
-             velocity: float, velocityUnits: VelocityUnits = VelocityUnits.PCT, /):   # noqa: E501
+    def _spin(self, dir: DirectionType,  # pylint: disable=redefined-builtin
+              velocity: Optional[float] = None,
+              velocityUnits: VelocityUnits = VelocityUnits.PCT):
         """Spin Motor."""
 
     @robotmesh_doc("""
@@ -204,9 +254,10 @@ class Motor(Device):
                              By default, this parameter is true.
     """)
     @act
-    def spin_to(   # pylint: disable=too-many-arguments
+    def spin_to(  # pylint: disable=too-many-arguments
             self,
-            rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
+            rotation: float,
+            rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True, /) -> bool:
@@ -233,10 +284,49 @@ class Motor(Device):
         Returns a Boolean that signifies when the motor
         has reached the target rotation value.
     """)
+    @vexcode_doc("""
+        Turn on the motor and spins it.
+
+        Must call set_velocity(velocity, velocityUnits)
+        before calling this method.
+
+        Parameters:
+        - dir: The direction to spin the motor, DirectionType enum value.
+        - rotation: Sets the amount of rotation.
+        - rotationUnits: The measurement unit for the rotation value.
+        - waitForCompletion: (Optional) If True, your program will wait
+                             until the motor reaches the target rotational
+                             value. If false, the program will continue after
+                             calling this function.
+                             By default, this parameter is true.
+
+        Returns:
+        Returns a Boolean that signifies when the motor
+        has reached the target rotation value.
+    """)
+    def spin_for(  # pylint: disable=too-many-arguments
+            self,
+            dir: DirectionType,  # pylint: disable=redefined-builtin
+            rotation: float,
+            rotationUnits: RotationUnits = RotationUnits.DEG,
+            velocity: Optional[float] = None,
+            velocityUnits: VelocityUnits = VelocityUnits.PCT,
+            waitForCompletion: bool = True, /) -> bool:
+        """Spin Motor for a certain Rotation Angle Value."""
+        velocity, velocityUnits = self._get_selected_velocity_and_unit(  # noqa: E501,N806
+            velocity, velocityUnits)
+
+        return self._spin_for(dir,
+                              rotation, rotationUnits,
+                              velocity, velocityUnits,
+                              waitForCompletion)
+
     @act
-    def spin_for(   # pylint: disable=too-many-arguments
-            self, dir: DirectionType,   # pylint: disable=redefined-builtin
-            rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
+    def _spin_for(  # pylint: disable=too-many-arguments
+            self,
+            dir: DirectionType,  # pylint: disable=redefined-builtin
+            rotation: float,
+            rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True, /) -> bool:
@@ -255,9 +345,11 @@ class Motor(Device):
         - velocityUnits: The measurement unit for the velocity value.
     """)
     @act
-    def spin_for_time(   # pylint: disable=too-many-arguments
-            self, dir: DirectionType,   # pylint: disable=redefined-builtin
-            time: str, timeUnits: TimeUnits = TimeUnits.SEC,
+    def spin_for_time(  # pylint: disable=too-many-arguments
+            self,
+            dir: DirectionType,  # pylint: disable=redefined-builtin
+            time: str,
+            timeUnits: TimeUnits = TimeUnits.SEC,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Spin Motor for a certain Time Duration."""
@@ -296,9 +388,11 @@ class Motor(Device):
         - velocityUnits: The measurement unit for the velocity value.
     """)
     @act
-    def start_spin_for(   # pylint: disable=too-many-arguments
-            self, dir: DirectionType,   # pylint: disable=redefined-builtin
-            rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
+    def start_spin_for(  # pylint: disable=too-many-arguments
+            self,
+            dir: DirectionType,  # pylint: disable=redefined-builtin
+            rotation: float,
+            rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[float] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Start spinning motor for a certain Rotation Angle Value."""
@@ -383,7 +477,7 @@ class Motor(Device):
         the motor in the units defined in the parameter.
     """)
     @sense
-    def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:   # noqa: E501
+    def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:  # noqa: E501
         """Return Motor's cumulative Rotation Angle Value."""
 
     @robotmesh_doc("""
@@ -397,7 +491,7 @@ class Motor(Device):
         of the motor in the units defined in the parameter.
     """)
     @sense
-    def velocity(self, velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:   # noqa: E501
+    def velocity(self, velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:  # noqa: E501
         """Return Motor's Velocity."""
 
     @robotmesh_doc("""

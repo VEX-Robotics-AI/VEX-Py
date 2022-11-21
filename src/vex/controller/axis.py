@@ -5,10 +5,9 @@ from collections.abc import Sequence
 from typing import TypeVar
 from typing_extensions import Self
 
-from abm.decor import sense
+from abm.decor import act, sense
 
-# pylint: disable=unused-import
-from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from ..util.doc import robotmesh_doc, vexcode_doc
 
 
 __all__: Sequence[str] = ('ControllerAxis',)
@@ -31,12 +30,12 @@ class ControllerAxis:
         self.axtype: str = axtype
 
     def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
+        """Check equality."""
         return isinstance(other, ControllerAxis) and \
             (other.parent == self.parent) and (other.axtype == self.axtype)
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         return hash((self.parent, self.axtype))
 
     def __repr__(self):
@@ -59,6 +58,47 @@ class ControllerAxis:
         Returns
         an integer that represents the position of the joystick axis.
     """)
+    @vexcode_doc("""
+        Controller Axis Position
+
+        Reports the position of a joystick on the VEX IQ Controller
+        along the specified axis.
+
+        Controller Axis Position reports a range between -100 to 100.
+
+        Controller Axis Position will report 0 when joystick axis is centered.
+
+        Choose which Controller axis to report.
+        - axisA: left joystick (up and down)
+        - axisB: left joystick (left and right)
+        - axisC: right joystick (left and right)
+        - axisD: right joystick (up and down)
+    """)
     @sense
     def position(self) -> int:
-        """Return Controller Joystick Axis Percent Position."""
+        """Return controller joystick axis percent position."""
+
+    @vexcode_doc("""
+        Controller Axis Changed
+
+        Runs the provided callback funtion
+        when the selected VEX IQ Controller's joystick axis is moved.
+
+        You will need to create a callback function to call
+        when a joystick axis on the Controller is moved.
+
+        Choose which Controller joystick axis
+        to use and pass the callback function:
+        - axisA
+        - axisB
+        - axisC
+        - axisD
+
+        A callback function is a function passed into another function
+        as an argument. The code inside the callback function will run
+        whenever the event occurs.
+    """)
+    @act
+    def changed(self, callback: callable, /):
+        """Trigger callback function when controller axis is changed."""
+        callback()

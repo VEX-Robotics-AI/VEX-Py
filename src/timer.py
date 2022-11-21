@@ -1,4 +1,4 @@
-"""VEX Timer.
+"""Timer.
 
 Robot Mesh Python B:
 robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacetimer.html
@@ -10,8 +10,7 @@ from typing_extensions import Self
 
 from abm.decor import act, sense
 
-# pylint: disable=unused-import
-from vex.util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from vex.util.doc import robotmesh_doc
 
 
 __all__: Sequence[str] = ('Timer',)
@@ -30,11 +29,11 @@ class Timer:
         """Initialize Timer."""
 
     def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
+        """Check equality."""
         return isinstance(other, type(self))
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         return 0
 
     def __repr__(self) -> str:
