@@ -44,6 +44,29 @@ class BrainLcd(SingletonDevice):
     def print(self, args):  # TODO: accept *args
         """Print values or text on the brain's screen."""
 
+    @vexcode_doc("""
+        Set Cursor
+
+        Sets the cursor location for Brain's Print commands.
+
+        The Set Cursor command requires 2 parameters:
+        - ROW: Screen row position
+        - COL: Screen column position
+
+        Set the cursor's row and column position to have a Print command
+        print at a specific location on the screen.
+
+        The IQ (2nd generation) Brain allows you to change the size of the font
+        printed on the screen. Changing the font will affect the number of rows
+        and columns available on the Brain's screen.
+
+        Accepts a range for ROW of 1 to 9.
+        Accepts a range for COL of 1 to 28.
+    """)
+    @act
+    def set_cursor(self, row: int, col: int):
+        """Set the cursor location for Brain's Print commands."""
+
     @robotmesh_doc("""
         Clear the whole screen.
     """)
@@ -58,15 +81,6 @@ class BrainLcd(SingletonDevice):
     @act
     def clear_screen(self):
         """Clear Brain LCD Screen."""
-
-    @vexcode_doc("""
-        Set the cursor location for Brain's Print commands.
-
-        brain.screen.set_cursor(ROW, COL).
-    """)
-    @act
-    def set_cursor(self, row, col):
-        """Set the cursor location for Brain's Print commands."""
 
     @vexcode_doc("""
         New Line
