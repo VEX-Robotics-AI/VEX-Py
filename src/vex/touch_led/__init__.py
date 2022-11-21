@@ -34,6 +34,32 @@ class Touchled(Device):
         """Return integer hash."""
         raise hash(self.port)
 
+    @vexcode_doc("""
+        Set TouchLED Color
+
+        Sets the color of an IQ TouchLED.
+
+        Replace the COLOR parameter with one of the following options:
+        - Color.RED
+        - Color.GREEN
+        - Color.BLUE
+        - Color.WHITE
+        - Color.YELLOW
+        - Color.ORANGE
+        - Color.PURPLE
+        - Color.RED_VIOLET
+        - Color.VIOLET
+        - Color.BLUE_VIOLET
+        - Color.BLUE_GREEN
+        - Color.YELLOW_GREEN
+        - Color.YELLOW_ORANGE
+        - Color.RED_ORANGE
+
+        To turn the TouchLED off, set the color to Color.BLACK.
+    """)
+    def set_color(self, color: Color, /):
+        """Set Touch LED color."""
+
     @robotmesh_doc("""
         Set the default fade time for the touchled sensor.
 
@@ -187,33 +213,3 @@ class Touchled(Device):
     def default_color(self, color: Color, /):
         """Set default Fade Type."""
         self.color: Color = color
-
-    @vexcode_doc("""
-        Set TouchLED Color
-        Sets the color of an IQ TouchLED.
-            touchled.set_color(COLOR)
-
-        How To Use
-        Replace the COLOR parameter with one of the following options:
-
-            Color.RED
-            Color.GREEN
-            Color.BLUE
-            Color.WHITE
-            Color.YELLOW
-            Color.ORANGE
-            Color.PURPLE
-            Color.RED_VIOLET
-            Color.VIOLET
-            Color.BLUE_VIOLET
-            Color.BLUE_GREEN
-            Color.YELLOW_GREEN
-            Color.YELLOW_ORANGE
-            Color.RED_ORANGE
-
-        To turn the TouchLED off, set the color to Color.BLACK.
-
-        touchled.set_color(Color.BLACK)
-    """)
-    def set_color(self, color: Color):
-        """Set the color of an IQ TouchLED."""
