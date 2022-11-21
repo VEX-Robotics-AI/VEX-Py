@@ -51,13 +51,12 @@ class Motor(Device):
         self.port: Ports = index
         self.reverse: bool = reverse
 
-        self.selected_velocity_unit: VelocityUnits = None
-        self.velocities: dict[VelocityUnits, float] = dict[VelocityUnits, float]()  # noqa: E501
-        self.stopping_mode: Optional[BrakeType] = None
         self.rotations: dict[RotationUnits, float] = dict[RotationUnits, float]()  # noqa: E501
+        self.stopping_mode: Optional[BrakeType] = None
         self.timeouts: dict[TimeUnits, float] = dict[TimeUnits, float]()
-
         self.max_torque: dict[TorqueUnits, float] = dict[TorqueUnits, float]()
+        self.selected_velocity_unit: Optional[VelocityUnits] = None
+        self.velocities: dict[VelocityUnits, float] = dict[VelocityUnits, float]()  # noqa: E501
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
@@ -78,19 +77,18 @@ class Motor(Device):
     def _get_selected_velocity_and_unit(
             self,
             velocity: Optional[float],
-            velocityUnits: VelocityUnits) -> Tuple[float, VelocityUnits]:
+            unit: VelocityUnits) -> Tuple[float, VelocityUnits]:
         if (velocity is None) or (type(velocity) not in (float, int)):
-            # VEX Py API v2
-            if (self.selected_velocity_unit is None) or (
-                    self.selected_velocity_unit not in self.velocities):
-                raise ValueError("You have not selected any velocity. "
-                                 "Please call "
-                                 "set_velocity(velocity, velocityUnits) first.")  # noqa: E501
+            if self.selected_velocity_unit not in self.velocities:
+                raise ValueError('You have not selected any velocity; '
+                                 'please call '
+                                 'set_velocity(velocity, velocityUnits) first')
 
             velocity = self.velocities[self.selected_velocity_unit]
-            velocityUnits = self.selected_velocity_unit  # noqa: N806
+            unit = self.selected_velocity_unit
 
-        return (velocity, velocityUnits)
+        return (velocity, unit)
+
 
     @vexcode_doc("""
         Spin To Position
