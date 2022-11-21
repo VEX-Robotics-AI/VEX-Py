@@ -9,6 +9,7 @@ from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
+from ..units_common.color import Color
 from ..units_common.numeric import PERCENT
 from ..util.doc import robotmesh_doc, vexcode_doc
 
@@ -81,6 +82,30 @@ class ColorSensor(Device):
     def is_near_object(self) -> bool:
         """Detect whether there is an object/surface near sensor's front."""
 
+    @vexcode_doc("""
+        Color
+
+        Reports the color currently being detected by a VEX IQ Color Sensor.
+
+        Compare the value returned by Color to one of the following colors
+        to check if a specific color is being detected:
+        - Color.RED
+        - Color.RED_VIOLET
+        - Color.VIOLET
+        - Color.BLUE_VIOLET
+        - Color.BLUE
+        - Color.BLUE_GREEN
+        - Color.GREEN
+        - Color.YELLOW_GREEN
+        - Color.YELLOW
+        - Color.YELLOW_ORANGE
+        - Color.ORANGE
+        - Color.RED_ORANGE
+    """)
+    @sense
+    def color(self) -> Color:
+        """Return the color currently being detected."""
+
     @robotmesh_doc("""
         Get the name of the detected color.
 
@@ -147,41 +172,6 @@ class ColorSensor(Device):
     @act
     def led(self, state: bool, /):
         """Set LED state."""
-
-    @vexcode_doc(
-        """
-        Color
-        Reports the color currently being detected by a VEX IQ Color Sensor.
-
-            color.color()
-
-        How To Use
-        Compare the value returned by Color to one of the following colors to check if a specific color is being detected:
-
-            Color.RED
-            Color.RED_VIOLET
-            Color.VIOLET
-            Color.BLUE_VIOLET
-            Color.BLUE
-            Color.BLUE_GREEN
-            Color.GREEN
-            Color.YELLOW_GREEN
-            Color.YELLOW
-            Color.YELLOW_ORANGE
-            Color.ORANGE
-            Color.RED_ORANGE
-
-        Example
-        The example below prints "Red" to the IQ Brain's screen if a red object is currently being detected by a Color Sensor.
-
-        if color.color() == Color.RED:
-            brain.screen.print("Red")
-
-        """
-    )
-    @sense
-    def color(self):
-        """Return the color currently being detected."""
 
     @vexcode_doc(
         """
