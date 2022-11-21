@@ -13,9 +13,9 @@ from ..motor.current_units import CurrentUnits
 from ..motor.direction_type import DirectionType, FORWARD
 from ..motor.turn_type import TurnType, RIGHT
 from ..motor.velocity_units import VelocityUnits, PERCENT
-from ..time.time_units import TimeUnits, SECONDS
+from ..time.time_units import SECONDS
 from ..units_common.distance import DistanceUnits, MM
-from ..units_common.rotation import RotationUnits, DEGREES
+from ..units_common.rotation import DEGREES
 from ..util.doc import vexcode_doc
 
 from .motor_group import MotorGroup
@@ -310,4 +310,24 @@ class DriveTrain(MotorGroup):
     @sense
     def is_done(self) -> bool:
         """Check whether Drivetrain has finished driving/turning."""
+
+    @vexcode_doc("""
+        Drive Velocity
+
+        Reports the current velocity of the Drivetrain.
+
+        Drive Velocity returns a decimal value
+        representing the current velocity of the Drivetrain.
+
+        Acceptable UNITS are PERCENT and RPM.
+
+        - If the provided UNITS parameter is PERCENT,
+          the reported values ranges between -100 to 100.
+
+        - Alternatively, if the provided UNITS is RPM,
+          the reported values range between -127 to 127.
+    """)
+    @sense
+    def velocity(self, velocityUnits: VelocityUnits = PERCENT, /) -> float:
+        """Return velocity."""
 
