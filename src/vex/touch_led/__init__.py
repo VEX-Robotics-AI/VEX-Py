@@ -8,7 +8,7 @@ from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
-from ..units_common.color import Color, ColorHue
+from ..units_common.color import Color
 from ..util.doc import robotmesh_doc, vexcode_doc
 from .fade_type import FadeType
 
@@ -180,7 +180,7 @@ class Touchled(Device):
         - brightness: The brightness for the led
     """)
     @act
-    def on_hue(self, colorHue: ColorHue, brightness: int = 100, /):
+    def on_hue(self, colorHue: Color, brightness: int = 100, /):
         """Turn on Color Hue."""
 
     @robotmesh_doc("""
@@ -234,7 +234,7 @@ class Touchled(Device):
         - off_time: The time the led should remain off in seconds
     """)
     @act
-    def blink_hue(self, colorHue: ColorHue,
+    def blink_hue(self, colorHue: Color,
                   on_time: float = 0.25, off_time: float = 0.25, /):
         """Blink Color Hue."""
 
