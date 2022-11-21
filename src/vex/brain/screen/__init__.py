@@ -8,6 +8,7 @@ from abm.decor import act
 
 from ..._abstract_device import SingletonDevice
 from ...util.doc import robotmesh_doc, vexcode_doc
+from ...units_common.color import Color
 from .font_type import FontType
 
 
@@ -243,35 +244,36 @@ class BrainLcd(SingletonDevice):
     @vexcode_doc("""
         Brain Screen Set Pen Color
 
-        Sets the color of lines drawn on the IQ (2nd generation) Brain's screen.
+        Sets color of lines drawn on IQ (2nd generation) Brain's screen.
 
-        brain.screen.set_pen_color(COLOR)
-        How To Use
-        The Brain Screen Set Pen Color command is used to set the color of lines, pixels, and text drawn on the IQ (2nd generation) Brain's screen.
+        The Brain Screen Set Pen Color command is used to set the color of
+        lines, pixels and text drawn on the IQ (2nd generation) Brain's screen.
 
-        It can also be used to set the color the outline of circles and rectangles drawn on the IQ (2nd generation) Brain's screen.
+        It can also be used to set the color the outline of
+        circles and rectangles drawn on the IQ (2nd generation) Brain's screen.
 
         You can replace the COLOR parameter with one of the following options:
+        - Color.BLACK
+        - Color.BLUE
+        - Color.BLUE_GREEN
+        - Color.BLUE_VIOLET
+        - Color.GREEN
+        - Color.ORANGE
+        - Color.PURPLE
+        - Color.RED
+        - Color.RED_ORANGE
+        - Color.RED_VIOLET
+        - Color.VIOLET
+        - Color.WHITE
+        - Color.YELLOW
+        - Color.YELLOW_GREEN
+        - Color.YELLOW_ORANGE
 
-            Color.BLACK
-            Color.BLUE
-            Color.BLUE_GREEN
-            Color.BLUE_VIOLET
-            Color.GREEN
-            Color.ORANGE
-            Color.PURPLE
-            Color.RED
-            Color.RED_ORANGE
-            Color.RED_VIOLET
-            Color.VIOLET
-            Color.WHITE
-            Color.YELLOW
-            Color.YELLOW_GREEN
-            Color.YELLOW_ORANGE
-        The pen color will be used for any next objects drawn on the IQ (2nd generation) Brain's screen
+        The pen color will be used for any next objects drawn
+        on the IQ (2nd generation) Brain's screen.
     """)
     @act
-    def set_pen_color(self, ColorHue):
+    def set_pen_color(self, color: Color = Color.RED, /):
         """Set the color of lines drawn on the brain's screen."""
 
     @vexcode_doc("""
