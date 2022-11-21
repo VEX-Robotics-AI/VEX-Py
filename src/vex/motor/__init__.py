@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Literal, Optional, Tuple
+from typing import Literal, Optional, Tuple, overload
 from typing_extensions import Self
 
 from abm.decor import act, sense
@@ -78,7 +78,7 @@ class Motor(Device):
             self,
             velocity: Optional[float],
             unit: VelocityUnits) -> Tuple[float, VelocityUnits]:
-        if (velocity is None) or (type(velocity) not in (float, int)):
+        if (velocity is None) or (not isinstance(velocity, float | int)):
             if self.selected_velocity_unit not in self.velocities:
                 raise ValueError('You have not selected any velocity; '
                                  'please call '
@@ -125,6 +125,126 @@ class Motor(Device):
             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Spin."""
 
+    @vexcode_doc("""
+        Spin For
+
+        This command spins an IQ Motor or Motor Group
+        for a given amount of degrees or turns.
+
+        Choose which DIRECTION the Motor or Motor Group will spin to:
+        FORWARD or REVERSE.
+
+        Choose the UNIT of measurement to be either DEGREES or TURNS.
+
+        Choose whether or not this command should be waited on
+        by proceeding commands by setting an optional fourth parameter
+        to either wait=True or wait=False.
+
+        By default, this command is a blocking command
+        unless wait=False is passed as the fourth parameter.
+    """)
+    @overload
+    def spin_for(self, direction: DirectionType = FORWARD,
+                 amount: float = 90, unit: RotationUnits = DEGREES,
+                 wait: bool = True, /):
+        """Spin for specified rotation angle value."""
+
+    @robotmesh_doc("""
+        Turn on the motor and spins it.
+
+        (to a relative target rotation value at a specified velocity)
+
+        Parameters:
+        - dir: The direction to spin the motor, DirectionType enum value.
+        - rotation: Sets the amount of rotation.
+        - rotationUnits: The measurement unit for the rotation value.
+        - velocity: Sets the amount of velocity.
+        - velocityUnits: The measurement unit for the velocity value.
+        - waitForCompletion: (Optional) If True, your program will wait
+                             until the motor reaches the target rotational
+                             value. If false, the program will continue after
+                             calling this function.
+                             By default, this parameter is true.
+
+        Returns:
+        Returns a Boolean that signifies when the motor
+        has reached the target rotation value.
+    """)
+    @overload
+    def spin_for(self, dir: DirectionType,  # pylint: disable=redefined-builtin
+                 rotation: float,
+                 rotationUnits: RotationUnits = RotationUnits.DEG,
+                 velocity: Optional[float] = None,
+                 velocityUnits: VelocityUnits = VelocityUnits.PCT,
+                 waitForCompletion: bool = True, /) -> bool:
+        """Spin for specified rotation angle value."""
+
+    def spin_for(self, *args):
+        """Spin for specified rotation angle value."""
+        if (n_args := len(args)) == 0:
+            direction: DirectionType = FORWARD
+            rotation: float = 90
+            rotation_unit: RotationUnits = DEGREES
+            velocity, velocity_unit = self._get_selected_velocity_and_unit(
+                None, self.selected_velocity_unit)
+            wait: bool = True
+
+        elif n_args == 1:
+            direction = args[0]
+            rotation: float = 90
+            rotation_unit: RotationUnits = DEGREES
+            velocity, velocity_unit = self._get_selected_velocity_and_unit(
+                None, self.selected_velocity_unit)
+            wait: bool = True
+
+        elif n_args == 2:
+            direction, rotation = args
+            rotation_unit: RotationUnits = DEGREES
+            velocity, velocity_unit = self._get_selected_velocity_and_unit(
+                None, self.selected_velocity_unit)
+            wait: bool = True
+
+        elif n_args == 3:
+            direction, rotation, rotation_unit = args
+            velocity, velocity_unit = self._get_selected_velocity_and_unit(
+                None, self.selected_velocity_unit)
+            wait: bool = True
+
+        elif n_args == 4:
+            # pylint: disable=unbalanced-tuple-unpacking
+            direction, rotation, rotation_unit = args[:3]
+
+            if isinstance(arg3 := args[3], bool):
+                velocity, velocity_unit = self._get_selected_velocity_and_unit(
+                    None, self.selected_velocity_unit)
+                wait: bool = arg3
+
+            else:
+                assert isinstance(arg3, float | int)
+                velocity: float = arg3
+                velocity_unit: VelocityUnits = self.selected_velocity_unit
+                wait: bool = True
+
+        elif n_args == 5:
+            direction, rotation, rotation_unit, velocity, velocity_unit = args
+            wait: bool = True
+
+        else:
+            assert n_args == 6
+            direction, rotation, rotation_unit, velocity, velocity_unit, wait = args  # noqa: E501
+
+        return self._spin_for(direction,
+                              rotation, rotation_unit,
+                              velocity, velocity_unit,
+                              wait)
+
+    @act
+    def _spin_for(
+            self, direction: DirectionType = FORWARD,
+            rotation: float = 90, rotation_unit: RotationUnits = DEGREES,
+            velocity: Optional[float] = None, velocity_unit: VelocityUnits = PERCENT,  # noqa: E501
+            wait: bool = True, /) -> bool:
+        """Spin for specified rotation angle value."""
 
     @vexcode_doc("""
         Spin To Position
@@ -379,75 +499,6 @@ class Motor(Device):
                 velocityUnits: VelocityUnits = VelocityUnits.PCT,
                 waitForCompletion: bool = True, /) -> bool:
         """Spin motor to target rotation angle value."""
-
-    @robotmesh_doc("""
-        Turn on the motor and spins it.
-
-        (to a relative target rotation value at a specified velocity)
-
-        Parameters:
-        - dir: The direction to spin the motor, DirectionType enum value.
-        - rotation: Sets the amount of rotation.
-        - rotationUnits: The measurement unit for the rotation value.
-        - velocity: Sets the amount of velocity.
-        - velocityUnits: The measurement unit for the velocity value.
-        - waitForCompletion: (Optional) If True, your program will wait
-                             until the motor reaches the target rotational
-                             value. If false, the program will continue after
-                             calling this function.
-                             By default, this parameter is true.
-
-        Returns:
-        Returns a Boolean that signifies when the motor
-        has reached the target rotation value.
-    """)
-    @vexcode_doc("""
-        Turn on the motor and spins it.
-
-        Must call set_velocity(velocity, velocityUnits)
-        before calling this method.
-
-        Parameters:
-        - dir: The direction to spin the motor, DirectionType enum value.
-        - rotation: Sets the amount of rotation.
-        - rotationUnits: The measurement unit for the rotation value.
-        - waitForCompletion: (Optional) If True, your program will wait
-                             until the motor reaches the target rotational
-                             value. If false, the program will continue after
-                             calling this function.
-                             By default, this parameter is true.
-
-        Returns:
-        Returns a Boolean that signifies when the motor
-        has reached the target rotation value.
-    """)
-    def spin_for(  # pylint: disable=too-many-arguments
-            self,
-            dir: DirectionType,  # pylint: disable=redefined-builtin
-            rotation: float,
-            rotationUnits: RotationUnits = RotationUnits.DEG,
-            velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True, /) -> bool:
-        """Spin Motor for a certain Rotation Angle Value."""
-        velocity, velocityUnits = self._get_selected_velocity_and_unit(  # noqa: E501,N806
-            velocity, velocityUnits)
-
-        return self._spin_for(dir,
-                              rotation, rotationUnits,
-                              velocity, velocityUnits,
-                              waitForCompletion)
-
-    @act
-    def _spin_for(  # pylint: disable=too-many-arguments
-            self,
-            dir: DirectionType,  # pylint: disable=redefined-builtin
-            rotation: float,
-            rotationUnits: RotationUnits = RotationUnits.DEG,
-            velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True, /) -> bool:
-        """Spin Motor for a certain Rotation Angle Value."""
 
     @robotmesh_doc("""
         Turn on the motor and spins it.
