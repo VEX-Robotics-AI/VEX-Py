@@ -69,7 +69,7 @@ class Motor(Device):
         return hash((self.port, self.reverse))
 
     def __repr__(self) -> str:
-        """Return String Representation."""
+        """Return string representation."""
         return f'{type(self).__name__}({self.port.name}' + (', reverse)'
                                                             if self.reverse
                                                             else ')')
@@ -103,7 +103,7 @@ class Motor(Device):
     """)
     @act
     def set_reversed(self, is_reversed: bool, /):
-        """Set Reversed Mode."""
+        """Set reversed mode."""
         self.reverse: bool = is_reversed
 
     @robotmesh_doc("""
@@ -149,7 +149,7 @@ class Motor(Device):
     """)
     @act
     def reset_rotation(self):
-        """Reset Motor Rotation Value to 0."""
+        """Reset motor rotation value to 0."""
         for rotation_unit in self.rotations:
             self.rotations[rotation_unit] = 0
 
@@ -164,7 +164,7 @@ class Motor(Device):
     @act
     def set_rotation(self, value: float,
                      rotationUnits: RotationUnits = RotationUnits.DEG, /):
-        """Set Motor Rotation Value to specific value."""
+        """Set motor rotation value to specific value."""
         self.rotations[rotationUnits] = value
 
     @robotmesh_doc("""
@@ -187,7 +187,7 @@ class Motor(Device):
     """)
     @sense
     def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> float:
-        """Return Motor Timeout."""
+        """Return motor timeout."""
         return self.timeouts[timeUnits]
 
     @robotmesh_doc("""
@@ -195,7 +195,7 @@ class Motor(Device):
     """)
     @sense
     def did_timeout(self) -> bool:
-        """Return whether Motor timed out."""
+        """Return whether motor timed out."""
 
     @robotmesh_doc("""
         Turn on the motor and spins it.
@@ -345,14 +345,13 @@ class Motor(Device):
         - velocityUnits: The measurement unit for the velocity value.
     """)
     @act
-    def spin_for_time(  # pylint: disable=too-many-arguments
-            self,
-            dir: DirectionType,  # pylint: disable=redefined-builtin
-            time: str,
-            timeUnits: TimeUnits = TimeUnits.SEC,
-            velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Spin Motor for a certain Time Duration."""
+    def spin_for_time(self,
+                      dir: DirectionType,  # pylint: disable=redefined-builtin
+                      time: str,
+                      timeUnits: TimeUnits = TimeUnits.SEC,
+                      velocity: Optional[float] = None,
+                      velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+        """Spin motor for a certain time duration."""
 
     @robotmesh_doc("""
         Start spinning a motor.
@@ -372,7 +371,7 @@ class Motor(Device):
                       rotationUnits: RotationUnits = RotationUnits.DEG,
                       velocity: Optional[float] = None,
                       velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Start spinning Motor to a certain Target Rotation Angle Value."""
+        """Start spinning motor to a certain target rotation angle value."""
 
     @robotmesh_doc("""
         Start spinning a motor.
@@ -388,14 +387,13 @@ class Motor(Device):
         - velocityUnits: The measurement unit for the velocity value.
     """)
     @act
-    def start_spin_for(  # pylint: disable=too-many-arguments
-            self,
-            dir: DirectionType,  # pylint: disable=redefined-builtin
-            rotation: float,
-            rotationUnits: RotationUnits = RotationUnits.DEG,
-            velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Start spinning motor for a certain Rotation Angle Value."""
+    def start_spin_for(self,
+                       dir: DirectionType,  # pylint: disable=redefined-builtin
+                       rotation: float,
+                       rotationUnits: RotationUnits = RotationUnits.DEG,
+                       velocity: Optional[float] = None,
+                       velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+        """Start spinning motor for a certain rotation angle value."""
 
     @robotmesh_doc("""
         Determine if a spin_for/spin_to command is in progress.
@@ -406,7 +404,7 @@ class Motor(Device):
     """)
     @sense
     def is_spinning(self) -> bool:
-        """Check if Motor is spinning."""
+        """Check if motor is still spinning."""
 
     @robotmesh_doc("""
         Determine if spin_for/spin_to command has reached its target position.
@@ -417,7 +415,7 @@ class Motor(Device):
     """)
     @sense
     def is_done(self) -> bool:
-        """Check if Motor has finished spinning."""
+        """Check if motor has finished spinning."""
 
     @robotmesh_doc("""
         Stop the motor using the default brake mode.
@@ -478,7 +476,7 @@ class Motor(Device):
     """)
     @sense
     def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:  # noqa: E501
-        """Return Motor's cumulative Rotation Angle Value."""
+        """Return motor's cumulative rotation angle value."""
 
     @robotmesh_doc("""
         Get the current velocity of the motor.
@@ -492,7 +490,7 @@ class Motor(Device):
     """)
     @sense
     def velocity(self, velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:  # noqa: E501
-        """Return Motor's Velocity."""
+        """Return motor's velocity."""
 
     @robotmesh_doc("""
         Get the electrical current of the motor.
@@ -502,4 +500,4 @@ class Motor(Device):
     """)
     @sense
     def current(self) -> float:
-        """Return Motor's Electrical Current."""
+        """Return motor's electrical current."""
