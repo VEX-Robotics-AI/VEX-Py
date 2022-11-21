@@ -10,7 +10,7 @@ from ..units_common.numeric import PERCENT
 from ..util.doc import robotmesh_doc
 
 
-__all__: Sequence[str] = ('VelocityUnits',)
+__all__: Sequence[str] = 'VelocityUnits', 'RPM', 'DPS'
 
 
 @robotmesh_doc("""
@@ -25,3 +25,8 @@ class VelocityUnits(IntEnum):
     RPM: int = 1   # A velocity unit that is measured in rotations per minute.
     DPS: int = 2   # A velocity unit that is measured in degrees per second.
     RAW: int = 99   # A velocity unit that is measured in raw data form.
+
+
+# aliases
+RPM: VelocityUnits = VelocityUnits.RPM
+DPS: VelocityUnits = VelocityUnits.DPS

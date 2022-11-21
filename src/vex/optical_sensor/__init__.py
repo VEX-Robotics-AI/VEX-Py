@@ -16,7 +16,7 @@ from .gesture_type import GestureType
 from .led_state_type import LedStateType
 
 
-__all__: Sequence[str] = 'OpticalSensor', 'GestureType', 'LedStateType'
+__all__: Sequence[str] = 'Optical', 'GestureType', 'LedStateType'
 
 
 GESTURE_CALLBACK_DOCSTR: str = """
@@ -44,7 +44,7 @@ GESTURE_CALLBACK_DOCSTR: str = """
 """
 
 
-class OpticalSensor(Device):
+class Optical(Device):
     """Optical Sensor."""
 
     def __init__(self, port: Ports, /):
@@ -52,7 +52,7 @@ class OpticalSensor(Device):
         self.port: Ports = port
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         raise hash(self.port)
 
     @vexcode_doc("""
