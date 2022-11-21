@@ -89,6 +89,42 @@ class Motor(Device):
 
         return (velocity, unit)
 
+    @robotmesh_doc("""
+        Turn on the motor and spins it.
+
+        (in a specified direction and a specified velocity)
+
+        Parameters:
+        - dir: The direction to spin the motor, DirectionType enum value.
+        - velocity: Sets the amount of velocity.
+        - velocityUnits: The measurement unit for the velocity,
+                         a VelocityUnits enum value.
+    """)
+    @vexcode_doc("""
+        Spin
+
+        Spins an IQ Motor or Motor Group indefinitely.
+
+        Choose which DIRECTION the Motor or Motor Group will spin to with
+        either FORWARD or REVERSE as the parameter.
+    """)
+    def spin(self,
+             dir: DirectionType = FORWARD,  # pylint: disable=redefined-builtin
+             velocity: Optional[float] = None,
+             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+        """Spin."""
+        velocity, velocityUnits = self._get_selected_velocity_and_unit(   # noqa: E501,N806
+            velocity, velocityUnits)
+        return self._spin(dir, velocity, velocityUnits)
+
+    @act
+    def _spin(
+            self,
+            dir: DirectionType = FORWARD,  # pylint: disable=redefined-builtin
+            velocity: Optional[float] = None,
+            velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+        """Spin."""
+
 
     @vexcode_doc("""
         Spin To Position
@@ -318,46 +354,6 @@ class Motor(Device):
     @sense
     def did_timeout(self) -> bool:
         """Return whether motor timed out."""
-
-    @robotmesh_doc("""
-        Turn on the motor and spins it.
-
-        (in a specified direction and a specified velocity)
-
-        Parameters:
-        - dir: The direction to spin the motor, DirectionType enum value.
-        - velocity: Sets the amount of velocity.
-        - velocityUnits: The measurement unit for the velocity,
-                         a VelocityUnits enum value.
-    """)
-    @vexcode_doc("""
-        Turn on the motor and spins it.
-
-        (in a specified direction and a specified velocity)
-
-        Must call set_velocity(velocity, velocityUnits)
-        before calling this method.
-
-        Parameters:
-        - dir: The direction to spin the motor, DirectionType enum value.
-        - velocity: Sets the amount of velocity.
-        - velocityUnits: The measurement unit for the velocity,
-                         a VelocityUnits enum value.
-    """)
-    def spin(self, dir: DirectionType,  # pylint: disable=redefined-builtin
-             velocity: Optional[float] = None,
-             velocityUnits: VelocityUnits = VelocityUnits.PCT):
-        """Spin Motor."""
-        velocity, velocityUnits = self._get_selected_velocity_and_unit(  # noqa: E501,N806
-            velocity, velocityUnits)
-
-        return self._spin(dir, velocity, velocityUnits)
-
-    @act
-    def _spin(self, dir: DirectionType,  # pylint: disable=redefined-builtin
-              velocity: Optional[float] = None,
-              velocityUnits: VelocityUnits = VelocityUnits.PCT):
-        """Spin Motor."""
 
     @robotmesh_doc("""
         Turn on the motor and spins it.
