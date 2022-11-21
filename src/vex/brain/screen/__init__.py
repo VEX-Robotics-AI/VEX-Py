@@ -24,6 +24,26 @@ __all__: Sequence[str] = 'BrainLcd', 'FontType'
 class BrainLcd(SingletonDevice):
     """Brain LCD Screen."""
 
+    @vexcode_doc("""
+        Print
+
+        Prints values or text on the IQ Brain's screen.
+
+        The Print command will print data at a cursor location on the screen.
+
+        All new projects begin with the screen cursor at row 1 column 1.
+
+        Print words and numbers: brain.screen.print("Number:", 10)
+
+        Print the reported value from a variable: brain.screen.print(variable)
+
+        Print the reported value from a sensor or device:
+        brain.screen.print(drivetrain.is_done())
+    """)
+    @act
+    def print(self, args):  # TODO: accept *args
+        """Print values or text on the brain's screen."""
+
     @robotmesh_doc("""
         Clear the whole screen.
     """)
@@ -47,30 +67,6 @@ class BrainLcd(SingletonDevice):
     @act
     def set_cursor(self, row, col):
         """Set the cursor location for Brain's Print commands."""
-
-    @vexcode_doc("""
-        Print
-
-        Prints values or text on the IQ Brain's screen.
-
-            brain.screen.print("VEXcode")
-
-        How To Use
-        The Print command will print data at a cursor location on the screen.
-
-        All new projects begin with the screen cursor at row 1 column 1.
-
-        Print words and numbers: brain.screen.print("Number:", 10)
-
-        Print the reported value from a variable: brain.screen.print(my_variable)
-
-        Print the reported value from a sensor or device:
-        brain.screen.print(drivetrain.is_done())
-    """)
-    @act
-    # TODO: should use *params instead, where @act supports.
-    def print(self, params):
-        """Print values or text on the brain's screen."""
 
     @vexcode_doc("""
         New Line
