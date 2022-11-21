@@ -138,22 +138,18 @@ class BrainLcd(SingletonDevice):
 
         Draws a line on the IQ (2nd generation) Brain's screen.
 
-            brain.screen.draw_line(START_X, START_Y, END_X, END_Y)
-
-        How To Use
         The Brain Screen Draw Line command requires 4 values:
+        - START_X: Beginning X coordinate
+        - START_Y: Beginning Y coordinate
+        - END_X: Ending X coordinate
+        - END_Y: Ending Y coordinate
 
-        START_X: Beginning X coordinate
-        START_Y: Beginning Y coordinate
-        END_X: Ending X coordinate
-        END_Y: Ending Y coordinate
-        brain_screen_info
-
-        The line color is determined by the Brain's Set Pen Color command. The default line color is white.
+        The line color is determined by the Brain's Set Pen Color command.
+        The default line color is white.
     """)
     @act
-    def draw_line(self, START_X: int, START_Y: int, END_X: int, END_Y: int):
-        """Draw a line on the IQ Brain's screen"""
+    def draw_line(self, start_x: int, start_y: int, end_x: int, end_y: int, /):
+        """Draw a line on the IQ Brain's screen."""
 
     @vexcode_doc("""
         Brain Screen Draw Rectangle
