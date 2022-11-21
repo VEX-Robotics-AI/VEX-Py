@@ -1,32 +1,27 @@
-"""VEX Touch LED."""
+"""Touch LED."""
 
 
 from collections.abc import Sequence
+from typing import Optional
 
 from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..color_sensor import ColorHue
 from ..brain.port import Ports
-
-# pylint: disable=unused-import
-from ..util.doc import robotmesh_doc, vexcode_doc  # noqa: F401
-
+from ..util.doc import robotmesh_doc, vexcode_doc
+from .color import Color
 from .fade_type import FadeType
 
-from .color import Color
 
-__all__: Sequence[str] = "Touchled", "FadeType", "Color"
+__all__: Sequence[str] = 'Touchled', 'Color', 'FadeType'
 
 
-# TODO: add VEXcode doc
-@robotmesh_doc(
-    """
+@robotmesh_doc("""
     Use this class when programming with the touch LED device.
 
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_touchled.html
-"""
-)
+""")
 class Touchled(Device):
     """Touch LED."""
 
@@ -34,24 +29,23 @@ class Touchled(Device):
         """Initialize Touch LED."""
         self.port: Ports = index
 
+        self.default_fade_type: Optional[FadeType] = None
+
     def __hash__(self) -> int:
         """Return integer hash."""
         raise hash(self.port)
 
-    @robotmesh_doc(
-        """
+    @robotmesh_doc("""
         Set the default fade time for the touchled sensor.
 
         Parameters:
         - fadeType: The type of fade the touchled
                     will use: FadeType.SLOW, FAST or OFF
-    """
-    )
+    """)
     @act
     def default_fade(self, fadeType: FadeType, /):
-        """Set default Fade Type."""
-        # pylint: disable=attribute-defined-outside-init
-        self.fade_type: FadeType = fadeType
+        """Set default fade type."""
+        self.default_fade_type: FadeType = fadeType
 
     @vexcode_doc(
         """

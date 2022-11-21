@@ -9,7 +9,7 @@ __all__: Sequence[str] = ('Color',)
 
 
 class Color(IntEnum):
-    """Color Hue."""
+    """Touch LED Colors."""
 
     RED = auto()
     GREEN = auto()
