@@ -66,6 +66,21 @@ class ColorSensor(Device):
     def set_light(self, brightness: int = 50, unit: Literal[PERCENT] = PERCENT):  # noqa: E501
         """Set light's brightness percentage level."""
 
+    @vexcode_doc("""
+        Color Is Near Object
+
+        Reports if a VEX IQ Color Sensor detects an object or surface.
+
+        Reports True when a Color Sensor detects an object or surface
+        close to the front of the sensor.
+
+        Reports False when a Color Sensor does not detect an object or surface
+        close to the front of the sensor.
+    """)
+    @sense
+    def is_near_object(self) -> bool:
+        """Detect whether there is an object/surface near sensor's front."""
+
     @robotmesh_doc("""
         Get the name of the detected color.
 
@@ -132,28 +147,6 @@ class ColorSensor(Device):
     @act
     def led(self, state: bool, /):
         """Set LED state."""
-
-    @vexcode_doc(
-        """
-        Color Is Near Object
-        Reports if a VEX IQ Color Sensor detects an object or surface.
-
-            color.is_near_object()
-
-        How To Use
-        Reports True when a Color Sensor detects an object or surface close to the front of the sensor.
-
-        Reports False when a Color Sensor does not detect an object or surface close to the front of the sensor.
-
-        Example
-        The example below prints whether an object or surface is being detected by a Color Sensor.
-
-            brain.screen.print("True" if color.is_near_object() else "False")
-        """
-    )
-    @sense
-    def is_near_object(self) -> bool:
-        """Return True when a Color Sensor detects and object close to the front of the sensor, false otherwise."""
 
     @vexcode_doc(
         """
