@@ -93,6 +93,7 @@ class ControllerButton:
     @act
     def pressed(self, callback: callable, /):
         """Trigger callback function when controller button is pressed."""
+        callback()
 
     @vexcode_doc("""
         Controller Button Released
@@ -118,3 +119,4 @@ class ControllerButton:
     @act
     def released(self, callback: callable, /):
         """Trigger callback function when controller button is released."""
+        callback()

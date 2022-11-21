@@ -101,3 +101,4 @@ class ControllerAxis:
     @act
     def changed(self, callback: callable, /):
         """Trigger callback function when controller axis is changed."""
+        callback()

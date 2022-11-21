@@ -72,6 +72,7 @@ class Bumper(Device):
     @act
     def pressed(self, callback: callable, /):
         """Trigger callbac function upon being pressed."""
+        callback()
 
     @vexcode_doc("""
         Bumper Released
@@ -92,3 +93,4 @@ class Bumper(Device):
     @act
     def released(self, callback: callable, /):
         """Trigger callback function upon being released."""
+        callback()
