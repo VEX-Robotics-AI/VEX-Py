@@ -10,7 +10,8 @@ from abm.decor import act, sense
 from .._abstract_device import Device
 from ..brain.port import Ports
 from ..time import TimeUnits
-from .._common_enums import RotationUnits
+from .._common_enums.numeric import PERCENT
+from .._common_enums.rotation import RotationUnits
 
 from .._util.doc import robotmesh_doc, vexcode_doc
 
@@ -90,6 +91,28 @@ class Motor(Device):
             velocityUnits = self.selected_velocity_unit  # noqa: N806
 
         return (velocity, velocityUnits)
+
+    @robotmesh_doc("""
+        Set the max torque of the motor.
+
+        Parameters:
+        - value: Sets the amount of torque (max 0.414 Nm)
+        - torqueUnits: The measurement unit for the torque value.
+    """)
+    @vexcode_doc("""
+        Set Motor Torque
+
+        Sets the strength of an IQ Motor or Motor Group.
+
+        This command accepts a range of 0 to 100 for the AMOUNT parameter.
+
+        The Set Max Torque command accepts decimals, integers or numerics.
+    """)
+    @act
+    def set_max_torque(self, amount_value: float = 50,
+                       unit: TorqueUnits = PERCENT, /):  # noqa: E501
+        """Set max torque."""
+        self.max_torque[unit] = amount_value
 
     @robotmesh_doc("""
         Set the motor mode to "reverse".
@@ -436,21 +459,8 @@ class Motor(Device):
     """)
     @act
     def set_max_torque_percent(self, value: float, /):
-        """Set Max Torque Percent."""
+        """Set max torque percent."""
         self.max_torque[TorqueUnits.PCT] = value
-
-    @robotmesh_doc("""
-        Set the max torque of the motor.
-
-        Parameters:
-        - value: Sets the amount of torque (max 0.414 Nm)
-        - torqueUnits: The measurement unit for the torque value.
-    """)
-    @act
-    def set_max_torque(self, value: float,
-                       torqueUnits: TorqueUnits = TorqueUnits.NM, /):
-        """Set Max Torque."""
-        self.max_torque[torqueUnits] = value
 
     @robotmesh_doc("""
         Set the max torque of the motor.
@@ -460,7 +470,7 @@ class Motor(Device):
     """)
     @act
     def set_max_torque_current(self, value: float, /):
-        """Set Max Torque Current."""
+        """Set max torque current."""
         # pylint: disable=attribute-defined-outside-init
         self.max_torque_current: float = value
 
