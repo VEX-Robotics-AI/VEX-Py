@@ -32,7 +32,7 @@ from .motor import (Motor,
                     VelocityUnits, RPM, DPS)
 
 from .bumper_switch_sensor import Bumper
-from .color_sensor import ColorSensor, Colorsensor, ColorHue
+from .color_sensor import ColorSensor, Colorsensor
 from .distance_sensor import Distance, ObjectSizeType, Sonar
 from .gyro_sensor import Gyro, GyroCalibrationType
 from .optical_sensor import Optical, LedStateType, GestureType
@@ -42,7 +42,8 @@ from .multi_device_group import MotorGroup, DriveTrain, SmartDrive
 
 from .time import TimeUnits, SECONDS, MSEC, wait
 
-from .units_common import (PERCENT,
+from .units_common import (Color, ColorHue,
+                           PERCENT,
                            DistanceUnits, MM, INCHES,
                            RotationUnits, DEGREES, TURNS)
 
@@ -71,7 +72,7 @@ __all__: Sequence[str] = (
     'VelocityUnits', 'RPM', 'DPS',
 
     'Bumper',
-    'ColorSensor', 'Colorsensor', 'ColorHue',
+    'ColorSensor', 'Colorsensor',
     'Optical', 'LedStateType', 'GestureType',
     'Distance', 'ObjectSizeType',
     'Sonar',
@@ -82,6 +83,7 @@ __all__: Sequence[str] = (
 
     'TimeUnits', 'SECONDS', 'MSEC', 'wait',
 
+    'Color', 'ColorHue',
     'PERCENT',
     'DistanceUnits', 'MM', 'INCHES',
     'RotationUnits', 'DEGREES', 'TURNS',
