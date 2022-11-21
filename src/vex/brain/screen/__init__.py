@@ -156,22 +156,20 @@ class BrainLcd(SingletonDevice):
 
         Draws a rectangle on the IQ (2nd generation) Brain's screen.
 
-            brain.screen.draw_rectangle(X, Y, WIDTH, HEIGHT)
-
-        How To Use
         The Brain Screen Draw Rectangle command requires 4 values:
+        - X: Top Left Corner X coordinate
+        - Y: Top Left Corner Y coordinate
+        - WIDTH: Width of the rectangle
+        - HEIGHT: Height of the rectangle
 
-        X: Top Left Corner X coordinate
-        Y: Top Left Corner Y coordinate
-        WIDTH: Width of the rectangle
-        HEIGHT: Height of the rectangle
+        The outside line color of the rectangle is determined
+        by the Brain's Set Pen Color command. The default line color is white.
 
-        The outside line color of the rectangle is determined by the Brain's Set Pen Color command. The default line color is white.
-
-        The inside fill color of the rectangle is determined by the Brain's Set Fill Color command. The default fill color is black.
+        The inside fill color of the rectangle is determined
+        by the Brain's Set Fill Color command. The default fill color is black.
     """)
     @act
-    def draw_rectangle(self, X: int, Y: int, END_X, END_Y):
+    def draw_rectangle(self, x: int, y: int, width: int, height: int, /):
         """Draw a rectangle on the Brain's screen."""
 
     @vexcode_doc("""
