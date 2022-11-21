@@ -8,7 +8,7 @@ from collections.abc import Sequence
 from .._abstract_device import SingletonDevice
 from .battery import BrainBattery
 from .button import BrainButton
-from .screen import BrainLcd
+from .screen import BrainLcd, FontType
 from .speaker import BrainSound, NoteType, SoundType
 from ..time import TimeUnits
 from .timer import BrainTimer
@@ -19,7 +19,7 @@ from ..util.doc import robotmesh_doc, vexcode_doc
 __all__: Sequence[str] = ('Brain',
                           'BrainBattery',
                           'BrainButton',
-                          'BrainLcd',
+                          'BrainLcd', 'FontType',
                           'BrainSound', 'NoteType', 'SoundType')
 
 

@@ -13,7 +13,9 @@ from abm import interactive
 
 # from ._abstract_device import Device
 
-from .brain import Brain, BrainButton, BrainLcd, BrainSound, NoteType, SoundType  # noqa: E501
+from .brain import (Brain, BrainButton,
+                    BrainLcd, FontType,
+                    BrainSound, NoteType, SoundType)
 
 from .brain.port import Ports
 
@@ -53,7 +55,9 @@ __all__: Sequence[str] = (
 
     # 'Device',
 
-    'Brain', 'BrainButton', 'BrainLcd', 'BrainSound', 'NoteType', 'SoundType',
+    'Brain', 'BrainButton',
+    'BrainLcd', 'FontType',
+    'BrainSound', 'NoteType', 'SoundType',
 
     'Ports',
 
