@@ -16,16 +16,14 @@ class TestDriveTrain(unittest.TestCase):
         )
 
     def test_drive(self):
-        self.drivetrain.drive(FORWARD),
-        self.drivetrain.drive(FORWARD, 12.3, PERCENT)
+        self.drivetrain.drive(FORWARD)
 
     def test_drive_for(self):
         self.drivetrain.drive_for(REVERSE, 12.3),
         self.drivetrain.drive_for(REVERSE, 12.3, MM, PERCENT, True)
 
     def test_turn(self):
-        self.drivetrain.turn(LEFT),
-        self.drivetrain.turn(LEFT, 12.3, PERCENT)
+        self.drivetrain.turn(LEFT)
 
     def test_turn_for(self):
         self.drivetrain.turn_for(LEFT, 12.3, DEGREES),
