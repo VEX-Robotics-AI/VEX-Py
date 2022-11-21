@@ -7,9 +7,10 @@ from abm.decor import act
 
 from ..._abstract_device import SingletonDevice
 from ...util.doc import robotmesh_doc, vexcode_doc
+from .font_type import FontType
 
 
-__all__: Sequence[str] = ('BrainLcd',)
+__all__: Sequence[str] = 'BrainLcd', 'FontType'
 
 
 @robotmesh_doc("""
@@ -22,23 +23,6 @@ __all__: Sequence[str] = ('BrainLcd',)
 """)
 class BrainLcd(SingletonDevice):
     """Brain LCD Screen."""
-
-    @robotmesh_doc("""
-        Print a number, string, or boolean at a particular line.
-
-        (clearing the rest of the line)
-
-        Parameters
-        number: Line to print on, 1 is top line.
-        text: object to print, usually a string.
-              Use "" to clear the line.
-              For multiple arguments, use format like
-              "x: %g y: %g" % (x, y) -> "x: 123 y: 456"
-              Supported format flags are g (all) x (hex) d (int) f (float)
-    """)
-    @act
-    def print_line(self, number: int, text: str, /):
-        """Print to a line on Brain LCD Screen."""
 
     @robotmesh_doc("""
         Clear the whole screen.
@@ -337,3 +321,20 @@ class BrainLcd(SingletonDevice):
     @act
     def set_fill_color(self, ColorHue):
         """Set the color that fills in the shapes drawn on the IQ brain's screen."""
+
+    @robotmesh_doc("""
+        Print a number, string, or boolean at a particular line.
+
+        (clearing the rest of the line)
+
+        Parameters
+        number: Line to print on, 1 is top line.
+        text: object to print, usually a string.
+              Use "" to clear the line.
+              For multiple arguments, use format like
+              "x: %g y: %g" % (x, y) -> "x: 123 y: 456"
+              Supported format flags are g (all) x (hex) d (int) f (float)
+    """)
+    @act
+    def print_line(self, number: int, text: str, /):
+        """Print to a line on Brain LCD Screen."""
