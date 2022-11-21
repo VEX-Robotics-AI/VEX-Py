@@ -106,6 +106,20 @@ class ColorSensor(Device):
     def color(self) -> Color:
         """Return the color currently being detected."""
 
+    @vexcode_doc("""
+        Color Brightness
+
+        Reports the amount of light detected by a VEX IQ Color Sensor.
+
+        Color Brightness reports a range of values from 0 to 100 percent.
+
+        A larger amount of light will report a higher value,
+        while a smaller amount of light will report a lower value.
+    """)
+    @sense
+    def brightness(self) -> int:
+        """Return the amount of light detected by the Color Sensor."""
+
     @robotmesh_doc("""
         Get the name of the detected color.
 
@@ -172,28 +186,6 @@ class ColorSensor(Device):
     @act
     def led(self, state: bool, /):
         """Set LED state."""
-
-    @vexcode_doc(
-        """
-        Color Brightness
-        Reports the amount of light detected by a VEX IQ Color Sensor.
-
-            color.brightness()
-
-        How To Use
-        Color Brightness reports a range of values from 0 to 100 percent.
-
-        A larger amount of light will report a higher value, while a smaller amount of light will report a lower value.
-
-        Example
-        The example below prints the amount of light detected by a Color Sensor.
-
-            brain.screen.print("Brightness:", color.brightness())
-        """
-    )
-    @sense
-    def brightness(self):
-        """Return the amount of light detected by the Color Sensor."""
 
     @vexcode_doc(
         """
