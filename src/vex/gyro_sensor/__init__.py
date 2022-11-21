@@ -1,4 +1,4 @@
-"""VEX Gyro Sensor."""
+"""Gyro Sensor."""
 
 
 from collections.abc import Sequence
@@ -9,8 +9,7 @@ from .._abstract_device import Device
 from ..brain.port import Ports
 from ..units_common import RotationUnits
 
-# pylint: disable=unused-import
-from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from ..util.doc import robotmesh_doc, vexcode_doc
 
 from .calibration_type import GyroCalibrationType
 
@@ -18,7 +17,6 @@ from .calibration_type import GyroCalibrationType
 __all__: Sequence[str] = 'Gyro', 'GyroCalibrationType'
 
 
-# TODO: add VEXcode doc
 @robotmesh_doc("""
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_gyro.html
 """)

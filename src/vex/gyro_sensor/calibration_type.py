@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from enum import IntEnum
+from enum import IntEnum, auto
 
 from ..util.doc import robotmesh_doc
 
@@ -19,5 +19,5 @@ class GyroCalibrationType(IntEnum):
     QUICK: int = 0
     SLOW: int = 1
     ACCURATE: int = 2
-    NORMAL: int = 3
-    EXTENDED: int = 4
+    NORMAL: int = auto()
+    EXTENDED: int = auto()
