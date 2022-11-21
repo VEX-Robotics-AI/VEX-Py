@@ -6,7 +6,7 @@ from typing_extensions import Self
 
 from abm.decor import sense
 
-from ..util.doc import robotmesh_doc, vexcode_doc
+from .._util.doc import robotmesh_doc, vexcode_doc
 
 
 __all__: Sequence[str] = ('BrainButton',)
@@ -33,7 +33,7 @@ class BrainButton:
         return hash(self.id)
 
     def __repr__(self) -> str:
-        """Return String Representation."""
+        """Return string representation."""
         return f'{type(self).__name__}({self.id})'
 
     @robotmesh_doc("""

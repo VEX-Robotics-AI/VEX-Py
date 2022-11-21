@@ -4,7 +4,7 @@
 from collections.abc import Sequence
 from enum import IntEnum, auto
 
-from ...util.doc import vexcode_doc
+from ..._util.doc import vexcode_doc
 
 
 __all__: Sequence[str] = 'AxisType', 'XAXIS', 'YAXIS', 'ZAXIS'

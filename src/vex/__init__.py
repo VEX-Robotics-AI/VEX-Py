@@ -44,10 +44,10 @@ from .multi_device_group import MotorGroup, DriveTrain, SmartDrive
 
 from .time import TimeUnits, SECONDS, MSEC, wait
 
-from .units_common import (Color, ColorHue,
-                           PERCENT,
-                           DistanceUnits, MM, INCHES,
-                           RotationUnits, DEGREES, TURNS)
+from ._common_enums import (Color, ColorHue,
+                            PERCENT,
+                            DistanceUnits, MM, INCHES,
+                            RotationUnits, DEGREES, TURNS)
 
 
 __all__: Sequence[str] = (

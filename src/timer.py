@@ -10,7 +10,7 @@ from typing_extensions import Self
 
 from abm.decor import act, sense
 
-from vex.util.doc import robotmesh_doc
+from vex._util.doc import robotmesh_doc
 
 
 __all__: Sequence[str] = ('Timer',)
@@ -37,7 +37,7 @@ class Timer:
         return 0
 
     def __repr__(self) -> str:
-        """Return String Representation."""
+        """Return string representation."""
         return type(self).__name__
 
     @robotmesh_doc("""

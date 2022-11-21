@@ -11,15 +11,15 @@ from typing_extensions import Self
 
 from abm.decor import act, sense
 
-from vex import (BrakeType,
-                 DirectionType,
-                 Motor,
-                 RotationUnits,
-                 TimeUnits,
-                 TorqueUnits,
-                 VelocityUnits)
+from vex.motor import Motor
+from vex.motor.brake_type import BrakeType
+from vex.motor.direction_type import DirectionType
+from vex.motor.torque_units import TorqueUnits
+from vex.motor.velocity_units import VelocityUnits
+from vex.time.time_units import TimeUnits
+from vex._common_enums.rotation import RotationUnits
 
-from vex.util.doc import robotmesh_doc
+from vex._util.doc import robotmesh_doc
 
 
 __all__: Sequence[str] = ('MotorGroup',)

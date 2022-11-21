@@ -1,7 +1,7 @@
 """Vision Object."""
 
 
-from ..util.doc import robotmesh_doc
+from .._util.doc import robotmesh_doc
 
 
 @robotmesh_doc("""
