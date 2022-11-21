@@ -28,7 +28,7 @@ class Touchled(Device):
         """Initialize Touch LED."""
         self.port: Ports = index
 
-        self.default_fade_type: Optional[FadeType] = None
+        self.fade_type: Optional[FadeType] = None
 
     def __hash__(self) -> int:
         """Return integer hash."""
@@ -60,6 +60,21 @@ class Touchled(Device):
     def set_color(self, color: Color, /):
         """Set Touch LED color."""
 
+    @vexcode_doc("""
+        Set TouchLED Fade
+
+        Sets how fast the color of an IQ TouchLED fades between colors.
+
+        Choose how fast the TouchLED will fade between colors.
+        Replace TYPE with one of the following options:
+        - FadeType.SLOW: The TouchLED will slowly fade to a new color.
+        - FadeType.FAST: The TouchLED will quickly fade to a new color.
+        - FadeType.OFF: The TouchLED will change colors instantly.
+    """)
+    @act
+    def set_fade(self, type: FadeType, /):  # pylint: disable=redefined-builtin
+        """Set fade type."""
+
     @robotmesh_doc("""
         Set the default fade time for the touchled sensor.
 
@@ -70,7 +85,7 @@ class Touchled(Device):
     @act
     def default_fade(self, fadeType: FadeType, /):
         """Set default fade type."""
-        self.default_fade_type: FadeType = fadeType
+        self.fade_type: FadeType = fadeType
 
     @robotmesh_doc("""
         Get the pressed status of the touchled device.
@@ -173,17 +188,6 @@ class Touchled(Device):
     def blink_rgb(self, red: int, green: int, blue: int,
                   on_time: float = 0.25, off_time: float = 0.25, /):
         """Blink RGB Color."""
-
-    @vexcode_doc("""
-        Set fade time for the touchled sensor.
-
-        Parameters:
-        - fadeType: The type of fade the touchled
-                    will use: FadeType.SLOW, FAST or OFF
-    """)
-    @act
-    def set_fade(self, fadeType: FadeType, /):
-        """Set default Fade Type."""
 
     @vexcode_doc(
         """
