@@ -155,9 +155,22 @@ class Gyro(Device):
         Parameters:
         - rotationUnits: The measurement unit for the gyro device.
     """)
+    @vexcode_doc("""
+        Gyro Heading
+
+        Reports a VEX IQ Gyro Sensor's current heading in degrees.
+
+        Gyro Heading reports a range of values from 0.00 to 359.99.
+
+        The Gyro Heading command reports an increase in heading
+        when rotating counter-clockwise.
+
+        The Gyro Heading command reports a decrease in heading
+        when rotating clockwise.
+    """)
     @sense
-    def heading(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:   # noqa: E501
-        """Return Gyro Heading Angle Value."""
+    def heading(self, unit: Literal[DEGREES] = DEGREES, /) -> float:
+        """Return heading angle value."""
 
     @robotmesh_doc("""
         Get the absolute angle of the gyro sensor.
@@ -165,9 +178,21 @@ class Gyro(Device):
         Parameters:
         - rotationUnits: The measurement unit for the gyro device.
     """)
+    @vexcode_doc("""
+        Gyro Rotation
+
+        Reports a VEX IQ Gyro Sensor's current rotation in degrees.
+
+        Gyro Rotation reports an increasing value
+        when the Gyro Sensor turns in the counter-clockwise direction.
+
+        Gyro Rotation reports a decreasing value
+        when the Gyro Sensor turns in the clockwise direction.
+    """)
     @sense
-    def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:   # noqa: E501
-        """Return Gyro Cumulative Rotation Angle Value."""
+    def rotation(self, unit: Literal[DEGREES] = DEGREES, /) -> float:
+        """Return cumulative rotation angle value."""
+
     @vexcode_doc(
         """
         Gyro Rate
