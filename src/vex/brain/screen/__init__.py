@@ -42,7 +42,7 @@ class BrainLcd(SingletonDevice):
         brain.screen.print(drivetrain.is_done())
     """)
     @act
-    def print(self, args):  # TODO: accept *args
+    def print(self, args, /):  # TODO: accept *args
         """Print values or text on the brain's screen."""
 
     @vexcode_doc("""
@@ -65,7 +65,7 @@ class BrainLcd(SingletonDevice):
         Accepts a range for COL of 1 to 28.
     """)
     @act
-    def set_cursor(self, row: int, col: int):
+    def set_cursor(self, row: int, col: int, /):
         """Set the cursor location for Brain's Print commands."""
 
     @vexcode_doc("""
@@ -114,7 +114,7 @@ class BrainLcd(SingletonDevice):
         to clear the current row.
     """)
     @act
-    def clear_row(self, row: Optional[int] = None):
+    def clear_row(self, row: Optional[int] = None, /):
         """Clear the current row if specified, clear current row otherwise."""
 
     @vexcode_doc("""
@@ -122,19 +122,16 @@ class BrainLcd(SingletonDevice):
 
         Draws a pixel on the IQ (2nd generation) Brain's screen.
 
-            brain.screen.draw_pixel(X, Y)
-
-        How To Use
         The Brain Screen Draw Pixel command requires 2 values:
+        - X: X coordinate
+        - Y: Y coordinate
 
-        X: X coordinate
-        Y: Y coordinate
-
-        The pixel color is determined by the Brain's Set Pen Color command. The default pixel color is white.
+        The pixel color is determined by the Brain's Set Pen Color command.
+        The default pixel color is white.
     """)
     @act
-    def draw_pixel(self, X: int, Y: int):
-        """Draw a pixel on the IQ (2nd generation) Brain's screen"""
+    def draw_pixel(self, x: int, y: int, /):
+        """Draw a pixel on the IQ (2nd generation) Brain's screen."""
 
     @vexcode_doc("""
         Brain Screen Draw Line
