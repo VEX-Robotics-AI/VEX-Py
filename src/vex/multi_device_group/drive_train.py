@@ -296,3 +296,18 @@ class DriveTrain(MotorGroup):
     def is_moving(self) -> bool:
         """Report if the Drivetrain is currently moving."""
 
+    @vexcode_doc("""
+        Drive Is Done
+
+        Reports if the Drivetrain has completed its movement.
+
+        Drive Is Done reports True
+        when the robot's Drivetrain has completed its movement.
+
+        Drive Is Done reports False
+        when the robot's Drivetrain is still moving.
+    """)
+    @sense
+    def is_done(self) -> bool:
+        """Check whether Drivetrain has finished driving/turning."""
+
