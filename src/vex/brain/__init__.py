@@ -1,4 +1,4 @@
-"""VEX Brain."""
+"""Brain."""
 
 
 from __future__ import annotations
@@ -6,14 +6,13 @@ from __future__ import annotations
 from collections.abc import Sequence
 
 from .._abstract_device import SingletonDevice
+from ..time import TimeUnits
+from ..util.doc import robotmesh_doc, vexcode_doc
 from .battery import BrainBattery
 from .button import BrainButton
 from .screen import BrainLcd, FontType
 from .speaker import BrainSound, NoteType, SoundType
-from ..time import TimeUnits
 from .timer import BrainTimer
-
-from ..util.doc import robotmesh_doc, vexcode_doc
 
 
 __all__: Sequence[str] = ('Brain',
@@ -23,15 +22,13 @@ __all__: Sequence[str] = ('Brain',
                           'BrainSound', 'NoteType', 'SoundType')
 
 
-@robotmesh_doc(
-    """
+@robotmesh_doc("""
     Use the Brain class to see battery information, or write to the screen.
 
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brain.html
-"""
-)
+""")
 class Brain(SingletonDevice):
-    """VEX Brain."""
+    """Brain."""
 
     def __init__(self):
         """Initialize Brain."""
