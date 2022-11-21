@@ -1,4 +1,4 @@
-"""Smart Drivetrain.
+"""VEX Smart Drivetrain.
 
 Robot Mesh Python B:
 robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacesmartdrive.html

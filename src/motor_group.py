@@ -1,4 +1,4 @@
-"""Motor Group.
+"""VEX Motor Group.
 
 Robot Mesh Python B:
 robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacemotor__group.html
