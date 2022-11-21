@@ -177,21 +177,19 @@ class BrainLcd(SingletonDevice):
 
         Draws a circle on the IQ (2nd generation) Brain's screen.
 
-            brain.screen.draw_circle(X, Y, RADIUS)
-
-        How To Use
         The Brain Screen Draw Circle command requires 3 values:
+        - X: X coordinate of the circle's center
+        - Y: Y coordinate of the circle's center
+        - RADIUS: Radius of circle (in pixels)
 
-        X: X coordinate of the circle's center
-        Y: Y coordinate of the circle's center
-        RADIUS: Radius of circle (in pixels)
+        The outside line color of the circle is determined by the Brain's
+        Set Pen Color command. The default line color is white.
 
-        The outside line color of the circle is determined by the Brain's Set Pen Color command. The default line color is white.
-
-        The inside fill color of the circle is determined by the Brain's Set Fill Color command. The default fill color is black.
+        The inside fill color of the circle is determined by the Brain's
+        Set Fill Color command. The default fill color is black.
     """)
     @act
-    def draw_circle(self, X, Y, Radius):
+    def draw_circle(self, x: int, y: int, radius: int, /):
         """Draw a circle on the Brain's screen."""
 
     @vexcode_doc("""
