@@ -1,4 +1,4 @@
-"""Timer.
+"""VEX Timer.
 
 Robot Mesh Python B:
 robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacetimer.html
