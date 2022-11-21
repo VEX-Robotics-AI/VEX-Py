@@ -226,18 +226,19 @@ class BrainLcd(SingletonDevice):
     @vexcode_doc("""
         Brain Screen Set Pen Width
 
-        Sets the width of the outline for shapes drawn on the IQ (2nd generation) Brain's screen.
+        Sets the width of the outline for shapes drawn on
+        the IQ (2nd generation) Brain's screen.
 
-            brain.screen.set_pen_width(WIDTH)
+        The Brain Screen Set Pen Width command is used to set the width
+        of the line on the outside of circles and rectangles drawn on
+        the IQ (2nd generation) Brain's screen.
 
-        How To Use
-        The Brain Screen Set Pen Width command is used to set the width of the line on the outside of circles and rectangles drawn on the IQ (2nd generation) Brain's screen.
-
-        It accepts integer values for the WIDTH parameter, with a larger value equating to a larger width.
+        It accepts integer values for the WIDTH parameter, with a larger value
+        equating to a larger width.
     """)
     @act
-    def set_pen_width(self, WIDTH):
-        """Set the width of the outline for shapes drawn on the brain's screen."""
+    def set_pen_width(self, width: int = 10, /):
+        """Set the width of the outline for shapes drawn on brain's screen."""
 
     @vexcode_doc("""
         Brain Screen Set Pen Color
