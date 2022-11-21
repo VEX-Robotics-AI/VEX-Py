@@ -93,6 +93,22 @@ class Motor(Device):
         return (velocity, velocityUnits)
 
     @robotmesh_doc("""
+        Stop the motor using the default brake mode.
+
+        Parameters:
+        - brakeType: The brake mode can be set to
+                     BrakeType.COAST, BRAKE, or HOLD.
+    """)
+    @vexcode_doc("""
+        Stop Motor
+
+        Stops an IQ Motor or Motor Group.
+    """)
+    @act
+    def stop(self, brakeType: Optional[BrakeType] = None, /):
+        """Stop."""
+
+    @robotmesh_doc("""
         Set stopping mode of the motor by passing a brake mode as a parameter.
 
         (note this will stop the motor if it's spinning)
@@ -466,17 +482,6 @@ class Motor(Device):
     @sense
     def is_done(self) -> bool:
         """Check if motor has finished spinning."""
-
-    @robotmesh_doc("""
-        Stop the motor using the default brake mode.
-
-        Parameters:
-        - brakeType: The brake mode can be set to
-                     BrakeType.COAST, BRAKE, or HOLD.
-    """)
-    @act
-    def stop(self, brakeType: Optional[BrakeType] = None, /):
-        """Stop Motor."""
 
     @robotmesh_doc("""
         Set the max torque of the motor as a percentage.
