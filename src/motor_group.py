@@ -19,7 +19,7 @@ from vex import (BrakeType,
                  TorqueUnits,
                  VelocityUnits)
 
-from vex.util.doc import robotmesh_doc, vexcode_doc
+from vex.util.doc import robotmesh_doc
 
 
 __all__: Sequence[str] = ('MotorGroup',)
@@ -28,10 +28,8 @@ __all__: Sequence[str] = ('MotorGroup',)
 @robotmesh_doc("""
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classmotor__group_1_1_motor_group.html
 """)
-@vexcode_doc("""
-""")
 class MotorGroup:   # pylint: disable=too-many-public-methods
-    """VEX Motor Group."""
+    """Motor Group."""
 
     @robotmesh_doc("""
         Create a new motor group with specified motors.
@@ -52,12 +50,12 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
         self.max_torque: dict[TorqueUnits, float] = dict[TorqueUnits, float]()
 
     def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
+        """Check equality."""
         return isinstance(other, MotorGroup) and \
             (set(other.motors) == set(self.motors))
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         return hash(set(self.motors))
 
     @robotmesh_doc("""

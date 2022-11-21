@@ -1,5 +1,8 @@
 """Smart Drive Train."""
 
 
-class SmartDrive:
+from .drive_train import DriveTrain
+
+
+class SmartDrive(DriveTrain):
     """Smart Drive Train."""

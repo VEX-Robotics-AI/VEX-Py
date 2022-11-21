@@ -31,12 +31,12 @@ class ControllerAxis:
         self.axtype: str = axtype
 
     def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
+        """Check equality."""
         return isinstance(other, ControllerAxis) and \
             (other.parent == self.parent) and (other.axtype == self.axtype)
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         return hash((self.parent, self.axtype))
 
     def __repr__(self):

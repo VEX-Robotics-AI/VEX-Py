@@ -3,13 +3,11 @@
 
 from collections.abc import Sequence
 
-from .current_units import CurrentUnits, AMP
-from .distance import DistanceUnits, MM, INCHES, CM
-from .numeric import NumericUnits, PERCENT
+from .numeric import PERCENT
+from .distance import DistanceUnits, MM, INCHES
 from .rotation import RotationUnits, DEGREES, TURNS
 
 
-__all__: Sequence[str] = ('CurrentUnits', 'AMP',
-                          'DistanceUnits', 'MM', 'INCHES', 'CM',
-                          'NumericUnits', 'PERCENT',
+__all__: Sequence[str] = ('PERCENT',
+                          'DistanceUnits', 'MM', 'INCHES',
                           'RotationUnits', 'DEGREES', 'TURNS')
