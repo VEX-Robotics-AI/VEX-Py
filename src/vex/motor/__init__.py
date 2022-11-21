@@ -55,8 +55,8 @@ class Motor(Device):
         self.stopping_mode: Optional[BrakeType] = None
         self.timeouts: dict[TimeUnits, float] = dict[TimeUnits, float]()
         self.max_torque: dict[TorqueUnits, float] = dict[TorqueUnits, float]()
-        self.selected_velocity_unit: Optional[VelocityUnits] = None
         self.velocities: dict[VelocityUnits, float] = dict[VelocityUnits, float]()  # noqa: E501
+        self.selected_velocity_unit: Optional[VelocityUnits] = None
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
@@ -153,6 +153,42 @@ class Motor(Device):
         """Set rotation position to specified value."""
 
     @robotmesh_doc("""
+        Set velocity of the motor based on the parameters set in the command.
+
+        This command will not run the motor.
+        Any subsequent call that does not contain
+        a specified motor velocity will use this value.
+
+        Parameters:
+        - velocity: Sets the amount of velocity.
+        - velocityUnits: The measurement unit for the velocity,
+                         a VelocityUnits enum value.
+    """)
+    @vexcode_doc("""
+        Set Motor Velocity
+
+        Sets the speed of an IQ Motor or Motor Group.
+
+        This command accepts a range
+        from -100 to 100 when used with the PERCENT parameter
+        or -127 to 127 when used with RPM.
+
+        Setting an IQ Motor or Motor Group's velocity to a negative value
+        will cause the Motor/Motor Group to spin in reverse.
+
+        Setting velocity to 0 will prevent the Motor/Motor Group from spinning.
+    """)
+    def set_velocity(self, velocity: float = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
+        """Set velocity."""
+        self.velocities[unit] = velocity
+        self.selected_velocity_unit = unit
+        return self._set_velocity(velocity, unit)
+
+    @act
+    def _set_velocity(self, velocity: float = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
+        """Set velocity."""
+
+    @robotmesh_doc("""
         Set stopping mode of the motor by passing a brake mode as a parameter.
 
         (note this will stop the motor if it's spinning)
@@ -244,30 +280,6 @@ class Motor(Device):
     def set_reversed(self, is_reversed: bool, /):
         """Set reversed mode."""
         self.reverse: bool = is_reversed
-
-    @robotmesh_doc("""
-        Set velocity of the motor based on the parameters set in the command.
-
-        This command will not run the motor.
-        Any subsequent call that does not contain
-        a specified motor velocity will use this value.
-
-        Parameters:
-        - velocity: Sets the amount of velocity.
-        - velocityUnits: The measurement unit for the velocity,
-                         a VelocityUnits enum value.
-    """)
-    def set_velocity(self, velocity: float,
-                     velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Set Velocity."""
-        self.velocities[velocityUnits] = velocity
-        self.selected_velocity_unit = velocityUnits
-        return self._set_velocity(velocity, velocityUnits)
-
-    @act
-    def _set_velocity(self, velocity: float,
-                      velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Set Velocity."""
 
     @robotmesh_doc("""
         Reset the motor's encoder to the value of zero.
