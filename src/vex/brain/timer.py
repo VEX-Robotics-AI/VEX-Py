@@ -1,51 +1,70 @@
-"""VEX Brain.Timer"""
+"""Timer."""
 
-from typing_extensions import Self
+
+from collections.abc import Sequence
 
 from abm.decor import act, sense
-from vex.util.doc import vexcode_doc
+
+from .._abstract_device import SingletonDevice
+from ..time.time_units import TimeUnits
+from ..util.doc import vexcode_doc
 
 
-@vexcode_doc("""VEX brain.timer""")
-class BrainTimer:
+__all__: Sequence[str] = ('BrainTimer',)
+
+
+class BrainTimer(SingletonDevice):
     """Timer."""
 
-    @vexcode_doc(
-        """
-        Create the BrainTimer class.
-    """
-    )
-    def __init__(self):
-        """Initialize Timer."""
+    @vexcode_doc("""
+        Reset Timer
 
-    def __eq__(self, other: Self) -> bool:
-        """Check equality."""
-        return isinstance(other, type(self))
-
-    def __hash__(self) -> int:
-        """Return integer hash."""
-        return 0
-
-    def __repr__(self) -> str:
-        """Return String Representation."""
-        return type(self).__name__
-
-    @vexcode_doc(
-        """Resets the IQ Brain's timer.
+        Resets the IQ Brain's timer.
 
         The Brain's timer begins at the beginning of each project.
-        The Reset Timer command can be used to reset the timer value back to 0 seconds."""
-    )
+        The Reset Timer command can be used to reset the timer value
+        back to 0 seconds.
+    """)
     @act
     def clear(self):
-        """Resets the IQ Brain's timer."""
+        """Reset Timer."""
 
-    @vexcode_doc(
-        """Reports the value of the IQ Brain's timer.
-            brain.timer.time(UNITS)
-        The timer starts at 0 seconds when the program starts, and reports the timer's value as a decimal value.
-        The UNITS parameter accepts either SECONDS or MSEC (milliseconds) as a valid argument."""
-    )
+    @vexcode_doc("""
+        Timer Value
+
+        Reports the value of the IQ Brain's timer.
+
+        The timer starts at 0 seconds when the program starts,
+        and reports the timer's value as a decimal value.
+
+        The UNITS parameter accepts either SECONDS or MSEC (milliseconds)
+        as a valid argument.
+    """)
     @sense
-    def time(self, units) -> float:
-        """Reports the value of the IQ Brain's timer."""
+    def time(self, unit: TimeUnits) -> float:
+        """Report the value of the IQ Brain's timer."""
+
+    @vexcode_doc("""
+        Timer Event
+
+        Runs the specified callback function
+        when the IQ Brain's timer is greater than the specified time value.
+
+        The IQ Brain's timer begins at the start of each program.
+
+        The Timer Event function takes 2 parameters.
+
+        The first is the callback function parameter.
+        A function will need to be created to pass to the Timer Event function.
+
+        The second parameter is the time at which the function will run.
+        The callback function will run once the IQ Brain's timer is greater
+        than the passed value. The amount of time should be in milliseconds.
+
+        A callback function is a function passed into another function
+        as an argument. The code inside the callback function will run
+        whenever the event occurs.
+    """)
+    @act
+    def event(self, callback: callable, msecs: int, /):
+        """Trigger callback function after a number of miliseconds."""
