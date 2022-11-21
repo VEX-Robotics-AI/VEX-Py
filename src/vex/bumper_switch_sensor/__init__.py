@@ -1,4 +1,4 @@
-"""VEX Bumper Switch Sensor."""
+"""Bumper Switch Sensor."""
 
 
 from collections.abc import Sequence
@@ -8,8 +8,7 @@ from abm.decor import sense, act
 from .._abstract_device import Device
 from ..brain.port import Ports
 
-# pylint: disable=unused-import
-from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from ..util.doc import robotmesh_doc, vexcode_doc
 
 
 __all__: Sequence[str] = ('Bumper',)
@@ -41,59 +40,55 @@ class Bumper(Device):
         Returns
         True if pressed, False otherwise.
     """)
+    @vexcode_doc("""
+        Pressing Bumper
+
+        Reports if a VEX IQ Bumper is currently being pressed.
+
+        Pressing Bumper reports True if the Bumper is being pressed.
+        Pressing Bumper reports False if the Bumper is not being pressed.
+    """)
     @sense
     def pressing(self) -> bool:
         """Return Bumper's pressed status."""
 
     @vexcode_doc("""
         Bumper Pressed
-            Runs the specified callback function when a bumper is pressed.
-            bumper.pressed(callback)
-    
-        How To Use
-        You will need to create a function to call when the Bumper Sensor is pressed. Provide the name of the function that should run when the event occurs as the callback parameter.
 
-        def bumper_pressed():
-            brain.screen.print("Bumper Pressed")
-        
-        Then, the function is passed as the parameter of the Bumper Pressed function call.
-        bumper.pressed(bumper_pressed)
+        Runs the specified callback function when a bumper is pressed.
 
-        Callback Functions
-        A callback function is a function passed into another function as an argument. The code inside the callback function will run whenever the event occurs.
+        You will need to create a function to call
+        when the Bumper Sensor is pressed.
+        Provide the name of the function that should run when the event occurs
+        as the callback parameter.
 
-        def callback_function():
-            brain.screen.print("Pressed")
+        Then, the function is passed as the parameter of the Bumper Pressed
+        function call.
 
-        bumper.pressed(callback_function)
-    """)  
+        A callback function is a function passed into another function
+        as an argument. The code inside the callback function will run
+        whenever the event occurs.
+    """)
     @act
-    def pressed(self, callback):
-        """Return the specified callback function when a bumper is pressed"""
-
+    def pressed(self, callback: callable, /):
+        """Trigger callbac function upon being pressed."""
 
     @vexcode_doc("""
-    Bumper Released
-    Runs the specified function when a bumper is released.
-        bumper.released(callback)
-    
-    How To Use
-    Create a function to call when the Bumper is released. Provide the name of the function that should run when the event occurs as the callback parameter.
+        Bumper Released
 
-    def bumper_released():
-        brain.screen.print("Bumper released")
-    
-    Then, the function is passed as the parameter of the Bumper Released function call.
-        bumper.released(bumper_released)
-    
-    Callback Functions
-    A callback function is a function passed into another function as an argument. The code inside the callback function will run whenever the event occurs.
+        Runs the specified function when a bumper is released.
 
-    def callback_function():
-        brain.screen.print("Released")
+        Create a function to call when the Bumper is released.
+        Provide the name of the function that should run when the event occurs
+        as the callback parameter.
 
-    bumper.released(callback_function)
+        Then, the function is passed as the parameter of the Bumper Released
+        function call.
+
+        A callback function is a function passed into another function
+        as an argument. The code inside the callback function will run
+        whenever the event occurs.
     """)
-    @act 
-    def released(self, callback):
-        """Return the specified callback function when bumper is released"""
+    @act
+    def released(self, callback: callable, /):
+        """Trigger callback function upon being released."""
