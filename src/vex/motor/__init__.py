@@ -11,7 +11,7 @@ from .._abstract_device import Device
 from ..brain.port import Ports
 from ..time import TimeUnits, SECONDS
 from .._common_enums.numeric import PERCENT
-from .._common_enums.rotation import RotationUnits
+from .._common_enums.rotation import RotationUnits, DEGREES
 
 from .._util.doc import robotmesh_doc, vexcode_doc
 
@@ -91,6 +91,34 @@ class Motor(Device):
             velocityUnits = self.selected_velocity_unit  # noqa: N806
 
         return (velocity, velocityUnits)
+
+    @vexcode_doc("""
+        Spin To Position
+
+        Spins an IQ Motor or Motor Group to a given position.
+
+        This command will tell a Motor or Motor Group to travel to a specific
+        position. Based on the current position of the Motor or Motor Group,
+        Spin To Position will determine the direction to rotate the Motor or
+        Motor Group.
+
+        Choose the unit of measurement to be either DEGREES or TURNS.
+
+        Choose whether or not this command should be waited on by other
+        commands by changing the optional third parameter to either
+        wait=True or wait=False.
+
+        Setting wait=True means that proceeding commands will not execute until
+        the motor spin is completed.
+        Conversely, wait=False will not wait for it to be completed.
+
+        By default, this command will have the wait to be set to True.
+    """)
+    @act
+    def spin_to_position(self,
+                         position: float = 90, unit: RotationUnits = DEGREES,
+                         wait: bool = True, /):
+        """Spin motor to specified position."""
 
     @robotmesh_doc("""
         Stop the motor using the default brake mode.
