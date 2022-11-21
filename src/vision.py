@@ -48,14 +48,14 @@ class Vision(Device):
         self.signatures: Optional[list] = signatures
 
     def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
+        """Check equality."""
         return (isinstance(other, Vision) and
                 (other.port == self.port) and
                 (other.brightness == self.brightness) and
                 (other.signatures == self.signatures))
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         return hash((self.port, self.brightness, self.signatures))
 
     @robotmesh_doc("""

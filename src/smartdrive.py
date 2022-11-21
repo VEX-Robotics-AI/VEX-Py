@@ -75,7 +75,7 @@ class Smartdrive(Drivetrain):
         self.stopping: Optional[BrakeType] = None
 
     def __eq__(self, other: Self) -> bool:
-        """Check Equality."""
+        """Check equality."""
         return (isinstance(other, Smartdrive) and
                 (other.left_motor == self.left_motor) and
                 (other.right_motor == self.right_motor) and
@@ -86,7 +86,7 @@ class Smartdrive(Drivetrain):
                 (other.gear_ratio == self.gear_ratio))
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         return hash((self.left_motor, self.right_motor,
                      self.gyro,
                      self.wheel_travel, self.track_width,

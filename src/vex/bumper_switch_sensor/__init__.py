@@ -32,7 +32,7 @@ class Bumper(Device):
         self.port: Ports = index
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         raise hash(self.port)
 
     @robotmesh_doc("""
