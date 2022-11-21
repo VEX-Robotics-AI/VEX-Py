@@ -31,7 +31,7 @@ class DriveTrain(MotorGroup):
                  wheel_base: float = 200, track_width: float = 176,
                  length_unit: DistanceUnits = MM, gear_ratio: float = 1, /):
         """Initialize Drivetrain."""
-        super().__init__(motor_a=left_motor, motor_b=right_motor)
+        super().__init__(left_motor, right_motor)
 
         self.left_motor: Motor = left_motor
         self.right_motor: Motor = right_motor
