@@ -2,13 +2,13 @@
 
 
 from collections.abc import Sequence
-from typing import Callable, Literal
+from typing import Literal
 
 from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
-from ..color_sensor.color_hue import ColorHue
+from ..units_common.color import Color
 from ..units_common.numeric import PERCENT
 from ..util.doc import vexcode_doc
 from .gesture_info import GestureInfo
@@ -137,7 +137,7 @@ class Optical(Device):
             Color.CYAN
     """)
     @sense
-    def color(self) -> ColorHue:
+    def color(self) -> Color:
         """Return closest-matching color hue of detected object."""
 
     @vexcode_doc("""
@@ -220,7 +220,7 @@ class Optical(Device):
         as the callback parameter.
     """)
     @act
-    def object_detected(self, callback: Callable, /):
+    def object_detected(self, callback: callable, /):
         """Trigger callback function upon detecting an object."""
         callback()
 
@@ -239,30 +239,30 @@ class Optical(Device):
         when the event occurs as the callback parameter.
     """)
     @act
-    def object_lost(self, callback: Callable):
+    def object_lost(self, callback: callable, /):
         """Trigger callback function upon losing previously-detected object."""
         callback()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_up(self, callback: Callable, /):
+    def gesture_up(self, callback: callable, /):
         """Trigger callback function upon detecting UP gesture."""
         callback()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_down(self, callback: Callable, /):
+    def gesture_down(self, callback: callable, /):
         """Trigger callback function upon detecting DOWN gesture."""
         callback()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_left(self, callback: Callable, /):
+    def gesture_left(self, callback: callable, /):
         """Trigger callback function upon detecting LEFT gesture."""
         callback()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_right(self, callback: Callable, /):
+    def gesture_right(self, callback: callable, /):
         """Trigger callback function upon detecting RIGHT gesture."""
         callback()
