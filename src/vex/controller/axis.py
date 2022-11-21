@@ -7,7 +7,7 @@ from typing_extensions import Self
 
 from abm.decor import act, sense
 
-from ..util.doc import robotmesh_doc, vexcode_doc
+from .._util.doc import robotmesh_doc, vexcode_doc
 
 
 __all__: Sequence[str] = ('ControllerAxis',)

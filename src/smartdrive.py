@@ -11,17 +11,18 @@ from typing_extensions import Self
 
 from abm.decor import act, sense
 
-from drivetrain import Drivetrain, DrivetrainMotorType
-from vex import (BrakeType,
-                 DirectionType,
-                 DistanceUnits,
-                 Gyro,
-                 RotationUnits,
-                 TimeUnits,
-                 TurnType,
-                 VelocityUnits)
+from vex.motor.brake_type import BrakeType
+from vex.motor.direction_type import DirectionType
+from vex.motor.turn_type import TurnType
+from vex.motor.velocity_units import VelocityUnits
+from vex.gyro_sensor import Gyro
+from vex.time.time_units import TimeUnits
+from vex._common_enums.distance import DistanceUnits
+from vex._common_enums.rotation import RotationUnits
 
-from vex.util.doc import robotmesh_doc
+from vex._util.doc import robotmesh_doc
+
+from drivetrain import Drivetrain, DrivetrainMotorType
 
 
 __all__: Sequence[str] = ('Smartdrive',)

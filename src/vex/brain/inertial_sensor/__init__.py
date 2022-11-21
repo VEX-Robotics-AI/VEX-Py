@@ -10,8 +10,9 @@ from abm.decor import act, sense
 
 from ..._abstract_device import SingletonDevice
 from ...motor import VelocityUnits
-from ...units_common import RotationUnits, DEGREES
-from ...util.doc import vexcode_doc
+from ..._common_enums import RotationUnits, DEGREES
+
+from ..._util.doc import vexcode_doc
 
 from .axis_type import AxisType, XAXIS, YAXIS, ZAXIS
 from .orientation_type import OrientationType, PITCH, ROLL, YAW

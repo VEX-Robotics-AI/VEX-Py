@@ -7,8 +7,10 @@ from typing import Optional
 from abm.decor import act
 
 from ..._abstract_device import SingletonDevice
-from ...util.doc import robotmesh_doc, vexcode_doc
-from ...units_common.color import Color
+from ..._common_enums.color import Color
+
+from ..._util.doc import robotmesh_doc, vexcode_doc
+
 from .font_type import FontType
 
 

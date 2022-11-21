@@ -10,8 +10,10 @@ from abm.decor import act, sense
 from .._abstract_device import Device
 from ..brain.port import Ports
 from ..time import TimeUnits
-from ..units_common import RotationUnits
-from ..util.doc import robotmesh_doc, vexcode_doc
+from .._common_enums import RotationUnits
+
+from .._util.doc import robotmesh_doc, vexcode_doc
+
 from .brake_type import BrakeType, COAST, BRAKE, HOLD
 from .current_units import CurrentUnits
 from .direction_type import DirectionType, FORWARD, REVERSE

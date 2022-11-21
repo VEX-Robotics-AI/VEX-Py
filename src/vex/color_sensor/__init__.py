@@ -9,9 +9,10 @@ from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
-from ..units_common.color import Color
-from ..units_common.numeric import PERCENT
-from ..util.doc import robotmesh_doc, vexcode_doc
+from .._common_enums.color import Color
+from .._common_enums.numeric import PERCENT
+
+from .._util.doc import robotmesh_doc, vexcode_doc
 
 
 __all__: Sequence[str] = 'ColorSensor', 'Colorsensor'

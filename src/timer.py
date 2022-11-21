@@ -1,4 +1,4 @@
-"""Timer.
+"""VEX Timer.
 
 Robot Mesh Python B:
 robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacetimer.html
@@ -10,7 +10,7 @@ from typing_extensions import Self
 
 from abm.decor import act, sense
 
-from vex.util.doc import robotmesh_doc
+from vex._util.doc import robotmesh_doc
 
 
 __all__: Sequence[str] = ('Timer',)

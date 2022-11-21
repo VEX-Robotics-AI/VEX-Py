@@ -6,7 +6,7 @@ from typing_extensions import Self
 
 from .brain.port import Ports
 
-from .util.doc import robotmesh_doc
+from ._util.doc import robotmesh_doc
 
 
 __all__: Sequence[str] = 'Device', 'SingletonDevice'

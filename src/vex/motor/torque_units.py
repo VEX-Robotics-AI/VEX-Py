@@ -4,7 +4,7 @@
 from collections.abc import Sequence
 from enum import IntEnum
 
-from ..util.doc import robotmesh_doc
+from .._util.doc import robotmesh_doc
 
 
 __all__: Sequence[str] = ('TorqueUnits',)

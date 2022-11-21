@@ -6,7 +6,9 @@ from __future__ import annotations
 from collections.abc import Sequence
 
 from .._abstract_device import SingletonDevice
-from ..util.doc import robotmesh_doc
+
+from .._util.doc import robotmesh_doc
+
 from .battery import BrainBattery
 from .button import BrainButton
 from .screen import BrainLcd, FontType

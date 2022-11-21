@@ -9,8 +9,10 @@ from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
-from ..units_common import RotationUnits, DEGREES
-from ..util.doc import robotmesh_doc, vexcode_doc
+from .._common_enums import RotationUnits, DEGREES
+
+from .._util.doc import robotmesh_doc, vexcode_doc
+
 from .calibration_type import GyroCalibrationType
 
 
