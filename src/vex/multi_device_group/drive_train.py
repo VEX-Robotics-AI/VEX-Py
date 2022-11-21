@@ -210,7 +210,8 @@ class DriveTrain(MotorGroup):
         from moving even if a Drive or Drive For command is used.
     """)
     @act
-    def set_drive_velocity(self, velocity: int = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
+    def set_drive_velocity(self, velocity: int = 50,
+                           unit: VelocityUnits = PERCENT, /):
         """Set driving velocity."""
         self.drive_velocities[unit] = velocity
 
@@ -331,3 +332,14 @@ class DriveTrain(MotorGroup):
     def velocity(self, velocityUnits: VelocityUnits = PERCENT, /) -> float:
         """Return velocity."""
 
+    @vexcode_doc("""
+        Drive Current
+
+        Reports the amount of current that the Drivetrain is currently using.
+
+        Drive Current reports a range from 0.0 to 2.5
+        when CurrentUnits.AMP is passed as the UNITS parameter.
+    """)
+    @sense
+    def current(self, unit: Literal[CurrentUnits.AMP] = CurrentUnits.AMP, /) -> float:  # noqa: E501
+        """Return motors' electric current."""
