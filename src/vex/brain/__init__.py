@@ -1,4 +1,4 @@
-"""VEX Brain."""
+"""Brain."""
 
 
 from __future__ import annotations
@@ -6,32 +6,28 @@ from __future__ import annotations
 from collections.abc import Sequence
 
 from .._abstract_device import SingletonDevice
+from ..util.doc import robotmesh_doc
 from .battery import BrainBattery
 from .button import BrainButton
-from .screen import BrainLcd
+from .screen import BrainLcd, FontType
 from .speaker import BrainSound, NoteType, SoundType
-from ..time import TimeUnits
 from .timer import BrainTimer
-
-from ..util.doc import robotmesh_doc, vexcode_doc
 
 
 __all__: Sequence[str] = ('Brain',
                           'BrainBattery',
                           'BrainButton',
-                          'BrainLcd',
+                          'BrainLcd', 'FontType',
                           'BrainSound', 'NoteType', 'SoundType')
 
 
-@robotmesh_doc(
-    """
+@robotmesh_doc("""
     Use the Brain class to see battery information, or write to the screen.
 
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brain.html
-"""
-)
+""")
 class Brain(SingletonDevice):
-    """VEX Brain."""
+    """Brain."""
 
     def __init__(self):
         """Initialize Brain."""
@@ -73,33 +69,15 @@ class Brain(SingletonDevice):
         """Brain Sound."""
         return self._sound
 
+    def play_sound(self, sound: SoundType = SoundType.SIREN, /):
+        """Play a sound effect."""
+        self.sound.play_sound(sound)
+
+    def play_note(self, octave: int = 3, note: int = 0, duration: int = 1000):
+        """Play a musical note."""
+        self.sound.play_note(octave, note, duration)
+
     @property
     def timer(self) -> BrainTimer:
         """Brain Timer."""
         return self._timer
-
-    @vexcode_doc(
-        """
-        Play a musical note on the speaker.
-
-        Parameters:
-        - note: musical note to play: NoteType enum value
-        """
-    )
-    def play_sound(self, note: NoteType):
-        """Play a musical note on the speaker."""
-        return self.sound.play(note)
-
-    @vexcode_doc(
-        """
-        Play a musical note on the speaker.
-
-        Parameters:
-        - note: musical note to play: NoteType enum value
-        - octave: octave of the note [1-7], optional.
-        - duration: time. 0 to start playing without blocking. Default 0.5 ms.
-        """
-    )
-    def play_note(self, note: NoteType, octave: int = 3, duration: float = 0.5):  # noqa: E501
-        """Play a musical note on the speaker."""
-        return self.sound.play(note, octave, duration, TimeUnits.MSEC)
