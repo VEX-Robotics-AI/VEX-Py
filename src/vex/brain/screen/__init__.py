@@ -279,36 +279,34 @@ class BrainLcd(SingletonDevice):
     @vexcode_doc("""
         Brain Screen Set Fill Color
 
-        Sets the color that fills in shapes drawn on the IQ (2nd generation) Brain's screen.
+        Sets the color that fills in shapes drawn on the Brain's screen.
 
-            brain.screen.set_fill_color(COLOR)
-
-        How To Use
-        The Brain Screen Set Fill Color command is used to set the color of the inside of circles and rectangles drawn on the IQ (2nd generation) Brain's screen.
+        The Brain Screen Set Fill Color command is used to set the color of the
+        inside of circles and rectangles drawn on the Brain's screen.
 
         You can replace the COLOR parameter with one of the following options:
+        - Color.BLACK
+        - Color.BLUE
+        - Color.BLUE_GREEN
+        - Color.BLUE_VIOLET
+        - Color.GREEN
+        - Color.ORANGE
+        - Color.PURPLE
+        - Color.RED
+        - Color.RED_ORANGE
+        - Color.RED_VIOLET
+        - Color.VIOLET
+        - Color.WHITE
+        - Color.YELLOW
+        - Color.YELLOW_GREEN
+        - Color.YELLOW_ORANGE
 
-            Color.BLACK
-            Color.BLUE
-            Color.BLUE_GREEN
-            Color.BLUE_VIOLET
-            Color.GREEN
-            Color.ORANGE
-            Color.PURPLE
-            Color.RED
-            Color.RED_ORANGE
-            Color.RED_VIOLET
-            Color.VIOLET
-            Color.WHITE
-            Color.YELLOW
-            Color.YELLOW_GREEN
-            Color.YELLOW_ORANGE
-
-        The fill color will be used for any next objects drawn on the IQ (2nd generation) Brain's screen
+        The fill color will be used for any next objects drawn
+        on the IQ (2nd generation) Brain's screen.
     """)
     @act
-    def set_fill_color(self, ColorHue):
-        """Set the color that fills in the shapes drawn on the IQ brain's screen."""
+    def set_fill_color(self, color: Color = Color.RED, /):
+        """Set color that fills in the shapes drawn on brain's screen."""
 
     @robotmesh_doc("""
         Print a number, string, or boolean at a particular line.
