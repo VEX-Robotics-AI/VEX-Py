@@ -2,13 +2,14 @@
 
 
 from collections.abc import Sequence
+from typing import Literal
 from typing_extensions import Self
 
 from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
-from ..units_common import RotationUnits
+from ..units_common import RotationUnits, DEGREES
 from ..util.doc import robotmesh_doc, vexcode_doc
 from .calibration_type import GyroCalibrationType
 
@@ -103,11 +104,24 @@ class Gyro(Device):
         - value: The new heading for the gyro
         - rotationUnits: The rotation unit for the heading
     """)
+    @vexcode_doc("""
+        Gyro Set Heading
+
+        Sets a VEX IQ Gyro Sensor's current heading to the specified heading.
+
+        Gyro Set Heading can be used to set the gyro's position
+        to a heading in the range of 0 to 359.99 degrees.
+
+        This command is typically used to reset the orientation of the gyro
+        when the heading is set to a value of 0.
+
+        Gyro Set Heading can accept decimal or integer inputs.
+    """)
     @act
-    def set_heading(self, value: float = 0,
-                    rotationUnits: RotationUnits = RotationUnits.DEG, /):
-        """Set Gyro Heading Angle Value."""
-        self.headings[rotationUnits] = value
+    def set_heading(self, heading_value: float = 0,
+                    unit: Literal[DEGREES] = DEGREES, /):
+        """Set heading angle value."""
+        self.headings[unit] = heading_value
 
     @robotmesh_doc("""
         Set the gyro sensor rotation to angle.
