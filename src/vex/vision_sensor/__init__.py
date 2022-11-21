@@ -11,7 +11,7 @@ from abm.decor import sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
-from ..util.doc import robotmesh_doc
+from ..util.doc import robotmesh_doc, vexcode_doc
 from .vision_object import VisionObject
 
 
@@ -65,6 +65,17 @@ class Vision(Device):
         Returns:
         The number of objects found from the ID passed in the parameter.
     """)
+    @vexcode_doc("""
+        Snapshot
+
+        Takes a snapshot from a VEX Vision Sensor.
+
+        The snapshot command will capture the current image from Vision Sensor
+        to be processed and analyzed for color signatures and codes.
+
+        Typically, a snapshot is required first before using any other
+        Vision Sensor commands.
+    """)
     @sense
     def take_snapshot(self, id: int,   # pylint: disable=redefined-builtin
                       count: Optional[int] = None, /) -> int:
@@ -86,6 +97,30 @@ class Vision(Device):
 
     @robotmesh_doc("""
         Return the largest object found in the data sample.
+    """)
+    @vexcode_doc("""
+        Largest Object
+
+        Reports information about the largest detected object
+        from a VEX Vision Sensor.
+
+        Configure the Vision Sensor by adding signatures / codes.
+
+        A call to the Vision Sensor's Take Snapshot command is then required to
+        capture an image in the Vision Sensor prior to
+        using the Largest Object command.
+
+        The following is a list of properties that can be accessed on
+        the object returned by the Largest Object command:
+        - id: A unique ID assigned to each object by the Vision Sensor
+        - originX: The top left X position of the object
+        - originY: The top left Y position of the object
+        - centerX: The center X position of the object
+        - centerY: The center Y position of the object
+        - width: The width of the object
+        - height: The height of the object
+        - angle: The angle of the object
+        - exists: If the Vision Sensor detects the object or not
     """)
     @property
     def largest_object(self) -> VisionObject:
