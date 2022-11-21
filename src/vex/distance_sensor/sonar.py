@@ -33,7 +33,7 @@ class Sonar(Device):
         self.max_distances: dict[DistanceUnits, float] = dict[DistanceUnits, float]()  # noqa: E501
 
     def __hash__(self) -> int:
-        """Return Integer Hash."""
+        """Return integer hash."""
         raise hash(self.port)
 
     @robotmesh_doc("""
