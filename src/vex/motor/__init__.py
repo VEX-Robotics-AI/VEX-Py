@@ -118,11 +118,8 @@ class Motor(Device):
         return self._spin(dir, velocity, velocityUnits)
 
     @act
-    def _spin(
-            self,
-            dir: DirectionType = FORWARD,  # pylint: disable=redefined-builtin
-            velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+    def _spin(self, direction: DirectionType = FORWARD,
+              velocity: Optional[float] = None, unit: VelocityUnits = PERCENT, /):  # noqa: E501
         """Spin."""
 
     @vexcode_doc("""
