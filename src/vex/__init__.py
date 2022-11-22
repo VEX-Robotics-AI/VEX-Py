@@ -1,5 +1,9 @@
 """VEX module.
 
+VEXcode IQ: codeiq.vex.com
+VEXcode V5: codev5.vex.com
+VEXcode VR: vr.vex.com
+
 Robot Mesh Python B:
 robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacevex.html
 """
@@ -44,10 +48,10 @@ from .multi_device_group import MotorGroup, DriveTrain, SmartDrive
 
 from .time import TimeUnits, SECONDS, MSEC, wait
 
-from .units_common import (Color, ColorHue,
-                           PERCENT,
-                           DistanceUnits, MM, INCHES,
-                           RotationUnits, DEGREES, TURNS)
+from ._common_enums import (Color, ColorHue,
+                            PERCENT,
+                            DistanceUnits, MM, INCHES,
+                            RotationUnits, DEGREES, TURNS)
 
 
 __all__: Sequence[str] = (

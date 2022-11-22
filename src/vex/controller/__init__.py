@@ -9,7 +9,7 @@ from abm.decor import act
 
 from .._abstract_device import SingletonDevice
 
-from ..util.doc import robotmesh_doc
+from .._util.doc import robotmesh_doc
 
 from .axis import ControllerAxis
 from .button import ControllerButton

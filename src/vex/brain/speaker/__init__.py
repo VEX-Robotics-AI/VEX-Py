@@ -10,7 +10,7 @@ from abm.decor import act
 from ..._abstract_device import SingletonDevice
 from ...time import TimeUnits
 
-from ...util.doc import robotmesh_doc, vexcode_doc
+from ..._util.doc import robotmesh_doc, vexcode_doc
 
 from .note_type import NoteType
 from .sound_type import SoundType

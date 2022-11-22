@@ -4,8 +4,7 @@
 from collections.abc import Sequence
 from enum import IntEnum
 
-# pylint: disable=unused-import
-from ..util.doc import robotmesh_doc, vexcode_doc   # noqa: F401
+from .._util.doc import robotmesh_doc
 
 
 __all__: Sequence[str] = ('Ports',)

@@ -8,8 +8,10 @@ from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
-from ..units_common.color import Color
-from ..util.doc import robotmesh_doc, vexcode_doc
+from .._common_enums.color import Color
+
+from .._util.doc import robotmesh_doc, vexcode_doc
+
 from .fade_type import FadeType
 
 

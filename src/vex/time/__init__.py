@@ -5,7 +5,7 @@ from collections.abc import Sequence
 
 from abm.decor import act
 
-from ..util.doc import robotmesh_doc, vexcode_doc
+from .._util.doc import robotmesh_doc, vexcode_doc
 
 from .time_units import TimeUnits, SECONDS, MSEC
 

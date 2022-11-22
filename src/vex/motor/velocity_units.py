@@ -6,8 +6,9 @@ from __future__ import annotations
 from collections.abc import Sequence
 from enum import IntEnum
 
-from ..units_common.numeric import PERCENT
-from ..util.doc import robotmesh_doc
+from .._common_enums.numeric import PERCENT
+
+from .._util.doc import robotmesh_doc
 
 
 __all__: Sequence[str] = 'VelocityUnits', 'RPM', 'DPS'

@@ -7,7 +7,8 @@ from abm.decor import act, sense
 
 from .._abstract_device import SingletonDevice
 from ..time.time_units import TimeUnits
-from ..util.doc import vexcode_doc
+
+from .._util.doc import vexcode_doc
 
 
 __all__: Sequence[str] = ('BrainTimer',)

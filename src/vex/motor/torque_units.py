@@ -2,9 +2,11 @@
 
 
 from collections.abc import Sequence
-from enum import IntEnum
+from enum import IntEnum, auto
 
-from ..util.doc import robotmesh_doc
+from .._common_enums.numeric import PERCENT
+
+from .._util.doc import robotmesh_doc
 
 
 __all__: Sequence[str] = ('TorqueUnits',)
@@ -18,6 +20,6 @@ __all__: Sequence[str] = ('TorqueUnits',)
 class TorqueUnits(IntEnum):
     """Torque Units."""
 
-    NM: int = 0   # A torque unit that is measured in Newton Meters.
-    IN_LB: int = 1   # A torque unit that is measured in Inch Pounds.
-    PCT: int = 2
+    PCT: int = PERCENT
+    NM: int = auto()   # A torque unit that is measured in Newton Meters
+    IN_LB: int = auto()   # A torque unit that is measured in Inch Pounds

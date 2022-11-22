@@ -7,8 +7,10 @@ from abm.decor import sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
-from ..units_common.distance import DistanceUnits, MM, INCHES
-from ..util.doc import vexcode_doc
+from .._common_enums.distance import DistanceUnits, MM, INCHES
+
+from .._util.doc import vexcode_doc
+
 from .object_size_type import ObjectSizeType
 from .sonar import Sonar
 
