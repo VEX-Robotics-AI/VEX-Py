@@ -16,6 +16,10 @@
     ".vscode/*.log": true,
   },
 
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportGeneralTypeIssues": "none"
+  },
+
   "python.analysis.typeCheckingMode": "strict",
 
   "python.linting.enabled": true,
