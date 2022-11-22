@@ -269,6 +269,10 @@ class Motor(Device):
             assert n_args == 6
             direction, rotation, rotation_unit, velocity, velocity_unit, wait = args  # noqa: E501
 
+        if velocity is None:
+            velocity, velocity_unit = self._get_selected_velocity_and_unit(
+                None, self.selected_velocity_unit)
+
         return self._spin_for(direction,
                               rotation, rotation_unit,
                               velocity, velocity_unit,
