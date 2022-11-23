@@ -55,8 +55,8 @@ class Motor(Device):
         self.stopping_mode: Optional[BrakeType] = None
         self.timeouts: dict[TimeUnits, float] = dict[TimeUnits, float]()
         self.max_torque: dict[TorqueUnits, float] = dict[TorqueUnits, float]()
-        self.velocities: dict[VelocityUnits, float] = dict[VelocityUnits, float]()  # noqa: E501
-        self.selected_velocity_unit: Optional[VelocityUnits] = None
+        self.velocities: dict[VelocityUnits, float] = {PERCENT: 50}
+        self.selected_velocity_unit: VelocityUnits = PERCENT
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
