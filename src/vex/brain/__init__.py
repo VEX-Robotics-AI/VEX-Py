@@ -75,7 +75,7 @@ class Brain(SingletonDevice):
         """Play a sound effect."""
         self.sound.play_sound(sound)
 
-    def play_note(self, octave: int = 3, note: int = 0, duration: int = 1000):
+    def play_note(self, octave: int = 3, note: int = 0, duration: int = 1000, /):  # noqa: E501
         """Play a musical note."""
         self.sound.play_note(octave, note, duration)
 
