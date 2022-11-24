@@ -8,6 +8,7 @@ from abm.decor import act, sense
 from .._abstract_device import Device
 from ..brain.port import Ports
 from .._common_enums.distance import DistanceUnits, MM, INCHES
+from .._common_enums.numeric import NumType
 
 from .._util.doc import robotmesh_doc, vexcode_doc
 
@@ -31,7 +32,7 @@ class Sonar(Device):
         """Initialize Sonar."""
         self.port: Ports = index
 
-        self.max_distances: dict[DistanceUnits, float] = dict[DistanceUnits, float]()  # noqa: E501
+        self.max_distances: dict[DistanceUnits, NumType] = dict[DistanceUnits, NumType]()  # noqa: E501
 
     def __hash__(self) -> int:
         """Return integer hash."""
@@ -45,7 +46,7 @@ class Sonar(Device):
         - distanceUnits: a DistanceUnits enum value for the measurement unit.
     """)
     @act
-    def set_maximum(self, distance: float, distanceUnits: DistanceUnits = MM, /):  # noqa: E501
+    def set_maximum(self, distance: NumType, distanceUnits: DistanceUnits = MM, /):  # noqa: E501
         """Set maximum measurable distance."""
         self.max_distances[distanceUnits] = distance
 
@@ -89,6 +90,6 @@ class Sonar(Device):
         with either INCHES or MM, respectively.
     """)
     @sense
-    def distance(self, unit: DistanceUnits = MM, /) -> float:
+    def distance(self, unit: DistanceUnits = MM, /) -> NumType:
         """Return measured distance to nearby object."""
         assert unit in (MM, INCHES), ValueError('*** UNIT MUST BE MM OR INCHES ***')  # noqa: E501
