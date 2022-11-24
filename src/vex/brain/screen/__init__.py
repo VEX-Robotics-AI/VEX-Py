@@ -133,7 +133,7 @@ class BrainLcd(SingletonDevice):
         The default pixel color is white.
     """)
     @act
-    def draw_pixel(self, x: int, y: int, /):
+    def draw_pixel(self, x: int, y: int):
         """Draw a pixel on the IQ (2nd generation) Brain's screen."""
 
     @vexcode_doc("""
