@@ -151,7 +151,7 @@ class BrainLcd(SingletonDevice):
         The default line color is white.
     """)
     @act
-    def draw_line(self, start_x: int, start_y: int, end_x: int, end_y: int, /):
+    def draw_line(self, x1: int, y1: int, x2: int, y2: int):
         """Draw a line on the IQ Brain's screen."""
 
     @vexcode_doc("""
