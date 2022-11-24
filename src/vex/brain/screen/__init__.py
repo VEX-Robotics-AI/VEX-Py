@@ -195,7 +195,7 @@ class BrainLcd(SingletonDevice):
         Set Fill Color command. The default fill color is black.
     """)
     @act
-    def draw_circle(self, x: int, y: int, radius: int):
+    def draw_circle(self, x: int = 0, y: int = 0, radius: int = 10):
         """Draw circle."""
 
     @vexcode_doc("""
