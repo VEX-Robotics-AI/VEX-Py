@@ -87,7 +87,7 @@ class BrainSound(SingletonDevice):
         the proceeding command will begin executing immediately.
     """)
     def play_note(self, octave: int = 3, note: int = 0, duration: int = 1000, /):  # noqa: E501
-        """Play a musical note on the speaker."""
+        """Play musical note."""
 
     @robotmesh_doc("""
         Play a musical note on the speaker.
