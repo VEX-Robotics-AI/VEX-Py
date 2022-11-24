@@ -134,7 +134,7 @@ class BrainLcd(SingletonDevice):
     """)
     @act
     def draw_pixel(self, x: int, y: int):
-        """Draw a pixel on the IQ (2nd generation) Brain's screen."""
+        """Draw pixel."""
 
     @vexcode_doc("""
         Brain Screen Draw Line
@@ -152,7 +152,7 @@ class BrainLcd(SingletonDevice):
     """)
     @act
     def draw_line(self, x1: int, y1: int, x2: int, y2: int):
-        """Draw a line on the IQ Brain's screen."""
+        """Draw line."""
 
     @vexcode_doc("""
         Brain Screen Draw Rectangle
@@ -173,7 +173,7 @@ class BrainLcd(SingletonDevice):
     """)
     @act
     def draw_rectangle(self, x: int, y: int, width: int, height: int):
-        """Draw a rectangle on the Brain's screen."""
+        """Draw rectangle."""
 
     @vexcode_doc("""
         Brain Screen Draw Circle
@@ -192,8 +192,8 @@ class BrainLcd(SingletonDevice):
         Set Fill Color command. The default fill color is black.
     """)
     @act
-    def draw_circle(self, x: int, y: int, radius: int, /):
-        """Draw a circle on the Brain's screen."""
+    def draw_circle(self, x: int, y: int, radius: int):
+        """Draw circle."""
 
     @vexcode_doc("""
         Brain Screen Set Font
