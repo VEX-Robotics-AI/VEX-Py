@@ -68,7 +68,7 @@ class BrainLcd(SingletonDevice):
         Accepts a range for COL of 1 to 28.
     """)
     @act
-    def set_cursor(self, row: int, col: int):
+    def set_cursor(self, row: int, col: int, /):
         """Set the cursor location for Brain's Print commands."""
 
     @vexcode_doc("""
