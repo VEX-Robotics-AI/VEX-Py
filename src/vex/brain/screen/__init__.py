@@ -279,7 +279,7 @@ class BrainLcd(SingletonDevice):
     """)
     @act
     def set_pen_color(self, color: Color = Color.RED, /):
-        """Set the color of lines drawn on the brain's screen."""
+        """Set drawing-pen color."""
 
     @vexcode_doc("""
         Brain Screen Set Fill Color
