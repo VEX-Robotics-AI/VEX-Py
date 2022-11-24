@@ -69,7 +69,7 @@ class BrainLcd(SingletonDevice):
     """)
     @act
     def set_cursor(self, row: int = 1, col: int = 1, /):
-        """Set the cursor location for Brain's Print commands."""
+        """Set cursor location."""
 
     @vexcode_doc("""
         New Line
