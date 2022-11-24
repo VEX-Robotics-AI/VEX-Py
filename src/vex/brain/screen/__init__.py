@@ -106,7 +106,7 @@ class BrainLcd(SingletonDevice):
     """)
     @act
     def clear_screen(self):
-        """Clear Brain LCD Screen."""
+        """Clear entire screen."""
 
     @vexcode_doc("""
         Clear Line
