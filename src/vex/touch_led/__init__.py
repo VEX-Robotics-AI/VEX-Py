@@ -87,8 +87,8 @@ class Touchled(Device):
         a range of 0 to 100 for the BRIGHTNESS parameter.
     """)
     @act
-    def set_brightness(self, brightness: int, /):
-        """Set Brightness Percent Level."""
+    def set_brightness(self, brightness: int = 50, /):
+        """Set brightness percentage level."""
 
     @robotmesh_doc("""
         Get the pressed status of the touchled device.
