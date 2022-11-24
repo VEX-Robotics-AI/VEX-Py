@@ -101,7 +101,7 @@ class BrainSound(SingletonDevice):
     @act
     def play(self, note: NoteType, octave: int = 3,
              duration: float = 0.5, timeUnits: TimeUnits = TimeUnits.SEC, /):
-        """Play note/sound on Brain Sound Speaker."""
+        """Play musical note."""
 
     @robotmesh_doc("""
         Play a musical note on the speaker.
@@ -114,7 +114,7 @@ class BrainSound(SingletonDevice):
     @act
     def play_raw(self, note: NoteType,
                  duration: float = 0.5, timeUnits: TimeUnits = TimeUnits.SEC, /):   # noqa: E501
-        """Play note/sound on Brain Sound Speaker."""
+        """Play musical note."""
 
     @robotmesh_doc("""
         Play the wave sample.
@@ -151,7 +151,7 @@ class BrainSound(SingletonDevice):
     """)
     @act
     def set_sound_effect(self, effect: int, /):
-        """Set Sound Effect."""
+        """Set sound effect."""
         # pylint: disable=attribute-defined-outside-init
         self.sound_effect: int = effect
 
@@ -163,7 +163,7 @@ class BrainSound(SingletonDevice):
     """)
     @act
     def set_volume(self, volume: int, /):
-        """Set Sound Volume."""
+        """Set sound volume."""
         # pylint: disable=attribute-defined-outside-init
         self.volume: int = volume
 
@@ -172,4 +172,4 @@ class BrainSound(SingletonDevice):
     """)
     @act
     def stop(self):
-        """Stop Sound."""
+        """Stop sound."""
