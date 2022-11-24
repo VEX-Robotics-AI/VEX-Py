@@ -85,7 +85,7 @@ class Optical(Device):
     """)
     @act
     def set_light(self, state: LedStateType = LedStateType.ON, /):
-        """Set Optical Sensor light state."""
+        """Set light ON/OFF."""
 
     @vexcode_doc("""
         Sets the light power of a VEX IQ Optical Sensor.
@@ -101,7 +101,7 @@ class Optical(Device):
     @act
     def set_light_power(self, power: int = 50, unit: Literal[PERCENT] = PERCENT, /):  # noqa: E501
         # pylint: disable=unused-argument
-        """Set Optical Light Power."""
+        """Set light power percentage level."""
         assert unit is PERCENT, ValueError('*** UNIT MUST BE PERCENT ***')
 
     @vexcode_doc("""
@@ -154,7 +154,7 @@ class Optical(Device):
     """)
     @sense
     def brightness(self) -> int:
-        """Return brightness percentage."""
+        """Return brightness percentage level."""
 
     @vexcode_doc("""
         Optical Hue
