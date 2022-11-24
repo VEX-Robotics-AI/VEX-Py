@@ -37,11 +37,13 @@ class BrainLcd(SingletonDevice):
 
         All new projects begin with the screen cursor at row 1 column 1.
 
-        Print words and numbers: brain.screen.print("Number:", 10)
+        - Print words and numbers:
+            brain.screen.print("Number:", 10)
 
-        Print the reported value from a variable: brain.screen.print(variable)
+        - Print the reported value from a variable:
+            brain.screen.print(variable)
 
-        Print the reported value from a sensor or device:
+        - Print the reported value from a sensor or device:
             brain.screen.print(drivetrain.is_done())
     """)
     @act
