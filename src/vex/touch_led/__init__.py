@@ -59,8 +59,8 @@ class Touchled(Device):
 
         To turn the TouchLED off, set the color to Color.BLACK.
     """)
-    def set_color(self, color: Color, /):
-        """Set Touch LED color."""
+    def set_color(self, color: Color = Color.BLACK, /):
+        """Set color."""
 
     @vexcode_doc("""
         Set TouchLED Fade
