@@ -223,8 +223,8 @@ class BrainLcd(SingletonDevice):
         The new font size will be used for any future text written to
         the IQ (2nd generation) Brain's screen.
     """)
-    def set_font(self, font: FontType = FontType.MONO20, /):
-        """Set font style and size."""
+    def set_font(self, fontname: FontType = FontType.MONO20, /):
+        """Set font style & size."""
 
     @vexcode_doc("""
         Brain Screen Set Pen Width
