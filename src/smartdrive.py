@@ -11,10 +11,8 @@ from typing_extensions import Self
 
 from abm.decor import act, sense
 
-from vex.motor.brake_type import BrakeType
 from vex.motor.velocity_units import VelocityUnits
 from vex.gyro_sensor import Gyro
-from vex.time.time_units import TimeUnits
 from vex._common_enums.distance import DistanceUnits
 from vex._common_enums.numeric import NumType
 from vex._common_enums.rotation import RotationUnits
@@ -31,7 +29,6 @@ __all__: Sequence[str] = ('Smartdrive',)
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classsmartdrive_1_1_smartdrive.html
 """)
 class Smartdrive(Drivetrain):
-    # pylint: disable=too-many-instance-attributes,too-many-public-methods
     """VEX Smart Drivetrain."""
 
     @robotmesh_doc("""
@@ -49,7 +46,7 @@ class Smartdrive(Drivetrain):
                          a DistanceUnits enum value
         - gear_ratio: external gear ratio, usually 1.0
     """)
-    def __init__(  # pylint: disable=too-many-arguments
+    def __init__(
             self,
             left_motor: DrivetrainMotorType, right_motor: DrivetrainMotorType,
             gyro: Gyro,
@@ -57,22 +54,11 @@ class Smartdrive(Drivetrain):
             distanceUnits: DistanceUnits = DistanceUnits.MM,
             gear_ratio: NumType = 1, /):
         """Initialize Smart Drivetrain."""
-        # pylint: disable=super-init-not-called
+        super().__init__(left_motor, right_motor,
+                         wheel_travel, track_width, distanceUnits,
+                         gear_ratio)
 
-        self.left_motor: DrivetrainMotorType = left_motor
-        self.right_motor: DrivetrainMotorType = right_motor
         self.gyro: Gyro = gyro
-        self.wheel_travel: NumType = wheel_travel
-        self.track_width: NumType = track_width
-        self.distance_unit: DistanceUnits = distanceUnits
-        self.gear_ratio: NumType = gear_ratio
-
-        self.drive_velocities: dict[VelocityUnits, NumType] = \
-            dict[VelocityUnits, NumType]()
-        self.turn_velocities: dict[VelocityUnits, NumType] = \
-            dict[VelocityUnits, NumType]()
-        self.timeouts: dict[TimeUnits, NumType] = dict[TimeUnits, NumType]()
-        self.stopping: Optional[BrakeType] = None
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
@@ -111,7 +97,7 @@ class Smartdrive(Drivetrain):
                                         By default, this parameter is true.
     """)
     @act
-    def turn_to_heading(  # pylint: disable=too-many-arguments
+    def turn_to_heading(
             self,
             angle: NumType, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[NumType] = None,
@@ -123,7 +109,7 @@ class Smartdrive(Drivetrain):
         Turn to rotation.
     """)
     @act
-    def turn_to_rotation(  # pylint: disable=too-many-arguments
+    def turn_to_rotation(
             self,
             angle: NumType, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[NumType] = None,
