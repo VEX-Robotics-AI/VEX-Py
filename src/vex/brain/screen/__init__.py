@@ -89,7 +89,7 @@ class BrainLcd(SingletonDevice):
     """)
     @act
     def next_row(self):
-        """Move the cursor down by a single row on the screen."""
+        """Move cursor to new line."""
 
     @robotmesh_doc("""
         Clear the whole screen.
