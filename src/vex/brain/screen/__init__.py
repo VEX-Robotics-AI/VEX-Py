@@ -174,7 +174,8 @@ class BrainLcd(SingletonDevice):
         by the Brain's Set Fill Color command. The default fill color is black.
     """)
     @act
-    def draw_rectangle(self, x: int, y: int, width: int, height: int):
+    def draw_rectangle(self, x: int = 0, y: int = 0,
+                       width: int = 10, height: int = 10):
         """Draw rectangle."""
 
     @vexcode_doc("""
