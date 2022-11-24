@@ -42,7 +42,7 @@ class BrainLcd(SingletonDevice):
         Print the reported value from a variable: brain.screen.print(variable)
 
         Print the reported value from a sensor or device:
-        brain.screen.print(drivetrain.is_done())
+            brain.screen.print(drivetrain.is_done())
     """)
     @act
     def print(self, *args):
