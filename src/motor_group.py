@@ -192,12 +192,11 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
                                         By default, this parameter is true.
     """)
     @act
-    def spin_to(  # pylint: disable=too-many-arguments
-            self,
-            rotation: NumType, rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
-            velocity: Optional[NumType] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True, /) -> bool:
+    def spin_to(self,
+                rotation: NumType, rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
+                velocity: Optional[NumType] = None,
+                velocityUnits: VelocityUnits = VelocityUnits.PCT,
+                waitForCompletion: bool = True, /) -> bool:
         """Spin motors to specified target cumulative rotational angle."""
 
     @robotmesh_doc("""
@@ -222,12 +221,11 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
                                         By default, this parameter is true.
     """)
     @act
-    def spin_for(  # pylint: disable=too-many-arguments
-            self, dir: DirectionType,  # pylint: disable=redefined-builtin
-            rotation: NumType, rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
-            velocity: Optional[NumType] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True, /) -> bool:
+    def spin_for(self, dir: DirectionType,  # pylint: disable=redefined-builtin
+                 rotation: NumType, rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
+                 velocity: Optional[NumType] = None,
+                 velocityUnits: VelocityUnits = VelocityUnits.PCT,
+                 waitForCompletion: bool = True, /) -> bool:
         """Spin motors for specified rotational angle."""
 
     @robotmesh_doc("""
@@ -243,11 +241,11 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
                          a VelocityUnits enum value.
     """)
     @act
-    def spin_for_time(  # pylint: disable=too-many-arguments
-            self, dir: DirectionType,  # pylint: disable=redefined-builtin
-            time: NumType, timeUnits: TimeUnits = TimeUnits.SEC,
-            velocity: Optional[NumType] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+    def spin_for_time(self,
+                      dir: DirectionType,  # pylint: disable=redefined-builtin
+                      time: NumType, timeUnits: TimeUnits = TimeUnits.SEC,
+                      velocity: Optional[NumType] = None,
+                      velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Spin motors for specified time duration."""
 
     @robotmesh_doc("""
@@ -282,11 +280,12 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
         - velocityUnits: The measurement unit for the velocity value.
     """)
     @act
-    def start_spin_for(  # pylint: disable=too-many-arguments
-            self, dir: DirectionType,  # pylint: disable=redefined-builtin
-            rotation: NumType, rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
-            velocity: Optional[NumType] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+    def start_spin_for(self,
+                       dir: DirectionType,  # pylint: disable=redefined-builtin
+                       rotation: NumType,
+                       rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
+                       velocity: Optional[NumType] = None,
+                       velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Start spinning motors for specified rotational angle."""
 
     @robotmesh_doc("""
