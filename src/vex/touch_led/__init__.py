@@ -106,7 +106,7 @@ class Touchled(Device):
     """)
     @sense
     def pressing(self) -> bool:
-        """Return Touch LED's pressed status."""
+        """Return pressed status."""
 
     @vexcode_doc("""
         TouchLED Pressed
