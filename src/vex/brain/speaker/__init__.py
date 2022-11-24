@@ -23,7 +23,7 @@ __all__: Sequence[str] = 'BrainSound', 'NoteType', 'SoundType'
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brain_sound.html
 """)
 class BrainSound(SingletonDevice):
-    """Brain Sound."""
+    """Brain Sound Speaker."""
 
     @vexcode_doc("""
         Play Sound
@@ -53,7 +53,7 @@ class BrainSound(SingletonDevice):
     """)
     @act
     def play_sound(self, sound: SoundType = SoundType.SIREN, /):
-        """Play a sound effect."""
+        """Play sound effect."""
 
     @vexcode_doc("""
         Play Note
