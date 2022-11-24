@@ -70,7 +70,7 @@ class Distance(Device):
     """)
     @sense
     def object_velocity(self) -> float:
-        """Return velocity of detected object in m/s."""
+        """Return detected object's velocity in m/s."""
 
     @vexcode_doc("""
         Distance Object Size
@@ -87,4 +87,4 @@ class Distance(Device):
     """)
     @sense
     def object_size(self) -> ObjectSizeType:
-        """Return an estimation of the detected object's size."""
+        """Return detected object's size estimate."""
