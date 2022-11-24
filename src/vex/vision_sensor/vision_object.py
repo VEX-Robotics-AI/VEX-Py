@@ -15,60 +15,60 @@ class VisionObject:
     """)
     @property
     def id(self) -> int:
-        """Return Object ID."""
+        """Return object ID."""
 
     @robotmesh_doc("""
         Return the top left x position of the object.
     """)
     @property
     def originX(self) -> int:
-        """Return Object's Top-Left X Co-ordinate."""
+        """Return object's top-left X co-ordinate."""
 
     @robotmesh_doc("""
         Return the top left y position of the object.
     """)
     @property
     def originY(self) -> int:
-        """Return Object's Top-Left Y Co-ordinate."""
+        """Return object's top-left Y co-ordinate."""
 
     @robotmesh_doc("""
         Return the center x position of the object.
     """)
     @property
     def centerX(self) -> int:
-        """Return Object's Center X Co-ordinate."""
+        """Return object's center X co-ordinate."""
 
     @robotmesh_doc("""
         Return the center y position of the object.
     """)
     @property
     def centerY(self) -> int:
-        """Return Object's Center Y Co-ordinate."""
+        """Return object's center Y co-ordinate."""
 
     @robotmesh_doc("""
         Return the width of the object.
     """)
     @property
     def width(self) -> int:
-        """Return Object's Width."""
+        """Return object's width."""
 
     @robotmesh_doc("""
         Return the height of the object.
     """)
     @property
     def height(self) -> int:
-        """Return Object's Height."""
+        """Return object's height."""
 
     @robotmesh_doc("""
         Return the angle of the object.
     """)
     @property
     def angle(self) -> int:
-        """Return Object's Angle."""
+        """Return object's angle."""
 
     @robotmesh_doc("""
         Return True if vision sensor detects the object, False if not.
     """)
     @property
     def exists(self) -> bool:
-        """Check if Object is detected."""
+        """Check if object is detected."""
