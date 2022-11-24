@@ -74,7 +74,8 @@ class Touchled(Device):
         - FadeType.OFF: The TouchLED will change colors instantly.
     """)
     @act
-    def set_fade(self, type: FadeType, /):  # pylint: disable=redefined-builtin
+    def set_fade(self, type: FadeType = FadeType.SLOW, /):
+        # pylint: disable=redefined-builtin
         """Set fade type."""
 
     @vexcode_doc("""
