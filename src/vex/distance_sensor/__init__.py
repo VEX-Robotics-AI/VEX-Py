@@ -53,9 +53,9 @@ class Distance(Device):
         or approximately 0.8 to 79.0 inches.
     """)
     @sense
-    def object_distance(self, unit: DistanceUnits = MM, /) -> int:
+    def object_distance(self, units: DistanceUnits = MM, /) -> float:
         """Return measured distance to nearby object."""
-        assert unit in (MM, INCHES), ValueError('*** UNIT MUST BE MM OR INCHES ***')  # noqa: E501
+        assert units in (MM, INCHES), ValueError('*** UNIT MUST BE MM OR INCHES ***')  # noqa: E501
 
     @vexcode_doc("""
         Distance Object Velocity
