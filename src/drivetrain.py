@@ -106,9 +106,9 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         """Drive."""
 
     @robotmesh_doc("""
-        Drive for a specified distance.
+        Drives for a specified distance.
 
-        Parameters
+        Parameters:
         - directionType: direction to drive in, forward or reverse,
                          a DirectionType enum value
         - distance: distance to drive in
@@ -131,7 +131,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
             velocity: Optional[NumType] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True, /) -> bool:
-        """Drive for a distance."""
+        """Drive for specified distance."""
 
     @robotmesh_doc("""
         Start driving for a specified distance.
@@ -152,7 +152,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
             distance: NumType, distanceUnits: DistanceUnits = DistanceUnits.MM,
             velocity: Optional[NumType] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Start driving for a distance."""
+        """Start driving for specified distance."""
 
     @robotmesh_doc("""
         Turn the drivetrain left or right.
@@ -187,7 +187,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         Returns:
         True if the drivetrain has reached the target angle, False otherwise
 
-        Reimplemented in smartdrive.Smartdrive.
+        Reimplemented from drivetrain.Drivetrain.
     """)
     @act
     def turn_for(self, turnType: TurnType,
@@ -195,12 +195,12 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
                  velocity: Optional[NumType] = None,
                  velocityUnits: VelocityUnits = VelocityUnits.PCT,
                  waitForCompletion: bool = True, /) -> bool:
-        """Turn for an angle."""
+        """Turn for specified rotational angle."""
 
     @robotmesh_doc("""
-        Start turning the drivetrain left or right.
+        Start turning drivetrain left or right.
 
-        (until the specified angle is reached)
+        (until specified angle is reached)
 
         Parameters:
         - turnType: direction to turn in, left or right, a TurnType enum value
@@ -217,7 +217,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
                        angle: NumType, angleUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
                        velocity: Optional[NumType] = None,
                        velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Start turning for an angle."""
+        """Start turning for specified rotational angle."""
 
     @robotmesh_doc("""
         Drive in arcade mode.
@@ -362,4 +362,4 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     """)
     @sense
     def current(self) -> float:
-        """Return motors' electric current."""
+        """Return motors' electrical current."""
