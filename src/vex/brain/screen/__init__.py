@@ -45,8 +45,8 @@ class BrainLcd(SingletonDevice):
         brain.screen.print(drivetrain.is_done())
     """)
     @act
-    def print(self, args, /):  # TODO: accept *args
-        """Print values or text on the brain's screen."""
+    def print(self, *args):
+        """Print numerical values and/or text strings on Brain LCD Screen."""
 
     @vexcode_doc("""
         Set Cursor
