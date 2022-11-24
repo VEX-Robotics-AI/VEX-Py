@@ -120,7 +120,7 @@ class BrainLcd(SingletonDevice):
     """)
     @act
     def clear_row(self, row: Optional[int] = None, /):
-        """Clear the current row if specified, clear current row otherwise."""
+        """Clear specified row or current row."""
 
     @vexcode_doc("""
         Brain Screen Draw Pixel
