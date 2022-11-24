@@ -311,7 +311,7 @@ class BrainLcd(SingletonDevice):
     """)
     @act
     def set_fill_color(self, color: Color = Color.RED, /):
-        """Set color that fills in the shapes drawn on brain's screen."""
+        """Set shape-filling color."""
 
     @robotmesh_doc("""
         Print a number, string, or boolean at a particular line.
