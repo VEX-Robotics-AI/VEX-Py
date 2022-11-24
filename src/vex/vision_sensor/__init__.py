@@ -24,7 +24,7 @@ __all__: Sequence[str] = 'Vision', 'VisionObject'
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvision_1_1_vision.html
 """)
 class Vision(Device):
-    """VEX Vision Sensor."""
+    """Vision Sensor."""
 
     @robotmesh_doc("""
         Create a new vision object on the port specified.
@@ -81,21 +81,21 @@ class Vision(Device):
     @sense
     def take_snapshot(self, id: int,   # pylint: disable=redefined-builtin
                       count: Optional[int] = None, /) -> int:
-        """Take Snapshot of current scene."""
+        """Take snapshot of current scene."""
 
     @robotmesh_doc("""
         Return number of objects found in the data sample.
     """)
     @property
     def object_count(self) -> int:
-        """Return Number of Objects Detected."""
+        """Return number of objects detected."""
 
     @robotmesh_doc("""
         Return list of the largest objects found in the data sample.
     """)
     @property
     def objects(self) -> list[VisionObject]:
-        """Return Detected Objects."""
+        """Return detected objects."""
 
     @robotmesh_doc("""
         Return the largest object found in the data sample.
@@ -126,4 +126,4 @@ class Vision(Device):
     """)
     @property
     def largest_object(self) -> VisionObject:
-        """Return Largest Deteced Object."""
+        """Return largest deteced object."""
