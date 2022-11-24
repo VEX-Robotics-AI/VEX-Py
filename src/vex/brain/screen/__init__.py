@@ -328,4 +328,4 @@ class BrainLcd(SingletonDevice):
     """)
     @act
     def print_line(self, number: int, text: str, /):
-        """Print to a line on Brain LCD Screen."""
+        """Print given text to specified line."""
