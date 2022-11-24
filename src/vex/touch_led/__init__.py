@@ -173,7 +173,7 @@ class Touchled(Device):
     """)
     @act
     def on(self, color: hex, brightness: int = 100, /):
-        """Turn on color."""
+        """Turn on color (hex)."""
 
     @robotmesh_doc("""
         Turn on the led in the touchled sensor.
@@ -184,7 +184,7 @@ class Touchled(Device):
     """)
     @act
     def on_hue(self, colorHue: Color, brightness: int = 100, /):
-        """Turn on Color Hue."""
+        """Turn on color hue."""
 
     @robotmesh_doc("""
         Turn on the led in the touchled sensor.
@@ -214,7 +214,7 @@ class Touchled(Device):
     """)
     @act
     def brightness(self, brightness: int, /):
-        """Set Brightness Percent Level."""
+        """Set brightness percentage level."""
 
     @robotmesh_doc("""
         Set the led in the touchled sensor as blinking.
@@ -226,7 +226,7 @@ class Touchled(Device):
     """)
     @act
     def blink(self, color: hex, on_time: float = 0.25, off_time: float = 0.25, /):  # noqa: E501
-        """Blink color."""
+        """Blink color (hex)."""
 
     @robotmesh_doc("""
         Set the led in the touchled sensor as blinking.
@@ -239,7 +239,7 @@ class Touchled(Device):
     @act
     def blink_hue(self, colorHue: Color,
                   on_time: float = 0.25, off_time: float = 0.25, /):
-        """Blink Color Hue."""
+        """Blink color hue."""
 
     @robotmesh_doc("""
         Set the led in the touchled sensor as blinking.
@@ -254,4 +254,4 @@ class Touchled(Device):
     @act
     def blink_rgb(self, red: int, green: int, blue: int,
                   on_time: float = 0.25, off_time: float = 0.25, /):
-        """Blink RGB Color."""
+        """Blink RGB color."""
