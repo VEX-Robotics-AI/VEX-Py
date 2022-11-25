@@ -527,6 +527,21 @@ class Motor(Device):
     def is_spinning(self) -> bool:
         """Check whether motor is still spinning."""
 
+    @vexcode_doc("""
+        Motor Position
+
+        Reports the current rotational position of the selected IQ Motor
+        or the first motor of the selected Motor Group.
+
+        Motor Position reports the position of an IQ Motor
+        or the first motor in a Motor Group.
+
+        Acceptable values for UNITS are: DEGREES or TURNS.
+    """)
+    @sense
+    def position(self, unit: RotationUnits = DEGREES, /) -> NumType:
+        """Return cumulative rotational angle."""
+
     @robotmesh_doc("""
         Set the motor mode to "reverse".
 
