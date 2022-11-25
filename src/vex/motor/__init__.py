@@ -133,59 +133,20 @@ class Motor(Device):
               velocity: float = 50, velocity_unit: VelocityUnits = PERCENT):
         """Spin."""
 
-    @vexcode_doc("""
-        Spin For
-
-        This command spins an IQ Motor or Motor Group
-        for a given amount of degrees or turns.
-
-        Choose which DIRECTION the Motor or Motor Group will spin to:
-        FORWARD or REVERSE.
-
-        Choose the UNIT of measurement to be either DEGREES or TURNS.
-
-        Choose whether or not this command should be waited on
-        by proceeding commands by setting an optional fourth parameter
-        to either wait=True or wait=False.
-
-        By default, this command is a blocking command
-        unless wait=False is passed as the fourth parameter.
-    """)
     @overload
     def spin_for(self, direction: DirectionType = FORWARD,
-                 amount: float = 90, unit: RotationUnits = DEGREES,
-                 wait: bool = True, /):
-        """Spin for specified rotation angle value."""
+                 angle: NumType = 90, /, units: RotationUnits = DEGREES,
+                 wait: bool = True):
+        ...
 
-    @robotmesh_doc("""
-        Turn on the motor and spins it.
-
-        (to a relative target rotation value at a specified velocity)
-
-        Parameters:
-        - dir: The direction to spin the motor, DirectionType enum value.
-        - rotation: Sets the amount of rotation.
-        - rotationUnits: The measurement unit for the rotation value.
-        - velocity: Sets the amount of velocity.
-        - velocityUnits: The measurement unit for the velocity value.
-        - waitForCompletion: (Optional) If True, your program will wait
-                             until the motor reaches the target rotational
-                             value. If false, the program will continue after
-                             calling this function.
-                             By default, this parameter is true.
-
-        Returns:
-        Returns a Boolean that signifies when the motor
-        has reached the target rotation value.
-    """)
     @overload
     def spin_for(self, dir: DirectionType,  # pylint: disable=redefined-builtin
-                 rotation: float,
+                 rotation: NumType,
                  rotationUnits: RotationUnits = RotationUnits.DEG,
                  velocity: Optional[float] = None,
                  velocityUnits: VelocityUnits = VelocityUnits.PCT,
                  waitForCompletion: bool = True, /) -> bool:
-        """Spin for specified rotation angle value."""
+        ...
 
     @robotmesh_doc("""
         Turn on the motor and spins it.
@@ -227,7 +188,7 @@ class Motor(Device):
         unless wait=False is passed as the fourth parameter.
     """)
     def spin_for(self, *args):
-        """Spin for specified rotation angle value."""
+        """Spin for specified rotational angle."""
         if (n_args := len(args)) == 0:
             direction: DirectionType = FORWARD
             rotation: float = 90
@@ -284,18 +245,19 @@ class Motor(Device):
             velocity, velocity_unit = self._get_selected_velocity_and_unit(
                 None, self.selected_velocity_unit)
 
-        return self._spin_for(direction,
-                              rotation, rotation_unit,
-                              velocity, velocity_unit,
-                              wait)
+        return self._spin_for(direction=direction,
+                              rotation=rotation, rotation_unit=rotation_unit,
+                              velocity=velocity, velocity_unit=velocity_unit,
+                              wait=wait)
 
     @act
     def _spin_for(
             self, direction: DirectionType = FORWARD,
-            rotation: float = 90, rotation_unit: RotationUnits = DEGREES,
+            rotation: NumType = 90, rotation_unit: RotationUnits = DEGREES,
             velocity: Optional[float] = None, velocity_unit: VelocityUnits = PERCENT,  # noqa: E501
-            wait: bool = True, /) -> bool:
-        """Spin for specified rotation angle value."""
+            wait: bool = True):
+        # pylint: disable=too-many-arguments
+        """Spin for specified rotational angle."""
 
     @vexcode_doc("""
         Spin To Position
