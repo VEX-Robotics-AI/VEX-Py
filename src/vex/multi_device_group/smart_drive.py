@@ -114,9 +114,9 @@ class SmartDrive(DriveTrain):
         from executing until the Drivetrain turn has completed.
     """)
     @act
-    def turn_to_heading(self, heading: float = 90,
-                        unit: Literal[DEGREES] = DEGREES, wait: bool = True, /):  # noqa: E501
-        """Turn to specific heading."""
+    def turn_to_heading(self, angle: NumType = 90,
+                        units: Literal[DEGREES] = DEGREES, wait: bool = True):
+        """Turn to specified heading angle."""
 
     @vexcode_doc("""
         Turn To Rotation
@@ -151,9 +151,9 @@ class SmartDrive(DriveTrain):
         the Drivetrain turn is completed.
     """)
     @act
-    def turn_to_rotation(self, rotation: float = 90,
-                         unit: Literal[DEGREES] = DEGREES, wait: bool = True, /):  # noqa: E501
-        """Turn to specific angle of rotation."""
+    def turn_to_rotation(self, angle: NumType = 90,
+                         units: Literal[DEGREES] = DEGREES, wait: bool = True):
+        """Turn to specified cumulative rotational angle."""
 
     @vexcode_doc("""
         Drive Heading
