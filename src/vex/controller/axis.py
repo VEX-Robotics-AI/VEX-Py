@@ -50,7 +50,7 @@ class ControllerAxis:
     """)
     @sense
     def value(self) -> int:
-        """Return Controller Joystick Axis Raw Value."""
+        """Return raw position value."""
 
     @robotmesh_doc("""
         Get the position of the joystick axis on a scale from -100 to 100.
@@ -76,7 +76,7 @@ class ControllerAxis:
     """)
     @sense
     def position(self) -> int:
-        """Return controller joystick axis percent position."""
+        """Return percentage position."""
 
     @vexcode_doc("""
         Controller Axis Changed
@@ -100,5 +100,5 @@ class ControllerAxis:
     """)
     @act
     def changed(self, callback: callable, /):
-        """Trigger callback function when controller axis is changed."""
+        """Trigger callback function upon being moved."""
         callback()
