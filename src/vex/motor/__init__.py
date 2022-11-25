@@ -384,6 +384,14 @@ class Motor(Device):
     def _set_velocity(self, velocity: float = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
         """Set velocity."""
 
+    @overload
+    def set_stopping(self, mode: BrakeType, /):
+        ...
+
+    @overload
+    def set_stopping(self, brakeType: BrakeType, /):
+        ...
+
     @robotmesh_doc("""
         Set stopping mode of the motor by passing a brake mode as a parameter.
 
