@@ -2,6 +2,7 @@
 
 
 from collections.abc import Sequence
+from typing import Literal
 from typing_extensions import Self
 
 from abm.decor import act, sense
@@ -39,8 +40,8 @@ class MotorGroup:
         return hash((self.motor_a, self.motor_b))
 
     @sense
-    def current(self, unit: CurrentUnits, /) -> NumType:
-        """Return electric current."""
+    def current(self, units: Literal[CurrentUnits.AMP] = CurrentUnits.AMP) -> float:  # noqa: E501
+        """Return electrical current."""
 
     @sense
     def is_done(self) -> bool:

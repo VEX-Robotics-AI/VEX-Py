@@ -342,5 +342,5 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         when CurrentUnits.AMP is passed as the UNITS parameter.
     """)
     @sense
-    def current(self, unit: Literal[CurrentUnits.AMP] = CurrentUnits.AMP, /) -> float:  # noqa: E501
-        """Return motors' electric current."""
+    def current(self, units: Literal[CurrentUnits.AMP] = CurrentUnits.AMP) -> float:  # noqa: E501
+        """Return electrical current."""
