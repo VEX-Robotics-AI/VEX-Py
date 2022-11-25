@@ -23,9 +23,8 @@ __all__: Sequence[str] = ('Inertial',
                           'OrientationType', 'PITCH', 'ROLL', 'YAW')
 
 
-def _check_rotation_unit(rotation_unit: RotationUnits, /):
-    assert rotation_unit is DEGREES, ValueError('*** ROTATION UNIT MUST BE '
-                                                'DEGREES ***')
+def _ensure_rotation_unit_is_degrees(unit: RotationUnits, /):
+    assert unit is DEGREES, ValueError('*** ROTATION UNIT MUST BE DEGREES ***')
 
 
 class Inertial(SingletonDevice):
@@ -50,7 +49,7 @@ class Inertial(SingletonDevice):
     """)
     @act
     def calibrate(self):
-        """Calibrate to reduce amount of drift generated."""
+        """Calibrate."""
 
     @vexcode_doc("""
         Inertial Set Heading
@@ -68,11 +67,10 @@ class Inertial(SingletonDevice):
         for the HEADING parameter.
     """)
     @act
-    def set_heading(self, heading: float = 0,
-                    rotation_unit: Literal[DEGREES] = DEGREES, /):
+    def set_heading(self, value: float = 0, unit: Literal[DEGREES] = DEGREES, /):  # noqa: E501
         # pylint: disable=unused-argument
-        """Set current heading position to specified value."""
-        _check_rotation_unit(rotation_unit)
+        """Set heading to specified angle."""
+        _ensure_rotation_unit_is_degrees(unit)
 
     @vexcode_doc("""
         Inertial Set Rotation
@@ -86,11 +84,10 @@ class Inertial(SingletonDevice):
         or negative (counter-clockwise) value.
     """)
     @act
-    def set_rotation(self, rotation: float = 0,
-                     rotation_unit: Literal[DEGREES] = DEGREES, /):
+    def set_rotation(self, value: float = 0, unit: Literal[DEGREES] = DEGREES, /):  # noqa: E501
         # pylint: disable=unused-argument
-        """Set angle of rotation to specified value."""
-        _check_rotation_unit(rotation_unit)
+        """Set rotational angle to specified value."""
+        _ensure_rotation_unit_is_degrees(unit)
 
     @vexcode_doc("""
         Inertial Heading
@@ -104,9 +101,9 @@ class Inertial(SingletonDevice):
         Inertial Heading reports a range of values from 0.00 to 359.99 degrees.
     """)
     @sense
-    def heading(self, rotation_unit: Literal[DEGREES] = DEGREES, /) -> float:
+    def heading(self, unit: Literal[DEGREES] = DEGREES, /) -> float:
         """Return current heading in degrees."""
-        _check_rotation_unit(rotation_unit)
+        _ensure_rotation_unit_is_degrees(unit)
 
     @vexcode_doc("""
         Inertial Rotation
@@ -121,9 +118,9 @@ class Inertial(SingletonDevice):
         when the Inertial Sensor turns in the counter-clockwise direction.
     """)
     @sense
-    def rotation(self, rotation_unit: Literal[DEGREES] = DEGREES, /) -> float:
+    def rotation(self, unit: Literal[DEGREES] = DEGREES, /) -> float:
         """Return current angle of rotation in degrees."""
-        _check_rotation_unit(rotation_unit)
+        _ensure_rotation_unit_is_degrees(unit)
 
     @vexcode_doc("""
         Inertial Acceleration
@@ -145,8 +142,8 @@ class Inertial(SingletonDevice):
         from -4.0 to 4.0 Gs.
     """)
     @sense
-    def acceleration(self, axis_type: AxisType = AxisType.XAXIS, /) -> float:
-        """Return acceleration in one of the axes (x, y, or z)."""
+    def acceleration(self, axis: AxisType = AxisType.XAXIS, /) -> float:
+        """Return acceleration in Axis X, Y or Z."""
 
     @vexcode_doc("""
         Inertial Gyro Rate
@@ -170,14 +167,11 @@ class Inertial(SingletonDevice):
         in dps (degrees per second)
     """)
     @sense
-    def gyro_rate(
-            self, axis_type: AxisType = AxisType.XAXIS,
-            velocity_unit: Literal[VelocityUnits.DPS] = VelocityUnits.DPS, /) \
-            -> float:
+    def gyro_rate(self, axis: AxisType = AxisType.XAXIS,
+                  unit: Literal[VelocityUnits.DPS] = VelocityUnits.DPS, /) -> float:  # noqa: E501
         # pylint: disable=unused-argument
-        """Return rate of rotation for specified axis (x, y, or z)."""
-        assert velocity_unit is VelocityUnits.DPS, \
-            ValueError('*** VELOCITY UNIT MUST BE DPS ***')
+        """Return rate of rotation for Axis X, Y or Z."""
+        assert unit is VelocityUnits.DPS, ValueError('*** UNIT MUST BE DPS ***')  # noqa: E501
 
     @vexcode_doc("""
         Inertial Orientation
@@ -197,9 +191,8 @@ class Inertial(SingletonDevice):
             represents yaw, which reports a value between -180 to +180 degrees
     """)
     @sense
-    def orientation(self,
-                    orientation_type: OrientationType = OrientationType.ROLL,
-                    rotation_unit: Literal[DEGREES] = DEGREES, /) -> int:
+    def orientation(self, axis: OrientationType = OrientationType.ROLL,
+                    unit: Literal[DEGREES] = DEGREES, /) -> float:
         # pylint: disable=unused-argument
         """Return orientation angle."""
-        _check_rotation_unit(rotation_unit)
+        _ensure_rotation_unit_is_degrees(unit)
