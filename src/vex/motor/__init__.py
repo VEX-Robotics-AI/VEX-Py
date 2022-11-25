@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Literal, Optional, Tuple, overload
+from typing import Literal, Optional, overload
 from typing_extensions import Self
 
 from abm.decor import act, sense
@@ -10,7 +10,7 @@ from abm.decor import act, sense
 from .._abstract_device import Device
 from ..brain.port import Ports
 from ..time import TimeUnits, SECONDS
-from .._common_enums.numeric import PERCENT
+from .._common_enums.numeric import NumType, PERCENT
 from .._common_enums.rotation import RotationUnits, DEGREES
 
 from .._util.doc import robotmesh_doc, vexcode_doc
@@ -53,9 +53,9 @@ class Motor(Device):
 
         self.rotations: dict[RotationUnits, float] = dict[RotationUnits, float]()  # noqa: E501
         self.stopping_mode: Optional[BrakeType] = None
-        self.timeouts: dict[TimeUnits, float] = dict[TimeUnits, float]()
-        self.max_torque: dict[TorqueUnits, float] = dict[TorqueUnits, float]()
-        self.velocities: dict[VelocityUnits, float] = {PERCENT: 50}
+        self.timeouts: dict[TimeUnits, NumType] = dict[TimeUnits, NumType]()
+        self.max_torque: dict[TorqueUnits, NumType] = dict[TorqueUnits, NumType]()  # noqa: E501
+        self.velocities: dict[VelocityUnits, NumType] = {PERCENT: 50}
         self.selected_velocity_unit: VelocityUnits = PERCENT
 
     def __eq__(self, other: Self) -> bool:
@@ -77,7 +77,7 @@ class Motor(Device):
     def _get_selected_velocity_and_unit(
             self,
             velocity: Optional[float],
-            unit: VelocityUnits) -> Tuple[float, VelocityUnits]:
+            unit: VelocityUnits) -> tuple[float, VelocityUnits]:
         if (velocity is None) or (not isinstance(velocity, float | int)):
             if self.selected_velocity_unit not in self.velocities:
                 raise ValueError('You have not selected any velocity; '
