@@ -296,7 +296,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
     """)
     @sense
     def is_moving(self) -> bool:
-        """Report if the Drivetrain is currently moving."""
+        """Report if drivetrain is still moving."""
 
     @vexcode_doc("""
         Drive Is Done
@@ -311,7 +311,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
     """)
     @sense
     def is_done(self) -> bool:
-        """Check whether Drivetrain has finished driving/turning."""
+        """Check whether drivetrain has finished driving/turning."""
 
     @vexcode_doc("""
         Drive Velocity
