@@ -170,8 +170,8 @@ class SmartDrive(DriveTrain):
         reports an increase in heading when rotating clockwise.
     """)
     @sense
-    def heading(self, unit: Literal[DEGREES] = DEGREES, /) -> float:
-        """Report the direction that the Drivetrain is facing."""
+    def heading(self, units: Literal[DEGREES] = DEGREES) -> float:
+        """Return heading angle."""
 
     @vexcode_doc("""
         Drive Rotation
