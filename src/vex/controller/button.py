@@ -67,7 +67,7 @@ class ControllerButton:
     """)
     @sense
     def pressing(self) -> bool:
-        """Return Controller Button's pressed status."""
+        """Return pressed status."""
 
     @vexcode_doc("""
         Controller Button Pressed
@@ -92,7 +92,7 @@ class ControllerButton:
     """)
     @act
     def pressed(self, callback: callable, /):
-        """Trigger callback function when controller button is pressed."""
+        """Trigger callback function when upon being pressed."""
         callback()
 
     @vexcode_doc("""
@@ -118,5 +118,5 @@ class ControllerButton:
     """)
     @act
     def released(self, callback: callable, /):
-        """Trigger callback function when controller button is released."""
+        """Trigger callback function upon being released."""
         callback()
