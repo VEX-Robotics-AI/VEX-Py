@@ -328,8 +328,8 @@ class Motor(Device):
         The Set Motor Position command accepts DEGREES or TURNS as valid UNITS.
     """)
     @act
-    def set_position(self, value: float = 0, unit: RotationUnits = DEGREES, /):  # noqa: E501
-        """Set rotation position to specified value."""
+    def set_position(self, position: NumType = 0, unit: RotationUnits = DEGREES, /):  # noqa: E501
+        """Set cumulative rotational angle to specified position."""
 
     @robotmesh_doc("""
         Set velocity of the motor based on the parameters set in the command.
