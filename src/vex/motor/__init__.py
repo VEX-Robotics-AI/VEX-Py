@@ -126,12 +126,14 @@ class Motor(Device):
         """Spin in specified direction (at specified velocity)."""
         velocity, velocity_unit = self._get_selected_velocity_and_unit(
             velocity, velocity_unit)
-        return self._spin(dir, velocity, velocity_unit)
+
+        return self._spin(direction=direction,
+                          velocity=velocity, velocity_unit=velocity_unit)
 
     @act
     def _spin(self, direction: DirectionType = FORWARD,
               velocity: float = 50, velocity_unit: VelocityUnits = PERCENT):
-        """Spin."""
+        """Spin in specified direction (at specified velocity)."""
 
     @overload
     def spin_for(self, direction: DirectionType = FORWARD,
