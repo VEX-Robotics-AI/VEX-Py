@@ -65,7 +65,7 @@ class ColorSensor(Device):
         light source will shine.
     """)
     @act
-    def set_light(self, brightness: int = 50, unit: Literal[PERCENT] = PERCENT):  # noqa: E501
+    def set_light(self, brightness: int = 50, unit: Literal[PERCENT] = PERCENT, /):  # noqa: E501
         """Set light's brightness percentage level."""
 
     @vexcode_doc("""
@@ -105,7 +105,7 @@ class ColorSensor(Device):
     """)
     @sense
     def color(self) -> Color:
-        """Return the color currently being detected."""
+        """Return detected color."""
 
     @vexcode_doc("""
         Color Brightness
@@ -119,7 +119,7 @@ class ColorSensor(Device):
     """)
     @sense
     def brightness(self) -> int:
-        """Return the amount of light detected by the Color Sensor."""
+        """Return detected brightness percentage level."""
 
     @vexcode_doc("""
         Color Hue
@@ -132,7 +132,7 @@ class ColorSensor(Device):
     """)
     @sense
     def hue(self) -> int:
-        """Return the hue of the color detected by a VEX IQ Color Sensor."""
+        """Return detected color hue."""
 
     @robotmesh_doc("""
         Get the name of the detected color.
@@ -143,7 +143,7 @@ class ColorSensor(Device):
     """)
     @sense
     def colorname3(self) -> int:
-        """Return one of RED, GREEN and BLUE."""
+        """Return RED, GREEN or BLUE."""
 
     @robotmesh_doc("""
         Get the name of the detected color.
@@ -178,7 +178,7 @@ class ColorSensor(Device):
     """)
     @sense
     def near(self) -> bool:
-        """Check if there is a nearly object."""
+        """Check if detecting nearby object."""
 
     @robotmesh_doc("""
         Set the `near` threshold setting.
