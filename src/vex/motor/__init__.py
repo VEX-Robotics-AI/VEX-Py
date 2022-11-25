@@ -331,6 +331,15 @@ class Motor(Device):
     def set_position(self, position: NumType = 0, unit: RotationUnits = DEGREES, /):  # noqa: E501
         """Set cumulative rotational angle to specified position."""
 
+    @overload
+    def set_velocity(self, value: NumType = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
+        ...
+
+    @overload
+    def set_velocity(self, velocity: NumType,
+                     velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+        ...
+
     @robotmesh_doc("""
         Set velocity of the motor based on the parameters set in the command.
 
@@ -357,14 +366,14 @@ class Motor(Device):
 
         Setting velocity to 0 will prevent the Motor/Motor Group from spinning.
     """)
-    def set_velocity(self, velocity: float = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
+    def set_velocity(self, value: NumType = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
         """Set velocity."""
-        self.velocities[unit] = velocity
+        self.velocities[unit] = value
         self.selected_velocity_unit = unit
-        return self._set_velocity(velocity, unit)
+        return self._set_velocity(value=value, unit=unit)
 
     @act
-    def _set_velocity(self, velocity: float = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
+    def _set_velocity(self, value: NumType = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
         """Set velocity."""
 
     @overload
