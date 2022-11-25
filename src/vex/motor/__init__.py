@@ -414,7 +414,8 @@ class Motor(Device):
         self.stopping_mode: BrakeType = mode
 
     @overload
-    def set_max_torque(self, value: NumType = 50, unit: TorqueUnits = PERCENT, /):  # noqa: E501
+    def set_max_torque(self, value: NumType = 50,
+                       unit: Literal[PERCENT] = PERCENT, /):
         ...
 
     @overload
@@ -443,6 +444,14 @@ class Motor(Device):
         """Set max torque."""
         self.max_torque[unit] = value
 
+    @overload
+    def set_timeout(self, value: NumType = 1, /, units: Literal[SECONDS] = SECONDS):  # noqa: E501
+        ...
+
+    @overload
+    def set_timeout(self, time: NumType, timeUnits: TimeUnits = TimeUnits.SEC, /):  # noqa: E501
+        ...
+
     @robotmesh_doc("""
         Set the timeout for the motor.
 
@@ -466,9 +475,9 @@ class Motor(Device):
         reaches its mechanical limit and cannot complete its movement.
     """)
     @act
-    def set_timeout(self, time: float, unit: Literal[SECONDS] = SECONDS, /):
-        """Set Motor Timeout Threshold."""
-        self.timeouts[unit] = time
+    def set_timeout(self, value: NumType = 1, unit: Literal[SECONDS] = SECONDS, /):  # noqa: E501
+        """Set timeout threshold."""
+        self.timeouts[unit] = value
 
     @robotmesh_doc("""
         Set the motor mode to "reverse".
