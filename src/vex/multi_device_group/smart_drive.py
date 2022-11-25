@@ -188,5 +188,5 @@ class SmartDrive(DriveTrain):
         clockwise direction.
     """)
     @sense
-    def rotation(self, unit: Literal[DEGREES] = DEGREES, /) -> float:
-        """Report the Drivetrain's angle of rotation."""
+    def rotation(self, units: Literal[DEGREES] = DEGREES) -> float:
+        """Return cumulative rotational angle."""
