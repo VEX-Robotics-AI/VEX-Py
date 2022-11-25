@@ -502,6 +502,32 @@ class Motor(Device):
         """Check whether motor has finished spinning."""
 
     @robotmesh_doc("""
+        Determine if a spin_for/spin_to command is in progress.
+
+        Returns:
+        True if the motor is on and is rotating to a target,
+        False if the motor is done rotating to a target.
+    """)
+    @vexcode_doc("""
+        Motor Is Spinning
+
+        Reports if an IQ Motor or Motor Group is currently spinning.
+
+        Motor Is Spinning reports True when the selected Motor or Motor Group
+        is still moving.
+
+        Motor Is Spinning reports False when the selected Motor or Motor Group
+        is stopped.
+
+        Note: This command will always return false if the Motor/Motor Group
+        is spinning as a result of a previous motor.spin command
+        (which does not specify a set distance to spin).
+    """)
+    @sense
+    def is_spinning(self) -> bool:
+        """Check whether motor is still spinning."""
+
+    @robotmesh_doc("""
         Set the motor mode to "reverse".
 
         (which will make motor commands
@@ -641,17 +667,6 @@ class Motor(Device):
                        velocity: Optional[float] = None,
                        velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Start spinning motor for a certain rotation angle value."""
-
-    @robotmesh_doc("""
-        Determine if a spin_for/spin_to command is in progress.
-
-        Returns:
-        True if the motor is on and is rotating to a target,
-        False if the motor is done rotating to a target.
-    """)
-    @sense
-    def is_spinning(self) -> bool:
-        """Check if motor is still spinning."""
 
     @robotmesh_doc("""
         Set the max torque of the motor as a percentage.
