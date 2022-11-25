@@ -89,6 +89,17 @@ class Motor(Device):
 
         return (velocity, unit)
 
+    @overload
+    def spin(self, direction: DirectionType = FORWARD):
+        ...
+
+    @overload
+    def spin(self,
+             dir: DirectionType,  # pylint: disable=redefined-builtin
+             velocity: Optional[float] = None,
+             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+        ...
+
     @robotmesh_doc("""
         Turn on the motor and spins it.
 
@@ -108,18 +119,18 @@ class Motor(Device):
         Choose which DIRECTION the Motor or Motor Group will spin to with
         either FORWARD or REVERSE as the parameter.
     """)
-    def spin(self,
-             dir: DirectionType = FORWARD,  # pylint: disable=redefined-builtin
+    def spin(self, direction: DirectionType = FORWARD,
              velocity: Optional[float] = None,
-             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Spin."""
-        velocity, velocityUnits = self._get_selected_velocity_and_unit(   # noqa: E501,N806
-            velocity, velocityUnits)
-        return self._spin(dir, velocity, velocityUnits)
+             velocity_unit: VelocityUnits = PERCENT):
+        # pylint: disable=unused-argument
+        """Spin in specified direction (at specified velocity)."""
+        velocity, velocity_unit = self._get_selected_velocity_and_unit(
+            velocity, velocity_unit)
+        return self._spin(dir, velocity, velocity_unit)
 
     @act
     def _spin(self, direction: DirectionType = FORWARD,
-              velocity: Optional[float] = None, unit: VelocityUnits = PERCENT, /):  # noqa: E501
+              velocity: float = 50, velocity_unit: VelocityUnits = PERCENT):
         """Spin."""
 
     @vexcode_doc("""
@@ -385,7 +396,7 @@ class Motor(Device):
         """Set velocity."""
 
     @overload
-    def set_stopping(self, mode: BrakeType, /):
+    def set_stopping(self, value: BrakeType, /):
         ...
 
     @overload
