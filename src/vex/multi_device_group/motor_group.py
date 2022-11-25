@@ -8,7 +8,7 @@ from typing_extensions import Self
 from abm.decor import act, sense
 
 from ..motor import Motor
-from ..motor.brake_type import BrakeType
+from ..motor.brake_type import BrakeType, BRAKE
 from ..motor.current_units import CurrentUnits
 from ..motor.direction_type import DirectionType
 from ..motor.torque_units import TorqueUnits
@@ -64,7 +64,7 @@ class MotorGroup:
         """Set rotational position to specified angle."""
 
     @act
-    def set_stopping(self, mode: BrakeType, /):
+    def set_stopping(self, mode: BrakeType = BRAKE):
         """Set motor braking/stopping mode."""
 
     @act

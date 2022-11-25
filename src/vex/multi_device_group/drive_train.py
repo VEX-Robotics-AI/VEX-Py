@@ -263,8 +263,9 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         for the entirety of the project, unless otherwise changed.
     """)
     @act
-    def set_stopping(self, mode: BrakeType = BRAKE, /):
-        """Set motor stopping mode."""
+    def set_stopping(self, mode: BrakeType = BRAKE):
+        # pylint: disable=arguments-differ
+        """Set stopping mode."""
         self.stopping_mode: BrakeType = mode
 
     @vexcode_doc("""
