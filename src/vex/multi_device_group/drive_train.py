@@ -243,9 +243,10 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         will prevent the Drivetrain from turning.
     """)
     @act
-    def set_turn_velocity(self, velocity: int = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
+    def set_turn_velocity(self, velocity: NumType = 50,
+                          units: VelocityUnits = PERCENT):
         """Set turning velocity."""
-        self.turn_velocities[unit] = velocity
+        self.turn_velocities[units] = velocity
 
     @vexcode_doc("""
         Set Motor Stopping
