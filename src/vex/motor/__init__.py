@@ -289,6 +289,14 @@ class Motor(Device):
                          wait: bool = True):
         """Spin motor to specified rotational angle."""
 
+    @overload
+    def stop(self):
+        ...
+
+    @overload
+    def stop(self, brakeType: Optional[BrakeType] = None, /):
+        ...
+
     @robotmesh_doc("""
         Stop the motor using the default brake mode.
 
@@ -302,7 +310,7 @@ class Motor(Device):
         Stops an IQ Motor or Motor Group.
     """)
     @act
-    def stop(self, brakeType: Optional[BrakeType] = None, /):
+    def stop(self, mode: Optional[BrakeType] = None, /):
         """Stop."""
 
     @vexcode_doc("""
