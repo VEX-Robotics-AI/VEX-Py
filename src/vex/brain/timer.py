@@ -28,7 +28,7 @@ class BrainTimer(SingletonDevice):
     """)
     @act
     def clear(self):
-        """Reset Timer."""
+        """Reset."""
 
     @vexcode_doc("""
         Timer Value
@@ -43,7 +43,7 @@ class BrainTimer(SingletonDevice):
     """)
     @sense
     def time(self, unit: TimeUnits) -> float:
-        """Report the value of the IQ Brain's timer."""
+        """Return elapsed time."""
 
     @vexcode_doc("""
         Timer Event
@@ -68,4 +68,4 @@ class BrainTimer(SingletonDevice):
     """)
     @act
     def event(self, callback: callable, msecs: int, /):
-        """Trigger callback function after a number of miliseconds."""
+        """Trigger callback function after specified number of miliseconds."""
