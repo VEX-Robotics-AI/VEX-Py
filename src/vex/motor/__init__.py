@@ -560,9 +560,44 @@ class Motor(Device):
         a float that represents the current velocity
         of the motor in the units defined in the parameter.
     """)
+    @vexcode_doc("""
+        Motor Velocity
+
+        Reports the current velocity of an IQ Motor
+        or the first motor of a Motor Group.
+
+        Motor velocity reports a range from -100 to 100 when PERCENT is passed
+        as the UNITS parameter, or -127 to 127 if RPM is passed.
+    """)
     @sense
     def velocity(self, unit: VelocityUnits = PERCENT, /) -> NumType:
         """Return velocity."""
+
+    @overload
+    def current(self, unit: Literal[CurrentUnits.AMP] = CurrentUnits.AMP, /) -> float:  # noqa: E501
+        ...
+
+    @overload
+    def current(self) -> float:
+        ...
+
+    @robotmesh_doc("""
+        Get the electrical current of the motor.
+
+        Returns:
+        a float that represents the electrical current of the motor in Amps.
+    """)
+    @vexcode_doc("""
+        Motor Current
+
+        Reports the amount of current an IQ Motor or Motor Group is using.
+
+        Motor Current reports a range from 0.0 to 2.5
+        when CurrentUnits.AMP is passed as the UNITS parameter.
+    """)
+    @sense
+    def current(self, unit: Literal[CurrentUnits.AMP] = CurrentUnits.AMP, /) -> float:  # noqa: E501
+        """Return electrical current."""
 
     @robotmesh_doc("""
         Set the motor mode to "reverse".
@@ -741,13 +776,3 @@ class Motor(Device):
     @sense
     def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:  # noqa: E501
         """Return motor's cumulative rotation angle value."""
-
-    @robotmesh_doc("""
-        Get the electrical current of the motor.
-
-        Returns:
-        a float that represents the electrical current of the motor in Amps.
-    """)
-    @sense
-    def current(self) -> float:
-        """Return motor's electrical current."""
