@@ -542,6 +542,28 @@ class Motor(Device):
     def position(self, unit: RotationUnits = DEGREES, /) -> NumType:
         """Return cumulative rotational angle."""
 
+    @overload
+    def velocity(self, unit: VelocityUnits = PERCENT, /) -> NumType:
+        ...
+
+    @overload
+    def velocity(self, velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:  # noqa: E501
+        ...
+
+    @robotmesh_doc("""
+        Get the current velocity of the motor.
+
+        Parameters:
+        - velocityUnits: The measurement unit for the velocity.
+
+        Returns:
+        a float that represents the current velocity
+        of the motor in the units defined in the parameter.
+    """)
+    @sense
+    def velocity(self, unit: VelocityUnits = PERCENT, /) -> NumType:
+        """Return velocity."""
+
     @robotmesh_doc("""
         Set the motor mode to "reverse".
 
@@ -719,20 +741,6 @@ class Motor(Device):
     @sense
     def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:  # noqa: E501
         """Return motor's cumulative rotation angle value."""
-
-    @robotmesh_doc("""
-        Get the current velocity of the motor.
-
-        Parameters:
-        - velocityUnits: The measurement unit for the velocity.
-
-        Returns:
-        a float that represents the current velocity
-        of the motor in the units defined in the parameter.
-    """)
-    @sense
-    def velocity(self, velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:  # noqa: E501
-        """Return motor's velocity."""
 
     @robotmesh_doc("""
         Get the electrical current of the motor.
