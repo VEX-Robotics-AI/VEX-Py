@@ -330,7 +330,8 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
           the reported values range between -127 to 127.
     """)
     @sense
-    def velocity(self, velocityUnits: VelocityUnits = PERCENT, /) -> float:
+    def velocity(self, units: VelocityUnits = PERCENT) -> float:
+        # pylint: disable=arguments-differ
         """Return velocity."""
 
     @vexcode_doc("""
@@ -343,4 +344,5 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
     """)
     @sense
     def current(self, units: Literal[CurrentUnits.AMP] = CurrentUnits.AMP) -> float:  # noqa: E501
+        # pylint: disable=arguments-differ
         """Return electrical current."""

@@ -12,7 +12,7 @@ from ..motor.brake_type import BrakeType
 from ..motor.current_units import CurrentUnits
 from ..motor.direction_type import DirectionType
 from ..motor.torque_units import TorqueUnits
-from ..motor.velocity_units import VelocityUnits
+from ..motor.velocity_units import VelocityUnits, PERCENT
 from ..time.time_units import TimeUnits
 from .._common_enums.numeric import NumType
 from .._common_enums.rotation import RotationUnits
@@ -94,5 +94,5 @@ class MotorGroup:
         """Stop motors."""
 
     @sense
-    def velocity(self, unit: VelocityUnits, /) -> NumType:
+    def velocity(self, units: VelocityUnits = PERCENT) -> float:
         """Return velocity."""
