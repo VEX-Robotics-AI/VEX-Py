@@ -377,7 +377,7 @@ class Motor(Device):
         """Set velocity."""
 
     @overload
-    def set_stopping(self, value: BrakeType, /):
+    def set_stopping(self, value: BrakeType = BRAKE, /):
         ...
 
     @overload
@@ -409,7 +409,7 @@ class Motor(Device):
         unless otherwise changed.
     """)
     @act
-    def set_stopping(self, mode: BrakeType, /):
+    def set_stopping(self, mode: BrakeType = BRAKE, /):
         """Set stopping mode."""
         self.stopping_mode: BrakeType = mode
 
