@@ -413,6 +413,15 @@ class Motor(Device):
         """Set stopping mode."""
         self.stopping_mode: BrakeType = mode
 
+    @overload
+    def set_max_torque(self, value: NumType = 50, unit: TorqueUnits = PERCENT, /):  # noqa: E501
+        ...
+
+    @overload
+    def set_max_torque(self, value: NumType,
+                       torqueUnits: TorqueUnits = TorqueUnits.NM, /):
+        ...
+
     @robotmesh_doc("""
         Set the max torque of the motor.
 
@@ -430,10 +439,9 @@ class Motor(Device):
         The Set Max Torque command accepts decimals, integers or numerics.
     """)
     @act
-    def set_max_torque(self, amount_value: float = 50,
-                       unit: TorqueUnits = PERCENT, /):  # noqa: E501
+    def set_max_torque(self, value: NumType = 50, unit: TorqueUnits = PERCENT, /):  # noqa: E501
         """Set max torque."""
-        self.max_torque[unit] = amount_value
+        self.max_torque[unit] = value
 
     @robotmesh_doc("""
         Set the timeout for the motor.
