@@ -480,6 +480,28 @@ class Motor(Device):
         self.timeouts[unit] = value
 
     @robotmesh_doc("""
+        Determine if spin_for/spin_to command has reached its target position.
+
+        Returns:
+        False if the motor is on and is rotating
+        to a target, True if the motor is done rotating to a target.
+    """)
+    @vexcode_doc("""
+        Motor Is Done
+
+        Reports if an IQ Motor or Motor Group has completed its movement.
+
+        Motor Is Done reports True when the selected Motor or Motor Group
+        has completed its movement.
+
+        Motor Is Done reports False when the selected Motor or Motor Group
+        is still moving.
+    """)
+    @sense
+    def is_done(self) -> bool:
+        """Check whether motor has finished spinning."""
+
+    @robotmesh_doc("""
         Set the motor mode to "reverse".
 
         (which will make motor commands
@@ -630,17 +652,6 @@ class Motor(Device):
     @sense
     def is_spinning(self) -> bool:
         """Check if motor is still spinning."""
-
-    @robotmesh_doc("""
-        Determine if spin_for/spin_to command has reached its target position.
-
-        Returns:
-        False if the motor is on and is rotating
-        to a target, True if the motor is done rotating to a target.
-    """)
-    @sense
-    def is_done(self) -> bool:
-        """Check if motor has finished spinning."""
 
     @robotmesh_doc("""
         Set the max torque of the motor as a percentage.
