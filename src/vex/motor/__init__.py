@@ -285,9 +285,9 @@ class Motor(Device):
     """)
     @act
     def spin_to_position(self,
-                         position: float = 90, unit: RotationUnits = DEGREES,
-                         wait: bool = True, /):
-        """Spin motor to specified position."""
+                         angle: NumType = 90, /, units: RotationUnits = DEGREES,  # noqa: E501
+                         wait: bool = True):
+        """Spin motor to specified rotational angle."""
 
     @robotmesh_doc("""
         Stop the motor using the default brake mode.
