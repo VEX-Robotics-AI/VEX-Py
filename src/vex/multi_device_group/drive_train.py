@@ -15,6 +15,7 @@ from ..motor.turn_type import TurnType, RIGHT
 from ..motor.velocity_units import VelocityUnits, PERCENT
 from ..time.time_units import SECONDS
 from .._common_enums.distance import DistanceUnits, MM
+from .._common_enums.numeric import NumType
 from .._common_enums.rotation import DEGREES
 
 from .._util.doc import vexcode_doc
@@ -278,8 +279,9 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         Specify the amount of time in SECONDS.
     """)
     @act
-    def set_timeout(self, time: float = 1, unit: Literal[SECONDS] = SECONDS, /):  # noqa: E501
-        """Set Motor Timeout."""
+    def set_timeout(self, time: NumType = 1, /, units: Literal[SECONDS] = SECONDS):  # noqa: E501
+        # pylint: disable=unused-argument
+        """Set timeout."""
         self.timeout: float = time
 
     @vexcode_doc("""
