@@ -3,7 +3,7 @@
 
 from collections.abc import Sequence
 
-from abm.decor import act, sense
+from abm.decor import sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
@@ -21,7 +21,7 @@ class Bumper(Device):
     """Bumper Switch Sensor."""
 
     @robotmesh_doc("""
-        Create a new bumper object on the port specified in the parameter.
+        Creates a new bumper object on the port specified in the parameter.
 
         param:
         index: The port index for this bumper. The index is zero-based.
@@ -69,7 +69,6 @@ class Bumper(Device):
         as an argument. The code inside the callback function will run
         whenever the event occurs.
     """)
-    @act
     def pressed(self, callback: callable, /):
         """Trigger callback function upon being pressed."""
         callback()
@@ -90,7 +89,6 @@ class Bumper(Device):
         as an argument. The code inside the callback function will run
         whenever the event occurs.
     """)
-    @act
     def released(self, callback: callable, /):
         """Trigger callback function upon being released."""
         callback()
