@@ -10,7 +10,7 @@ from abm.decor import act, sense
 from ..motor import Motor
 from ..motor.brake_type import BrakeType, BRAKE
 from ..motor.current_units import CurrentUnits
-from ..motor.direction_type import DirectionType
+from ..motor.direction_type import DirectionType, FORWARD
 from ..motor.torque_units import TorqueUnits
 from ..motor.velocity_units import VelocityUnits
 from ..time.time_units import TimeUnits, SECONDS
@@ -76,7 +76,7 @@ class MotorGroup:
         """Set velocity."""
 
     @act
-    def spin(self, direction: DirectionType, /):
+    def spin(self, direction: DirectionType = FORWARD):
         """Spin motors in specified direction."""
 
     @act
