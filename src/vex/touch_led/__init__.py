@@ -102,68 +102,6 @@ class Touchled(Device):
         """Set brightness percentage level."""
 
     @robotmesh_doc("""
-        Get the pressed status of the touchled device.
-
-        Returns:
-        True if pressed, False otherwise
-    """)
-    @vexcode_doc("""
-        TouchLED Pressing
-
-        Reports if a VEX IQ TouchLED is currently being pressed.
-
-        Reports True if the selected TouchLED is being pressed.
-        Reports False if the selected TouchLED is not being pressed.
-    """)
-    @sense
-    def pressing(self) -> bool:
-        """Return pressed status."""
-
-    @vexcode_doc("""
-        TouchLED Pressed
-
-        Runs the specified callback function when an IQ TouchLED is pressed.
-
-        You will need to create a function to call
-        when the TouchLED is pressed.
-        Provide the name of the function that should run when the event occurs
-        as the callback parameter.
-
-        Then, the function is passed
-        as the parameter of the TouchLED Pressed function call.
-
-        A callback function is a function passed into another function
-        as an argument. The code inside the callback function will run
-        whenever the event occurs.
-    """)
-    @act
-    def pressed(self, callback: callable, /):
-        """Trigger callback function upon being pressed."""
-        callback()
-
-    @vexcode_doc("""
-        TouchLED Released
-
-        Runs the specified callback function when an IQ TouchLED is released.
-
-        You will need to create a function to call
-        when the TouchLED is released.
-        Provide the name of the function that should run
-        when the event occurs as the callback parameter.
-
-        Then, the function is passed as the parameter of the TouchLED Released
-        function call.
-
-        A callback function is a function passed into another function
-        as an argument. The code inside the callback function will run
-        whenever the event occurs.
-    """)
-    @act
-    def released(self, callback: callable, /):
-        """Trigger callback function upon being released."""
-        callback()
-
-    @robotmesh_doc("""
         Turn on the led in the touchled sensor.
 
         Parameters:
@@ -254,3 +192,62 @@ class Touchled(Device):
     def blink_rgb(self, red: int, green: int, blue: int,
                   on_time: float = 0.25, off_time: float = 0.25, /):
         """Blink RGB color."""
+
+    @robotmesh_doc("""
+        Get the pressed status of the touchled device.
+
+        Returns True if pressed, False otherwise.
+    """)
+    @vexcode_doc("""
+        TouchLED Pressing
+
+        Reports if a VEX IQ TouchLED is currently being pressed.
+
+        Reports True if the selected TouchLED is being pressed.
+        Reports False if the selected TouchLED is not being pressed.
+    """)
+    @sense
+    def pressing(self) -> bool:
+        """Return pressed status."""
+
+    @vexcode_doc("""
+        TouchLED Pressed
+
+        Runs the specified callback function when an IQ TouchLED is pressed.
+
+        You will need to create a function to call
+        when the TouchLED is pressed.
+        Provide the name of the function that should run when the event occurs
+        as the callback parameter.
+
+        Then, the function is passed
+        as the parameter of the TouchLED Pressed function call.
+
+        A callback function is a function passed into another function
+        as an argument. The code inside the callback function will run
+        whenever the event occurs.
+    """)
+    def pressed(self, callback: callable, /):
+        """Trigger callback function upon being pressed."""
+        callback()
+
+    @vexcode_doc("""
+        TouchLED Released
+
+        Runs the specified callback function when an IQ TouchLED is released.
+
+        You will need to create a function to call
+        when the TouchLED is released.
+        Provide the name of the function that should run
+        when the event occurs as the callback parameter.
+
+        Then, the function is passed as the parameter of the TouchLED Released
+        function call.
+
+        A callback function is a function passed into another function
+        as an argument. The code inside the callback function will run
+        whenever the event occurs.
+    """)
+    def released(self, callback: callable, /):
+        """Trigger callback function upon being released."""
+        callback()
