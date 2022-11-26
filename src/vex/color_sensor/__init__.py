@@ -137,7 +137,7 @@ class ColorSensor(Device):
         """Return detected color."""
 
     @robotmesh_doc("""
-        Get the name of the detected color.
+        Gets the name of the detected color.
 
         Returns:
         enum value for the closest color detected
@@ -148,7 +148,7 @@ class ColorSensor(Device):
         """Return RED, GREEN or BLUE."""
 
     @robotmesh_doc("""
-        Get the name of the detected color.
+        Ges the name of the detected color.
 
         Returns:
         enum value of the closest color detected out of 12
@@ -186,7 +186,7 @@ class ColorSensor(Device):
         """Return detected color hue."""
 
     @robotmesh_doc("""
-        Get the grayscale value detected by the color sensor.
+        Gets the grayscale value detected by the color sensor.
 
         Parameters:
         - raw: if True, raw value will be returned, otherwise a percentage
