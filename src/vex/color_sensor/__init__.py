@@ -78,6 +78,16 @@ class ColorSensor(Device):
     def set_light(self, brightness: int, unit: Literal[PERCENT] = PERCENT, /):
         """Turn on light at specified brightness percentage level."""
 
+    @robotmesh_doc("""
+        Turns the led on the color sensor on or off.
+
+        Parameters
+        - state: if True, LED will be turned on
+    """)
+    @act
+    def led(self, state: bool, /):
+        """Set LED state."""
+
     @vexcode_doc("""
         Color Is Near Object
 
@@ -189,16 +199,6 @@ class ColorSensor(Device):
     @sense
     def near(self) -> bool:
         """Check if detecting nearby object."""
-
-    @robotmesh_doc("""
-        Turn the led on the color sensor on or off.
-
-        Parameters:
-        - state: if True, LED will be turned on
-    """)
-    @act
-    def led(self, state: bool, /):
-        """Set LED state."""
 
 
 # alias
