@@ -10,12 +10,12 @@ from abm.decor import act, sense
 from ..motor import Motor
 from ..motor.brake_type import BrakeType, BRAKE
 from ..motor.current_units import CurrentUnits
-from ..motor.direction_type import DirectionType
+from ..motor.direction_type import DirectionType, FORWARD
 from ..motor.torque_units import TorqueUnits
-from ..motor.velocity_units import VelocityUnits, PERCENT
-from ..time.time_units import TimeUnits
-from .._common_enums.numeric import NumType
-from .._common_enums.rotation import RotationUnits
+from ..motor.velocity_units import VelocityUnits
+from ..time.time_units import TimeUnits, SECONDS
+from .._common_enums.numeric import NumType, PERCENT
+from .._common_enums.rotation import RotationUnits, DEGREES
 
 
 __all__: Sequence[str] = ('MotorGroup',)
@@ -52,41 +52,43 @@ class MotorGroup:
         """Check whether one or both of the motors is/are still spinning."""
 
     @sense
-    def position(self, unit: RotationUnits, /) -> float:
-        """Return rotational position."""
+    def position(self, units: RotationUnits = DEGREES) -> float:
+        """Return cumulative rotational angle."""
 
     @act
-    def set_max_torque(self, value: NumType, unit: TorqueUnits, /):
+    def set_max_torque(self, value: NumType = 50, units: TorqueUnits = PERCENT):  # noqa: E501
         """Set max torque limit."""
 
     @act
-    def set_position(self, position: NumType, unit: RotationUnits, /):
-        """Set rotational position to specified angle."""
+    def set_position(self, value: NumType = 0, units: RotationUnits = DEGREES):
+        """Set cumulative rotational position to specified angle."""
 
     @act
     def set_stopping(self, mode: BrakeType = BRAKE):
         """Set motor braking/stopping mode."""
 
     @act
-    def set_timeout(self, value: NumType, unit: TimeUnits, /):
+    def set_timeout(self, time: NumType = 1, /, units: TimeUnits = SECONDS):
         """Set motor timeout."""
 
     @act
-    def set_velocity(self, velocity: NumType, unit: VelocityUnits, /):
+    def set_velocity(self, velocity: NumType = 50, units: VelocityUnits = PERCENT):  # noqa: E501
         """Set velocity."""
 
     @act
-    def spin(self, direction: DirectionType, /):
+    def spin(self, direction: DirectionType = FORWARD):
         """Spin motors in specified direction."""
 
     @act
-    def spin_for(self, direction: DirectionType,
-                 angle: NumType, unit: RotationUnits, wait: bool = True):
+    def spin_for(self, direction: DirectionType = FORWARD,
+                 rotation: NumType = 90, unit: RotationUnits = DEGREES,
+                 wait: bool = True):
         """Spin motors in specified direction by specified angle."""
 
     @act
     def spin_to_position(self,
-                         angle: NumType, unit: RotationUnits, wait: bool = True):  # noqa: E501
+                         angle: NumType = 90, units: RotationUnits = DEGREES,
+                         wait: bool = True):
         """Spin motors to specified rotational position."""
 
     @act
