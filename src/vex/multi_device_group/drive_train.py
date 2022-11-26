@@ -212,10 +212,10 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         from moving even if a Drive or Drive For command is used.
     """)
     @act
-    def set_drive_velocity(self, velocity: int = 50,
-                           unit: VelocityUnits = PERCENT, /):
+    def set_drive_velocity(self, velocity: NumType = 50,
+                           units: VelocityUnits = PERCENT):
         """Set driving velocity."""
-        self.drive_velocities[unit] = velocity
+        self.drive_velocities[units] = velocity
 
     @vexcode_doc("""
         Set Turn Velocity
