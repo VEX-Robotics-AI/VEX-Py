@@ -25,6 +25,17 @@ __all__: Sequence[str] = 'BrainSound', 'NoteType', 'SoundType'
 class BrainSound(SingletonDevice):
     """Brain Sound Speaker."""
 
+    @robotmesh_doc("""
+        Set the sound effect type for subsequent notes played.
+
+        Parameters
+        - effect: effect type [0..15]
+    """)
+    def set_sound_effect(self, effect: int, /):
+        """Set sound effect."""
+        # pylint: disable=attribute-defined-outside-init
+        self.sound_effect: int = effect
+
     @vexcode_doc("""
         Play Sound
 
@@ -142,18 +153,6 @@ class BrainSound(SingletonDevice):
     @act
     def play_melody(self, melody: str, /):
         """Play musical melody."""
-
-    @robotmesh_doc("""
-        Set the sound effect type for subsequent notes played.
-
-        Parameters
-        - effect: effect type [0..15]
-    """)
-    @act
-    def set_sound_effect(self, effect: int, /):
-        """Set sound effect."""
-        # pylint: disable=attribute-defined-outside-init
-        self.sound_effect: int = effect
 
     @robotmesh_doc("""
         Set the sound volume [1-4].
