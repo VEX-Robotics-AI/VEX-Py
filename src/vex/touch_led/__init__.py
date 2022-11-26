@@ -52,6 +52,17 @@ class Touchled(Device):
         """Set fade type."""
         self.fade_type: FadeType = type
 
+    @robotmesh_doc("""
+        Sets the default fade time for the touchled sensor.
+
+        Parameters
+        - fadeType: The type of fade the touchled
+                    will use: FadeType.SLOW, FAST or OFF
+    """)
+    def default_fade(self, fadeType: FadeType, /):
+        """Set default fade type."""
+        self.fade_type: FadeType = fadeType
+
     @vexcode_doc("""
         Set TouchLED Color
 
@@ -151,18 +162,6 @@ class Touchled(Device):
     def released(self, callback: callable, /):
         """Trigger callback function upon being released."""
         callback()
-
-    @robotmesh_doc("""
-        Set the default fade time for the touchled sensor.
-
-        Parameters:
-        - fadeType: The type of fade the touchled
-                    will use: FadeType.SLOW, FAST or OFF
-    """)
-    @act
-    def default_fade(self, fadeType: FadeType, /):
-        """Set default fade type."""
-        self.fade_type: FadeType = fadeType
 
     @robotmesh_doc("""
         Turn on the led in the touchled sensor.
