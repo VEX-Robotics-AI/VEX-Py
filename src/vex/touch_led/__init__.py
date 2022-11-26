@@ -108,13 +108,14 @@ class Touchled(Device):
 
         To turn the TouchLED off, set the color to Color.BLACK.
     """)
-    def set_color(self, color: Color = Color.BLACK, /):
+    @act
+    def set_color(self, color: Optional[Color] = None, /):
         """Set color."""
 
     @robotmesh_doc("""
         Turn on the led in the touchled sensor.
 
-        Parameters:
+        Parameters
         - color: color value: 0xRRGGBB
         - brightness: The brightness for the led
     """)
@@ -125,9 +126,9 @@ class Touchled(Device):
     @robotmesh_doc("""
         Turn on the led in the touchled sensor.
 
-        Parameters:
-        - colorHue: The color of the led: ColorHue enum value
-        - brightness: The brightness for the led
+        Parameters
+        - colorHue: color of the led: ColorHue enum value
+        - brightness: brightness for the led
     """)
     @act
     def on_hue(self, colorHue: Color, brightness: int = 100, /):
@@ -137,10 +138,10 @@ class Touchled(Device):
         Turn on the led in the touchled sensor.
 
         Parameters:
-        - red: The red value of the led, 0-255
-        - green: The green value of the led, 0-255
-        - blue: The blue value of the led, 0-255
-        - brightness: The brightness for the led, 0-100
+        - red: red value of the led, 0-255
+        - green: green value of the led, 0-255
+        - blue: blue value of the led, 0-255
+        - brightness: brightness for the led, 0-100
     """)
     @act
     def on_rgb(self, red: int, green: int, blue: int, brightness: int = 100, /):  # noqa: E501
@@ -158,8 +159,8 @@ class Touchled(Device):
 
         Parameters:
         - color: color value: 0xRRGGBB
-        - on_time: The time the led should remain on in seconds
-        - off_time: The time the led should remain off in seconds
+        - on_time: time the led should remain on in seconds
+        - off_time: time the led should remain off in seconds
     """)
     @act
     def blink(self, color: hex, on_time: float = 0.25, off_time: float = 0.25, /):  # noqa: E501
@@ -168,10 +169,10 @@ class Touchled(Device):
     @robotmesh_doc("""
         Set the led in the touchled sensor as blinking.
 
-        Parameters:
-        - colorHue: The color of the led: ColorHue enum value
-        - on_time: The time the led should remain on in seconds
-        - off_time: The time the led should remain off in seconds
+        Parameters
+        - colorHue: color of the led: ColorHue enum value
+        - on_time: time the led should remain on in seconds
+        - off_time:  ime the led should remain off in seconds
     """)
     @act
     def blink_hue(self, colorHue: Color,
@@ -181,7 +182,7 @@ class Touchled(Device):
     @robotmesh_doc("""
         Set the led in the touchled sensor as blinking.
 
-        Parameters:
+        Parameters
         - red: The red value of the led 0-255
         - green: The green value of the led 0-255
         - blue: The blue value of the led 0-255
