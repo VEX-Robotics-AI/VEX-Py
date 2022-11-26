@@ -64,6 +64,18 @@ class Touchled(Device):
         self.fade_type: FadeType = fadeType
 
     @vexcode_doc("""
+        Set TouchLED Brightness
+
+        Sets the brightness of an IQ TouchLED.
+
+        Set TouchLED Brightness accepts
+        a range of 0 to 100 for the BRIGHTNESS parameter.
+    """)
+    @act
+    def set_brightness(self, brightness: int = 0, /):
+        """Set brightness percentage level."""
+
+    @vexcode_doc("""
         Set TouchLED Color
 
         Sets the color of an IQ TouchLED.
@@ -88,18 +100,6 @@ class Touchled(Device):
     """)
     def set_color(self, color: Color = Color.BLACK, /):
         """Set color."""
-
-    @vexcode_doc("""
-        Set TouchLED Brightness
-
-        Sets the brightness of an IQ TouchLED.
-
-        Set TouchLED Brightness accepts
-        a range of 0 to 100 for the BRIGHTNESS parameter.
-    """)
-    @act
-    def set_brightness(self, brightness: int = 50, /):
-        """Set brightness percentage level."""
 
     @robotmesh_doc("""
         Turn on the led in the touchled sensor.
