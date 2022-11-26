@@ -26,7 +26,7 @@ __all__: Sequence[str] = 'Touchled', 'FadeType'
 class Touchled(Device):
     """Touch LED."""
 
-    def __init__(self, index: Ports):
+    def __init__(self, index: Ports, /):
         """Initialize Touch LED."""
         self.port: Ports = index
 
@@ -35,6 +35,22 @@ class Touchled(Device):
     def __hash__(self) -> int:
         """Return integer hash."""
         raise hash(self.port)
+
+    @vexcode_doc("""
+        Set TouchLED Fade
+
+        Sets how fast the color of an IQ TouchLED fades between colors.
+
+        Choose how fast the TouchLED will fade between colors.
+        Replace TYPE with one of the following options:
+        - FadeType.SLOW: The TouchLED will slowly fade to a new color.
+        - FadeType.FAST: The TouchLED will quickly fade to a new color.
+        - FadeType.OFF: The TouchLED will change colors instantly.
+    """)
+    def set_fade(self, type: FadeType = FadeType.SLOW, /):
+        # pylint: disable=redefined-builtin
+        """Set fade type."""
+        self.fade_type: FadeType = type
 
     @vexcode_doc("""
         Set TouchLED Color
@@ -61,22 +77,6 @@ class Touchled(Device):
     """)
     def set_color(self, color: Color = Color.BLACK, /):
         """Set color."""
-
-    @vexcode_doc("""
-        Set TouchLED Fade
-
-        Sets how fast the color of an IQ TouchLED fades between colors.
-
-        Choose how fast the TouchLED will fade between colors.
-        Replace TYPE with one of the following options:
-        - FadeType.SLOW: The TouchLED will slowly fade to a new color.
-        - FadeType.FAST: The TouchLED will quickly fade to a new color.
-        - FadeType.OFF: The TouchLED will change colors instantly.
-    """)
-    @act
-    def set_fade(self, type: FadeType = FadeType.SLOW, /):
-        # pylint: disable=redefined-builtin
-        """Set fade type."""
 
     @vexcode_doc("""
         Set TouchLED Brightness
