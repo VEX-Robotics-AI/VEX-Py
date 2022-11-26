@@ -13,7 +13,7 @@ from ..motor.current_units import CurrentUnits
 from ..motor.direction_type import DirectionType
 from ..motor.torque_units import TorqueUnits
 from ..motor.velocity_units import VelocityUnits
-from ..time.time_units import TimeUnits
+from ..time.time_units import TimeUnits, SECONDS
 from .._common_enums.numeric import NumType, PERCENT
 from .._common_enums.rotation import RotationUnits, DEGREES
 
@@ -68,7 +68,7 @@ class MotorGroup:
         """Set motor braking/stopping mode."""
 
     @act
-    def set_timeout(self, value: NumType, unit: TimeUnits, /):
+    def set_timeout(self, time: NumType = 1, /, units: TimeUnits = SECONDS):
         """Set motor timeout."""
 
     @act
