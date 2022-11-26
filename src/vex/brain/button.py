@@ -1,4 +1,4 @@
-"""Brain Buttons."""
+"""Brain Button."""
 
 
 from collections.abc import Sequence
@@ -37,9 +37,9 @@ class BrainButton:
         return f'{type(self).__name__}({self.id})'
 
     @robotmesh_doc("""
-        Get the pressed status of a button.
+        Gets the pressed status of a button.
 
-        Returns: True if pressed, False otherwise.
+        Returns True if pressed, False otherwise.
     """)
     @vexcode_doc("""
         Reports if the specified button on the VEX IQ Brain is being pressed.
@@ -56,4 +56,4 @@ class BrainButton:
     """)
     @sense
     def pressing(self) -> bool:
-        """Return Button's pressed status."""
+        """Return pressed status."""
