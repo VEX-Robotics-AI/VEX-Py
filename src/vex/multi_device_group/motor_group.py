@@ -12,9 +12,9 @@ from ..motor.brake_type import BrakeType, BRAKE
 from ..motor.current_units import CurrentUnits
 from ..motor.direction_type import DirectionType
 from ..motor.torque_units import TorqueUnits
-from ..motor.velocity_units import VelocityUnits, PERCENT
+from ..motor.velocity_units import VelocityUnits
 from ..time.time_units import TimeUnits
-from .._common_enums.numeric import NumType
+from .._common_enums.numeric import NumType, PERCENT
 from .._common_enums.rotation import RotationUnits, DEGREES
 
 
@@ -56,7 +56,7 @@ class MotorGroup:
         """Return cumulative rotational angle."""
 
     @act
-    def set_max_torque(self, value: NumType, unit: TorqueUnits, /):
+    def set_max_torque(self, value: NumType, units: TorqueUnits = PERCENT):
         """Set max torque limit."""
 
     @act
