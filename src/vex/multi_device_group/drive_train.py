@@ -82,7 +82,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         until a new drivetrain command is used, or the program is stopped.
     """)
     @act
-    def drive(self, direction: DirectionType = FORWARD, /):
+    def drive(self, direction: DirectionType = FORWARD):
         """Drive in specified direction."""
 
     @vexcode_doc("""
