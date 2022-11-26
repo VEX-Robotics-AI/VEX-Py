@@ -1,4 +1,4 @@
-"""Motor Brake Types."""
+"""Motor braking modes."""
 
 
 from collections.abc import Sequence
@@ -16,11 +16,11 @@ __all__: Sequence[str] = 'BrakeType', 'COAST', 'BRAKE', 'HOLD'
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brake_type.html
 """)
 class BrakeType(IntEnum):
-    """Motor Brake Types."""
+    """Motor braking modes."""
 
-    COAST: int = 0   # A brake unit that is defined as coast
-    BRAKE: int = 1   # A brake unit that is defined as brake
-    HOLD: int = 2   # A brake unit that is defined as hold
+    COAST: int = 0   # brake unit defined as Coast
+    BRAKE: int = 1   # brake unit defined as Brake
+    HOLD: int = 2   # brake unit defined as Hold
 
 
 # aliases
