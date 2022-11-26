@@ -75,6 +75,16 @@ class Touchled(Device):
     def set_brightness(self, brightness: int = 0, /):
         """Set brightness percentage level."""
 
+    @robotmesh_doc("""
+        Turn on the led in the touchled sensor, or change current brightness.
+
+        Parameters
+        - brightness: brightness for the led 0-100
+    """)
+    @act
+    def brightness(self, brightness: int, /):
+        """Set brightness percentage level."""
+
     @vexcode_doc("""
         Set TouchLED Color
 
@@ -142,16 +152,6 @@ class Touchled(Device):
     @act
     def off(self):
         """Turn off LED."""
-
-    @robotmesh_doc("""
-        Turn on the led in the touchled sensor, or change current brightness.
-
-        Parameters:
-        - brightness: The brightness for the led 0-100
-    """)
-    @act
-    def brightness(self, brightness: int, /):
-        """Set brightness percentage level."""
 
     @robotmesh_doc("""
         Set the led in the touchled sensor as blinking.
