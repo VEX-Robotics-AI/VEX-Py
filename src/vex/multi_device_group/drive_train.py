@@ -120,8 +120,8 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
     """)
     @act
     def drive_for(self, direction: DirectionType = FORWARD,
-                  distance: float = 200, unit: DistanceUnits = MM,
-                  wait: bool = True, /):
+                  distance: NumType = 200, units: DistanceUnits = MM,
+                  wait: bool = True):
         """Drive for a distance."""
 
     @vexcode_doc("""
