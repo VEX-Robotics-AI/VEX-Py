@@ -1,4 +1,4 @@
-"""Movement Direction Types."""
+"""Movement directions."""
 
 
 from collections.abc import Sequence
@@ -16,10 +16,10 @@ __all__: Sequence[str] = 'DirectionType', 'FORWARD', 'REVERSE'
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_direction_type.html
 """)
 class DirectionType(IntEnum):
-    """Movement Direction Types."""
+    """Movement directions."""
 
-    FWD: int = 0   # A direction unit that is defined as forward
-    REV: int = 1   # A direction unit that is defined as backward
+    FWD: int = 0   # direction unit defined as Forward
+    REV: int = 1   # direction unit defined as Backward
 
 
 # aliases
