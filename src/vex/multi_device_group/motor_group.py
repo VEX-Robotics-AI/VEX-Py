@@ -80,8 +80,9 @@ class MotorGroup:
         """Spin motors in specified direction."""
 
     @act
-    def spin_for(self, direction: DirectionType,
-                 angle: NumType, unit: RotationUnits, wait: bool = True):
+    def spin_for(self, direction: DirectionType = FORWARD,
+                 rotation: NumType = 90, unit: RotationUnits = DEGREES,
+                 wait: bool = True):
         """Spin motors in specified direction by specified angle."""
 
     @act
