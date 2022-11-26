@@ -136,6 +136,28 @@ class ColorSensor(Device):
     def color(self) -> Color:
         """Return detected color."""
 
+    @robotmesh_doc("""
+        Get the name of the detected color.
+
+        Returns:
+        enum value for the closest color detected
+        out of ColorHue.RED, GREEN or BLUE (or NONE).
+    """)
+    @sense
+    def colorname3(self) -> Color:
+        """Return RED, GREEN or BLUE."""
+
+    @robotmesh_doc("""
+        Get the name of the detected color.
+
+        Returns:
+        enum value of the closest color detected out of 12
+        possible values of ColorType (or NONE).
+    """)
+    @sense
+    def colorname12(self) -> Color:
+        """Return one of 12 colors or NONE."""
+
     @vexcode_doc("""
         Color Brightness
 
@@ -162,28 +184,6 @@ class ColorSensor(Device):
     @sense
     def hue(self) -> int:
         """Return detected color hue."""
-
-    @robotmesh_doc("""
-        Get the name of the detected color.
-
-        Returns:
-        enum value for the closest color detected
-        out of ColorHue.RED, GREEN or BLUE (or NONE).
-    """)
-    @sense
-    def colorname3(self) -> int:
-        """Return RED, GREEN or BLUE."""
-
-    @robotmesh_doc("""
-        Get the name of the detected color.
-
-        Returns:
-        enum value of the closest color detected out of 12
-        possible values of ColorType (or NONE).
-    """)
-    @sense
-    def colorname12(self) -> int:
-        """Return one of 12 colors or NONE."""
 
     @robotmesh_doc("""
         Get the grayscale value detected by the color sensor.
