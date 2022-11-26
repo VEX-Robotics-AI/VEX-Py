@@ -103,6 +103,15 @@ class ColorSensor(Device):
     def is_near_object(self) -> bool:
         """Detect whether there is an object/surface near sensor's front."""
 
+    @robotmesh_doc("""
+        Check to see if an object is detected by the color sensor.
+
+        Returns True if an object has been detected, False otherwise.
+    """)
+    @sense
+    def near(self) -> bool:
+        """Check if detecting nearby object."""
+
     @vexcode_doc("""
         Color
 
@@ -189,16 +198,6 @@ class ColorSensor(Device):
     @sense
     def grayscale(self, raw: bool = False, /) -> int:
         """Return grayscale value."""
-
-    @robotmesh_doc("""
-        Check to see if an object is detected by the color sensor.
-
-        Returns:
-        True if an object has been detected, False otherwise
-    """)
-    @sense
-    def near(self) -> bool:
-        """Check if detecting nearby object."""
 
 
 # alias
