@@ -2,8 +2,9 @@
 
 
 from collections.abc import Sequence
+from typing import overload
 
-from abm.decor import act, sense
+from abm.decor import sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
@@ -40,13 +41,12 @@ class Sonar(Device):
         raise hash(self.port)
 
     @robotmesh_doc("""
-        Set the maximum distance (default 2.5m).
+        Sets the maximum distance (default 2.5m).
 
         Parameters
         - distance: maximum distance to be measured in units
         - distanceUnits: a DistanceUnits enum value for the measurement unit
     """)
-    @act
     def set_maximum(self, distance: NumType, distanceUnits: DistanceUnits = MM, /):  # noqa: E501
         """Set maximum measurable distance."""
         self.max_distance[distanceUnits] = distance
@@ -67,14 +67,22 @@ class Sonar(Device):
     def is_object_detected(self) -> bool:
         """Check if an object is detected within range."""
 
-    @robotmesh_doc("""
-        Get the value of the sonar sensor.
+    @overload
+    def distance(self, unit: DistanceUnits = MM, /) -> int:
+        ...
 
-        Parameters:
+    @overload
+    def distance(self, distanceUnits: DistanceUnits = MM, /) -> int:
+        ...
+
+    @robotmesh_doc("""
+        Gets the value of the sonar sensor.
+
+        Parameters
         - distanceUnits: The measurement unit for
                          the sonar device, DistanceUnits enum value.
 
-        Returns:
+        Returns
         an integer that represents the unit value specified by the parameter.
     """)
     @vexcode_doc("""
@@ -91,6 +99,6 @@ class Sonar(Device):
         with either INCHES or MM, respectively.
     """)
     @sense
-    def distance(self, unit: DistanceUnits = MM, /) -> NumType:
+    def distance(self, unit: DistanceUnits = MM, /) -> int:
         """Return measured distance to nearby object."""
         assert unit in (MM, INCHES), ValueError('*** UNIT MUST BE MM OR INCHES ***')  # noqa: E501
