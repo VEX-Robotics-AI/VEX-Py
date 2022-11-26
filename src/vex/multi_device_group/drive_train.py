@@ -167,12 +167,12 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         even before the Drivetrain has completed its turn.
     """)
     @act
-    def turn_for(  # pylint: disable=unused-argument
-            self, direction: TurnType = RIGHT,
-            angle: float = 90, unit: Literal[DEGREES] = DEGREES,
-            wait: bool = True, /):
+    def turn_for(self, direction: TurnType = RIGHT,
+                 angle: NumType = 90, units: Literal[DEGREES] = DEGREES,
+                 wait: bool = True):
+        # pylint: disable=unused-argument
         """Turn for an angle."""
-        assert unit is DEGREES, ValueError('*** ANGULAR UNIT MUST BE DEGREES ***')  # noqa: E501
+        assert units is DEGREES, ValueError('*** ANGULAR UNIT MUST BE DEGREES ***')  # noqa: E501
 
     @vexcode_doc("""
         Stop
