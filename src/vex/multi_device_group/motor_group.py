@@ -72,7 +72,7 @@ class MotorGroup:
         """Set motor timeout."""
 
     @act
-    def set_velocity(self, velocity: NumType, unit: VelocityUnits, /):
+    def set_velocity(self, velocity: NumType = 50, units: VelocityUnits = PERCENT):  # noqa: E501
         """Set velocity."""
 
     @act
