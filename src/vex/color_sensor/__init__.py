@@ -10,7 +10,7 @@ from abm.decor import act, sense
 from .._abstract_device import Device
 from ..brain.port import Ports
 from .._common_enums.color import Color
-from .._common_enums.numeric import PERCENT
+from .._common_enums.numeric import NumType, PERCENT
 
 from .._util.doc import robotmesh_doc, vexcode_doc
 
@@ -25,30 +25,40 @@ class ColorSensor(Device):
     """Color Sensor."""
 
     @robotmesh_doc("""
-        Create new color sensor object on the port specified in the parameter.
+        Creates new color sensor object on the port specified in the parameter.
 
-        Parameters:
-        - index: The port index (zero-based)
-        - is_grayscale: Whether grayscale mode (LED on), default false
+        Parameters
+        - index: port index (zero-based)
+        - is_grayscale: whether grayscale mode (LED on), default false
         - proximity: threshold (default 700)
     """)
     def __init__(self, index: Ports,
-                 is_grayscale: bool = False, proximity: float = 700, /):
+                 is_grayscale: bool = False, proximity: NumType = 700, /):
         """Initialize Color Sensor."""
         self.port: Ports = index
         self.is_grayscale: bool = is_grayscale
-        self.proximity: float = proximity
+        self.proximity_threshold: NumType = proximity
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
         return (isinstance(other, type(self)) and
                 (other.port == self.port) and
                 (other.is_grayscale == self.is_grayscale) and
-                (other.proximity == self.proximity))
+                (other.proximity_threshold == self.proximity_threshold))
 
     def __hash__(self) -> int:
         """Return integer hash."""
-        return hash((self.port, self.is_grayscale, self.proximity))
+        return hash((self.port, self.is_grayscale, self.proximity_threshold))
+
+    @robotmesh_doc("""
+        Set the `near` threshold setting.
+
+        Parameters
+        - proximity: threshold (higher is closer) (default 700)
+    """)
+    def set_proximity_threshold(self, proximity: NumType, /):
+        """Set threshold for proximity."""
+        self.proximity_threshold: NumType = proximity
 
     @vexcode_doc("""
         Set Color Sensor Light
@@ -179,17 +189,6 @@ class ColorSensor(Device):
     @sense
     def near(self) -> bool:
         """Check if detecting nearby object."""
-
-    @robotmesh_doc("""
-        Set the `near` threshold setting.
-
-        Parameters:
-        - proximity: threshold (higher is closer) (default 700)
-    """)
-    @act
-    def set_proximity_threshold(self, proximity: float = 700, /):
-        """Set threshold for proximity."""
-        self.proximity: float = proximity
 
     @robotmesh_doc("""
         Turn the led on the color sensor on or off.
