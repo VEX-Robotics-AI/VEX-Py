@@ -75,8 +75,8 @@ class ColorSensor(Device):
         light source will shine.
     """)
     @act
-    def set_light(self, brightness: int = 50, unit: Literal[PERCENT] = PERCENT, /):  # noqa: E501
-        """Set light's brightness percentage level."""
+    def set_light(self, brightness: int, unit: Literal[PERCENT] = PERCENT, /):
+        """Turn on light at specified brightness percentage level."""
 
     @vexcode_doc("""
         Color Is Near Object
