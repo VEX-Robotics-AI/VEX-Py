@@ -133,7 +133,7 @@ class Gyro(Device):
         self.heading[unit] = value
 
     @overload
-    def set_rotation(self, value: float = 0, unit: Literal[DEGREES] = DEGREES, /):  # noqa: E501
+    def set_rotation(self, value: float, unit: Literal[DEGREES] = DEGREES, /):
         ...
 
     @overload
@@ -144,9 +144,9 @@ class Gyro(Device):
     @robotmesh_doc("""
         Set the gyro sensor rotation to angle.
 
-        Parameters:
-        - value: The new absolute angle for the gyro
-        - rotationUnits: The rotation unit for the angle
+        Parameters
+        - value: new absolute angle for the gyro
+        - rotationUnits: rotation unit for the angle
     """)
     @vexcode_doc("""
         Gyro Set Rotation
@@ -161,10 +161,9 @@ class Gyro(Device):
         Gyro Set Rotation accepts a range of any positive or negative decimal
         or integer as the specified ROTATION.
     """)
-    @act
-    def set_rotation(self, value: float = 0, unit: Literal[DEGREES] = DEGREES, /):  # noqa: E501
+    def set_rotation(self, value: float, unit: Literal[DEGREES] = DEGREES, /):
         """Set cumulative rotational angle."""
-        self.rotations[unit] = value
+        self.rotation[unit] = value
 
     @overload
     def heading(self, unit: Literal[DEGREES] = DEGREES, /):
