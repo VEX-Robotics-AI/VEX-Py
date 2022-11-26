@@ -1,11 +1,11 @@
-"""Controller Axes (A, B, C, D)."""
+"""Joystick axis."""
 
 
 from collections.abc import Sequence
 from typing import TypeVar
 from typing_extensions import Self
 
-from abm.decor import act, sense
+from abm.decor import sense
 
 from .._util.doc import robotmesh_doc, vexcode_doc
 
@@ -22,17 +22,18 @@ Controller = TypeVar(name='Controller')
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_controller_axis.html
 """)
 class ControllerAxis:
-    """Controller Joystick Axis."""
+    """Joystick axis."""
 
-    def __init__(self, parent: Controller, axtype: str):
-        """Initialize Controller Axis."""
+    def __init__(self, parent: Controller, axtype: str, /):
+        """Initialize Controller Joystick Axis."""
         self.parent: Controller = parent
         self.axtype: str = axtype
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
-        return isinstance(other, ControllerAxis) and \
-            (other.parent == self.parent) and (other.axtype == self.axtype)
+        return (isinstance(other, ControllerAxis) and
+                (other.parent == self.parent) and
+                (other.axtype == self.axtype))
 
     def __hash__(self) -> int:
         """Return integer hash."""
@@ -43,20 +44,18 @@ class ControllerAxis:
         return f'{type(self).__name__}({self.axtype})'
 
     @robotmesh_doc("""
-        Get the value of the joystick axis on a scale from -127 to 127.
+        Gets the value of the joystick axis on a scale from -127 to 127.
 
-        Returns
-        an integer that represents the value of the joystick axis.
+        Returns an integer that represents the value of the joystick axis.
     """)
     @sense
     def value(self) -> int:
         """Return raw position value."""
 
     @robotmesh_doc("""
-        Get the position of the joystick axis on a scale from -100 to 100.
+        Gets the position of the joystick axis on a scale from -100 to 100.
 
-        Returns
-        an integer that represents the position of the joystick axis.
+        Returns an integer that represents the position of the joystick axis.
     """)
     @vexcode_doc("""
         Controller Axis Position
@@ -98,7 +97,6 @@ class ControllerAxis:
         as an argument. The code inside the callback function will run
         whenever the event occurs.
     """)
-    @act
     def changed(self, callback: callable, /):
         """Trigger callback function upon being moved."""
         callback()
