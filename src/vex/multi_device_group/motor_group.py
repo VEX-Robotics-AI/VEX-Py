@@ -15,7 +15,7 @@ from ..motor.torque_units import TorqueUnits
 from ..motor.velocity_units import VelocityUnits, PERCENT
 from ..time.time_units import TimeUnits
 from .._common_enums.numeric import NumType
-from .._common_enums.rotation import RotationUnits
+from .._common_enums.rotation import RotationUnits, DEGREES
 
 
 __all__: Sequence[str] = ('MotorGroup',)
@@ -52,8 +52,8 @@ class MotorGroup:
         """Check whether one or both of the motors is/are still spinning."""
 
     @sense
-    def position(self, unit: RotationUnits, /) -> float:
-        """Return rotational position."""
+    def position(self, units: RotationUnits = DEGREES) -> float:
+        """Return cumulative rotational angle."""
 
     @act
     def set_max_torque(self, value: NumType, unit: TorqueUnits, /):
