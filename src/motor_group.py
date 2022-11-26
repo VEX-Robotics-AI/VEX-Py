@@ -17,6 +17,7 @@ from vex.motor.direction_type import DirectionType
 from vex.motor.torque_units import TorqueUnits
 from vex.motor.velocity_units import VelocityUnits
 from vex.time.time_units import TimeUnits
+from vex._common_enums.numeric import NumType
 from vex._common_enums.rotation import RotationUnits
 
 from vex._util.doc import robotmesh_doc
@@ -28,7 +29,7 @@ __all__: Sequence[str] = ('MotorGroup',)
 @robotmesh_doc("""
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classmotor__group_1_1_motor_group.html
 """)
-class MotorGroup:   # pylint: disable=too-many-public-methods
+class MotorGroup:  # pylint: disable=too-many-public-methods
     """Motor Group."""
 
     @robotmesh_doc("""
@@ -40,14 +41,14 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
     def __init__(self, motors: list[Motor], /):
         """Initialize Motor Group."""
         self.motors: list[Motor] = motors
-        self.rotations: dict[Motor, dict[RotationUnits, float]] = \
+        self.rotations: dict[Motor, dict[RotationUnits, NumType]] = \
             {motor: {} for motor in motors}
 
-        self.velocities: dict[VelocityUnits, float] = \
-            dict[VelocityUnits, float]()
+        self.velocities: dict[VelocityUnits, NumType] = \
+            dict[VelocityUnits, NumType]()
         self.stopping: Optional[BrakeType] = None
-        self.timeouts: dict[TimeUnits, float] = dict[TimeUnits, float]()
-        self.max_torque: dict[TorqueUnits, float] = dict[TorqueUnits, float]()
+        self.timeouts: dict[TimeUnits, NumType] = dict[TimeUnits, NumType]()
+        self.max_torque: dict[TorqueUnits, NumType] = dict[TorqueUnits, NumType]()  # noqa: E501
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
@@ -65,7 +66,7 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
         number of motors
     """)
     def count(self) -> int:
-        """Count number of Motors."""
+        """Count number of motors."""
         return len(self.motors)
 
     @robotmesh_doc("""
@@ -81,8 +82,8 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
                          a VelocityUnits enum value.
     """)
     @act
-    def set_velocity(self, velocity: float, velocityUnits=VelocityUnits.PCT, /):   # noqa: E501
-        """Set Motor Velocity."""
+    def set_velocity(self, velocity: NumType, velocityUnits=VelocityUnits.PCT, /):  # noqa: E501
+        """Set motor velocity."""
         self.velocities[velocityUnits] = velocity
 
     @robotmesh_doc("""
@@ -94,7 +95,7 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
     """)
     @act
     def set_stopping(self, brakeType: BrakeType, /):
-        """Set Motor Stopping Mode."""
+        """Set motor stopping mode."""
         self.stopping: BrakeType = brakeType
 
     @robotmesh_doc("""
@@ -102,7 +103,7 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
     """)
     @act
     def reset_rotation(self):
-        """Reset Motors' Cumulative Rotation Angle Value to 0."""
+        """Reset motors' cumulative rotational angle to 0."""
         for motor in self.motors:
             for rotation_unit in self.rotations[motor]:
                 self.rotations[motor][rotation_unit] = 0
@@ -116,8 +117,8 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
                          a RotationUnits enum value.
     """)
     @act
-    def set_rotation(self, value: float, rotationUnits=RotationUnits.DEG, /):
-        """Set Motor's Cumulative Rotation Angle to certain value."""
+    def set_rotation(self, value: NumType, rotationUnits=RotationUnits.DEG, /):
+        """Set motors' cumulative rotational angle to specified value."""
         for motor in self.motors:
             self.rotations[motor][rotationUnits] = value
 
@@ -132,16 +133,16 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
         - timeUnits: The measurement unit for the time, a TimeUnits enum value.
     """)
     @act
-    def set_timeout(self, time: float, timeUnits=TimeUnits.SEC, /):
-        """Set Motor Timeout."""
+    def set_timeout(self, time: NumType, timeUnits=TimeUnits.SEC, /):
+        """Set motor timeout."""
         self.timeouts[timeUnits] = time
 
     @robotmesh_doc("""
         Return a timeout in given time units.
     """)
     @sense
-    def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> float:
-        """Return Motor Timeout."""
+    def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> NumType:
+        """Return motor timeout."""
         return self.timeouts[timeUnits]
 
     @robotmesh_doc("""
@@ -149,7 +150,7 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
     """)
     @sense
     def did_timeout(self) -> bool:
-        """Check whether Motors timed out."""
+        """Check whether motors timed out."""
 
     @robotmesh_doc("""
         Turn on the motors and spins them.
@@ -164,10 +165,10 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
                          a VelocityUnits enum value.
     """)
     @act
-    def spin(self, dir: DirectionType,   # pylint: disable=redefined-builtin
-             velocity: Optional[float] = None,
+    def spin(self, dir: DirectionType,  # pylint: disable=redefined-builtin
+             velocity: Optional[NumType] = None,
              velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Spin Motors."""
+        """Spin motors."""
 
     @robotmesh_doc("""
         Turn on the motors and spin them.
@@ -191,13 +192,12 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
                                         By default, this parameter is true.
     """)
     @act
-    def spin_to(   # pylint: disable=too-many-arguments
-            self,
-            rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
-            velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True, /) -> bool:
-        """Spin Motors to certain target cumulative Rotation Angle Value."""
+    def spin_to(self,
+                rotation: NumType, rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
+                velocity: Optional[NumType] = None,
+                velocityUnits: VelocityUnits = VelocityUnits.PCT,
+                waitForCompletion: bool = True, /) -> bool:
+        """Spin motors to specified target cumulative rotational angle."""
 
     @robotmesh_doc("""
         Turn on the motors and spin them.
@@ -221,13 +221,12 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
                                         By default, this parameter is true.
     """)
     @act
-    def spin_for(   # pylint: disable=too-many-arguments
-            self, dir: DirectionType,   # pylint: disable=redefined-builtin
-            rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
-            velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT,
-            waitForCompletion: bool = True, /) -> bool:
-        """Spin Motors for certain Rotation Angle Value."""
+    def spin_for(self, dir: DirectionType,  # pylint: disable=redefined-builtin
+                 rotation: NumType, rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
+                 velocity: Optional[NumType] = None,
+                 velocityUnits: VelocityUnits = VelocityUnits.PCT,
+                 waitForCompletion: bool = True, /) -> bool:
+        """Spin motors for specified rotational angle."""
 
     @robotmesh_doc("""
         Turn on the motors and spin them for a given amount of time.
@@ -242,12 +241,12 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
                          a VelocityUnits enum value.
     """)
     @act
-    def spin_for_time(   # pylint: disable=too-many-arguments
-            self, dir: DirectionType,   # pylint: disable=redefined-builtin
-            time: float, timeUnits: TimeUnits = TimeUnits.SEC,
-            velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Spin Motors for certain time duration."""
+    def spin_for_time(self,
+                      dir: DirectionType,  # pylint: disable=redefined-builtin
+                      time: NumType, timeUnits: TimeUnits = TimeUnits.SEC,
+                      velocity: Optional[NumType] = None,
+                      velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+        """Spin motors for specified time duration."""
 
     @robotmesh_doc("""
         Start spinning motors to an absolute target rotation.
@@ -262,11 +261,11 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
     """)
     @act
     def start_spin_to(self,
-                      rotation: float,
+                      rotation: NumType,
                       rotationUnits: RotationUnits = RotationUnits.DEG,
-                      velocity: Optional[float] = None,
+                      velocity: Optional[NumType] = None,
                       velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Start spinning Motors to target cumulative Rotation Angle Value."""
+        """Start spinning motors to target cumulative rotational angle."""
 
     @robotmesh_doc("""
         Start spinning motors to a relative target rotation.
@@ -281,12 +280,13 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
         - velocityUnits: The measurement unit for the velocity value.
     """)
     @act
-    def start_spin_for(   # pylint: disable=too-many-arguments
-            self, dir: DirectionType,   # pylint: disable=redefined-builtin
-            rotation: float, rotationUnits: RotationUnits = RotationUnits.DEG,
-            velocity: Optional[float] = None,
-            velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Start spinning Motors for certain Rotation Angle Value."""
+    def start_spin_for(self,
+                       dir: DirectionType,  # pylint: disable=redefined-builtin
+                       rotation: NumType,
+                       rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
+                       velocity: Optional[NumType] = None,
+                       velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+        """Start spinning motors for specified rotational angle."""
 
     @robotmesh_doc("""
         Determine if any motor in group is performing spin_for/spin_to command.
@@ -296,7 +296,7 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
     """)
     @sense
     def is_spinning(self) -> bool:
-        """Check whether Motors are spinning."""
+        """Check whether one or some of the motors is/are still spinning."""
 
     @robotmesh_doc("""
         Determine if spin_for/spin_to command has reached its target position.
@@ -307,7 +307,7 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
     """)
     @sense
     def is_done(self) -> bool:
-        """Check whether Motors have finished spinning."""
+        """Check whether all motors have finished spinning."""
 
     @robotmesh_doc("""
         Stop all motors using the default brake mode.
@@ -318,7 +318,7 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
     """)
     @act
     def stop(self, brakeType: Optional[BrakeType] = None, /):
-        """Stop Motors."""
+        """Stop motors."""
 
     @robotmesh_doc("""
         Set the max torque of all motors as a percentage.
@@ -327,8 +327,8 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
         - value: Sets the amount of torque (0 to 100%)
     """)
     @act
-    def set_max_torque_percent(self, value: float, /):
-        """Set Max Torque Percent."""
+    def set_max_torque_percent(self, value: int, /):
+        """Set max torque percentage level."""
         self.max_torque[TorqueUnits.PCT] = value
 
     @robotmesh_doc("""
@@ -339,9 +339,9 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
         - torqueUnits: The measurement unit for the torque value.
     """)
     @act
-    def set_max_torque(self, value: float,
+    def set_max_torque(self, value: NumType,
                        torqueUnits: TorqueUnits = TorqueUnits.NM, /):
-        """Set Max Torque Percent."""
+        """Set max torque."""
         self.max_torque[torqueUnits] = value
 
     @robotmesh_doc("""
@@ -351,10 +351,10 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
         - value: Sets the amount of torque in Amps (max 1.2A)
     """)
     @act
-    def set_max_torque_current(self, value: float, /):
-        """Set Max Torque Current."""
+    def set_max_torque_current(self, value: NumType, /):
+        """Set max torque current."""
         # pylint: disable=attribute-defined-outside-init
-        self.max_torque_current: float = value
+        self.max_torque_current: NumType = value
 
     @robotmesh_doc("""
         Get the current rotation of the first motor in the group's encoder.
@@ -367,8 +367,8 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
         - rotationUnits: The measurement unit for the rotation.
     """)
     @sense
-    def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:   # noqa: E501
-        """Return Motors' Cumulative Rotation Angle."""
+    def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:  # noqa: E501
+        """Return motors' cumulative rotational angle."""
 
     @robotmesh_doc("""
         Get the current velocity of the first motor in the group.
@@ -381,12 +381,12 @@ class MotorGroup:   # pylint: disable=too-many-public-methods
         - velocityUnits: The measurement unit for the velocity.
     """)
     @sense
-    def velocity(self, velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:   # noqa: E501
-        """Return Motors' Velocity."""
+    def velocity(self, velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:  # noqa: E501
+        """Return motors' velocity."""
 
     @robotmesh_doc("""
         Get Current.
     """)
     @sense
-    def current(self) -> float:
-        """Return Motors' Electrical Current."""
+    def current(self) -> NumType:
+        """Return motors' electrical current."""

@@ -11,6 +11,7 @@ from ..motor import Motor
 from ..brain.inertial_sensor import Inertial
 from ..gyro_sensor import Gyro
 from .._common_enums.distance import MM
+from .._common_enums.numeric import NumType
 from .._common_enums.rotation import DEGREES
 
 from .._util.doc import vexcode_doc
@@ -53,6 +54,38 @@ class SmartDrive(DriveTrain):
                      self.gyro_sensor, self.wheel_size))
 
     @vexcode_doc("""
+        Set Heading
+
+        Sets the Drivetrain's Inertial or Gyro Sensor to the specified heading.
+
+        The Drivetrain's Set Heading command can be used to set the
+        Drivetrain's heading to a specified value. This command can be used to
+        reset the orientation of the Drivetrain's Inertial or Gyro Sensor
+        when the heading is set to a value of 0.
+
+        Set Heading accepts a number value between 0 and 360 as first argument,
+        and DEGREES written in all-capital letters as its second argument.
+    """)
+    @act
+    def set_heading(self, value: NumType = 0, units: Literal[DEGREES] = DEGREES):  # noqa: E501
+        """Set specified heading."""
+
+    @vexcode_doc("""
+        Set Rotation
+
+        Sets the Drivetrain's Inertial or Gyro Sensor to a specified rotation.
+
+        The Drivetrain's Set Rotation command can be used to set the
+        Drivetrain's angle of rotation to any given positive or negative value.
+
+        The ROTATION parameter can accept numeric values.
+        The ROTATION parameter does not have a limit of 0-359 degrees.
+    """)
+    @act
+    def set_rotation(self, value: NumType = 0, units: Literal[DEGREES] = DEGREES):  # noqa: E501
+        """Set specified rotation."""
+
+    @vexcode_doc("""
         Turn To Heading
 
         Turns a Drivetrain to a specific heading,
@@ -81,9 +114,9 @@ class SmartDrive(DriveTrain):
         from executing until the Drivetrain turn has completed.
     """)
     @act
-    def turn_to_heading(self, heading: float = 90,
-                        unit: Literal[DEGREES] = DEGREES, wait: bool = True, /):  # noqa: E501
-        """Turn to specific heading."""
+    def turn_to_heading(self, angle: NumType = 90,
+                        units: Literal[DEGREES] = DEGREES, wait: bool = True):
+        """Turn to specified heading angle."""
 
     @vexcode_doc("""
         Turn To Rotation
@@ -118,41 +151,9 @@ class SmartDrive(DriveTrain):
         the Drivetrain turn is completed.
     """)
     @act
-    def turn_to_rotation(self, rotation: float = 90,
-                         unit: Literal[DEGREES] = DEGREES, wait: bool = True, /):  # noqa: E501
-        """Turn to specific angle of rotation."""
-
-    @vexcode_doc("""
-        Set Heading
-
-        Sets the Drivetrain's Inertial or Gyro Sensor to the specified heading.
-
-        The Drivetrain's Set Heading command can be used to set the
-        Drivetrain's heading to a specified value. This command can be used to
-        reset the orientation of the Drivetrain's Inertial or Gyro Sensor
-        when the heading is set to a value of 0.
-
-        Set Heading accepts a number value between 0 and 360 as first argument,
-        and DEGREES written in all-capital letters as its second argument.
-    """)
-    @act
-    def set_heading(self, heading: float = 0, unit: Literal[DEGREES] = DEGREES, /):  # noqa: E501
-        """Set specified heading."""
-
-    @vexcode_doc("""
-        Set Rotation
-
-        Sets the Drivetrain's Inertial or Gyro Sensor to a specified rotation.
-
-        The Drivetrain's Set Rotation command can be used to set the
-        Drivetrain's angle of rotation to any given positive or negative value.
-
-        The ROTATION parameter can accept numeric values.
-        The ROTATION parameter does not have a limit of 0-359 degrees.
-    """)
-    @act
-    def set_rotation(self, rotation: float = 0, unit: Literal[DEGREES] = DEGREES, /):  # noqa: E501
-        """Set specified rotation."""
+    def turn_to_rotation(self, angle: NumType = 90,
+                         units: Literal[DEGREES] = DEGREES, wait: bool = True):
+        """Turn to specified cumulative rotational angle."""
 
     @vexcode_doc("""
         Drive Heading
@@ -170,8 +171,8 @@ class SmartDrive(DriveTrain):
         reports an increase in heading when rotating clockwise.
     """)
     @sense
-    def heading(self, unit: Literal[DEGREES] = DEGREES, /) -> float:
-        """Report the direction that the Drivetrain is facing."""
+    def heading(self, units: Literal[DEGREES] = DEGREES) -> float:
+        """Return heading angle."""
 
     @vexcode_doc("""
         Drive Rotation
@@ -188,5 +189,5 @@ class SmartDrive(DriveTrain):
         clockwise direction.
     """)
     @sense
-    def rotation(self, unit: Literal[DEGREES] = DEGREES, /) -> float:
-        """Report the Drivetrain's angle of rotation."""
+    def rotation(self, units: Literal[DEGREES] = DEGREES) -> float:
+        """Return cumulative rotational angle."""

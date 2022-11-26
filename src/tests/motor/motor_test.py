@@ -27,7 +27,7 @@ class TestMotor(unittest.TestCase):
                 "self": self.motor,
                 "direction": REVERSE,
                 "velocity": EXPECTED_VELOCITY,
-                "unit": PERCENT,
+                "velocity_unit": PERCENT,
             },
         )
 

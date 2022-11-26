@@ -23,7 +23,7 @@ __all__: Sequence[str] = 'BrainSound', 'NoteType', 'SoundType'
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brain_sound.html
 """)
 class BrainSound(SingletonDevice):
-    """Brain Sound."""
+    """Brain Sound Speaker."""
 
     @vexcode_doc("""
         Play Sound
@@ -53,7 +53,7 @@ class BrainSound(SingletonDevice):
     """)
     @act
     def play_sound(self, sound: SoundType = SoundType.SIREN, /):
-        """Play a sound effect."""
+        """Play sound effect."""
 
     @vexcode_doc("""
         Play Note
@@ -87,7 +87,7 @@ class BrainSound(SingletonDevice):
         the proceeding command will begin executing immediately.
     """)
     def play_note(self, octave: int = 3, note: int = 0, duration: int = 1000, /):  # noqa: E501
-        """Play a musical note on the speaker."""
+        """Play musical note."""
 
     @robotmesh_doc("""
         Play a musical note on the speaker.
@@ -101,7 +101,7 @@ class BrainSound(SingletonDevice):
     @act
     def play(self, note: NoteType, octave: int = 3,
              duration: float = 0.5, timeUnits: TimeUnits = TimeUnits.SEC, /):
-        """Play note/sound on Brain Sound Speaker."""
+        """Play musical note."""
 
     @robotmesh_doc("""
         Play a musical note on the speaker.
@@ -114,7 +114,7 @@ class BrainSound(SingletonDevice):
     @act
     def play_raw(self, note: NoteType,
                  duration: float = 0.5, timeUnits: TimeUnits = TimeUnits.SEC, /):   # noqa: E501
-        """Play note/sound on Brain Sound Speaker."""
+        """Play musical note."""
 
     @robotmesh_doc("""
         Play the wave sample.
@@ -151,7 +151,7 @@ class BrainSound(SingletonDevice):
     """)
     @act
     def set_sound_effect(self, effect: int, /):
-        """Set Sound Effect."""
+        """Set sound effect."""
         # pylint: disable=attribute-defined-outside-init
         self.sound_effect: int = effect
 
@@ -163,7 +163,7 @@ class BrainSound(SingletonDevice):
     """)
     @act
     def set_volume(self, volume: int, /):
-        """Set Sound Volume."""
+        """Set sound volume."""
         # pylint: disable=attribute-defined-outside-init
         self.volume: int = volume
 
@@ -172,4 +172,4 @@ class BrainSound(SingletonDevice):
     """)
     @act
     def stop(self):
-        """Stop Sound."""
+        """Stop sound."""

@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Literal, Optional, Tuple, overload
+from typing import Literal, Optional, overload
 from typing_extensions import Self
 
 from abm.decor import act, sense
@@ -10,7 +10,7 @@ from abm.decor import act, sense
 from .._abstract_device import Device
 from ..brain.port import Ports
 from ..time import TimeUnits, SECONDS
-from .._common_enums.numeric import PERCENT
+from .._common_enums.numeric import NumType, PERCENT
 from .._common_enums.rotation import RotationUnits, DEGREES
 
 from .._util.doc import robotmesh_doc, vexcode_doc
@@ -53,9 +53,9 @@ class Motor(Device):
 
         self.rotations: dict[RotationUnits, float] = dict[RotationUnits, float]()  # noqa: E501
         self.stopping_mode: Optional[BrakeType] = None
-        self.timeouts: dict[TimeUnits, float] = dict[TimeUnits, float]()
-        self.max_torque: dict[TorqueUnits, float] = dict[TorqueUnits, float]()
-        self.velocities: dict[VelocityUnits, float] = {PERCENT: 50}
+        self.timeouts: dict[TimeUnits, NumType] = dict[TimeUnits, NumType]()
+        self.max_torque: dict[TorqueUnits, NumType] = dict[TorqueUnits, NumType]()  # noqa: E501
+        self.velocities: dict[VelocityUnits, NumType] = {PERCENT: 50}
         self.selected_velocity_unit: VelocityUnits = PERCENT
 
     def __eq__(self, other: Self) -> bool:
@@ -77,7 +77,7 @@ class Motor(Device):
     def _get_selected_velocity_and_unit(
             self,
             velocity: Optional[float],
-            unit: VelocityUnits) -> Tuple[float, VelocityUnits]:
+            unit: VelocityUnits) -> tuple[float, VelocityUnits]:
         if (velocity is None) or (not isinstance(velocity, float | int)):
             if self.selected_velocity_unit not in self.velocities:
                 raise ValueError('You have not selected any velocity; '
@@ -88,6 +88,17 @@ class Motor(Device):
             unit = self.selected_velocity_unit
 
         return (velocity, unit)
+
+    @overload
+    def spin(self, direction: DirectionType = FORWARD):
+        ...
+
+    @overload
+    def spin(self,
+             dir: DirectionType,  # pylint: disable=redefined-builtin
+             velocity: Optional[float] = None,
+             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+        ...
 
     @robotmesh_doc("""
         Turn on the motor and spins it.
@@ -108,73 +119,36 @@ class Motor(Device):
         Choose which DIRECTION the Motor or Motor Group will spin to with
         either FORWARD or REVERSE as the parameter.
     """)
-    def spin(self,
-             dir: DirectionType = FORWARD,  # pylint: disable=redefined-builtin
+    def spin(self, direction: DirectionType = FORWARD,
              velocity: Optional[float] = None,
-             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Spin."""
-        velocity, velocityUnits = self._get_selected_velocity_and_unit(   # noqa: E501,N806
-            velocity, velocityUnits)
-        return self._spin(dir, velocity, velocityUnits)
+             velocity_unit: VelocityUnits = PERCENT):
+        # pylint: disable=unused-argument
+        """Spin in specified direction (at specified velocity)."""
+        velocity, velocity_unit = self._get_selected_velocity_and_unit(
+            velocity, velocity_unit)
+
+        return self._spin(direction=direction,
+                          velocity=velocity, velocity_unit=velocity_unit)
 
     @act
     def _spin(self, direction: DirectionType = FORWARD,
-              velocity: Optional[float] = None, unit: VelocityUnits = PERCENT, /):  # noqa: E501
-        """Spin."""
+              velocity: float = 50, velocity_unit: VelocityUnits = PERCENT):
+        """Spin in specified direction (at specified velocity)."""
 
-    @vexcode_doc("""
-        Spin For
-
-        This command spins an IQ Motor or Motor Group
-        for a given amount of degrees or turns.
-
-        Choose which DIRECTION the Motor or Motor Group will spin to:
-        FORWARD or REVERSE.
-
-        Choose the UNIT of measurement to be either DEGREES or TURNS.
-
-        Choose whether or not this command should be waited on
-        by proceeding commands by setting an optional fourth parameter
-        to either wait=True or wait=False.
-
-        By default, this command is a blocking command
-        unless wait=False is passed as the fourth parameter.
-    """)
     @overload
     def spin_for(self, direction: DirectionType = FORWARD,
-                 amount: float = 90, unit: RotationUnits = DEGREES,
-                 wait: bool = True, /):
-        """Spin for specified rotation angle value."""
+                 angle: NumType = 90, /, units: RotationUnits = DEGREES,
+                 wait: bool = True):
+        ...
 
-    @robotmesh_doc("""
-        Turn on the motor and spins it.
-
-        (to a relative target rotation value at a specified velocity)
-
-        Parameters:
-        - dir: The direction to spin the motor, DirectionType enum value.
-        - rotation: Sets the amount of rotation.
-        - rotationUnits: The measurement unit for the rotation value.
-        - velocity: Sets the amount of velocity.
-        - velocityUnits: The measurement unit for the velocity value.
-        - waitForCompletion: (Optional) If True, your program will wait
-                             until the motor reaches the target rotational
-                             value. If false, the program will continue after
-                             calling this function.
-                             By default, this parameter is true.
-
-        Returns:
-        Returns a Boolean that signifies when the motor
-        has reached the target rotation value.
-    """)
     @overload
     def spin_for(self, dir: DirectionType,  # pylint: disable=redefined-builtin
-                 rotation: float,
+                 rotation: NumType,
                  rotationUnits: RotationUnits = RotationUnits.DEG,
                  velocity: Optional[float] = None,
                  velocityUnits: VelocityUnits = VelocityUnits.PCT,
                  waitForCompletion: bool = True, /) -> bool:
-        """Spin for specified rotation angle value."""
+        ...
 
     @robotmesh_doc("""
         Turn on the motor and spins it.
@@ -216,7 +190,7 @@ class Motor(Device):
         unless wait=False is passed as the fourth parameter.
     """)
     def spin_for(self, *args):
-        """Spin for specified rotation angle value."""
+        """Spin for specified rotational angle."""
         if (n_args := len(args)) == 0:
             direction: DirectionType = FORWARD
             rotation: float = 90
@@ -273,18 +247,19 @@ class Motor(Device):
             velocity, velocity_unit = self._get_selected_velocity_and_unit(
                 None, self.selected_velocity_unit)
 
-        return self._spin_for(direction,
-                              rotation, rotation_unit,
-                              velocity, velocity_unit,
-                              wait)
+        return self._spin_for(direction=direction,
+                              rotation=rotation, rotation_unit=rotation_unit,
+                              velocity=velocity, velocity_unit=velocity_unit,
+                              wait=wait)
 
     @act
     def _spin_for(
             self, direction: DirectionType = FORWARD,
-            rotation: float = 90, rotation_unit: RotationUnits = DEGREES,
+            rotation: NumType = 90, rotation_unit: RotationUnits = DEGREES,
             velocity: Optional[float] = None, velocity_unit: VelocityUnits = PERCENT,  # noqa: E501
-            wait: bool = True, /) -> bool:
-        """Spin for specified rotation angle value."""
+            wait: bool = True):
+        # pylint: disable=too-many-arguments
+        """Spin for specified rotational angle."""
 
     @vexcode_doc("""
         Spin To Position
@@ -310,9 +285,17 @@ class Motor(Device):
     """)
     @act
     def spin_to_position(self,
-                         position: float = 90, unit: RotationUnits = DEGREES,
-                         wait: bool = True, /):
-        """Spin motor to specified position."""
+                         angle: NumType = 90, /, units: RotationUnits = DEGREES,  # noqa: E501
+                         wait: bool = True):
+        """Spin motor to specified rotational angle."""
+
+    @overload
+    def stop(self):
+        ...
+
+    @overload
+    def stop(self, brakeType: Optional[BrakeType] = None, /):
+        ...
 
     @robotmesh_doc("""
         Stop the motor using the default brake mode.
@@ -327,7 +310,7 @@ class Motor(Device):
         Stops an IQ Motor or Motor Group.
     """)
     @act
-    def stop(self, brakeType: Optional[BrakeType] = None, /):
+    def stop(self, mode: Optional[BrakeType] = None, /):
         """Stop."""
 
     @vexcode_doc("""
@@ -345,8 +328,17 @@ class Motor(Device):
         The Set Motor Position command accepts DEGREES or TURNS as valid UNITS.
     """)
     @act
-    def set_position(self, value: float = 0, unit: RotationUnits = DEGREES, /):  # noqa: E501
-        """Set rotation position to specified value."""
+    def set_position(self, position: NumType = 0, unit: RotationUnits = DEGREES, /):  # noqa: E501
+        """Set cumulative rotational angle to specified position."""
+
+    @overload
+    def set_velocity(self, value: NumType = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
+        ...
+
+    @overload
+    def set_velocity(self, velocity: NumType,
+                     velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+        ...
 
     @robotmesh_doc("""
         Set velocity of the motor based on the parameters set in the command.
@@ -374,15 +366,23 @@ class Motor(Device):
 
         Setting velocity to 0 will prevent the Motor/Motor Group from spinning.
     """)
-    def set_velocity(self, velocity: float = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
+    def set_velocity(self, value: NumType = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
         """Set velocity."""
-        self.velocities[unit] = velocity
+        self.velocities[unit] = value
         self.selected_velocity_unit = unit
-        return self._set_velocity(velocity, unit)
+        return self._set_velocity(value=value, unit=unit)
 
     @act
-    def _set_velocity(self, velocity: float = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
+    def _set_velocity(self, value: NumType = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
         """Set velocity."""
+
+    @overload
+    def set_stopping(self, value: BrakeType = BRAKE, /):
+        ...
+
+    @overload
+    def set_stopping(self, brakeType: BrakeType, /):
+        ...
 
     @robotmesh_doc("""
         Set stopping mode of the motor by passing a brake mode as a parameter.
@@ -409,9 +409,19 @@ class Motor(Device):
         unless otherwise changed.
     """)
     @act
-    def set_stopping(self, mode: BrakeType, /):
+    def set_stopping(self, mode: BrakeType = BRAKE, /):
         """Set stopping mode."""
         self.stopping_mode: BrakeType = mode
+
+    @overload
+    def set_max_torque(self, value: NumType = 50,
+                       unit: Literal[PERCENT] = PERCENT, /):
+        ...
+
+    @overload
+    def set_max_torque(self, value: NumType,
+                       torqueUnits: TorqueUnits = TorqueUnits.NM, /):
+        ...
 
     @robotmesh_doc("""
         Set the max torque of the motor.
@@ -430,10 +440,17 @@ class Motor(Device):
         The Set Max Torque command accepts decimals, integers or numerics.
     """)
     @act
-    def set_max_torque(self, amount_value: float = 50,
-                       unit: TorqueUnits = PERCENT, /):  # noqa: E501
+    def set_max_torque(self, value: NumType = 50, unit: TorqueUnits = PERCENT, /):  # noqa: E501
         """Set max torque."""
-        self.max_torque[unit] = amount_value
+        self.max_torque[unit] = value
+
+    @overload
+    def set_timeout(self, value: NumType = 1, /, units: Literal[SECONDS] = SECONDS):  # noqa: E501
+        ...
+
+    @overload
+    def set_timeout(self, time: NumType, timeUnits: TimeUnits = TimeUnits.SEC, /):  # noqa: E501
+        ...
 
     @robotmesh_doc("""
         Set the timeout for the motor.
@@ -458,9 +475,129 @@ class Motor(Device):
         reaches its mechanical limit and cannot complete its movement.
     """)
     @act
-    def set_timeout(self, time: float, unit: Literal[SECONDS] = SECONDS, /):
-        """Set Motor Timeout Threshold."""
-        self.timeouts[unit] = time
+    def set_timeout(self, value: NumType = 1, unit: Literal[SECONDS] = SECONDS, /):  # noqa: E501
+        """Set timeout threshold."""
+        self.timeouts[unit] = value
+
+    @robotmesh_doc("""
+        Determine if spin_for/spin_to command has reached its target position.
+
+        Returns:
+        False if the motor is on and is rotating
+        to a target, True if the motor is done rotating to a target.
+    """)
+    @vexcode_doc("""
+        Motor Is Done
+
+        Reports if an IQ Motor or Motor Group has completed its movement.
+
+        Motor Is Done reports True when the selected Motor or Motor Group
+        has completed its movement.
+
+        Motor Is Done reports False when the selected Motor or Motor Group
+        is still moving.
+    """)
+    @sense
+    def is_done(self) -> bool:
+        """Check whether motor has finished spinning."""
+
+    @robotmesh_doc("""
+        Determine if a spin_for/spin_to command is in progress.
+
+        Returns:
+        True if the motor is on and is rotating to a target,
+        False if the motor is done rotating to a target.
+    """)
+    @vexcode_doc("""
+        Motor Is Spinning
+
+        Reports if an IQ Motor or Motor Group is currently spinning.
+
+        Motor Is Spinning reports True when the selected Motor or Motor Group
+        is still moving.
+
+        Motor Is Spinning reports False when the selected Motor or Motor Group
+        is stopped.
+
+        Note: This command will always return false if the Motor/Motor Group
+        is spinning as a result of a previous motor.spin command
+        (which does not specify a set distance to spin).
+    """)
+    @sense
+    def is_spinning(self) -> bool:
+        """Check whether motor is still spinning."""
+
+    @vexcode_doc("""
+        Motor Position
+
+        Reports the current rotational position of the selected IQ Motor
+        or the first motor of the selected Motor Group.
+
+        Motor Position reports the position of an IQ Motor
+        or the first motor in a Motor Group.
+
+        Acceptable values for UNITS are: DEGREES or TURNS.
+    """)
+    @sense
+    def position(self, unit: RotationUnits = DEGREES, /) -> NumType:
+        """Return cumulative rotational angle."""
+
+    @overload
+    def velocity(self, unit: VelocityUnits = PERCENT, /) -> NumType:
+        ...
+
+    @overload
+    def velocity(self, velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:  # noqa: E501
+        ...
+
+    @robotmesh_doc("""
+        Get the current velocity of the motor.
+
+        Parameters:
+        - velocityUnits: The measurement unit for the velocity.
+
+        Returns:
+        a float that represents the current velocity
+        of the motor in the units defined in the parameter.
+    """)
+    @vexcode_doc("""
+        Motor Velocity
+
+        Reports the current velocity of an IQ Motor
+        or the first motor of a Motor Group.
+
+        Motor velocity reports a range from -100 to 100 when PERCENT is passed
+        as the UNITS parameter, or -127 to 127 if RPM is passed.
+    """)
+    @sense
+    def velocity(self, unit: VelocityUnits = PERCENT, /) -> NumType:
+        """Return velocity."""
+
+    @overload
+    def current(self, unit: Literal[CurrentUnits.AMP] = CurrentUnits.AMP, /) -> float:  # noqa: E501
+        ...
+
+    @overload
+    def current(self) -> float:
+        ...
+
+    @robotmesh_doc("""
+        Get the electrical current of the motor.
+
+        Returns:
+        a float that represents the electrical current of the motor in Amps.
+    """)
+    @vexcode_doc("""
+        Motor Current
+
+        Reports the amount of current an IQ Motor or Motor Group is using.
+
+        Motor Current reports a range from 0.0 to 2.5
+        when CurrentUnits.AMP is passed as the UNITS parameter.
+    """)
+    @sense
+    def current(self, unit: Literal[CurrentUnits.AMP] = CurrentUnits.AMP, /) -> float:  # noqa: E501
+        """Return electrical current."""
 
     @robotmesh_doc("""
         Set the motor mode to "reverse".
@@ -604,28 +741,6 @@ class Motor(Device):
         """Start spinning motor for a certain rotation angle value."""
 
     @robotmesh_doc("""
-        Determine if a spin_for/spin_to command is in progress.
-
-        Returns:
-        True if the motor is on and is rotating to a target,
-        False if the motor is done rotating to a target.
-    """)
-    @sense
-    def is_spinning(self) -> bool:
-        """Check if motor is still spinning."""
-
-    @robotmesh_doc("""
-        Determine if spin_for/spin_to command has reached its target position.
-
-        Returns:
-        False if the motor is on and is rotating
-        to a target, True if the motor is done rotating to a target.
-    """)
-    @sense
-    def is_done(self) -> bool:
-        """Check if motor has finished spinning."""
-
-    @robotmesh_doc("""
         Set the max torque of the motor as a percentage.
 
         Parameters:
@@ -661,27 +776,3 @@ class Motor(Device):
     @sense
     def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:  # noqa: E501
         """Return motor's cumulative rotation angle value."""
-
-    @robotmesh_doc("""
-        Get the current velocity of the motor.
-
-        Parameters:
-        - velocityUnits: The measurement unit for the velocity.
-
-        Returns:
-        a float that represents the current velocity
-        of the motor in the units defined in the parameter.
-    """)
-    @sense
-    def velocity(self, velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:  # noqa: E501
-        """Return motor's velocity."""
-
-    @robotmesh_doc("""
-        Get the electrical current of the motor.
-
-        Returns:
-        a float that represents the electrical current of the motor in Amps.
-    """)
-    @sense
-    def current(self) -> float:
-        """Return motor's electrical current."""

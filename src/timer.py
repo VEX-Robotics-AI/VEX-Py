@@ -45,28 +45,28 @@ class Timer:
     """)
     @act
     def reset(self):
-        """Reset Timer."""
+        """Reset."""
 
     @robotmesh_doc("""
         Start or resume timing the current lap.
     """)
     @act
     def start(self):
-        """Start or Resume Timer."""
+        """Start or resume."""
 
     @robotmesh_doc("""
         Stop or pause timing the current lap.
     """)
     @act
     def stop(self):
-        """Stop or Pause Timer."""
+        """Stop or pause."""
 
     @robotmesh_doc("""
         Stop the current lap and starts a new one.
     """)
     @act
     def start_lap(self):
-        """Start New Timer Lap."""
+        """Start new lap."""
 
     @robotmesh_doc("""
         Return True if timer is currently running.
@@ -82,25 +82,25 @@ class Timer:
     """)
     @sense
     def elapsed_time(self, lap_index: int = -1, /) -> float:
-        """Return Elapsed Time."""
+        """Return elapsed time."""
 
     @robotmesh_doc("""
         Return number of laps stored (including the current one).
     """)
     @sense
     def lap_count(self) -> int:
-        """Return Number of Laps."""
+        """Return number of laps."""
 
     @robotmesh_doc("""
         Return total elapsed time for all laps (time in seconds).
     """)
     @sense
     def total_time(self) -> float:
-        """Return Total Time."""
+        """Return total time."""
 
     @robotmesh_doc("""
         Return average time per lap (time in seconds).
     """)
     @sense
     def average_time(self) -> float:
-        """Return Average Time per Lap."""
+        """Return average time per lap."""

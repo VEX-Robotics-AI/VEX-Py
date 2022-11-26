@@ -3,7 +3,7 @@
 
 from collections.abc import Sequence
 
-from abm.decor import sense, act
+from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
@@ -50,7 +50,7 @@ class Bumper(Device):
     """)
     @sense
     def pressing(self) -> bool:
-        """Return Bumper's pressed status."""
+        """Return pressed status."""
 
     @vexcode_doc("""
         Bumper Pressed
@@ -71,7 +71,7 @@ class Bumper(Device):
     """)
     @act
     def pressed(self, callback: callable, /):
-        """Trigger callbac function upon being pressed."""
+        """Trigger callback function upon being pressed."""
         callback()
 
     @vexcode_doc("""

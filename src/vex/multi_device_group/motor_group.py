@@ -2,17 +2,19 @@
 
 
 from collections.abc import Sequence
+from typing import Literal
 from typing_extensions import Self
 
 from abm.decor import act, sense
 
 from ..motor import Motor
-from ..motor.brake_type import BrakeType
+from ..motor.brake_type import BrakeType, BRAKE
 from ..motor.current_units import CurrentUnits
 from ..motor.direction_type import DirectionType
 from ..motor.torque_units import TorqueUnits
-from ..motor.velocity_units import VelocityUnits
+from ..motor.velocity_units import VelocityUnits, PERCENT
 from ..time.time_units import TimeUnits
+from .._common_enums.numeric import NumType
 from .._common_enums.rotation import RotationUnits
 
 
@@ -38,8 +40,8 @@ class MotorGroup:
         return hash((self.motor_a, self.motor_b))
 
     @sense
-    def current(self, unit: CurrentUnits, /) -> float:
-        """Return electric current."""
+    def current(self, units: Literal[CurrentUnits.AMP] = CurrentUnits.AMP) -> float:  # noqa: E501
+        """Return electrical current."""
 
     @sense
     def is_done(self) -> bool:
@@ -54,23 +56,23 @@ class MotorGroup:
         """Return rotational position."""
 
     @act
-    def set_max_torque(self, unit: TorqueUnits, /):
+    def set_max_torque(self, value: NumType, unit: TorqueUnits, /):
         """Set max torque limit."""
 
     @act
-    def set_position(self, position: float, unit: RotationUnits, /):
-        """Set rotational position to specified value."""
+    def set_position(self, position: NumType, unit: RotationUnits, /):
+        """Set rotational position to specified angle."""
 
     @act
-    def set_stopping(self, mode: BrakeType, /):
+    def set_stopping(self, mode: BrakeType = BRAKE):
         """Set motor braking/stopping mode."""
 
     @act
-    def set_timeout(self, value: float, unit: TimeUnits, /):
+    def set_timeout(self, value: NumType, unit: TimeUnits, /):
         """Set motor timeout."""
 
     @act
-    def set_velocity(self, velocity: float, unit: VelocityUnits, /):
+    def set_velocity(self, velocity: NumType, unit: VelocityUnits, /):
         """Set velocity."""
 
     @act
@@ -79,11 +81,12 @@ class MotorGroup:
 
     @act
     def spin_for(self, direction: DirectionType,
-                 angle: float, unit: RotationUnits, wait: bool = True):
+                 angle: NumType, unit: RotationUnits, wait: bool = True):
         """Spin motors in specified direction by specified angle."""
 
     @act
-    def spin_to_position(self, angle: float, unit: RotationUnits, wait: bool = True):  # noqa: E501
+    def spin_to_position(self,
+                         angle: NumType, unit: RotationUnits, wait: bool = True):  # noqa: E501
         """Spin motors to specified rotational position."""
 
     @act
@@ -91,5 +94,5 @@ class MotorGroup:
         """Stop motors."""
 
     @sense
-    def velocity(self, unit: VelocityUnits, /) -> float:
+    def velocity(self, units: VelocityUnits = PERCENT) -> float:
         """Return velocity."""
