@@ -23,7 +23,7 @@ class Sonar(Device):
     """Sonar."""
 
     @robotmesh_doc("""
-        Create new sonar sensor object on the port specified in the parameter.
+        Creates new sonar sensor object on the port specified in the parameter.
 
         Parameters:
         - index: to the brain port.
@@ -32,7 +32,8 @@ class Sonar(Device):
         """Initialize Sonar."""
         self.port: Ports = index
 
-        self.max_distances: dict[DistanceUnits, NumType] = dict[DistanceUnits, NumType]()  # noqa: E501
+        self.max_distance: dict[DistanceUnits, NumType] = \
+            dict[DistanceUnits, NumType]()
 
     def __hash__(self) -> int:
         """Return integer hash."""
@@ -41,14 +42,14 @@ class Sonar(Device):
     @robotmesh_doc("""
         Set the maximum distance (default 2.5m).
 
-        Parameters:
+        Parameters
         - distance: maximum distance to be measured in units
-        - distanceUnits: a DistanceUnits enum value for the measurement unit.
+        - distanceUnits: a DistanceUnits enum value for the measurement unit
     """)
     @act
     def set_maximum(self, distance: NumType, distanceUnits: DistanceUnits = MM, /):  # noqa: E501
         """Set maximum measurable distance."""
-        self.max_distances[distanceUnits] = distance
+        self.max_distance[distanceUnits] = distance
 
     @vexcode_doc("""
         Distance Found Object
