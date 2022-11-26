@@ -87,7 +87,8 @@ class MotorGroup:
 
     @act
     def spin_to_position(self,
-                         angle: NumType, unit: RotationUnits, wait: bool = True):  # noqa: E501
+                         angle: NumType = 90, units: RotationUnits = DEGREES,
+                         wait: bool = True):
         """Spin motors to specified rotational position."""
 
     @act
