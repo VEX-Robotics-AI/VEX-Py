@@ -56,12 +56,12 @@ class MotorGroup:
         """Return cumulative rotational angle."""
 
     @act
-    def set_max_torque(self, value: NumType, units: TorqueUnits = PERCENT):
+    def set_max_torque(self, value: NumType = 50, units: TorqueUnits = PERCENT):  # noqa: E501
         """Set max torque limit."""
 
     @act
-    def set_position(self, position: NumType, unit: RotationUnits, /):
-        """Set rotational position to specified angle."""
+    def set_position(self, value: NumType = 0, units: RotationUnits = DEGREES):
+        """Set cumulative rotational position to specified angle."""
 
     @act
     def set_stopping(self, mode: BrakeType = BRAKE):
