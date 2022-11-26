@@ -47,6 +47,7 @@ class Touchled(Device):
         - FadeType.FAST: The TouchLED will quickly fade to a new color.
         - FadeType.OFF: The TouchLED will change colors instantly.
     """)
+    @act
     def set_fade(self, type: FadeType = FadeType.SLOW, /):
         # pylint: disable=redefined-builtin
         """Set fade type."""
@@ -59,6 +60,7 @@ class Touchled(Device):
         - fadeType: The type of fade the touchled
                     will use: FadeType.SLOW, FAST or OFF
     """)
+    @act
     def default_fade(self, fadeType: FadeType, /):
         """Set default fade type."""
         self.fade_type: FadeType = fadeType

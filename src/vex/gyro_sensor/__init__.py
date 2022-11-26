@@ -128,6 +128,7 @@ class Gyro(Device):
 
         Gyro Set Heading can accept decimal or integer inputs.
     """)
+    @act
     def set_heading(self, value: float, unit: Literal[DEGREES] = DEGREES, /):
         """Set heading angle."""
         self._heading[unit] = value
@@ -161,6 +162,7 @@ class Gyro(Device):
         Gyro Set Rotation accepts a range of any positive or negative decimal
         or integer as the specified ROTATION.
     """)
+    @act
     def set_rotation(self, value: float, unit: Literal[DEGREES] = DEGREES, /):
         """Set cumulative rotational angle."""
         self._rotation[unit] = value

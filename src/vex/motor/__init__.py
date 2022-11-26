@@ -366,6 +366,7 @@ class Motor(Device):
 
         Setting velocity to 0 will prevent the Motor/Motor Group from spinning.
     """)
+    @act
     def set_velocity(self, value: NumType = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
         """Set velocity."""
         self.velocities[unit] = value

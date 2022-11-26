@@ -226,6 +226,7 @@ class BrainLcd(SingletonDevice):
         The new font size will be used for any future text written to
         the IQ (2nd generation) Brain's screen.
     """)
+    @act
     def set_font(self, fontname: FontType = FontType.MONO20, /):
         """Set font style & size."""
 

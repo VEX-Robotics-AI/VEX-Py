@@ -31,6 +31,7 @@ class BrainSound(SingletonDevice):
         Parameters
         - effect: effect type [0..15]
     """)
+    @act
     def set_sound_effect(self, effect: int, /):
         """Set sound effect."""
         # pylint: disable=attribute-defined-outside-init
@@ -42,6 +43,7 @@ class BrainSound(SingletonDevice):
         Parameters
         - volume: value [1=low...4=high]
     """)
+    @act
     def set_volume(self, volume: int, /):
         """Set sound volume."""
         # pylint: disable=attribute-defined-outside-init

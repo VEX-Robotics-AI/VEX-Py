@@ -4,7 +4,7 @@
 from collections.abc import Sequence
 from typing import overload
 
-from abm.decor import sense
+from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
@@ -47,6 +47,7 @@ class Sonar(Device):
         - distance: maximum distance to be measured in units
         - distanceUnits: a DistanceUnits enum value for the measurement unit
     """)
+    @act
     def set_maximum(self, distance: NumType, distanceUnits: DistanceUnits = MM, /):  # noqa: E501
         """Set maximum measurable distance."""
         self.max_distance[distanceUnits] = distance

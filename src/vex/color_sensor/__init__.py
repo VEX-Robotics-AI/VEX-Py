@@ -56,6 +56,7 @@ class ColorSensor(Device):
         Parameters
         - proximity: threshold (higher is closer) (default 700)
     """)
+    @act
     def set_proximity_threshold(self, proximity: NumType, /):
         """Set threshold for proximity."""
         self.proximity_threshold: NumType = proximity
