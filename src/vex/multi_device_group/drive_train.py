@@ -140,8 +140,8 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         to turn the Drivetrain to the right.
     """)
     @act
-    def turn(self, direction: TurnType = RIGHT, /):
-        """Turn."""
+    def turn(self, direction: TurnType = RIGHT):
+        """Turn in specified direction."""
 
     @vexcode_doc("""
         Turn For
