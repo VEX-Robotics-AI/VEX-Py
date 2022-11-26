@@ -26,7 +26,7 @@ class Gyro(Device):
     """Gyro Sensor."""
 
     @robotmesh_doc("""
-        Create a new gyro object on the port specified in the parameter.
+        Creates a new gyro object on the port specified in the parameter.
 
         Parameters:
         - index: index to the brain port.
@@ -37,8 +37,8 @@ class Gyro(Device):
         self.port: Ports = index
         self.is_calibrated: bool = calibrate
 
-        self.headings: dict[RotationUnits, float] = dict[RotationUnits, float]()   # noqa: E501
-        self.rotations: dict[RotationUnits, float] = dict[RotationUnits, float]()   # noqa: E501
+        self.heading: dict[RotationUnits, float] = dict[RotationUnits, float]()
+        self.rotation: dict[RotationUnits, float] = dict[RotationUnits, float]()  # noqa: E501
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
@@ -75,9 +75,9 @@ class Gyro(Device):
         """Calibrate."""
 
     @robotmesh_doc("""
-        Start recalibration of the gyro.
+        Starts recalibration of the gyro.
 
-        Parameters:
+        Parameters
         - gyroCalibrationType: amount of time for calibration,
                                GyroCalibrationType enum value.
         - waitForCompletion: wait for calibration to complete
@@ -90,9 +90,8 @@ class Gyro(Device):
         """Start calibrating."""
 
     @robotmesh_doc("""
-        Return True while  gyro sensor is performing a requested recalibration.
-
-        (changing to false once recalibration has completed)
+        Returns True while gyro sensor is performing a requested recalibration,
+        changing to false once recalibration has completed.
 
         Returns True if gyro is still calibrating.
     """)
@@ -101,7 +100,7 @@ class Gyro(Device):
         """Check whether still calibrating."""
 
     @overload
-    def set_heading(self, value: float = 0, unit: Literal[DEGREES] = DEGREES, /):  # noqa: E501
+    def set_heading(self, value: float, unit: Literal[DEGREES] = DEGREES, /):
         ...
 
     @overload
@@ -112,9 +111,9 @@ class Gyro(Device):
     @robotmesh_doc("""
         Set the gyro sensor angle to angle.
 
-        Parameters:
-        - value: The new heading for the gyro
-        - rotationUnits: The rotation unit for the heading
+        Parameters
+        - value: new heading for the gyro
+        - rotationUnits: rotation unit for the heading
     """)
     @vexcode_doc("""
         Gyro Set Heading
@@ -129,10 +128,9 @@ class Gyro(Device):
 
         Gyro Set Heading can accept decimal or integer inputs.
     """)
-    @act
-    def set_heading(self, value: float = 0, unit: Literal[DEGREES] = DEGREES, /):  # noqa: E501
+    def set_heading(self, value: float, unit: Literal[DEGREES] = DEGREES, /):
         """Set heading angle."""
-        self.headings[unit] = value
+        self.heading[unit] = value
 
     @overload
     def set_rotation(self, value: float = 0, unit: Literal[DEGREES] = DEGREES, /):  # noqa: E501

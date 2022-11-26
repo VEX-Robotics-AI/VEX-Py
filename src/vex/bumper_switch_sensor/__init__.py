@@ -37,8 +37,7 @@ class Bumper(Device):
     @robotmesh_doc("""
         Get the pressed status of the bumper device.
 
-        Returns
-        True if pressed, False otherwise.
+        Returns True if pressed, False otherwise.
     """)
     @vexcode_doc("""
         Pressing Bumper
