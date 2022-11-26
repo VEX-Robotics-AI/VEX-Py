@@ -22,10 +22,10 @@ __all__: Sequence[str] = 'VelocityUnits', 'RPM', 'DPS'
 class VelocityUnits(IntEnum):
     """Velocity units."""
 
-    PCT: int = PERCENT   # velocity unit measured in Percentage
-    RPM: int = 1   # velocity unit measured in Rotations per Minute
-    DPS: int = 2   # velocity unit measured in Degrees per Second
-    RAW: int = 99   # velocity unit measured in Raw Data Form
+    PCT: int = PERCENT  # velocity unit measured in Percentage
+    RPM: int = 1  # velocity unit measured in Rotations per Minute
+    DPS: int = 2  # velocity unit measured in Degrees per Second
+    RAW: int = 99  # velocity unit measured in Raw Data Form
 
 
 # aliases

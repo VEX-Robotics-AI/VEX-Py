@@ -1,4 +1,4 @@
-"""Torque Units."""
+"""Torque units."""
 
 
 from collections.abc import Sequence
@@ -18,8 +18,8 @@ __all__: Sequence[str] = ('TorqueUnits',)
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_torque_units.html
 """)
 class TorqueUnits(IntEnum):
-    """Torque Units."""
+    """Torque units."""
 
     PCT: int = PERCENT
-    NM: int = auto()   # A torque unit that is measured in Newton Meters
-    IN_LB: int = auto()   # A torque unit that is measured in Inch Pounds
+    NM: int = auto()  # torque unit measured in Newton Meters
+    IN_LB: int = auto()  # torque unit measured in Inch Pounds

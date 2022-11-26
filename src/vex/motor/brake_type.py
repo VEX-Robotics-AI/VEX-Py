@@ -18,9 +18,9 @@ __all__: Sequence[str] = 'BrakeType', 'COAST', 'BRAKE', 'HOLD'
 class BrakeType(IntEnum):
     """Motor braking modes."""
 
-    COAST: int = 0   # brake unit defined as Coast
-    BRAKE: int = 1   # brake unit defined as Brake
-    HOLD: int = 2   # brake unit defined as Hold
+    COAST: int = 0  # brake unit defined as Coast
+    BRAKE: int = 1  # brake unit defined as Brake
+    HOLD: int = 2  # brake unit defined as Hold
 
 
 # aliases

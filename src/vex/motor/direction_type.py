@@ -18,8 +18,8 @@ __all__: Sequence[str] = 'DirectionType', 'FORWARD', 'REVERSE'
 class DirectionType(IntEnum):
     """Movement directions."""
 
-    FWD: int = 0   # direction unit defined as Forward
-    REV: int = 1   # direction unit defined as Backward
+    FWD: int = 0  # direction unit defined as Forward
+    REV: int = 1  # direction unit defined as Backward
 
 
 # aliases
