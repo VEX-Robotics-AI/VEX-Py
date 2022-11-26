@@ -74,7 +74,7 @@ class BrainSound(SingletonDevice):
         the proceeding command will begin executing immediately.
     """)
     @act
-    def play_sound(self, sound: SoundType = SoundType.SIREN, /):
+    def play_sound(self, sound: SoundType, /):
         """Play sound effect."""
 
     @vexcode_doc("""
@@ -108,7 +108,7 @@ class BrainSound(SingletonDevice):
         Once a musical note starts playing,
         the proceeding command will begin executing immediately.
     """)
-    def play_note(self, octave: int = 3, note: int = 0, duration: int = 1000, /):  # noqa: E501
+    def play_note(self, octave: int, note: int, duration: int = 1000, /):
         """Play musical note."""
 
     @robotmesh_doc("""
@@ -135,7 +135,7 @@ class BrainSound(SingletonDevice):
     """)
     @act
     def play_raw(self, note: NoteType,
-                 duration: float = 0.5, timeUnits: TimeUnits = TimeUnits.SEC, /):   # noqa: E501
+                 duration: float = 0.5, timeUnits: TimeUnits = TimeUnits.SEC, /):  # noqa: E501
         """Play musical note."""
 
     @robotmesh_doc("""
