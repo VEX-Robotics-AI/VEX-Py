@@ -36,6 +36,17 @@ class BrainSound(SingletonDevice):
         # pylint: disable=attribute-defined-outside-init
         self.sound_effect: int = effect
 
+    @robotmesh_doc("""
+        Set the sound volume [1-4].
+
+        Parameters
+        - volume: value [1=low...4=high]
+    """)
+    def set_volume(self, volume: int, /):
+        """Set sound volume."""
+        # pylint: disable=attribute-defined-outside-init
+        self.volume: int = volume
+
     @vexcode_doc("""
         Play Sound
 
@@ -153,18 +164,6 @@ class BrainSound(SingletonDevice):
     @act
     def play_melody(self, melody: str, /):
         """Play musical melody."""
-
-    @robotmesh_doc("""
-        Set the sound volume [1-4].
-
-        Parameters
-        - volume: value [1=low...4=high]
-    """)
-    @act
-    def set_volume(self, volume: int, /):
-        """Set sound volume."""
-        # pylint: disable=attribute-defined-outside-init
-        self.volume: int = volume
 
     @robotmesh_doc("""
         Stop playing music.
