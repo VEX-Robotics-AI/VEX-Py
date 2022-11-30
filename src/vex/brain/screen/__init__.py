@@ -28,6 +28,43 @@ __all__: Sequence[str] = 'BrainLcd', 'FontType'
 class BrainLcd(SingletonDevice):
     """Brain LCD Screen."""
 
+    def __init__(self):
+        """Initialize Brain LCD Screen."""
+        self.font: FontType = FontType.MONO20
+
+    @vexcode_doc("""
+        Brain Screen Set Font
+
+        Sets the style and size of font used on the IQ (2nd generation) Brain's
+        screen when printing numbers or text.
+
+        There are two different types of fonts available on the IQ
+        (2nd generation) Brain's screen:
+        - Monospaced (Mono): each character takes up the same width.
+        - Proportional (Prop): each character takes up different size widths
+          based on the character.
+
+        Choose which font type and size to use. You can replace the FONT
+        parameter with one of the following font options:
+        - FontType.MONO12
+        - FontType.MONO15
+        - FontType.MONO20
+        - FontType.MONO30
+        - FontType.MONO40
+        - FontType.MONO60
+        - FontType.PROP20
+        - FontType.PROP30
+        - FontType.PROP40
+        - FontType.PROP60
+
+        The new font size will be used for any future text written to
+        the IQ (2nd generation) Brain's screen.
+    """)
+    @act
+    def set_font(self, fontname: FontType, /):
+        """Set font style & size."""
+        self.font: FontType = fontname
+
     @vexcode_doc("""
         Print
 
@@ -213,39 +250,6 @@ class BrainLcd(SingletonDevice):
     @act
     def draw_circle(self, x: int = 0, y: int = 0, radius: int = 10):
         """Draw circle."""
-
-    @vexcode_doc("""
-        Brain Screen Set Font
-
-        Sets the style and size of font used on the IQ (2nd generation) Brain's
-        screen when printing numbers or text.
-
-        There are two different types of fonts available on the IQ
-        (2nd generation) Brain's screen:
-        - Monospaced (Mono): each character takes up the same width.
-        - Proportional (Prop): each character takes up different size widths
-          based on the character.
-
-        Choose which font type and size to use. You can replace the FONT
-        parameter with one of the following font options:
-        - FontType.MONO12
-        - FontType.MONO15
-        - FontType.MONO20
-        - FontType.MONO30
-        - FontType.MONO40
-        - FontType.MONO60
-        - FontType.PROP20
-        - FontType.PROP30
-        - FontType.PROP40
-        - FontType.PROP60
-
-        The new font size will be used for any future text written to
-        the IQ (2nd generation) Brain's screen.
-    """)
-    @act
-    def set_font(self, fontname: FontType = FontType.MONO20, /):
-        """Set font style & size."""
-
     @vexcode_doc("""
         Brain Screen Set Pen Width
 
