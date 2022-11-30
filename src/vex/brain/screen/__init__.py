@@ -50,6 +50,22 @@ class BrainLcd(SingletonDevice):
     def print(self, *args):
         """Print numerical values and/or text strings on Brain LCD Screen."""
 
+    @robotmesh_doc("""
+        Prints a number, string, or boolean at a particular line,
+        clearing the rest of the line
+
+        Parameters
+        number: Line to print on, 1 is top line.
+        text: object to print, usually a string.
+              Use "" to clear the line.
+              For multiple arguments, use format like
+              "x: %g y: %g" % (x, y) -> "x: 123 y: 456"
+              Supported format flags are g (all) x (hex) d (int) f (float)
+    """)
+    @act
+    def print_line(self, number: int, text: str, /):
+        """Print given text to specified line."""
+
     @vexcode_doc("""
         Set Cursor
 
@@ -92,7 +108,7 @@ class BrainLcd(SingletonDevice):
         """Move cursor to new line."""
 
     @robotmesh_doc("""
-        Clear the whole screen.
+        Clears the whole screen.
     """)
     @vexcode_doc("""
         Clear Screen
@@ -313,20 +329,3 @@ class BrainLcd(SingletonDevice):
     @act
     def set_fill_color(self, color: Color = Color.RED, /):
         """Set shape-filling color."""
-
-    @robotmesh_doc("""
-        Print a number, string, or boolean at a particular line.
-
-        (clearing the rest of the line)
-
-        Parameters
-        number: Line to print on, 1 is top line.
-        text: object to print, usually a string.
-              Use "" to clear the line.
-              For multiple arguments, use format like
-              "x: %g y: %g" % (x, y) -> "x: 123 y: 456"
-              Supported format flags are g (all) x (hex) d (int) f (float)
-    """)
-    @act
-    def print_line(self, number: int, text: str, /):
-        """Print given text to specified line."""
