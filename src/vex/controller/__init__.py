@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
+from typing import Optional
 
 from abm.decor import act
 
@@ -19,9 +20,8 @@ __all__: Sequence[str] = 'Controller', 'ControllerButton', 'ControllerAxis'
 
 
 @robotmesh_doc("""
-    Use the Controller class to get values from the remote controller.
-
-    (as well as write to the controller's screen)
+    Use the Controller class to get values from the remote controller
+    as well as write to the controller's screen.
 
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_controller.html
 """)
@@ -46,15 +46,15 @@ class Controller(SingletonDevice):
         self._buttonRDown: ControllerButton = ControllerButton(mask='RDown')
         self._buttonR3: ControllerButton = ControllerButton(mask='R3')
 
-    @robotmesh_doc("""
-        Set the value of the controller axis deadband.
+        self.deadband: Optional[int] = None
 
+    @robotmesh_doc("""
+        Set the value of the controller axis deadband
         (minimum absolute threshold at which position is reported as non-zero)
     """)
     @act
     def set_deadband(self, deadband: int, /):
-        """Set axis deadband percentage threshold."""
-        # pylint: disable=attribute-defined-outside-init
+        """Set joystick axis deadband percentage threshold."""
         self.deadband: int = deadband
 
     @property
