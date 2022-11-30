@@ -281,7 +281,7 @@ class BrainLcd(SingletonDevice):
         The default pixel color is white.
     """)
     @act
-    def draw_pixel(self, x: int = 0, y: int = 0):
+    def draw_pixel(self, x: int, y: int):
         """Draw pixel."""
 
     @vexcode_doc("""
@@ -299,7 +299,7 @@ class BrainLcd(SingletonDevice):
         The default line color is white.
     """)
     @act
-    def draw_line(self, x1: int = 0, y1: int = 0, x2: int = 10, y2: int = 10):
+    def draw_line(self, x1: int, y1: int, x2: int, y2: int):
         """Draw line."""
 
     @vexcode_doc("""
@@ -320,8 +320,7 @@ class BrainLcd(SingletonDevice):
         by the Brain's Set Fill Color command. The default fill color is black.
     """)
     @act
-    def draw_rectangle(self, x: int = 0, y: int = 0,
-                       width: int = 10, height: int = 10):
+    def draw_rectangle(self, x: int, y: int, width: int, height: int):
         """Draw rectangle."""
 
     @vexcode_doc("""
@@ -341,5 +340,5 @@ class BrainLcd(SingletonDevice):
         Set Fill Color command. The default fill color is black.
     """)
     @act
-    def draw_circle(self, x: int = 0, y: int = 0, radius: int = 10):
+    def draw_circle(self, x: int, y: int, radius: int):
         """Draw circle."""
