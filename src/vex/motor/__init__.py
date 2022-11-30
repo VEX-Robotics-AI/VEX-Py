@@ -40,15 +40,16 @@ class Motor(Device):
     """Motor."""
 
     @robotmesh_doc("""
-        Create new motor object on specified port and set reversed flag.
+        Creates new motor object on specified port and set reversed flag.
 
-        Parameters:
-        - index: The port index for this motor. The index is zero-based.
+        Parameters
+        - index: Port index for this motor. The index is zero-based.
         - reverse: Sets the reverse flag for the new motor object.
     """)
     def __init__(self, index: Ports, reverse: bool = False, /):
         """Initialize Motor."""
         self.port: Ports = index
+
         self.reverse: bool = reverse
 
         self.rotations: dict[RotationUnits, float] = dict[RotationUnits, float]()  # noqa: E501
@@ -73,6 +74,19 @@ class Motor(Device):
         return f'{type(self).__name__}({self.port.name}' + (', reverse)'
                                                             if self.reverse
                                                             else ')')
+
+    @robotmesh_doc("""
+        Sets the motor mode to "reverse",
+        which will make motor commands spin the motor in the opposite direction
+
+        Parameters:
+        - is_reversed: If set to True, motor commands
+                       spin the motor in the opposite direction.
+    """)
+    @act
+    def set_reversed(self, is_reversed: bool, /):
+        """Set reversed mode."""
+        self.reverse: bool = is_reversed
 
     def _get_selected_velocity_and_unit(
             self,
@@ -599,21 +613,6 @@ class Motor(Device):
     @sense
     def current(self, unit: Literal[CurrentUnits.AMP] = CurrentUnits.AMP, /) -> float:  # noqa: E501
         """Return electrical current."""
-
-    @robotmesh_doc("""
-        Set the motor mode to "reverse".
-
-        (which will make motor commands
-        spin the motor in the opposite direction)
-
-        Parameters:
-        - is_reversed: If set to True, motor commands
-                       spin the motor in the opposite direction.
-    """)
-    @act
-    def set_reversed(self, is_reversed: bool, /):
-        """Set reversed mode."""
-        self.reverse: bool = is_reversed
 
     @robotmesh_doc("""
         Reset the motor's encoder to the value of zero.
