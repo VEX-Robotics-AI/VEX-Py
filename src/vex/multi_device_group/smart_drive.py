@@ -19,7 +19,7 @@ from .._util.doc import vexcode_doc
 from .drive_train import DriveTrain
 
 
-__all__: Sequence[str] = ('SmartDrive',)
+__all__: Sequence[str] = 'SmartDrive', 'Smartdrive'
 
 
 class SmartDrive(DriveTrain):
@@ -191,3 +191,7 @@ class SmartDrive(DriveTrain):
     @sense
     def rotation(self, units: Literal[DEGREES] = DEGREES) -> float:
         """Return cumulative rotational angle."""
+
+
+# alias
+Smartdrive = SmartDrive

@@ -23,7 +23,7 @@ from .._util.doc import vexcode_doc
 from .motor_group import MotorGroup
 
 
-__all__: Sequence[str] = ('DriveTrain',)
+__all__: Sequence[str] = 'DriveTrain', 'Drivetrain'
 
 
 class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
@@ -350,3 +350,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
     def current(self, units: Literal[CurrentUnits.AMP] = CurrentUnits.AMP) -> float:  # noqa: E501
         # pylint: disable=arguments-differ
         """Return electrical current."""
+
+
+# alias
+Drivetrain = DriveTrain
