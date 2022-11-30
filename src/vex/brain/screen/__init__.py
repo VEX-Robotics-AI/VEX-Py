@@ -36,6 +36,8 @@ class BrainLcd(SingletonDevice):
 
         self.pen_color: Color = Color.WHITE
 
+        self.fill_color: Color = Color.BLACK
+
     @vexcode_doc("""
         Brain Screen Set Font
 
@@ -122,6 +124,39 @@ class BrainLcd(SingletonDevice):
     def set_pen_color(self, color: Color, /):
         """Set drawing-pen color."""
         self.pen_color: Color = color
+
+    @vexcode_doc("""
+        Brain Screen Set Fill Color
+
+        Sets the color that fills in shapes drawn on the Brain's screen.
+
+        The Brain Screen Set Fill Color command is used to set the color of the
+        inside of circles and rectangles drawn on the Brain's screen.
+
+        You can replace the COLOR parameter with one of the following options:
+        - Color.BLACK
+        - Color.BLUE
+        - Color.BLUE_GREEN
+        - Color.BLUE_VIOLET
+        - Color.GREEN
+        - Color.ORANGE
+        - Color.PURPLE
+        - Color.RED
+        - Color.RED_ORANGE
+        - Color.RED_VIOLET
+        - Color.VIOLET
+        - Color.WHITE
+        - Color.YELLOW
+        - Color.YELLOW_GREEN
+        - Color.YELLOW_ORANGE
+
+        The fill color will be used for any next objects drawn
+        on the IQ (2nd generation) Brain's screen.
+    """)
+    @act
+    def set_fill_color(self, color: Color, /):
+        """Set shape-filling color."""
+        self.fill_color: Color = color
 
     @vexcode_doc("""
         Print
@@ -308,35 +343,3 @@ class BrainLcd(SingletonDevice):
     @act
     def draw_circle(self, x: int = 0, y: int = 0, radius: int = 10):
         """Draw circle."""
-
-    @vexcode_doc("""
-        Brain Screen Set Fill Color
-
-        Sets the color that fills in shapes drawn on the Brain's screen.
-
-        The Brain Screen Set Fill Color command is used to set the color of the
-        inside of circles and rectangles drawn on the Brain's screen.
-
-        You can replace the COLOR parameter with one of the following options:
-        - Color.BLACK
-        - Color.BLUE
-        - Color.BLUE_GREEN
-        - Color.BLUE_VIOLET
-        - Color.GREEN
-        - Color.ORANGE
-        - Color.PURPLE
-        - Color.RED
-        - Color.RED_ORANGE
-        - Color.RED_VIOLET
-        - Color.VIOLET
-        - Color.WHITE
-        - Color.YELLOW
-        - Color.YELLOW_GREEN
-        - Color.YELLOW_ORANGE
-
-        The fill color will be used for any next objects drawn
-        on the IQ (2nd generation) Brain's screen.
-    """)
-    @act
-    def set_fill_color(self, color: Color = Color.RED, /):
-        """Set shape-filling color."""
