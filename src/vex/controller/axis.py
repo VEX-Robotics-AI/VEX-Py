@@ -24,7 +24,7 @@ Controller = TypeVar(name='Controller')
 class ControllerAxis:
     """Joystick axis."""
 
-    def __init__(self, parent: Controller, axtype: str, /):
+    def __init__(self, parent: Controller, axtype: str):
         """Initialize Controller Joystick Axis."""
         self.parent: Controller = parent
         self.axtype: str = axtype
