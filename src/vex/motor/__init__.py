@@ -546,13 +546,6 @@ class Motor(Device):
         self._rotation[rotationUnits] = value
 
     @robotmesh_doc("""
-        Return True if the last motor operation timed out.
-    """)
-    @sense
-    def did_timeout(self) -> bool:
-        """Return whether motor timed out."""
-
-    @robotmesh_doc("""
         Turn on the motor and spins it.
 
         (to an absolute target rotation value at a specified velocity)
@@ -756,6 +749,13 @@ class Motor(Device):
     @sense
     def is_spinning(self) -> bool:
         """Check whether motor is still spinning."""
+
+    @robotmesh_doc("""
+        Returns True if the last motor operation timed out.
+    """)
+    @sense
+    def did_timeout(self) -> bool:
+        """Return whether motor timed out."""
 
     @vexcode_doc("""
         Motor Position
