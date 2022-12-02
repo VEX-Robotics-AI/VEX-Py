@@ -2,6 +2,7 @@
 
 
 from collections.abc import Sequence
+from threading import Thread
 from typing_extensions import Self
 
 from abm.decor import sense, act
@@ -93,7 +94,13 @@ class ControllerButton:
     @act
     def pressed(self, callback: callable, /):
         """Trigger callback function when upon being pressed."""
-        callback()
+        def trigger_callback_whenever_pressing():
+            while True:
+                if self.pressing():
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_pressing, name=None,  # noqa: E501
+               args=(), kwargs={}, daemon=True).start()
 
     @vexcode_doc("""
         Controller Button Released
@@ -119,4 +126,10 @@ class ControllerButton:
     @act
     def released(self, callback: callable, /):
         """Trigger callback function upon being released."""
-        callback()
+        def trigger_callback_whenever_not_pressing():
+            while True:
+                if not self.pressing():
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_not_pressing, name=None,  # noqa: E501
+               args=(), kwargs={}, daemon=True).start()

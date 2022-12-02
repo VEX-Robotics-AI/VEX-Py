@@ -2,6 +2,7 @@
 
 
 from collections.abc import Sequence
+from threading import Thread
 
 from abm.decor import sense
 
@@ -70,7 +71,13 @@ class Bumper(Device):
     """)
     def pressed(self, callback: callable, /):
         """Trigger callback function upon being pressed."""
-        callback()
+        def trigger_callback_whenever_pressing():
+            while True:
+                if self.pressing():
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_pressing, name=None,  # noqa: E501
+               args=(), kwargs={}, daemon=True).start()
 
     @vexcode_doc("""
         Bumper Released
@@ -90,4 +97,10 @@ class Bumper(Device):
     """)
     def released(self, callback: callable, /):
         """Trigger callback function upon being released."""
-        callback()
+        def trigger_callback_whenever_not_pressing():
+            while True:
+                if not self.pressing():
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_not_pressing, name=None,  # noqa: E501
+               args=(), kwargs={}, daemon=True).start()

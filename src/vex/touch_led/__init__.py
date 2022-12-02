@@ -2,6 +2,7 @@
 
 
 from collections.abc import Sequence
+from threading import Thread
 from typing import Optional
 
 from abm.decor import act, sense
@@ -232,7 +233,13 @@ class Touchled(Device):
     """)
     def pressed(self, callback: callable, /):
         """Trigger callback function upon being pressed."""
-        callback()
+        def trigger_callback_whenever_pressing():
+            while True:
+                if self.pressing():
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_pressing, name=None,  # noqa: E501
+               args=(), kwargs={}, daemon=True).start()
 
     @vexcode_doc("""
         TouchLED Released
@@ -253,4 +260,10 @@ class Touchled(Device):
     """)
     def released(self, callback: callable, /):
         """Trigger callback function upon being released."""
-        callback()
+        def trigger_callback_whenever_not_pressing():
+            while True:
+                if not self.pressing():
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_not_pressing, name=None,  # noqa: E501
+               args=(), kwargs={}, daemon=True).start()

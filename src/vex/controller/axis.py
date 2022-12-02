@@ -2,6 +2,7 @@
 
 
 from collections.abc import Sequence
+from threading import Thread
 from typing import TypeVar
 from typing_extensions import Self
 
@@ -99,4 +100,10 @@ class ControllerAxis:
     """)
     def changed(self, callback: callable, /):
         """Trigger callback function upon being moved."""
-        callback()
+        def trigger_callback_whenever_changed():
+            while True:
+                if self.position() != self.position():
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_changed, name=None,
+               args=(), kwargs={}, daemon=True).start()

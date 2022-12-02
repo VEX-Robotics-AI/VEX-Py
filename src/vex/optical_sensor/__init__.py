@@ -2,6 +2,7 @@
 
 
 from collections.abc import Sequence
+from threading import Thread
 from typing import Literal
 
 from abm.decor import act, sense
@@ -224,7 +225,13 @@ class Optical(Device):
     @act
     def object_detected(self, callback: callable, /):
         """Trigger callback function upon detecting an object."""
-        callback()
+        def trigger_callback_whenever_near_object():
+            while True:
+                if self.is_near_object():
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_near_object, name=None,  # noqa: E501
+               args=(), kwargs={}, daemon=True).start()
 
     @vexcode_doc("""
         Optical Object Lost
@@ -243,28 +250,58 @@ class Optical(Device):
     @act
     def object_lost(self, callback: callable, /):
         """Trigger callback function upon losing previously-detected object."""
-        callback()
+        def trigger_callback_whenever_not_near_object():
+            while True:
+                if not self.is_near_object():
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_not_near_object,
+               name=None, args=(), kwargs={}, daemon=True).start()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
     def gesture_up(self, callback: callable, /):
         """Trigger callback function upon detecting UP gesture."""
-        callback()
+        def trigger_callback_whenever_detecting_up_gesture():
+            while True:
+                if self.get_gesture().type == GestureType.UP:
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_detecting_up_gesture,  # noqa: E501
+               name=None, args=(), kwargs={}, daemon=True).start()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
     def gesture_down(self, callback: callable, /):
         """Trigger callback function upon detecting DOWN gesture."""
-        callback()
+        def trigger_callback_whenever_detecting_down_gesture():
+            while True:
+                if self.get_gesture().type == GestureType.DOWN:
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_detecting_down_gesture,  # noqa: E501
+               name=None, args=(), kwargs={}, daemon=True).start()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
     def gesture_left(self, callback: callable, /):
         """Trigger callback function upon detecting LEFT gesture."""
-        callback()
+        def trigger_callback_whenever_detecting_left_gesture():
+            while True:
+                if self.get_gesture().type == GestureType.LEFT:
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_detecting_left_gesture,  # noqa: E501
+               name=None, args=(), kwargs={}, daemon=True).start()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
     def gesture_right(self, callback: callable, /):
         """Trigger callback function upon detecting RIGHT gesture."""
-        callback()
+        def trigger_callback_whenever_detecting_right_gesture():
+            while True:
+                if self.get_gesture().type == GestureType.RIGHT:
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_detecting_right_gesture,  # noqa: E501
+               name=None, args=(), kwargs={}, daemon=True).start()
