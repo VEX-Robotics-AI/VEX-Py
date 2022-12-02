@@ -12,6 +12,7 @@ robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacevex.html
 from collections.abc import Sequence
 from importlib.metadata import version
 import sys
+from threading import Thread
 from typing import Optional
 
 from abm import interactive
@@ -108,11 +109,21 @@ __version__: str = version(distribution_name='VEX-Py')
 
 # CONSTANTS
 # =========
+
 INT29_MAX: int = 0x1FFFFFFF
 
 
 # FUNCTIONS
 # =========
+
+@robotmesh_doc("""
+    Runs the given function in a thread sharing the current global namespace.
+""")
+def run_in_thread(f: callable):
+    """Run specified function in parallel thread."""
+    Thread(group=None, target=f, name=None, args=(), kwargs={}, daemon=True).start()  # noqa: E501
+
+
 @robotmesh_doc("""
     Wait until a function returns a value.
 
@@ -134,7 +145,9 @@ def wait_for(func: callable, value: bool = True,
 
 # ALIASES
 # =======
+
 sys.clock: callable = clock
 sys.sleep: callable = wait
 sys.maxint: int = INT29_MAX
+sys.run_in_thread: callable = run_in_thread
 sys.wait_for: callable = wait_for
