@@ -1,2 +1,3 @@
 [flake8]
 ignore = N802,N803,W504
+max-line-length = 100
