@@ -107,6 +107,29 @@ class Motor(Device):
 
         return (velocity, unit)
 
+    @vexcode_doc("""
+        Set Motor Position
+
+        Sets an IQ Motor's or Motor Group's encoder(s) position
+        to the given position value.
+
+        This command can be used to set a Motor or Motor Group's position
+        to a given positional value.
+
+        Usually, the Set Motor Position command is used to set the position to
+        0 to reset a Motor or Motor Group's encoder position(s).
+
+        The Set Motor Position command accepts DEGREES or TURNS as valid UNITS.
+    """)
+    @act
+    def set_position(self, position: NumType, unit: RotationUnits, /):
+        """Set cumulative rotational angle to specified position."""
+        assert isinstance(position, NumType), \
+            TypeError(f'*** position {position} NEITHER A FLOAT NOR AN INT ***')  # noqa: E501
+
+        assert isinstance(unit, RotationUnits), \
+            TypeError(f'*** unit {unit} NOT ONE OF RotationUnits ***')
+
     @overload
     def set_stopping(self, value: BrakeType, /):
         ...
@@ -463,24 +486,6 @@ class Motor(Device):
                          angle: NumType = 90, /, units: RotationUnits = DEGREES,  # noqa: E501
                          wait: bool = True):
         """Spin motor to specified rotational angle."""
-
-    @vexcode_doc("""
-        Set Motor Position
-
-        Sets an IQ Motor's or Motor Group's encoder(s) position
-        to the given position value.
-
-        This command can be used to set a Motor or Motor Group's position
-        to a given positional value.
-
-        Usually, the Set Motor Position command is used to set the position to
-        0 to reset a Motor or Motor Group's encoder position(s).
-
-        The Set Motor Position command accepts DEGREES or TURNS as valid UNITS.
-    """)
-    @act
-    def set_position(self, position: NumType = 0, unit: RotationUnits = DEGREES, /):  # noqa: E501
-        """Set cumulative rotational angle to specified position."""
 
     @overload
     def set_velocity(self, value: NumType = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
