@@ -557,37 +557,6 @@ class Motor(Device):
     def position(self, unit: RotationUnits = DEGREES, /) -> NumType:
         """Return cumulative rotational angle."""
 
-    @overload
-    def velocity(self, unit: VelocityUnits = PERCENT, /) -> NumType:
-        ...
-
-    @overload
-    def velocity(self, velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:  # noqa: E501
-        ...
-
-    @robotmesh_doc("""
-        Get the current velocity of the motor.
-
-        Parameters:
-        - velocityUnits: The measurement unit for the velocity.
-
-        Returns:
-        a float that represents the current velocity
-        of the motor in the units defined in the parameter.
-    """)
-    @vexcode_doc("""
-        Motor Velocity
-
-        Reports the current velocity of an IQ Motor
-        or the first motor of a Motor Group.
-
-        Motor velocity reports a range from -100 to 100 when PERCENT is passed
-        as the UNITS parameter, or -127 to 127 if RPM is passed.
-    """)
-    @sense
-    def velocity(self, unit: VelocityUnits = PERCENT, /) -> NumType:
-        """Return velocity."""
-
     @robotmesh_doc("""
         Reset the motor's encoder to the value of zero.
     """)
@@ -750,6 +719,36 @@ class Motor(Device):
     @sense
     def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:  # noqa: E501
         """Return motor's cumulative rotation angle value."""
+
+    @overload
+    def velocity(self, unit: VelocityUnits = PERCENT, /) -> NumType:
+        ...
+
+    @overload
+    def velocity(self, velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:  # noqa: E501
+        ...
+
+    @robotmesh_doc("""
+        Gets the current velocity of the motor.
+
+        Parameters:
+        - velocityUnits: measurement unit for velocity.
+
+        Returns: a float that represents the current velocity
+                 of the motor in the units defined in the parameter.
+    """)
+    @vexcode_doc("""
+        Motor Velocity
+
+        Reports the current velocity of an IQ Motor
+        or the first motor of a Motor Group.
+
+        Motor velocity reports a range from -100 to 100 when PERCENT is passed
+        as the UNITS parameter, or -127 to 127 if RPM is passed.
+    """)
+    @sense
+    def velocity(self, unit: VelocityUnits = PERCENT, /) -> NumType:
+        """Return velocity."""
 
     @overload
     def current(self, unit: Literal[CurrentUnits.AMP] = CurrentUnits.AMP, /) -> float:  # noqa: E501
