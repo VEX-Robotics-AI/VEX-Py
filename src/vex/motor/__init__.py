@@ -495,54 +495,6 @@ class Motor(Device):
         self.timeouts[unit] = value
 
     @robotmesh_doc("""
-        Determine if spin_for/spin_to command has reached its target position.
-
-        Returns:
-        False if the motor is on and is rotating
-        to a target, True if the motor is done rotating to a target.
-    """)
-    @vexcode_doc("""
-        Motor Is Done
-
-        Reports if an IQ Motor or Motor Group has completed its movement.
-
-        Motor Is Done reports True when the selected Motor or Motor Group
-        has completed its movement.
-
-        Motor Is Done reports False when the selected Motor or Motor Group
-        is still moving.
-    """)
-    @sense
-    def is_done(self) -> bool:
-        """Check whether motor has finished spinning."""
-
-    @robotmesh_doc("""
-        Determine if a spin_for/spin_to command is in progress.
-
-        Returns:
-        True if the motor is on and is rotating to a target,
-        False if the motor is done rotating to a target.
-    """)
-    @vexcode_doc("""
-        Motor Is Spinning
-
-        Reports if an IQ Motor or Motor Group is currently spinning.
-
-        Motor Is Spinning reports True when the selected Motor or Motor Group
-        is still moving.
-
-        Motor Is Spinning reports False when the selected Motor or Motor Group
-        is stopped.
-
-        Note: This command will always return false if the Motor/Motor Group
-        is spinning as a result of a previous motor.spin command
-        (which does not specify a set distance to spin).
-    """)
-    @sense
-    def is_spinning(self) -> bool:
-        """Check whether motor is still spinning."""
-
-    @robotmesh_doc("""
         Reset the motor's encoder to the value of zero.
     """)
     @act
@@ -690,6 +642,54 @@ class Motor(Device):
         """Set max torque current."""
         # pylint: disable=attribute-defined-outside-init
         self.max_torque_current: float = value
+
+    @robotmesh_doc("""
+        Determines if spin_for/spin_to command has reached its target position.
+
+        Returns:
+        False if the motor is on and is rotating to a target,
+        True if the motor is done rotating to a target.
+    """)
+    @vexcode_doc("""
+        Motor Is Done
+
+        Reports if an IQ Motor or Motor Group has completed its movement.
+
+        Motor Is Done reports True when the selected Motor or Motor Group
+        has completed its movement.
+
+        Motor Is Done reports False when the selected Motor or Motor Group
+        is still moving.
+    """)
+    @sense
+    def is_done(self) -> bool:
+        """Check whether motor has finished spinning."""
+
+    @robotmesh_doc("""
+        Determines if a spin_for/spin_to command is in progress.
+
+        Returns:
+        True if the motor is on and is rotating to a target,
+        False if the motor is done rotating to a target.
+    """)
+    @vexcode_doc("""
+        Motor Is Spinning
+
+        Reports if an IQ Motor or Motor Group is currently spinning.
+
+        Motor Is Spinning reports True when the selected Motor or Motor Group
+        is still moving.
+
+        Motor Is Spinning reports False when the selected Motor or Motor Group
+        is stopped.
+
+        Note: This command will always return false if the Motor/Motor Group
+        is spinning as a result of a previous motor.spin command
+        (which does not specify a set distance to spin).
+    """)
+    @sense
+    def is_spinning(self) -> bool:
+        """Check whether motor is still spinning."""
 
     @vexcode_doc("""
         Motor Position
