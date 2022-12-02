@@ -542,21 +542,6 @@ class Motor(Device):
     def is_spinning(self) -> bool:
         """Check whether motor is still spinning."""
 
-    @vexcode_doc("""
-        Motor Position
-
-        Reports the current rotational position of the selected IQ Motor
-        or the first motor of the selected Motor Group.
-
-        Motor Position reports the position of an IQ Motor
-        or the first motor in a Motor Group.
-
-        Acceptable values for UNITS are: DEGREES or TURNS.
-    """)
-    @sense
-    def position(self, unit: RotationUnits = DEGREES, /) -> NumType:
-        """Return cumulative rotational angle."""
-
     @robotmesh_doc("""
         Reset the motor's encoder to the value of zero.
     """)
@@ -706,19 +691,33 @@ class Motor(Device):
         # pylint: disable=attribute-defined-outside-init
         self.max_torque_current: float = value
 
+    @vexcode_doc("""
+        Motor Position
+
+        Reports the current rotational position of the selected IQ Motor
+        or the first motor of the selected Motor Group.
+
+        Motor Position reports the position of an IQ Motor
+        or the first motor in a Motor Group.
+
+        Acceptable values for UNITS are: DEGREES or TURNS.
+    """)
+    @sense
+    def position(self, unit: RotationUnits = DEGREES, /) -> NumType:
+        """Return cumulative rotational angle."""
+
     @robotmesh_doc("""
-        Get the current rotation of the motor's encoder.
+        Gets the current rotation of the motor's encoder.
 
         Parameters:
-        rotationUnits: The measurement unit for the rotation.
+        - rotationUnits: measurement unit for rotation.
 
-        Returns:
-        a float that represents the current rotation of
-        the motor in the units defined in the parameter.
+        Returns: a float that represents the current rotation of
+                 the motor in the units defined in the parameter.
     """)
     @sense
     def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:  # noqa: E501
-        """Return motor's cumulative rotation angle value."""
+        """Return cumulative rotational angle."""
 
     @overload
     def velocity(self, unit: VelocityUnits = PERCENT, /) -> NumType:
