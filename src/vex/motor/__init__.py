@@ -147,6 +147,44 @@ class Motor(Device):
         self.stopping_mode: BrakeType = mode
 
     @overload
+    def set_max_torque(self, value: NumType = 50,
+                       unit: Literal[PERCENT] = PERCENT, /):
+        ...
+
+    @overload
+    def set_max_torque(self, value: NumType,
+                       torqueUnits: TorqueUnits = TorqueUnits.NM, /):
+        ...
+
+    @robotmesh_doc("""
+        Sets the max torque of the motor.
+
+        Parameters:
+        - value: amount of torque (max 0.414 Nm)
+        - torqueUnits: measurement unit for torque
+    """)
+    @vexcode_doc("""
+        Set Motor Torque
+
+        Sets the strength of an IQ Motor or Motor Group.
+
+        This command accepts a range of 0 to 100 for the AMOUNT parameter.
+
+        The Set Max Torque command accepts decimals, integers or numerics.
+    """)
+    @act
+    def set_max_torque(self, value: NumType = 50, unit: TorqueUnits = PERCENT, /):  # noqa: E501
+        """Set max torque."""
+        assert isinstance(value, NumType), \
+            TypeError('*** value MUST BE float OR int ***')
+        assert value > 0, ValueError('*** value MUST BE POSITIVE ***')
+
+        assert (unit is PERCENT) or isinstance(unit, TorqueUnits), \
+            TypeError('*** unit MUST BE ONE OF TorqueUnits ***')
+
+        self.max_torque[unit] = value
+
+    @overload
     def spin(self, direction: DirectionType = FORWARD):
         ...
 
@@ -409,37 +447,6 @@ class Motor(Device):
     @act
     def _set_velocity(self, value: NumType = 50, unit: VelocityUnits = PERCENT):  # noqa: E501
         """Set velocity."""
-
-    @overload
-    def set_max_torque(self, value: NumType = 50,
-                       unit: Literal[PERCENT] = PERCENT, /):
-        ...
-
-    @overload
-    def set_max_torque(self, value: NumType,
-                       torqueUnits: TorqueUnits = TorqueUnits.NM, /):
-        ...
-
-    @robotmesh_doc("""
-        Set the max torque of the motor.
-
-        Parameters:
-        - value: Sets the amount of torque (max 0.414 Nm)
-        - torqueUnits: The measurement unit for the torque value.
-    """)
-    @vexcode_doc("""
-        Set Motor Torque
-
-        Sets the strength of an IQ Motor or Motor Group.
-
-        This command accepts a range of 0 to 100 for the AMOUNT parameter.
-
-        The Set Max Torque command accepts decimals, integers or numerics.
-    """)
-    @act
-    def set_max_torque(self, value: NumType = 50, unit: TorqueUnits = PERCENT, /):  # noqa: E501
-        """Set max torque."""
-        self.max_torque[unit] = value
 
     @overload
     def set_timeout(self, value: NumType = 1, /, units: Literal[SECONDS] = SECONDS):  # noqa: E501
