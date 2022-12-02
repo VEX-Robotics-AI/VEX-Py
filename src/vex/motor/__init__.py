@@ -560,10 +560,9 @@ class Motor(Device):
         By default, this command will have the wait to be set to True.
     """)
     @act
-    def spin_to_position(self,
-                         angle: NumType = 90, /, units: RotationUnits = DEGREES,  # noqa: E501
+    def spin_to_position(self, angle: NumType, /, units: RotationUnits = DEGREES,  # noqa: E501
                          wait: bool = True):
-        """Spin motor to specified rotational angle."""
+        """Spin to specified rotational angle."""
 
     @robotmesh_doc("""
         Turn on the motor and spins it.
