@@ -563,17 +563,26 @@ class Motor(Device):
     def spin_to_position(self, angle: NumType, /, units: RotationUnits = DEGREES,  # noqa: E501
                          wait: bool = True):
         """Spin to specified rotational angle."""
+        assert isinstance(angle, NumType), \
+            TypeError(f'*** angle {angle} NEITHER A FLOAT NOR AN INT ***')
+
+        assert isinstance(units, RotationUnits), \
+            TypeError(f'*** units {units} NOT ONE OF RotationUnits ***')
+
+        assert isinstance(wait, bool), TypeError(f'*** wait {wait} NOT A BOOL ***')  # noqa: E501
 
     @robotmesh_doc("""
-        Turn on the motor and spins it.
+        Turns on the motor and spins it to an absolute target rotation value
+        at a specified velocity.
 
-        (to an absolute target rotation value at a specified velocity)
+        Returns
+        a Boolean signifying when motor has reached target rotation value.
 
-        Parameters:
-        - rotation: Sets the amount of rotation.
-        - rotationUnits: The measurement unit for the rotation value.
-        - velocity: Sets the amount of velocity.
-        - velocityUnits: The measurement unit for the velocity value.
+        Parameters
+        - rotation: amount of rotation
+        - rotationUnits: measurement unit for rotation
+        - velocity: amount of velocity
+        - velocityUnits: measurement unit for velocity
         - waitForCompletion: (Optional) If True, your program will wait
                              until the motor reaches the target rotational
                              value. If false, the program will continue after
@@ -582,12 +591,28 @@ class Motor(Device):
     """)
     @act
     def spin_to(self,
-                rotation: float,
+                rotation: NumType,
                 rotationUnits: RotationUnits = RotationUnits.DEG,
-                velocity: Optional[float] = None,
+                velocity: Optional[NumType] = None,
                 velocityUnits: VelocityUnits = VelocityUnits.PCT,
                 waitForCompletion: bool = True, /) -> bool:
         """Spin motor to target rotation angle value."""
+        assert isinstance(rotation, NumType), \
+            TypeError(f'*** rotation {rotation} NEITHER A FLOAT NOR AN INT ***')  # noqa: E501
+
+        assert isinstance(rotationUnits, RotationUnits), \
+            TypeError(f'*** rotationUnits {rotationUnits} '
+                      'NOT ONE OF RotationUnits ***')
+
+        assert (velocity is None) or isinstance(velocity, NumType), \
+            TypeError('*** velocity {velocity} NEITHER None, A FLOAT NOR AN INT ***')  # noqa: E501
+
+        assert isinstance(velocityUnits, VelocityUnits), \
+            TypeError(f'*** velocityUnits {velocityUnits} '
+                      'NOT ONE OF VelocityUnits ***')
+
+        assert isinstance(waitForCompletion, bool), \
+            TypeError(f'*** waitForCompletion {waitForCompletion} NOT A BOOL ***')  # noqa: E501
 
     @robotmesh_doc("""
         Turns on the motor and spins it
