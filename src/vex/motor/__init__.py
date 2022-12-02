@@ -61,6 +61,7 @@ class Motor(Device):
         self._timeout: dict[TimeUnits, NumType] = dict[TimeUnits, NumType]()
 
         self.max_torque: dict[TorqueUnits, NumType] = dict[TorqueUnits, NumType]()  # noqa: E501
+        self.max_torque_current: Optional[float] = None
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
@@ -159,7 +160,7 @@ class Motor(Device):
     @robotmesh_doc("""
         Sets the max torque of the motor.
 
-        Parameters:
+        Parameters
         - value: amount of torque (max 0.414 Nm)
         - torqueUnits: measurement unit for torque
     """)
@@ -183,6 +184,35 @@ class Motor(Device):
             TypeError('*** unit MUST BE ONE OF TorqueUnits ***')
 
         self.max_torque[unit] = value
+
+    @robotmesh_doc("""
+        Sets the max torque of the motor as a percentage.
+
+        Parameters
+        - value: amount of torque (0 to 100%)
+    """)
+    @act
+    def set_max_torque_percent(self, value: int, /):
+        """Set max torque percent."""
+        assert isinstance(value, int), TypeError('*** value MUST BE int ***')
+        assert 1 <= value <= 100, ValueError('*** value MUST BE 1-100 ***')
+
+        self.max_torque[PERCENT] = value
+
+    @robotmesh_doc("""
+        Sets the max torque of the motor.
+
+        Parameters
+        - value: amount of torque in Amps (max 1.2A)
+    """)
+    @act
+    def set_max_torque_current(self, value: float, /):
+        """Set max torque current."""
+        assert isinstance(value, NumType), \
+            TypeError('*** value MUST BE float OR int ***')
+        assert value <= 1.2, ValueError('*** value MUST BE 1.2 OR LESS ***')
+
+        self.max_torque_current: float = value
 
     @overload
     def spin(self, direction: DirectionType = FORWARD):
@@ -608,29 +638,6 @@ class Motor(Device):
                        velocity: Optional[float] = None,
                        velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Start spinning motor for a certain rotation angle value."""
-
-    @robotmesh_doc("""
-        Set the max torque of the motor as a percentage.
-
-        Parameters:
-        - value: Sets the amount of torque (0 to 100%)
-    """)
-    @act
-    def set_max_torque_percent(self, value: float, /):
-        """Set max torque percent."""
-        self.max_torque[TorqueUnits.PCT] = value
-
-    @robotmesh_doc("""
-        Set the max torque of the motor.
-
-        Parameters:
-        - value: Sets the amount of torque in Amps (max 1.2A)
-    """)
-    @act
-    def set_max_torque_current(self, value: float, /):
-        """Set max torque current."""
-        # pylint: disable=attribute-defined-outside-init
-        self.max_torque_current: float = value
 
     @overload
     def stop(self):
