@@ -49,15 +49,18 @@ class Motor(Device):
     def __init__(self, index: Ports, reverse: bool = False, /):
         """Initialize Motor."""
         self.port: Ports = index
-
         self.reverse: bool = reverse
 
-        self.rotations: dict[RotationUnits, float] = dict[RotationUnits, float]()  # noqa: E501
-        self.stopping_mode: Optional[BrakeType] = None
-        self.timeouts: dict[TimeUnits, NumType] = dict[TimeUnits, NumType]()
-        self.max_torque: dict[TorqueUnits, NumType] = dict[TorqueUnits, NumType]()  # noqa: E501
-        self.velocities: dict[VelocityUnits, NumType] = {PERCENT: 50}
+        self._rotation: dict[RotationUnits, float] = dict[RotationUnits, float]()  # noqa: E501
+
+        self._velocity: dict[VelocityUnits, NumType] = {PERCENT: 50}
         self.selected_velocity_unit: VelocityUnits = PERCENT
+
+        self.stopping_mode: Optional[BrakeType] = None
+
+        self._timeout: dict[TimeUnits, NumType] = dict[TimeUnits, NumType]()
+
+        self.max_torque: dict[TorqueUnits, NumType] = dict[TorqueUnits, NumType]()  # noqa: E501
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
@@ -93,12 +96,12 @@ class Motor(Device):
             velocity: Optional[float],
             unit: VelocityUnits) -> tuple[float, VelocityUnits]:
         if (velocity is None) or (not isinstance(velocity, float | int)):
-            if self.selected_velocity_unit not in self.velocities:
+            if self.selected_velocity_unit not in self._velocity:
                 raise ValueError('You have not selected any velocity; '
                                  'please call '
                                  'set_velocity(velocity, velocityUnits) first')
 
-            velocity = self.velocities[self.selected_velocity_unit]
+            velocity = self._velocity[self.selected_velocity_unit]
             unit = self.selected_velocity_unit
 
         return (velocity, unit)
@@ -359,7 +362,7 @@ class Motor(Device):
     @act
     def set_velocity(self, value: NumType = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
         """Set velocity."""
-        self.velocities[unit] = value
+        self._velocity[unit] = value
         self.selected_velocity_unit = unit
         return self._set_velocity(value=value, unit=unit)
 
@@ -468,7 +471,7 @@ class Motor(Device):
     @act
     def set_timeout(self, value: NumType = 1, unit: Literal[SECONDS] = SECONDS, /):  # noqa: E501
         """Set timeout threshold."""
-        self.timeouts[unit] = value
+        self._timeout[unit] = value
 
     @robotmesh_doc("""
         Reset the motor's encoder to the value of zero.
@@ -476,8 +479,8 @@ class Motor(Device):
     @act
     def reset_rotation(self):
         """Reset motor rotation value to 0."""
-        for rotation_unit in self.rotations:
-            self.rotations[rotation_unit] = 0
+        for rotation_unit in self._rotation:
+            self._rotation[rotation_unit] = 0
 
     @robotmesh_doc("""
         Set value of motor's encoder to value specified in parameter.
@@ -491,7 +494,7 @@ class Motor(Device):
     def set_rotation(self, value: float,
                      rotationUnits: RotationUnits = RotationUnits.DEG, /):
         """Set motor rotation value to specific value."""
-        self.rotations[rotationUnits] = value
+        self._rotation[rotationUnits] = value
 
     @robotmesh_doc("""
         Return a timeout in given time units.
@@ -499,7 +502,7 @@ class Motor(Device):
     @sense
     def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> float:
         """Return motor timeout."""
-        return self.timeouts[timeUnits]
+        return self._timeout[timeUnits]
 
     @robotmesh_doc("""
         Return True if the last motor operation timed out.
