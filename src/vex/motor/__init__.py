@@ -147,6 +147,47 @@ class Motor(Device):
 
         self.stopping_mode: BrakeType = mode
 
+    @overload
+    def set_timeout(self, value: NumType, /, units: Literal[SECONDS]):
+        ...
+
+    @overload
+    def set_timeout(self, time: NumType, timeUnits: TimeUnits = TimeUnits.SEC, /):  # noqa: E501
+        ...
+
+    @robotmesh_doc("""
+        Sets the timeout for the motor.
+
+        If the motor does not reach its commanded position
+        prior to the completion of the timeout, the motor will stop.
+
+        Parameters
+        - time: amount of time
+        - timeUnits: measurement unit for the time, a TimeUnits enum value
+    """)
+    @vexcode_doc("""
+        Set Motor Timeout
+
+        Sets a time limit for an IQ Motor or Motor Group movement commands.
+
+        A Motor or Motor Group's Set Motor Timeout command is used to prevent
+        motion commands that do not reach their intended position from
+        preventing subsequent commands from running.
+
+        An example of a Motor not reaching its position is an Arm or Claw that
+        reaches its mechanical limit and cannot complete its movement.
+    """)
+    @act
+    def set_timeout(self, value: NumType, unit: Literal[SECONDS], /):
+        """Set timeout."""
+        assert isinstance(value, NumType), \
+            TypeError('*** value MUST BE A float OR AN int ***')
+        assert value > 0, ValueError('*** value MUST BE POSITIVE ***')
+
+        assert unit is SECONDS, ValueError('*** unit MUST BE SECONDS ***')
+
+        self._timeout[unit] = value
+
     @robotmesh_doc("""
         Returns a timeout in given time unit.
     """)
@@ -486,41 +527,6 @@ class Motor(Device):
     @act
     def _set_velocity(self, value: NumType = 50, unit: VelocityUnits = PERCENT):  # noqa: E501
         """Set velocity."""
-
-    @overload
-    def set_timeout(self, value: NumType = 1, /, units: Literal[SECONDS] = SECONDS):  # noqa: E501
-        ...
-
-    @overload
-    def set_timeout(self, time: NumType, timeUnits: TimeUnits = TimeUnits.SEC, /):  # noqa: E501
-        ...
-
-    @robotmesh_doc("""
-        Set the timeout for the motor.
-
-        If the motor does not reach its commanded position prior
-        to the completion of the timeout, the motor will stop.
-
-        Parameters:
-        - time: Sets the amount of time.
-        - timeUnits: The measurement unit for the time, a TimeUnits enum value.
-    """)
-    @vexcode_doc("""
-        Set Motor Timeout
-
-        Sets a time limit for an IQ Motor or Motor Group movement commands.
-
-        A Motor or Motor Group's Set Motor Timeout command is used to prevent
-        motion commands that do not reach their intended position from
-        preventing subsequent commands from running.
-
-        An example of a Motor not reaching its position is an Arm or Claw that
-        reaches its mechanical limit and cannot complete its movement.
-    """)
-    @act
-    def set_timeout(self, value: NumType = 1, unit: Literal[SECONDS] = SECONDS, /):  # noqa: E501
-        """Set timeout threshold."""
-        self._timeout[unit] = value
 
     @robotmesh_doc("""
         Reset the motor's encoder to the value of zero.
