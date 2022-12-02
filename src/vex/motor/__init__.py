@@ -617,26 +617,40 @@ class Motor(Device):
         """Start spinning motor to a certain target rotation angle value."""
 
     @robotmesh_doc("""
-        Start spinning a motor.
-
-        (to a relative target rotation
-        but does not wait for the motor to reach that target)
+        Starts spinning a motor to a relative target rotation
+        but does not wait for the motor to reach that target.
 
         Parameters:
-        - dir: direction to spin in, a DirectionType enum value or None.
-        - rotation: Sets the amount of rotation.
-        - rotationUnits: The measurement unit for the rotation value.
-        - velocity: Sets the amount of velocity.
-        - velocityUnits: The measurement unit for the velocity value.
+        - dir: direction to spin in, a DirectionType enum value or None
+        - rotation: amount of rotation
+        - rotationUnits: measurement unit for rotation
+        - velocity: amount of velocity
+        - velocityUnits: measurement unit for velocity
     """)
     @act
-    def start_spin_for(self,
-                       dir: DirectionType,  # pylint: disable=redefined-builtin
-                       rotation: float,
-                       rotationUnits: RotationUnits = RotationUnits.DEG,
-                       velocity: Optional[float] = None,
-                       velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+    def start_spin_for(
+            self,
+            dir: Optional[DirectionType],  # pylint: disable=redefined-builtin
+            rotation: NumType,
+            rotationUnits: RotationUnits = RotationUnits.DEG,
+            velocity: Optional[NumType] = None,
+            velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Start spinning motor for a certain rotation angle value."""
+        assert (dir is None) or isinstance(dir, DirectionType), \
+            TypeError('*** dir MUST BE None OR A DirectionType ***')
+
+        assert isinstance(rotation, NumType), \
+            TypeError('*** rotation MUST BE float OR int ***')
+
+        assert isinstance(rotationUnits, RotationUnits), \
+            TypeError('*** rotationUnits MUST BE ONE OF RotationUnits ***')
+
+        assert (velocity is None) or isinstance(velocity, NumType), \
+            TypeError('*** velocity MUST BE None, float OR int ***')
+
+        assert ((velocityUnits is PERCENT) or
+                isinstance(velocityUnits, VelocityUnits)), \
+            TypeError('**** velocityUnits MUST BE ONE OF VelocityUnits ***')
 
     @overload
     def stop(self):
