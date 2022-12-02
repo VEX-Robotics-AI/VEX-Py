@@ -123,12 +123,33 @@ class Motor(Device):
     """)
     @act
     def set_position(self, position: NumType, unit: RotationUnits, /):
-        """Set cumulative rotational angle to specified position."""
+        """Set rotational angle to specified position."""
         assert isinstance(position, NumType), \
             TypeError(f'*** position {position} NEITHER A FLOAT NOR AN INT ***')  # noqa: E501
 
         assert isinstance(unit, RotationUnits), \
             TypeError(f'*** unit {unit} NOT ONE OF RotationUnits ***')
+
+    @robotmesh_doc("""
+        Sets value of motor's encoder to value specified in parameter.
+
+        Parameters
+        - value: amount of rotation
+        - rotationUnits: measurement unit for the rotation,
+                         a RotationUnits enum value.
+    """)
+    @act
+    def set_rotation(self, value: NumType,
+                     rotationUnits: RotationUnits = RotationUnits.DEG, /):
+        """Set rotational angle to specified value."""
+        assert isinstance(value, NumType), \
+            TypeError(f'*** value {value} NEITHER A FLOAT NOR AN INT ***')
+
+        assert isinstance(rotationUnits, RotationUnits), \
+            TypeError(f'*** rotationUnits {rotationUnits} '
+                      'NOT ONE OF RotationUnits ***')
+
+        self._rotation[rotationUnits] = value
 
     @overload
     def set_stopping(self, value: BrakeType, /):
@@ -543,20 +564,6 @@ class Motor(Device):
             self._rotation[rotation_unit] = 0
 
     @robotmesh_doc("""
-        Set value of motor's encoder to value specified in parameter.
-
-        Parameters:
-        - value: Sets the amount of rotation.
-        - rotationUnits: The measurement unit for the rotation,
-                         a RotationUnits enum value.
-    """)
-    @act
-    def set_rotation(self, value: float,
-                     rotationUnits: RotationUnits = RotationUnits.DEG, /):
-        """Set motor rotation value to specific value."""
-        self._rotation[rotationUnits] = value
-
-    @robotmesh_doc("""
         Turn on the motor and spins it.
 
         (to an absolute target rotation value at a specified velocity)
@@ -781,7 +788,7 @@ class Motor(Device):
     """)
     @sense
     def position(self, unit: RotationUnits = DEGREES, /) -> NumType:
-        """Return cumulative rotational angle."""
+        """Return rotational angle."""
 
     @robotmesh_doc("""
         Gets the current rotation of the motor's encoder.
@@ -794,7 +801,7 @@ class Motor(Device):
     """)
     @sense
     def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:  # noqa: E501
-        """Return cumulative rotational angle."""
+        """Return rotational angle."""
 
     @overload
     def velocity(self, unit: VelocityUnits = PERCENT, /) -> NumType:
