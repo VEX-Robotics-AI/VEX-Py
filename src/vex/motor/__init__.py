@@ -148,8 +148,7 @@ class Motor(Device):
         self.stopping_mode: BrakeType = mode
 
     @overload
-    def set_max_torque(self, value: NumType = 50,
-                       unit: Literal[PERCENT] = PERCENT, /):
+    def set_max_torque(self, value: NumType, unit: Literal[PERCENT], /):
         ...
 
     @overload
@@ -174,7 +173,7 @@ class Motor(Device):
         The Set Max Torque command accepts decimals, integers or numerics.
     """)
     @act
-    def set_max_torque(self, value: NumType = 50, unit: TorqueUnits = PERCENT, /):  # noqa: E501
+    def set_max_torque(self, value: NumType, unit: Literal[PERCENT] | TorqueUnits, /):  # noqa: E501
         """Set max torque."""
         assert isinstance(value, NumType), \
             TypeError('*** value MUST BE float OR int ***')
