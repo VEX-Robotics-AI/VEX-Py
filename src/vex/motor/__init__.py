@@ -151,6 +151,15 @@ class Motor(Device):
 
         self._rotation[rotationUnits] = value
 
+    @robotmesh_doc("""
+        Resets the motor's encoder to the value of zero.
+    """)
+    @act
+    def reset_rotation(self):
+        """Reset rotational angle to 0."""
+        for rotation_unit in self._rotation:
+            self._rotation[rotation_unit] = 0
+
     @overload
     def set_stopping(self, value: BrakeType, /):
         ...
@@ -553,15 +562,6 @@ class Motor(Device):
     @act
     def _set_velocity(self, value: NumType = 50, unit: VelocityUnits = PERCENT):  # noqa: E501
         """Set velocity."""
-
-    @robotmesh_doc("""
-        Reset the motor's encoder to the value of zero.
-    """)
-    @act
-    def reset_rotation(self):
-        """Reset motor rotation value to 0."""
-        for rotation_unit in self._rotation:
-            self._rotation[rotation_unit] = 0
 
     @robotmesh_doc("""
         Turn on the motor and spins it.
