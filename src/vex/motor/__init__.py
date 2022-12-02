@@ -107,6 +107,46 @@ class Motor(Device):
         return (velocity, unit)
 
     @overload
+    def set_stopping(self, value: BrakeType, /):
+        ...
+
+    @overload
+    def set_stopping(self, brakeType: BrakeType, /):
+        ...
+
+    @robotmesh_doc("""
+        Sets stopping mode of the motor by passing a brake mode as a parameter.
+
+        (note this will stop the motor if it's spinning)
+
+        Parameters:
+        - brakeType: The stopping mode can be set to
+                     BrakeType.COAST, BRAKE, or HOLD.
+    """)
+    @vexcode_doc("""
+        Set Motor Stopping
+
+        Sets the behavior of an IQ Motor or Motor Group once it stops moving.
+
+        The MODE parameter can be replaced with any of the following options:
+        - BRAKE: will cause the Motor/Motor Group to come to an immediate stop.
+        - COAST: lets the Motor/Motor Group spin gradually to a stop.
+        - HOLD: will cause the Motor/Motor Group to come to an immediate stop,
+                and returns it to its stopped position if moved.
+
+        The stopping behavior set by this command will apply to subsequent
+        Motor/Motor Group Stop commands for the entirety of the project,
+        unless otherwise changed.
+    """)
+    @act
+    def set_stopping(self, mode: BrakeType, /):
+        """Set stopping mode."""
+        assert isinstance(mode, BrakeType), \
+            TypeError('*** mode MUST BE A BrakeType ***')
+
+        self.stopping_mode: BrakeType = mode
+
+    @overload
     def spin(self, direction: DirectionType = FORWARD):
         ...
 
@@ -369,43 +409,6 @@ class Motor(Device):
     @act
     def _set_velocity(self, value: NumType = 50, unit: VelocityUnits = PERCENT):  # noqa: E501
         """Set velocity."""
-
-    @overload
-    def set_stopping(self, value: BrakeType = BRAKE, /):
-        ...
-
-    @overload
-    def set_stopping(self, brakeType: BrakeType, /):
-        ...
-
-    @robotmesh_doc("""
-        Set stopping mode of the motor by passing a brake mode as a parameter.
-
-        (note this will stop the motor if it's spinning)
-
-        Parameters:
-        - brakeType: The stopping mode can be set to
-                     BrakeType.COAST, BRAKE, or HOLD.
-    """)
-    @vexcode_doc("""
-        Set Motor Stopping
-
-        Sets the behavior of an IQ Motor or Motor Group once it stops moving.
-
-        The MODE parameter can be replaced with any of the following options:
-        - BRAKE: will cause the Motor/Motor Group to come to an immediate stop.
-        - COAST: lets the Motor/Motor Group spin gradually to a stop.
-        - HOLD: will cause the Motor/Motor Group to come to an immediate stop,
-                and returns it to its stopped position if moved.
-
-        The stopping behavior set by this command will apply to subsequent
-        Motor/Motor Group Stop commands for the entirety of the project,
-        unless otherwise changed.
-    """)
-    @act
-    def set_stopping(self, mode: BrakeType = BRAKE, /):
-        """Set stopping mode."""
-        self.stopping_mode: BrakeType = mode
 
     @overload
     def set_max_torque(self, value: NumType = 50,
