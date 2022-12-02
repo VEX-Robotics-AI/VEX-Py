@@ -576,25 +576,40 @@ class Motor(Device):
         """Spin motor to target rotation angle value."""
 
     @robotmesh_doc("""
-        Turn on the motor and spins it.
+        Turns on the motor and spins it
+        to a relative target time value at a specified velocity.
 
-        (to a relative target time value at a specified velocity)
-
-        Parameters:
-        - dir: direction to spin in, a DirectionType enum value or None.
-        - time: Sets the amount of time.
-        - timeUnits: The measurement unit for the time value.
-        - velocity: Sets the amount of velocity.
-        - velocityUnits: The measurement unit for the velocity value.
+        Parameters
+        - dir: direction to spin in, a DirectionType enum value or None
+        - time: amount of time.
+        - timeUnits: measurement unit for time
+        - velocity: amount of velocity
+        - velocityUnits: measurement unit for velocity
     """)
     @act
-    def spin_for_time(self,
-                      dir: DirectionType,  # pylint: disable=redefined-builtin
-                      time: str,
-                      timeUnits: TimeUnits = TimeUnits.SEC,
-                      velocity: Optional[float] = None,
-                      velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Spin motor for a certain time duration."""
+    def spin_for_time(
+            self,
+            dir: Optional[DirectionType],  # pylint: disable=redefined-builtin
+            time: NumType,
+            timeUnits: TimeUnits = TimeUnits.SEC,
+            velocity: Optional[NumType] = None,
+            velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+        """Spin for specified duration."""
+        assert (dir is None) or isinstance(dir, DirectionType), \
+            TypeError('*** dir MUST BE None OR A DirectionType ***')
+
+        assert isinstance(time, NumType), \
+            TypeError('*** time MUST BE A float OR AN int ***')
+
+        assert isinstance(timeUnits, TimeUnits), \
+            TypeError('*** timeUnits MUST BE ONE OF TimeUnits ***')
+
+        assert (velocity is None) or isinstance(velocity, NumType), \
+            TypeError('*** velocity MUST BE None, A float OR AN int ***')
+
+        assert ((velocityUnits is PERCENT) or
+                isinstance(velocityUnits, VelocityUnits)), \
+            TypeError('**** velocityUnits MUST BE ONE OF VelocityUnits ***')
 
     @robotmesh_doc("""
         Starts spinning a motor to an absolute target rotation
@@ -612,7 +627,7 @@ class Motor(Device):
                       rotationUnits: RotationUnits = RotationUnits.DEG,
                       velocity: Optional[NumType] = None,
                       velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Start spinning motor to specified target rotational angle."""
+        """Start spinning to specified target rotational angle."""
         assert isinstance(rotation, NumType), \
             TypeError('*** rotation MUST BE A float OR AN int ***')
 
@@ -645,7 +660,7 @@ class Motor(Device):
             rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[NumType] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Start spinning motor for specified rotational angle."""
+        """Start spinning for specified rotational angle."""
         assert (dir is None) or isinstance(dir, DirectionType), \
             TypeError('*** dir MUST BE None OR A DirectionType ***')
 
