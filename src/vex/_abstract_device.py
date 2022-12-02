@@ -1,4 +1,4 @@
-"""VEX Abstract Device Base Classes."""
+"""Abstract Device Base Classes."""
 
 
 from collections.abc import Sequence
@@ -27,7 +27,7 @@ class Device:
 
     @port.setter
     def port(self, port: Ports):
-        self._port = port
+        self._port: Ports = port
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
@@ -42,7 +42,7 @@ class Device:
         return f'{type(self).__name__}({self.port.name})'
 
 
-class SingletonDevice:   # pylint: disable=too-few-public-methods
+class SingletonDevice:
     """Singleton Device."""
 
     def __eq__(self, other: Self) -> bool:

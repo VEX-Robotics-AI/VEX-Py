@@ -16,6 +16,10 @@
     ".vscode/*.log": true,
   },
 
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportShadowedImports": "none"
+  },
+
   "python.linting.enabled": true,
 
   "python.linting.pylintEnabled": true,

@@ -1,4 +1,4 @@
-"""Gyro Calibration Types."""
+"""Gyro calibration types."""
 
 
 from collections.abc import Sequence
@@ -14,7 +14,7 @@ __all__: Sequence[str] = ('GyroCalibrationType',)
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_gyro_calibration_type.html
 """)
 class GyroCalibrationType(IntEnum):
-    """Gyro Calibration Types."""
+    """Gyro calibration types."""
 
     QUICK: int = 0
     SLOW: int = 1

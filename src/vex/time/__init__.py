@@ -13,11 +13,18 @@ from .._util.doc import robotmesh_doc, vexcode_doc
 from .time_units import TimeUnits, SECONDS, MSEC
 
 
-__all__: Sequence[str] = 'TimeUnits', 'SECONDS', 'MSEC', 'wait'
+__all__: Sequence[str] = 'TimeUnits', 'SECONDS', 'MSEC', 'clock', 'wait'
+
+
+@robotmesh_doc("""
+    Get the number of seconds since system startup.
+""")
+def clock() -> NumType:
+    """Return number of seconds since program started."""
 
 
 @overload
-def wait(duration: NumType = 1, units: TimeUnits = SECONDS, /):
+def wait(duration: NumType, unit: TimeUnits = MSEC, /):
     ...
 
 
@@ -32,8 +39,8 @@ def wait(time: NumType, timeUnits: TimeUnits = TimeUnits.SEC, /):
     Identical to sys.sleep().
 
     Parameters
-    time: The length of time to wait
-    timeUnits: The units of time (default seconds)
+    - time: The length of time to wait
+    - timeUnits: The units of time (default seconds)
 
     robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacevex.html#a6b9ca2db773bef3a3569a0d6b22f2749
 """)
@@ -44,6 +51,6 @@ def wait(time: NumType, timeUnits: TimeUnits = TimeUnits.SEC, /):
     to have your program wait before executing subsequent commands.
 """)
 @act
-def wait(duration: NumType = 1, unit: TimeUnits = SECONDS, /):
+def wait(duration: NumType, unit: TimeUnits, /):
     # pylint: disable=unused-argument
     """Wait for specified duration."""

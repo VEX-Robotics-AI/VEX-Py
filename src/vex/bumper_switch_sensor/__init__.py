@@ -2,8 +2,9 @@
 
 
 from collections.abc import Sequence
+from threading import Thread
 
-from abm.decor import act, sense
+from abm.decor import sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
@@ -21,7 +22,7 @@ class Bumper(Device):
     """Bumper Switch Sensor."""
 
     @robotmesh_doc("""
-        Create a new bumper object on the port specified in the parameter.
+        Creates a new bumper object on the port specified in the parameter.
 
         param:
         index: The port index for this bumper. The index is zero-based.
@@ -37,8 +38,7 @@ class Bumper(Device):
     @robotmesh_doc("""
         Get the pressed status of the bumper device.
 
-        Returns
-        True if pressed, False otherwise.
+        Returns True if pressed, False otherwise.
     """)
     @vexcode_doc("""
         Pressing Bumper
@@ -69,10 +69,15 @@ class Bumper(Device):
         as an argument. The code inside the callback function will run
         whenever the event occurs.
     """)
-    @act
     def pressed(self, callback: callable, /):
         """Trigger callback function upon being pressed."""
-        callback()
+        def trigger_callback_whenever_pressing():
+            while True:
+                if self.pressing():
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_pressing, name=None,  # noqa: E501
+               args=(), kwargs={}, daemon=True).start()
 
     @vexcode_doc("""
         Bumper Released
@@ -90,7 +95,12 @@ class Bumper(Device):
         as an argument. The code inside the callback function will run
         whenever the event occurs.
     """)
-    @act
     def released(self, callback: callable, /):
         """Trigger callback function upon being released."""
-        callback()
+        def trigger_callback_whenever_not_pressing():
+            while True:
+                if not self.pressing():
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_not_pressing, name=None,  # noqa: E501
+               args=(), kwargs={}, daemon=True).start()

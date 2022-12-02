@@ -27,11 +27,11 @@ class Vision(Device):
     """Vision Sensor."""
 
     @robotmesh_doc("""
-        Create a new vision object on the port specified.
+        Creates a new vision object on the port specified.
 
         The vision sensor has a resolution of 316x212 pixels.
 
-        Parameters:
+        Parameters
         - index: The port index for this vision. The index is zero based.
         - brightness: The vision sensor brightness seting. Values are 0 to 255.
         - signatures: List of signature objects
@@ -79,26 +79,26 @@ class Vision(Device):
         Vision Sensor commands.
     """)
     @sense
-    def take_snapshot(self, id: int,   # pylint: disable=redefined-builtin
+    def take_snapshot(self, signature_id: int,
                       count: Optional[int] = None, /) -> int:
         """Take snapshot of current scene."""
 
     @robotmesh_doc("""
-        Return number of objects found in the data sample.
+        Number of objects found in the data sample.
     """)
     @property
     def object_count(self) -> int:
         """Return number of objects detected."""
 
     @robotmesh_doc("""
-        Return list of the largest objects found in the data sample.
+        List of the largest objects found in the data sample.
     """)
     @property
     def objects(self) -> list[VisionObject]:
         """Return detected objects."""
 
     @robotmesh_doc("""
-        Return the largest object found in the data sample.
+        Largest object found in the data sample.
     """)
     @vexcode_doc("""
         Largest Object
@@ -126,4 +126,4 @@ class Vision(Device):
     """)
     @property
     def largest_object(self) -> VisionObject:
-        """Return largest deteced object."""
+        """Return largest detected object."""

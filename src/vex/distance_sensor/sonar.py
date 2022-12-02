@@ -2,6 +2,7 @@
 
 
 from collections.abc import Sequence
+from typing import overload
 
 from abm.decor import act, sense
 
@@ -23,7 +24,7 @@ class Sonar(Device):
     """Sonar."""
 
     @robotmesh_doc("""
-        Create new sonar sensor object on the port specified in the parameter.
+        Creates new sonar sensor object on the port specified in the parameter.
 
         Parameters:
         - index: to the brain port.
@@ -32,23 +33,24 @@ class Sonar(Device):
         """Initialize Sonar."""
         self.port: Ports = index
 
-        self.max_distances: dict[DistanceUnits, NumType] = dict[DistanceUnits, NumType]()  # noqa: E501
+        self.max_distance: dict[DistanceUnits, NumType] = \
+            dict[DistanceUnits, NumType]()
 
     def __hash__(self) -> int:
         """Return integer hash."""
         raise hash(self.port)
 
     @robotmesh_doc("""
-        Set the maximum distance (default 2.5m).
+        Sets the maximum distance (default 2.5m).
 
-        Parameters:
+        Parameters
         - distance: maximum distance to be measured in units
-        - distanceUnits: a DistanceUnits enum value for the measurement unit.
+        - distanceUnits: a DistanceUnits enum value for the measurement unit
     """)
     @act
     def set_maximum(self, distance: NumType, distanceUnits: DistanceUnits = MM, /):  # noqa: E501
         """Set maximum measurable distance."""
-        self.max_distances[distanceUnits] = distance
+        self.max_distance[distanceUnits] = distance
 
     @vexcode_doc("""
         Distance Found Object
@@ -66,14 +68,22 @@ class Sonar(Device):
     def is_object_detected(self) -> bool:
         """Check if an object is detected within range."""
 
-    @robotmesh_doc("""
-        Get the value of the sonar sensor.
+    @overload
+    def distance(self, unit: DistanceUnits = MM, /) -> int:
+        ...
 
-        Parameters:
+    @overload
+    def distance(self, distanceUnits: DistanceUnits = MM, /) -> int:
+        ...
+
+    @robotmesh_doc("""
+        Gets the value of the sonar sensor.
+
+        Parameters
         - distanceUnits: The measurement unit for
                          the sonar device, DistanceUnits enum value.
 
-        Returns:
+        Returns
         an integer that represents the unit value specified by the parameter.
     """)
     @vexcode_doc("""
@@ -90,6 +100,6 @@ class Sonar(Device):
         with either INCHES or MM, respectively.
     """)
     @sense
-    def distance(self, unit: DistanceUnits = MM, /) -> NumType:
+    def distance(self, unit: DistanceUnits = MM, /) -> int:
         """Return measured distance to nearby object."""
         assert unit in (MM, INCHES), ValueError('*** UNIT MUST BE MM OR INCHES ***')  # noqa: E501

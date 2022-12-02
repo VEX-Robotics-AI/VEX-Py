@@ -12,6 +12,8 @@ robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacevex.html
 from collections.abc import Sequence
 from importlib.metadata import version
 import sys
+from threading import Thread
+from typing import Optional
 
 from abm import interactive
 
@@ -46,12 +48,14 @@ from .touch_led import Touchled, FadeType
 
 from .multi_device_group import MotorGroup, DriveTrain, SmartDrive
 
-from .time import TimeUnits, SECONDS, MSEC, wait
+from .time import TimeUnits, SECONDS, MSEC, clock, wait
 
 from ._common_enums import (Color, ColorHue,
-                            PERCENT,
+                            NumType, PERCENT,
                             DistanceUnits, MM, INCHES,
                             RotationUnits, DEGREES, TURNS)
+
+from ._util.doc import robotmesh_doc
 
 
 __all__: Sequence[str] = (
@@ -105,10 +109,45 @@ __version__: str = version(distribution_name='VEX-Py')
 
 # CONSTANTS
 # =========
+
 INT29_MAX: int = 0x1FFFFFFF
+
+
+# FUNCTIONS
+# =========
+
+@robotmesh_doc("""
+    Runs the given function in a thread sharing the current global namespace.
+""")
+def run_in_thread(f: callable):
+    """Run specified function in parallel thread."""
+    Thread(group=None, target=f, name=None, args=(), kwargs={}, daemon=True).start()  # noqa: E501
+
+
+@robotmesh_doc("""
+    Wait until a function returns a value.
+
+    Returns True when reached, False on timeout.
+
+    Parameters:
+    - func: function to run until it returns the value
+    - value: return value to wait for; default True
+    - timeout: timeout in seconds; if reached returns False;
+               default None (no timeout)
+    - check_period: time to wait between checks, in seconds;
+                    default 0 (no wait)
+""")
+def wait_for(func: callable, value: bool = True,
+             timeout: Optional[int] = None, check_period: NumType = 0) -> bool:
+    # pylint: disable=unused-argument
+    """Wait for specified function to return specified target value."""
 
 
 # ALIASES
 # =======
+
+sys.clock: callable = clock
 sys.sleep: callable = wait
 sys.maxint: int = INT29_MAX
+sys.run_in_thread: callable = run_in_thread
+sys.wait_for: callable = wait_for

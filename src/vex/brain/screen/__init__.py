@@ -28,6 +28,136 @@ __all__: Sequence[str] = 'BrainLcd', 'FontType'
 class BrainLcd(SingletonDevice):
     """Brain LCD Screen."""
 
+    def __init__(self):
+        """Initialize Brain LCD Screen."""
+        self.font: FontType = FontType.MONO20
+
+        self.pen_width: int = 1
+
+        self.pen_color: Color = Color.WHITE
+
+        self.fill_color: Color = Color.BLACK
+
+    @vexcode_doc("""
+        Brain Screen Set Font
+
+        Sets the style and size of font used on the IQ (2nd generation) Brain's
+        screen when printing numbers or text.
+
+        There are two different types of fonts available on the IQ
+        (2nd generation) Brain's screen:
+        - Monospaced (Mono): each character takes up the same width.
+        - Proportional (Prop): each character takes up different size widths
+          based on the character.
+
+        Choose which font type and size to use. You can replace the FONT
+        parameter with one of the following font options:
+        - FontType.MONO12
+        - FontType.MONO15
+        - FontType.MONO20
+        - FontType.MONO30
+        - FontType.MONO40
+        - FontType.MONO60
+        - FontType.PROP20
+        - FontType.PROP30
+        - FontType.PROP40
+        - FontType.PROP60
+
+        The new font size will be used for any future text written to
+        the IQ (2nd generation) Brain's screen.
+    """)
+    @act
+    def set_font(self, fontname: FontType, /):
+        """Set font style & size."""
+        self.font: FontType = fontname
+
+    @vexcode_doc("""
+        Brain Screen Set Pen Width
+
+        Sets the width of the outline for shapes drawn on
+        the IQ (2nd generation) Brain's screen.
+
+        The Brain Screen Set Pen Width command is used to set the width
+        of the line on the outside of circles and rectangles drawn on
+        the IQ (2nd generation) Brain's screen.
+
+        It accepts integer values for the WIDTH parameter, with a larger value
+        equating to a larger width.
+    """)
+    @act
+    def set_pen_width(self, width: int, /):
+        """Set the width of the outline for shapes drawn on brain's screen."""
+        self.pen_width: int = width
+
+    @vexcode_doc("""
+        Brain Screen Set Pen Color
+
+        Sets color of lines drawn on IQ (2nd generation) Brain's screen.
+
+        The Brain Screen Set Pen Color command is used to set the color of
+        lines, pixels and text drawn on the IQ (2nd generation) Brain's screen.
+
+        It can also be used to set the color the outline of
+        circles and rectangles drawn on the IQ (2nd generation) Brain's screen.
+
+        You can replace the COLOR parameter with one of the following options:
+        - Color.BLACK
+        - Color.BLUE
+        - Color.BLUE_GREEN
+        - Color.BLUE_VIOLET
+        - Color.GREEN
+        - Color.ORANGE
+        - Color.PURPLE
+        - Color.RED
+        - Color.RED_ORANGE
+        - Color.RED_VIOLET
+        - Color.VIOLET
+        - Color.WHITE
+        - Color.YELLOW
+        - Color.YELLOW_GREEN
+        - Color.YELLOW_ORANGE
+
+        The pen color will be used for any next objects drawn
+        on the IQ (2nd generation) Brain's screen.
+    """)
+    @act
+    def set_pen_color(self, color: Color, /):
+        """Set drawing-pen color."""
+        self.pen_color: Color = color
+
+    @vexcode_doc("""
+        Brain Screen Set Fill Color
+
+        Sets the color that fills in shapes drawn on the Brain's screen.
+
+        The Brain Screen Set Fill Color command is used to set the color of the
+        inside of circles and rectangles drawn on the Brain's screen.
+
+        You can replace the COLOR parameter with one of the following options:
+        - Color.BLACK
+        - Color.BLUE
+        - Color.BLUE_GREEN
+        - Color.BLUE_VIOLET
+        - Color.GREEN
+        - Color.ORANGE
+        - Color.PURPLE
+        - Color.RED
+        - Color.RED_ORANGE
+        - Color.RED_VIOLET
+        - Color.VIOLET
+        - Color.WHITE
+        - Color.YELLOW
+        - Color.YELLOW_GREEN
+        - Color.YELLOW_ORANGE
+
+        The fill color will be used for any next objects drawn
+        on the IQ (2nd generation) Brain's screen.
+    """)
+    @act
+    def set_fill_color(self, color: Color, /):
+        """Set shape-filling color."""
+        self.fill_color: Color = color
+
     @vexcode_doc("""
         Print
 
@@ -50,6 +180,22 @@ class BrainLcd(SingletonDevice):
     def print(self, *args):
         """Print numerical values and/or text strings on Brain LCD Screen."""
 
+    @robotmesh_doc("""
+        Prints a number, string, or boolean at a particular line,
+        clearing the rest of the line
+
+        Parameters
+        number: Line to print on, 1 is top line.
+        text: object to print, usually a string.
+              Use "" to clear the line.
+              For multiple arguments, use format like
+              "x: %g y: %g" % (x, y) -> "x: 123 y: 456"
+              Supported format flags are g (all) x (hex) d (int) f (float)
+    """)
+    @act
+    def print_line(self, number: int, text: str, /):
+        """Print given text to specified line."""
+
     @vexcode_doc("""
         Set Cursor
 
@@ -70,7 +216,7 @@ class BrainLcd(SingletonDevice):
         Accepts a range for COL of 1 to 28.
     """)
     @act
-    def set_cursor(self, row: int = 1, col: int = 1, /):
+    def set_cursor(self, row: int, col: int, /):
         """Set cursor location."""
 
     @vexcode_doc("""
@@ -92,7 +238,7 @@ class BrainLcd(SingletonDevice):
         """Move cursor to new line."""
 
     @robotmesh_doc("""
-        Clear the whole screen.
+        Clears the whole screen.
     """)
     @vexcode_doc("""
         Clear Screen
@@ -135,7 +281,7 @@ class BrainLcd(SingletonDevice):
         The default pixel color is white.
     """)
     @act
-    def draw_pixel(self, x: int = 0, y: int = 0):
+    def draw_pixel(self, x: int, y: int):
         """Draw pixel."""
 
     @vexcode_doc("""
@@ -153,7 +299,7 @@ class BrainLcd(SingletonDevice):
         The default line color is white.
     """)
     @act
-    def draw_line(self, x1: int = 0, y1: int = 0, x2: int = 10, y2: int = 10):
+    def draw_line(self, x1: int, y1: int, x2: int, y2: int):
         """Draw line."""
 
     @vexcode_doc("""
@@ -174,8 +320,7 @@ class BrainLcd(SingletonDevice):
         by the Brain's Set Fill Color command. The default fill color is black.
     """)
     @act
-    def draw_rectangle(self, x: int = 0, y: int = 0,
-                       width: int = 10, height: int = 10):
+    def draw_rectangle(self, x: int, y: int, width: int, height: int):
         """Draw rectangle."""
 
     @vexcode_doc("""
@@ -195,137 +340,5 @@ class BrainLcd(SingletonDevice):
         Set Fill Color command. The default fill color is black.
     """)
     @act
-    def draw_circle(self, x: int = 0, y: int = 0, radius: int = 10):
+    def draw_circle(self, x: int, y: int, radius: int):
         """Draw circle."""
-
-    @vexcode_doc("""
-        Brain Screen Set Font
-
-        Sets the style and size of font used on the IQ (2nd generation) Brain's
-        screen when printing numbers or text.
-
-        There are two different types of fonts available on the IQ
-        (2nd generation) Brain's screen:
-        - Monospaced (Mono): each character takes up the same width.
-        - Proportional (Prop): each character takes up different size widths
-          based on the character.
-
-        Choose which font type and size to use. You can replace the FONT
-        parameter with one of the following font options:
-        - FontType.MONO12
-        - FontType.MONO15
-        - FontType.MONO20
-        - FontType.MONO30
-        - FontType.MONO40
-        - FontType.MONO60
-        - FontType.PROP20
-        - FontType.PROP30
-        - FontType.PROP40
-        - FontType.PROP60
-
-        The new font size will be used for any future text written to
-        the IQ (2nd generation) Brain's screen.
-    """)
-    def set_font(self, fontname: FontType = FontType.MONO20, /):
-        """Set font style & size."""
-
-    @vexcode_doc("""
-        Brain Screen Set Pen Width
-
-        Sets the width of the outline for shapes drawn on
-        the IQ (2nd generation) Brain's screen.
-
-        The Brain Screen Set Pen Width command is used to set the width
-        of the line on the outside of circles and rectangles drawn on
-        the IQ (2nd generation) Brain's screen.
-
-        It accepts integer values for the WIDTH parameter, with a larger value
-        equating to a larger width.
-    """)
-    @act
-    def set_pen_width(self, width: int = 10, /):
-        """Set the width of the outline for shapes drawn on brain's screen."""
-
-    @vexcode_doc("""
-        Brain Screen Set Pen Color
-
-        Sets color of lines drawn on IQ (2nd generation) Brain's screen.
-
-        The Brain Screen Set Pen Color command is used to set the color of
-        lines, pixels and text drawn on the IQ (2nd generation) Brain's screen.
-
-        It can also be used to set the color the outline of
-        circles and rectangles drawn on the IQ (2nd generation) Brain's screen.
-
-        You can replace the COLOR parameter with one of the following options:
-        - Color.BLACK
-        - Color.BLUE
-        - Color.BLUE_GREEN
-        - Color.BLUE_VIOLET
-        - Color.GREEN
-        - Color.ORANGE
-        - Color.PURPLE
-        - Color.RED
-        - Color.RED_ORANGE
-        - Color.RED_VIOLET
-        - Color.VIOLET
-        - Color.WHITE
-        - Color.YELLOW
-        - Color.YELLOW_GREEN
-        - Color.YELLOW_ORANGE
-
-        The pen color will be used for any next objects drawn
-        on the IQ (2nd generation) Brain's screen.
-    """)
-    @act
-    def set_pen_color(self, color: Color = Color.RED, /):
-        """Set drawing-pen color."""
-
-    @vexcode_doc("""
-        Brain Screen Set Fill Color
-
-        Sets the color that fills in shapes drawn on the Brain's screen.
-
-        The Brain Screen Set Fill Color command is used to set the color of the
-        inside of circles and rectangles drawn on the Brain's screen.
-
-        You can replace the COLOR parameter with one of the following options:
-        - Color.BLACK
-        - Color.BLUE
-        - Color.BLUE_GREEN
-        - Color.BLUE_VIOLET
-        - Color.GREEN
-        - Color.ORANGE
-        - Color.PURPLE
-        - Color.RED
-        - Color.RED_ORANGE
-        - Color.RED_VIOLET
-        - Color.VIOLET
-        - Color.WHITE
-        - Color.YELLOW
-        - Color.YELLOW_GREEN
-        - Color.YELLOW_ORANGE
-
-        The fill color will be used for any next objects drawn
-        on the IQ (2nd generation) Brain's screen.
-    """)
-    @act
-    def set_fill_color(self, color: Color = Color.RED, /):
-        """Set shape-filling color."""
-
-    @robotmesh_doc("""
-        Print a number, string, or boolean at a particular line.
-
-        (clearing the rest of the line)
-
-        Parameters
-        number: Line to print on, 1 is top line.
-        text: object to print, usually a string.
-              Use "" to clear the line.
-              For multiple arguments, use format like
-              "x: %g y: %g" % (x, y) -> "x: 123 y: 456"
-              Supported format flags are g (all) x (hex) d (int) f (float)
-    """)
-    @act
-    def print_line(self, number: int, text: str, /):
-        """Print given text to specified line."""

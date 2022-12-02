@@ -53,7 +53,7 @@ class MotorGroup:
 
     @sense
     def position(self, units: RotationUnits = DEGREES) -> float:
-        """Return cumulative rotational angle."""
+        """Return rotational angle."""
 
     @act
     def set_max_torque(self, value: NumType = 50, units: TorqueUnits = PERCENT):  # noqa: E501
@@ -61,7 +61,7 @@ class MotorGroup:
 
     @act
     def set_position(self, value: NumType = 0, units: RotationUnits = DEGREES):
-        """Set cumulative rotational position to specified angle."""
+        """Set rotational position to specified angle."""
 
     @act
     def set_stopping(self, mode: BrakeType = BRAKE):

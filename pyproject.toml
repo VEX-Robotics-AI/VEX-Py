@@ -1,6 +1,6 @@
 [project]
 name = 'VEX-Py'
-version = '22.11.22'
+version = '22.11.30'
 
 description = 'API Stubs for VEXcode Python & Robot Mesh VEX Python B'
 readme = {file = 'README.md', content-type = 'text/markdown', charset = 'UTF-8'}
@@ -45,7 +45,7 @@ classifiers = [
 dependencies = [
   'Typing-Extensions >= 4.4.0',
 
-  'Agent-Behavior-Model >= 22.11.24',
+  'Agent-Behavior-Model >= 22.12.1',
 ]
 
 

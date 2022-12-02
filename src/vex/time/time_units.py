@@ -1,4 +1,4 @@
-"""Time Units."""
+"""Time units."""
 
 
 from collections.abc import Sequence
@@ -16,10 +16,10 @@ __all__: Sequence[str] = 'TimeUnits', 'SECONDS', 'MSEC'
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_time_units.html
 """)
 class TimeUnits(IntEnum):
-    """Time Units."""
+    """Time units."""
 
-    SEC: int = 0   # A time unit that is measured in seconds
-    MSEC: int = 1   # A time unit that is measured in milliseconds
+    SEC: int = 0   # time unit measured in Seconds
+    MSEC: int = 1   # time unit measured in Milliseconds
 
 
 # aliases

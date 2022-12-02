@@ -1,4 +1,4 @@
-"""Distance Units."""
+"""Distance units."""
 
 
 from collections.abc import Sequence
@@ -16,11 +16,11 @@ __all__: Sequence[str] = 'DistanceUnits', 'MM', 'INCHES'
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_distance_units.html
 """)
 class DistanceUnits(IntEnum):
-    """Distance Units."""
+    """Distance units."""
 
-    MM: int = 0   # A distance unit that is measured in millimeters
-    IN: int = 1   # A distance unit that is measured in inches
-    CM: int = 2   # A distance unit that is measured in centimeters
+    MM: int = 0   # distance unit measured in Millimeters
+    IN: int = 1   # distance unit measured in Inches
+    CM: int = 2   # distance unit measured in Centimeters
 
 
 # aliases

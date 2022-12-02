@@ -103,7 +103,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
     """)
     @act
     def reset_rotation(self):
-        """Reset motors' cumulative rotational angle to 0."""
+        """Reset motors' rotational angle to 0."""
         for motor in self.motors:
             for rotation_unit in self.rotations[motor]:
                 self.rotations[motor][rotation_unit] = 0
@@ -118,7 +118,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
     """)
     @act
     def set_rotation(self, value: NumType, rotationUnits=RotationUnits.DEG, /):
-        """Set motors' cumulative rotational angle to specified value."""
+        """Set motors' rotational angle to specified value."""
         for motor in self.motors:
             self.rotations[motor][rotationUnits] = value
 
@@ -197,7 +197,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
                 velocity: Optional[NumType] = None,
                 velocityUnits: VelocityUnits = VelocityUnits.PCT,
                 waitForCompletion: bool = True, /) -> bool:
-        """Spin motors to specified target cumulative rotational angle."""
+        """Spin motors to specified target rotational angle."""
 
     @robotmesh_doc("""
         Turn on the motors and spin them.
@@ -265,7 +265,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
                       rotationUnits: RotationUnits = RotationUnits.DEG,
                       velocity: Optional[NumType] = None,
                       velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Start spinning motors to target cumulative rotational angle."""
+        """Start spinning motors to target rotational angle."""
 
     @robotmesh_doc("""
         Start spinning motors to a relative target rotation.
@@ -368,7 +368,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
     """)
     @sense
     def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:  # noqa: E501
-        """Return motors' cumulative rotational angle."""
+        """Return motors' rotational angle."""
 
     @robotmesh_doc("""
         Get the current velocity of the first motor in the group.

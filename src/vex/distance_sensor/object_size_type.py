@@ -1,4 +1,4 @@
-"""Object Size Types."""
+"""Object size types."""
 
 
 from collections.abc import Sequence
@@ -9,7 +9,7 @@ __all__: Sequence[str] = ('ObjectSizeType',)
 
 
 class ObjectSizeType(IntEnum):
-    """Object Size Types."""
+    """Object size types."""
 
     SMALL: int = auto()
     MEDIUM: int = auto()
