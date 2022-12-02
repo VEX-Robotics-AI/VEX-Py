@@ -147,6 +147,16 @@ class Motor(Device):
 
         self.stopping_mode: BrakeType = mode
 
+    @robotmesh_doc("""
+        Returns a timeout in given time unit.
+    """)
+    def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> NumType:
+        """Return timeout."""
+        assert isinstance(timeUnits, TimeUnits), \
+            TypeError('*** timeUnits MUST BE ONE OF TimeUnits ***')
+
+        return self._timeout[timeUnits]
+
     @overload
     def set_max_torque(self, value: NumType, unit: Literal[PERCENT], /):
         ...
@@ -534,14 +544,6 @@ class Motor(Device):
                      rotationUnits: RotationUnits = RotationUnits.DEG, /):
         """Set motor rotation value to specific value."""
         self._rotation[rotationUnits] = value
-
-    @robotmesh_doc("""
-        Return a timeout in given time units.
-    """)
-    @sense
-    def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> float:
-        """Return motor timeout."""
-        return self._timeout[timeUnits]
 
     @robotmesh_doc("""
         Return True if the last motor operation timed out.
