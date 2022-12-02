@@ -303,30 +303,6 @@ class Motor(Device):
                          wait: bool = True):
         """Spin motor to specified rotational angle."""
 
-    @overload
-    def stop(self):
-        ...
-
-    @overload
-    def stop(self, brakeType: Optional[BrakeType] = None, /):
-        ...
-
-    @robotmesh_doc("""
-        Stop the motor using the default brake mode.
-
-        Parameters:
-        - brakeType: The brake mode can be set to
-                     BrakeType.COAST, BRAKE, or HOLD.
-    """)
-    @vexcode_doc("""
-        Stop Motor
-
-        Stops an IQ Motor or Motor Group.
-    """)
-    @act
-    def stop(self, mode: Optional[BrakeType] = None, /):
-        """Stop."""
-
     @vexcode_doc("""
         Set Motor Position
 
@@ -642,6 +618,36 @@ class Motor(Device):
         """Set max torque current."""
         # pylint: disable=attribute-defined-outside-init
         self.max_torque_current: float = value
+
+    @overload
+    def stop(self):
+        ...
+
+    @overload
+    def stop(self, brakeType: Optional[BrakeType] = None, /):
+        ...
+
+    @robotmesh_doc("""
+        Stops the motor using the default brake mode.
+
+        Parameters:
+        - brakeType: The brake mode can be set to
+                     BrakeType.COAST, BRAKE, or HOLD.
+    """)
+    @vexcode_doc("""
+        Stop Motor
+
+        Stops an IQ Motor or Motor Group.
+    """)
+    def stop(self, mode: Optional[BrakeType] = None, /):
+        """Stop."""
+        self._stop(self.stopping_mode
+                   if (mode is None) and (self.stopping_mode is not None)
+                   else mode)
+
+    @act
+    def _stop(self, mode: Optional[BrakeType] = None, /):
+        """Stop."""
 
     @robotmesh_doc("""
         Determines if spin_for/spin_to command has reached its target position.
