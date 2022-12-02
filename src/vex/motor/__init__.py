@@ -627,36 +627,6 @@ class Motor(Device):
             TypeError('**** velocityUnits MUST BE ONE OF VelocityUnits ***')
 
     @robotmesh_doc("""
-        Starts spinning a motor to an absolute target rotation
-        but does not wait for the motor to reach that target.
-
-        Parameters
-        - rotation: amount of rotation
-        - rotationUnits: measurement unit for rotation
-        - velocity: amount of velocity
-        - velocityUnits: measurement unit for velocity
-    """)
-    @act
-    def start_spin_to(self,
-                      rotation: NumType,
-                      rotationUnits: RotationUnits = RotationUnits.DEG,
-                      velocity: Optional[NumType] = None,
-                      velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Start spinning to specified target rotational angle."""
-        assert isinstance(rotation, NumType), \
-            TypeError('*** rotation MUST BE A float OR AN int ***')
-
-        assert isinstance(rotationUnits, RotationUnits), \
-            TypeError('*** rotationUnits MUST BE ONE OF RotationUnits ***')
-
-        assert (velocity is None) or isinstance(velocity, NumType), \
-            TypeError('*** velocity MUST BE None, A float OR AN int ***')
-
-        assert ((velocityUnits is PERCENT) or
-                isinstance(velocityUnits, VelocityUnits)), \
-            TypeError('**** velocityUnits MUST BE ONE OF VelocityUnits ***')
-
-    @robotmesh_doc("""
         Starts spinning a motor to a relative target rotation
         but does not wait for the motor to reach that target.
 
@@ -677,20 +647,54 @@ class Motor(Device):
             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Start spinning for specified rotational angle."""
         assert (dir is None) or isinstance(dir, DirectionType), \
-            TypeError('*** dir MUST BE None OR A DirectionType ***')
+            TypeError(f'*** dir {dir} NEITHER None NOR A DirectionType ***')
 
         assert isinstance(rotation, NumType), \
-            TypeError('*** rotation MUST BE A float OR AN int ***')
+            TypeError(f'*** rotation {rotation} NEITHER A FLOAT NOR AN INT ***')  # noqa: E501
 
         assert isinstance(rotationUnits, RotationUnits), \
-            TypeError('*** rotationUnits MUST BE ONE OF RotationUnits ***')
+            TypeError(f'*** rotationUnits {rotationUnits} '
+                      'NOT ONE OF RotationUnits ***')
 
         assert (velocity is None) or isinstance(velocity, NumType), \
-            TypeError('*** velocity MUST BE None, A float OR AN int ***')
+            TypeError(f'*** velocity {velocity} NEITHER None, A FLOAT OR AN INT ***')  # noqa: E501
 
         assert ((velocityUnits is PERCENT) or
                 isinstance(velocityUnits, VelocityUnits)), \
-            TypeError('**** velocityUnits MUST BE ONE OF VelocityUnits ***')
+            TypeError(f'**** velocityUnits {velocityUnits} '
+                      'NOT ONE OF VelocityUnits ***')
+
+    @robotmesh_doc("""
+        Starts spinning a motor to an absolute target rotation
+        but does not wait for the motor to reach that target.
+
+        Parameters
+        - rotation: amount of rotation
+        - rotationUnits: measurement unit for rotation
+        - velocity: amount of velocity
+        - velocityUnits: measurement unit for velocity
+    """)
+    @act
+    def start_spin_to(self,
+                      rotation: NumType,
+                      rotationUnits: RotationUnits = RotationUnits.DEG,
+                      velocity: Optional[NumType] = None,
+                      velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+        """Start spinning to specified target rotational angle."""
+        assert isinstance(rotation, NumType), \
+            TypeError(f'*** rotation {rotation} NEITHER A FLOAT OR AN INT ***')
+
+        assert isinstance(rotationUnits, RotationUnits), \
+            TypeError(f'*** rotationUnits {rotationUnits} '
+                      'NOT ONE OF RotationUnits ***')
+
+        assert (velocity is None) or isinstance(velocity, NumType), \
+            TypeError(f'*** velocity {velocity} NEITHER None, A FLOAT NOR AN INT ***')  # noqa: E501
+
+        assert ((velocityUnits is PERCENT) or
+                isinstance(velocityUnits, VelocityUnits)), \
+            TypeError(f'**** velocityUnits {velocityUnits} '
+                      'NOT ONE OF VelocityUnits ***')
 
     @overload
     def stop(self):
