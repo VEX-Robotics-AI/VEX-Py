@@ -388,7 +388,7 @@ class Motor(Device):
         return self._set_velocity(value=value, unit=unit)
 
     @act
-    def _set_velocity(self, value: NumType = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
+    def _set_velocity(self, value: NumType = 50, unit: VelocityUnits = PERCENT):  # noqa: E501
         """Set velocity."""
 
     @overload
