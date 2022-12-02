@@ -47,7 +47,7 @@ from .touch_led import Touchled, FadeType
 
 from .multi_device_group import MotorGroup, DriveTrain, SmartDrive
 
-from .time import TimeUnits, SECONDS, MSEC, wait
+from .time import TimeUnits, SECONDS, MSEC, clock, wait
 
 from ._common_enums import (Color, ColorHue,
                             NumType, PERCENT,
@@ -126,16 +126,15 @@ INT29_MAX: int = 0x1FFFFFFF
     - check_period: time to wait between checks, in seconds;
                     default 0 (no wait)
 """)
-def wait_for(func: callable,
-             value: bool = True,
-             timeout: Optional[int] = None,
-             check_period: NumType = 0) -> bool:
+def wait_for(func: callable, value: bool = True,
+             timeout: Optional[int] = None, check_period: NumType = 0) -> bool:
     # pylint: disable=unused-argument
     """Wait for specified function to return specified target value."""
 
 
 # ALIASES
 # =======
+sys.clock: callable = clock
 sys.sleep: callable = wait
 sys.maxint: int = INT29_MAX
 sys.wait_for: callable = wait_for

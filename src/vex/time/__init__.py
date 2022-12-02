@@ -13,7 +13,14 @@ from .._util.doc import robotmesh_doc, vexcode_doc
 from .time_units import TimeUnits, SECONDS, MSEC
 
 
-__all__: Sequence[str] = 'TimeUnits', 'SECONDS', 'MSEC', 'wait'
+__all__: Sequence[str] = 'TimeUnits', 'SECONDS', 'MSEC', 'clock', 'wait'
+
+
+@robotmesh_doc("""
+    Get the number of seconds since system startup.
+""")
+def clock() -> NumType:
+    """Return number of seconds since program started."""
 
 
 @overload
