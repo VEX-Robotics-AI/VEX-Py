@@ -54,6 +54,8 @@ from ._common_enums import (Color, ColorHue,
                             DistanceUnits, MM, INCHES,
                             RotationUnits, DEGREES, TURNS)
 
+from ._util.doc import robotmesh_doc
+
 
 __all__: Sequence[str] = (
     '__version__',
@@ -111,12 +113,8 @@ INT29_MAX: int = 0x1FFFFFFF
 
 # FUNCTIONS
 # =========
-def wait_for(func: callable,
-             value: bool = True,
-             timeout: Optional[int] = None,
-             check_period: NumType = 0) -> bool:
-    # pylint: disable=unused-argument
-    """Wait until a function returns a value.
+@robotmesh_doc("""
+    Wait until a function returns a value.
 
     Returns True when reached, False on timeout.
 
@@ -127,7 +125,13 @@ def wait_for(func: callable,
                default None (no timeout)
     - check_period: time to wait between checks, in seconds;
                     default 0 (no wait)
-    """
+""")
+def wait_for(func: callable,
+             value: bool = True,
+             timeout: Optional[int] = None,
+             check_period: NumType = 0) -> bool:
+    # pylint: disable=unused-argument
+    """Wait for specified function to return specified target value."""
 
 
 # ALIASES
