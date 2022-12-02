@@ -12,6 +12,7 @@ robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacevex.html
 from collections.abc import Sequence
 from importlib.metadata import version
 import sys
+from typing import Optional
 
 from abm import interactive
 
@@ -49,7 +50,7 @@ from .multi_device_group import MotorGroup, DriveTrain, SmartDrive
 from .time import TimeUnits, SECONDS, MSEC, wait
 
 from ._common_enums import (Color, ColorHue,
-                            PERCENT,
+                            NumType, PERCENT,
                             DistanceUnits, MM, INCHES,
                             RotationUnits, DEGREES, TURNS)
 
@@ -108,7 +109,29 @@ __version__: str = version(distribution_name='VEX-Py')
 INT29_MAX: int = 0x1FFFFFFF
 
 
+# FUNCTIONS
+# =========
+def wait_for(func: callable,
+             value: bool = True,
+             timeout: Optional[int] = None,
+             check_period: NumType = 0) -> bool:
+    # pylint: disable=unused-argument
+    """Wait until a function returns a value.
+
+    Returns True when reached, False on timeout.
+
+    Parameters:
+    - func: function to run until it returns the value
+    - value: return value to wait for; default True
+    - timeout: timeout in seconds; if reached returns False;
+               default None (no timeout)
+    - check_period: time to wait between checks, in seconds;
+                    default 0 (no wait)
+    """
+
+
 # ALIASES
 # =======
 sys.sleep: callable = wait
 sys.maxint: int = INT29_MAX
+sys.wait_for: callable = wait_for
