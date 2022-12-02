@@ -176,7 +176,7 @@ class Motor(Device):
     def set_max_torque(self, value: NumType, unit: Literal[PERCENT] | TorqueUnits, /):  # noqa: E501
         """Set max torque."""
         assert isinstance(value, NumType), \
-            TypeError('*** value MUST BE float OR int ***')
+            TypeError('*** value MUST BE A float OR AN int ***')
         assert value > 0, ValueError('*** value MUST BE POSITIVE ***')
 
         assert (unit is PERCENT) or isinstance(unit, TorqueUnits), \
@@ -208,7 +208,7 @@ class Motor(Device):
     def set_max_torque_current(self, value: float, /):
         """Set max torque current."""
         assert isinstance(value, NumType), \
-            TypeError('*** value MUST BE float OR int ***')
+            TypeError('*** value MUST BE A float OR AN int ***')
         assert value <= 1.2, ValueError('*** value MUST BE 1.2 OR LESS ***')
 
         self.max_torque_current: float = value
@@ -597,24 +597,34 @@ class Motor(Device):
         """Spin motor for a certain time duration."""
 
     @robotmesh_doc("""
-        Start spinning a motor.
+        Starts spinning a motor to an absolute target rotation
+        but does not wait for the motor to reach that target.
 
-        (to an absolute target rotation
-        but does not wait for the motor to reach that target)
-
-        Params:
-        - rotation: Sets the amount of rotation.
-        - rotationUnits: The measurement unit for the rotation value.
-        - velocity: Sets the amount of velocity.
-        - velocityUnits: The measurement unit for the velocity value.
+        Parameters
+        - rotation: amount of rotation
+        - rotationUnits: measurement unit for rotation
+        - velocity: amount of velocity
+        - velocityUnits: measurement unit for velocity
     """)
     @act
     def start_spin_to(self,
-                      rotation: float,
+                      rotation: NumType,
                       rotationUnits: RotationUnits = RotationUnits.DEG,
-                      velocity: Optional[float] = None,
+                      velocity: Optional[NumType] = None,
                       velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Start spinning motor to a certain target rotation angle value."""
+        """Start spinning motor to specified target rotational angle."""
+        assert isinstance(rotation, NumType), \
+            TypeError('*** rotation MUST BE A float OR AN int ***')
+
+        assert isinstance(rotationUnits, RotationUnits), \
+            TypeError('*** rotationUnits MUST BE ONE OF RotationUnits ***')
+
+        assert (velocity is None) or isinstance(velocity, NumType), \
+            TypeError('*** velocity MUST BE None, A float OR AN int ***')
+
+        assert ((velocityUnits is PERCENT) or
+                isinstance(velocityUnits, VelocityUnits)), \
+            TypeError('**** velocityUnits MUST BE ONE OF VelocityUnits ***')
 
     @robotmesh_doc("""
         Starts spinning a motor to a relative target rotation
@@ -635,18 +645,18 @@ class Motor(Device):
             rotationUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[NumType] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Start spinning motor for a certain rotation angle value."""
+        """Start spinning motor for specified rotational angle."""
         assert (dir is None) or isinstance(dir, DirectionType), \
             TypeError('*** dir MUST BE None OR A DirectionType ***')
 
         assert isinstance(rotation, NumType), \
-            TypeError('*** rotation MUST BE float OR int ***')
+            TypeError('*** rotation MUST BE A float OR AN int ***')
 
         assert isinstance(rotationUnits, RotationUnits), \
             TypeError('*** rotationUnits MUST BE ONE OF RotationUnits ***')
 
         assert (velocity is None) or isinstance(velocity, NumType), \
-            TypeError('*** velocity MUST BE None, float OR int ***')
+            TypeError('*** velocity MUST BE None, A float OR AN int ***')
 
         assert ((velocityUnits is PERCENT) or
                 isinstance(velocityUnits, VelocityUnits)), \
