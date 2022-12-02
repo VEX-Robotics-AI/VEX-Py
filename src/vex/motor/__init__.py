@@ -53,8 +53,8 @@ class Motor(Device):
 
         self._rotation: dict[RotationUnits, float] = dict[RotationUnits, float]()  # noqa: E501
 
-        self._velocity: dict[VelocityUnits, NumType] = {PERCENT: 50}
         self.selected_velocity_unit: VelocityUnits = PERCENT
+        self._velocity: dict[VelocityUnits, NumType] = {PERCENT: 50}
 
         self.stopping_mode: Optional[BrakeType] = None
 
@@ -159,6 +159,54 @@ class Motor(Device):
         """Reset rotational angle to 0."""
         for rotation_unit in self._rotation:
             self._rotation[rotation_unit] = 0
+
+    @overload
+    def set_velocity(self, value: NumType, unit: VelocityUnits = PERCENT, /):
+        ...
+
+    @overload
+    def set_velocity(self, velocity: NumType,
+                     velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
+        ...
+
+    @robotmesh_doc("""
+        Sets the velocity of the motor
+        based on the parameters set in the command.
+
+        This command will not run the motor.
+        Any subsequent call that does not contain a specified motor velocity
+        will use this value.
+
+        Parameters
+        - velocity: amount of velocity
+        - velocityUnits: measurement unit for velocity,
+                         a VelocityUnits enum value
+    """)
+    @vexcode_doc("""
+        Set Motor Velocity
+
+        Sets the speed of an IQ Motor or Motor Group.
+
+        This command accepts a range
+        from -100 to 100 when used with the PERCENT parameter
+        or -127 to 127 when used with RPM.
+
+        Setting an IQ Motor or Motor Group's velocity to a negative value
+        will cause the Motor/Motor Group to spin in reverse.
+
+        Setting velocity to 0 will prevent the Motor/Motor Group from spinning.
+    """)
+    @act
+    def set_velocity(self, value: NumType, unit: VelocityUnits = PERCENT, /):
+        """Set velocity."""
+        assert isinstance(value, NumType), \
+            TypeError(f'*** value {value} NEITHER A FLOAT NOR AN INT ***')
+
+        assert (unit is PERCENT) or isinstance(unit, VelocityUnits), \
+            TypeError(f'*** unit {unit} NOT ONE OF VelocityUnits ***')
+
+        self.selected_velocity_unit: VelocityUnits = unit
+        self._velocity[unit]: NumType = value
 
     @overload
     def set_stopping(self, value: BrakeType, /):
@@ -516,52 +564,6 @@ class Motor(Device):
                          angle: NumType = 90, /, units: RotationUnits = DEGREES,  # noqa: E501
                          wait: bool = True):
         """Spin motor to specified rotational angle."""
-
-    @overload
-    def set_velocity(self, value: NumType = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
-        ...
-
-    @overload
-    def set_velocity(self, velocity: NumType,
-                     velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        ...
-
-    @robotmesh_doc("""
-        Set velocity of the motor based on the parameters set in the command.
-
-        This command will not run the motor.
-        Any subsequent call that does not contain
-        a specified motor velocity will use this value.
-
-        Parameters:
-        - velocity: Sets the amount of velocity.
-        - velocityUnits: The measurement unit for the velocity,
-                         a VelocityUnits enum value.
-    """)
-    @vexcode_doc("""
-        Set Motor Velocity
-
-        Sets the speed of an IQ Motor or Motor Group.
-
-        This command accepts a range
-        from -100 to 100 when used with the PERCENT parameter
-        or -127 to 127 when used with RPM.
-
-        Setting an IQ Motor or Motor Group's velocity to a negative value
-        will cause the Motor/Motor Group to spin in reverse.
-
-        Setting velocity to 0 will prevent the Motor/Motor Group from spinning.
-    """)
-    @act
-    def set_velocity(self, value: NumType = 50, unit: VelocityUnits = PERCENT, /):  # noqa: E501
-        """Set velocity."""
-        self._velocity[unit] = value
-        self.selected_velocity_unit = unit
-        return self._set_velocity(value=value, unit=unit)
-
-    @act
-    def _set_velocity(self, value: NumType = 50, unit: VelocityUnits = PERCENT):  # noqa: E501
-        """Set velocity."""
 
     @robotmesh_doc("""
         Turn on the motor and spins it.
