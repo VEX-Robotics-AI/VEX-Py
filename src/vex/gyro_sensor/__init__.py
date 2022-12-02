@@ -164,7 +164,7 @@ class Gyro(Device):
     """)
     @act
     def set_rotation(self, value: float, unit: Literal[DEGREES] = DEGREES, /):
-        """Set cumulative rotational angle."""
+        """Set rotational angle."""
         self._rotation[unit] = value
 
     @overload
@@ -225,7 +225,7 @@ class Gyro(Device):
     """)
     @sense
     def rotation(self, unit: Literal[DEGREES] = DEGREES, /) -> float:
-        """Return cumulative rotational angle."""
+        """Return rotational angle."""
 
     @vexcode_doc("""
         Gyro Rate

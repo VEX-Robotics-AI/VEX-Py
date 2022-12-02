@@ -115,7 +115,7 @@ class Smartdrive(Drivetrain):
             velocity: Optional[NumType] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True, /) -> bool:
-        """Turn to specified cumulative rotational angle."""
+        """Turn to specified rotational angle."""
 
     @robotmesh_doc("""
         Start turn to heading.
@@ -137,7 +137,7 @@ class Smartdrive(Drivetrain):
                                angleUnits: RotationUnits = RotationUnits.DEG,
                                velocity: Optional[NumType] = None,
                                velocityUnits: VelocityUnits = VelocityUnits.PCT, /):  # noqa: E501
-        """Start turning to specified target cumulative rotational angle."""
+        """Start turning to specified target rotational angle."""
 
     @robotmesh_doc("""
         Check if turnToHeading, turnToRotation or turnFor is still running.

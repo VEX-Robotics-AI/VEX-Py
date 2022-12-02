@@ -153,7 +153,7 @@ class SmartDrive(DriveTrain):
     @act
     def turn_to_rotation(self, angle: NumType = 90,
                          units: Literal[DEGREES] = DEGREES, wait: bool = True):
-        """Turn to specified cumulative rotational angle."""
+        """Turn to specified rotational angle."""
 
     @vexcode_doc("""
         Drive Heading
@@ -190,7 +190,7 @@ class SmartDrive(DriveTrain):
     """)
     @sense
     def rotation(self, units: Literal[DEGREES] = DEGREES) -> float:
-        """Return cumulative rotational angle."""
+        """Return rotational angle."""
 
 
 # alias
