@@ -714,6 +714,9 @@ class Motor(Device):
     """)
     def stop(self, mode: Optional[BrakeType] = None, /):
         """Stop."""
+        assert (mode is None) or isinstance(mode, BrakeType), \
+            TypeError(f'*** mode {mode} NEITHER None NOR A BrakeType ***')
+
         self._stop(self.stopping_mode
                    if (mode is None) and (self.stopping_mode is not None)
                    else mode)
@@ -721,6 +724,8 @@ class Motor(Device):
     @act
     def _stop(self, mode: Optional[BrakeType] = None, /):
         """Stop."""
+        assert (mode is None) or isinstance(mode, BrakeType), \
+            TypeError(f'*** mode {mode} NEITHER None NOR A BrakeType ***')
 
     @robotmesh_doc("""
         Determines if spin_for/spin_to command has reached its target position.
