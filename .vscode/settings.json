@@ -39,7 +39,7 @@
 
   "python.linting.pycodestyleEnabled": true,
 
-  "python.linting.prospectorEnabled": true,
+  "python.linting.prospectorEnabled": false,  // TODO: enable again
 
   "python.linting.pylamaEnabled": true,
 
