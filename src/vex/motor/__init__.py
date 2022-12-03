@@ -282,7 +282,7 @@ class Motor(Device):
     def set_timeout(self, value: NumType, unit: Literal[SECONDS], /):
         """Set timeout."""
         assert isinstance(value, NumType), \
-            TypeError('*** value MUST BE A float OR AN int ***')
+            TypeError(f'*** value {value} NEITHER A FLOAT NOR AN INT ***')
         assert value > 0, ValueError('*** value MUST BE POSITIVE ***')
 
         assert unit is SECONDS, ValueError('*** unit MUST BE SECONDS ***')
@@ -328,7 +328,7 @@ class Motor(Device):
     def set_max_torque(self, value: NumType, unit: Literal[PERCENT] | TorqueUnits, /):  # noqa: E501
         """Set max torque."""
         assert isinstance(value, NumType), \
-            TypeError('*** value MUST BE A float OR AN int ***')
+            TypeError(f'*** value {value} NEITHER A FLOAT NOR AN INT ***')
         assert value > 0, ValueError('*** value MUST BE POSITIVE ***')
 
         assert (unit is PERCENT) or isinstance(unit, TorqueUnits), \
@@ -360,8 +360,8 @@ class Motor(Device):
     def set_max_torque_current(self, value: float, /):
         """Set max torque current."""
         assert isinstance(value, NumType), \
-            TypeError('*** value MUST BE A float OR AN int ***')
-        assert value <= 1.2, ValueError('*** value MUST BE 1.2 OR LESS ***')
+            TypeError(f'*** value {value} NEITHER A FLOAT NOR AN INT ***')
+        assert value <= 1.2, ValueError(f'*** value {value} NOT 1.2 OR LESS ***')  # noqa: E501
 
         self.max_torque_current: float = value
 
