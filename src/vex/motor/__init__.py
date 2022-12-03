@@ -26,6 +26,7 @@ from .direction_type import DirectionType, FORWARD, REVERSE
 from .torque_units import TorqueUnits
 from .turn_type import TurnType, LEFT, RIGHT
 from .velocity_units import VelocityUnits, RPM, DPS
+from .voltage_units import VoltageUnits
 
 from .._util.doc import robotmesh_doc, vexcode_doc
 from .._util.type import NumType
@@ -37,7 +38,8 @@ __all__: Sequence[str] = ('Motor',
                           'DirectionType', 'FORWARD', 'REVERSE',
                           'TorqueUnits',
                           'TurnType', 'LEFT', 'RIGHT',
-                          'VelocityUnits', 'RPM', 'DPS')
+                          'VelocityUnits', 'RPM', 'DPS',
+                          'VoltageUnits')
 
 
 @robotmesh_doc("""
