@@ -1,11 +1,4 @@
-"""Motor.
-
-Robot Mesh VEX IQ Python B:
-robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_motor.html
-
-Robot Mesh VEX V5 Python:
-robotmesh.com/studio/content/docs/vexv5-python/html/classvex_1_1_motor.html
-"""
+"""Motor."""
 
 
 from collections.abc import Sequence
@@ -43,7 +36,11 @@ __all__: Sequence[str] = ('Motor',
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_motor.html
+
+    Robot Mesh VEX V5 Python:
+    robotmesh.com/studio/content/docs/vexv5-python/html/classvex_1_1_motor.html
 """)
 class Motor(Device):
     # pylint: disable=too-many-instance-attributes,too-many-public-methods
@@ -90,12 +87,14 @@ class Motor(Device):
                                                             else ')')
 
     @robotmesh_doc("""
+        Use this function to reverse setting for the motor.
+
         Sets the motor mode to "reverse",
         which will make motor commands spin the motor in the opposite direction
 
         Parameters
-        - is_reversed: If set to True, motor commands
-                       spin the motor in the opposite direction.
+        - is_reversed / isReversed: If set to True, motor commands
+                                    spin the motor in the opposite direction
     """)
     @act
     def set_reversed(self, is_reversed: bool, /):
