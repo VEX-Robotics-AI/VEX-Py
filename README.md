@@ -5,18 +5,46 @@
 
 ## VEXcode
 
-References:
-- [VEXcode IQ Python](https://codeiq.vex.com)
-- [VEXcode V5 Python](https://codev5.vex.com)
+[VEXcode IQ Python](https://codeiq.vex.com)
+
+[VEXcode V5 Python](https://codev5.vex.com)
 
 
-##  Robot Mesh Studio
+## Robot Mesh Studio
 
-References:
-- [Robot Mesh VEX IQ Python B](https://www.robotmesh.com/studio/content/docs/vexiq-python_b//html/index.html)
-- [Robot Mesh VEX V5 Python](https://www.robotmesh.com/studio/content/docs/vexv5-python//html/index.html)
 
-Modules not stubbed:
+### [Robot Mesh VEX IQ Python B](https://www.robotmesh.com/studio/content/docs/vexiq-python_b//html/index.html)
+
+- [Namespaces/Packages](https://www.robotmesh.com/studio/content/docs/vexiq-python_b//html/namespaces.html)
+  - [Namespace/Package Members](https://www.robotmesh.com/studio/content/docs/vexv5-python//html/namespacemembers.html)
+    - [Functions](https://www.robotmesh.com/studio/content/docs/vexiq-python_b//html/namespacemembers_func.html)
+    - [Variables](https://www.robotmesh.com/studio/content/docs/vexiq-python_b//html/namespacemembers_vars.html)
+
+- [Classes](https://www.robotmesh.com/studio/content/docs/vexiq-python_b//html/annotated.html)
+  - [Class Index](https://www.robotmesh.com/studio/content/docs/vexiq-python_b//html/classes.html)
+  - [Class Hierarchy](https://www.robotmesh.com/studio/content/docs/vexiq-python_b//html/hierarchy.html)
+  - [Class Members](https://www.robotmesh.com/studio/content/docs/vexiq-python_b//html/functions.html)
+    - [Functions](https://www.robotmesh.com/studio/content/docs/vexiq-python_b//html/functions_func.html)
+    - [Variables](https://www.robotmesh.com/studio/content/docs/vexiq-python_b//html/functions_vars.html)
+
+
+### [Robot Mesh VEX V5 Python](https://www.robotmesh.com/studio/content/docs/vexv5-python//html/index.html)
+
+- [Namespaces/Packages](https://www.robotmesh.com/studio/content/docs/vexv5-python//html/namespaces.html)
+  - [Namespace/Package Members](https://www.robotmesh.com/studio/content/docs/vexv5-python//html/namespacemembers.html)
+    - [Functions](https://www.robotmesh.com/studio/content/docs/vexv5-python//html/namespacemembers_func.html)
+    - [Variables](https://www.robotmesh.com/studio/content/docs/vexv5-python//html/namespacemembers_vars.html)
+
+- [Classes](https://www.robotmesh.com/studio/content/docs/vexv5-python//html/annotated.html)
+  - [Class Index](https://www.robotmesh.com/studio/content/docs/vexv5-python//html/classes.html)
+  - [Class Hierarchy](https://www.robotmesh.com/studio/content/docs/vexv5-python//html/hierarchy.html)
+  - [Class Members](https://www.robotmesh.com/studio/content/docs/vexv5-python//html/functions.html)
+    - [Functions](https://www.robotmesh.com/studio/content/docs/vexv5-python//html/functions_func.html)
+    - [Variables](https://www.robotmesh.com/studio/content/docs/vexv5-python//html/functions_vars.html)
+
+
+### Modules not stubbed
+
 - `__bi` / `built_ins` (subset of Python's built-ins)
 - `dict` (subset of Python's built-in `dict`; NOTE: NO `.items()`)
 - `func` (not clear what it is for)
