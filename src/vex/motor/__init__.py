@@ -511,6 +511,11 @@ class Motor(Device):
             TypeError(f'*** rotation_unit {rotation_unit} '
                       'NOT ONE OF RotationUnits ***')
 
+        if isinstance(velocity, bool):
+            wait: bool = velocity
+            velocity: Optional[NumType] = None
+            velocity_unit: Optional[VelocityUnits] = None
+
         assert (velocity is None) or isinstance(velocity, NumType), \
             TypeError('*** velocity {velocity} NEITHER None, A FLOAT NOR AN INT ***')  # noqa: E501
 
