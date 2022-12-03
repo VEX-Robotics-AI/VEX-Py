@@ -116,7 +116,7 @@ class BrainSound(SingletonDevice):
     @robotmesh_doc("""
         Play a musical note on the speaker.
 
-        Parameters:
+        Parameters
         - note: musical note to play: NoteType enum value
         - octave: octave of the note [1-7], optional
         - duration: time. 0 to start playing without blocking. Default 0.5
@@ -143,7 +143,7 @@ class BrainSound(SingletonDevice):
     @robotmesh_doc("""
         Play the wave sample.
 
-        Parameters:
+        Parameters
         - waveType: type of the wave sample sound to play [0..15]
         - waitForCompletion: wait for the sample to finish playing
     """)
@@ -156,7 +156,7 @@ class BrainSound(SingletonDevice):
 
         (cdefgab)
 
-        Parameters:
+        Parameters
         - melody: string [cdefgab]: musical alphabet for notes,
                   space: pause,
                   +/-: increase/decrease octave of following notes

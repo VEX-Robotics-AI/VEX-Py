@@ -1,7 +1,10 @@
 """VEX Smart Drivetrain.
 
-Robot Mesh Python B:
+Robot Mesh VEX IQ Python B:
 robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacesmartdrive.html
+
+Robot Mesh VEX V5 Python:
+robotmesh.com/studio/content/docs/vexv5-python/html/namespacesmartdrive.html
 """
 
 
@@ -34,7 +37,7 @@ class Smartdrive(Drivetrain):
     @robotmesh_doc("""
         Create a new smartdrive object.
 
-        Parameters:
+        Parameters
         - left_motor: the motor, motor group or a list/tuple of motors
                       driving the left side of the drivetrain
         - right_motor: the motor, motor group or a list/tuple of motors
@@ -84,7 +87,7 @@ class Smartdrive(Drivetrain):
         Returns:
         True if the motor has reached the target rotation value.
 
-        Parameters:
+        Parameters
         - angle: Sets the angle to turn.
         - angleUnits: The measurement unit for the angle value.
         - velocity: Sets the amount of velocity.

@@ -1,7 +1,10 @@
 """VEX Motor Group.
 
-Robot Mesh Python B:
+Robot Mesh VEX IQ Python B:
 robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacemotor__group.html
+
+Robot Mesh VEX V5 Python:
+robotmesh.com/studio/content/docs/vexv5-python/html/namespacemotor__group.html
 """
 
 
@@ -76,7 +79,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
         Any subsequent call that does not contain a specified motor velocity
         will use this value.
 
-        Parameters:
+        Parameters
         - velocity: Sets the amount of velocity.
         - velocityUnits: The measurement unit for velocity,
                          a VelocityUnits enum value.
@@ -89,7 +92,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
     @robotmesh_doc("""
         Set stopping mode of motor group by passing brake mode as parameter.
 
-        Parameters:
+        Parameters
         - brakeType: The stopping mode can be set
                      to BrakeType.COAST, BRAKE, or HOLD.
     """)
@@ -157,7 +160,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
 
         (in the specified direction and a specified velocity)
 
-        Parameters:
+        Parameters
         - dir: The direction to spin the motors,
                a DirectionType enum value.
         - velocity: Sets the amount of velocity.
@@ -179,7 +182,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
         Returns a Boolean that signifies when
         the motors have reached the target rotation value.
 
-        Parameters:
+        Parameters
         - rotation: Sets the amount of rotation.
         - rotationUnits: The measurement unit for the rotation value.
         - velocity: Sets the amount of velocity.
@@ -207,7 +210,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
         Returns:
         True if motors have reached the target rotation value, False otherwise.
 
-        Parameters:
+        Parameters
         - dir: direction to spin in, a DirectionType enum value or None.
         - rotation: Sets the amount of rotation.
         - rotationUnits: The measurement unit for the rotation value.
@@ -231,7 +234,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
     @robotmesh_doc("""
         Turn on the motors and spin them for a given amount of time.
 
-        Parameters:
+        Parameters
         - dir: direction to spin in, a DirectionType enum value or None.
         - time: Sets the amount of time.
         - timeUnits: The measurement unit for the time value,
@@ -253,7 +256,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
 
         (but does not wait for the motors to reach that target)
 
-        Parameters:
+        Parameters
         - rotation: Sets the amount of rotation.
         - rotationUnits: The measurement unit for the rotation value.
         - velocity: Sets the amount of velocity.
@@ -272,7 +275,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
 
         (but does not wait for the motors to reach that target)
 
-        Parameters:
+        Parameters
         - dir: direction to spin in, a DirectionType enum value or None.
         - rotation: Sets the amount of rotation.
         - rotationUnits: The measurement unit for the rotation value.
@@ -312,7 +315,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
     @robotmesh_doc("""
         Stop all motors using the default brake mode.
 
-        Parameters:
+        Parameters
         - brakeType: The brake mode can be set to
                      BrakeType.COAST, BRAKE, or HOLD.
     """)
@@ -323,7 +326,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
     @robotmesh_doc("""
         Set the max torque of all motors as a percentage.
 
-        Parameters:
+        Parameters
         - value: Sets the amount of torque (0 to 100%)
     """)
     @act
@@ -334,7 +337,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
     @robotmesh_doc("""
         Set the max torque of all motors.
 
-        Parameters:
+        Parameters
         - value: Sets the amount of torque (max 0.414 Nm)
         - torqueUnits: The measurement unit for the torque value.
     """)
@@ -347,7 +350,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
     @robotmesh_doc("""
         Set the max torque of all motors.
 
-        Parameters:
+        Parameters
         - value: Sets the amount of torque in Amps (max 1.2A)
     """)
     @act
@@ -377,7 +380,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
         a float that represents the current velocity of the motor
         in the units defined in the parameter.
 
-        Parameters:
+        Parameters
         - velocityUnits: The measurement unit for the velocity.
     """)
     @sense

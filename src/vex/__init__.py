@@ -4,8 +4,11 @@ VEXcode IQ: codeiq.vex.com
 VEXcode V5: codev5.vex.com
 VEXcode VR: vr.vex.com
 
-Robot Mesh Python B:
+Robot Mesh VEX IQ Python B:
 robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacevex.html
+
+Robot Mesh VEX V5 Python:
+robotmesh.com/studio/content/docs/vexv5-python/html/namespacevex.html
 """
 
 
@@ -119,7 +122,7 @@ INT29_MAX: int = 0x1FFFFFFF
 @robotmesh_doc("""
     Runs the given function in a thread sharing the current global namespace.
 """)
-def run_in_thread(f: callable):
+def run_in_thread(f: callable):  # pylint: disable=invalid-name
     """Run specified function in parallel thread."""
     Thread(group=None, target=f, name=None, args=(), kwargs={}, daemon=True).start()  # noqa: E501
 
@@ -129,7 +132,7 @@ def run_in_thread(f: callable):
 
     Returns True when reached, False on timeout.
 
-    Parameters:
+    Parameters
     - func: function to run until it returns the value
     - value: return value to wait for; default True
     - timeout: timeout in seconds; if reached returns False;

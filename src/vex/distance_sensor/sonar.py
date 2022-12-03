@@ -26,7 +26,7 @@ class Sonar(Device):
     @robotmesh_doc("""
         Creates new sonar sensor object on the port specified in the parameter.
 
-        Parameters:
+        Parameters
         - index: to the brain port.
     """)
     def __init__(self, index: Ports, /):

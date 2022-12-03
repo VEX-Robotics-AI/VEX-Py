@@ -140,7 +140,7 @@ class Touchled(Device):
     @robotmesh_doc("""
         Turn on the led in the touchled sensor.
 
-        Parameters:
+        Parameters
         - red: red value of the led, 0-255
         - green: green value of the led, 0-255
         - blue: blue value of the led, 0-255
@@ -160,7 +160,7 @@ class Touchled(Device):
     @robotmesh_doc("""
         Set the led in the touchled sensor as blinking.
 
-        Parameters:
+        Parameters
         - color: color value: 0xRRGGBB
         - on_time: time the led should remain on in seconds
         - off_time: time the led should remain off in seconds

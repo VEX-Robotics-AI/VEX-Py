@@ -189,7 +189,7 @@ class ColorSensor(Device):
     @robotmesh_doc("""
         Gets the grayscale value detected by the color sensor.
 
-        Parameters:
+        Parameters
         - raw: if True, raw value will be returned, otherwise a percentage
 
         Returns:

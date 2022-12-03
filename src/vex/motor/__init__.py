@@ -83,7 +83,7 @@ class Motor(Device):
         Sets the motor mode to "reverse",
         which will make motor commands spin the motor in the opposite direction
 
-        Parameters:
+        Parameters
         - is_reversed: If set to True, motor commands
                        spin the motor in the opposite direction.
     """)
@@ -221,7 +221,7 @@ class Motor(Device):
 
         (note this will stop the motor if it's spinning)
 
-        Parameters:
+        Parameters
         - brakeType: The stopping mode can be set to
                      BrakeType.COAST, BRAKE, or HOLD.
     """)
@@ -431,7 +431,7 @@ class Motor(Device):
 
         (to a relative target rotation value at a specified velocity)
 
-        Parameters:
+        Parameters
         - dir: The direction to spin the motor, DirectionType enum value.
         - rotation: Sets the amount of rotation.
         - rotationUnits: The measurement unit for the rotation value.
@@ -654,7 +654,7 @@ class Motor(Device):
         Starts spinning a motor to a relative target rotation
         but does not wait for the motor to reach that target.
 
-        Parameters:
+        Parameters
         - dir: direction to spin in, a DirectionType enum value or None
         - rotation: amount of rotation
         - rotationUnits: measurement unit for rotation
@@ -731,7 +731,7 @@ class Motor(Device):
     @robotmesh_doc("""
         Stops the motor using the default brake mode.
 
-        Parameters:
+        Parameters
         - brakeType: The brake mode can be set to
                      BrakeType.COAST, BRAKE, or HOLD.
     """)
@@ -828,7 +828,7 @@ class Motor(Device):
     @robotmesh_doc("""
         Gets the current rotation of the motor's encoder.
 
-        Parameters:
+        Parameters
         - rotationUnits: measurement unit for rotation.
 
         Returns: a float that represents the current rotation of
@@ -849,7 +849,7 @@ class Motor(Device):
     @robotmesh_doc("""
         Gets the current velocity of the motor.
 
-        Parameters:
+        Parameters
         - velocityUnits: measurement unit for velocity.
 
         Returns: a float that represents the current velocity

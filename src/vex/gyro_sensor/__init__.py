@@ -28,7 +28,7 @@ class Gyro(Device):
     @robotmesh_doc("""
         Creates a new gyro object on the port specified in the parameter.
 
-        Parameters:
+        Parameters
         - index: index to the brain port.
         - calibrate: set to calibrate the sensor now
     """)
@@ -209,7 +209,7 @@ class Gyro(Device):
     @robotmesh_doc("""
         Get the absolute angle of the gyro sensor.
 
-        Parameters:
+        Parameters
         - rotationUnits: measurement unit for the gyro device
     """)
     @vexcode_doc("""
