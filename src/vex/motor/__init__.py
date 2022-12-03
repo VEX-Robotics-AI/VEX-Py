@@ -92,21 +92,6 @@ class Motor(Device):
         """Set reversed mode."""
         self.reverse: bool = is_reversed
 
-    def _get_selected_velocity_and_unit(
-            self,
-            velocity: Optional[float],
-            unit: VelocityUnits) -> tuple[float, VelocityUnits]:
-        if (velocity is None) or (not isinstance(velocity, float | int)):
-            if self.selected_velocity_unit not in self._velocity:
-                raise ValueError('You have not selected any velocity; '
-                                 'please call '
-                                 'set_velocity(velocity, velocityUnits) first')
-
-            velocity = self._velocity[self.selected_velocity_unit]
-            unit = self.selected_velocity_unit
-
-        return (velocity, unit)
-
     @vexcode_doc("""
         Set Motor Position
 
@@ -365,6 +350,34 @@ class Motor(Device):
 
         self.max_torque_current: float = value
 
+    def _resolve_velocity_and_unit(self,
+                                   velocity: Optional[NumType],
+                                   velocity_unit: Optional[VelocityUnits], /) \
+            -> tuple[NumType, VelocityUnits]:
+        if velocity is None:
+            if velocity_unit is None:
+                assert self.selected_velocity_unit in self._velocity, \
+                    ValueError('*** NO VELOCITY SET YET; '
+                               'PLEASE CALL set_velocity(...) FIRST ***')
+
+                return (self._velocity[self.selected_velocity_unit],
+                        self.selected_velocity_unit)
+
+            assert isinstance(velocity_unit, VelocityUnits), \
+                TypeError(f'*** velocity_unit {velocity_unit} '
+                          'NOT ONE OF VelocityUnits ***')
+
+            assert velocity_unit in self._velocity, \
+                ValueError(f'*** NO VELOCITY SET FOR UNIT {velocity_unit} YET;'
+                           ' PLEASE CALL set_velocity(...) FIRST ***')
+
+            return self._velocity[velocity_unit], velocity_unit
+
+        assert isinstance(velocity, NumType), \
+            TypeError('*** velocity {velocity} NEITHER None, A FLOAT NOR AN INT ***')  # noqa: E501
+
+        return velocity, velocity_unit
+
     @overload
     def spin(self, direction: DirectionType = FORWARD):
         ...
@@ -471,7 +484,7 @@ class Motor(Device):
             direction: DirectionType = FORWARD
             rotation: float = 90
             rotation_unit: RotationUnits = DEGREES
-            velocity, velocity_unit = self._get_selected_velocity_and_unit(
+            velocity, velocity_unit = self._resolve_velocity_and_unit(
                 None, self.selected_velocity_unit)
             wait: bool = True
 
@@ -479,20 +492,20 @@ class Motor(Device):
             direction = args[0]
             rotation: float = 90
             rotation_unit: RotationUnits = DEGREES
-            velocity, velocity_unit = self._get_selected_velocity_and_unit(
+            velocity, velocity_unit = self._resolve_velocity_and_unit(
                 None, self.selected_velocity_unit)
             wait: bool = True
 
         elif n_args == 2:
             direction, rotation = args
             rotation_unit: RotationUnits = DEGREES
-            velocity, velocity_unit = self._get_selected_velocity_and_unit(
+            velocity, velocity_unit = self._resolve_velocity_and_unit(
                 None, self.selected_velocity_unit)
             wait: bool = True
 
         elif n_args == 3:
             direction, rotation, rotation_unit = args
-            velocity, velocity_unit = self._get_selected_velocity_and_unit(
+            velocity, velocity_unit = self._resolve_velocity_and_unit(
                 None, self.selected_velocity_unit)
             wait: bool = True
 
@@ -501,7 +514,7 @@ class Motor(Device):
             direction, rotation, rotation_unit = args[:3]
 
             if isinstance(arg3 := args[3], bool):
-                velocity, velocity_unit = self._get_selected_velocity_and_unit(
+                velocity, velocity_unit = self._resolve_velocity_and_unit(
                     None, self.selected_velocity_unit)
                 wait: bool = arg3
 
@@ -520,7 +533,7 @@ class Motor(Device):
             direction, rotation, rotation_unit, velocity, velocity_unit, wait = args  # noqa: E501
 
         if velocity is None:
-            velocity, velocity_unit = self._get_selected_velocity_and_unit(
+            velocity, velocity_unit = self._resolve_velocity_and_unit(
                 None, self.selected_velocity_unit)
 
         return self._spin_for(direction=direction,
