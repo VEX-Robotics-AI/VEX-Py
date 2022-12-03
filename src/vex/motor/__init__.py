@@ -17,7 +17,7 @@ from abm.decor import act, sense
 from .._abstract_device import Device
 from ..brain.port import Ports
 from ..time import TimeUnits, SECONDS
-from .._common_enums.numeric import NumType, PERCENT
+from .._common_enums.percent import NumType, PERCENT
 from .._common_enums.rotation import RotationUnits, DEGREES
 
 from .._util.doc import robotmesh_doc, vexcode_doc

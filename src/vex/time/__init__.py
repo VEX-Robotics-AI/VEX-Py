@@ -6,7 +6,7 @@ from typing import overload
 
 from abm.decor import act
 
-from .._common_enums.numeric import NumType
+from .._common_enums.percent import NumType
 
 from .._util.doc import robotmesh_doc, vexcode_doc
 

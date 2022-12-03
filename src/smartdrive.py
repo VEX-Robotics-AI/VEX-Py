@@ -17,7 +17,7 @@ from abm.decor import act, sense
 from vex.motor.velocity_units import VelocityUnits
 from vex.gyro_sensor import Gyro
 from vex._common_enums.distance import DistanceUnits
-from vex._common_enums.numeric import NumType
+from vex._common_enums.percent import NumType
 from vex._common_enums.rotation import RotationUnits
 
 from vex._util.doc import robotmesh_doc

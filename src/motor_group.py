@@ -20,7 +20,7 @@ from vex.motor.direction_type import DirectionType
 from vex.motor.torque_units import TorqueUnits
 from vex.motor.velocity_units import VelocityUnits
 from vex.time.time_units import TimeUnits
-from vex._common_enums.numeric import NumType
+from vex._common_enums.percent import NumType
 from vex._common_enums.rotation import RotationUnits
 
 from vex._util.doc import robotmesh_doc

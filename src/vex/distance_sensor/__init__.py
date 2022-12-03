@@ -8,7 +8,7 @@ from abm.decor import sense
 from .._abstract_device import Device
 from ..brain.port import Ports
 from .._common_enums.distance import DistanceUnits, MM, INCHES
-from .._common_enums.numeric import NumType
+from .._common_enums.percent import NumType
 
 from .._util.doc import vexcode_doc
 

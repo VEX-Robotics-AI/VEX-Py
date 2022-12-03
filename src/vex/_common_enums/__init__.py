@@ -4,7 +4,7 @@
 from collections.abc import Sequence
 
 from .color import Color, ColorHue
-from .numeric import NumType, PERCENT
+from .percent import NumType, PERCENT
 from .distance import DistanceUnits, MM, INCHES
 from .rotation import RotationUnits, DEGREES, TURNS
 

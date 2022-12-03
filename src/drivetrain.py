@@ -21,7 +21,7 @@ from vex.motor.turn_type import TurnType
 from vex.motor.velocity_units import VelocityUnits
 from vex.time.time_units import TimeUnits
 from vex._common_enums.distance import DistanceUnits
-from vex._common_enums.numeric import NumType
+from vex._common_enums.percent import NumType
 from vex._common_enums.rotation import RotationUnits
 
 from vex._util.doc import robotmesh_doc

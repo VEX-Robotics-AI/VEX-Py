@@ -15,7 +15,7 @@ from ..motor.turn_type import TurnType, RIGHT
 from ..motor.velocity_units import VelocityUnits, PERCENT
 from ..time.time_units import SECONDS
 from .._common_enums.distance import DistanceUnits, MM
-from .._common_enums.numeric import NumType
+from .._common_enums.percent import NumType
 from .._common_enums.rotation import DEGREES
 
 from .._util.doc import vexcode_doc
