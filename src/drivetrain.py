@@ -1,7 +1,10 @@
 """VEX Drivetrain.
 
-Robot Mesh Python B:
+Robot Mesh VEX IQ Python B:
 robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacedrivetrain.html
+
+Robot Mesh VEX V5 Python:
+robotmesh.com/studio/content/docs/vexv5-python/html/namespacedrivetrain.html
 """
 
 
@@ -18,10 +21,10 @@ from vex.motor.turn_type import TurnType
 from vex.motor.velocity_units import VelocityUnits
 from vex.time.time_units import TimeUnits
 from vex._common_enums.distance import DistanceUnits
-from vex._common_enums.numeric import NumType
 from vex._common_enums.rotation import RotationUnits
 
 from vex._util.doc import robotmesh_doc
+from vex._util.type import NumType
 
 from motor_group import MotorGroup
 
@@ -41,7 +44,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     @robotmesh_doc("""
         Create a new drivetrain object.
 
-        Parameters:
+        Parameters
         - left_motor: the motor, motor group or a list/tuple of motors
                       driving the left side of the drivetrain
         - right_motor: the motor, motor group or a list/tuple of motors
@@ -92,7 +95,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     @robotmesh_doc("""
         Turn the motors on and drives in the specified direction.
 
-        Parameters:
+        Parameters
         - directionType: direction to drive in, forward or reverse,
                          a DirectionType enum value
         - velocity: set velocity of the motors
@@ -108,7 +111,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     @robotmesh_doc("""
         Drives for a specified distance.
 
-        Parameters:
+        Parameters
         - directionType: direction to drive in, forward or reverse,
                          a DirectionType enum value
         - distance: distance to drive in
@@ -136,7 +139,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     @robotmesh_doc("""
         Start driving for a specified distance.
 
-        Parameters:
+        Parameters
         - directionType: direction to drive in, forward or reverse,
                          a DirectionType enum value
         - distance: distance to drive in
@@ -157,7 +160,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     @robotmesh_doc("""
         Turn the drivetrain left or right.
 
-        Parameters:
+        Parameters
         - turnType: direction to turn in, left or right, a TurnType enum value
         - velocity: set velocity of the motors
         - velocityUnits: unit for the velocity parameter,
@@ -172,7 +175,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     @robotmesh_doc("""
         Turn the drivetrain left or right until the specified angle is reached.
 
-        Parameters:
+        Parameters
         - turnType: direction to turn in, left or right, a TurnType enum value
         - angle: sets the angle to turn
         - rotationUnits: units for the angle parameter,
@@ -202,7 +205,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
 
         (until specified angle is reached)
 
-        Parameters:
+        Parameters
         - turnType: direction to turn in, left or right, a TurnType enum value
         - angle: sets the angle to turn
         - angleUnits: units for the angle parameter, a RotationUnits enum value
@@ -224,7 +227,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
 
         (normally corresponding to two controller joystick axis values)
 
-        Parameters:
+        Parameters
         - drivePower: percent power to apply to driving, -100..100
         - turnPower: percent power to apply to turning, -100..100
     """)
@@ -235,7 +238,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     @robotmesh_doc("""
         Stop the drive using a specified brake mode.
 
-        Parameters:
+        Parameters
         - brakeType: brake mode, an BrakeType enum value.
                      If omitted, the value set in set_stopping is used.
     """)
@@ -246,7 +249,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     @robotmesh_doc("""
         Set the external gear ratio of the drivetrain.
 
-        Parameters:
+        Parameters
         - gear_ratio: gear ratio value, usually 1.0
     """)
     @act
@@ -261,7 +264,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         Any subsequent call that does not contain a specified velocity
         will use this value.
 
-        Parameters:
+        Parameters
         - velocity: Sets the amount of velocity.
         - velocityUnits: unit for the velocity parameter,
                          a VelocityUnits enum value
@@ -277,7 +280,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
 
         Will not run the motors.
 
-        Parameters:
+        Parameters
         - velocity: Sets the amount of velocity.
         - velocityUnits: unit for the velocity parameter,
                          a VelocityUnits enum value
@@ -294,7 +297,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         If the drivetrain does not reach its' commanded position
         prior to the completion of the timeout, the motors will stop.
 
-        Parameters:
+        Parameters
         - time: the amount of time.
         - timeUnits: unit for the time parameter, a TimeUnits enum value
     """)
@@ -332,7 +335,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     @robotmesh_doc("""
         Set stopping mode of motor group by passing brake mode as parameter.
 
-        Parameters:
+        Parameters
         - brakeType: the stopping mode, a BrakeType enum value
                      (coast, brake, or hold).
     """)
@@ -347,7 +350,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         Returns:
         a float that represents the average current velocity
 
-        Parameters:
+        Parameters
         - velocityUnits: The measurement unit for the velocity.
     """)
     @sense

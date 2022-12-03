@@ -14,8 +14,10 @@ from ..motor.direction_type import DirectionType, FORWARD
 from ..motor.torque_units import TorqueUnits
 from ..motor.velocity_units import VelocityUnits
 from ..time.time_units import TimeUnits, SECONDS
-from .._common_enums.numeric import NumType, PERCENT
+from .._common_enums.percent import PERCENT
 from .._common_enums.rotation import RotationUnits, DEGREES
+
+from .._util.type import NumType
 
 
 __all__: Sequence[str] = ('MotorGroup',)

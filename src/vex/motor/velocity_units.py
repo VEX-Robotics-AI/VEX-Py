@@ -6,7 +6,7 @@ from __future__ import annotations
 from collections.abc import Sequence
 from enum import IntEnum
 
-from .._common_enums.numeric import PERCENT
+from .._common_enums.percent import PERCENT
 
 from .._util.doc import robotmesh_doc
 

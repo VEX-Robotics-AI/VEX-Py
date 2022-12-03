@@ -59,7 +59,7 @@ class Vision(Device):
     @robotmesh_doc("""
         Take a data sample from the vision sensor.
 
-        Parameters:
+        Parameters
         - id: The signature id or color code of the object to look for.
         - count: the amount of objects to look for.
                  The largest of the object will be returned. Optional.

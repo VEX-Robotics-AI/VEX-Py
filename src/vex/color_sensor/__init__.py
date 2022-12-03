@@ -10,9 +10,10 @@ from abm.decor import act, sense
 from .._abstract_device import Device
 from ..brain.port import Ports
 from .._common_enums.color import Color
-from .._common_enums.numeric import NumType, PERCENT
+from .._common_enums.percent import PERCENT
 
 from .._util.doc import robotmesh_doc, vexcode_doc
+from .._util.type import NumType
 
 
 __all__: Sequence[str] = 'ColorSensor', 'Colorsensor'
@@ -189,7 +190,7 @@ class ColorSensor(Device):
     @robotmesh_doc("""
         Gets the grayscale value detected by the color sensor.
 
-        Parameters:
+        Parameters
         - raw: if True, raw value will be returned, otherwise a percentage
 
         Returns:

@@ -6,11 +6,10 @@ from typing import overload
 
 from abm.decor import act
 
-from .._common_enums.numeric import NumType
+from .time_units import TimeUnits, SECONDS, MSEC
 
 from .._util.doc import robotmesh_doc, vexcode_doc
-
-from .time_units import TimeUnits, SECONDS, MSEC
+from .._util.type import NumType
 
 
 __all__: Sequence[str] = 'TimeUnits', 'SECONDS', 'MSEC', 'clock', 'wait'

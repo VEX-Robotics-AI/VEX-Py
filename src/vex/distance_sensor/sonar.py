@@ -9,9 +9,9 @@ from abm.decor import act, sense
 from .._abstract_device import Device
 from ..brain.port import Ports
 from .._common_enums.distance import DistanceUnits, MM, INCHES
-from .._common_enums.numeric import NumType
 
 from .._util.doc import robotmesh_doc, vexcode_doc
+from .._util.type import NumType
 
 
 __all__: Sequence[str] = ('Sonar',)
@@ -26,7 +26,7 @@ class Sonar(Device):
     @robotmesh_doc("""
         Creates new sonar sensor object on the port specified in the parameter.
 
-        Parameters:
+        Parameters
         - index: to the brain port.
     """)
     def __init__(self, index: Ports, /):

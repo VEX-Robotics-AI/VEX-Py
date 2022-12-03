@@ -10,7 +10,7 @@ from abm.decor import act, sense
 from .._abstract_device import Device
 from ..brain.port import Ports
 from .._common_enums.color import Color
-from .._common_enums.numeric import PERCENT
+from .._common_enums.percent import PERCENT
 
 from .._util.doc import vexcode_doc
 
