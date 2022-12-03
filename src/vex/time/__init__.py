@@ -50,6 +50,6 @@ def wait(time: NumType, timeUnits: TimeUnits = TimeUnits.SEC, /):
     to have your program wait before executing subsequent commands.
 """)
 @act
-def wait(duration: NumType, unit: TimeUnits, /):
+def wait(duration: NumType, unit: TimeUnits = SECONDS, /):
     # pylint: disable=unused-argument
     """Wait for specified duration."""
