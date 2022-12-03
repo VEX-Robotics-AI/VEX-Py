@@ -1,4 +1,11 @@
-"""Motor."""
+"""Motor.
+
+Robot Mesh VEX IQ Python B:
+robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_motor.html
+
+Robot Mesh VEX V5 Python:
+robotmesh.com/studio/content/docs/vexv5-python/html/classvex_1_1_motor.html
+"""
 
 
 from collections.abc import Sequence
@@ -363,7 +370,8 @@ class Motor(Device):
                 return (self._velocity[self.selected_velocity_unit],
                         self.selected_velocity_unit)
 
-            assert isinstance(velocity_unit, VelocityUnits), \
+            assert ((velocity_unit is PERCENT) or
+                    isinstance(velocity_unit, VelocityUnits)), \
                 TypeError(f'*** velocity_unit {velocity_unit} '
                           'NOT ONE OF VelocityUnits ***')
 
@@ -379,26 +387,23 @@ class Motor(Device):
         return velocity, velocity_unit
 
     @overload
-    def spin(self, direction: DirectionType = FORWARD):
+    def spin(self, direction: DirectionType):
         ...
 
     @overload
-    def spin(self,
-             dir: DirectionType,  # pylint: disable=redefined-builtin
-             velocity: Optional[float] = None,
+    def spin(self, dir: DirectionType,  # pylint: disable=redefined-builtin
+             velocity: Optional[NumType] = None,
              velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         ...
 
     @robotmesh_doc("""
-        Turn on the motor and spins it.
+        Turns on the motor and spins it in a specified direction
+        and a specified velocity.
 
-        (in a specified direction and a specified velocity)
-
-        Parameters:
-        - dir: The direction to spin the motor, DirectionType enum value.
-        - velocity: Sets the amount of velocity.
-        - velocityUnits: The measurement unit for the velocity,
-                         a VelocityUnits enum value.
+        Parameters
+        - dir: direction to spin the motor, DirectionType enum
+        - velocity: amount of velocity
+        - velocityUnits: measurement unit for velocity, VelocityUnits enum
     """)
     @vexcode_doc("""
         Spin
@@ -408,20 +413,30 @@ class Motor(Device):
         Choose which DIRECTION the Motor or Motor Group will spin to with
         either FORWARD or REVERSE as the parameter.
     """)
-    def spin(self, direction: DirectionType = FORWARD,
-             velocity: Optional[float] = None,
+    def spin(self, direction: DirectionType,
+             velocity: Optional[NumType] = None,
              velocity_unit: VelocityUnits = PERCENT):
-        # pylint: disable=unused-argument
         """Spin in specified direction (at specified velocity)."""
-        velocity, velocity_unit = self._get_selected_velocity_and_unit(
+        assert isinstance(direction, DirectionType), \
+            TypeError('*** direction {direction} NOT A DirectionType ***')
+
+        assert (velocity is None) or isinstance(velocity, NumType), \
+            TypeError('*** velocity {velocity} NEITHER None, A FLOAT NOR AN INT ***')  # noqa: E501
+
+        assert ((velocity_unit is PERCENT) or
+                isinstance(velocity_unit, VelocityUnits)), \
+            TypeError(f'*** velocity_unit {velocity_unit} '
+                      'NOT ONE OF VelocityUnits ***')
+
+        velocity, velocity_unit = self._resolve_velocity_and_unit(
             velocity, velocity_unit)
 
         return self._spin(direction=direction,
                           velocity=velocity, velocity_unit=velocity_unit)
 
     @act
-    def _spin(self, direction: DirectionType = FORWARD,
-              velocity: float = 50, velocity_unit: VelocityUnits = PERCENT):
+    def _spin(self, direction: DirectionType,
+              velocity: NumType, velocity_unit: VelocityUnits):
         """Spin in specified direction (at specified velocity)."""
 
     @overload
