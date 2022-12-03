@@ -17,10 +17,8 @@ from abm.decor import act, sense
 from .._abstract_device import Device
 from ..brain.port import Ports
 from ..time import TimeUnits, SECONDS
-from .._common_enums.percent import NumType, PERCENT
+from .._common_enums.percent import PERCENT
 from .._common_enums.rotation import RotationUnits, DEGREES
-
-from .._util.doc import robotmesh_doc, vexcode_doc
 
 from .brake_type import BrakeType, COAST, BRAKE, HOLD
 from .current_units import CurrentUnits
@@ -28,6 +26,9 @@ from .direction_type import DirectionType, FORWARD, REVERSE
 from .torque_units import TorqueUnits
 from .turn_type import TurnType, LEFT, RIGHT
 from .velocity_units import VelocityUnits, RPM, DPS
+
+from .._util.doc import robotmesh_doc, vexcode_doc
+from .._util.type import NumType
 
 
 __all__: Sequence[str] = ('Motor',

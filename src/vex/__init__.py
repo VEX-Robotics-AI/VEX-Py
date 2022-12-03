@@ -54,7 +54,7 @@ from .multi_device_group import MotorGroup, DriveTrain, SmartDrive
 from .time import TimeUnits, SECONDS, MSEC, clock, wait
 
 from ._common_enums import (Color, ColorHue,
-                            NumType, PERCENT,
+                            PercentUnits, PERCENT,
                             DistanceUnits, MM, INCHES,
                             RotationUnits, DEGREES, TURNS)
 
@@ -99,7 +99,7 @@ __all__: Sequence[str] = (
     'TimeUnits', 'SECONDS', 'MSEC', 'wait',
 
     'Color', 'ColorHue',
-    'PERCENT',
+    'PercentUnits', 'PERCENT',
     'DistanceUnits', 'MM', 'INCHES',
     'RotationUnits', 'DEGREES', 'TURNS',
 

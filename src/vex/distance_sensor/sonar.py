@@ -9,9 +9,9 @@ from abm.decor import act, sense
 from .._abstract_device import Device
 from ..brain.port import Ports
 from .._common_enums.distance import DistanceUnits, MM, INCHES
-from .._common_enums.percent import NumType
 
 from .._util.doc import robotmesh_doc, vexcode_doc
+from .._util.type import NumType
 
 
 __all__: Sequence[str] = ('Sonar',)
