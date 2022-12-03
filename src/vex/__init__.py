@@ -59,6 +59,7 @@ from ._common_enums import (Color, ColorHue,
                             RotationUnits, DEGREES, TURNS)
 
 from ._util.doc import robotmesh_doc
+from ._util.type import NumType
 
 
 __all__: Sequence[str] = (
