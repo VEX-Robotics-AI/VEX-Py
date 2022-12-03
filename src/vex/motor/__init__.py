@@ -99,6 +99,9 @@ class Motor(Device):
     @act
     def set_reversed(self, is_reversed: bool, /):
         """Set reversed mode."""
+        assert isinstance(is_reversed, bool), \
+            TypeError('*** is_reversed={is_reversed} NOT A BOOL ***')
+
         self.reverse: bool = is_reversed
 
     @vexcode_doc("""
