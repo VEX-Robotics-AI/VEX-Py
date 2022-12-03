@@ -1,8 +1,20 @@
-# API Stubs for VEXcode Python & Robot Mesh VEX Python B
+# Python API Stubs for VEXcode & Robot Mesh Studio
 
-[![codecov](https://codecov.io/gh/VEX-Robotics-AI/VEX-Py/branch/main/graph/badge.svg)](https://codecov.io/gh/VEX-Robotics-AI/VEX-Py/)
+[![codecov](https://codecov.io/gh/VEX-Robotics-AI/VEX-Py/branch/main/graph/badge.svg)](https://codecov.io/gh/VEX-Robotics-AI/VEX-Py)
 
-##  Robot Mesh VEX Python B
+
+## VEXcode
+
+References:
+- [VEXcode IQ Python](https://codeiq.vex.com)
+- [VEXcode V5 Python](https://codev5.vex.com)
+
+
+##  Robot Mesh Studio
+
+References:
+- [Robot Mesh VEX IQ Python B](https://www.robotmesh.com/studio/content/docs/vexiq-python_b//html/index.html)
+- [Robot Mesh VEX V5 Python](https://www.robotmesh.com/studio/content/docs/vexv5-python//html/index.html)
 
 Modules not stubbed:
 - `__bi` / `built_ins` (subset of Python's built-ins)
@@ -13,9 +25,13 @@ Modules not stubbed:
 - `math` (subset of Python's built-in `math` module)
 - `random` (subset of Python's built-in `random` module)
 - `string` (subset of Python's built-in `string` module)
-- `sys`: clash with Python's built-in `sys` module, with some extra funcs:
-  - `run_in_thread`
-  - `wait_for`
+- `sys` (clash with Python's built-in `sys` module)
+
+
+# Contributing
+
+We welcome PRs from VEX Robotics enthusiasts who like coding in Python using this stub library
+in your favourite IDEs/editors.
 
 
 # Testing
