@@ -1,8 +1,6 @@
 """Brain Sound Speaker."""
 
 
-from __future__ import annotations
-
 from collections.abc import Sequence
 
 from abm.decor import act

@@ -1,8 +1,6 @@
 """Vision Sensor."""
 
 
-from __future__ import annotations
-
 from collections.abc import Sequence
 from typing import Optional
 from typing_extensions import Self
