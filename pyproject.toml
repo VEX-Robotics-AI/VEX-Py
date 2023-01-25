@@ -70,7 +70,7 @@ doc = [
 
   # Markdown
   'CommonMark >= 0.9.1',
-  'MyST-Parser >= 0.18.1',
+  # 'MyST-Parser >= 0.18.1',  # depends on sphinx<6 and >=4
   'ReCommonMark >= 0.7.1',
 ]
 
