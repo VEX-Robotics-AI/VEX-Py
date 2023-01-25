@@ -6,7 +6,7 @@ robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacetimer.html
 
 
 from collections.abc import Sequence
-from typing_extensions import Self
+from typing import Self
 
 from abm.decor import act, sense
 

@@ -3,8 +3,7 @@
 
 from collections.abc import Sequence
 from threading import Thread
-from typing import TypeVar
-from typing_extensions import Self
+from typing import Self, TypeVar
 
 from abm.decor import sense
 

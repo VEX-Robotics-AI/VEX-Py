@@ -2,8 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Literal, Optional, overload
-from typing_extensions import Self
+from typing import Literal, Optional, Self, overload
 
 from abm.decor import act, sense
 
