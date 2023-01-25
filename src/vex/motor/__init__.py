@@ -1,16 +1,8 @@
-"""Motor.
-
-Robot Mesh VEX IQ Python B:
-robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_motor.html
-
-Robot Mesh VEX V5 Python:
-robotmesh.com/studio/content/docs/vexv5-python/html/classvex_1_1_motor.html
-"""
+"""Motor."""
 
 
 from collections.abc import Sequence
-from typing import Literal, Optional, overload
-from typing_extensions import Self
+from typing import Literal, Optional, Self, overload
 
 from abm.decor import act, sense
 
@@ -26,6 +18,7 @@ from .direction_type import DirectionType, FORWARD, REVERSE
 from .torque_units import TorqueUnits
 from .turn_type import TurnType, LEFT, RIGHT
 from .velocity_units import VelocityUnits, RPM, DPS
+from .voltage_units import VoltageUnits
 
 from .._util.doc import robotmesh_doc, vexcode_doc
 from .._util.type import NumType
@@ -37,11 +30,16 @@ __all__: Sequence[str] = ('Motor',
                           'DirectionType', 'FORWARD', 'REVERSE',
                           'TorqueUnits',
                           'TurnType', 'LEFT', 'RIGHT',
-                          'VelocityUnits', 'RPM', 'DPS')
+                          'VelocityUnits', 'RPM', 'DPS',
+                          'VoltageUnits')
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_motor.html
+
+    Robot Mesh VEX V5 Python:
+    robotmesh.com/studio/content/docs/vexv5-python/html/classvex_1_1_motor.html
 """)
 class Motor(Device):
     # pylint: disable=too-many-instance-attributes,too-many-public-methods
@@ -88,16 +86,21 @@ class Motor(Device):
                                                             else ')')
 
     @robotmesh_doc("""
+        Use this function to reverse setting for the motor.
+
         Sets the motor mode to "reverse",
         which will make motor commands spin the motor in the opposite direction
 
         Parameters
-        - is_reversed: If set to True, motor commands
-                       spin the motor in the opposite direction.
+        - is_reversed / isReversed: If set to True, motor commands
+                                    spin the motor in the opposite direction
     """)
     @act
     def set_reversed(self, is_reversed: bool, /):
         """Set reversed mode."""
+        assert isinstance(is_reversed, bool), \
+            TypeError('*** is_reversed={is_reversed} NOT A BOOL ***')
+
         self.reverse: bool = is_reversed
 
     @vexcode_doc("""

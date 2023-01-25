@@ -1,8 +1,6 @@
 """Brain."""
 
 
-from __future__ import annotations
-
 from collections.abc import Sequence
 
 from .._abstract_device import SingletonDevice

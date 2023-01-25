@@ -40,7 +40,8 @@ from .motor import (Motor,
                     DirectionType, FORWARD, REVERSE,
                     TurnType, LEFT, RIGHT,
                     TorqueUnits,
-                    VelocityUnits, RPM, DPS)
+                    VelocityUnits, RPM, DPS,
+                    VoltageUnits)
 
 from .bumper_switch_sensor import Bumper
 from .color_sensor import ColorSensor, Colorsensor
@@ -86,6 +87,7 @@ __all__: Sequence[str] = (
     'TorqueUnits',
     'TurnType', 'LEFT', 'RIGHT',
     'VelocityUnits', 'RPM', 'DPS',
+    'VoltageUnits',
 
     'Bumper',
     'ColorSensor', 'Colorsensor',

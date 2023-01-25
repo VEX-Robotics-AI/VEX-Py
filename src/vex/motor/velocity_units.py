@@ -1,8 +1,6 @@
 """Velocity units."""
 
 
-from __future__ import annotations
-
 from collections.abc import Sequence
 from enum import IntEnum
 

@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing_extensions import Self
+from typing import Self
 
 from abm.decor import sense
 

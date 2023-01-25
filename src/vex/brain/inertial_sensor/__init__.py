@@ -1,8 +1,6 @@
 """Brain-built-in Inertial Sensor."""
 
 
-from __future__ import annotations
-
 from collections.abc import Sequence
 from typing import Literal
 
