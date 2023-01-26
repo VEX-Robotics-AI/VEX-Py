@@ -16,7 +16,7 @@ from .._util.doc import vexcode_doc
 
 from .gesture_info import GestureInfo
 from .gesture_type import GestureType
-from .led_state_type import LedStateType
+from .led_state import LedStateType
 
 
 __all__: Sequence[str] = 'Optical', 'GestureType', 'LedStateType'
