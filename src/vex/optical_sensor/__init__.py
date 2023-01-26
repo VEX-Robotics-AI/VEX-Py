@@ -14,8 +14,7 @@ from .._common_enums.percent import PERCENT
 
 from .._util.doc import vexcode_doc
 
-from .gesture_info import GestureInfo
-from .gesture_type import GestureType
+from .gesture import GestureType, GestureInfo
 from .led_state import LedStateType
 
 
