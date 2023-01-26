@@ -77,8 +77,6 @@ __all__: Sequence[str] = (
     'Controller', 'ControllerAxis', 'ControllerButton',
 
     'Inertial',
-    'AxisType', 'XAXIS', 'YAXIS', 'ZAXIS',
-    'OrientationType', 'PITCH', 'ROLL', 'YAW',
 
     'Motor',
     'BrakeType', 'COAST', 'BRAKE', 'HOLD',
@@ -101,7 +99,9 @@ __all__: Sequence[str] = (
 
     'TimeUnits', 'SECONDS', 'MSEC', 'wait',
 
+    'AxisType', 'XAXIS', 'YAXIS', 'ZAXIS',
     'Color', 'ColorHue',
+    'OrientationType', 'PITCH', 'ROLL', 'YAW',
     'PercentUnits', 'PERCENT',
     'DistanceUnits', 'MM', 'INCHES',
     'RotationUnits', 'DEGREES', 'TURNS',
