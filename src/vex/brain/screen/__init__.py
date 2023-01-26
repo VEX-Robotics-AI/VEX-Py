@@ -11,10 +11,19 @@ from ..._common_enums.color import Color
 
 from ..._util.doc import robotmesh_doc, vexcode_doc
 
-from .font_type import FontType
+from .font_type import (
+    Font,
+    MONO_M, MONO_L, MONO_XL, MONO_XXL, MONO_S, MONO_XS,
+    PROP_M, PROP_L, PROP_XL, PROP_XXL,
+    FontType)
 
 
-__all__: Sequence[str] = 'BrainLcd', 'FontType'
+__all__: Sequence[str] = (
+    'BrainLcd',
+    'Font',
+    'MONO_M', 'MONO_L', 'MONO_XL', 'MONO_XXL', 'MONO_S', 'MONO_XS',
+    'PROP_M', 'PROP_L', 'PROP_XL', 'PROP_XXL',
+    'FontType')
 
 
 @robotmesh_doc("""
