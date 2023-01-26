@@ -13,6 +13,7 @@ __all__: Sequence[str] = ('NoteType',)
 @robotmesh_doc("""
     Musical note to play.
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_note_type.html
 """)
 class NoteType(IntEnum):
