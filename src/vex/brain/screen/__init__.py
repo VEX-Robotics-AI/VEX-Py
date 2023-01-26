@@ -11,7 +11,7 @@ from ..._common_enums.color import Color
 
 from ..._util.doc import robotmesh_doc, vexcode_doc
 
-from .font_type import (
+from .font import (
     Font,
     MONO_M, MONO_L, MONO_XL, MONO_XXL, MONO_S, MONO_XS,
     PROP_M, PROP_L, PROP_XL, PROP_XXL,
