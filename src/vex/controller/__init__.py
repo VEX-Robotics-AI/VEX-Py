@@ -12,9 +12,13 @@ from .._util.doc import robotmesh_doc
 
 from .axis import ControllerAxis
 from .button import ControllerButton
+from .type import ControllerType, PRIMARY, PARTNER
 
 
-__all__: Sequence[str] = 'Controller', 'ControllerButton', 'ControllerAxis'
+__all__: Sequence[str] = ('Controller',
+                          'ControllerAxis',
+                          'ControllerButton',
+                          'ControllerType', 'PRIMARY', 'PARTNER')
 
 
 @robotmesh_doc("""

@@ -28,7 +28,10 @@ from .brain import (Brain, BrainButton,
 
 from .brain.port import Ports
 
-from .controller import Controller, ControllerAxis, ControllerButton
+from .controller import (Controller,
+                         ControllerAxis,
+                         ControllerButton,
+                         ControllerType, PRIMARY, PARTNER)
 
 from .brain.inertial_sensor import Inertial
 
@@ -74,7 +77,10 @@ __all__: Sequence[str] = (
 
     'Ports',
 
-    'Controller', 'ControllerAxis', 'ControllerButton',
+    'Controller',
+    'ControllerAxis',
+    'ControllerButton',
+    'ControllerType', 'PRIMARY', 'PARTNER',
 
     'Inertial',
 
