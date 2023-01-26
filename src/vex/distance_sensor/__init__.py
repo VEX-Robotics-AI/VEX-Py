@@ -12,7 +12,7 @@ from .._common_enums.distance import DistanceUnits, MM, INCHES
 from .._util.doc import vexcode_doc
 from .._util.type import NumType
 
-from .object_size_type import ObjectSizeType
+from .object_size import ObjectSizeType
 from .sonar import Sonar
 
 
