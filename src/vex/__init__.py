@@ -22,9 +22,14 @@ from abm import interactive
 
 # from ._abstract_device import Device
 
-from .brain import (Brain, BrainButton,
-                    BrainLcd, FontType,
-                    BrainSound, NoteType, SoundType)
+from .brain import (
+    Brain, BrainBattery, BrainButton,
+    BrainLcd,
+    Font,
+    MONO_M, MONO_L, MONO_XL, MONO_XXL, MONO_S, MONO_XS,
+    PROP_M, PROP_L, PROP_XL, PROP_XXL,
+    FontType,
+    BrainSound, NoteType, SoundType)
 
 from .brain.port import Ports
 
@@ -71,8 +76,12 @@ __all__: Sequence[str] = (
 
     # 'Device',
 
-    'Brain', 'BrainButton',
-    'BrainLcd', 'FontType',
+    'Brain', 'BrainBattery', 'BrainButton',
+    'BrainLcd',
+    'Font',
+    'MONO_M', 'MONO_L', 'MONO_XL', 'MONO_XXL', 'MONO_S', 'MONO_XS',
+    'PROP_M', 'PROP_L', 'PROP_XL', 'PROP_XXL',
+    'FontType',
     'BrainSound', 'NoteType', 'SoundType',
 
     'Ports',

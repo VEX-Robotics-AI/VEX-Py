@@ -9,16 +9,26 @@ from .._util.doc import robotmesh_doc
 
 from .battery import BrainBattery
 from .button import BrainButton
-from .screen import BrainLcd, FontType
+from .screen import (BrainLcd,
+                     Font,
+                     MONO_M, MONO_L, MONO_XL, MONO_XXL, MONO_S, MONO_XS,
+                     PROP_M, PROP_L, PROP_XL, PROP_XXL,
+                     FontType)
 from .speaker import BrainSound, NoteType, SoundType
 from .timer import BrainTimer
 
 
-__all__: Sequence[str] = ('Brain',
-                          'BrainBattery',
-                          'BrainButton',
-                          'BrainLcd', 'FontType',
-                          'BrainSound', 'NoteType', 'SoundType')
+__all__: Sequence[str] = (
+    'Brain',
+    'BrainBattery',
+    'BrainButton',
+    'BrainLcd',
+    'Font',
+    'MONO_M', 'MONO_L', 'MONO_XL', 'MONO_XXL', 'MONO_S', 'MONO_XS',
+    'PROP_M', 'PROP_L', 'PROP_XL', 'PROP_XXL',
+    'FontType',
+    'BrainSound', 'NoteType', 'SoundType',
+)
 
 
 @robotmesh_doc("""
