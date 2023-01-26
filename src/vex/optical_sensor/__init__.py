@@ -15,7 +15,7 @@ from .._common_enums.percent import PERCENT
 from .._util.doc import vexcode_doc
 
 from .gesture import GestureType, GestureInfo
-from .led_state import LedStateType
+from .led import LedStateType
 
 
 __all__: Sequence[str] = 'Optical', 'GestureType', 'LedStateType'
