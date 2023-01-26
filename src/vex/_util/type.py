@@ -2,9 +2,10 @@
 
 
 from collections.abc import Sequence
+from typing import LiteralString
 
 
-__all__: Sequence[str] = ('NumType',)
+__all__: Sequence[LiteralString] = ('NumType',)
 
 
 NumType: type = float | int

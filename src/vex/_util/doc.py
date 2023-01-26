@@ -5,7 +5,7 @@ from collections.abc import Sequence
 from typing import Any, LiteralString
 
 
-__all__: Sequence[str] = 'add_doc', 'robotmesh_doc', 'vexcode_doc'
+__all__: Sequence[LiteralString] = 'add_doc', 'robotmesh_doc', 'vexcode_doc'
 
 
 # pylint: disable=too-few-public-methods
