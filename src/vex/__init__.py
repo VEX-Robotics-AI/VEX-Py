@@ -16,7 +16,7 @@ from collections.abc import Sequence
 from importlib.metadata import version
 import sys
 from threading import Thread
-from typing import Optional
+from typing import LiteralString, Optional
 
 from abm import interactive
 
@@ -117,6 +117,10 @@ __version__: str = version(distribution_name='VEX-Py')
 # =========
 
 INT29_MAX: int = 0x1FFFFFFF
+
+RUMBLE_LONG: LiteralString = '----'
+RUMBLE_SHORT: LiteralString = '....'
+RUMBLE_PULSE: LiteralString = '-.-.'
 
 
 # FUNCTIONS
