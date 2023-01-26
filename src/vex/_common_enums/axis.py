@@ -13,6 +13,7 @@ __all__: Sequence[str] = 'AxisType', 'XAXIS', 'YAXIS', 'ZAXIS'
 @robotmesh_doc("""
     Unit for inertial sensor axis
 
+    Robot Mesh VEX V5 Python:
     robotmesh.com/studio/content/docs/vexv5-python/html/classvex_1_1_axis_type.html
 """)
 class AxisType(IntEnum):
