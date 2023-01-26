@@ -18,6 +18,7 @@ __all__: Sequence[str] = 'Vision', 'VisionObject'
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvision_1_1_vision.html
 """)
 class Vision(Device):
