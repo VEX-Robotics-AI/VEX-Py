@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Literal
+from typing import Literal, LiteralString
 
 from abm.decor import act, sense
 
@@ -15,7 +15,7 @@ from ..._common_enums.rotation import RotationUnits, DEGREES
 from ..._util.doc import vexcode_doc
 
 
-__all__: Sequence[str] = ('Inertial',)
+__all__: Sequence[LiteralString] = ('Inertial',)
 
 
 def _ensure_rotation_unit_is_degrees(unit: RotationUnits, /):
