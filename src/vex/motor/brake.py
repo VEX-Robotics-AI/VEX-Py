@@ -11,8 +11,9 @@ __all__: Sequence[str] = 'BrakeType', 'COAST', 'BRAKE', 'HOLD'
 
 
 @robotmesh_doc("""
-    The defined units for brake values.
+    The defined units for brake values
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brake_type.html
 """)
 class BrakeType(IntEnum):

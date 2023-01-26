@@ -11,8 +11,9 @@ __all__: Sequence[str] = 'TurnType', 'LEFT', 'RIGHT'
 
 
 @robotmesh_doc("""
-    Left or right turn.
+    Left or right turn
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_turn_type.html
 """)
 class TurnType(IntEnum):

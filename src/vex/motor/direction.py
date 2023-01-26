@@ -11,8 +11,9 @@ __all__: Sequence[str] = 'DirectionType', 'FORWARD', 'REVERSE'
 
 
 @robotmesh_doc("""
-    The defined units for direction values.
+    The defined units for direction values
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_direction_type.html
 """)
 class DirectionType(IntEnum):
