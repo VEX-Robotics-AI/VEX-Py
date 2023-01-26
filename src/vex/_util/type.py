@@ -4,7 +4,7 @@
 from collections.abc import Sequence
 
 
-__all__ = ('NumType',)
+__all__: Sequence[str] = ('NumType',)
 
 
-NumType = float | int
+NumType: type = float | int
