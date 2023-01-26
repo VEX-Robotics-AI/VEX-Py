@@ -18,7 +18,9 @@ from .gesture import GestureType, GestureInfo
 from .led import LedStateType
 
 
-__all__: Sequence[str] = 'Optical', 'GestureType', 'LedStateType'
+__all__: Sequence[str] = ('Optical',
+                          'GestureType', 'GestureInfo',
+                          'LedStateType')
 
 
 GESTURE_CALLBACK_DOCSTR: str = """
