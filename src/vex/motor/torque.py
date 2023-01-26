@@ -13,8 +13,9 @@ __all__: Sequence[str] = ('TorqueUnits',)
 
 
 @robotmesh_doc("""
-    The measurement units for torque values.
+    The measurement units for torque values
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_torque_units.html
 """)
 class TorqueUnits(IntEnum):

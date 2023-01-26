@@ -6,7 +6,7 @@ from typing import overload
 
 from abm.decor import act
 
-from .time_units import TimeUnits, SECONDS, MSEC
+from .units import TimeUnits, SECONDS, MSEC
 
 from .._util.doc import robotmesh_doc, vexcode_doc
 from .._util.type import NumType

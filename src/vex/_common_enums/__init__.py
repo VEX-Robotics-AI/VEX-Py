@@ -3,9 +3,9 @@
 
 from collections.abc import Sequence
 
-from .axis_type import AxisType, XAXIS, YAXIS, ZAXIS
+from .axis import AxisType, XAXIS, YAXIS, ZAXIS
 from .color import Color, ColorHue
-from .orientation_type import OrientationType, ROLL, PITCH, YAW
+from .orientation import OrientationType, ROLL, PITCH, YAW
 from .percent import PercentUnits, PERCENT
 from .distance import DistanceUnits, MM, INCHES
 from .rotation import RotationUnits, DEGREES, TURNS

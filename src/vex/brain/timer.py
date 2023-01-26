@@ -6,7 +6,7 @@ from collections.abc import Sequence
 from abm.decor import act, sense
 
 from .._abstract_device import SingletonDevice
-from ..time.time_units import TimeUnits
+from ..time.units import TimeUnits
 
 from .._util.doc import vexcode_doc
 

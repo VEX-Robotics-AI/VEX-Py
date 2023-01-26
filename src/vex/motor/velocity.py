@@ -13,8 +13,9 @@ __all__: Sequence[str] = 'VelocityUnits', 'RPM', 'DPS'
 
 
 @robotmesh_doc("""
-    The measurement units for velocity values.
+    The measurement units for velocity values
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_velocity_units.html
 """)
 class VelocityUnits(IntEnum):

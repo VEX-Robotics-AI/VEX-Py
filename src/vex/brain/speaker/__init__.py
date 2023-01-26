@@ -10,14 +10,15 @@ from ...time import TimeUnits
 
 from ..._util.doc import robotmesh_doc, vexcode_doc
 
-from .note_type import NoteType
-from .sound_type import SoundType
+from .note import NoteType
+from .sound import SoundType
 
 
 __all__: Sequence[str] = 'BrainSound', 'NoteType', 'SoundType'
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brain_sound.html
 """)
 class BrainSound(SingletonDevice):

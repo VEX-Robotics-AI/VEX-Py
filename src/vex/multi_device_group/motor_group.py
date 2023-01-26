@@ -7,12 +7,12 @@ from typing import Literal, Self
 from abm.decor import act, sense
 
 from ..motor import Motor
-from ..motor.brake_type import BrakeType, BRAKE
-from ..motor.current_units import CurrentUnits
-from ..motor.direction_type import DirectionType, FORWARD
-from ..motor.torque_units import TorqueUnits
-from ..motor.velocity_units import VelocityUnits
-from ..time.time_units import TimeUnits, SECONDS
+from ..motor.brake import BrakeType, BRAKE
+from ..motor.current import CurrentUnits
+from ..motor.direction import DirectionType, FORWARD
+from ..motor.torque import TorqueUnits
+from ..motor.velocity import VelocityUnits
+from ..time.units import TimeUnits, SECONDS
 from .._common_enums.percent import PERCENT
 from .._common_enums.rotation import RotationUnits, DEGREES
 

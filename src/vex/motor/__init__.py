@@ -12,13 +12,13 @@ from ..time import TimeUnits, SECONDS
 from .._common_enums.percent import PERCENT
 from .._common_enums.rotation import RotationUnits, DEGREES
 
-from .brake_type import BrakeType, COAST, BRAKE, HOLD
-from .current_units import CurrentUnits
-from .direction_type import DirectionType, FORWARD, REVERSE
-from .torque_units import TorqueUnits
-from .turn_type import TurnType, LEFT, RIGHT
-from .velocity_units import VelocityUnits, RPM, DPS
-from .voltage_units import VoltageUnits
+from .brake import BrakeType, COAST, BRAKE, HOLD
+from .current import CurrentUnits
+from .direction import DirectionType, FORWARD, REVERSE
+from .torque import TorqueUnits
+from .turn import TurnType, LEFT, RIGHT
+from .velocity import VelocityUnits, RPM, DPS
+from .voltage import VoltageUnits
 
 from .._util.doc import robotmesh_doc, vexcode_doc
 from .._util.type import NumType

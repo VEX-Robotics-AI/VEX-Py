@@ -11,6 +11,7 @@ __all__: Sequence[str] = ('GyroCalibrationType',)
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_gyro_calibration_type.html
 """)
 class GyroCalibrationType(IntEnum):
