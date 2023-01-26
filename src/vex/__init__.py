@@ -30,9 +30,7 @@ from .brain.port import Ports
 
 from .controller import Controller, ControllerAxis, ControllerButton
 
-from .brain.inertial_sensor import (Inertial,
-                                    AxisType, XAXIS, YAXIS, ZAXIS,
-                                    OrientationType, PITCH, ROLL, YAW)
+from .brain.inertial_sensor import Inertial
 
 from .motor import (Motor,
                     BrakeType, COAST, BRAKE, HOLD,
@@ -54,7 +52,9 @@ from .multi_device_group import MotorGroup, DriveTrain, SmartDrive
 
 from .time import TimeUnits, SECONDS, MSEC, clock, wait
 
-from ._common_enums import (Color, ColorHue,
+from ._common_enums import (AxisType, XAXIS, YAXIS, ZAXIS,
+                            Color, ColorHue,
+                            OrientationType, PITCH, ROLL, YAW,
                             PercentUnits, PERCENT,
                             DistanceUnits, MM, INCHES,
                             RotationUnits, DEGREES, TURNS)

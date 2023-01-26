@@ -2,8 +2,8 @@ import unittest
 
 from ...vex import Inertial
 from ...vex import DEGREES, VelocityUnits
-from ...vex.brain.inertial_sensor.axis_type import XAXIS, YAXIS, ZAXIS
-from ...vex.brain.inertial_sensor.orientation_type import PITCH, ROLL, YAW
+from ...vex._common_enums.axis_type import XAXIS, YAXIS, ZAXIS
+from ...vex._common_enums.orientation_type import PITCH, ROLL, YAW
 from ...testing.io_utils import replace_stdin
 
 
