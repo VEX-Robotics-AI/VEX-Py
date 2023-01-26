@@ -11,7 +11,7 @@ __all__: Sequence[str] = ('VoltageUnits',)
 
 
 @robotmesh_doc("""
-    Measurement units for voltage values.
+    Measurement units for voltage values
 
     Robot Mesh VEX V5 Python:
     robotmesh.com/studio/content/docs/vexv5-python/html/classvex_1_1_voltage_units.html

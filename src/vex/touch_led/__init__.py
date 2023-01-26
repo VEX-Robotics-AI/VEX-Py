@@ -13,7 +13,7 @@ from .._common_enums.color import Color
 
 from .._util.doc import robotmesh_doc, vexcode_doc
 
-from .fade_type import FadeType
+from .fade import FadeType
 
 
 __all__: Sequence[str] = 'Touchled', 'FadeType'
