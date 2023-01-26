@@ -12,7 +12,7 @@ from .._common_enums import RotationUnits, DEGREES
 
 from .._util.doc import robotmesh_doc, vexcode_doc
 
-from .calibration_type import GyroCalibrationType
+from .calibration import GyroCalibrationType
 
 
 __all__: Sequence[str] = 'Gyro', 'GyroCalibrationType'
