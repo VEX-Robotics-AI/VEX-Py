@@ -106,6 +106,9 @@ __all__: Sequence[str] = (
     'DistanceUnits', 'MM', 'INCHES',
     'RotationUnits', 'DEGREES', 'TURNS',
 
+    'SYSTEM_DISPLAY_WIDTH', 'SYSTEM_DISPLAY_HEIGHT', 'STATUS_BAR_HEIGHT',
+    'RUMBLE_LONG', 'RUMBLE_SHORT', 'RUMBLE_PULSE',
+
     'interactive',
 )
 
@@ -117,6 +120,11 @@ __version__: str = version(distribution_name='VEX-Py')
 # =========
 
 INT29_MAX: int = 0x1FFFFFFF
+
+
+SYSTEM_DISPLAY_WIDTH: int = 480
+SYSTEM_DISPLAY_HEIGHT: int = 272
+STATUS_BAR_HEIGHT: int = 32
 
 RUMBLE_LONG: LiteralString = '----'
 RUMBLE_SHORT: LiteralString = '....'
