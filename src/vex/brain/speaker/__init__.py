@@ -18,6 +18,7 @@ __all__: Sequence[str] = 'BrainSound', 'NoteType', 'SoundType'
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brain_sound.html
 """)
 class BrainSound(SingletonDevice):
