@@ -11,7 +11,7 @@ from ..brain.port import Ports
 
 from .._util.doc import robotmesh_doc, vexcode_doc
 
-from .vision_object import VisionObject
+from .object import VisionObject
 
 
 __all__: Sequence[str] = 'Vision', 'VisionObject'
