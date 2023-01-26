@@ -1,4 +1,4 @@
-"""Touch LED Fade Types."""
+"""Touch LED fade types."""
 
 
 from collections.abc import Sequence
@@ -15,7 +15,7 @@ __all__: Sequence[str] = ('FadeType',)
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_fade_type.html
 """)
 class FadeType(IntEnum):
-    """Touch LED Fade Types."""
+    """Touch LED fade types."""
 
     OFF: int = 0
     SLOW: int = 1
