@@ -18,14 +18,9 @@ __all__: Sequence[str] = 'AxisType', 'XAXIS', 'YAXIS', 'ZAXIS'
 class AxisType(IntEnum):
     """Inertial Axis Types."""
 
-    # forward-to-backward movements
-    XAXIS: int = 0
-
-    # side-to-side movements
-    YAXIS: int = 1
-
-    # up-to-down movements
-    ZAXIS: int = 2
+    XAXIS: int = 0  # forward-to-backward movements
+    YAXIS: int = 1  # side-to-side movements
+    ZAXIS: int = 2  # up-to-down movements
 
 
 # aliases

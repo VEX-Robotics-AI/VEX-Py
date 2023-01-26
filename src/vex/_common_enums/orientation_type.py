@@ -1,32 +1,29 @@
-"""Orientation Types."""
+"""Inertial Orientation Types."""
 
 
 from collections.abc import Sequence
-from enum import IntEnum, auto
+from enum import IntEnum
 
-from .._util.doc import vexcode_doc
-
-
-__all__: Sequence[str] = 'OrientationType', 'PITCH', 'ROLL', 'YAW'
+from .._util.doc import robotmesh_doc
 
 
-@vexcode_doc("""
-    VEX IQ (2nd generation) Orientation Types.
+__all__: Sequence[str] = 'OrientationType', 'ROLL', 'PITCH', 'YAW'
+
+
+@robotmesh_doc("""
+    Unit for inertial sensor orientation
+
+    robotmesh.com/studio/content/docs/vexv5-python/html/classvex_1_1_orientation_type.html
 """)
 class OrientationType(IntEnum):
-    """VEX IQ (2nd generation) Orientation Types."""
+    """Inertial Orientation Types."""
 
-    # Pitch is the rotation around the side-to-side axis
-    PITCH: int = auto()
-
-    # Roll is the rotation around the front-to-back axis
-    ROLL: int = auto()
-
-    # Yaw is rotation around the vertical axis
-    YAW: int = auto()
+    ROLL: int = 0  # rotation around front-to-back axis
+    PITCH: int = 1  # rotation around side-to-side axis
+    YAW: int = 2  # rotation around the vertical axis
 
 
 # aliases
-PITCH: OrientationType = OrientationType.PITCH
 ROLL: OrientationType = OrientationType.ROLL
+PITCH: OrientationType = OrientationType.PITCH
 YAW: OrientationType = OrientationType.YAW

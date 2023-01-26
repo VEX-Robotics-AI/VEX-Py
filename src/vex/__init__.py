@@ -54,7 +54,7 @@ from .time import TimeUnits, SECONDS, MSEC, clock, wait
 
 from ._common_enums import (AxisType, XAXIS, YAXIS, ZAXIS,
                             Color, ColorHue,
-                            OrientationType, PITCH, ROLL, YAW,
+                            OrientationType, ROLL, PITCH, YAW,
                             PercentUnits, PERCENT,
                             DistanceUnits, MM, INCHES,
                             RotationUnits, DEGREES, TURNS)
@@ -101,7 +101,7 @@ __all__: Sequence[str] = (
 
     'AxisType', 'XAXIS', 'YAXIS', 'ZAXIS',
     'Color', 'ColorHue',
-    'OrientationType', 'PITCH', 'ROLL', 'YAW',
+    'OrientationType', 'ROLL', 'PITCH', 'YAW',
     'PercentUnits', 'PERCENT',
     'DistanceUnits', 'MM', 'INCHES',
     'RotationUnits', 'DEGREES', 'TURNS',
