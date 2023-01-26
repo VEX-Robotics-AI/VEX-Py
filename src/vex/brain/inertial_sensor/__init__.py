@@ -8,17 +8,14 @@ from abm.decor import act, sense
 
 from ..._abstract_device import SingletonDevice
 from ...motor import VelocityUnits
-from ..._common_enums import RotationUnits, DEGREES
+from ..._common_enums.axis_type import AxisType
+from ..._common_enums.orientation_type import OrientationType
+from ..._common_enums.rotation import RotationUnits, DEGREES
 
 from ..._util.doc import vexcode_doc
 
-from .axis_type import AxisType, XAXIS, YAXIS, ZAXIS
-from .orientation_type import OrientationType, PITCH, ROLL, YAW
 
-
-__all__: Sequence[str] = ('Inertial',
-                          'AxisType', 'XAXIS', 'YAXIS', 'ZAXIS',
-                          'OrientationType', 'PITCH', 'ROLL', 'YAW')
+__all__: Sequence[str] = ('Inertial',)
 
 
 def _ensure_rotation_unit_is_degrees(unit: RotationUnits, /):
