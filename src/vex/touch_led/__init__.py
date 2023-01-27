@@ -3,7 +3,7 @@
 
 from collections.abc import Sequence
 from threading import Thread
-from typing import Optional
+from typing import LiteralString, Optional
 
 from abm.decor import act, sense
 
@@ -16,12 +16,13 @@ from .._util.doc import robotmesh_doc, vexcode_doc
 from .fade import FadeType
 
 
-__all__: Sequence[str] = 'Touchled', 'FadeType'
+__all__: Sequence[LiteralString] = 'Touchled', 'FadeType'
 
 
 @robotmesh_doc("""
-    Use this class when programming with the touch LED device.
+    Use this class when programming with the touch LED device
 
+    Robot Mesh VEX IQ Python B
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_touchled.html
 """)
 class Touchled(Device):
