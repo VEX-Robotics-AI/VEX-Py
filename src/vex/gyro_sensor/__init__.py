@@ -100,7 +100,7 @@ class Gyro(Device):
         """Check whether still calibrating."""
 
     @overload
-    def set_heading(self: Self, value: float, unit: Literal[DEGREES] = DEGREES, /):
+    def set_heading(self: Self, value: float, unit: Literal[DEGREES] = DEGREES, /):  # noqa: E501
         ...
 
     @overload
@@ -129,12 +129,12 @@ class Gyro(Device):
         Gyro Set Heading can accept decimal or integer inputs.
     """)
     @act
-    def set_heading(self: Self, value: float, unit: Literal[DEGREES] = DEGREES, /):
+    def set_heading(self: Self, value: float, unit: Literal[DEGREES] = DEGREES, /):  # noqa: E501
         """Set heading angle."""
         self._heading[unit] = value
 
     @overload
-    def set_rotation(self: Self, value: float, unit: Literal[DEGREES] = DEGREES, /):
+    def set_rotation(self: Self, value: float, unit: Literal[DEGREES] = DEGREES, /):  # noqa: E501
         ...
 
     @overload
