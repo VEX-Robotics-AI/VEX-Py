@@ -25,7 +25,7 @@ def _ensure_rotation_unit_is_degrees(unit: RotationUnits, /):
 class Inertial(SingletonDevice):
     """Brain-built-in Inertial Sensor."""
 
-    def __init__(self):
+    def __init__(self: Self):
         """Initialize Brain-built-in Inertial Sensor."""
 
     @vexcode_doc("""
@@ -43,7 +43,7 @@ class Inertial(SingletonDevice):
         approximately 2 seconds to complete.
     """)
     @act
-    def calibrate(self):
+    def calibrate(self: Self):
         """Calibrate."""
 
     @vexcode_doc("""
