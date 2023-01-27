@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import LiteralString, Optional
+from typing import LiteralString, Optional, Self
 
 from abm.decor import act
 
@@ -38,7 +38,7 @@ __all__: Sequence[LiteralString] = (
 class BrainLcd(SingletonDevice):
     """Brain LCD Screen."""
 
-    def __init__(self):
+    def __init__(self: Self):
         """Initialize Brain LCD Screen."""
         self.font: FontType = FontType.MONO20
 
@@ -77,7 +77,7 @@ class BrainLcd(SingletonDevice):
         the IQ (2nd generation) Brain's screen.
     """)
     @act
-    def set_font(self, fontname: FontType, /):
+    def set_font(self: Self, fontname: FontType, /):
         """Set font style & size."""
         self.font: FontType = fontname
 
@@ -95,7 +95,7 @@ class BrainLcd(SingletonDevice):
         equating to a larger width.
     """)
     @act
-    def set_pen_width(self, width: int, /):
+    def set_pen_width(self: Self, width: int, /):
         """Set the width of the outline for shapes drawn on brain's screen."""
         self.pen_width: int = width
 
@@ -131,7 +131,7 @@ class BrainLcd(SingletonDevice):
         on the IQ (2nd generation) Brain's screen.
     """)
     @act
-    def set_pen_color(self, color: Color, /):
+    def set_pen_color(self: Self, color: Color, /):
         """Set drawing-pen color."""
         self.pen_color: Color = color
 
@@ -164,7 +164,7 @@ class BrainLcd(SingletonDevice):
         on the IQ (2nd generation) Brain's screen.
     """)
     @act
-    def set_fill_color(self, color: Color, /):
+    def set_fill_color(self: Self, color: Color, /):
         """Set shape-filling color."""
         self.fill_color: Color = color
 
@@ -187,7 +187,7 @@ class BrainLcd(SingletonDevice):
             brain.screen.print(drivetrain.is_done())
     """)
     @act
-    def print(self, *args):
+    def print(self: Self, *args):
         """Print numerical values and/or text strings on Brain LCD Screen."""
 
     @robotmesh_doc("""
@@ -203,7 +203,7 @@ class BrainLcd(SingletonDevice):
               Supported format flags are g (all) x (hex) d (int) f (float)
     """)
     @act
-    def print_line(self, number: int, text: str, /):
+    def print_line(self: Self, number: int, text: str, /):
         """Print given text to specified line."""
 
     @vexcode_doc("""
@@ -226,7 +226,7 @@ class BrainLcd(SingletonDevice):
         Accepts a range for COL of 1 to 28.
     """)
     @act
-    def set_cursor(self, row: int, col: int, /):
+    def set_cursor(self: Self, row: int, col: int, /):
         """Set cursor location."""
 
     @vexcode_doc("""
@@ -244,7 +244,7 @@ class BrainLcd(SingletonDevice):
         and columns available on the Brain's screen.
     """)
     @act
-    def next_row(self):
+    def next_row(self: Self):
         """Move cursor to new line."""
 
     @robotmesh_doc("""
@@ -261,7 +261,7 @@ class BrainLcd(SingletonDevice):
         to the desired position.
     """)
     @act
-    def clear_screen(self):
+    def clear_screen(self: Self):
         """Clear entire screen."""
 
     @vexcode_doc("""
@@ -275,7 +275,7 @@ class BrainLcd(SingletonDevice):
         to clear the current row.
     """)
     @act
-    def clear_row(self, row: Optional[int] = None, /):
+    def clear_row(self: Self, row: Optional[int] = None, /):
         """Clear specified row or current row."""
 
     @vexcode_doc("""
@@ -291,7 +291,7 @@ class BrainLcd(SingletonDevice):
         The default pixel color is white.
     """)
     @act
-    def draw_pixel(self, x: int, y: int):
+    def draw_pixel(self: Self, x: int, y: int):
         """Draw pixel."""
 
     @vexcode_doc("""
@@ -309,7 +309,7 @@ class BrainLcd(SingletonDevice):
         The default line color is white.
     """)
     @act
-    def draw_line(self, x1: int, y1: int, x2: int, y2: int):
+    def draw_line(self: Self, x1: int, y1: int, x2: int, y2: int):
         """Draw line."""
 
     @vexcode_doc("""
@@ -330,7 +330,7 @@ class BrainLcd(SingletonDevice):
         by the Brain's Set Fill Color command. The default fill color is black.
     """)
     @act
-    def draw_rectangle(self, x: int, y: int, width: int, height: int):
+    def draw_rectangle(self: Self, x: int, y: int, width: int, height: int):
         """Draw rectangle."""
 
     @vexcode_doc("""
@@ -350,5 +350,5 @@ class BrainLcd(SingletonDevice):
         Set Fill Color command. The default fill color is black.
     """)
     @act
-    def draw_circle(self, x: int, y: int, radius: int):
+    def draw_circle(self: Self, x: int, y: int, radius: int):
         """Draw circle."""

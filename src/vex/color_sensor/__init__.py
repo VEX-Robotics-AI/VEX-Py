@@ -33,21 +33,21 @@ class ColorSensor(Device):
         - is_grayscale: whether grayscale mode (LED on), default false
         - proximity: threshold (default 700)
     """)
-    def __init__(self, index: Ports,
+    def __init__(self: Self, index: Ports,
                  is_grayscale: bool = False, proximity: NumType = 700, /):
         """Initialize Color Sensor."""
         self.port: Ports = index
         self.is_grayscale: bool = is_grayscale
         self.proximity_threshold: NumType = proximity
 
-    def __eq__(self, other: Self) -> bool:
+    def __eq__(self: Self, other: Self) -> bool:
         """Check equality."""
         return (isinstance(other, type(self)) and
                 (other.port == self.port) and
                 (other.is_grayscale == self.is_grayscale) and
                 (other.proximity_threshold == self.proximity_threshold))
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Return integer hash."""
         return hash((self.port, self.is_grayscale, self.proximity_threshold))
 
@@ -58,7 +58,7 @@ class ColorSensor(Device):
         - proximity: threshold (higher is closer) (default 700)
     """)
     @act
-    def set_proximity_threshold(self, proximity: NumType, /):
+    def set_proximity_threshold(self: Self, proximity: NumType, /):
         """Set threshold for proximity."""
         self.proximity_threshold: NumType = proximity
 
@@ -77,7 +77,7 @@ class ColorSensor(Device):
         light source will shine.
     """)
     @act
-    def set_light(self, brightness: int, unit: Literal[PERCENT] = PERCENT, /):
+    def set_light(self: Self, brightness: int, unit: Literal[PERCENT] = PERCENT, /):  # noqa: E501
         """Turn on light at specified brightness percentage level."""
 
     @robotmesh_doc("""
@@ -87,7 +87,7 @@ class ColorSensor(Device):
         - state: if True, LED will be turned on
     """)
     @act
-    def led(self, state: bool, /):
+    def led(self: Self, state: bool, /):
         """Set LED state."""
 
     @vexcode_doc("""
@@ -102,7 +102,7 @@ class ColorSensor(Device):
         close to the front of the sensor.
     """)
     @sense
-    def is_near_object(self) -> bool:
+    def is_near_object(self: Self) -> bool:
         """Detect whether there is an object/surface near sensor's front."""
 
     @robotmesh_doc("""
@@ -111,7 +111,7 @@ class ColorSensor(Device):
         Returns True if an object has been detected, False otherwise.
     """)
     @sense
-    def near(self) -> bool:
+    def near(self: Self) -> bool:
         """Check if detecting nearby object."""
 
     @vexcode_doc("""
@@ -135,7 +135,7 @@ class ColorSensor(Device):
         - Color.RED_ORANGE
     """)
     @sense
-    def color(self) -> Color:
+    def color(self: Self) -> Color:
         """Return detected color."""
 
     @robotmesh_doc("""
@@ -146,7 +146,7 @@ class ColorSensor(Device):
         out of ColorHue.RED, GREEN or BLUE (or NONE).
     """)
     @sense
-    def colorname3(self) -> Color:
+    def colorname3(self: Self) -> Color:
         """Return RED, GREEN or BLUE."""
 
     @robotmesh_doc("""
@@ -157,7 +157,7 @@ class ColorSensor(Device):
         possible values of ColorType (or NONE).
     """)
     @sense
-    def colorname12(self) -> Color:
+    def colorname12(self: Self) -> Color:
         """Return one of 12 colors or NONE."""
 
     @vexcode_doc("""
@@ -171,7 +171,7 @@ class ColorSensor(Device):
         while a smaller amount of light will report a lower value.
     """)
     @sense
-    def brightness(self) -> int:
+    def brightness(self: Self) -> int:
         """Return detected brightness percentage level."""
 
     @vexcode_doc("""
@@ -184,7 +184,7 @@ class ColorSensor(Device):
 
     """)
     @sense
-    def hue(self) -> int:
+    def hue(self: Self) -> int:
         """Return detected color hue."""
 
     @robotmesh_doc("""
@@ -198,7 +198,7 @@ class ColorSensor(Device):
         (percentage 0-100 or raw 0-1024).
     """)
     @sense
-    def grayscale(self, raw: bool = False, /) -> int:
+    def grayscale(self: Self, raw: bool = False, /) -> int:
         """Return grayscale value."""
 
 
