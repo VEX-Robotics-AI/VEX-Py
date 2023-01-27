@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Literal, Self, overload
+from typing import Literal, LiteralString, Self, overload
 
 from abm.decor import act, sense
 
@@ -15,10 +15,11 @@ from .._util.doc import robotmesh_doc, vexcode_doc
 from .calibration import GyroCalibrationType
 
 
-__all__: Sequence[str] = 'Gyro', 'GyroCalibrationType'
+__all__: Sequence[LiteralString] = 'Gyro', 'GyroCalibrationType'
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_gyro.html
 """)
 class Gyro(Device):
