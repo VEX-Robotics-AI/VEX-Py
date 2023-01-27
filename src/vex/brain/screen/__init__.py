@@ -38,7 +38,7 @@ __all__: Sequence[LiteralString] = (
 class BrainLcd(SingletonDevice):
     """Brain LCD Screen."""
 
-    def __init__(self):
+    def __init__(self: Self):
         """Initialize Brain LCD Screen."""
         self.font: FontType = FontType.MONO20
 
@@ -244,7 +244,7 @@ class BrainLcd(SingletonDevice):
         and columns available on the Brain's screen.
     """)
     @act
-    def next_row(self):
+    def next_row(self: Self):
         """Move cursor to new line."""
 
     @robotmesh_doc("""
@@ -261,7 +261,7 @@ class BrainLcd(SingletonDevice):
         to the desired position.
     """)
     @act
-    def clear_screen(self):
+    def clear_screen(self: Self):
         """Clear entire screen."""
 
     @vexcode_doc("""
