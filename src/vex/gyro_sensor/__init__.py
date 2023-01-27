@@ -32,7 +32,7 @@ class Gyro(Device):
         - index: index to the brain port.
         - calibrate: set to calibrate the sensor now
     """)
-    def __init__(self, index: Ports, calibrate: bool = True, /):
+    def __init__(self: Self, index: Ports, calibrate: bool = True, /):
         """Initialize Gyro Sensor."""
         self.port: Ports = index
         self.is_calibrated: bool = calibrate
@@ -40,13 +40,13 @@ class Gyro(Device):
         self._heading: dict[RotationUnits, float] = dict[RotationUnits, float]()  # noqa: E501
         self._rotation: dict[RotationUnits, float] = dict[RotationUnits, float]()  # noqa: E501
 
-    def __eq__(self, other: Self) -> bool:
+    def __eq__(self: Self, other: Self) -> bool:
         """Check equality."""
         return (isinstance(other, type(self)) and
                 (other.port == self.port) and
                 (other.is_calibrated == self.is_calibrated))
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Return integer hash."""
         raise hash((self.port, self.is_calibrated))
 
@@ -68,7 +68,7 @@ class Gyro(Device):
         - GyroCalibrationType.EXTENDED will calibrate for 8 seconds
     """)
     @act
-    def calibrate(self,
+    def calibrate(self: Self,
                   type: GyroCalibrationType = GyroCalibrationType.NORMAL,
                   # pylint: disable=redefined-builtin
                   /):
@@ -96,15 +96,15 @@ class Gyro(Device):
         Returns True if gyro is still calibrating.
     """)
     @sense
-    def is_calibrating(self) -> bool:
+    def is_calibrating(self: Self) -> bool:
         """Check whether still calibrating."""
 
     @overload
-    def set_heading(self, value: float, unit: Literal[DEGREES] = DEGREES, /):
+    def set_heading(self: Self, value: float, unit: Literal[DEGREES] = DEGREES, /):
         ...
 
     @overload
-    def set_heading(self, value: float = 0,
+    def set_heading(self: Self, value: float = 0,
                     rotationUnits: RotationUnits = RotationUnits.DEG, /):
         ...
 
@@ -129,16 +129,16 @@ class Gyro(Device):
         Gyro Set Heading can accept decimal or integer inputs.
     """)
     @act
-    def set_heading(self, value: float, unit: Literal[DEGREES] = DEGREES, /):
+    def set_heading(self: Self, value: float, unit: Literal[DEGREES] = DEGREES, /):
         """Set heading angle."""
         self._heading[unit] = value
 
     @overload
-    def set_rotation(self, value: float, unit: Literal[DEGREES] = DEGREES, /):
+    def set_rotation(self: Self, value: float, unit: Literal[DEGREES] = DEGREES, /):
         ...
 
     @overload
-    def set_rotation(self, value: float = 0,
+    def set_rotation(self: Self, value: float = 0,
                      rotationUnits: RotationUnits = RotationUnits.DEG, /):
         ...
 
@@ -163,16 +163,17 @@ class Gyro(Device):
         or integer as the specified ROTATION.
     """)
     @act
-    def set_rotation(self, value: float, unit: Literal[DEGREES] = DEGREES, /):
+    def set_rotation(self: Self, value: float, unit: Literal[DEGREES] = DEGREES, /):  # noqa: E501
         """Set rotational angle."""
         self._rotation[unit] = value
 
     @overload
-    def heading(self, unit: Literal[DEGREES] = DEGREES, /) -> float:
+    def heading(self: Self, unit: Literal[DEGREES] = DEGREES, /) -> float:
         ...
 
     @overload
-    def heading(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:  # noqa: E501
+    def heading(self: Self,
+                rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:
         ...
 
     @robotmesh_doc("""
@@ -195,15 +196,16 @@ class Gyro(Device):
         when rotating clockwise.
     """)
     @sense
-    def heading(self, unit: Literal[DEGREES] = DEGREES, /) -> float:
+    def heading(self: Self, unit: Literal[DEGREES] = DEGREES, /) -> float:
         """Return heading angle."""
 
     @overload
-    def rotation(self, unit: Literal[DEGREES] = DEGREES, /) -> float:
+    def rotation(self: Self, unit: Literal[DEGREES] = DEGREES, /) -> float:
         ...
 
     @overload
-    def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:  # noqa: E501
+    def rotation(self: Self,
+                 rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:
         ...
 
     @robotmesh_doc("""
@@ -224,7 +226,7 @@ class Gyro(Device):
         when the Gyro Sensor turns in the clockwise direction.
     """)
     @sense
-    def rotation(self, unit: Literal[DEGREES] = DEGREES, /) -> float:
+    def rotation(self: Self, unit: Literal[DEGREES] = DEGREES, /) -> float:
         """Return rotational angle."""
 
     @vexcode_doc("""
@@ -236,5 +238,5 @@ class Gyro(Device):
         in degrees per second (DPS).
     """)
     @sense
-    def rate(self) -> float:
+    def rate(self: Self) -> float:
         """Return angular velocity in DPS."""
