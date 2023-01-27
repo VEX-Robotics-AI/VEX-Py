@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Literal, Self
+from typing import Literal, LiteralString, Self
 
 from abm.decor import act, sense
 
@@ -15,10 +15,11 @@ from .._util.doc import robotmesh_doc, vexcode_doc
 from .._util.type import NumType
 
 
-__all__: Sequence[str] = 'ColorSensor', 'Colorsensor'
+__all__: Sequence[LiteralString] = 'ColorSensor', 'Colorsensor'
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_colorsensor.html
 """)
 class ColorSensor(Device):
