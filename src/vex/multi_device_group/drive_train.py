@@ -28,7 +28,7 @@ __all__: Sequence[LiteralString] = 'DriveTrain', 'Drivetrain'
 class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
     """Drive Train."""
 
-    def __init__(self, left_motor: Motor, right_motor: Motor,
+    def __init__(self: Self, left_motor: Motor, right_motor: Motor,
                  wheel_base: float = 200, track_width: float = 176,
                  length_unit: DistanceUnits = MM, gear_ratio: float = 1, /):
         """Initialize Drivetrain."""
@@ -48,7 +48,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         self.stopping_mode: Optional[BrakeType] = None
         self.timeout: Optional[float] = None
 
-    def __eq__(self, other: Self) -> bool:
+    def __eq__(self: Self, other: Self) -> bool:
         """Check equality."""
         return (isinstance(other, DriveTrain) and
                 (other.left_motor == self.left_motor) and
@@ -58,7 +58,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
                 (other.length_unit == self.length_unit) and
                 (other.gear_ratio == self.gear_ratio))
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Return integer hash."""
         return hash((self.left_motor, self.right_motor,
                      self.wheel_base, self.track_width,
@@ -81,7 +81,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         until a new drivetrain command is used, or the program is stopped.
     """)
     @act
-    def drive(self, direction: DirectionType = FORWARD):
+    def drive(self: Self, direction: DirectionType = FORWARD):
         """Drive in specified direction."""
 
     @vexcode_doc("""
@@ -118,7 +118,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         proceeding commands to run even before the Drivetrain is done moving.
     """)
     @act
-    def drive_for(self, direction: DirectionType = FORWARD,
+    def drive_for(self: Self, direction: DirectionType = FORWARD,
                   distance: NumType = 200, units: DistanceUnits = MM,
                   wait: bool = True):
         """Drive for a distance."""
@@ -139,7 +139,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         to turn the Drivetrain to the right.
     """)
     @act
-    def turn(self, direction: TurnType = RIGHT):
+    def turn(self: Self, direction: TurnType = RIGHT):
         """Turn in specified direction."""
 
     @vexcode_doc("""
@@ -166,7 +166,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         even before the Drivetrain has completed its turn.
     """)
     @act
-    def turn_for(self, direction: TurnType = RIGHT,
+    def turn_for(self: Self, direction: TurnType = RIGHT,
                  angle: NumType = 90, units: Literal[DEGREES] = DEGREES,
                  wait: bool = True):
         # pylint: disable=unused-argument
@@ -182,7 +182,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         It does not take any arguments in its parentheses.
     """)
     @act
-    def stop(self):
+    def stop(self: Self):
         """Stop motors."""
 
     @vexcode_doc("""
@@ -211,7 +211,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         from moving even if a Drive or Drive For command is used.
     """)
     @act
-    def set_drive_velocity(self, velocity: NumType = 50,
+    def set_drive_velocity(self: Self, velocity: NumType = 50,
                            units: VelocityUnits = PERCENT):
         """Set driving velocity."""
         self.drive_velocities[units] = velocity
@@ -242,7 +242,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         will prevent the Drivetrain from turning.
     """)
     @act
-    def set_turn_velocity(self, velocity: NumType = 50,
+    def set_turn_velocity(self: Self, velocity: NumType = 50,
                           units: VelocityUnits = PERCENT):
         """Set turning velocity."""
         self.turn_velocities[units] = velocity
@@ -263,7 +263,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         for the entirety of the project, unless otherwise changed.
     """)
     @act
-    def set_stopping(self, mode: BrakeType = BRAKE):
+    def set_stopping(self: Self, mode: BrakeType = BRAKE):
         # pylint: disable=arguments-differ
         """Set stopping mode."""
         self.stopping_mode: BrakeType = mode
@@ -280,7 +280,8 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         Specify the amount of time in SECONDS.
     """)
     @act
-    def set_timeout(self, time: NumType = 1, /, units: Literal[SECONDS] = SECONDS):  # noqa: E501
+    def set_timeout(self: Self,
+                    time: NumType = 1, /, units: Literal[SECONDS] = SECONDS):
         # pylint: disable=unused-argument
         """Set timeout."""
         self.timeout: float = time
@@ -298,7 +299,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         (which do not specify a set distance to drive).
     """)
     @sense
-    def is_moving(self) -> bool:
+    def is_moving(self: Self) -> bool:
         """Report if drivetrain is still moving."""
 
     @vexcode_doc("""
@@ -313,7 +314,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         when the robot's Drivetrain is still moving.
     """)
     @sense
-    def is_done(self) -> bool:
+    def is_done(self: Self) -> bool:
         """Check whether drivetrain has finished driving/turning."""
 
     @vexcode_doc("""
@@ -333,7 +334,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
           the reported values range between -127 to 127.
     """)
     @sense
-    def velocity(self, units: VelocityUnits = PERCENT) -> float:
+    def velocity(self: Self, units: VelocityUnits = PERCENT) -> float:
         # pylint: disable=arguments-differ
         """Return velocity."""
 
@@ -346,7 +347,8 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         when CurrentUnits.AMP is passed as the UNITS parameter.
     """)
     @sense
-    def current(self, units: Literal[CurrentUnits.AMP] = CurrentUnits.AMP) -> float:  # noqa: E501
+    def current(self: Self,
+                units: Literal[CurrentUnits.AMP] = CurrentUnits.AMP) -> float:
         # pylint: disable=arguments-differ
         """Return electrical current."""
 
