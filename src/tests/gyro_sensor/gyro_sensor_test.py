@@ -1,7 +1,7 @@
 import unittest
 
-from ...vex import Gyro, GyroCalibrationType, DEGREES, Ports
-from ...testing.io_utils import replace_stdin
+from vex import Gyro, GyroCalibrationType, DEGREES, Ports
+from ..io_utils import replace_stdin
 
 
 class TestGyroSensor(unittest.TestCase):

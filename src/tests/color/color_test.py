@@ -1,7 +1,7 @@
 import unittest
 
-from ...vex import ColorSensor, ColorHue, Ports
-from ...testing.io_utils import replace_stdin
+from vex import ColorSensor, ColorHue, Ports
+from ..io_utils import replace_stdin
 
 
 class TestColorSensor(unittest.TestCase):
@@ -19,7 +19,7 @@ class TestColorSensor(unittest.TestCase):
     def test_brightness(self):
         with replace_stdin("""1234"""):
             self.assertEqual(self.colorSensor.brightness(), 1234)
-    
+
     def test_hue(self):
         with replace_stdin("""200"""):
             self.assertEqual(self.colorSensor.hue(), 200)

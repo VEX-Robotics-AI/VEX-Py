@@ -1,6 +1,6 @@
 import unittest
 
-from ...vex import Controller
+from vex import Controller
 
 
 def callback_func():
