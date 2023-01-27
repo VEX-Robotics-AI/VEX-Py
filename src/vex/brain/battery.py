@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import LiteralString
+from typing import LiteralString, Self
 
 from abm.decor import sense
 
@@ -26,5 +26,5 @@ class BrainBattery(SingletonDevice):
         Battery capacity reports a range from 0 to 100 percent.
     """)
     @sense
-    def capacity(self) -> int:
+    def capacity(self: Self) -> int:
         """Return brain battery capacity as percentage."""
