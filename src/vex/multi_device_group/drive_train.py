@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Literal, Optional, Self
+from typing import Literal, LiteralString, Optional, Self
 
 from abm.decor import act, sense
 
@@ -22,7 +22,7 @@ from .._util.doc import vexcode_doc
 from .._util.type import NumType
 
 
-__all__: Sequence[str] = 'DriveTrain', 'Drivetrain'
+__all__: Sequence[LiteralString] = 'DriveTrain', 'Drivetrain'
 
 
 class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
