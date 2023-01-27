@@ -23,7 +23,7 @@ __all__: Sequence[LiteralString] = ('Optical',
                                     'LedStateType')
 
 
-GESTURE_CALLBACK_DOCSTR: str = """
+GESTURE_CALLBACK_DOCSTR: LiteralString = """
     Optical Gesture Detected
 
     Runs the callback function
