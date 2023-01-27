@@ -6,17 +6,18 @@ robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacetimer.html
 
 
 from collections.abc import Sequence
-from typing import Self
+from typing import LiteralString, Self
 
 from abm.decor import act, sense
 
 from vex._util.doc import robotmesh_doc
 
 
-__all__: Sequence[str] = ('Timer',)
+__all__: Sequence[LiteralString] = ('Timer',)
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classtimer_1_1_timer.html
 """)
 class Timer:
