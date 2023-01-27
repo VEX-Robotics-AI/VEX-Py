@@ -31,14 +31,14 @@ import vex
 
 METADATA: dict[str, str] = metadata(distribution_name='VEX-Py')
 
-project: str = METADATA['Name']
-author: str = METADATA['Author']
+project: LiteralString = METADATA['Name']
+author: LiteralString = METADATA['Author']
 
 # pylint: disable=redefined-builtin
-copyright: str = f'{date.today().year}, {author}'
+copyright: LiteralString = f'{date.today().year}, {author}'
 
 # The full version, including alpha/beta/rc tags
-release: str = vex.__version__
+release: LiteralString = vex.__version__
 
 
 # -- General configuration ---------------------------------------------------
@@ -90,7 +90,7 @@ exclude_patterns: list[str] = ['_build', 'Thumbs.db', '.DS_Store']
 
 # The theme to use for HTML and HTML Help pages.
 # See the documentation for a list of builtin themes.
-html_theme: str = 'alabaster'
+html_theme: LiteralString = 'alabaster'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -102,7 +102,7 @@ for _html_static_path in html_static_path:
 
 
 # Math rRnderer
-html_math_renderer: str = 'mathjax'
+html_math_renderer: LiteralString = 'mathjax'
 
 
 # Source Parsers
