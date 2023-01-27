@@ -121,7 +121,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
                          a RotationUnits enum value.
     """)
     @act
-    def set_rotation(self: Self, value: NumType, rotationUnits=RotationUnits.DEG, /):
+    def set_rotation(self: Self, value: NumType, rotationUnits=RotationUnits.DEG, /):  # noqa: E501
         """Set motors' rotational angle to specified value."""
         for motor in self.motors:
             self.rotations[motor][rotationUnits] = value
@@ -145,7 +145,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
         Return a timeout in given time units.
     """)
     @sense
-    def timeout(self: Self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> NumType:
+    def timeout(self: Self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> NumType:  # noqa: E501
         """Return motor timeout."""
         return self.timeouts[timeUnits]
 
@@ -169,7 +169,8 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
                          a VelocityUnits enum value.
     """)
     @act
-    def spin(self: Self, dir: DirectionType,  # pylint: disable=redefined-builtin
+    def spin(self: Self,
+             dir: DirectionType,  # pylint: disable=redefined-builtin
              velocity: Optional[NumType] = None,
              velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Spin motors."""
@@ -225,7 +226,8 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
                                         By default, this parameter is true.
     """)
     @act
-    def spin_for(self: Self, dir: DirectionType,  # pylint: disable=redefined-builtin
+    def spin_for(self: Self,
+                 dir: DirectionType,  # pylint: disable=redefined-builtin
                  rotation: NumType, rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
                  velocity: Optional[NumType] = None,
                  velocityUnits: VelocityUnits = VelocityUnits.PCT,
