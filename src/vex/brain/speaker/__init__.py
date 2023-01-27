@@ -171,5 +171,5 @@ class BrainSound(SingletonDevice):
         Stop playing music.
     """)
     @act
-    def stop(self):
+    def stop(self: Self):
         """Stop sound."""
