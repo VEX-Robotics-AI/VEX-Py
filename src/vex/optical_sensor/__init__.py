@@ -3,7 +3,7 @@
 
 from collections.abc import Sequence
 from threading import Thread
-from typing import Literal, LiteralString
+from typing import Literal, LiteralString, Self
 
 from abm.decor import act, sense
 
@@ -51,11 +51,11 @@ GESTURE_CALLBACK_DOCSTR: LiteralString = """
 class Optical(Device):
     """Optical Sensor."""
 
-    def __init__(self, port: Ports, /):
+    def __init__(self: Self, port: Ports, /):
         """Initialize Optical Sensor."""
         self.port: Ports = port
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Return integer hash."""
         raise hash(self.port)
 
@@ -70,7 +70,7 @@ class Optical(Device):
         By default, an IQ Optical Sensor will be set to detect colors.
     """)
     @act
-    def gesture_disable(self):
+    def gesture_disable(self: Self):
         """Disable gesture detection."""
 
     @vexcode_doc("""
@@ -86,7 +86,7 @@ class Optical(Device):
         To turn the light off you pass LedStateType.OFF as the STATE parameter.
     """)
     @act
-    def set_light(self, state: LedStateType = LedStateType.ON, /):
+    def set_light(self: Self, state: LedStateType = LedStateType.ON, /):
         """Set light ON/OFF."""
 
     @vexcode_doc("""
@@ -101,7 +101,8 @@ class Optical(Device):
         If the light is off, this command will turn the light on.
     """)
     @act
-    def set_light_power(self, power: int = 50, unit: Literal[PERCENT] = PERCENT, /):  # noqa: E501
+    def set_light_power(self: Self,
+                        power: int = 50, unit: Literal[PERCENT] = PERCENT, /):
         # pylint: disable=unused-argument
         """Set light power percentage level."""
         assert unit is PERCENT, ValueError('*** UNIT MUST BE PERCENT ***')
@@ -119,7 +120,7 @@ class Optical(Device):
         from the Optical Sensor's color() command are accurate.
     """)
     @sense
-    def is_near_object(self) -> bool:
+    def is_near_object(self: Self) -> bool:
         """Check if Optical Sensor is near an object."""
 
     @vexcode_doc("""
@@ -141,7 +142,7 @@ class Optical(Device):
             Color.CYAN
     """)
     @sense
-    def color(self) -> Color:
+    def color(self: Self) -> Color:
         """Return closest-matching color hue of detected object."""
 
     @vexcode_doc("""
@@ -155,7 +156,7 @@ class Optical(Device):
         A small amount of light detected will report a low brightness value.
     """)
     @sense
-    def brightness(self) -> int:
+    def brightness(self: Self) -> int:
         """Return brightness percentage level."""
 
     @vexcode_doc("""
@@ -167,7 +168,7 @@ class Optical(Device):
         which represents the location of the detected color on a color wheel.
     """)
     @sense
-    def hue(self) -> int:
+    def hue(self: Self) -> int:
         """Return color hue value between 0 and 359."""
 
     @vexcode_doc("""
@@ -184,7 +185,7 @@ class Optical(Device):
         an IQ Optical Sensor must be correctly set to detect gestures.
     """)
     @act
-    def gesture_enable(self):
+    def gesture_enable(self: Self):
         """Enable gesture detection."""
 
     @vexcode_doc("""
@@ -207,7 +208,7 @@ class Optical(Device):
             GestureType.RIGHT
     """)
     @sense
-    def get_gesture(self) -> GestureInfo:
+    def get_gesture(self: Self) -> GestureInfo:
         """Return an object with gesture information."""
 
     @vexcode_doc("""
@@ -224,7 +225,7 @@ class Optical(Device):
         as the callback parameter.
     """)
     @act
-    def object_detected(self, callback: callable, /):
+    def object_detected(self: Self, callback: callable, /):
         """Trigger callback function upon detecting an object."""
         def trigger_callback_whenever_near_object():
             while True:
@@ -249,7 +250,7 @@ class Optical(Device):
         when the event occurs as the callback parameter.
     """)
     @act
-    def object_lost(self, callback: callable, /):
+    def object_lost(self: Self, callback: callable, /):
         """Trigger callback function upon losing previously-detected object."""
         def trigger_callback_whenever_not_near_object():
             while True:
@@ -261,7 +262,7 @@ class Optical(Device):
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_up(self, callback: callable, /):
+    def gesture_up(self: Self, callback: callable, /):
         """Trigger callback function upon detecting UP gesture."""
         def trigger_callback_whenever_detecting_up_gesture():
             while True:
@@ -273,7 +274,7 @@ class Optical(Device):
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_down(self, callback: callable, /):
+    def gesture_down(self: Self, callback: callable, /):
         """Trigger callback function upon detecting DOWN gesture."""
         def trigger_callback_whenever_detecting_down_gesture():
             while True:
@@ -285,7 +286,7 @@ class Optical(Device):
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_left(self, callback: callable, /):
+    def gesture_left(self: Self, callback: callable, /):
         """Trigger callback function upon detecting LEFT gesture."""
         def trigger_callback_whenever_detecting_left_gesture():
             while True:
@@ -297,7 +298,7 @@ class Optical(Device):
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_right(self, callback: callable, /):
+    def gesture_right(self: Self, callback: callable, /):
         """Trigger callback function upon detecting RIGHT gesture."""
         def trigger_callback_whenever_detecting_right_gesture():
             while True:
