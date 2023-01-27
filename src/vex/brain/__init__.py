@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import LiteralString
+from typing import LiteralString, Self
 
 from .._abstract_device import SingletonDevice
 
@@ -40,7 +40,7 @@ __all__: Sequence[LiteralString] = (
 class Brain(SingletonDevice):
     """Brain."""
 
-    def __init__(self):
+    def __init__(self: Self):
         """Initialize Brain."""
         self._battery: BrainBattery = BrainBattery()
         self._buttonCheck: BrainButton = BrainButton(id="CHECK")
@@ -51,44 +51,45 @@ class Brain(SingletonDevice):
         self._timer: BrainTimer = BrainTimer()
 
     @property
-    def battery(self) -> BrainBattery:
+    def battery(self: Self) -> BrainBattery:
         """Brain Battery."""
         return self._battery
 
     @property
-    def buttonCheck(self) -> BrainButton:
+    def buttonCheck(self: Self) -> BrainButton:
         """Brain Button CHECK."""
         return self._buttonCheck
 
     @property
-    def buttonUp(self) -> BrainButton:
+    def buttonUp(self: Self) -> BrainButton:
         """Brain Button UP."""
         return self._buttonUp
 
     @property
-    def buttonDown(self) -> BrainButton:
+    def buttonDown(self: Self) -> BrainButton:
         """Brain Button DOWN."""
         return self._buttonDown
 
     @property
-    def screen(self) -> BrainLcd:
+    def screen(self: Self) -> BrainLcd:
         """Brain LCD Screen."""
         return self._screen
 
     @property
-    def sound(self) -> BrainSound:
+    def sound(self: Self) -> BrainSound:
         """Brain Sound Speaker."""
         return self._sound
 
-    def play_sound(self, sound: SoundType = SoundType.SIREN, /):
+    def play_sound(self: Self, sound: SoundType = SoundType.SIREN, /):
         """Play sound effect."""
         self.sound.play_sound(sound)
 
-    def play_note(self, octave: int = 3, note: int = 0, duration: int = 1000, /):  # noqa: E501
+    def play_note(self: Self,
+                  octave: int = 3, note: int = 0, duration: int = 1000, /):
         """Play musical note."""
         self.sound.play_note(octave, note, duration)
 
     @property
-    def timer(self) -> BrainTimer:
+    def timer(self: Self) -> BrainTimer:
         """Brain Timer."""
         return self._timer
