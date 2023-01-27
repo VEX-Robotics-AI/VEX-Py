@@ -1,62 +1,62 @@
-"""Controller Axes (A, B, C, D)."""
+"""Joystick axis."""
 
 
 from collections.abc import Sequence
-from typing import TypeVar
-from typing_extensions import Self
+from threading import Thread
+from typing import LiteralString, Self, TypeVar
 
-from abm.decor import act, sense
+from abm.decor import sense
 
-from ..util.doc import robotmesh_doc, vexcode_doc
+from .._util.doc import robotmesh_doc, vexcode_doc
 
 
-__all__: Sequence[str] = ('ControllerAxis',)
+__all__: Sequence[LiteralString] = ('ControllerAxis',)
 
 
 Controller = TypeVar(name='Controller')
 
 
 @robotmesh_doc("""
-    Use the Axis class to get values from one of the controller's joysticks.
+    Use the Axis class to get values from one of the controller's joysticks
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_controller_axis.html
 """)
 class ControllerAxis:
-    """Controller Joystick Axis."""
+    """Joystick axis."""
 
     def __init__(self, parent: Controller, axtype: str):
-        """Initialize Controller Axis."""
+        """Initialize Controller Joystick Axis."""
         self.parent: Controller = parent
         self.axtype: str = axtype
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
-        return isinstance(other, ControllerAxis) and \
-            (other.parent == self.parent) and (other.axtype == self.axtype)
+        return (isinstance(other, ControllerAxis) and
+                (other.parent == self.parent) and
+                (other.axtype == self.axtype))
 
     def __hash__(self) -> int:
         """Return integer hash."""
         return hash((self.parent, self.axtype))
 
     def __repr__(self):
-        """Return String Representation."""
+        """Return string representation."""
         return f'{type(self).__name__}({self.axtype})'
 
     @robotmesh_doc("""
-        Get the value of the joystick axis on a scale from -127 to 127.
+        Gets the value of the joystick axis on a scale from -127 to 127.
 
-        Returns
-        an integer that represents the value of the joystick axis.
+        Returns an integer that represents the value of the joystick axis.
     """)
     @sense
     def value(self) -> int:
-        """Return Controller Joystick Axis Raw Value."""
+        """Return raw position value."""
 
     @robotmesh_doc("""
-        Get the position of the joystick axis on a scale from -100 to 100.
+        Gets the position of the joystick axis on a scale from -100 to 100.
 
-        Returns
-        an integer that represents the position of the joystick axis.
+        Returns an integer that represents the position of the joystick axis.
     """)
     @vexcode_doc("""
         Controller Axis Position
@@ -76,7 +76,7 @@ class ControllerAxis:
     """)
     @sense
     def position(self) -> int:
-        """Return controller joystick axis percent position."""
+        """Return percentage position."""
 
     @vexcode_doc("""
         Controller Axis Changed
@@ -98,7 +98,12 @@ class ControllerAxis:
         as an argument. The code inside the callback function will run
         whenever the event occurs.
     """)
-    @act
     def changed(self, callback: callable, /):
-        """Trigger callback function when controller axis is changed."""
-        callback()
+        """Trigger callback function upon being moved."""
+        def trigger_callback_whenever_changed():
+            while True:
+                if self.position() != self.position():
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_changed, name=None,
+               args=(), kwargs={}, daemon=True).start()

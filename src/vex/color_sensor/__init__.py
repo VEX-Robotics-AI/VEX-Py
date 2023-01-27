@@ -2,52 +2,65 @@
 
 
 from collections.abc import Sequence
-from typing import Literal
-from typing_extensions import Self
+from typing import Literal, LiteralString, Self
 
 from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
-from ..units_common.color import Color
-from ..units_common.numeric import PERCENT
-from ..util.doc import robotmesh_doc, vexcode_doc
+from .._common_enums.color import Color
+from .._common_enums.percent import PERCENT
+
+from .._util.doc import robotmesh_doc, vexcode_doc
+from .._util.type import NumType
 
 
-__all__: Sequence[str] = 'ColorSensor', 'Colorsensor'
+__all__: Sequence[LiteralString] = 'ColorSensor', 'Colorsensor'
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_colorsensor.html
 """)
 class ColorSensor(Device):
     """Color Sensor."""
 
     @robotmesh_doc("""
-        Create new color sensor object on the port specified in the parameter.
+        Creates new color sensor object on the port specified in the parameter.
 
-        Parameters:
-        - index: The port index (zero-based)
-        - is_grayscale: Whether grayscale mode (LED on), default false
+        Parameters
+        - index: port index (zero-based)
+        - is_grayscale: whether grayscale mode (LED on), default false
         - proximity: threshold (default 700)
     """)
     def __init__(self, index: Ports,
-                 is_grayscale: bool = False, proximity: float = 700, /):
+                 is_grayscale: bool = False, proximity: NumType = 700, /):
         """Initialize Color Sensor."""
         self.port: Ports = index
         self.is_grayscale: bool = is_grayscale
-        self.proximity: float = proximity
+        self.proximity_threshold: NumType = proximity
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
         return (isinstance(other, type(self)) and
                 (other.port == self.port) and
                 (other.is_grayscale == self.is_grayscale) and
-                (other.proximity == self.proximity))
+                (other.proximity_threshold == self.proximity_threshold))
 
     def __hash__(self) -> int:
         """Return integer hash."""
-        return hash((self.port, self.is_grayscale, self.proximity))
+        return hash((self.port, self.is_grayscale, self.proximity_threshold))
+
+    @robotmesh_doc("""
+        Set the `near` threshold setting.
+
+        Parameters
+        - proximity: threshold (higher is closer) (default 700)
+    """)
+    @act
+    def set_proximity_threshold(self, proximity: NumType, /):
+        """Set threshold for proximity."""
+        self.proximity_threshold: NumType = proximity
 
     @vexcode_doc("""
         Set Color Sensor Light
@@ -64,8 +77,18 @@ class ColorSensor(Device):
         light source will shine.
     """)
     @act
-    def set_light(self, brightness: int = 50, unit: Literal[PERCENT] = PERCENT):  # noqa: E501
-        """Set light's brightness percentage level."""
+    def set_light(self, brightness: int, unit: Literal[PERCENT] = PERCENT, /):
+        """Turn on light at specified brightness percentage level."""
+
+    @robotmesh_doc("""
+        Turns the led on the color sensor on or off.
+
+        Parameters
+        - state: if True, LED will be turned on
+    """)
+    @act
+    def led(self, state: bool, /):
+        """Set LED state."""
 
     @vexcode_doc("""
         Color Is Near Object
@@ -81,6 +104,15 @@ class ColorSensor(Device):
     @sense
     def is_near_object(self) -> bool:
         """Detect whether there is an object/surface near sensor's front."""
+
+    @robotmesh_doc("""
+        Check to see if an object is detected by the color sensor.
+
+        Returns True if an object has been detected, False otherwise.
+    """)
+    @sense
+    def near(self) -> bool:
+        """Check if detecting nearby object."""
 
     @vexcode_doc("""
         Color
@@ -104,7 +136,29 @@ class ColorSensor(Device):
     """)
     @sense
     def color(self) -> Color:
-        """Return the color currently being detected."""
+        """Return detected color."""
+
+    @robotmesh_doc("""
+        Gets the name of the detected color.
+
+        Returns:
+        enum value for the closest color detected
+        out of ColorHue.RED, GREEN or BLUE (or NONE).
+    """)
+    @sense
+    def colorname3(self) -> Color:
+        """Return RED, GREEN or BLUE."""
+
+    @robotmesh_doc("""
+        Ges the name of the detected color.
+
+        Returns:
+        enum value of the closest color detected out of 12
+        possible values of ColorType (or NONE).
+    """)
+    @sense
+    def colorname12(self) -> Color:
+        """Return one of 12 colors or NONE."""
 
     @vexcode_doc("""
         Color Brightness
@@ -118,7 +172,7 @@ class ColorSensor(Device):
     """)
     @sense
     def brightness(self) -> int:
-        """Return the amount of light detected by the Color Sensor."""
+        """Return detected brightness percentage level."""
 
     @vexcode_doc("""
         Color Hue
@@ -131,34 +185,12 @@ class ColorSensor(Device):
     """)
     @sense
     def hue(self) -> int:
-        """Return the hue of the color detected by a VEX IQ Color Sensor."""
+        """Return detected color hue."""
 
     @robotmesh_doc("""
-        Get the name of the detected color.
+        Gets the grayscale value detected by the color sensor.
 
-        Returns:
-        enum value for the closest color detected
-        out of ColorHue.RED, GREEN or BLUE (or NONE).
-    """)
-    @sense
-    def colorname3(self) -> int:
-        """Return one of RED, GREEN and BLUE."""
-
-    @robotmesh_doc("""
-        Get the name of the detected color.
-
-        Returns:
-        enum value of the closest color detected out of 12
-        possible values of ColorType (or NONE).
-    """)
-    @sense
-    def colorname12(self) -> int:
-        """Return one of 12 colors or NONE."""
-
-    @robotmesh_doc("""
-        Get the grayscale value detected by the color sensor.
-
-        Parameters:
+        Parameters
         - raw: if True, raw value will be returned, otherwise a percentage
 
         Returns:
@@ -168,37 +200,6 @@ class ColorSensor(Device):
     @sense
     def grayscale(self, raw: bool = False, /) -> int:
         """Return grayscale value."""
-
-    @robotmesh_doc("""
-        Check to see if an object is detected by the color sensor.
-
-        Returns:
-        True if an object has been detected, False otherwise
-    """)
-    @sense
-    def near(self) -> bool:
-        """Check if there is a nearly object."""
-
-    @robotmesh_doc("""
-        Set the `near` threshold setting.
-
-        Parameters:
-        - proximity: threshold (higher is closer) (default 700)
-    """)
-    @act
-    def set_proximity_threshold(self, proximity: float = 700, /):
-        """Set threshold for proximity."""
-        self.proximity: float = proximity
-
-    @robotmesh_doc("""
-        Turn the led on the color sensor on or off.
-
-        Parameters:
-        - state: if True, LED will be turned on
-    """)
-    @act
-    def led(self, state: bool, /):
-        """Set LED state."""
 
 
 # alias

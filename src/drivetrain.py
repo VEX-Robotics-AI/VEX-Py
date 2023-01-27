@@ -1,36 +1,41 @@
-"""Drivetrain.
+"""VEX Drivetrain.
 
-Robot Mesh Python B:
+Robot Mesh VEX IQ Python B:
 robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacedrivetrain.html
+
+Robot Mesh VEX V5 Python:
+robotmesh.com/studio/content/docs/vexv5-python/html/namespacedrivetrain.html
 """
 
 
 from collections.abc import Sequence
-from typing import Optional
-from typing_extensions import Self
+from typing import LiteralString, Optional, Self
 
 from abm.decor import act, sense
 
 from vex.motor import Motor
-from vex.motor.brake_type import BrakeType
-from vex.motor.direction_type import DirectionType
-from vex.motor.turn_type import TurnType
-from vex.motor.velocity_units import VelocityUnits
-from vex.time.time_units import TimeUnits
-from vex.units_common.distance import DistanceUnits
-from vex.units_common.rotation import RotationUnits
-from vex.util.doc import robotmesh_doc
+from vex.motor.brake import BrakeType
+from vex.motor.direction import DirectionType
+from vex.motor.turn import TurnType
+from vex.motor.velocity import VelocityUnits
+from vex.time.units import TimeUnits
+from vex._common_enums.distance import DistanceUnits
+from vex._common_enums.rotation import RotationUnits
+
+from vex._util.doc import robotmesh_doc
+from vex._util.type import NumType
 
 from motor_group import MotorGroup
 
 
-__all__: Sequence[str] = ('Drivetrain',)
+__all__: Sequence[LiteralString] = ('Drivetrain',)
 
 
 DrivetrainMotorType = Motor | MotorGroup | list[Motor] | tuple[Motor]
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classdrivetrain_1_1_drivetrain.html
 """)
 class Drivetrain:  # pylint: disable=too-many-instance-attributes
@@ -39,7 +44,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     @robotmesh_doc("""
         Create a new drivetrain object.
 
-        Parameters:
+        Parameters
         - left_motor: the motor, motor group or a list/tuple of motors
                       driving the left side of the drivetrain
         - right_motor: the motor, motor group or a list/tuple of motors
@@ -53,22 +58,22 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     def __init__(
             self,
             left_motor: DrivetrainMotorType, right_motor: DrivetrainMotorType,
-            wheel_travel: float = 200, track_width: float = 176,
+            wheel_travel: NumType = 200, track_width: NumType = 176,
             distanceUnits: DistanceUnits = DistanceUnits.MM,
-            gear_ratio: float = 1, /):
+            gear_ratio: NumType = 1, /):
         """Initialize Drivetrain."""
         self.left_motor: DrivetrainMotorType = left_motor
         self.right_motor: DrivetrainMotorType = right_motor
-        self.wheel_travel: float = wheel_travel
-        self.track_width: float = track_width
+        self.wheel_travel: NumType = wheel_travel
+        self.track_width: NumType = track_width
         self.distance_unit: DistanceUnits = distanceUnits
-        self.gear_ratio: float = gear_ratio
+        self.gear_ratio: NumType = gear_ratio
 
-        self.drive_velocities: dict[VelocityUnits, float] = \
-            dict[VelocityUnits, float]()
-        self.turn_velocities: dict[VelocityUnits, float] = \
-            dict[VelocityUnits, float]()
-        self.timeouts: dict[TimeUnits, float] = dict[TimeUnits, float]()
+        self.drive_velocities: dict[VelocityUnits, NumType] = \
+            dict[VelocityUnits, NumType]()
+        self.turn_velocities: dict[VelocityUnits, NumType] = \
+            dict[VelocityUnits, NumType]()
+        self.timeouts: dict[TimeUnits, NumType] = dict[TimeUnits, NumType]()
         self.stopping: Optional[BrakeType] = None
 
     def __eq__(self, other: Self) -> bool:
@@ -90,7 +95,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     @robotmesh_doc("""
         Turn the motors on and drives in the specified direction.
 
-        Parameters:
+        Parameters
         - directionType: direction to drive in, forward or reverse,
                          a DirectionType enum value
         - velocity: set velocity of the motors
@@ -99,12 +104,12 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     """)
     @act
     def drive(self, directionType: DirectionType,
-              velocity: Optional[float] = None,
+              velocity: Optional[NumType] = None,
               velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Drive."""
 
     @robotmesh_doc("""
-        Drive for a specified distance.
+        Drives for a specified distance.
 
         Parameters
         - directionType: direction to drive in, forward or reverse,
@@ -125,16 +130,16 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     @act
     def drive_for(
             self, directionType: DirectionType,
-            distance: float, distanceUnits: DistanceUnits = DistanceUnits.MM,
-            velocity: Optional[float] = None,
+            distance: NumType, distanceUnits: DistanceUnits = DistanceUnits.MM,
+            velocity: Optional[NumType] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True, /) -> bool:
-        """Drive for a distance."""
+        """Drive for specified distance."""
 
     @robotmesh_doc("""
         Start driving for a specified distance.
 
-        Parameters:
+        Parameters
         - directionType: direction to drive in, forward or reverse,
                          a DirectionType enum value
         - distance: distance to drive in
@@ -147,15 +152,15 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     @act
     def start_drive_for(
             self, directionType: DirectionType,
-            distance: float, distanceUnits: DistanceUnits = DistanceUnits.MM,
-            velocity: Optional[float] = None,
+            distance: NumType, distanceUnits: DistanceUnits = DistanceUnits.MM,
+            velocity: Optional[NumType] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Start driving for a distance."""
+        """Start driving for specified distance."""
 
     @robotmesh_doc("""
         Turn the drivetrain left or right.
 
-        Parameters:
+        Parameters
         - turnType: direction to turn in, left or right, a TurnType enum value
         - velocity: set velocity of the motors
         - velocityUnits: unit for the velocity parameter,
@@ -163,14 +168,14 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     """)
     @act
     def turn(self, turnType: TurnType,
-             velocity: Optional[float] = None,
+             velocity: Optional[NumType] = None,
              velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Turn."""
 
     @robotmesh_doc("""
         Turn the drivetrain left or right until the specified angle is reached.
 
-        Parameters:
+        Parameters
         - turnType: direction to turn in, left or right, a TurnType enum value
         - angle: sets the angle to turn
         - rotationUnits: units for the angle parameter,
@@ -185,22 +190,22 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         Returns:
         True if the drivetrain has reached the target angle, False otherwise
 
-        Reimplemented in smartdrive.Smartdrive.
+        Reimplemented from drivetrain.Drivetrain.
     """)
     @act
     def turn_for(self, turnType: TurnType,
-                 angle: float, rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
-                 velocity: Optional[float] = None,
+                 angle: NumType, rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
+                 velocity: Optional[NumType] = None,
                  velocityUnits: VelocityUnits = VelocityUnits.PCT,
                  waitForCompletion: bool = True, /) -> bool:
-        """Turn for an angle."""
+        """Turn for specified rotational angle."""
 
     @robotmesh_doc("""
-        Start turning the drivetrain left or right.
+        Start turning drivetrain left or right.
 
-        (until the specified angle is reached)
+        (until specified angle is reached)
 
-        Parameters:
+        Parameters
         - turnType: direction to turn in, left or right, a TurnType enum value
         - angle: sets the angle to turn
         - angleUnits: units for the angle parameter, a RotationUnits enum value
@@ -212,28 +217,28 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     """)
     @act
     def start_turn_for(self, turnType: TurnType,
-                       angle: float, angleUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
-                       velocity: Optional[float] = None,
+                       angle: NumType, angleUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
+                       velocity: Optional[NumType] = None,
                        velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
-        """Start turning for an angle."""
+        """Start turning for specified rotational angle."""
 
     @robotmesh_doc("""
         Drive in arcade mode.
 
         (normally corresponding to two controller joystick axis values)
 
-        Parameters:
+        Parameters
         - drivePower: percent power to apply to driving, -100..100
         - turnPower: percent power to apply to turning, -100..100
     """)
     @act
-    def arcade(self, drivePower: int, turnPower: int, /):
+    def arcade(self, drivePower: NumType, turnPower: NumType, /):
         """Arcade-drive."""
 
     @robotmesh_doc("""
         Stop the drive using a specified brake mode.
 
-        Parameters:
+        Parameters
         - brakeType: brake mode, an BrakeType enum value.
                      If omitted, the value set in set_stopping is used.
     """)
@@ -244,13 +249,13 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     @robotmesh_doc("""
         Set the external gear ratio of the drivetrain.
 
-        Parameters:
+        Parameters
         - gear_ratio: gear ratio value, usually 1.0
     """)
     @act
-    def set_gear_ratio(self, gear_ratio: float, /):
+    def set_gear_ratio(self, gear_ratio: NumType, /):
         """Set gear ratio."""
-        self.gear_ratio: float = gear_ratio
+        self.gear_ratio: NumType = gear_ratio
 
     @robotmesh_doc("""
         Set the velocity of the drive.
@@ -259,13 +264,13 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         Any subsequent call that does not contain a specified velocity
         will use this value.
 
-        Parameters:
+        Parameters
         - velocity: Sets the amount of velocity.
         - velocityUnits: unit for the velocity parameter,
                          a VelocityUnits enum value
     """)
     @act
-    def set_drive_velocity(self, velocity: float,
+    def set_drive_velocity(self, velocity: NumType,
                            velocityUnits: VelocityUnits = VelocityUnits.PCT, /):  # noqa: E501
         """Set driving velocity."""
         self.drive_velocities[velocityUnits] = velocity
@@ -275,13 +280,13 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
 
         Will not run the motors.
 
-        Parameters:
+        Parameters
         - velocity: Sets the amount of velocity.
         - velocityUnits: unit for the velocity parameter,
                          a VelocityUnits enum value
     """)
     @act
-    def set_turn_velocity(self, velocity: float,
+    def set_turn_velocity(self, velocity: NumType,
                           velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Set turning velocity."""
         self.turn_velocities[velocityUnits] = velocity
@@ -292,12 +297,12 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         If the drivetrain does not reach its' commanded position
         prior to the completion of the timeout, the motors will stop.
 
-        Parameters:
+        Parameters
         - time: the amount of time.
         - timeUnits: unit for the time parameter, a TimeUnits enum value
     """)
     @act
-    def set_timeout(self, time: float, timeUnits: TimeUnits = TimeUnits.SEC, /):  # noqa: E501
+    def set_timeout(self, time: NumType, timeUnits: TimeUnits = TimeUnits.SEC, /):  # noqa: E501
         """Set motor timeout."""
         self.timeouts[timeUnits] = time
 
@@ -305,7 +310,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         Return a timeout in given time units.
     """)
     @sense
-    def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> float:
+    def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> NumType:
         """Return motor timeout."""
         return self.timeouts[timeUnits]
 
@@ -330,7 +335,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     @robotmesh_doc("""
         Set stopping mode of motor group by passing brake mode as parameter.
 
-        Parameters:
+        Parameters
         - brakeType: the stopping mode, a BrakeType enum value
                      (coast, brake, or hold).
     """)
@@ -345,7 +350,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         Returns:
         a float that represents the average current velocity
 
-        Parameters:
+        Parameters
         - velocityUnits: The measurement unit for the velocity.
     """)
     @sense
@@ -360,4 +365,4 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     """)
     @sense
     def current(self) -> float:
-        """Return motors' electric current."""
+        """Return motors' electrical current."""

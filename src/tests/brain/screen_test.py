@@ -1,6 +1,6 @@
 import unittest
 
-from ...vex import Brain, ColorHue
+from vex import Brain, ColorHue
 
 
 class TestBrainScreen(unittest.TestCase):

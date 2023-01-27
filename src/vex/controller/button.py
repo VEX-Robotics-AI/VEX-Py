@@ -2,19 +2,21 @@
 
 
 from collections.abc import Sequence
-from typing_extensions import Self
+from threading import Thread
+from typing import LiteralString, Self
 
 from abm.decor import sense, act
 
-from ..util.doc import robotmesh_doc, vexcode_doc
+from .._util.doc import robotmesh_doc, vexcode_doc
 
 
-__all__: Sequence[str] = ('ControllerButton',)
+__all__: Sequence[LiteralString] = ('ControllerButton',)
 
 
 @robotmesh_doc("""
-    Use the Button class to get values from the controller's buttons.
+    Use the Button class to get values from the controller's buttons
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_controller_button.html
 """)
 class ControllerButton:
@@ -33,7 +35,7 @@ class ControllerButton:
         return hash(self.mask)
 
     def __repr__(self) -> str:
-        """Return String Representation."""
+        """Return string representation."""
         return f'{type(self).__name__}({self.mask})'
 
     @robotmesh_doc("""
@@ -67,7 +69,7 @@ class ControllerButton:
     """)
     @sense
     def pressing(self) -> bool:
-        """Return Controller Button's pressed status."""
+        """Return pressed status."""
 
     @vexcode_doc("""
         Controller Button Pressed
@@ -92,8 +94,14 @@ class ControllerButton:
     """)
     @act
     def pressed(self, callback: callable, /):
-        """Trigger callback function when controller button is pressed."""
-        callback()
+        """Trigger callback function when upon being pressed."""
+        def trigger_callback_whenever_pressing():
+            while True:
+                if self.pressing():
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_pressing, name=None,  # noqa: E501
+               args=(), kwargs={}, daemon=True).start()
 
     @vexcode_doc("""
         Controller Button Released
@@ -118,5 +126,11 @@ class ControllerButton:
     """)
     @act
     def released(self, callback: callable, /):
-        """Trigger callback function when controller button is released."""
-        callback()
+        """Trigger callback function upon being released."""
+        def trigger_callback_whenever_not_pressing():
+            while True:
+                if not self.pressing():
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_not_pressing, name=None,  # noqa: E501
+               args=(), kwargs={}, daemon=True).start()

@@ -1,11 +1,11 @@
 import unittest
 
-from ...vex import (
+from vex import (
     Optical, Ports,
     LedStateType, GestureType, ColorHue,
     PERCENT,
 )
-from ...testing.io_utils import replace_stdin
+from ..io_utils import replace_stdin
 
 
 def callback_func():

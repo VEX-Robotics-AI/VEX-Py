@@ -1,33 +1,46 @@
+"""vex.motor.Motor tests."""
+
+
 import unittest
 
-from ...vex import Motor
-from ...vex import FORWARD, REVERSE, DEGREES, PERCENT, FORWARD, Ports
+from vex import (
+    Motor,
+    Ports,
+    FORWARD, REVERSE, DEGREES, PERCENT,
+)
+
 
 EXPECTED_VELOCITY = 99
 
 
+# flake8: noqa
+# pylint: disable=missing-class-docstring,missing-function-docstring
+
+
 class TestMotor(unittest.TestCase):
     def setUp(self):
-        self.motor = Motor(Ports.PORT1, False)
+        self.motor = Motor(Ports.PORT1)
+
         self.EXPECTED_SPIN_RESULT = (
             "Motor._spin",
             {
-                "dir": REVERSE,
                 "self": self.motor,
+                "direction": REVERSE,
                 "velocity": EXPECTED_VELOCITY,
-                "velocityUnits": PERCENT,
+                "velocity_unit": PERCENT,
             },
         )
-        self.EXPECTED_SPIN_FOR_RESULT_TUPLE = (
+
+        self.EXPECTED_SPIN_FOR_RESULT = (
             "Motor._spin_for",
             {
-                "dir": FORWARD,
-                "rotation": 360,
-                "rotationUnits": DEGREES,
                 "self": self.motor,
+                "direction": FORWARD,
+                "rotation": 360,
+                "rotation_unit": DEGREES,
                 "velocity": EXPECTED_VELOCITY,
-                "velocityUnits": PERCENT,
-                "waitForCompletion": True,
+                "velocity_unit": PERCENT,
+                "wait": True,
             },
         )
 
@@ -52,7 +65,7 @@ class TestMotor(unittest.TestCase):
             True,  # waitForCompletion
         )
 
-        self.assertEqual(result, self.EXPECTED_SPIN_FOR_RESULT_TUPLE)
+        self.assertEqual(result, self.EXPECTED_SPIN_FOR_RESULT)
 
     def test_spin_for__with_velocity_is_none(self):
         self.motor.set_velocity(EXPECTED_VELOCITY, PERCENT)
@@ -65,7 +78,7 @@ class TestMotor(unittest.TestCase):
             True,  # waitForCompletion
         )
 
-        self.assertEqual(result, self.EXPECTED_SPIN_FOR_RESULT_TUPLE)
+        self.assertEqual(result, self.EXPECTED_SPIN_FOR_RESULT)
 
     def test_spin_for__without_velocity_param(self):
         self.motor.set_velocity(EXPECTED_VELOCITY, PERCENT)
@@ -76,7 +89,7 @@ class TestMotor(unittest.TestCase):
             True,  # waitForCompletion
         )
 
-        self.assertEqual(result, self.EXPECTED_SPIN_FOR_RESULT_TUPLE)
+        self.assertEqual(result, self.EXPECTED_SPIN_FOR_RESULT)
 
 
 if __name__ == "__main__":

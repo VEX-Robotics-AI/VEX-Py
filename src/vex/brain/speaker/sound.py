@@ -1,20 +1,21 @@
-"""Sound Effects."""
+"""Sound effects."""
 
 
 from collections.abc import Sequence
 from enum import Enum, auto
+from typing import LiteralString
 
-from ...util.doc import vexcode_doc
+from ..._util.doc import vexcode_doc
 
 
-__all__: Sequence[str] = ('SoundType',)
+__all__: Sequence[LiteralString] = ('SoundType',)
 
 
 @vexcode_doc("""
-    Sound Effect
+    Sound effects
 """)
 class SoundType(Enum):
-    """Sound Effect."""
+    """Sound effects."""
 
     SIREN = auto()
     WRONG_WAY = auto()

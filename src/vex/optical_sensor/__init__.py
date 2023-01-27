@@ -2,21 +2,25 @@
 
 
 from collections.abc import Sequence
-from typing import Literal
+from threading import Thread
+from typing import Literal, LiteralString
 
 from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
-from ..units_common.color import Color
-from ..units_common.numeric import PERCENT
-from ..util.doc import vexcode_doc
-from .gesture_info import GestureInfo
-from .gesture_type import GestureType
-from .led_state_type import LedStateType
+from .._common_enums.color import Color
+from .._common_enums.percent import PERCENT
+
+from .._util.doc import vexcode_doc
+
+from .gesture import GestureType, GestureInfo
+from .led import LedStateType
 
 
-__all__: Sequence[str] = 'Optical', 'GestureType', 'LedStateType'
+__all__: Sequence[LiteralString] = ('Optical',
+                                    'GestureType', 'GestureInfo',
+                                    'LedStateType')
 
 
 GESTURE_CALLBACK_DOCSTR: str = """
@@ -83,7 +87,7 @@ class Optical(Device):
     """)
     @act
     def set_light(self, state: LedStateType = LedStateType.ON, /):
-        """Set Optical Sensor light state."""
+        """Set light ON/OFF."""
 
     @vexcode_doc("""
         Sets the light power of a VEX IQ Optical Sensor.
@@ -99,7 +103,7 @@ class Optical(Device):
     @act
     def set_light_power(self, power: int = 50, unit: Literal[PERCENT] = PERCENT, /):  # noqa: E501
         # pylint: disable=unused-argument
-        """Set Optical Light Power."""
+        """Set light power percentage level."""
         assert unit is PERCENT, ValueError('*** UNIT MUST BE PERCENT ***')
 
     @vexcode_doc("""
@@ -152,7 +156,7 @@ class Optical(Device):
     """)
     @sense
     def brightness(self) -> int:
-        """Return brightness percentage."""
+        """Return brightness percentage level."""
 
     @vexcode_doc("""
         Optical Hue
@@ -222,7 +226,13 @@ class Optical(Device):
     @act
     def object_detected(self, callback: callable, /):
         """Trigger callback function upon detecting an object."""
-        callback()
+        def trigger_callback_whenever_near_object():
+            while True:
+                if self.is_near_object():
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_near_object, name=None,  # noqa: E501
+               args=(), kwargs={}, daemon=True).start()
 
     @vexcode_doc("""
         Optical Object Lost
@@ -241,28 +251,58 @@ class Optical(Device):
     @act
     def object_lost(self, callback: callable, /):
         """Trigger callback function upon losing previously-detected object."""
-        callback()
+        def trigger_callback_whenever_not_near_object():
+            while True:
+                if not self.is_near_object():
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_not_near_object,
+               name=None, args=(), kwargs={}, daemon=True).start()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
     def gesture_up(self, callback: callable, /):
         """Trigger callback function upon detecting UP gesture."""
-        callback()
+        def trigger_callback_whenever_detecting_up_gesture():
+            while True:
+                if self.get_gesture().type == GestureType.UP:
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_detecting_up_gesture,  # noqa: E501
+               name=None, args=(), kwargs={}, daemon=True).start()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
     def gesture_down(self, callback: callable, /):
         """Trigger callback function upon detecting DOWN gesture."""
-        callback()
+        def trigger_callback_whenever_detecting_down_gesture():
+            while True:
+                if self.get_gesture().type == GestureType.DOWN:
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_detecting_down_gesture,  # noqa: E501
+               name=None, args=(), kwargs={}, daemon=True).start()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
     def gesture_left(self, callback: callable, /):
         """Trigger callback function upon detecting LEFT gesture."""
-        callback()
+        def trigger_callback_whenever_detecting_left_gesture():
+            while True:
+                if self.get_gesture().type == GestureType.LEFT:
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_detecting_left_gesture,  # noqa: E501
+               name=None, args=(), kwargs={}, daemon=True).start()
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
     def gesture_right(self, callback: callable, /):
         """Trigger callback function upon detecting RIGHT gesture."""
-        callback()
+        def trigger_callback_whenever_detecting_right_gesture():
+            while True:
+                if self.get_gesture().type == GestureType.RIGHT:
+                    callback()
+
+        Thread(group=None, target=trigger_callback_whenever_detecting_right_gesture,  # noqa: E501
+               name=None, args=(), kwargs={}, daemon=True).start()

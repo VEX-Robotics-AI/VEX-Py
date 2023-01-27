@@ -2,27 +2,47 @@
 
 
 from collections.abc import Sequence
+from typing import LiteralString, overload
 
 from abm.decor import act
 
-from ..util.doc import robotmesh_doc, vexcode_doc
+from .units import TimeUnits, SECONDS, MSEC
 
-from .time_units import TimeUnits, SECONDS, MSEC
-
-
-__all__: Sequence[str] = 'TimeUnits', 'SECONDS', 'MSEC', 'wait'
+from .._util.doc import robotmesh_doc, vexcode_doc
+from .._util.type import NumType
 
 
-# pylint: disable=unused-argument
+__all__: Sequence[LiteralString] = ('TimeUnits', 'SECONDS', 'MSEC',
+                                    'clock', 'wait')
+
+
 @robotmesh_doc("""
-    Wait for a specific amount of time.
+    Get the number of seconds since system startup
+""")
+def clock() -> NumType:
+    """Return number of seconds since program started."""
 
-    Identical to sys.sleep().
+
+@overload
+def wait(duration: NumType, unit: TimeUnits = MSEC, /):
+    ...
+
+
+@overload
+def wait(time: NumType, timeUnits: TimeUnits = TimeUnits.SEC, /):
+    ...
+
+
+@robotmesh_doc("""
+    Wait for a specific amount of time
+
+    Identical to sys.sleep()
 
     Parameters
-    time: The length of time to wait
-    timeUnits: The units of time (default seconds)
+    - time: The length of time to wait
+    - timeUnits: The units of time (default seconds)
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacevex.html#a6b9ca2db773bef3a3569a0d6b22f2749
 """)
 @vexcode_doc("""
@@ -32,5 +52,6 @@ __all__: Sequence[str] = 'TimeUnits', 'SECONDS', 'MSEC', 'wait'
     to have your program wait before executing subsequent commands.
 """)
 @act
-def wait(time: float, timeUnits: TimeUnits = TimeUnits.SEC, /):
-    """Wait."""
+def wait(duration: NumType, unit: TimeUnits = SECONDS, /):
+    # pylint: disable=unused-argument
+    """Wait for specified duration."""

@@ -2,14 +2,16 @@
 
 
 from collections.abc import Sequence
+from typing import LiteralString
 
 from abm.decor import sense
 
 from .._abstract_device import SingletonDevice
-from ..util.doc import vexcode_doc
+
+from .._util.doc import vexcode_doc
 
 
-__all__: Sequence[str] = ('BrainBattery',)
+__all__: Sequence[LiteralString] = ('BrainBattery',)
 
 
 class BrainBattery(SingletonDevice):

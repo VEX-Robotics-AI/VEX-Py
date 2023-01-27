@@ -2,15 +2,17 @@
 
 
 from collections.abc import Sequence
+from typing import LiteralString
 
 from abm.decor import act, sense
 
 from .._abstract_device import SingletonDevice
-from ..time.time_units import TimeUnits
-from ..util.doc import vexcode_doc
+from ..time.units import TimeUnits
+
+from .._util.doc import vexcode_doc
 
 
-__all__: Sequence[str] = ('BrainTimer',)
+__all__: Sequence[LiteralString] = ('BrainTimer',)
 
 
 class BrainTimer(SingletonDevice):
@@ -27,7 +29,7 @@ class BrainTimer(SingletonDevice):
     """)
     @act
     def clear(self):
-        """Reset Timer."""
+        """Reset."""
 
     @vexcode_doc("""
         Timer Value
@@ -42,7 +44,7 @@ class BrainTimer(SingletonDevice):
     """)
     @sense
     def time(self, unit: TimeUnits) -> float:
-        """Report the value of the IQ Brain's timer."""
+        """Return elapsed time."""
 
     @vexcode_doc("""
         Timer Event
@@ -67,4 +69,4 @@ class BrainTimer(SingletonDevice):
     """)
     @act
     def event(self, callback: callable, msecs: int, /):
-        """Trigger callback function after a number of miliseconds."""
+        """Trigger callback function after specified number of miliseconds."""

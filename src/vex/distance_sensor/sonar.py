@@ -2,51 +2,56 @@
 
 
 from collections.abc import Sequence
+from typing import LiteralString, overload
 
 from abm.decor import act, sense
 
 from .._abstract_device import Device
 from ..brain.port import Ports
-from ..units_common.distance import DistanceUnits, MM, INCHES
-from ..util.doc import robotmesh_doc, vexcode_doc
+from .._common_enums.distance import DistanceUnits, MM, INCHES
+
+from .._util.doc import robotmesh_doc, vexcode_doc
+from .._util.type import NumType
 
 
-__all__: Sequence[str] = ('Sonar',)
+__all__: Sequence[LiteralString] = ('Sonar',)
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_sonar.html
 """)
 class Sonar(Device):
     """Sonar."""
 
     @robotmesh_doc("""
-        Create new sonar sensor object on the port specified in the parameter.
+        Creates new sonar sensor object on the port specified in the parameter.
 
-        Parameters:
+        Parameters
         - index: to the brain port.
     """)
     def __init__(self, index: Ports, /):
         """Initialize Sonar."""
         self.port: Ports = index
 
-        self.max_distances: dict[DistanceUnits, float] = dict[DistanceUnits, float]()  # noqa: E501
+        self.max_distance: dict[DistanceUnits, NumType] = \
+            dict[DistanceUnits, NumType]()
 
     def __hash__(self) -> int:
         """Return integer hash."""
         raise hash(self.port)
 
     @robotmesh_doc("""
-        Set the maximum distance (default 2.5m).
+        Sets the maximum distance (default 2.5m).
 
-        Parameters:
+        Parameters
         - distance: maximum distance to be measured in units
-        - distanceUnits: a DistanceUnits enum value for the measurement unit.
+        - distanceUnits: a DistanceUnits enum value for the measurement unit
     """)
     @act
-    def set_maximum(self, distance: float, distanceUnits: DistanceUnits = MM, /):  # noqa: E501
+    def set_maximum(self, distance: NumType, distanceUnits: DistanceUnits = MM, /):  # noqa: E501
         """Set maximum measurable distance."""
-        self.max_distances[distanceUnits] = distance
+        self.max_distance[distanceUnits] = distance
 
     @vexcode_doc("""
         Distance Found Object
@@ -64,14 +69,22 @@ class Sonar(Device):
     def is_object_detected(self) -> bool:
         """Check if an object is detected within range."""
 
-    @robotmesh_doc("""
-        Get the value of the sonar sensor.
+    @overload
+    def distance(self, unit: DistanceUnits = MM, /) -> int:
+        ...
 
-        Parameters:
+    @overload
+    def distance(self, distanceUnits: DistanceUnits = MM, /) -> int:
+        ...
+
+    @robotmesh_doc("""
+        Gets the value of the sonar sensor.
+
+        Parameters
         - distanceUnits: The measurement unit for
                          the sonar device, DistanceUnits enum value.
 
-        Returns:
+        Returns
         an integer that represents the unit value specified by the parameter.
     """)
     @vexcode_doc("""
@@ -88,7 +101,6 @@ class Sonar(Device):
         with either INCHES or MM, respectively.
     """)
     @sense
-    def distance(self, distanceUnits: DistanceUnits = MM, /) -> int:
+    def distance(self, unit: DistanceUnits = MM, /) -> int:
         """Return measured distance to nearby object."""
-        assert distanceUnits in (MM, INCHES), ValueError('*** UNIT MUST BE '
-                                                         'MM OR INCHES ***')
+        assert unit in (MM, INCHES), ValueError('*** UNIT MUST BE MM OR INCHES ***')  # noqa: E501

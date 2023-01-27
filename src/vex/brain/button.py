@@ -1,20 +1,21 @@
-"""Brain Buttons."""
+"""Brain Button."""
 
 
 from collections.abc import Sequence
-from typing_extensions import Self
+from typing import LiteralString, Self
 
 from abm.decor import sense
 
-from ..util.doc import robotmesh_doc, vexcode_doc
+from .._util.doc import robotmesh_doc, vexcode_doc
 
 
-__all__: Sequence[str] = ('BrainButton',)
+__all__: Sequence[LiteralString] = ('BrainButton',)
 
 
 @robotmesh_doc("""
-    Use the Button class to get values from the Brain's buttons.
+    Use the Button class to get values from the Brain's buttons
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brain_button.html
 """)
 class BrainButton:
@@ -33,13 +34,13 @@ class BrainButton:
         return hash(self.id)
 
     def __repr__(self) -> str:
-        """Return String Representation."""
+        """Return string representation."""
         return f'{type(self).__name__}({self.id})'
 
     @robotmesh_doc("""
-        Get the pressed status of a button.
+        Gets the pressed status of a button.
 
-        Returns: True if pressed, False otherwise.
+        Returns True if pressed, False otherwise.
     """)
     @vexcode_doc("""
         Reports if the specified button on the VEX IQ Brain is being pressed.
@@ -56,4 +57,4 @@ class BrainButton:
     """)
     @sense
     def pressing(self) -> bool:
-        """Return Button's pressed status."""
+        """Return pressed status."""
