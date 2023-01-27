@@ -33,7 +33,7 @@ class BrainButton:
         """Return integer hash."""
         return hash(self.id)
 
-    def __repr__(self) -> str:
+    def __repr__(self) -> LiteralString:
         """Return string representation."""
         return f'{type(self).__name__}({self.id})'
 
