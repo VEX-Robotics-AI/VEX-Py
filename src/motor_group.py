@@ -17,9 +17,9 @@ from vex.motor import Motor
 from vex.motor.brake import BrakeType
 from vex.motor.direction import DirectionType
 from vex.motor.torque import TorqueUnits
-from vex.motor.velocity import VelocityUnits
 from vex.time.units import TimeUnits
 from vex._common_enums.rotation import RotationUnits
+from vex._common_enums.velocity import VelocityUnits
 
 from vex._util.doc import robotmesh_doc
 from vex._util.type import NumType

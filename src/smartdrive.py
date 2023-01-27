@@ -13,10 +13,10 @@ from typing import LiteralString, Optional, Self
 
 from abm.decor import act, sense
 
-from vex.motor.velocity import VelocityUnits
 from vex.gyro_sensor import Gyro
 from vex._common_enums.distance import DistanceUnits
 from vex._common_enums.rotation import RotationUnits
+from vex._common_enums.velocity import VelocityUnits
 
 from vex._util.doc import robotmesh_doc
 from vex._util.type import NumType
