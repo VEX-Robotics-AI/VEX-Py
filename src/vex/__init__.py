@@ -128,7 +128,7 @@ __all__: Sequence[LiteralString] = (
 )
 
 
-__version__: str = version(distribution_name='VEX-Py')
+__version__: LiteralString = version(distribution_name='VEX-Py')
 
 
 # CONSTANTS
