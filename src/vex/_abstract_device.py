@@ -54,6 +54,6 @@ class SingletonDevice:
         """Return integer hash."""
         return 0
 
-    def __repr__(self) -> str:
+    def __repr__(self) -> LiteralString:
         """Return string representation."""
         return type(self).__name__

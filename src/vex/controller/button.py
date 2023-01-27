@@ -22,9 +22,9 @@ __all__: Sequence[LiteralString] = ('ControllerButton',)
 class ControllerButton:
     """Controller Button."""
 
-    def __init__(self, mask: str):
+    def __init__(self, mask: LiteralString):
         """Initialize Controller Button."""
-        self.mask: str = mask
+        self.mask: LiteralString = mask
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
@@ -34,7 +34,7 @@ class ControllerButton:
         """Return integer hash."""
         return hash(self.mask)
 
-    def __repr__(self) -> str:
+    def __repr__(self) -> LiteralString:
         """Return string representation."""
         return f'{type(self).__name__}({self.mask})'
 

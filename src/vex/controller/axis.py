@@ -25,10 +25,10 @@ Controller = TypeVar(name='Controller')
 class ControllerAxis:
     """Joystick axis."""
 
-    def __init__(self, parent: Controller, axtype: str):
+    def __init__(self, parent: Controller, axtype: LiteralString):
         """Initialize Controller Joystick Axis."""
         self.parent: Controller = parent
-        self.axtype: str = axtype
+        self.axtype: LiteralString = axtype
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
