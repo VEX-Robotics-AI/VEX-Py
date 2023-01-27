@@ -1,7 +1,7 @@
 import unittest
 
 from vex import ColorSensor, ColorHue, Ports
-from ...testing.io_utils import replace_stdin
+from ..io_utils import replace_stdin
 
 
 class TestColorSensor(unittest.TestCase):

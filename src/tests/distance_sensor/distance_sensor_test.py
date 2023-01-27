@@ -1,7 +1,7 @@
 import unittest
 
 from vex import Distance, ObjectSizeType, Ports, MM
-from ...testing.io_utils import replace_stdin
+from ..io_utils import replace_stdin
 
 
 class TestDistanceSensor(unittest.TestCase):

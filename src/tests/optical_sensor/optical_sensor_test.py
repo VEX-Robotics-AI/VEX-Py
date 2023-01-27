@@ -5,7 +5,7 @@ from vex import (
     LedStateType, GestureType, ColorHue,
     PERCENT,
 )
-from ...testing.io_utils import replace_stdin
+from ..io_utils import replace_stdin
 
 
 def callback_func():

@@ -1,7 +1,7 @@
 import unittest
 
 from vex import Brain
-from ...testing.io_utils import replace_stdin
+from ..io_utils import replace_stdin
 
 
 class TestBrainBattery(unittest.TestCase):
