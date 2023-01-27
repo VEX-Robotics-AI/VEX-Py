@@ -22,19 +22,19 @@ __all__: Sequence[LiteralString] = ('ControllerButton',)
 class ControllerButton:
     """Controller Button."""
 
-    def __init__(self, mask: LiteralString):
+    def __init__(self: Self, mask: LiteralString):
         """Initialize Controller Button."""
         self.mask: LiteralString = mask
 
-    def __eq__(self, other: Self) -> bool:
+    def __eq__(self: Self, other: Self) -> bool:
         """Check equality."""
         return isinstance(other, ControllerButton) and (other.mask == self.mask)   # noqa: E501
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Return integer hash."""
         return hash(self.mask)
 
-    def __repr__(self) -> LiteralString:
+    def __repr__(self: Self) -> LiteralString:
         """Return string representation."""
         return f'{type(self).__name__}({self.mask})'
 
@@ -68,7 +68,7 @@ class ControllerButton:
         if the specified Controller button is not being pressed.
     """)
     @sense
-    def pressing(self) -> bool:
+    def pressing(self: Self) -> bool:
         """Return pressed status."""
 
     @vexcode_doc("""
@@ -93,7 +93,7 @@ class ControllerButton:
         - buttonR3
     """)
     @act
-    def pressed(self, callback: callable, /):
+    def pressed(self: Self, callback: callable, /):
         """Trigger callback function when upon being pressed."""
         def trigger_callback_whenever_pressing():
             while True:
@@ -125,7 +125,7 @@ class ControllerButton:
         - buttonR3
     """)
     @act
-    def released(self, callback: callable, /):
+    def released(self: Self, callback: callable, /):
         """Trigger callback function upon being released."""
         def trigger_callback_whenever_not_pressing():
             while True:

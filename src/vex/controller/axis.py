@@ -25,22 +25,22 @@ Controller = TypeVar(name='Controller')
 class ControllerAxis:
     """Joystick axis."""
 
-    def __init__(self, parent: Controller, axtype: LiteralString):
+    def __init__(self: Self, parent: Controller, axtype: LiteralString):
         """Initialize Controller Joystick Axis."""
         self.parent: Controller = parent
         self.axtype: LiteralString = axtype
 
-    def __eq__(self, other: Self) -> bool:
+    def __eq__(self: Self, other: Self) -> bool:
         """Check equality."""
         return (isinstance(other, ControllerAxis) and
                 (other.parent == self.parent) and
                 (other.axtype == self.axtype))
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Return integer hash."""
         return hash((self.parent, self.axtype))
 
-    def __repr__(self):
+    def __repr__(self: Self):
         """Return string representation."""
         return f'{type(self).__name__}({self.axtype})'
 
@@ -50,7 +50,7 @@ class ControllerAxis:
         Returns an integer that represents the value of the joystick axis.
     """)
     @sense
-    def value(self) -> int:
+    def value(self: Self) -> int:
         """Return raw position value."""
 
     @robotmesh_doc("""
@@ -75,7 +75,7 @@ class ControllerAxis:
         - axisD: right joystick (up and down)
     """)
     @sense
-    def position(self) -> int:
+    def position(self: Self) -> int:
         """Return percentage position."""
 
     @vexcode_doc("""
@@ -98,7 +98,7 @@ class ControllerAxis:
         as an argument. The code inside the callback function will run
         whenever the event occurs.
     """)
-    def changed(self, callback: callable, /):
+    def changed(self: Self, callback: callable, /):
         """Trigger callback function upon being moved."""
         def trigger_callback_whenever_changed():
             while True:

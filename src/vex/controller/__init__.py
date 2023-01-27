@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import LiteralString, Optional
+from typing import LiteralString, Optional, Self
 
 from abm.decor import act
 
@@ -32,7 +32,7 @@ class Controller(SingletonDevice):
     # pylint: disable=too-many-instance-attributes
     """Controller."""
 
-    def __init__(self):
+    def __init__(self: Self):
         """Initialize Controller."""
         self._axisA: ControllerAxis = ControllerAxis(parent=self, axtype='A')
         self._axisB: ControllerAxis = ControllerAxis(parent=self, axtype='B')
@@ -56,76 +56,76 @@ class Controller(SingletonDevice):
         (minimum absolute threshold at which position is reported as non-zero)
     """)
     @act
-    def set_deadband(self, deadband: int, /):
+    def set_deadband(self: Self, deadband: int, /):
         """Set joystick axis deadband percentage threshold."""
         self.deadband: int = deadband
 
     @property
-    def buttonEUp(self) -> ControllerButton:
+    def buttonEUp(self: Self) -> ControllerButton:
         """Get button E Up."""
         return self._buttonEUp
 
     @property
-    def buttonEDown(self) -> ControllerButton:
+    def buttonEDown(self: Self) -> ControllerButton:
         """Get button E Down."""
         return self._buttonEDown
 
     @property
-    def buttonFUp(self) -> ControllerButton:
+    def buttonFUp(self: Self) -> ControllerButton:
         """Get button F Up."""
         return self._buttonFUp
 
     @property
-    def buttonFDown(self) -> ControllerButton:
+    def buttonFDown(self: Self) -> ControllerButton:
         """Get button F Down."""
         return self._buttonFDown
 
     @property
-    def buttonLUp(self) -> ControllerButton:
+    def buttonLUp(self: Self) -> ControllerButton:
         """Get button L Up."""
         return self._buttonLUp
 
     @property
-    def buttonL3(self) -> ControllerButton:
+    def buttonL3(self: Self) -> ControllerButton:
         """Get button L 3."""
         return self._buttonL3
 
     @property
-    def buttonLDown(self) -> ControllerButton:
+    def buttonLDown(self: Self) -> ControllerButton:
         """Get button L Down."""
         return self._buttonLDown
 
     @property
-    def buttonRUp(self) -> ControllerButton:
+    def buttonRUp(self: Self) -> ControllerButton:
         """Get button R Up."""
         return self._buttonRUp
 
     @property
-    def buttonRDown(self) -> ControllerButton:
+    def buttonRDown(self: Self) -> ControllerButton:
         """Get button R Down."""
         return self._buttonRDown
 
     @property
-    def buttonR3(self) -> ControllerButton:
+    def buttonR3(self: Self) -> ControllerButton:
         """Get button R 3."""
         return self._buttonR3
 
     @property
-    def axisA(self) -> ControllerAxis:
+    def axisA(self: Self) -> ControllerAxis:
         """Get axis A."""
         return self._axisA
 
     @property
-    def axisB(self) -> ControllerAxis:
+    def axisB(self: Self) -> ControllerAxis:
         """Get axis B."""
         return self._axisB
 
     @property
-    def axisC(self) -> ControllerAxis:
+    def axisC(self: Self) -> ControllerAxis:
         """Get axis C."""
         return self._axisC
 
     @property
-    def axisD(self) -> ControllerAxis:
+    def axisD(self: Self) -> ControllerAxis:
         """Get axis D."""
         return self._axisD
