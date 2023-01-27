@@ -22,23 +22,23 @@ class Device:
     """Base Device class."""
 
     @property
-    def port(self) -> Ports:
+    def port(self: Self) -> Ports:
         """Port."""
         return self._port
 
     @port.setter
-    def port(self, port: Ports):
+    def port(self: Self, port: Ports):
         self._port: Ports = port
 
-    def __eq__(self, other: Self) -> bool:
+    def __eq__(self: Self, other: Self) -> bool:
         """Check equality."""
         return isinstance(other, type(self)) and (other.port == self.port)
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Return integer hash."""
         raise NotImplementedError
 
-    def __repr__(self) -> str:
+    def __repr__(self: Self) -> str:
         """Return string representation."""
         return f'{type(self).__name__}({self.port.name})'
 
@@ -46,14 +46,14 @@ class Device:
 class SingletonDevice:
     """Singleton Device."""
 
-    def __eq__(self, other: Self) -> bool:
+    def __eq__(self: Self, other: Self) -> bool:
         """Check equality."""
         return isinstance(other, type(self))
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Return integer hash."""
         return 0
 
-    def __repr__(self) -> LiteralString:
+    def __repr__(self: Self) -> LiteralString:
         """Return string representation."""
         return type(self).__name__
