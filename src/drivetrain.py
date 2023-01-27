@@ -76,7 +76,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         self.timeouts: dict[TimeUnits, NumType] = dict[TimeUnits, NumType]()
         self.stopping: Optional[BrakeType] = None
 
-    def __eq__(self, other: Self) -> bool:
+    def __eq__(self: Self, other: Self) -> bool:
         """Check equality."""
         return (isinstance(other, Drivetrain) and
                 (other.left_motor == self.left_motor) and
@@ -86,7 +86,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
                 (other.distance_unit == self.distance_unit) and
                 (other.gear_ratio == self.gear_ratio))
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Return integer hash."""
         return hash((self.left_motor, self.right_motor,
                      self.wheel_travel, self.track_width,
@@ -103,7 +103,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
                          a VelocityUnits enum value
     """)
     @act
-    def drive(self, directionType: DirectionType,
+    def drive(self: Self, directionType: DirectionType,
               velocity: Optional[NumType] = None,
               velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Drive."""
@@ -167,7 +167,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
                          a VelocityUnits enum value
     """)
     @act
-    def turn(self, turnType: TurnType,
+    def turn(self: Self, turnType: TurnType,
              velocity: Optional[NumType] = None,
              velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Turn."""
@@ -193,7 +193,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         Reimplemented from drivetrain.Drivetrain.
     """)
     @act
-    def turn_for(self, turnType: TurnType,
+    def turn_for(self: Self, turnType: TurnType,
                  angle: NumType, rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
                  velocity: Optional[NumType] = None,
                  velocityUnits: VelocityUnits = VelocityUnits.PCT,
@@ -216,7 +216,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         Reimplemented in smartdrive.Smartdrive.
     """)
     @act
-    def start_turn_for(self, turnType: TurnType,
+    def start_turn_for(self: Self, turnType: TurnType,
                        angle: NumType, angleUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
                        velocity: Optional[NumType] = None,
                        velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
@@ -232,7 +232,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         - turnPower: percent power to apply to turning, -100..100
     """)
     @act
-    def arcade(self, drivePower: NumType, turnPower: NumType, /):
+    def arcade(self: Self, drivePower: NumType, turnPower: NumType, /):
         """Arcade-drive."""
 
     @robotmesh_doc("""
@@ -243,7 +243,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
                      If omitted, the value set in set_stopping is used.
     """)
     @act
-    def stop(self, brakeType: Optional[BrakeType] = None, /):
+    def stop(self: Self, brakeType: Optional[BrakeType] = None, /):
         """Stop motors."""
 
     @robotmesh_doc("""
@@ -253,7 +253,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         - gear_ratio: gear ratio value, usually 1.0
     """)
     @act
-    def set_gear_ratio(self, gear_ratio: NumType, /):
+    def set_gear_ratio(self: Self, gear_ratio: NumType, /):
         """Set gear ratio."""
         self.gear_ratio: NumType = gear_ratio
 
@@ -270,7 +270,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
                          a VelocityUnits enum value
     """)
     @act
-    def set_drive_velocity(self, velocity: NumType,
+    def set_drive_velocity(self: Self, velocity: NumType,
                            velocityUnits: VelocityUnits = VelocityUnits.PCT, /):  # noqa: E501
         """Set driving velocity."""
         self.drive_velocities[velocityUnits] = velocity
@@ -286,7 +286,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
                          a VelocityUnits enum value
     """)
     @act
-    def set_turn_velocity(self, velocity: NumType,
+    def set_turn_velocity(self: Self, velocity: NumType,
                           velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Set turning velocity."""
         self.turn_velocities[velocityUnits] = velocity
@@ -302,7 +302,8 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         - timeUnits: unit for the time parameter, a TimeUnits enum value
     """)
     @act
-    def set_timeout(self, time: NumType, timeUnits: TimeUnits = TimeUnits.SEC, /):  # noqa: E501
+    def set_timeout(self: Self,
+                    time: NumType, timeUnits: TimeUnits = TimeUnits.SEC, /):
         """Set motor timeout."""
         self.timeouts[timeUnits] = time
 
@@ -310,7 +311,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         Return a timeout in given time units.
     """)
     @sense
-    def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> NumType:
+    def timeout(self: Self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> NumType:
         """Return motor timeout."""
         return self.timeouts[timeUnits]
 
@@ -318,7 +319,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         Return True if last drivetrain operation timed out, False otherwise.
     """)
     @sense
-    def did_timeout(self) -> bool:
+    def did_timeout(self: Self) -> bool:
         """Check whether motors timed out."""
 
     @robotmesh_doc("""
@@ -329,7 +330,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         Reimplemented in smartdrive.Smartdrive.
     """)
     @sense
-    def is_done(self) -> bool:
+    def is_done(self: Self) -> bool:
         """Check whether both motors have finished driving/turning."""
 
     @robotmesh_doc("""
@@ -340,7 +341,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
                      (coast, brake, or hold).
     """)
     @act
-    def set_stopping(self, brakeType: BrakeType, /):
+    def set_stopping(self: Self, brakeType: BrakeType, /):
         """Set motor stopping mode."""
         self.stopping: BrakeType = brakeType
 
@@ -354,7 +355,8 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         - velocityUnits: The measurement unit for the velocity.
     """)
     @sense
-    def velocity(self, velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:  # noqa: E501
+    def velocity(self: Self,
+                 velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:
         """Return motors' velocity."""
 
     @robotmesh_doc("""
@@ -364,5 +366,5 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         a float that represents the electrical current of the motor in Amps.
     """)
     @sense
-    def current(self) -> float:
+    def current(self: Self) -> float:
         """Return motors' electrical current."""
