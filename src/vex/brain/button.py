@@ -21,9 +21,9 @@ __all__: Sequence[LiteralString] = ('BrainButton',)
 class BrainButton:
     """Brain Button."""
 
-    def __init__(self, id: str):   # pylint: disable=redefined-builtin
+    def __init__(self, id: LiteralString):  # pylint: disable=redefined-builtin
         """Initialize Brain Button."""
-        self.id: str = id
+        self.id: LiteralString = id
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
