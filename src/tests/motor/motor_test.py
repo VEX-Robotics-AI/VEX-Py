@@ -3,7 +3,7 @@
 
 import unittest
 
-from ...vex import (
+from vex import (
     Motor,
     Ports,
     FORWARD, REVERSE, DEGREES, PERCENT,
@@ -27,7 +27,7 @@ class TestMotor(unittest.TestCase):
                 "self": self.motor,
                 "direction": REVERSE,
                 "velocity": EXPECTED_VELOCITY,
-                "unit": PERCENT,
+                "velocity_unit": PERCENT,
             },
         )
 

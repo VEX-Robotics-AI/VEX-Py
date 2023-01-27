@@ -1,11 +1,8 @@
 """Vision Sensor."""
 
 
-from __future__ import annotations
-
 from collections.abc import Sequence
-from typing import Optional
-from typing_extensions import Self
+from typing import LiteralString, Optional, Self
 
 from abm.decor import sense
 
@@ -14,24 +11,25 @@ from ..brain.port import Ports
 
 from .._util.doc import robotmesh_doc, vexcode_doc
 
-from .vision_object import VisionObject
+from .object import VisionObject
 
 
-__all__: Sequence[str] = 'Vision', 'VisionObject'
+__all__: Sequence[LiteralString] = 'Vision', 'VisionObject'
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvision_1_1_vision.html
 """)
 class Vision(Device):
-    """VEX Vision Sensor."""
+    """Vision Sensor."""
 
     @robotmesh_doc("""
-        Create a new vision object on the port specified.
+        Creates a new vision object on the port specified.
 
         The vision sensor has a resolution of 316x212 pixels.
 
-        Parameters:
+        Parameters
         - index: The port index for this vision. The index is zero based.
         - brightness: The vision sensor brightness seting. Values are 0 to 255.
         - signatures: List of signature objects
@@ -59,7 +57,7 @@ class Vision(Device):
     @robotmesh_doc("""
         Take a data sample from the vision sensor.
 
-        Parameters:
+        Parameters
         - id: The signature id or color code of the object to look for.
         - count: the amount of objects to look for.
                  The largest of the object will be returned. Optional.
@@ -79,26 +77,26 @@ class Vision(Device):
         Vision Sensor commands.
     """)
     @sense
-    def take_snapshot(self, id: int,   # pylint: disable=redefined-builtin
+    def take_snapshot(self, signature_id: int,
                       count: Optional[int] = None, /) -> int:
-        """Take Snapshot of current scene."""
+        """Take snapshot of current scene."""
 
     @robotmesh_doc("""
-        Return number of objects found in the data sample.
+        Number of objects found in the data sample.
     """)
     @property
     def object_count(self) -> int:
-        """Return Number of Objects Detected."""
+        """Return number of objects detected."""
 
     @robotmesh_doc("""
-        Return list of the largest objects found in the data sample.
+        List of the largest objects found in the data sample.
     """)
     @property
     def objects(self) -> list[VisionObject]:
-        """Return Detected Objects."""
+        """Return detected objects."""
 
     @robotmesh_doc("""
-        Return the largest object found in the data sample.
+        Largest object found in the data sample.
     """)
     @vexcode_doc("""
         Largest Object
@@ -126,4 +124,4 @@ class Vision(Device):
     """)
     @property
     def largest_object(self) -> VisionObject:
-        """Return Largest Deteced Object."""
+        """Return largest detected object."""

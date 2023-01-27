@@ -1,24 +1,26 @@
-"""Musical Note Types."""
+"""Musical notes."""
 
 
 from collections.abc import Sequence
 from enum import IntEnum
+from typing import LiteralString
 
 from ..._util.doc import robotmesh_doc
 
 
-__all__: Sequence[str] = ('NoteType',)
+__all__: Sequence[LiteralString] = ('NoteType',)
 
 
 @robotmesh_doc("""
     Musical note to play.
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_note_type.html
 """)
 class NoteType(IntEnum):
-    """Musical Note."""
+    """Musical notes."""
 
-    silence: int = 0   # Stop playing/play a silence.
+    silence: int = 0   # stop playing/play a silence
     C: int = 1
     D: int = 2
     E: int = 3

@@ -17,7 +17,8 @@
   },
 
   "python.analysis.diagnosticSeverityOverrides": {
-    "reportGeneralTypeIssues": "none"
+    "reportGeneralTypeIssues": "none",
+    "reportShadowedImports": "none"
   },
 
   "python.analysis.typeCheckingMode": "strict",

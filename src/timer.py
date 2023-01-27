@@ -6,17 +6,18 @@ robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacetimer.html
 
 
 from collections.abc import Sequence
-from typing_extensions import Self
+from typing import LiteralString, Self
 
 from abm.decor import act, sense
 
 from vex._util.doc import robotmesh_doc
 
 
-__all__: Sequence[str] = ('Timer',)
+__all__: Sequence[LiteralString] = ('Timer',)
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classtimer_1_1_timer.html
 """)
 class Timer:
@@ -45,62 +46,66 @@ class Timer:
     """)
     @act
     def reset(self):
-        """Reset Timer."""
+        """Reset."""
 
     @robotmesh_doc("""
         Start or resume timing the current lap.
     """)
     @act
     def start(self):
-        """Start or Resume Timer."""
+        """Start or resume."""
 
     @robotmesh_doc("""
         Stop or pause timing the current lap.
     """)
     @act
     def stop(self):
-        """Stop or Pause Timer."""
+        """Stop or pause."""
 
     @robotmesh_doc("""
-        Stop the current lap and starts a new one.
+        Stops the current lap and starts a new one.
     """)
     @act
     def start_lap(self):
-        """Start New Timer Lap."""
+        """Start new lap."""
 
     @robotmesh_doc("""
-        Return True if timer is currently running.
+        True if timer is currently running.
     """)
     @sense
     def is_running(self) -> bool:
         """Check if Timer is running."""
 
     @robotmesh_doc("""
-        Return elapsed time for current lap (no args) or lap with given index.
+        Elapsed time for current lap (no args) or lap with given index.
 
         Negative indices (from the end) supported. Time in seconds.
     """)
     @sense
     def elapsed_time(self, lap_index: int = -1, /) -> float:
-        """Return Elapsed Time."""
+        """Return elapsed time."""
 
     @robotmesh_doc("""
-        Return number of laps stored (including the current one).
+        Number of laps stored (including the current one).
     """)
     @sense
     def lap_count(self) -> int:
-        """Return Number of Laps."""
+        """Return number of laps."""
 
     @robotmesh_doc("""
-        Return total elapsed time for all laps (time in seconds).
+        Total elapsed time for all laps.
+
+        Time in seconds.
     """)
     @sense
     def total_time(self) -> float:
-        """Return Total Time."""
+        """Return total time."""
 
     @robotmesh_doc("""
-        Return average time per lap (time in seconds).
+        Average time per lap.
+
+        Time in seconds.
     """)
     @sense
     def average_time(self) -> float:
-        """Return Average Time per Lap."""
+        """Return average time per lap."""

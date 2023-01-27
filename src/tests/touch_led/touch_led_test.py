@@ -1,6 +1,6 @@
 import unittest
 
-from ...vex import Touchled, FadeType, Ports, ColorHue
+from vex import Touchled, FadeType, Ports, ColorHue
 
 
 class TestTouchLed(unittest.TestCase):
@@ -14,7 +14,7 @@ class TestTouchLed(unittest.TestCase):
 
     def test_touch_led_set_color(self):
         self.touch_led.set_color(ColorHue.RED)
-    
+
     def test_touch_led_set_brightness(self):
         self.touch_led.set_brightness(25)
 
