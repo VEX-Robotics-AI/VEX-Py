@@ -11,6 +11,7 @@
 from datetime import date
 from importlib.metadata import metadata
 import os
+from typing import LiteralString
 
 import vex
 
@@ -29,7 +30,7 @@ import vex
 # -- Project information -----------------------------------------------------
 # sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-METADATA: dict[str, str] = metadata(distribution_name='VEX-Py')
+METADATA: dict[LiteralString, LiteralString] = metadata(distribution_name='VEX-Py')  # noqa: E501
 
 project: LiteralString = METADATA['Name']
 author: LiteralString = METADATA['Author']
@@ -47,7 +48,7 @@ release: LiteralString = vex.__version__
 # Add any Sphinx extension module names here, as strings.
 # They can be extensions coming with Sphinx (named 'sphinx.ext.*')
 # or your custom ones.
-extensions: list[str] = [
+extensions: list[LiteralString] = [
     'sphinx.ext.autodoc',   # Include documentation from docstrings
     'sphinx.ext.autosectionlabel',   # Allow reference sections using its title
     'sphinx.ext.autosummary',   # Generate autodoc summaries
@@ -77,12 +78,12 @@ extensions: list[str] = [
 ]
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path: list[str] = ['_templates']
+templates_path: list[LiteralString] = ['_templates']
 
 # List of patterns, relative to source directory,
 # that match files and directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns: list[str] = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns: list[LiteralString] = ['_build', 'Thumbs.db', '.DS_Store']
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -95,7 +96,7 @@ html_theme: LiteralString = 'alabaster'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path: list[str] = ['_static']
+html_static_path: list[LiteralString] = ['_static']
 
 for _html_static_path in html_static_path:
     os.makedirs(name=_html_static_path, exist_ok=True)
@@ -106,4 +107,5 @@ html_math_renderer: LiteralString = 'mathjax'
 
 
 # Source Parsers
-source_suffix: dict[str, str] = {'.md': 'markdown', '.rst': 'restructuredtext'}
+source_suffix: dict[LiteralString, LiteralString] = {'.md': 'markdown',
+                                                     '.rst': 'restructuredtext'}  # noqa: E501
