@@ -2,6 +2,7 @@
 
 
 from collections.abc import Sequence
+from typing import LiteralString
 
 from abm.decor import act
 
@@ -14,7 +15,7 @@ from .note import NoteType
 from .sound import SoundType
 
 
-__all__: Sequence[str] = 'BrainSound', 'NoteType', 'SoundType'
+__all__: Sequence[LiteralString] = 'BrainSound', 'NoteType', 'SoundType'
 
 
 @robotmesh_doc("""
