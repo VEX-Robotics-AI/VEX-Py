@@ -1,6 +1,6 @@
 import unittest
 
-from ...vex import Brain, SECONDS
+from vex import Brain, SECONDS
 from ...testing.io_utils import replace_stdin
 
 

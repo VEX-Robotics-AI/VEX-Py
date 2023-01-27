@@ -1,13 +1,13 @@
 import unittest
 
 
-from ...vex import Bumper, Ports
+from vex import Bumper, Ports
 
 
 def callback_func():
     print("Button pressed/released")
 
-   
+
 class testBumperSwitchSensor(unittest.TestCase):
     def setUp(self):
         self.bumper = Bumper(Ports.PORT1)

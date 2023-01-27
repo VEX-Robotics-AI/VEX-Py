@@ -1,7 +1,7 @@
 import unittest
 
-from ..vex import DriveTrain
-from ..vex import Motor, Ports, DEGREES, PERCENT, FORWARD, REVERSE, MM, LEFT, CurrentUnits
+from vex import DriveTrain
+from vex import Motor, Ports, DEGREES, PERCENT, FORWARD, REVERSE, MM, LEFT, CurrentUnits
 from ..testing.io_utils import replace_stdin
 
 

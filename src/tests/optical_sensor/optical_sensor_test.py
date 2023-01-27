@@ -1,6 +1,6 @@
 import unittest
 
-from ...vex import (
+from vex import (
     Optical, Ports,
     LedStateType, GestureType, ColorHue,
     PERCENT,

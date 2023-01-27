@@ -3,7 +3,7 @@
 
 import unittest
 
-from ...vex import (
+from vex import (
     Motor,
     Ports,
     FORWARD, REVERSE, DEGREES, PERCENT,

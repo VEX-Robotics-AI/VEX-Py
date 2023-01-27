@@ -1,6 +1,6 @@
 import unittest
 
-from ...vex import Brain, NoteType, SECONDS
+from vex import Brain, NoteType, SECONDS
 
 
 class TestBrainSound(unittest.TestCase):

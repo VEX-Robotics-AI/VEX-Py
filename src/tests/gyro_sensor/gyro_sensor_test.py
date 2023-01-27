@@ -1,6 +1,6 @@
 import unittest
 
-from ...vex import Gyro, GyroCalibrationType, DEGREES, Ports
+from vex import Gyro, GyroCalibrationType, DEGREES, Ports
 from ...testing.io_utils import replace_stdin
 
 

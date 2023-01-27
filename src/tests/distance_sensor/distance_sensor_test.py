@@ -1,6 +1,6 @@
 import unittest
 
-from ...vex import Distance, ObjectSizeType, Ports, MM
+from vex import Distance, ObjectSizeType, Ports, MM
 from ...testing.io_utils import replace_stdin
 
 
