@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Optional
+from typing import LiteralString, Optional
 
 from abm.decor import act
 
@@ -18,7 +18,7 @@ from .font import (
     FontType)
 
 
-__all__: Sequence[str] = (
+__all__: Sequence[LiteralString] = (
     'BrainLcd',
     'Font',
     'MONO_M', 'MONO_L', 'MONO_XL', 'MONO_XXL', 'MONO_S', 'MONO_XS',
@@ -32,6 +32,7 @@ __all__: Sequence[str] = (
     * 21 characters wide
     * 5 lines (1-5)
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brain_lcd.html
 """)
 class BrainLcd(SingletonDevice):

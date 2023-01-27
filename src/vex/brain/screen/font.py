@@ -3,11 +3,12 @@
 
 from collections.abc import Sequence
 from enum import IntEnum, auto
+from typing import LiteralString
 
 from ..._util.doc import robotmesh_doc
 
 
-__all__: Sequence[str] = (
+__all__: Sequence[LiteralString] = (
     'Font',
     'MONO_M', 'MONO_L', 'MONO_XL', 'MONO_XXL', 'MONO_S', 'MONO_XS',
     'PROP_M', 'PROP_L', 'PROP_XL', 'PROP_XXL',
