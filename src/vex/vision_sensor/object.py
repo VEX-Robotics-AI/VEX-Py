@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import LiteralString
+from typing import LiteralString, Self
 
 from .._util.doc import robotmesh_doc
 
@@ -21,61 +21,61 @@ class VisionObject:
         Unique ID of the object.
     """)
     @property
-    def id(self) -> int:
+    def id(self: Self) -> int:
         """Return object ID."""
 
     @robotmesh_doc("""
         Top-left X position of the object.
     """)
     @property
-    def originX(self) -> int:
+    def originX(self: Self) -> int:
         """Return object's top-left X co-ordinate."""
 
     @robotmesh_doc("""
         Top-left Y position of the object.
     """)
     @property
-    def originY(self) -> int:
+    def originY(self: Self) -> int:
         """Return object's top-left Y co-ordinate."""
 
     @robotmesh_doc("""
         Center X position of the object.
     """)
     @property
-    def centerX(self) -> int:
+    def centerX(self: Self) -> int:
         """Return object's center X co-ordinate."""
 
     @robotmesh_doc("""
         Center Y position of the object.
     """)
     @property
-    def centerY(self) -> int:
+    def centerY(self: Self) -> int:
         """Return object's center Y co-ordinate."""
 
     @robotmesh_doc("""
         Width of the object.
     """)
     @property
-    def width(self) -> int:
+    def width(self: Self) -> int:
         """Return object's width."""
 
     @robotmesh_doc("""
         Height of the object.
     """)
     @property
-    def height(self) -> int:
+    def height(self: Self) -> int:
         """Return object's height."""
 
     @robotmesh_doc("""
         Angle of the object.
     """)
     @property
-    def angle(self) -> int:
+    def angle(self: Self) -> int:
         """Return object's angle."""
 
     @robotmesh_doc("""
         True if vision sensor detects the object, False if not.
     """)
     @property
-    def exists(self) -> bool:
+    def exists(self: Self) -> bool:
         """Check if object is detected."""
