@@ -3,11 +3,12 @@
 
 from collections.abc import Sequence
 from enum import IntEnum
+from typing import LiteralString
 
 from .._util.doc import robotmesh_doc
 
 
-__all__: Sequence[str] = ('VoltageUnits',)
+__all__: Sequence[LiteralString] = ('VoltageUnits',)
 
 
 @robotmesh_doc("""

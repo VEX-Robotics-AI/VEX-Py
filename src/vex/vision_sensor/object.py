@@ -1,7 +1,13 @@
-"""Vision Object."""
+"""Vision object."""
 
+
+from collections.abc import Sequence
+from typing import LiteralString
 
 from .._util.doc import robotmesh_doc
+
+
+__all__: Sequence[LiteralString] = ('VisionObject',)
 
 
 @robotmesh_doc("""
@@ -9,7 +15,7 @@ from .._util.doc import robotmesh_doc
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvision_1_1_vision_object.html
 """)
 class VisionObject:
-    """Vision Object."""
+    """Vision object."""
 
     @robotmesh_doc("""
         Unique ID of the object.

@@ -3,22 +3,23 @@
 
 from collections.abc import Sequence
 from threading import Thread
-from typing import Self, TypeVar
+from typing import LiteralString, Self, TypeVar
 
 from abm.decor import sense
 
 from .._util.doc import robotmesh_doc, vexcode_doc
 
 
-__all__: Sequence[str] = ('ControllerAxis',)
+__all__: Sequence[LiteralString] = ('ControllerAxis',)
 
 
 Controller = TypeVar(name='Controller')
 
 
 @robotmesh_doc("""
-    Use the Axis class to get values from one of the controller's joysticks.
+    Use the Axis class to get values from one of the controller's joysticks
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_controller_axis.html
 """)
 class ControllerAxis:

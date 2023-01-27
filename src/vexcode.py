@@ -2,6 +2,7 @@
 
 
 from collections.abc import Sequence
+from typing import LiteralString
 
 from vex import (
     Ports,
@@ -26,7 +27,7 @@ from vex import (
 from drivetrain import Drivetrain
 
 
-__all__: Sequence[str] = (
+__all__: Sequence[LiteralString] = (
     'Ports',
     'Brain', 'BrainButton', 'BrainLcd', 'BrainSound', 'NoteType',
     'Bumper',

@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Optional, Self
+from typing import LiteralString, Optional, Self
 
 from abm.decor import sense
 
@@ -14,7 +14,7 @@ from .._util.doc import robotmesh_doc, vexcode_doc
 from .object import VisionObject
 
 
-__all__: Sequence[str] = 'Vision', 'VisionObject'
+__all__: Sequence[LiteralString] = 'Vision', 'VisionObject'
 
 
 @robotmesh_doc("""

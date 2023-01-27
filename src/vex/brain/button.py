@@ -2,19 +2,20 @@
 
 
 from collections.abc import Sequence
-from typing import Self
+from typing import LiteralString, Self
 
 from abm.decor import sense
 
 from .._util.doc import robotmesh_doc, vexcode_doc
 
 
-__all__: Sequence[str] = ('BrainButton',)
+__all__: Sequence[LiteralString] = ('BrainButton',)
 
 
 @robotmesh_doc("""
-    Use the Button class to get values from the Brain's buttons.
+    Use the Button class to get values from the Brain's buttons
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brain_button.html
 """)
 class BrainButton:

@@ -3,6 +3,7 @@
 
 from collections.abc import Sequence
 from threading import Thread
+from typing import LiteralString
 
 from abm.decor import sense
 
@@ -12,10 +13,11 @@ from ..brain.port import Ports
 from .._util.doc import robotmesh_doc, vexcode_doc
 
 
-__all__: Sequence[str] = ('Bumper',)
+__all__: Sequence[LiteralString] = ('Bumper',)
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_bumper.html
 """)
 class Bumper(Device):

@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Literal, Self
+from typing import Literal, LiteralString, Self
 
 from abm.decor import act, sense
 
@@ -19,7 +19,7 @@ from .._common_enums.rotation import RotationUnits, DEGREES
 from .._util.type import NumType
 
 
-__all__: Sequence[str] = ('MotorGroup',)
+__all__: Sequence[LiteralString] = ('MotorGroup',)
 
 
 class MotorGroup:

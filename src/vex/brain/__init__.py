@@ -2,6 +2,7 @@
 
 
 from collections.abc import Sequence
+from typing import LiteralString
 
 from .._abstract_device import SingletonDevice
 
@@ -18,7 +19,7 @@ from .speaker import BrainSound, NoteType, SoundType
 from .timer import BrainTimer
 
 
-__all__: Sequence[str] = (
+__all__: Sequence[LiteralString] = (
     'Brain',
     'BrainBattery',
     'BrainButton',

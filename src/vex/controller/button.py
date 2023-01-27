@@ -3,19 +3,20 @@
 
 from collections.abc import Sequence
 from threading import Thread
-from typing import Self
+from typing import LiteralString, Self
 
 from abm.decor import sense, act
 
 from .._util.doc import robotmesh_doc, vexcode_doc
 
 
-__all__: Sequence[str] = ('ControllerButton',)
+__all__: Sequence[LiteralString] = ('ControllerButton',)
 
 
 @robotmesh_doc("""
-    Use the Button class to get values from the controller's buttons.
+    Use the Button class to get values from the controller's buttons
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_controller_button.html
 """)
 class ControllerButton:

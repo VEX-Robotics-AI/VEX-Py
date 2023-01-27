@@ -9,7 +9,7 @@ robotmesh.com/studio/content/docs/vexv5-python/html/namespacesmartdrive.html
 
 
 from collections.abc import Sequence
-from typing import Optional, Self
+from typing import LiteralString, Optional, Self
 
 from abm.decor import act, sense
 
@@ -24,10 +24,11 @@ from vex._util.type import NumType
 from drivetrain import Drivetrain, DrivetrainMotorType
 
 
-__all__: Sequence[str] = ('Smartdrive',)
+__all__: Sequence[LiteralString] = ('Smartdrive',)
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classsmartdrive_1_1_smartdrive.html
 """)
 class Smartdrive(Drivetrain):

@@ -3,7 +3,7 @@
 
 from collections.abc import Sequence
 from threading import Thread
-from typing import Literal
+from typing import Literal, LiteralString
 
 from abm.decor import act, sense
 
@@ -18,9 +18,9 @@ from .gesture import GestureType, GestureInfo
 from .led import LedStateType
 
 
-__all__: Sequence[str] = ('Optical',
-                          'GestureType', 'GestureInfo',
-                          'LedStateType')
+__all__: Sequence[LiteralString] = ('Optical',
+                                    'GestureType', 'GestureInfo',
+                                    'LedStateType')
 
 
 GESTURE_CALLBACK_DOCSTR: str = """

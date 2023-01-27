@@ -9,7 +9,7 @@ robotmesh.com/studio/content/docs/vexv5-python/html/namespacedrivetrain.html
 
 
 from collections.abc import Sequence
-from typing import Optional, Self
+from typing import LiteralString, Optional, Self
 
 from abm.decor import act, sense
 
@@ -28,13 +28,14 @@ from vex._util.type import NumType
 from motor_group import MotorGroup
 
 
-__all__: Sequence[str] = ('Drivetrain',)
+__all__: Sequence[LiteralString] = ('Drivetrain',)
 
 
 DrivetrainMotorType = Motor | MotorGroup | list[Motor] | tuple[Motor]
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classdrivetrain_1_1_drivetrain.html
 """)
 class Drivetrain:  # pylint: disable=too-many-instance-attributes

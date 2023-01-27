@@ -9,7 +9,7 @@ robotmesh.com/studio/content/docs/vexv5-python/html/namespacemotor__group.html
 
 
 from collections.abc import Sequence
-from typing import Optional, Self
+from typing import LiteralString, Optional, Self
 
 from abm.decor import act, sense
 
@@ -25,10 +25,11 @@ from vex._util.doc import robotmesh_doc
 from vex._util.type import NumType
 
 
-__all__: Sequence[str] = ('MotorGroup',)
+__all__: Sequence[LiteralString] = ('MotorGroup',)
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classmotor__group_1_1_motor_group.html
 """)
 class MotorGroup:  # pylint: disable=too-many-public-methods

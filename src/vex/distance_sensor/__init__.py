@@ -2,6 +2,7 @@
 
 
 from collections.abc import Sequence
+from typing import LiteralString
 
 from abm.decor import sense
 
@@ -16,7 +17,7 @@ from .object_size import ObjectSizeType
 from .sonar import Sonar
 
 
-__all__: Sequence[str] = 'Distance', 'ObjectSizeType', 'Sonar'
+__all__: Sequence[LiteralString] = 'Distance', 'ObjectSizeType', 'Sonar'
 
 
 class Distance(Device):

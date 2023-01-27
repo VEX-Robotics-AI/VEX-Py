@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Literal, Self
+from typing import Literal, LiteralString, Self
 
 from abm.decor import act, sense
 
@@ -18,7 +18,7 @@ from .._util.doc import vexcode_doc
 from .._util.type import NumType
 
 
-__all__: Sequence[str] = 'SmartDrive', 'Smartdrive'
+__all__: Sequence[LiteralString] = 'SmartDrive', 'Smartdrive'
 
 
 class SmartDrive(DriveTrain):
