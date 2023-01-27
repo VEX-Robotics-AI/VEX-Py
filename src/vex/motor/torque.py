@@ -3,13 +3,14 @@
 
 from collections.abc import Sequence
 from enum import IntEnum, auto
+from typing import LiteralString
 
 from .._common_enums.percent import PERCENT
 
 from .._util.doc import robotmesh_doc
 
 
-__all__: Sequence[str] = ('TorqueUnits',)
+__all__: Sequence[LiteralString] = ('TorqueUnits',)
 
 
 @robotmesh_doc("""
