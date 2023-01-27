@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import overload
+from typing import LiteralString, overload
 
 from abm.decor import act
 
@@ -12,11 +12,12 @@ from .._util.doc import robotmesh_doc, vexcode_doc
 from .._util.type import NumType
 
 
-__all__: Sequence[str] = 'TimeUnits', 'SECONDS', 'MSEC', 'clock', 'wait'
+__all__: Sequence[LiteralString] = ('TimeUnits', 'SECONDS', 'MSEC',
+                                    'clock', 'wait')
 
 
 @robotmesh_doc("""
-    Get the number of seconds since system startup.
+    Get the number of seconds since system startup
 """)
 def clock() -> NumType:
     """Return number of seconds since program started."""
@@ -33,14 +34,15 @@ def wait(time: NumType, timeUnits: TimeUnits = TimeUnits.SEC, /):
 
 
 @robotmesh_doc("""
-    Wait for a specific amount of time.
+    Wait for a specific amount of time
 
-    Identical to sys.sleep().
+    Identical to sys.sleep()
 
     Parameters
     - time: The length of time to wait
     - timeUnits: The units of time (default seconds)
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacevex.html#a6b9ca2db773bef3a3569a0d6b22f2749
 """)
 @vexcode_doc("""
