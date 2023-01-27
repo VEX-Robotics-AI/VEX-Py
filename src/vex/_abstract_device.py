@@ -1,24 +1,25 @@
-"""VEX Abstract Device Base Classes."""
+"""Abstract Device base classes."""
 
 
 from collections.abc import Sequence
-from typing_extensions import Self
+from typing import LiteralString, Self
 
 from .brain.port import Ports
 
 from ._util.doc import robotmesh_doc
 
 
-__all__: Sequence[str] = 'Device', 'SingletonDevice'
+__all__: Sequence[LiteralString] = 'Device', 'SingletonDevice'
 
 
 @robotmesh_doc("""
-    Base class for all VEX devices.
+    Base class for all VEX devices
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_device.html
 """)
 class Device:
-    """Base Device Class."""
+    """Base Device class."""
 
     @property
     def port(self) -> Ports:
@@ -27,7 +28,7 @@ class Device:
 
     @port.setter
     def port(self, port: Ports):
-        self._port = port
+        self._port: Ports = port
 
     def __eq__(self, other: Self) -> bool:
         """Check equality."""
@@ -42,7 +43,7 @@ class Device:
         return f'{type(self).__name__}({self.port.name})'
 
 
-class SingletonDevice:   # pylint: disable=too-few-public-methods
+class SingletonDevice:
     """Singleton Device."""
 
     def __eq__(self, other: Self) -> bool:

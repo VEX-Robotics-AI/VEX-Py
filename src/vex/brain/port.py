@@ -3,14 +3,16 @@
 
 from collections.abc import Sequence
 from enum import IntEnum
+from typing import LiteralString
 
 from .._util.doc import robotmesh_doc
 
 
-__all__: Sequence[str] = ('Ports',)
+__all__: Sequence[LiteralString] = ('Ports',)
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_ports.html
 """)
 class Ports(IntEnum):

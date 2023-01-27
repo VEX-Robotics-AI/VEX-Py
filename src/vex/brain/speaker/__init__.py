@@ -1,9 +1,8 @@
 """Brain Sound Speaker."""
 
 
-from __future__ import annotations
-
 from collections.abc import Sequence
+from typing import LiteralString
 
 from abm.decor import act
 
@@ -12,18 +11,43 @@ from ...time import TimeUnits
 
 from ..._util.doc import robotmesh_doc, vexcode_doc
 
-from .note_type import NoteType
-from .sound_type import SoundType
+from .note import NoteType
+from .sound import SoundType
 
 
-__all__: Sequence[str] = 'BrainSound', 'NoteType', 'SoundType'
+__all__: Sequence[LiteralString] = 'BrainSound', 'NoteType', 'SoundType'
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_brain_sound.html
 """)
 class BrainSound(SingletonDevice):
-    """Brain Sound."""
+    """Brain Sound Speaker."""
+
+    @robotmesh_doc("""
+        Set the sound effect type for subsequent notes played.
+
+        Parameters
+        - effect: effect type [0..15]
+    """)
+    @act
+    def set_sound_effect(self, effect: int, /):
+        """Set sound effect."""
+        # pylint: disable=attribute-defined-outside-init
+        self.sound_effect: int = effect
+
+    @robotmesh_doc("""
+        Set the sound volume [1-4].
+
+        Parameters
+        - volume: value [1=low...4=high]
+    """)
+    @act
+    def set_volume(self, volume: int, /):
+        """Set sound volume."""
+        # pylint: disable=attribute-defined-outside-init
+        self.volume: int = volume
 
     @vexcode_doc("""
         Play Sound
@@ -52,8 +76,8 @@ class BrainSound(SingletonDevice):
         the proceeding command will begin executing immediately.
     """)
     @act
-    def play_sound(self, sound: SoundType = SoundType.SIREN, /):
-        """Play a sound effect."""
+    def play_sound(self, sound: SoundType, /):
+        """Play sound effect."""
 
     @vexcode_doc("""
         Play Note
@@ -86,13 +110,13 @@ class BrainSound(SingletonDevice):
         Once a musical note starts playing,
         the proceeding command will begin executing immediately.
     """)
-    def play_note(self, octave: int = 3, note: int = 0, duration: int = 1000, /):  # noqa: E501
-        """Play a musical note on the speaker."""
+    def play_note(self, octave: int, note: int, duration: int = 1000, /):
+        """Play musical note."""
 
     @robotmesh_doc("""
         Play a musical note on the speaker.
 
-        Parameters:
+        Parameters
         - note: musical note to play: NoteType enum value
         - octave: octave of the note [1-7], optional
         - duration: time. 0 to start playing without blocking. Default 0.5
@@ -101,7 +125,7 @@ class BrainSound(SingletonDevice):
     @act
     def play(self, note: NoteType, octave: int = 3,
              duration: float = 0.5, timeUnits: TimeUnits = TimeUnits.SEC, /):
-        """Play note/sound on Brain Sound Speaker."""
+        """Play musical note."""
 
     @robotmesh_doc("""
         Play a musical note on the speaker.
@@ -113,13 +137,13 @@ class BrainSound(SingletonDevice):
     """)
     @act
     def play_raw(self, note: NoteType,
-                 duration: float = 0.5, timeUnits: TimeUnits = TimeUnits.SEC, /):   # noqa: E501
-        """Play note/sound on Brain Sound Speaker."""
+                 duration: float = 0.5, timeUnits: TimeUnits = TimeUnits.SEC, /):  # noqa: E501
+        """Play musical note."""
 
     @robotmesh_doc("""
         Play the wave sample.
 
-        Parameters:
+        Parameters
         - waveType: type of the wave sample sound to play [0..15]
         - waitForCompletion: wait for the sample to finish playing
     """)
@@ -132,7 +156,7 @@ class BrainSound(SingletonDevice):
 
         (cdefgab)
 
-        Parameters:
+        Parameters
         - melody: string [cdefgab]: musical alphabet for notes,
                   space: pause,
                   +/-: increase/decrease octave of following notes
@@ -144,32 +168,8 @@ class BrainSound(SingletonDevice):
         """Play musical melody."""
 
     @robotmesh_doc("""
-        Set the sound effect type for subsequent notes played.
-
-        Parameters
-        - effect: effect type [0..15]
-    """)
-    @act
-    def set_sound_effect(self, effect: int, /):
-        """Set Sound Effect."""
-        # pylint: disable=attribute-defined-outside-init
-        self.sound_effect: int = effect
-
-    @robotmesh_doc("""
-        Set the sound volume [1-4].
-
-        Parameters
-        - volume: value [1=low...4=high]
-    """)
-    @act
-    def set_volume(self, volume: int, /):
-        """Set Sound Volume."""
-        # pylint: disable=attribute-defined-outside-init
-        self.volume: int = volume
-
-    @robotmesh_doc("""
         Stop playing music.
     """)
     @act
     def stop(self):
-        """Stop Sound."""
+        """Stop sound."""

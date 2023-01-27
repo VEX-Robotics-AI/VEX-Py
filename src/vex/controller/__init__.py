@@ -1,9 +1,8 @@
 """Controller."""
 
 
-from __future__ import annotations
-
 from collections.abc import Sequence
+from typing import LiteralString, Optional
 
 from abm.decor import act
 
@@ -13,16 +12,20 @@ from .._util.doc import robotmesh_doc
 
 from .axis import ControllerAxis
 from .button import ControllerButton
+from .type import ControllerType, PRIMARY, PARTNER
 
 
-__all__: Sequence[str] = 'Controller', 'ControllerButton', 'ControllerAxis'
+__all__: Sequence[LiteralString] = ('Controller',
+                                    'ControllerAxis',
+                                    'ControllerButton',
+                                    'ControllerType', 'PRIMARY', 'PARTNER')
 
 
 @robotmesh_doc("""
-    Use the Controller class to get values from the remote controller.
+    Use the Controller class to get values from the remote controller
+    as well as write to the controller's screen
 
-    (as well as write to the controller's screen)
-
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_controller.html
 """)
 class Controller(SingletonDevice):
@@ -41,88 +44,88 @@ class Controller(SingletonDevice):
         self._buttonFDown: ControllerButton = ControllerButton(mask='FDown')
         self._buttonLUp: ControllerButton = ControllerButton(mask='LUp')
         self._buttonLDown: ControllerButton = ControllerButton(mask='LDown')
+        self._buttonL3: ControllerButton = ControllerButton(mask='L3')
         self._buttonRUp: ControllerButton = ControllerButton(mask='RUp')
         self._buttonRDown: ControllerButton = ControllerButton(mask='RDown')
-        self._buttonL3: ControllerButton = ControllerButton(mask='L3')
         self._buttonR3: ControllerButton = ControllerButton(mask='R3')
 
-    @robotmesh_doc("""
-        Set the value of the controller axis deadband.
+        self.deadband: Optional[int] = None
 
+    @robotmesh_doc("""
+        Set the value of the controller axis deadband
         (minimum absolute threshold at which position is reported as non-zero)
     """)
     @act
-    def set_deadband(self, deadband: float, /):
-        """Set Controller Axis Deadband Percent Threshold."""
-        # pylint: disable=attribute-defined-outside-init
-        self.deadband: float = deadband
+    def set_deadband(self, deadband: int, /):
+        """Set joystick axis deadband percentage threshold."""
+        self.deadband: int = deadband
 
     @property
     def buttonEUp(self) -> ControllerButton:
-        """Return Controller Button E-Up."""
+        """Get button E Up."""
         return self._buttonEUp
 
     @property
     def buttonEDown(self) -> ControllerButton:
-        """Return Controller Button E-Down."""
+        """Get button E Down."""
         return self._buttonEDown
 
     @property
     def buttonFUp(self) -> ControllerButton:
-        """Return Controler Button F-Up."""
+        """Get button F Up."""
         return self._buttonFUp
 
     @property
     def buttonFDown(self) -> ControllerButton:
-        """Return Controller Button F-Down."""
+        """Get button F Down."""
         return self._buttonFDown
 
     @property
     def buttonLUp(self) -> ControllerButton:
-        """Return Controller Button L-Up."""
+        """Get button L Up."""
         return self._buttonLUp
 
     @property
+    def buttonL3(self) -> ControllerButton:
+        """Get button L 3."""
+        return self._buttonL3
+
+    @property
     def buttonLDown(self) -> ControllerButton:
-        """Return Controller Button L-Down."""
+        """Get button L Down."""
         return self._buttonLDown
 
     @property
     def buttonRUp(self) -> ControllerButton:
-        """Return Controller Button R-Up."""
+        """Get button R Up."""
         return self._buttonRUp
 
     @property
     def buttonRDown(self) -> ControllerButton:
-        """Return Controller Button R-Down."""
+        """Get button R Down."""
         return self._buttonRDown
 
     @property
-    def buttonL3(self) -> ControllerButton:
-        """Return Controller Button L3."""
-        return self._buttonL3
-
-    @property
     def buttonR3(self) -> ControllerButton:
-        """Return Controller Button R3."""
+        """Get button R 3."""
         return self._buttonR3
 
     @property
     def axisA(self) -> ControllerAxis:
-        """Return Controller Axis A."""
+        """Get axis A."""
         return self._axisA
 
     @property
     def axisB(self) -> ControllerAxis:
-        """Return Controller Axis B."""
+        """Get axis B."""
         return self._axisB
 
     @property
     def axisC(self) -> ControllerAxis:
-        """Return Controller Axis C."""
+        """Get axis C."""
         return self._axisC
 
     @property
     def axisD(self) -> ControllerAxis:
-        """Return Controller Axis D."""
+        """Get axis D."""
         return self._axisD

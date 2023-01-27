@@ -3,16 +3,18 @@
 
 from collections.abc import Sequence
 from enum import IntEnum, auto
+from typing import LiteralString
 
 from .._util.doc import robotmesh_doc
 
 
-__all__: Sequence[str] = 'Color', 'ColorHue'
+__all__: Sequence[LiteralString] = 'Color', 'ColorHue'
 
 
 @robotmesh_doc("""
     Defined color hue values.
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_color_hue.html
 """)
 class Color(IntEnum):
