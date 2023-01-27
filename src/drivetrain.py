@@ -311,7 +311,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         Return a timeout in given time units.
     """)
     @sense
-    def timeout(self: Self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> NumType:
+    def timeout(self: Self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> NumType:  # noqa: E501
         """Return motor timeout."""
         return self.timeouts[timeUnits]
 
