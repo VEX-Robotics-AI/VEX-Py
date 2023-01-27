@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import LiteralString
+from typing import LiteralString, Self
 
 from abm.decor import sense
 
@@ -23,11 +23,11 @@ __all__: Sequence[LiteralString] = 'Distance', 'ObjectSizeType', 'Sonar'
 class Distance(Device):
     """Distance Sensor."""
 
-    def __init__(self, port: Ports, /):
+    def __init__(self: Self, port: Ports, /):
         """Initialize Distance Sensor."""
         self.port: Ports = port
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Return integer hash."""
         raise hash(self.port)
 
@@ -41,7 +41,7 @@ class Distance(Device):
         is detected in its range, and False if not.
     """)
     @sense
-    def is_object_detected(self) -> bool:
+    def is_object_detected(self: Self) -> bool:
         """Check if an object is detected within range."""
 
     @vexcode_doc("""
@@ -55,7 +55,7 @@ class Distance(Device):
         or approximately 0.8 to 79.0 inches.
     """)
     @sense
-    def object_distance(self, unit: DistanceUnits = MM, /) -> NumType:
+    def object_distance(self: Self, unit: DistanceUnits = MM, /) -> NumType:
         """Return measured distance to nearby object."""
         assert unit in (MM, INCHES), ValueError('*** UNIT MUST BE MM OR INCHES ***')  # noqa: E501
 
@@ -71,7 +71,7 @@ class Distance(Device):
         while in the range of an IQ Distance Sensor (2nd generation).
     """)
     @sense
-    def object_velocity(self) -> NumType:
+    def object_velocity(self: Self) -> NumType:
         """Return detected object's velocity in m/s."""
 
     @vexcode_doc("""
@@ -88,5 +88,5 @@ class Distance(Device):
             ObjectSizeType.LARGE
     """)
     @sense
-    def object_size(self) -> ObjectSizeType:
+    def object_size(self: Self) -> ObjectSizeType:
         """Return detected object's size estimate."""
