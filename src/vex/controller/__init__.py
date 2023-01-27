@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Optional
+from typing import LiteralString, Optional
 
 from abm.decor import act
 
@@ -15,16 +15,17 @@ from .button import ControllerButton
 from .type import ControllerType, PRIMARY, PARTNER
 
 
-__all__: Sequence[str] = ('Controller',
-                          'ControllerAxis',
-                          'ControllerButton',
-                          'ControllerType', 'PRIMARY', 'PARTNER')
+__all__: Sequence[LiteralString] = ('Controller',
+                                    'ControllerAxis',
+                                    'ControllerButton',
+                                    'ControllerType', 'PRIMARY', 'PARTNER')
 
 
 @robotmesh_doc("""
     Use the Controller class to get values from the remote controller
-    as well as write to the controller's screen.
+    as well as write to the controller's screen
 
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_controller.html
 """)
 class Controller(SingletonDevice):
