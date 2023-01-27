@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import overload
+from typing import LiteralString, overload
 
 from abm.decor import act, sense
 
@@ -14,10 +14,11 @@ from .._util.doc import robotmesh_doc, vexcode_doc
 from .._util.type import NumType
 
 
-__all__: Sequence[str] = ('Sonar',)
+__all__: Sequence[LiteralString] = ('Sonar',)
 
 
 @robotmesh_doc("""
+    Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_sonar.html
 """)
 class Sonar(Device):
