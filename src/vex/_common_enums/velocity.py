@@ -5,7 +5,7 @@ from collections.abc import Sequence
 from enum import IntEnum
 from typing import LiteralString
 
-from .._common_enums.percent import PERCENT
+from .percent import PERCENT
 
 from .._util.doc import robotmesh_doc
 

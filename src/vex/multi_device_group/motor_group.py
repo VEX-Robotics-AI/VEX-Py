@@ -11,10 +11,10 @@ from ..motor.brake import BrakeType, BRAKE
 from ..motor.current import CurrentUnits
 from ..motor.direction import DirectionType, FORWARD
 from ..motor.torque import TorqueUnits
-from ..motor.velocity import VelocityUnits
 from ..time.units import TimeUnits, SECONDS
 from .._common_enums.percent import PERCENT
 from .._common_enums.rotation import RotationUnits, DEGREES
+from .._common_enums.velocity import VelocityUnits
 
 from .._util.type import NumType
 

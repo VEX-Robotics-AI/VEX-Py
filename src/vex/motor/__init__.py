@@ -11,13 +11,13 @@ from ..brain.port import Ports
 from ..time import TimeUnits, SECONDS
 from .._common_enums.percent import PERCENT
 from .._common_enums.rotation import RotationUnits, DEGREES
+from .._common_enums.velocity import VelocityUnits
 
 from .brake import BrakeType, COAST, BRAKE, HOLD
 from .current import CurrentUnits
 from .direction import DirectionType, FORWARD, REVERSE
 from .torque import TorqueUnits
 from .turn import TurnType, LEFT, RIGHT
-from .velocity import VelocityUnits, RPM, DPS
 from .voltage import VoltageUnits
 
 from .._util.doc import robotmesh_doc, vexcode_doc
@@ -30,7 +30,6 @@ __all__: Sequence[LiteralString] = ('Motor',
                                     'DirectionType', 'FORWARD', 'REVERSE',
                                     'TorqueUnits',
                                     'TurnType', 'LEFT', 'RIGHT',
-                                    'VelocityUnits', 'RPM', 'DPS',
                                     'VoltageUnits')
 
 

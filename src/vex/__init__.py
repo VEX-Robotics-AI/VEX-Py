@@ -46,7 +46,6 @@ from .motor import (Motor,
                     DirectionType, FORWARD, REVERSE,
                     TurnType, LEFT, RIGHT,
                     TorqueUnits,
-                    VelocityUnits, RPM, DPS,
                     VoltageUnits)
 
 from .bumper_switch_sensor import Bumper
@@ -65,7 +64,8 @@ from ._common_enums import (AxisType, XAXIS, YAXIS, ZAXIS,
                             OrientationType, ROLL, PITCH, YAW,
                             PercentUnits, PERCENT,
                             DistanceUnits, MM, INCHES,
-                            RotationUnits, DEGREES, TURNS)
+                            RotationUnits, DEGREES, TURNS,
+                            VelocityUnits, RPM, DPS)
 
 from ._util.doc import robotmesh_doc
 from ._util.type import NumType
