@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Any, LiteralString
+from typing import Any, LiteralString, Self
 
 
 __all__: Sequence[LiteralString] = 'add_doc', 'robotmesh_doc', 'vexcode_doc'
@@ -14,11 +14,11 @@ __all__: Sequence[LiteralString] = 'add_doc', 'robotmesh_doc', 'vexcode_doc'
 class add_doc:   # noqa: N801
     """Add documentation."""
 
-    def __init__(self, doc_str: LiteralString = '', /):
+    def __init__(self: Self, doc_str: LiteralString = '', /):
         """Initialize decorator with docstring."""
         self.doc_str: LiteralString = doc_str
 
-    def __call__(self, member: Any, /):
+    def __call__(self: Self, member: Any, /):
         """Add documentation."""
         member.__doc__ += self.doc_str
         return member
@@ -27,7 +27,7 @@ class add_doc:   # noqa: N801
 class robotmesh_doc(add_doc):   # noqa: N801
     """Add Robot Mesh Studio documentation."""
 
-    def __init__(self, doc_str: LiteralString = '', /):
+    def __init__(self: Self, doc_str: LiteralString = '', /):
         """Initialize decorator with docstring."""
         super().__init__(f'\n\nROBOT MESH STUDIO:\n{doc_str}\n')
 
@@ -35,6 +35,6 @@ class robotmesh_doc(add_doc):   # noqa: N801
 class vexcode_doc(add_doc):   # noqa: N801
     """Add VEXcode documentation."""
 
-    def __init__(self, doc_str: LiteralString = '', /):
+    def __init__(self: Self, doc_str: LiteralString = '', /):
         """Initialize decorator with docstring."""
         super().__init__(f'\n\nVEXCODE:\n{doc_str}\n')
