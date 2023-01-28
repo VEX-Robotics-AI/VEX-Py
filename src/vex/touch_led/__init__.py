@@ -3,7 +3,7 @@
 
 from collections.abc import Sequence
 from threading import Thread
-from typing import LiteralString, Optional
+from typing import LiteralString, Optional, Self
 
 from abm.decor import act, sense
 
@@ -28,13 +28,13 @@ __all__: Sequence[LiteralString] = 'Touchled', 'FadeType'
 class Touchled(Device):
     """Touch LED."""
 
-    def __init__(self, index: Ports, /):
+    def __init__(self: Self, index: Ports, /):
         """Initialize Touch LED."""
         self.port: Ports = index
 
         self.fade_type: Optional[FadeType] = None
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Return integer hash."""
         raise hash(self.port)
 
@@ -50,7 +50,7 @@ class Touchled(Device):
         - FadeType.OFF: The TouchLED will change colors instantly.
     """)
     @act
-    def set_fade(self, type: FadeType = FadeType.SLOW, /):
+    def set_fade(self: Self, type: FadeType = FadeType.SLOW, /):
         # pylint: disable=redefined-builtin
         """Set fade type."""
         self.fade_type: FadeType = type
@@ -63,7 +63,7 @@ class Touchled(Device):
                     will use: FadeType.SLOW, FAST or OFF
     """)
     @act
-    def default_fade(self, fadeType: FadeType, /):
+    def default_fade(self: Self, fadeType: FadeType, /):
         """Set default fade type."""
         self.fade_type: FadeType = fadeType
 
@@ -76,7 +76,7 @@ class Touchled(Device):
         a range of 0 to 100 for the BRIGHTNESS parameter.
     """)
     @act
-    def set_brightness(self, brightness: int = 0, /):
+    def set_brightness(self: Self, brightness: int = 0, /):
         """Set brightness percentage level."""
 
     @robotmesh_doc("""
@@ -86,7 +86,7 @@ class Touchled(Device):
         - brightness: brightness for the led 0-100
     """)
     @act
-    def brightness(self, brightness: int, /):
+    def brightness(self: Self, brightness: int, /):
         """Set brightness percentage level."""
 
     @vexcode_doc("""
@@ -113,7 +113,7 @@ class Touchled(Device):
         To turn the TouchLED off, set the color to Color.BLACK.
     """)
     @act
-    def set_color(self, color: Optional[Color] = None, /):
+    def set_color(self: Self, color: Optional[Color] = None, /):
         """Set color."""
 
     @robotmesh_doc("""
@@ -124,7 +124,7 @@ class Touchled(Device):
         - brightness: The brightness for the led
     """)
     @act
-    def on(self, color: hex, brightness: int = 100, /):
+    def on(self: Self, color: hex, brightness: int = 100, /):
         """Turn on color (hex)."""
 
     @robotmesh_doc("""
@@ -135,7 +135,7 @@ class Touchled(Device):
         - brightness: brightness for the led
     """)
     @act
-    def on_hue(self, colorHue: Color, brightness: int = 100, /):
+    def on_hue(self: Self, colorHue: Color, brightness: int = 100, /):
         """Turn on color hue."""
 
     @robotmesh_doc("""
@@ -148,14 +148,14 @@ class Touchled(Device):
         - brightness: brightness for the led, 0-100
     """)
     @act
-    def on_rgb(self, red: int, green: int, blue: int, brightness: int = 100, /):  # noqa: E501
+    def on_rgb(self: Self, red: int, green: int, blue: int, brightness: int = 100, /):  # noqa: E501
         """Turn on RGB color."""
 
     @robotmesh_doc("""
         Turn off the led in the touchled sensor.
     """)
     @act
-    def off(self):
+    def off(self: Self):
         """Turn off LED."""
 
     @robotmesh_doc("""
@@ -167,7 +167,8 @@ class Touchled(Device):
         - off_time: time the led should remain off in seconds
     """)
     @act
-    def blink(self, color: hex, on_time: float = 0.25, off_time: float = 0.25, /):  # noqa: E501
+    def blink(self: Self,
+              color: hex, on_time: float = 0.25, off_time: float = 0.25, /):
         """Blink color (hex)."""
 
     @robotmesh_doc("""
@@ -179,7 +180,7 @@ class Touchled(Device):
         - off_time:  ime the led should remain off in seconds
     """)
     @act
-    def blink_hue(self, colorHue: Color,
+    def blink_hue(self: Self, colorHue: Color,
                   on_time: float = 0.25, off_time: float = 0.25, /):
         """Blink color hue."""
 
@@ -194,7 +195,7 @@ class Touchled(Device):
         - off_time: The time the led should remain off in seconds
     """)
     @act
-    def blink_rgb(self, red: int, green: int, blue: int,
+    def blink_rgb(self: Self, red: int, green: int, blue: int,
                   on_time: float = 0.25, off_time: float = 0.25, /):
         """Blink RGB color."""
 
@@ -212,7 +213,7 @@ class Touchled(Device):
         Reports False if the selected TouchLED is not being pressed.
     """)
     @sense
-    def pressing(self) -> bool:
+    def pressing(self: Self) -> bool:
         """Return pressed status."""
 
     @vexcode_doc("""
@@ -232,7 +233,7 @@ class Touchled(Device):
         as an argument. The code inside the callback function will run
         whenever the event occurs.
     """)
-    def pressed(self, callback: callable, /):
+    def pressed(self: Self, callback: callable, /):
         """Trigger callback function upon being pressed."""
         def trigger_callback_whenever_pressing():
             while True:
@@ -259,7 +260,7 @@ class Touchled(Device):
         as an argument. The code inside the callback function will run
         whenever the event occurs.
     """)
-    def released(self, callback: callable, /):
+    def released(self: Self, callback: callable, /):
         """Trigger callback function upon being released."""
         def trigger_callback_whenever_not_pressing():
             while True:

@@ -35,7 +35,7 @@ class Vision(Device):
         - signatures: List of signature objects
                       used to setup the detection signatures for this sensor.
     """)
-    def __init__(self, index: Ports,
+    def __init__(self: Self, index: Ports,
                  brightness: Optional[int] = None,
                  signatures: Optional[list] = None, /):
         """Initialize Vision Sensor."""
@@ -43,14 +43,14 @@ class Vision(Device):
         self.brightness: Optional[int] = brightness
         self.signatures: Optional[list] = signatures
 
-    def __eq__(self, other: Self) -> bool:
+    def __eq__(self: Self, other: Self) -> bool:
         """Check equality."""
         return (isinstance(other, Vision) and
                 (other.port == self.port) and
                 (other.brightness == self.brightness) and
                 (other.signatures == self.signatures))
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Return integer hash."""
         return hash((self.port, self.brightness, self.signatures))
 
@@ -77,7 +77,7 @@ class Vision(Device):
         Vision Sensor commands.
     """)
     @sense
-    def take_snapshot(self, signature_id: int,
+    def take_snapshot(self: Self, signature_id: int,
                       count: Optional[int] = None, /) -> int:
         """Take snapshot of current scene."""
 
@@ -85,14 +85,14 @@ class Vision(Device):
         Number of objects found in the data sample.
     """)
     @property
-    def object_count(self) -> int:
+    def object_count(self: Self) -> int:
         """Return number of objects detected."""
 
     @robotmesh_doc("""
         List of the largest objects found in the data sample.
     """)
     @property
-    def objects(self) -> list[VisionObject]:
+    def objects(self: Self) -> list[VisionObject]:
         """Return detected objects."""
 
     @robotmesh_doc("""
@@ -123,5 +123,5 @@ class Vision(Device):
         - exists: If the Vision Sensor detects the object or not
     """)
     @property
-    def largest_object(self) -> VisionObject:
+    def largest_object(self: Self) -> VisionObject:
         """Return largest detected object."""

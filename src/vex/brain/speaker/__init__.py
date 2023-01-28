@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import LiteralString
+from typing import LiteralString, Self
 
 from abm.decor import act
 
@@ -32,7 +32,7 @@ class BrainSound(SingletonDevice):
         - effect: effect type [0..15]
     """)
     @act
-    def set_sound_effect(self, effect: int, /):
+    def set_sound_effect(self: Self, effect: int, /):
         """Set sound effect."""
         # pylint: disable=attribute-defined-outside-init
         self.sound_effect: int = effect
@@ -44,7 +44,7 @@ class BrainSound(SingletonDevice):
         - volume: value [1=low...4=high]
     """)
     @act
-    def set_volume(self, volume: int, /):
+    def set_volume(self: Self, volume: int, /):
         """Set sound volume."""
         # pylint: disable=attribute-defined-outside-init
         self.volume: int = volume
@@ -76,7 +76,7 @@ class BrainSound(SingletonDevice):
         the proceeding command will begin executing immediately.
     """)
     @act
-    def play_sound(self, sound: SoundType, /):
+    def play_sound(self: Self, sound: SoundType, /):
         """Play sound effect."""
 
     @vexcode_doc("""
@@ -110,7 +110,7 @@ class BrainSound(SingletonDevice):
         Once a musical note starts playing,
         the proceeding command will begin executing immediately.
     """)
-    def play_note(self, octave: int, note: int, duration: int = 1000, /):
+    def play_note(self: Self, octave: int, note: int, duration: int = 1000, /):
         """Play musical note."""
 
     @robotmesh_doc("""
@@ -123,7 +123,7 @@ class BrainSound(SingletonDevice):
         - timeUnits: of time for the duration. Default sec.
     """)
     @act
-    def play(self, note: NoteType, octave: int = 3,
+    def play(self: Self, note: NoteType, octave: int = 3,
              duration: float = 0.5, timeUnits: TimeUnits = TimeUnits.SEC, /):
         """Play musical note."""
 
@@ -136,7 +136,7 @@ class BrainSound(SingletonDevice):
         - timeUnits: of time for the duration. Default sec.
     """)
     @act
-    def play_raw(self, note: NoteType,
+    def play_raw(self: Self, note: NoteType,
                  duration: float = 0.5, timeUnits: TimeUnits = TimeUnits.SEC, /):  # noqa: E501
         """Play musical note."""
 
@@ -148,7 +148,7 @@ class BrainSound(SingletonDevice):
         - waitForCompletion: wait for the sample to finish playing
     """)
     @act
-    def play_wave(self, waveType: int, waitForCompletion: bool = True, /):
+    def play_wave(self: Self, waveType: int, waitForCompletion: bool = True, /):  # noqa: E501
         """Play WAV."""
 
     @robotmesh_doc("""
@@ -164,12 +164,12 @@ class BrainSound(SingletonDevice):
                        (in 1/8s: 1=eighth note...8 = full note)
     """)
     @act
-    def play_melody(self, melody: str, /):
+    def play_melody(self: Self, melody: str, /):
         """Play musical melody."""
 
     @robotmesh_doc("""
         Stop playing music.
     """)
     @act
-    def stop(self):
+    def stop(self: Self):
         """Stop sound."""

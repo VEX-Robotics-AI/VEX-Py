@@ -21,19 +21,20 @@ __all__: Sequence[LiteralString] = ('BrainButton',)
 class BrainButton:
     """Brain Button."""
 
-    def __init__(self, id: str):   # pylint: disable=redefined-builtin
+    def __init__(self: Self,
+                 id: LiteralString):  # pylint: disable=redefined-builtin
         """Initialize Brain Button."""
-        self.id: str = id
+        self.id: LiteralString = id
 
-    def __eq__(self, other: Self) -> bool:
+    def __eq__(self: Self, other: Self) -> bool:
         """Check equality."""
         return isinstance(other, BrainButton) and (other.id == self.id)
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Return integer hash."""
         return hash(self.id)
 
-    def __repr__(self) -> str:
+    def __repr__(self: Self) -> LiteralString:
         """Return string representation."""
         return f'{type(self).__name__}({self.id})'
 
@@ -56,5 +57,5 @@ class BrainButton:
         - buttonCheck
     """)
     @sense
-    def pressing(self) -> bool:
+    def pressing(self: Self) -> bool:
         """Return pressed status."""

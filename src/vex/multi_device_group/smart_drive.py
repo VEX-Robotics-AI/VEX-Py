@@ -24,7 +24,7 @@ __all__: Sequence[LiteralString] = 'SmartDrive', 'Smartdrive'
 class SmartDrive(DriveTrain):
     """Smart Drive Train."""
 
-    def __init__(self, left_motor: Motor, right_motor: Motor,
+    def __init__(self: Self, left_motor: Motor, right_motor: Motor,
                  gyro_sensor: Inertial | Gyro = Inertial(),
                  wheel_size: float = 200, /):
         """Initialize Smart Drive Train."""
@@ -39,7 +39,7 @@ class SmartDrive(DriveTrain):
 
         self.wheel_size: float = wheel_size
 
-    def __eq__(self, other: Self) -> bool:
+    def __eq__(self: Self, other: Self) -> bool:
         """Check equality."""
         return (isinstance(other, DriveTrain) and
                 (other.left_motor == self.left_motor) and
@@ -47,7 +47,7 @@ class SmartDrive(DriveTrain):
                 (other.gyro_sensor == self.gyro_sensor) and
                 (other.wheel_size == self.wheel_size))
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Return integer hash."""
         return hash((self.left_motor, self.right_motor,
                      self.gyro_sensor, self.wheel_size))
@@ -66,7 +66,8 @@ class SmartDrive(DriveTrain):
         and DEGREES written in all-capital letters as its second argument.
     """)
     @act
-    def set_heading(self, value: NumType = 0, units: Literal[DEGREES] = DEGREES):  # noqa: E501
+    def set_heading(self: Self,
+                    value: NumType = 0, units: Literal[DEGREES] = DEGREES):
         """Set specified heading."""
 
     @vexcode_doc("""
@@ -81,7 +82,8 @@ class SmartDrive(DriveTrain):
         The ROTATION parameter does not have a limit of 0-359 degrees.
     """)
     @act
-    def set_rotation(self, value: NumType = 0, units: Literal[DEGREES] = DEGREES):  # noqa: E501
+    def set_rotation(self: Self,
+                     value: NumType = 0, units: Literal[DEGREES] = DEGREES):
         """Set specified rotation."""
 
     @vexcode_doc("""
@@ -113,7 +115,7 @@ class SmartDrive(DriveTrain):
         from executing until the Drivetrain turn has completed.
     """)
     @act
-    def turn_to_heading(self, angle: NumType = 90,
+    def turn_to_heading(self: Self, angle: NumType = 90,
                         units: Literal[DEGREES] = DEGREES, wait: bool = True):
         """Turn to specified heading angle."""
 
@@ -150,7 +152,7 @@ class SmartDrive(DriveTrain):
         the Drivetrain turn is completed.
     """)
     @act
-    def turn_to_rotation(self, angle: NumType = 90,
+    def turn_to_rotation(self: Self, angle: NumType = 90,
                          units: Literal[DEGREES] = DEGREES, wait: bool = True):
         """Turn to specified rotational angle."""
 
@@ -170,7 +172,7 @@ class SmartDrive(DriveTrain):
         reports an increase in heading when rotating clockwise.
     """)
     @sense
-    def heading(self, units: Literal[DEGREES] = DEGREES) -> float:
+    def heading(self: Self, units: Literal[DEGREES] = DEGREES) -> float:
         """Return heading angle."""
 
     @vexcode_doc("""
@@ -188,7 +190,7 @@ class SmartDrive(DriveTrain):
         clockwise direction.
     """)
     @sense
-    def rotation(self, units: Literal[DEGREES] = DEGREES) -> float:
+    def rotation(self: Self, units: Literal[DEGREES] = DEGREES) -> float:
         """Return rotational angle."""
 
 

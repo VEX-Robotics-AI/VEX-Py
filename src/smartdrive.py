@@ -13,10 +13,10 @@ from typing import LiteralString, Optional, Self
 
 from abm.decor import act, sense
 
-from vex.motor.velocity import VelocityUnits
 from vex.gyro_sensor import Gyro
 from vex._common_enums.distance import DistanceUnits
 from vex._common_enums.rotation import RotationUnits
+from vex._common_enums.velocity import VelocityUnits
 
 from vex._util.doc import robotmesh_doc
 from vex._util.type import NumType
@@ -63,7 +63,7 @@ class Smartdrive(Drivetrain):
 
         self.gyro: Gyro = gyro
 
-    def __eq__(self, other: Self) -> bool:
+    def __eq__(self: Self, other: Self) -> bool:
         """Check equality."""
         return (isinstance(other, Smartdrive) and
                 (other.left_motor == self.left_motor) and
@@ -74,7 +74,7 @@ class Smartdrive(Drivetrain):
                 (other.distance_unit == self.distance_unit) and
                 (other.gear_ratio == self.gear_ratio))
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Return integer hash."""
         return hash((self.left_motor, self.right_motor,
                      self.gyro,
@@ -124,7 +124,7 @@ class Smartdrive(Drivetrain):
         Start turn to heading.
     """)
     @act
-    def start_turn_to_heading(self,
+    def start_turn_to_heading(self: Self,
                               angle: NumType,
                               angleUnits: RotationUnits = RotationUnits.DEG,
                               velocity: Optional[NumType] = None,
@@ -135,7 +135,7 @@ class Smartdrive(Drivetrain):
         Start turn to rotation.
     """)
     @act
-    def start_turn_to_rotation(self,
+    def start_turn_to_rotation(self: Self,
                                angle: NumType,
                                angleUnits: RotationUnits = RotationUnits.DEG,
                                velocity: Optional[NumType] = None,
@@ -151,14 +151,14 @@ class Smartdrive(Drivetrain):
         Reimplemented from drivetrain.Drivetrain.
     """)
     @sense
-    def is_done(self) -> bool:
+    def is_done(self: Self) -> bool:
         """Check if drivetrain has finished moving."""
 
     @property
-    def gyro(self) -> Gyro:
+    def gyro(self: Self) -> Gyro:
         """Get Gyro Sensor."""
         return self._gyro
 
     @gyro.setter
-    def gyro(self, gyro: Gyro):
+    def gyro(self: Self, gyro: Gyro):
         self._gyro: Gyro = gyro

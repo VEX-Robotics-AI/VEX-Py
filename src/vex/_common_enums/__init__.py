@@ -10,6 +10,7 @@ from .orientation import OrientationType, ROLL, PITCH, YAW
 from .percent import PercentUnits, PERCENT
 from .distance import DistanceUnits, MM, INCHES
 from .rotation import RotationUnits, DEGREES, TURNS
+from .velocity import VelocityUnits, RPM, DPS
 
 
 __all__: Sequence[LiteralString] = ('AxisType', 'XAXIS', 'YAXIS', 'ZAXIS',
@@ -17,4 +18,5 @@ __all__: Sequence[LiteralString] = ('AxisType', 'XAXIS', 'YAXIS', 'ZAXIS',
                                     'OrientationType', 'ROLL', 'PITCH', 'YAW',
                                     'PercentUnits', 'PERCENT',
                                     'DistanceUnits', 'MM', 'INCHES',
-                                    'RotationUnits', 'DEGREES', 'TURNS')
+                                    'RotationUnits', 'DEGREES', 'TURNS',
+                                    'VelocityUnits', 'RPM', 'DPS')

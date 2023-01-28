@@ -3,7 +3,7 @@
 
 from collections.abc import Sequence
 from threading import Thread
-from typing import LiteralString
+from typing import LiteralString, Self
 
 from abm.decor import sense
 
@@ -29,11 +29,11 @@ class Bumper(Device):
         param:
         index: The port index for this bumper. The index is zero-based.
     """)
-    def __init__(self, index: Ports, /):
+    def __init__(self: Self, index: Ports, /):
         """Initialize Bumper Switch Sensor."""
         self.port: Ports = index
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Return integer hash."""
         raise hash(self.port)
 
@@ -51,7 +51,7 @@ class Bumper(Device):
         Pressing Bumper reports False if the Bumper is not being pressed.
     """)
     @sense
-    def pressing(self) -> bool:
+    def pressing(self: Self) -> bool:
         """Return pressed status."""
 
     @vexcode_doc("""
@@ -71,7 +71,7 @@ class Bumper(Device):
         as an argument. The code inside the callback function will run
         whenever the event occurs.
     """)
-    def pressed(self, callback: callable, /):
+    def pressed(self: Self, callback: callable, /):
         """Trigger callback function upon being pressed."""
         def trigger_callback_whenever_pressing():
             while True:
@@ -97,7 +97,7 @@ class Bumper(Device):
         as an argument. The code inside the callback function will run
         whenever the event occurs.
     """)
-    def released(self, callback: callable, /):
+    def released(self: Self, callback: callable, /):
         """Trigger callback function upon being released."""
         def trigger_callback_whenever_not_pressing():
             while True:

@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Literal, LiteralString
+from typing import Literal, LiteralString, Self
 
 from abm.decor import act, sense
 
@@ -25,7 +25,7 @@ def _ensure_rotation_unit_is_degrees(unit: RotationUnits, /):
 class Inertial(SingletonDevice):
     """Brain-built-in Inertial Sensor."""
 
-    def __init__(self):
+    def __init__(self: Self):
         """Initialize Brain-built-in Inertial Sensor."""
 
     @vexcode_doc("""
@@ -43,7 +43,7 @@ class Inertial(SingletonDevice):
         approximately 2 seconds to complete.
     """)
     @act
-    def calibrate(self):
+    def calibrate(self: Self):
         """Calibrate."""
 
     @vexcode_doc("""
@@ -62,7 +62,8 @@ class Inertial(SingletonDevice):
         for the HEADING parameter.
     """)
     @act
-    def set_heading(self, value: float = 0, unit: Literal[DEGREES] = DEGREES, /):  # noqa: E501
+    def set_heading(self: Self,
+                    value: float = 0, unit: Literal[DEGREES] = DEGREES, /):
         # pylint: disable=unused-argument
         """Set heading to specified angle."""
         _ensure_rotation_unit_is_degrees(unit)
@@ -79,7 +80,8 @@ class Inertial(SingletonDevice):
         or negative (counter-clockwise) value.
     """)
     @act
-    def set_rotation(self, value: float = 0, unit: Literal[DEGREES] = DEGREES, /):  # noqa: E501
+    def set_rotation(self: Self,
+                     value: float = 0, unit: Literal[DEGREES] = DEGREES, /):
         # pylint: disable=unused-argument
         """Set rotational angle to specified value."""
         _ensure_rotation_unit_is_degrees(unit)
@@ -96,7 +98,7 @@ class Inertial(SingletonDevice):
         Inertial Heading reports a range of values from 0.00 to 359.99 degrees.
     """)
     @sense
-    def heading(self, unit: Literal[DEGREES] = DEGREES, /) -> float:
+    def heading(self: Self, unit: Literal[DEGREES] = DEGREES, /) -> float:
         """Return current heading in degrees."""
         _ensure_rotation_unit_is_degrees(unit)
 
@@ -113,7 +115,7 @@ class Inertial(SingletonDevice):
         when the Inertial Sensor turns in the counter-clockwise direction.
     """)
     @sense
-    def rotation(self, unit: Literal[DEGREES] = DEGREES, /) -> float:
+    def rotation(self: Self, unit: Literal[DEGREES] = DEGREES, /) -> float:
         """Return current angle of rotation in degrees."""
         _ensure_rotation_unit_is_degrees(unit)
 
@@ -137,7 +139,7 @@ class Inertial(SingletonDevice):
         from -4.0 to 4.0 Gs.
     """)
     @sense
-    def acceleration(self, axis: AxisType = AxisType.XAXIS, /) -> float:
+    def acceleration(self: Self, axis: AxisType = AxisType.XAXIS, /) -> float:
         """Return acceleration in Axis X, Y or Z."""
 
     @vexcode_doc("""
@@ -162,7 +164,7 @@ class Inertial(SingletonDevice):
         in dps (degrees per second)
     """)
     @sense
-    def gyro_rate(self, axis: AxisType = AxisType.XAXIS,
+    def gyro_rate(self: Self, axis: AxisType = AxisType.XAXIS,
                   unit: Literal[VelocityUnits.DPS] = VelocityUnits.DPS, /) -> float:  # noqa: E501
         # pylint: disable=unused-argument
         """Return rate of rotation for Axis X, Y or Z."""
@@ -186,7 +188,7 @@ class Inertial(SingletonDevice):
             represents yaw, which reports a value between -180 to +180 degrees
     """)
     @sense
-    def orientation(self, axis: OrientationType = OrientationType.ROLL,
+    def orientation(self: Self, axis: OrientationType = OrientationType.ROLL,
                     unit: Literal[DEGREES] = DEGREES, /) -> float:
         # pylint: disable=unused-argument
         """Return orientation angle."""

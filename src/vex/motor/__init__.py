@@ -11,13 +11,13 @@ from ..brain.port import Ports
 from ..time import TimeUnits, SECONDS
 from .._common_enums.percent import PERCENT
 from .._common_enums.rotation import RotationUnits, DEGREES
+from .._common_enums.velocity import VelocityUnits
 
 from .brake import BrakeType, COAST, BRAKE, HOLD
 from .current import CurrentUnits
 from .direction import DirectionType, FORWARD, REVERSE
 from .torque import TorqueUnits
 from .turn import TurnType, LEFT, RIGHT
-from .velocity import VelocityUnits, RPM, DPS
 from .voltage import VoltageUnits
 
 from .._util.doc import robotmesh_doc, vexcode_doc
@@ -30,7 +30,6 @@ __all__: Sequence[LiteralString] = ('Motor',
                                     'DirectionType', 'FORWARD', 'REVERSE',
                                     'TorqueUnits',
                                     'TurnType', 'LEFT', 'RIGHT',
-                                    'VelocityUnits', 'RPM', 'DPS',
                                     'VoltageUnits')
 
 
@@ -52,7 +51,7 @@ class Motor(Device):
         - index: Port index for this motor. The index is zero-based.
         - reverse: Sets the reverse flag for the new motor object.
     """)
-    def __init__(self, index: Ports, reverse: bool = False, /):
+    def __init__(self: Self, index: Ports, reverse: bool = False, /):
         """Initialize Motor."""
         self.port: Ports = index
         self.reverse: bool = reverse
@@ -69,17 +68,17 @@ class Motor(Device):
         self.max_torque: dict[TorqueUnits, NumType] = dict[TorqueUnits, NumType]()  # noqa: E501
         self.max_torque_current: Optional[float] = None
 
-    def __eq__(self, other: Self) -> bool:
+    def __eq__(self: Self, other: Self) -> bool:
         """Check equality."""
         return (isinstance(other, type(self)) and
                 (other.port == self.port) and
                 (other.reverse == self.reverse))
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Return integer hash."""
         return hash((self.port, self.reverse))
 
-    def __repr__(self) -> str:
+    def __repr__(self: Self) -> str:
         """Return string representation."""
         return f'{type(self).__name__}({self.port.name}' + (', reverse)'
                                                             if self.reverse
@@ -96,7 +95,7 @@ class Motor(Device):
                                     spin the motor in the opposite direction
     """)
     @act
-    def set_reversed(self, is_reversed: bool, /):
+    def set_reversed(self: Self, is_reversed: bool, /):
         """Set reversed mode."""
         assert isinstance(is_reversed, bool), \
             TypeError('*** is_reversed={is_reversed} NOT A BOOL ***')
@@ -118,7 +117,7 @@ class Motor(Device):
         The Set Motor Position command accepts DEGREES or TURNS as valid UNITS.
     """)
     @act
-    def set_position(self, position: NumType, unit: RotationUnits, /):
+    def set_position(self: Self, position: NumType, unit: RotationUnits, /):
         """Set rotational angle to specified position."""
         assert isinstance(position, NumType), \
             TypeError(f'*** position {position} NEITHER A FLOAT NOR AN INT ***')  # noqa: E501
@@ -135,7 +134,7 @@ class Motor(Device):
                          a RotationUnits enum value.
     """)
     @act
-    def set_rotation(self, value: NumType,
+    def set_rotation(self: Self, value: NumType,
                      rotationUnits: RotationUnits = RotationUnits.DEG, /):
         """Set rotational angle to specified value."""
         assert isinstance(value, NumType), \
@@ -151,17 +150,17 @@ class Motor(Device):
         Resets the motor's encoder to the value of zero.
     """)
     @act
-    def reset_rotation(self):
+    def reset_rotation(self: Self):
         """Reset rotational angle to 0."""
         for rotation_unit in self._rotation:
             self._rotation[rotation_unit] = 0
 
     @overload
-    def set_velocity(self, value: NumType, unit: VelocityUnits = PERCENT, /):
+    def set_velocity(self: Self, value: NumType, unit: VelocityUnits = PERCENT, /):  # noqa: E501
         ...
 
     @overload
-    def set_velocity(self, velocity: NumType,
+    def set_velocity(self: Self, velocity: NumType,
                      velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         ...
 
@@ -193,7 +192,8 @@ class Motor(Device):
         Setting velocity to 0 will prevent the Motor/Motor Group from spinning.
     """)
     @act
-    def set_velocity(self, value: NumType, unit: VelocityUnits = PERCENT, /):
+    def set_velocity(self: Self,
+                     value: NumType, unit: VelocityUnits = PERCENT, /):
         """Set velocity."""
         assert isinstance(value, NumType), \
             TypeError(f'*** value {value} NEITHER A FLOAT NOR AN INT ***')
@@ -205,11 +205,11 @@ class Motor(Device):
         self._velocity[unit]: NumType = value
 
     @overload
-    def set_stopping(self, value: BrakeType, /):
+    def set_stopping(self: Self, value: BrakeType, /):
         ...
 
     @overload
-    def set_stopping(self, brakeType: BrakeType, /):
+    def set_stopping(self: Self, brakeType: BrakeType, /):
         ...
 
     @robotmesh_doc("""
@@ -237,7 +237,7 @@ class Motor(Device):
         unless otherwise changed.
     """)
     @act
-    def set_stopping(self, mode: BrakeType, /):
+    def set_stopping(self: Self, mode: BrakeType, /):
         """Set stopping mode."""
         assert isinstance(mode, BrakeType), \
             TypeError('*** mode MUST BE A BrakeType ***')
@@ -245,11 +245,12 @@ class Motor(Device):
         self.stopping_mode: BrakeType = mode
 
     @overload
-    def set_timeout(self, value: NumType, /, units: Literal[SECONDS]):
+    def set_timeout(self: Self, value: NumType, /, units: Literal[SECONDS]):
         ...
 
     @overload
-    def set_timeout(self, time: NumType, timeUnits: TimeUnits = TimeUnits.SEC, /):  # noqa: E501
+    def set_timeout(self: Self,
+                    time: NumType, timeUnits: TimeUnits = TimeUnits.SEC, /):
         ...
 
     @robotmesh_doc("""
@@ -275,7 +276,7 @@ class Motor(Device):
         reaches its mechanical limit and cannot complete its movement.
     """)
     @act
-    def set_timeout(self, value: NumType, unit: Literal[SECONDS], /):
+    def set_timeout(self: Self, value: NumType, unit: Literal[SECONDS], /):
         """Set timeout."""
         assert isinstance(value, NumType), \
             TypeError(f'*** value {value} NEITHER A FLOAT NOR AN INT ***')
@@ -288,7 +289,7 @@ class Motor(Device):
     @robotmesh_doc("""
         Returns a timeout in given time unit.
     """)
-    def timeout(self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> NumType:
+    def timeout(self: Self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> NumType:  # noqa: E501
         """Return timeout."""
         assert isinstance(timeUnits, TimeUnits), \
             TypeError('*** timeUnits MUST BE ONE OF TimeUnits ***')
@@ -296,11 +297,11 @@ class Motor(Device):
         return self._timeout[timeUnits]
 
     @overload
-    def set_max_torque(self, value: NumType, unit: Literal[PERCENT], /):
+    def set_max_torque(self: Self, value: NumType, unit: Literal[PERCENT], /):
         ...
 
     @overload
-    def set_max_torque(self, value: NumType,
+    def set_max_torque(self: Self, value: NumType,
                        torqueUnits: TorqueUnits = TorqueUnits.NM, /):
         ...
 
@@ -321,7 +322,8 @@ class Motor(Device):
         The Set Max Torque command accepts decimals, integers or numerics.
     """)
     @act
-    def set_max_torque(self, value: NumType, unit: Literal[PERCENT] | TorqueUnits, /):  # noqa: E501
+    def set_max_torque(self: Self,
+                       value: NumType, unit: Literal[PERCENT] | TorqueUnits, /):  # noqa: E501
         """Set max torque."""
         assert isinstance(value, NumType), \
             TypeError(f'*** value {value} NEITHER A FLOAT NOR AN INT ***')
@@ -339,7 +341,7 @@ class Motor(Device):
         - value: amount of torque (0 to 100%)
     """)
     @act
-    def set_max_torque_percent(self, value: int, /):
+    def set_max_torque_percent(self: Self, value: int, /):
         """Set max torque percent."""
         assert isinstance(value, int), TypeError('*** value MUST BE int ***')
         assert 1 <= value <= 100, ValueError('*** value MUST BE 1-100 ***')
@@ -353,7 +355,7 @@ class Motor(Device):
         - value: amount of torque in Amps (max 1.2A)
     """)
     @act
-    def set_max_torque_current(self, value: float, /):
+    def set_max_torque_current(self: Self, value: float, /):
         """Set max torque current."""
         assert isinstance(value, NumType), \
             TypeError(f'*** value {value} NEITHER A FLOAT NOR AN INT ***')
@@ -361,7 +363,7 @@ class Motor(Device):
 
         self.max_torque_current: float = value
 
-    def _resolve_velocity_and_unit(self,
+    def _resolve_velocity_and_unit(self: Self,
                                    velocity: Optional[NumType],
                                    velocity_unit: Optional[VelocityUnits], /) \
             -> tuple[NumType, VelocityUnits]:
@@ -391,11 +393,12 @@ class Motor(Device):
         return velocity, velocity_unit
 
     @overload
-    def spin(self, direction: DirectionType):
+    def spin(self: Self, direction: DirectionType):
         ...
 
     @overload
-    def spin(self, dir: DirectionType,  # pylint: disable=redefined-builtin
+    def spin(self: Self,
+             dir: DirectionType,  # pylint: disable=redefined-builtin
              velocity: Optional[NumType] = None,
              velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         ...
@@ -417,7 +420,7 @@ class Motor(Device):
         Choose which DIRECTION the Motor or Motor Group will spin to with
         either FORWARD or REVERSE as the parameter.
     """)
-    def spin(self, direction: DirectionType,
+    def spin(self: Self, direction: DirectionType,
              velocity: Optional[NumType] = None,
              velocity_unit: VelocityUnits = PERCENT):
         """Spin in specified direction (at specified velocity)."""
@@ -439,12 +442,12 @@ class Motor(Device):
                           velocity=velocity, velocity_unit=velocity_unit)
 
     @act
-    def _spin(self, direction: DirectionType,
+    def _spin(self: Self, direction: DirectionType,
               velocity: NumType, velocity_unit: VelocityUnits):
         """Spin in specified direction (at specified velocity)."""
 
     @overload
-    def spin_for(self, direction: DirectionType,
+    def spin_for(self: Self, direction: DirectionType,
                  angle: NumType, /, units: RotationUnits = DEGREES,
                  wait: bool = True):
         ...
@@ -497,7 +500,7 @@ class Motor(Device):
         By default, this command is a blocking command
         unless wait=False is passed as the fourth parameter.
     """)
-    def spin_for(self, direction: DirectionType,
+    def spin_for(self: Self, direction: DirectionType,
                  rotation: NumType, rotation_unit: RotationUnits = DEGREES, /,
                  velocity: Optional[NumType] = None,
                  velocity_unit: Optional[VelocityUnits] = None,
@@ -538,7 +541,7 @@ class Motor(Device):
                               wait=wait)
 
     @act
-    def _spin_for(self, direction: DirectionType,
+    def _spin_for(self: Self, direction: DirectionType,
                   rotation: NumType, rotation_unit: RotationUnits,
                   velocity: NumType, velocity_unit: VelocityUnits, wait: bool):
         # pylint: disable=too-many-arguments
@@ -567,7 +570,8 @@ class Motor(Device):
         By default, this command will have the wait to be set to True.
     """)
     @act
-    def spin_to_position(self, angle: NumType, /, units: RotationUnits = DEGREES,  # noqa: E501
+    def spin_to_position(self: Self,
+                         angle: NumType, /, units: RotationUnits = DEGREES,
                          wait: bool = True):
         """Spin to specified rotational angle."""
         assert isinstance(angle, NumType), \
@@ -597,7 +601,7 @@ class Motor(Device):
                              By default, this parameter is true.
     """)
     @act
-    def spin_to(self,
+    def spin_to(self: Self,
                 rotation: NumType,
                 rotationUnits: RotationUnits = RotationUnits.DEG,
                 velocity: Optional[NumType] = None,
@@ -706,7 +710,7 @@ class Motor(Device):
         - velocityUnits: measurement unit for velocity
     """)
     @act
-    def start_spin_to(self,
+    def start_spin_to(self: Self,
                       rotation: NumType,
                       rotationUnits: RotationUnits = RotationUnits.DEG,
                       velocity: Optional[NumType] = None,
@@ -728,11 +732,11 @@ class Motor(Device):
                       'NOT ONE OF VelocityUnits ***')
 
     @overload
-    def stop(self):
+    def stop(self: Self):
         ...
 
     @overload
-    def stop(self, brakeType: Optional[BrakeType] = None, /):
+    def stop(self: Self, brakeType: Optional[BrakeType] = None, /):
         ...
 
     @robotmesh_doc("""
@@ -747,7 +751,7 @@ class Motor(Device):
 
         Stops an IQ Motor or Motor Group.
     """)
-    def stop(self, mode: Optional[BrakeType] = None, /):
+    def stop(self: Self, mode: Optional[BrakeType] = None, /):
         """Stop."""
         assert (mode is None) or isinstance(mode, BrakeType), \
             TypeError(f'*** mode {mode} NEITHER None NOR A BrakeType ***')
@@ -757,7 +761,7 @@ class Motor(Device):
                    else mode)
 
     @act
-    def _stop(self, mode: Optional[BrakeType] = None, /):
+    def _stop(self: Self, mode: Optional[BrakeType] = None, /):
         """Stop."""
         assert (mode is None) or isinstance(mode, BrakeType), \
             TypeError(f'*** mode {mode} NEITHER None NOR A BrakeType ***')
@@ -781,7 +785,7 @@ class Motor(Device):
         is still moving.
     """)
     @sense
-    def is_done(self) -> bool:
+    def is_done(self: Self) -> bool:
         """Check whether motor has finished spinning."""
 
     @robotmesh_doc("""
@@ -807,14 +811,14 @@ class Motor(Device):
         (which does not specify a set distance to spin).
     """)
     @sense
-    def is_spinning(self) -> bool:
+    def is_spinning(self: Self) -> bool:
         """Check whether motor is still spinning."""
 
     @robotmesh_doc("""
         Returns True if the last motor operation timed out.
     """)
     @sense
-    def did_timeout(self) -> bool:
+    def did_timeout(self: Self) -> bool:
         """Return whether motor timed out."""
 
     @vexcode_doc("""
@@ -829,7 +833,7 @@ class Motor(Device):
         Acceptable values for UNITS are: DEGREES or TURNS.
     """)
     @sense
-    def position(self, unit: RotationUnits = DEGREES, /) -> NumType:
+    def position(self: Self, unit: RotationUnits = DEGREES, /) -> NumType:
         """Return rotational angle."""
 
     @robotmesh_doc("""
@@ -842,15 +846,17 @@ class Motor(Device):
                  the motor in the units defined in the parameter.
     """)
     @sense
-    def rotation(self, rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:  # noqa: E501
+    def rotation(self: Self,
+                 rotationUnits: RotationUnits = RotationUnits.DEG, /) -> float:
         """Return rotational angle."""
 
     @overload
-    def velocity(self, unit: VelocityUnits = PERCENT, /) -> NumType:
+    def velocity(self: Self, unit: VelocityUnits = PERCENT, /) -> NumType:
         ...
 
     @overload
-    def velocity(self, velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:  # noqa: E501
+    def velocity(self: Self,
+                 velocityUnits: VelocityUnits = VelocityUnits.PCT, /) -> float:
         ...
 
     @robotmesh_doc("""
@@ -872,15 +878,16 @@ class Motor(Device):
         as the UNITS parameter, or -127 to 127 if RPM is passed.
     """)
     @sense
-    def velocity(self, unit: VelocityUnits = PERCENT, /) -> NumType:
+    def velocity(self: Self, unit: VelocityUnits = PERCENT, /) -> NumType:
         """Return velocity."""
 
     @overload
-    def current(self, unit: Literal[CurrentUnits.AMP] = CurrentUnits.AMP, /) -> float:  # noqa: E501
+    def current(self: Self,
+                unit: Literal[CurrentUnits.AMP] = CurrentUnits.AMP, /) -> float:  # noqa: E501
         ...
 
     @overload
-    def current(self) -> float:
+    def current(self: Self) -> float:
         ...
 
     @robotmesh_doc("""
@@ -898,5 +905,6 @@ class Motor(Device):
         when CurrentUnits.AMP is passed as the UNITS parameter.
     """)
     @sense
-    def current(self, unit: Literal[CurrentUnits.AMP] = CurrentUnits.AMP, /) -> float:  # noqa: E501
+    def current(self: Self,
+                unit: Literal[CurrentUnits.AMP] = CurrentUnits.AMP, /) -> float:  # noqa: E501
         """Return electrical current."""

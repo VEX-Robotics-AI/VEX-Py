@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import LiteralString, overload
+from typing import LiteralString, Self, overload
 
 from abm.decor import act, sense
 
@@ -30,14 +30,14 @@ class Sonar(Device):
         Parameters
         - index: to the brain port.
     """)
-    def __init__(self, index: Ports, /):
+    def __init__(self: Self, index: Ports, /):
         """Initialize Sonar."""
         self.port: Ports = index
 
         self.max_distance: dict[DistanceUnits, NumType] = \
             dict[DistanceUnits, NumType]()
 
-    def __hash__(self) -> int:
+    def __hash__(self: Self) -> int:
         """Return integer hash."""
         raise hash(self.port)
 
@@ -49,7 +49,8 @@ class Sonar(Device):
         - distanceUnits: a DistanceUnits enum value for the measurement unit
     """)
     @act
-    def set_maximum(self, distance: NumType, distanceUnits: DistanceUnits = MM, /):  # noqa: E501
+    def set_maximum(self: Self,
+                    distance: NumType, distanceUnits: DistanceUnits = MM, /):
         """Set maximum measurable distance."""
         self.max_distance[distanceUnits] = distance
 
@@ -66,15 +67,15 @@ class Sonar(Device):
         or surface.
     """)
     @sense
-    def is_object_detected(self) -> bool:
+    def is_object_detected(self: Self) -> bool:
         """Check if an object is detected within range."""
 
     @overload
-    def distance(self, unit: DistanceUnits = MM, /) -> int:
+    def distance(self: Self, unit: DistanceUnits = MM, /) -> int:
         ...
 
     @overload
-    def distance(self, distanceUnits: DistanceUnits = MM, /) -> int:
+    def distance(self: Self, distanceUnits: DistanceUnits = MM, /) -> int:
         ...
 
     @robotmesh_doc("""
@@ -101,6 +102,6 @@ class Sonar(Device):
         with either INCHES or MM, respectively.
     """)
     @sense
-    def distance(self, unit: DistanceUnits = MM, /) -> int:
+    def distance(self: Self, unit: DistanceUnits = MM, /) -> int:
         """Return measured distance to nearby object."""
         assert unit in (MM, INCHES), ValueError('*** UNIT MUST BE MM OR INCHES ***')  # noqa: E501

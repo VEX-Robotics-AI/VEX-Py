@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import LiteralString
+from typing import LiteralString, Self
 
 from abm.decor import act, sense
 
@@ -28,7 +28,7 @@ class BrainTimer(SingletonDevice):
         back to 0 seconds.
     """)
     @act
-    def clear(self):
+    def clear(self: Self):
         """Reset."""
 
     @vexcode_doc("""
@@ -43,7 +43,7 @@ class BrainTimer(SingletonDevice):
         as a valid argument.
     """)
     @sense
-    def time(self, unit: TimeUnits) -> float:
+    def time(self: Self, unit: TimeUnits) -> float:
         """Return elapsed time."""
 
     @vexcode_doc("""
@@ -68,5 +68,5 @@ class BrainTimer(SingletonDevice):
         whenever the event occurs.
     """)
     @act
-    def event(self, callback: callable, msecs: int, /):
+    def event(self: Self, callback: callable, msecs: int, /):
         """Trigger callback function after specified number of miliseconds."""
