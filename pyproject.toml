@@ -1,6 +1,6 @@
 [project]
 name = 'VEX-Py'
-version = '23.1.25'
+version = '23.2.10'
 
 description = 'API Stubs for VEXcode Python & Robot Mesh VEX Python B'
 readme = {file = 'README.md', content-type = 'text/markdown', charset = 'UTF-8'}
@@ -77,12 +77,12 @@ doc = [
 lint = [
   'Bandit >= 1.7.4',
   'Flake8 >= 6.0.0',
-  'MyPy >= 0.991',
+  'MyPy >= 1.0.0',
   # 'Prospector >= 1.8.4',
   'PyCodeStyle >= 2.10.0',
   'PyDocStyle >= 6.3.0',
   'PyLama >= 8.4.1',
-  'PyLint >= 2.15.10',
+  'PyLint >= 2.16.1',
 ]
 
 publish = [
@@ -100,7 +100,7 @@ test = [
 
 [build-system]
 requires = [
-  'SetUpTools >= 66.1.1',
+  'SetUpTools >= 67.2.0',
   'Wheel >= 0.38.4',
 ]
 build-backend = 'setuptools.build_meta'
