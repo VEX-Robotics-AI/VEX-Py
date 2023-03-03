@@ -5,12 +5,12 @@
 name = 'VEX-Py'
 version = '23.3.3'
 
-description = 'Agent Behavior Model'
+description = 'API Stubs for VEXcode Python & Robot Mesh VEX Python B'
 
 license = 'MIT'
 
 authors = [
-  'The Vinh LUONG (LƯƠNG Thế Vinh) <Vinh@STEAMforVietNam.org>'
+  'The Vinh LUONG (LƯƠNG Thế Vinh) <Vinh@STEAMforVietNam.org>',
 ]
 maintainers = [
   'The Vinh LUONG (LƯƠNG Thế Vinh) <Vinh@STEAMforVietNam.org>',
@@ -50,7 +50,8 @@ classifiers = [
 ]
 
 packages = [
-  {include = 'abm', from = 'src'}
+  {include = 'vex', from = 'src'},
+  {include = '*.py', from = 'src'},
 ]
 
 include = []
