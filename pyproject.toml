@@ -1,8 +1,17 @@
+# python.org/dev/peps/pep-0621
+# setuptools.pypa.io/en/latest/userguide/pyproject_config.html
+
+
 [project]
 name = 'VEX-Py'
-version = '23.2.10'
 
-description = 'API Stubs for VEXcode Python & Robot Mesh VEX Python B'
+keywords = [
+  'Robot Mesh',
+  'VEXcode',
+  'VEX',
+  'Robotics',
+]
+
 readme = {file = 'README.md', content-type = 'text/markdown', charset = 'UTF-8'}
 
 requires-python = '>= 3.11'
@@ -17,33 +26,18 @@ maintainers = [
   {name = 'STEAM for Vietnam Foundation: Robotics & AI Educational Initative', email = 'Edu.Robotics@STEAMforVietnam.org'}
 ]
 
-keywords = [
-  'Robot Mesh',
-  'VEXcode',
-  'VEX',
-  'Robotics',
-]
-classifiers = [
-  'Development Status :: 4 - Beta',
-  'Framework :: Robot Framework',
-  'Framework :: Robot Framework :: Library',
-  'Framework :: Robot Framework :: Tool',
-  'Intended Audience :: Education',
-  'Operating System :: MacOS',
-  'Operating System :: MacOS :: MacOS X',
-  'Operating System :: Microsoft :: Windows',
-  'Operating System :: POSIX :: Linux',
-  'Programming Language :: Python',
-  'Programming Language :: Python :: 3',
-  'Programming Language :: Python :: 3.11',
-  'Programming Language :: Python :: 3.12',
-  'Topic :: Education',
-  'Topic :: Scientific/Engineering',
-  'Topic :: Software Development :: Libraries :: Python Modules',
-]
 
-dependencies = [
-  'Agent-Behavior-Model >= 23.1.25',
+dynamic = [
+  'version',
+
+  'description',
+
+  'classifiers',
+
+  'dependencies',
+  'optional-dependencies',
+
+  'entry-points',
 ]
 
 
@@ -54,53 +48,71 @@ GitHub = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
 Repository = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
 
 
-[project.scripts]
+[tool.setuptools]
+# setuptools.pypa.io/en/latest/userguide/pyproject_config.html#setuptools-specific-configuration
+
+# platforms = []  # array
+
+zip-safe = true
+
+# eager-resources = []  # array
+
+py-modules = []
+
+# packages = []  # array or find directive
+
+# package-dir = {}  # table/inline-table, used when explicitly listing packages
+
+# namespace-packages = []  # array, deprecated
+
+package-data = {}  # table/inline-table
+
+include-package-data = true
+
+exclude-package-data = {}  # table/inline-table
+
+license-files = ['LICEN[CS]E*']  # array of glob patterns
+
+data-files = {}  # table/inline-table, discouraged
+
+# script-files = []  # array, deprecated
+
+provides = []  # array, ignored by pip
+
+obsoletes = []  # array, ignored by pip
 
 
-[project.optional-dependencies]
-build = [
-  'Build >= 0.10.0',
-]
+[tool.setuptools.packages.find]
+where = ['src']
+include = ['*']
+exclude = []
+namespaces = true
 
-doc = [
-  # Sphinx & related
-  'Sphinx >= 6.1.3',
-  'Sphinx-AutoBuild >= 2021.3.14',
-  'SphinxContrib-JSMath >= 1.0.1',
 
-  # Markdown
-  'CommonMark >= 0.9.1',
-  # 'MyST-Parser >= 0.18.1',  # depends on sphinx<6 and >=4
-  'ReCommonMark >= 0.7.1',
-]
+[tool.setuptools.dynamic]
+version = {file = 'metadata/version'}
 
-lint = [
-  'Bandit >= 1.7.4',
-  'Flake8 >= 6.0.0',
-  'MyPy >= 1.0.0',
-  # 'Prospector >= 1.8.4',
-  'PyCodeStyle >= 2.10.0',
-  'PyDocStyle >= 6.3.0',
-  'PyLama >= 8.4.1',
-  'PyLint >= 2.16.1',
-]
+description = {file = 'metadata/description'}
 
-publish = [
-  'Twine >= 4.0.2',
-]
+classifiers = {file = 'metadata/classifiers'}
 
-test = [
-  'Nose >= 1.3.7',
-  'Nose2 >= 0.12.0',
-  'PyTest >= 7.2.1',
-  'PyTest-Cov >= 4.0.0',
-  'UnitTest2 >= 1.1.0',
-]
+dependencies = {file = 'metadata/requirements/base.txt'}
+
+entry-points = {file = 'metadata/entry-points'}
+
+
+[tool.setuptools.dynamic.optional-dependencies]
+build = {file = 'metadata/requirements/build.txt'}
+dev = {file = 'metadata/requirements/dev.txt'}
+doc = {file = 'metadata/requirements/doc.txt'}
+lint = {file = 'metadata/requirements/lint.txt'}
+publish = {file = 'metadata/requirements/publish.txt'}
+test = {file = 'metadata/requirements/test.txt'}
 
 
 [build-system]
 requires = [
-  'SetUpTools >= 67.2.0',
+  'SetUpTools >= 67.4.0',
   'Wheel >= 0.38.4',
 ]
 build-backend = 'setuptools.build_meta'
