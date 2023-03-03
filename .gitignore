@@ -5,16 +5,16 @@ __pycache__/
 .ropeproject/
 .coverage
 
+# Poetry
+poetry.lock
 
 # Documentation
 docs/_build/
 docs/*.rst
 
-
 # Visual Studio Code
 .vscode/*.log
 *.code-workspace
-
 
 # Others
 .DS_Store
