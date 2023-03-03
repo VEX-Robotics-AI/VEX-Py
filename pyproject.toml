@@ -1,9 +1,27 @@
-# python.org/dev/peps/pep-0621
-# setuptools.pypa.io/en/latest/userguide/pyproject_config.html
+# python-poetry.org/docs/pyproject
 
 
-[project]
+[tool.poetry]
 name = 'VEX-Py'
+version = '23.3.3'
+
+description = 'Agent Behavior Model'
+
+license = 'MIT'
+
+authors = [
+  'The Vinh LUONG (LƯƠNG Thế Vinh) <Vinh@STEAMforVietNam.org>'
+]
+maintainers = [
+  'The Vinh LUONG (LƯƠNG Thế Vinh) <Vinh@STEAMforVietNam.org>',
+  'STEAM for Vietnam Foundation: AI, IoT & Robotics Educational Initiative <Edu.Robotics@STEAMforVietnam.org>',
+]
+
+readme = 'README.md'
+
+homepage = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
+repository = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
+documentation = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
 
 keywords = [
   'Robot Mesh',
@@ -12,116 +30,118 @@ keywords = [
   'Robotics',
 ]
 
-readme = {file = 'README.md', content-type = 'text/markdown', charset = 'UTF-8'}
-
-requires-python = '>= 3.11'
-
-license = {text = 'MIT'}
-
-authors = [
-  {name = 'The Vinh LUONG (LƯƠNG Thế Vinh)', email = 'Vinh@STEAMforVietnam.org'}
-]
-maintainers = [
-  {name = 'The Vinh LUONG (LƯƠNG Thế Vinh)', email = 'Vinh@STEAMforVietnam.org'},
-  {name = 'STEAM for Vietnam Foundation: AI, IoT & Robotics Educational Initiative', email = 'Edu.Robotics@STEAMforVietnam.org'},
-]
-
-
-dynamic = [
-  'version',
-
-  'description',
-
-  'classifiers',
-
-  'dependencies',
-  'optional-dependencies',
-
-  'entry-points',
-  'scripts',
-  'gui-scripts',
+classifiers = [
+  'Development Status :: 4 - Beta',
+  'Framework :: Robot Framework',
+  'Framework :: Robot Framework :: Library',
+  'Framework :: Robot Framework :: Tool',
+  'Intended Audience :: Education',
+  'Operating System :: MacOS',
+  'Operating System :: MacOS :: MacOS X',
+  'Operating System :: Microsoft :: Windows',
+  'Operating System :: POSIX :: Linux',
+  'Programming Language :: Python',
+  'Programming Language :: Python :: 3',
+  'Programming Language :: Python :: 3.11',
+  'Programming Language :: Python :: 3.12',
+  'Topic :: Education',
+  'Topic :: Scientific/Engineering',
+  'Topic :: Software Development :: Libraries :: Python Modules',
 ]
 
-
-[project.urls]
-Homepage = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
-Documentation = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
-GitHub = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
-Repository = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
-
-
-[tool.setuptools]
-# setuptools.pypa.io/en/latest/userguide/pyproject_config.html#setuptools-specific-configuration
-
-# platforms = []  # array
-
-zip-safe = true
-
-# eager-resources = []  # array
-
-py-modules = [
-  'motor_group',
-  'drivetrain',
-  'smartdrive',
-  'timer',
-  'vision',
-  'vexcode',
+packages = [
+  {include = 'abm', from = 'src'}
 ]
 
-# packages = []  # array or find directive
-
-# package-dir = {}  # table/inline-table, used when explicitly listing packages
-
-# namespace-packages = []  # array, deprecated
-
-package-data = {}  # table/inline-table
-
-include-package-data = true
-
-exclude-package-data = {}  # table/inline-table
-
-license-files = ['LICEN[CS]E*']  # array of glob patterns
-
-data-files = {}  # table/inline-table, discouraged
-
-# script-files = []  # array, deprecated
-
-provides = []  # array, ignored by pip
-
-obsoletes = []  # array, ignored by pip
-
-
-[tool.setuptools.packages.find]
-where = ['src']
-include = ['*']
+include = []
 exclude = []
-namespaces = true
 
 
-[tool.setuptools.dynamic]
-version = {file = 'metadata/version'}
-
-description = {file = 'metadata/description'}
-
-classifiers = {file = 'metadata/classifiers'}
-
-dependencies = {file = 'metadata/requirements/base.txt'}
-
-entry-points = {file = 'metadata/entry-points'}
+[tool.poetry.dependencies]
+python = '^3.11'
+agent-behavior-model = {url = "https://github.com/IoT-Robotics/Agent-Behavior-Model/archive/main.zip"}
 
 
-[tool.setuptools.dynamic.optional-dependencies]
-build = {file = 'metadata/requirements/build.txt'}
-dev = {file = 'metadata/requirements/dev.txt'}
-doc = {file = 'metadata/requirements/doc.txt'}
-lint = {file = 'metadata/requirements/lint.txt'}
-publish = {file = 'metadata/requirements/publish.txt'}
-test = {file = 'metadata/requirements/test.txt'}
+[tool.poetry.group.build]
+optional = true
+
+[tool.poetry.group.build.dependencies]
+build = {version = ">=0.10.0", optional = true}
+
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+commitizen = {version = ">=2.42.1", optional = true}
+pre-commit = {version = ">=3.1.1", optional = true}
+
+
+[tool.poetry.group.doc]
+optional = true
+
+[tool.poetry.group.doc.dependencies]
+sphinx = {version = ">=6.1.3", optional = true}
+sphinx-autobuild = {version = ">=2021.3.14", optional = true}
+sphinxcontrib-jsmath = {version = ">=1.0.1", optional = true}
+commonmark = {version = ">=0.9.1", optional = true}
+recommonmark = {version = ">=0.7.1", optional = true}
+
+
+[tool.poetry.group.lint]
+optional = true
+
+[tool.poetry.group.lint.dependencies]
+bandit = {version = ">=1.7.4", optional = true}
+flake8 = {version = ">=6.0.0", optional = true}
+mypy = {version = ">=1.0.0", optional = true}
+pycodestyle = {version = ">=2.10.0", optional = true}
+pydocstyle = {version = ">=6.3.0", optional = true}
+pylama = {version = ">=8.4.1", optional = true}
+pylint = {version = ">=2.16.1", optional = true}
+
+
+[tool.poetry.group.publish]
+optional = true
+
+[tool.poetry.group.publish.dependencies]
+twine = {version = ">=4.0.2", optional = true}
+
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+nose = {version = ">=1.3.7", optional = true}
+nose2 = {version = ">=0.12.0", optional = true}
+pytest = {version = ">=7.2.1", optional = true}
+pytest-cov = {version = ">=4.0.0", optional = true}
+unittest2 = {version = ">=1.1.0", optional = true}
+
+
+[tool.poetry.extras]
+# python-poetry.org/docs/pyproject#extras
+# The dependencies specified for each extra must already be defined as project dependencies
+# Dependencies listed in dependency groups cannot be specified as extras
+build = []
+dev = []
+doc = []
+lint = []
+publish = []
+test = []
+
+
+[tool.poetry.plugins]
+
+[tool.poetry.plugins."blogtool.parsers"]
+
+
+[tool.poetry.urls]
+GitHub = 'https://GitHub.com/VEX-Robotics-AI/VEX-Py'
 
 
 [build-system]
 requires = [
-  'SetUpTools >= 67.4.0',
-  'Wheel >= 0.38.4',
+  'Poetry-Core >= 1.5.1',
 ]
-build-backend = 'setuptools.build_meta'
+build-backend = 'poetry.core.masonry.api'
