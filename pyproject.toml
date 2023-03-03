@@ -57,7 +57,14 @@ zip-safe = true
 
 # eager-resources = []  # array
 
-py-modules = []
+py-modules = [
+  'motor_group',
+  'drivetrain',
+  'smartdrive',
+  'timer',
+  'vision',
+  'vexcode',
+]
 
 # packages = []  # array or find directive
 
