@@ -13,7 +13,7 @@
 ## Robot Mesh Studio
 
 
-### [Robot Mesh VEX IQ Python B](https://www.robotmesh.com/studio/content/docs/vexiq-python_b//html/index.html)
+### [Robot Mesh VEX IQ Python B](https://www.robotmesh.com/studio/content/docs/vexiq-python_b/html/index.html)
 
 - [Namespaces/Packages](https://www.robotmesh.com/studio/content/docs/vexiq-python_b/html/namespaces.html)
   - [Namespace/Package Members](https://www.robotmesh.com/studio/content/docs/vexv5-python/html/namespacemembers.html)
