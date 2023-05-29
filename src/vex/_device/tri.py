@@ -5,7 +5,7 @@ from collections.abc import Sequence
 from typing import LiteralString
 
 from .._util.doc import robotmesh_doc
-from .abc import Device
+from ._abc import Device
 
 
 __all__: Sequence[LiteralString] = ('TriDevice',)

@@ -4,7 +4,7 @@
 from collections.abc import Sequence
 from typing import LiteralString
 
-from .abc import Device
+from ._abc import Device
 from .singleton import SingletonDevice
 from .tri import TriDevice
 
