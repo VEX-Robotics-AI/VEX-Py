@@ -19,7 +19,7 @@ from vex._common_enums.rotation import RotationUnits
 from vex._common_enums.velocity import VelocityUnits
 
 from vex._util.doc import robotmesh_doc
-from vex._util.type import NumType
+from vex._util.type import Num
 
 from drivetrain import Drivetrain, DrivetrainMotorType
 
@@ -53,9 +53,9 @@ class Smartdrive(Drivetrain):
             self,
             left_motor: DrivetrainMotorType, right_motor: DrivetrainMotorType,
             gyro: Gyro,
-            wheel_travel: NumType = 200, track_width: NumType = 176,
+            wheel_travel: Num = 200, track_width: Num = 176,
             distanceUnits: DistanceUnits = DistanceUnits.MM,
-            gear_ratio: NumType = 1, /):
+            gear_ratio: Num = 1, /):
         """Initialize Smart Drivetrain."""
         super().__init__(left_motor, right_motor,
                          wheel_travel, track_width, distanceUnits,
@@ -102,8 +102,8 @@ class Smartdrive(Drivetrain):
     @act
     def turn_to_heading(
             self,
-            angle: NumType, angleUnits: RotationUnits = RotationUnits.DEG,
-            velocity: Optional[NumType] = None,
+            angle: Num, angleUnits: RotationUnits = RotationUnits.DEG,
+            velocity: Optional[Num] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True, /) -> bool:
         """Turn to specified heading angle."""
@@ -114,8 +114,8 @@ class Smartdrive(Drivetrain):
     @act
     def turn_to_rotation(
             self,
-            angle: NumType, angleUnits: RotationUnits = RotationUnits.DEG,
-            velocity: Optional[NumType] = None,
+            angle: Num, angleUnits: RotationUnits = RotationUnits.DEG,
+            velocity: Optional[Num] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True, /) -> bool:
         """Turn to specified rotational angle."""
@@ -125,9 +125,9 @@ class Smartdrive(Drivetrain):
     """)
     @act
     def start_turn_to_heading(self: Self,
-                              angle: NumType,
+                              angle: Num,
                               angleUnits: RotationUnits = RotationUnits.DEG,
-                              velocity: Optional[NumType] = None,
+                              velocity: Optional[Num] = None,
                               velocityUnits: VelocityUnits = VelocityUnits.PCT, /):  # noqa: E501
         """Start turning to specified target heading angle."""
 
@@ -136,9 +136,9 @@ class Smartdrive(Drivetrain):
     """)
     @act
     def start_turn_to_rotation(self: Self,
-                               angle: NumType,
+                               angle: Num,
                                angleUnits: RotationUnits = RotationUnits.DEG,
-                               velocity: Optional[NumType] = None,
+                               velocity: Optional[Num] = None,
                                velocityUnits: VelocityUnits = VelocityUnits.PCT, /):  # noqa: E501
         """Start turning to specified target rotational angle."""
 

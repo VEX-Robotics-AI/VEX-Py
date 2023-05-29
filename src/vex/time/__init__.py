@@ -9,7 +9,7 @@ from abm.decor import act
 from .units import TimeUnits, SECONDS, MSEC
 
 from .._util.doc import robotmesh_doc, vexcode_doc
-from .._util.type import NumType
+from .._util.type import Num
 
 
 __all__: Sequence[LiteralString] = ('TimeUnits', 'SECONDS', 'MSEC',
@@ -19,17 +19,17 @@ __all__: Sequence[LiteralString] = ('TimeUnits', 'SECONDS', 'MSEC',
 @robotmesh_doc("""
     Get the number of seconds since system startup
 """)
-def clock() -> NumType:
+def clock() -> Num:
     """Return number of seconds since program started."""
 
 
 @overload
-def wait(duration: NumType, unit: TimeUnits = MSEC, /):
+def wait(duration: Num, unit: TimeUnits = MSEC, /):
     ...
 
 
 @overload
-def wait(time: NumType, timeUnits: TimeUnits = TimeUnits.SEC, /):
+def wait(time: Num, timeUnits: TimeUnits = TimeUnits.SEC, /):
     ...
 
 
@@ -52,6 +52,6 @@ def wait(time: NumType, timeUnits: TimeUnits = TimeUnits.SEC, /):
     to have your program wait before executing subsequent commands.
 """)
 @act
-def wait(duration: NumType, unit: TimeUnits = SECONDS, /):
+def wait(duration: Num, unit: TimeUnits = SECONDS, /):
     # pylint: disable=unused-argument
     """Wait for specified duration."""

@@ -19,7 +19,7 @@ from .._common_enums.velocity import VelocityUnits, PERCENT
 from .motor_group import MotorGroup
 
 from .._util.doc import vexcode_doc
-from .._util.type import NumType
+from .._util.type import Num
 
 
 __all__: Sequence[LiteralString] = 'DriveTrain', 'Drivetrain'
@@ -119,7 +119,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
     """)
     @act
     def drive_for(self: Self, direction: DirectionType = FORWARD,
-                  distance: NumType = 200, units: DistanceUnits = MM,
+                  distance: Num = 200, units: DistanceUnits = MM,
                   wait: bool = True):
         """Drive for a distance."""
 
@@ -167,7 +167,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
     """)
     @act
     def turn_for(self: Self, direction: TurnType = RIGHT,
-                 angle: NumType = 90, units: Literal[DEGREES] = DEGREES,
+                 angle: Num = 90, units: Literal[DEGREES] = DEGREES,
                  wait: bool = True):
         # pylint: disable=unused-argument
         """Turn for an angle."""
@@ -211,7 +211,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         from moving even if a Drive or Drive For command is used.
     """)
     @act
-    def set_drive_velocity(self: Self, velocity: NumType = 50,
+    def set_drive_velocity(self: Self, velocity: Num = 50,
                            units: VelocityUnits = PERCENT):
         """Set driving velocity."""
         self.drive_velocities[units] = velocity
@@ -242,7 +242,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
         will prevent the Drivetrain from turning.
     """)
     @act
-    def set_turn_velocity(self: Self, velocity: NumType = 50,
+    def set_turn_velocity(self: Self, velocity: Num = 50,
                           units: VelocityUnits = PERCENT):
         """Set turning velocity."""
         self.turn_velocities[units] = velocity
@@ -281,7 +281,7 @@ class DriveTrain(MotorGroup):  # pylint: disable=too-many-instance-attributes
     """)
     @act
     def set_timeout(self: Self,
-                    time: NumType = 1, /, units: Literal[SECONDS] = SECONDS):
+                    time: Num = 1, /, units: Literal[SECONDS] = SECONDS):
         # pylint: disable=unused-argument
         """Set timeout."""
         self.timeout: float = time

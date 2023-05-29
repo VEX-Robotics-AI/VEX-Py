@@ -15,7 +15,7 @@ from .._common_enums.rotation import DEGREES
 from .drive_train import DriveTrain
 
 from .._util.doc import vexcode_doc
-from .._util.type import NumType
+from .._util.type import Num
 
 
 __all__: Sequence[LiteralString] = 'SmartDrive', 'Smartdrive'
@@ -67,7 +67,7 @@ class SmartDrive(DriveTrain):
     """)
     @act
     def set_heading(self: Self,
-                    value: NumType = 0, units: Literal[DEGREES] = DEGREES):
+                    value: Num = 0, units: Literal[DEGREES] = DEGREES):
         """Set specified heading."""
 
     @vexcode_doc("""
@@ -83,7 +83,7 @@ class SmartDrive(DriveTrain):
     """)
     @act
     def set_rotation(self: Self,
-                     value: NumType = 0, units: Literal[DEGREES] = DEGREES):
+                     value: Num = 0, units: Literal[DEGREES] = DEGREES):
         """Set specified rotation."""
 
     @vexcode_doc("""
@@ -115,7 +115,7 @@ class SmartDrive(DriveTrain):
         from executing until the Drivetrain turn has completed.
     """)
     @act
-    def turn_to_heading(self: Self, angle: NumType = 90,
+    def turn_to_heading(self: Self, angle: Num = 90,
                         units: Literal[DEGREES] = DEGREES, wait: bool = True):
         """Turn to specified heading angle."""
 
@@ -152,7 +152,7 @@ class SmartDrive(DriveTrain):
         the Drivetrain turn is completed.
     """)
     @act
-    def turn_to_rotation(self: Self, angle: NumType = 90,
+    def turn_to_rotation(self: Self, angle: Num = 90,
                          units: Literal[DEGREES] = DEGREES, wait: bool = True):
         """Turn to specified rotational angle."""
 

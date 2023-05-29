@@ -22,7 +22,7 @@ from .turn import TurnType, LEFT, RIGHT
 from .voltage import VoltageUnits
 
 from .._util.doc import robotmesh_doc, vexcode_doc
-from .._util.type import NumType
+from .._util.type import Num
 
 
 __all__: Sequence[LiteralString] = ('Motor',
@@ -61,13 +61,13 @@ class Motor(Device):
         self._rotation: dict[RotationUnits, float] = dict[RotationUnits, float]()  # noqa: E501
 
         self.selected_velocity_unit: VelocityUnits = PERCENT
-        self._velocity: dict[VelocityUnits, NumType] = {PERCENT: 50}
+        self._velocity: dict[VelocityUnits, Num] = {PERCENT: 50}
 
         self.stopping_mode: Optional[BrakeType] = None
 
-        self._timeout: dict[TimeUnits, NumType] = dict[TimeUnits, NumType]()
+        self._timeout: dict[TimeUnits, Num] = dict[TimeUnits, Num]()
 
-        self.max_torque: dict[TorqueUnits, NumType] = dict[TorqueUnits, NumType]()  # noqa: E501
+        self.max_torque: dict[TorqueUnits, Num] = dict[TorqueUnits, Num]()  # noqa: E501
         self.max_torque_current: Optional[float] = None
 
     def __eq__(self: Self, other: Self) -> bool:
@@ -119,9 +119,9 @@ class Motor(Device):
         The Set Motor Position command accepts DEGREES or TURNS as valid UNITS.
     """)
     @act
-    def set_position(self: Self, position: NumType, unit: RotationUnits, /):
+    def set_position(self: Self, position: Num, unit: RotationUnits, /):
         """Set rotational angle to specified position."""
-        assert isinstance(position, NumType), \
+        assert isinstance(position, Num), \
             TypeError(f'*** position {position} NEITHER A FLOAT NOR AN INT ***')  # noqa: E501
 
         assert isinstance(unit, RotationUnits), \
@@ -136,10 +136,10 @@ class Motor(Device):
                          a RotationUnits enum value.
     """)
     @act
-    def set_rotation(self: Self, value: NumType,
+    def set_rotation(self: Self, value: Num,
                      rotationUnits: RotationUnits = RotationUnits.DEG, /):
         """Set rotational angle to specified value."""
-        assert isinstance(value, NumType), \
+        assert isinstance(value, Num), \
             TypeError(f'*** value {value} NEITHER A FLOAT NOR AN INT ***')
 
         assert isinstance(rotationUnits, RotationUnits), \
@@ -158,11 +158,11 @@ class Motor(Device):
             self._rotation[rotation_unit] = 0
 
     @overload
-    def set_velocity(self: Self, value: NumType, unit: VelocityUnits = PERCENT, /):  # noqa: E501
+    def set_velocity(self: Self, value: Num, unit: VelocityUnits = PERCENT, /):  # noqa: E501
         ...
 
     @overload
-    def set_velocity(self: Self, velocity: NumType,
+    def set_velocity(self: Self, velocity: Num,
                      velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         ...
 
@@ -195,16 +195,16 @@ class Motor(Device):
     """)
     @act
     def set_velocity(self: Self,
-                     value: NumType, unit: VelocityUnits = PERCENT, /):
+                     value: Num, unit: VelocityUnits = PERCENT, /):
         """Set velocity."""
-        assert isinstance(value, NumType), \
+        assert isinstance(value, Num), \
             TypeError(f'*** value {value} NEITHER A FLOAT NOR AN INT ***')
 
         assert (unit is PERCENT) or isinstance(unit, VelocityUnits), \
             TypeError(f'*** unit {unit} NOT ONE OF VelocityUnits ***')
 
         self.selected_velocity_unit: VelocityUnits = unit
-        self._velocity[unit]: NumType = value
+        self._velocity[unit]: Num = value
 
     @overload
     def set_stopping(self: Self, value: BrakeType, /):
@@ -247,12 +247,12 @@ class Motor(Device):
         self.stopping_mode: BrakeType = mode
 
     @overload
-    def set_timeout(self: Self, value: NumType, /, units: Literal[SECONDS]):
+    def set_timeout(self: Self, value: Num, /, units: Literal[SECONDS]):
         ...
 
     @overload
     def set_timeout(self: Self,
-                    time: NumType, timeUnits: TimeUnits = TimeUnits.SEC, /):
+                    time: Num, timeUnits: TimeUnits = TimeUnits.SEC, /):
         ...
 
     @robotmesh_doc("""
@@ -278,9 +278,9 @@ class Motor(Device):
         reaches its mechanical limit and cannot complete its movement.
     """)
     @act
-    def set_timeout(self: Self, value: NumType, unit: Literal[SECONDS], /):
+    def set_timeout(self: Self, value: Num, unit: Literal[SECONDS], /):
         """Set timeout."""
-        assert isinstance(value, NumType), \
+        assert isinstance(value, Num), \
             TypeError(f'*** value {value} NEITHER A FLOAT NOR AN INT ***')
         assert value > 0, ValueError('*** value MUST BE POSITIVE ***')
 
@@ -291,7 +291,7 @@ class Motor(Device):
     @robotmesh_doc("""
         Returns a timeout in given time unit.
     """)
-    def timeout(self: Self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> NumType:  # noqa: E501
+    def timeout(self: Self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> Num:  # noqa: E501
         """Return timeout."""
         assert isinstance(timeUnits, TimeUnits), \
             TypeError('*** timeUnits MUST BE ONE OF TimeUnits ***')
@@ -299,11 +299,11 @@ class Motor(Device):
         return self._timeout[timeUnits]
 
     @overload
-    def set_max_torque(self: Self, value: NumType, unit: Literal[PERCENT], /):
+    def set_max_torque(self: Self, value: Num, unit: Literal[PERCENT], /):
         ...
 
     @overload
-    def set_max_torque(self: Self, value: NumType,
+    def set_max_torque(self: Self, value: Num,
                        torqueUnits: TorqueUnits = TorqueUnits.NM, /):
         ...
 
@@ -325,9 +325,9 @@ class Motor(Device):
     """)
     @act
     def set_max_torque(self: Self,
-                       value: NumType, unit: Literal[PERCENT] | TorqueUnits, /):  # noqa: E501
+                       value: Num, unit: Literal[PERCENT] | TorqueUnits, /):  # noqa: E501
         """Set max torque."""
-        assert isinstance(value, NumType), \
+        assert isinstance(value, Num), \
             TypeError(f'*** value {value} NEITHER A FLOAT NOR AN INT ***')
         assert value > 0, ValueError('*** value MUST BE POSITIVE ***')
 
@@ -359,16 +359,16 @@ class Motor(Device):
     @act
     def set_max_torque_current(self: Self, value: float, /):
         """Set max torque current."""
-        assert isinstance(value, NumType), \
+        assert isinstance(value, Num), \
             TypeError(f'*** value {value} NEITHER A FLOAT NOR AN INT ***')
         assert value <= 1.2, ValueError(f'*** value {value} NOT 1.2 OR LESS ***')  # noqa: E501
 
         self.max_torque_current: float = value
 
     def _resolve_velocity_and_unit(self: Self,
-                                   velocity: Optional[NumType],
+                                   velocity: Optional[Num],
                                    velocity_unit: Optional[VelocityUnits], /) \
-            -> tuple[NumType, VelocityUnits]:
+            -> tuple[Num, VelocityUnits]:
         if velocity is None:
             if velocity_unit is None:
                 assert self.selected_velocity_unit in self._velocity, \
@@ -389,7 +389,7 @@ class Motor(Device):
 
             return self._velocity[velocity_unit], velocity_unit
 
-        assert isinstance(velocity, NumType), \
+        assert isinstance(velocity, Num), \
             TypeError('*** velocity {velocity} NEITHER None, A FLOAT NOR AN INT ***')  # noqa: E501
 
         return velocity, velocity_unit
@@ -401,7 +401,7 @@ class Motor(Device):
     @overload
     def spin(self: Self,
              dir: DirectionType,  # pylint: disable=redefined-builtin
-             velocity: Optional[NumType] = None,
+             velocity: Optional[Num] = None,
              velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         ...
 
@@ -423,13 +423,13 @@ class Motor(Device):
         either FORWARD or REVERSE as the parameter.
     """)
     def spin(self: Self, direction: DirectionType,
-             velocity: Optional[NumType] = None,
+             velocity: Optional[Num] = None,
              velocity_unit: VelocityUnits = PERCENT):
         """Spin in specified direction (at specified velocity)."""
         assert isinstance(direction, DirectionType), \
             TypeError('*** direction {direction} NOT A DirectionType ***')
 
-        assert (velocity is None) or isinstance(velocity, NumType), \
+        assert (velocity is None) or isinstance(velocity, Num), \
             TypeError('*** velocity {velocity} NEITHER None, A FLOAT NOR AN INT ***')  # noqa: E501
 
         assert ((velocity_unit is PERCENT) or
@@ -445,12 +445,12 @@ class Motor(Device):
 
     @act
     def _spin(self: Self, direction: DirectionType,
-              velocity: NumType, velocity_unit: VelocityUnits):
+              velocity: Num, velocity_unit: VelocityUnits):
         """Spin in specified direction (at specified velocity)."""
 
     @overload
     def spin_for(self: Self, direction: DirectionType,
-                 angle: NumType, /, units: RotationUnits = DEGREES,
+                 angle: Num, /, units: RotationUnits = DEGREES,
                  wait: bool = True):
         ...
 
@@ -458,9 +458,9 @@ class Motor(Device):
     def spin_for(
             self,
             dir: Optional[DirectionType],  # pylint: disable=redefined-builtin
-            rotation: NumType,
+            rotation: Num,
             rotationUnits: RotationUnits = RotationUnits.DEG,
-            velocity: Optional[NumType] = None,
+            velocity: Optional[Num] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True, /) -> bool:
         ...
@@ -503,8 +503,8 @@ class Motor(Device):
         unless wait=False is passed as the fourth parameter.
     """)
     def spin_for(self: Self, direction: DirectionType,
-                 rotation: NumType, rotation_unit: RotationUnits = DEGREES, /,
-                 velocity: Optional[NumType] = None,
+                 rotation: Num, rotation_unit: RotationUnits = DEGREES, /,
+                 velocity: Optional[Num] = None,
                  velocity_unit: Optional[VelocityUnits] = None,
                  wait: bool = True):
         # pylint: disable=too-many-arguments
@@ -512,7 +512,7 @@ class Motor(Device):
         assert isinstance(direction, DirectionType), \
             TypeError('*** direction {direction} NOT A DirectionType ***')
 
-        assert isinstance(rotation, NumType), \
+        assert isinstance(rotation, Num), \
             TypeError('*** rotation {rotation} NEITHER A FLOAT NOR AN INT ***')
 
         assert isinstance(rotation_unit, RotationUnits), \
@@ -521,10 +521,10 @@ class Motor(Device):
 
         if isinstance(velocity, bool):
             wait: bool = velocity
-            velocity: Optional[NumType] = None
+            velocity: Optional[Num] = None
             velocity_unit: Optional[VelocityUnits] = None
 
-        assert (velocity is None) or isinstance(velocity, NumType), \
+        assert (velocity is None) or isinstance(velocity, Num), \
             TypeError('*** velocity {velocity} NEITHER None, A FLOAT NOR AN INT ***')  # noqa: E501
 
         assert ((velocity_unit in (None, PERCENT)) or
@@ -544,8 +544,8 @@ class Motor(Device):
 
     @act
     def _spin_for(self: Self, direction: DirectionType,
-                  rotation: NumType, rotation_unit: RotationUnits,
-                  velocity: NumType, velocity_unit: VelocityUnits, wait: bool):
+                  rotation: Num, rotation_unit: RotationUnits,
+                  velocity: Num, velocity_unit: VelocityUnits, wait: bool):
         # pylint: disable=too-many-arguments
         """Spin for specified rotational angle."""
 
@@ -573,10 +573,10 @@ class Motor(Device):
     """)
     @act
     def spin_to_position(self: Self,
-                         angle: NumType, /, units: RotationUnits = DEGREES,
+                         angle: Num, /, units: RotationUnits = DEGREES,
                          wait: bool = True):
         """Spin to specified rotational angle."""
-        assert isinstance(angle, NumType), \
+        assert isinstance(angle, Num), \
             TypeError(f'*** angle {angle} NEITHER A FLOAT NOR AN INT ***')
 
         assert isinstance(units, RotationUnits), \
@@ -604,20 +604,20 @@ class Motor(Device):
     """)
     @act
     def spin_to(self: Self,
-                rotation: NumType,
+                rotation: Num,
                 rotationUnits: RotationUnits = RotationUnits.DEG,
-                velocity: Optional[NumType] = None,
+                velocity: Optional[Num] = None,
                 velocityUnits: VelocityUnits = VelocityUnits.PCT,
                 waitForCompletion: bool = True, /) -> bool:
         """Spin motor to target rotation angle value."""
-        assert isinstance(rotation, NumType), \
+        assert isinstance(rotation, Num), \
             TypeError(f'*** rotation {rotation} NEITHER A FLOAT NOR AN INT ***')  # noqa: E501
 
         assert isinstance(rotationUnits, RotationUnits), \
             TypeError(f'*** rotationUnits {rotationUnits} '
                       'NOT ONE OF RotationUnits ***')
 
-        assert (velocity is None) or isinstance(velocity, NumType), \
+        assert (velocity is None) or isinstance(velocity, Num), \
             TypeError('*** velocity {velocity} NEITHER None, A FLOAT NOR AN INT ***')  # noqa: E501
 
         assert isinstance(velocityUnits, VelocityUnits), \
@@ -642,21 +642,21 @@ class Motor(Device):
     def spin_for_time(
             self,
             dir: Optional[DirectionType],  # pylint: disable=redefined-builtin
-            time: NumType,
+            time: Num,
             timeUnits: TimeUnits = TimeUnits.SEC,
-            velocity: Optional[NumType] = None,
+            velocity: Optional[Num] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Spin for specified duration."""
         assert (dir is None) or isinstance(dir, DirectionType), \
             TypeError('*** dir MUST BE None OR A DirectionType ***')
 
-        assert isinstance(time, NumType), \
+        assert isinstance(time, Num), \
             TypeError('*** time MUST BE A float OR AN int ***')
 
         assert isinstance(timeUnits, TimeUnits), \
             TypeError('*** timeUnits MUST BE ONE OF TimeUnits ***')
 
-        assert (velocity is None) or isinstance(velocity, NumType), \
+        assert (velocity is None) or isinstance(velocity, Num), \
             TypeError('*** velocity MUST BE None, A float OR AN int ***')
 
         assert ((velocityUnits is PERCENT) or
@@ -678,22 +678,22 @@ class Motor(Device):
     def start_spin_for(
             self,
             dir: Optional[DirectionType],  # pylint: disable=redefined-builtin
-            rotation: NumType,
+            rotation: Num,
             rotationUnits: RotationUnits = RotationUnits.DEG,
-            velocity: Optional[NumType] = None,
+            velocity: Optional[Num] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Start spinning for specified rotational angle."""
         assert (dir is None) or isinstance(dir, DirectionType), \
             TypeError(f'*** dir {dir} NEITHER None NOR A DirectionType ***')
 
-        assert isinstance(rotation, NumType), \
+        assert isinstance(rotation, Num), \
             TypeError(f'*** rotation {rotation} NEITHER A FLOAT NOR AN INT ***')  # noqa: E501
 
         assert isinstance(rotationUnits, RotationUnits), \
             TypeError(f'*** rotationUnits {rotationUnits} '
                       'NOT ONE OF RotationUnits ***')
 
-        assert (velocity is None) or isinstance(velocity, NumType), \
+        assert (velocity is None) or isinstance(velocity, Num), \
             TypeError(f'*** velocity {velocity} NEITHER None, A FLOAT OR AN INT ***')  # noqa: E501
 
         assert ((velocityUnits is PERCENT) or
@@ -713,19 +713,19 @@ class Motor(Device):
     """)
     @act
     def start_spin_to(self: Self,
-                      rotation: NumType,
+                      rotation: Num,
                       rotationUnits: RotationUnits = RotationUnits.DEG,
-                      velocity: Optional[NumType] = None,
+                      velocity: Optional[Num] = None,
                       velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Start spinning to specified target rotational angle."""
-        assert isinstance(rotation, NumType), \
+        assert isinstance(rotation, Num), \
             TypeError(f'*** rotation {rotation} NEITHER A FLOAT OR AN INT ***')
 
         assert isinstance(rotationUnits, RotationUnits), \
             TypeError(f'*** rotationUnits {rotationUnits} '
                       'NOT ONE OF RotationUnits ***')
 
-        assert (velocity is None) or isinstance(velocity, NumType), \
+        assert (velocity is None) or isinstance(velocity, Num), \
             TypeError(f'*** velocity {velocity} NEITHER None, A FLOAT NOR AN INT ***')  # noqa: E501
 
         assert ((velocityUnits is PERCENT) or
@@ -835,7 +835,7 @@ class Motor(Device):
         Acceptable values for UNITS are: DEGREES or TURNS.
     """)
     @sense
-    def position(self: Self, unit: RotationUnits = DEGREES, /) -> NumType:
+    def position(self: Self, unit: RotationUnits = DEGREES, /) -> Num:
         """Return rotational angle."""
 
     @robotmesh_doc("""
@@ -853,7 +853,7 @@ class Motor(Device):
         """Return rotational angle."""
 
     @overload
-    def velocity(self: Self, unit: VelocityUnits = PERCENT, /) -> NumType:
+    def velocity(self: Self, unit: VelocityUnits = PERCENT, /) -> Num:
         ...
 
     @overload
@@ -880,7 +880,7 @@ class Motor(Device):
         as the UNITS parameter, or -127 to 127 if RPM is passed.
     """)
     @sense
-    def velocity(self: Self, unit: VelocityUnits = PERCENT, /) -> NumType:
+    def velocity(self: Self, unit: VelocityUnits = PERCENT, /) -> Num:
         """Return velocity."""
 
     @overload

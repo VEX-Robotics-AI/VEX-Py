@@ -11,7 +11,7 @@ from ..brain.port import Ports
 from .._common_enums.distance import DistanceUnits, MM, INCHES
 
 from .._util.doc import vexcode_doc
-from .._util.type import NumType
+from .._util.type import Num
 
 from .object_size import ObjectSizeType
 from .sonar import Sonar
@@ -55,7 +55,7 @@ class Distance(Device):
         or approximately 0.8 to 79.0 inches.
     """)
     @sense
-    def object_distance(self: Self, unit: DistanceUnits = MM, /) -> NumType:
+    def object_distance(self: Self, unit: DistanceUnits = MM, /) -> Num:
         """Return measured distance to nearby object."""
         assert unit in (MM, INCHES), ValueError('*** UNIT MUST BE MM OR INCHES ***')  # noqa: E501
 
@@ -71,7 +71,7 @@ class Distance(Device):
         while in the range of an IQ Distance Sensor (2nd generation).
     """)
     @sense
-    def object_velocity(self: Self) -> NumType:
+    def object_velocity(self: Self) -> Num:
         """Return detected object's velocity in m/s."""
 
     @vexcode_doc("""

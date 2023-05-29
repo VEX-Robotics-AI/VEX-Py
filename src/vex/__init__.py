@@ -72,7 +72,7 @@ from ._common_enums import (AnalogUnits,
                             VelocityUnits, RPM, DPS)
 
 from ._util.doc import robotmesh_doc
-from ._util.type import NumType
+from ._util.type import Num
 
 
 __all__: Sequence[LiteralString] = (
@@ -178,7 +178,7 @@ def run_in_thread(f: callable):  # pylint: disable=invalid-name
                     default 0 (no wait)
 """)
 def wait_for(func: callable, value: bool = True,
-             timeout: Optional[int] = None, check_period: NumType = 0) -> bool:
+             timeout: Optional[int] = None, check_period: Num = 0) -> bool:
     # pylint: disable=unused-argument
     """Wait for specified function to return specified target value."""
 

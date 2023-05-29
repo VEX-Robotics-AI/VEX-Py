@@ -16,7 +16,7 @@ from .._common_enums.percent import PERCENT
 from .._common_enums.rotation import RotationUnits, DEGREES
 from .._common_enums.velocity import VelocityUnits
 
-from .._util.type import NumType
+from .._util.type import Num
 
 
 __all__: Sequence[LiteralString] = ('MotorGroup',)
@@ -58,11 +58,11 @@ class MotorGroup:
         """Return rotational angle."""
 
     @act
-    def set_max_torque(self: Self, value: NumType = 50, units: TorqueUnits = PERCENT):  # noqa: E501
+    def set_max_torque(self: Self, value: Num = 50, units: TorqueUnits = PERCENT):  # noqa: E501
         """Set max torque limit."""
 
     @act
-    def set_position(self: Self, value: NumType = 0, units: RotationUnits = DEGREES):  # noqa: E501
+    def set_position(self: Self, value: Num = 0, units: RotationUnits = DEGREES):  # noqa: E501
         """Set rotational position to specified angle."""
 
     @act
@@ -70,12 +70,12 @@ class MotorGroup:
         """Set motor braking/stopping mode."""
 
     @act
-    def set_timeout(self: Self, time: NumType = 1, /, units: TimeUnits = SECONDS):  # noqa: E501
+    def set_timeout(self: Self, time: Num = 1, /, units: TimeUnits = SECONDS):  # noqa: E501
         """Set motor timeout."""
 
     @act
     def set_velocity(self: Self,
-                     velocity: NumType = 50, units: VelocityUnits = PERCENT):
+                     velocity: Num = 50, units: VelocityUnits = PERCENT):
         """Set velocity."""
 
     @act
@@ -84,13 +84,13 @@ class MotorGroup:
 
     @act
     def spin_for(self: Self, direction: DirectionType = FORWARD,
-                 rotation: NumType = 90, unit: RotationUnits = DEGREES,
+                 rotation: Num = 90, unit: RotationUnits = DEGREES,
                  wait: bool = True):
         """Spin motors in specified direction by specified angle."""
 
     @act
     def spin_to_position(self: Self,
-                         angle: NumType = 90, units: RotationUnits = DEGREES,
+                         angle: Num = 90, units: RotationUnits = DEGREES,
                          wait: bool = True):
         """Spin motors to specified rotational position."""
 
