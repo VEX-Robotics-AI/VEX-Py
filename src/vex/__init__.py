@@ -77,7 +77,7 @@ from ._util.type import NumType
 __all__: Sequence[LiteralString] = (
     '__version__',
 
-    # 'Device',
+    # 'Device', 'TriDevice',
 
     'Brain', 'BrainBattery', 'BrainButton',
     'BrainLcd',

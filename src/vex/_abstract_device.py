@@ -9,7 +9,7 @@ from .brain.port import Ports
 from ._util.doc import robotmesh_doc
 
 
-__all__: Sequence[LiteralString] = 'Device', 'SingletonDevice'
+__all__: Sequence[LiteralString] = 'Device', 'SingletonDevice', 'TriDevice'
 
 
 @robotmesh_doc("""
@@ -57,3 +57,12 @@ class SingletonDevice:
     def __repr__(self: Self) -> LiteralString:
         """Return string representation."""
         return type(self).__name__
+
+
+@robotmesh_doc("""
+    Robot Mesh VEX V5 Python:
+    robotmesh.com/studio/content/docs/vexv5-python/html/classvex_1_1_tri_device.html
+""")
+class TriDevice(Device):
+    # pylint: disable=abstract-method,too-few-public-methods
+    """3-Wire Device."""
