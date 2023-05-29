@@ -20,7 +20,7 @@ from typing import LiteralString, Optional
 
 from abm import interactive
 
-# from ._device import Device
+# from ._device import Device, TriDevice, V5DeviceType
 
 from .brain import (
     Brain, BrainBattery, BrainButton,
@@ -77,7 +77,7 @@ from ._util.type import NumType
 __all__: Sequence[LiteralString] = (
     '__version__',
 
-    # 'Device', 'TriDevice',
+    # 'Device', 'TriDevice', 'V5DeviceType',
 
     'Brain', 'BrainBattery', 'BrainButton',
     'BrainLcd',
