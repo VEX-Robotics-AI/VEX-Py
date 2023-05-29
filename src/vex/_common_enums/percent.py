@@ -24,4 +24,4 @@ class PercentUnits(IntEnum):
 
 
 # aliases
-PERCENT = PercentUnits.PCT
+PERCENT: PercentUnits = PercentUnits.PCT
