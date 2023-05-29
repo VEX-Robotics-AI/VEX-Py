@@ -159,7 +159,7 @@ RUMBLE_PULSE: LiteralString = '-.-.'
 @robotmesh_doc("""
     Runs the given function in a thread sharing the current global namespace.
 """)
-def run_in_thread(f: callable):  # pylint: disable=invalid-name
+def run_in_thread(f: Callable, /):  # pylint: disable=invalid-name
     """Run specified function in parallel thread."""
     Thread(group=None, target=f, name=None, args=(), kwargs={}, daemon=True).start()  # noqa: E501
 
@@ -177,8 +177,8 @@ def run_in_thread(f: callable):  # pylint: disable=invalid-name
     - check_period: time to wait between checks, in seconds;
                     default 0 (no wait)
 """)
-def wait_for(func: callable, value: bool = True,
-             timeout: Optional[int] = None, check_period: Num = 0) -> bool:
+def wait_for(func: Callable, value: bool = True,
+             timeout: Optional[int] = None, check_period: Num = 0, /) -> bool:
     # pylint: disable=unused-argument
     """Wait for specified function to return specified target value."""
 
@@ -204,8 +204,8 @@ string.letters: LiteralString = string.ascii_letters
 # robotmesh.com/studio/content/docs/vexv5-python/html/namespacesys.html
 # -----------------------------------------------------------------------
 
-sys.clock: Callable = clock
-sys.sleep: Callable = wait
+sys.clock: Callable[[], Num] = clock
+sys.sleep: Callable[[Num, TimeUnits], None] = wait
 sys.maxint: int = INT29_MAX
-sys.run_in_thread: Callable = run_in_thread
-sys.wait_for: Callable = wait_for
+sys.run_in_thread: Callable[[Callable], None] = run_in_thread
+sys.wait_for: Callable[[Callable, bool, Optional[int], Num], None] = wait_for

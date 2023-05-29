@@ -1,7 +1,7 @@
 """Touch LED."""
 
 
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from threading import Thread
 from typing import LiteralString, Optional, Self
 
@@ -233,7 +233,7 @@ class Touchled(Device):
         as an argument. The code inside the callback function will run
         whenever the event occurs.
     """)
-    def pressed(self: Self, callback: callable, /):
+    def pressed(self: Self, callback: Callable, /):
         """Trigger callback function upon being pressed."""
         def trigger_callback_whenever_pressing():
             while True:
@@ -260,7 +260,7 @@ class Touchled(Device):
         as an argument. The code inside the callback function will run
         whenever the event occurs.
     """)
-    def released(self: Self, callback: callable, /):
+    def released(self: Self, callback: Callable, /):
         """Trigger callback function upon being released."""
         def trigger_callback_whenever_not_pressing():
             while True:

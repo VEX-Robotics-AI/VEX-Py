@@ -1,7 +1,7 @@
 """Controller Buttons."""
 
 
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from threading import Thread
 from typing import LiteralString, Self
 
@@ -93,7 +93,7 @@ class ControllerButton:
         - buttonR3
     """)
     @act
-    def pressed(self: Self, callback: callable, /):
+    def pressed(self: Self, callback: Callable, /):
         """Trigger callback function when upon being pressed."""
         def trigger_callback_whenever_pressing():
             while True:
@@ -125,7 +125,7 @@ class ControllerButton:
         - buttonR3
     """)
     @act
-    def released(self: Self, callback: callable, /):
+    def released(self: Self, callback: Callable, /):
         """Trigger callback function upon being released."""
         def trigger_callback_whenever_not_pressing():
             while True:

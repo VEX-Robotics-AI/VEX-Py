@@ -1,7 +1,7 @@
 """Joystick axis."""
 
 
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from threading import Thread
 from typing import LiteralString, Self, TypeVar
 
@@ -98,7 +98,7 @@ class ControllerAxis:
         as an argument. The code inside the callback function will run
         whenever the event occurs.
     """)
-    def changed(self: Self, callback: callable, /):
+    def changed(self: Self, callback: Callable, /):
         """Trigger callback function upon being moved."""
         def trigger_callback_whenever_changed():
             while True:

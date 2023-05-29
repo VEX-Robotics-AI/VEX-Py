@@ -1,7 +1,7 @@
 """Timer."""
 
 
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from typing import LiteralString, Self
 
 from abm.decor import act, sense
@@ -68,5 +68,5 @@ class BrainTimer(SingletonDevice):
         whenever the event occurs.
     """)
     @act
-    def event(self: Self, callback: callable, msecs: int, /):
+    def event(self: Self, callback: Callable, msecs: int, /):
         """Trigger callback function after specified number of miliseconds."""
