@@ -6,7 +6,7 @@ from typing import LiteralString, Self
 
 from abm.decor import sense
 
-from .._abstract_device import Device
+from .._device import Device
 from ..brain.port import Ports
 from .._common_enums.distance import DistanceUnits, MM, INCHES
 

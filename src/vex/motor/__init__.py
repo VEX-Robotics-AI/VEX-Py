@@ -6,7 +6,7 @@ from typing import Literal, LiteralString, Optional, Self, overload
 
 from abm.decor import act, sense
 
-from .._abstract_device import Device
+from .._device import Device
 from ..brain.port import Ports
 from ..time import TimeUnits, SECONDS
 from .._common_enums.percent import PERCENT

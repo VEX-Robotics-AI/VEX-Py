@@ -6,7 +6,7 @@ from typing import LiteralString, Self
 
 from abm.decor import act, sense
 
-from .._abstract_device import SingletonDevice
+from .._device import SingletonDevice
 from ..time.units import TimeUnits
 
 from .._util.doc import vexcode_doc

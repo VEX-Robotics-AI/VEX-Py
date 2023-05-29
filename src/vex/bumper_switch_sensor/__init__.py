@@ -7,7 +7,7 @@ from typing import LiteralString, Self
 
 from abm.decor import sense
 
-from .._abstract_device import Device
+from .._device import Device
 from ..brain.port import Ports
 
 from .._util.doc import robotmesh_doc, vexcode_doc

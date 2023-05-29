@@ -1,15 +1,15 @@
-"""Abstract Device base classes."""
+"""Device abstract base class."""
 
 
 from collections.abc import Sequence
 from typing import LiteralString, Self
 
-from .brain.port import Ports
+from ..brain.port import Ports
 
-from ._util.doc import robotmesh_doc
+from .._util.doc import robotmesh_doc
 
 
-__all__: Sequence[LiteralString] = 'Device', 'SingletonDevice', 'TriDevice'
+__all__: Sequence[LiteralString] = ('Device',)
 
 
 @robotmesh_doc("""
@@ -41,28 +41,3 @@ class Device:
     def __repr__(self: Self) -> str:
         """Return string representation."""
         return f'{type(self).__name__}({self.port.name})'
-
-
-class SingletonDevice:
-    """Singleton Device."""
-
-    def __eq__(self: Self, other: Self) -> bool:
-        """Check equality."""
-        return isinstance(other, type(self))
-
-    def __hash__(self: Self) -> int:
-        """Return integer hash."""
-        return 0
-
-    def __repr__(self: Self) -> LiteralString:
-        """Return string representation."""
-        return type(self).__name__
-
-
-@robotmesh_doc("""
-    Robot Mesh VEX V5 Python:
-    robotmesh.com/studio/content/docs/vexv5-python/html/classvex_1_1_tri_device.html
-""")
-class TriDevice(Device):
-    # pylint: disable=abstract-method,too-few-public-methods
-    """3-Wire Device."""

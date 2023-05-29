@@ -4,7 +4,7 @@
 from collections.abc import Sequence
 from typing import LiteralString, Self
 
-from .._abstract_device import SingletonDevice
+from .._device import SingletonDevice
 
 from .._util.doc import robotmesh_doc
 

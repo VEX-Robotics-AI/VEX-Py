@@ -20,7 +20,7 @@ from typing import LiteralString, Optional
 
 from abm import interactive
 
-# from ._abstract_device import Device
+# from ._device import Device
 
 from .brain import (
     Brain, BrainBattery, BrainButton,

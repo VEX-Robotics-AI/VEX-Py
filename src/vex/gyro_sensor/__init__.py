@@ -6,7 +6,7 @@ from typing import Literal, LiteralString, Self, overload
 
 from abm.decor import act, sense
 
-from .._abstract_device import Device
+from .._device import Device
 from ..brain.port import Ports
 from .._common_enums import RotationUnits, DEGREES
 
