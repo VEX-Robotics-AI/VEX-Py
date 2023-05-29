@@ -62,9 +62,10 @@ from .time import TimeUnits, SECONDS, MSEC, clock, wait
 from ._common_enums import (AnalogUnits,
                             AxisType, XAXIS, YAXIS, ZAXIS,
                             Color, ColorHue,
+                            DistanceUnits, MM, INCHES,
                             OrientationType, ROLL, PITCH, YAW,
                             PercentUnits, PERCENT,
-                            DistanceUnits, MM, INCHES,
+                            PowerUnits,
                             RotationUnits, DEGREES, TURNS,
                             VelocityUnits, RPM, DPS)
 
@@ -118,9 +119,10 @@ __all__: Sequence[LiteralString] = (
     'AnalogUnits',
     'AxisType', 'XAXIS', 'YAXIS', 'ZAXIS',
     'Color', 'ColorHue',
+    'DistanceUnits', 'MM', 'INCHES',
     'OrientationType', 'ROLL', 'PITCH', 'YAW',
     'PercentUnits', 'PERCENT',
-    'DistanceUnits', 'MM', 'INCHES',
+    'PowerUnits',
     'RotationUnits', 'DEGREES', 'TURNS',
 
     'SYSTEM_DISPLAY_WIDTH', 'SYSTEM_DISPLAY_HEIGHT', 'STATUS_BAR_HEIGHT',
