@@ -59,7 +59,8 @@ from .multi_device_group import MotorGroup, DriveTrain, SmartDrive
 
 from .time import TimeUnits, SECONDS, MSEC, clock, wait
 
-from ._common_enums import (AxisType, XAXIS, YAXIS, ZAXIS,
+from ._common_enums import (AnalogUnits,
+                            AxisType, XAXIS, YAXIS, ZAXIS,
                             Color, ColorHue,
                             OrientationType, ROLL, PITCH, YAW,
                             PercentUnits, PERCENT,
@@ -114,6 +115,7 @@ __all__: Sequence[LiteralString] = (
 
     'TimeUnits', 'SECONDS', 'MSEC', 'wait',
 
+    'AnalogUnits',
     'AxisType', 'XAXIS', 'YAXIS', 'ZAXIS',
     'Color', 'ColorHue',
     'OrientationType', 'ROLL', 'PITCH', 'YAW',
