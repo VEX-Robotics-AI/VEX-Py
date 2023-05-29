@@ -4,6 +4,7 @@
 from collections.abc import Sequence
 from typing import LiteralString
 
+from .analog import AnalogUnits
 from .axis import AxisType, XAXIS, YAXIS, ZAXIS
 from .color import Color, ColorHue
 from .orientation import OrientationType, ROLL, PITCH, YAW
@@ -13,7 +14,8 @@ from .rotation import RotationUnits, DEGREES, TURNS
 from .velocity import VelocityUnits, RPM, DPS
 
 
-__all__: Sequence[LiteralString] = ('AxisType', 'XAXIS', 'YAXIS', 'ZAXIS',
+__all__: Sequence[LiteralString] = ('AnalogUnits',
+                                    'AxisType', 'XAXIS', 'YAXIS', 'ZAXIS',
                                     'Color', 'ColorHue',
                                     'OrientationType', 'ROLL', 'PITCH', 'YAW',
                                     'PercentUnits', 'PERCENT',

@@ -18,6 +18,9 @@ __all__: Sequence[LiteralString] = 'VelocityUnits', 'RPM', 'DPS'
 
     Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_velocity_units.html
+
+    Robot Mesg VEX V5 Python:
+    robotmesh.com/studio/content/docs/vexv5-python/html/classvex_1_1_velocity_units.html
 """)
 class VelocityUnits(IntEnum):
     """Velocity units."""

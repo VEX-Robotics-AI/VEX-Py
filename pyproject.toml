@@ -65,7 +65,6 @@ py-modules = [
   'smartdrive',
   'timer',
   'vision',
-  'vexcode',
 ]
 
 # packages = []  # array or find directive
