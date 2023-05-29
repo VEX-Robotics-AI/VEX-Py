@@ -12,8 +12,9 @@ robotmesh.com/studio/content/docs/vexv5-python/html/namespacevex.html
 """
 
 
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from importlib.metadata import version
+import string
 import sys
 from threading import Thread
 from typing import LiteralString, Optional
@@ -185,8 +186,26 @@ def wait_for(func: callable, value: bool = True,
 # ALIASES
 # =======
 
-sys.clock: callable = clock
-sys.sleep: callable = wait
+
+# STRING module
+# Robot Mesh VEX IQ Python B:
+# robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacestring.html
+# Robot Mesh VEX V5 Python:
+# robotmesh.com/studio/content/docs/vexv5-python/html/namespacestring.html
+# --------------------------------------------------------------------------
+
+string.letters: LiteralString = string.ascii_letters
+
+
+# SYS module
+# Robot Mesh VEX IQ Python B:
+# robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacesys.html
+# Robot Mesh VEX V5 Python:
+# robotmesh.com/studio/content/docs/vexv5-python/html/namespacesys.html
+# -----------------------------------------------------------------------
+
+sys.clock: Callable = clock
+sys.sleep: Callable = wait
 sys.maxint: int = INT29_MAX
-sys.run_in_thread: callable = run_in_thread
-sys.wait_for: callable = wait_for
+sys.run_in_thread: Callable = run_in_thread
+sys.wait_for: Callable = wait_for
