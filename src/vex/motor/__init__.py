@@ -16,6 +16,7 @@ from .._common_enums.velocity import VelocityUnits
 from .brake import BrakeType, COAST, BRAKE, HOLD
 from .current import CurrentUnits
 from .direction import DirectionType, FORWARD, REVERSE
+from .gear import GearSetting
 from .torque import TorqueUnits
 from .turn import TurnType, LEFT, RIGHT
 from .voltage import VoltageUnits
@@ -28,6 +29,7 @@ __all__: Sequence[LiteralString] = ('Motor',
                                     'BrakeType', 'COAST', 'BRAKE', 'HOLD',
                                     'CurrentUnits',
                                     'DirectionType', 'FORWARD', 'REVERSE',
+                                    'GearSetting',
                                     'TorqueUnits',
                                     'TurnType', 'LEFT', 'RIGHT',
                                     'VoltageUnits')
