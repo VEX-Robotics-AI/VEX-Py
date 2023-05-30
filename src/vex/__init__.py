@@ -131,6 +131,8 @@ __all__: Sequence[LiteralString] = (
     'SYSTEM_DISPLAY_WIDTH', 'SYSTEM_DISPLAY_HEIGHT', 'STATUS_BAR_HEIGHT',
     'RUMBLE_LONG', 'RUMBLE_SHORT', 'RUMBLE_PULSE',
 
+    'staticmethod',
+
     'interactive',
 )
 
@@ -209,3 +211,10 @@ sys.sleep: Callable[[Num, TimeUnits], None] = wait
 sys.maxint: int = INT29_MAX
 sys.run_in_thread: Callable[[Callable], None] = run_in_thread
 sys.wait_for: Callable[[Callable, bool, Optional[int], Num], None] = wait_for
+
+
+# misc/other
+# ----------
+
+# pylint: disable=redefined-builtin
+staticmethod: Callable[[Callable], Callable] = staticmethod
