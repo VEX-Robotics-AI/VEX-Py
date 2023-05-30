@@ -45,7 +45,7 @@ class Timer:
         Sets the current value of the timer to 0
     """)
     @act
-    def clear(self: Self, /):
+    def clear(self: Self, /) -> None:
         """Reset."""
 
     @robotmesh_doc("""
@@ -61,5 +61,6 @@ class Timer:
         Returns: value of the system timer in mS
     """)
     @sense
-    def system(self: Self, /) -> Num:
+    @staticmethod
+    def system() -> Num:
         """Get System's current time value."""
