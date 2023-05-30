@@ -59,7 +59,7 @@ from .touch_led import Touchled, FadeType
 
 from .multi_device_group import MotorGroup, DriveTrain, SmartDrive
 
-from .time import TimeUnits, SECONDS, MSEC, clock, wait
+from .time import Timer, TimeUnits, SECONDS, MSEC, clock, wait
 
 from ._common_enums import (AnalogUnits,
                             AxisType, XAXIS, YAXIS, ZAXIS,
@@ -117,7 +117,7 @@ __all__: Sequence[LiteralString] = (
 
     'MotorGroup', 'DriveTrain', 'SmartDrive',
 
-    'TimeUnits', 'SECONDS', 'MSEC', 'wait',
+    'Timer', 'TimeUnits', 'SECONDS', 'MSEC', 'wait',
 
     'AnalogUnits',
     'AxisType', 'XAXIS', 'YAXIS', 'ZAXIS',

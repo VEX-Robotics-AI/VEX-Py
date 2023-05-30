@@ -6,13 +6,15 @@ from typing import LiteralString, overload
 
 from abm.decor import act
 
+from .timer import Timer
 from .units import TimeUnits, SECONDS, MSEC
 
 from .._util.doc import robotmesh_doc, vexcode_doc
 from .._util.type import Num
 
 
-__all__: Sequence[LiteralString] = ('TimeUnits', 'SECONDS', 'MSEC',
+__all__: Sequence[LiteralString] = ('Timer',
+                                    'TimeUnits', 'SECONDS', 'MSEC',
                                     'clock', 'wait')
 
 
