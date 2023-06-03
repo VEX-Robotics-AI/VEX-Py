@@ -20,6 +20,6 @@ __all__: Sequence[LiteralString] = ('TemperatureUnits',)
 class TemperatureUnits(IntEnum):
     """Temperature units."""
 
-    CELCIUS: int = 0
+    CELSIUS: int = 0
     FAHRENHEIT: int = 1
     PCT: int = 0xFF

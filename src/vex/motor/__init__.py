@@ -6,11 +6,13 @@ from typing import Any, Literal, LiteralString, Optional, Self, overload
 
 from abm.decor import act, sense
 
-from .._device import Device, V5DeviceType
+from .._device import Device
+from .._device.v5 import V5DeviceType
 from ..brain.port import Ports
 from ..time import TimeUnits, SECONDS
 from .._common_enums.percent import PERCENT
 from .._common_enums.rotation import RotationUnits, DEGREES
+from .._common_enums.temperature import TemperatureUnits
 from .._common_enums.velocity import VelocityUnits
 
 from .brake import BrakeType, COAST, BRAKE, HOLD
@@ -929,6 +931,18 @@ class Motor(Device):
     def current(self: Self,
                 unit: Literal[CurrentUnits.AMP] = CurrentUnits.AMP, /) -> float:  # noqa: E501
         """Return electrical current."""
+
+    @robotmesh_doc("""
+        Gets temperature of motor
+
+        Parameters
+        - temperatureUnits: unit type of temperature value, default Celsius
+
+        Returns: temperature of motor in unit defined
+    """)
+    @sense
+    def temperature(self: Self, temperatureUnits=TemperatureUnits.CELSIUS, /) -> Num:  # noqa: E501
+        """Return temperature."""
 
     @robotmesh_doc("""
         Get device type
