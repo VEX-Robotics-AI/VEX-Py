@@ -46,17 +46,36 @@ class Motor(Device):
     # pylint: disable=too-many-instance-attributes,too-many-public-methods
     """Motor."""
 
+    @overload
+    def __init__(self: Self, index: Ports, reverse: bool = False, /) -> None:
+        """Initialize Motor."""
+
+    @overload
+    def __init__(self: Self,
+                 index: Ports,
+                 gearSetting: GearSetting = GearSetting.RATIO18_1,
+                 reverse: bool = False, /) -> None:
+        """Initialize Motor with Gear Setting."""
+
     @robotmesh_doc("""
-        Creates new motor object on specified port and set reversed flag.
+        Creates new motor object on specified port.
 
         Parameters
         - index: Port index for this motor. The index is zero-based.
-        - reverse: Sets the reverse flag for the new motor object.
+        - gearSetting (if specified): Sets gear setting.
+        - reverse: Sets reverse flag.
     """)
-    def __init__(self: Self, index: Ports, reverse: bool = False, /):
+    def __init__(self: Self, index: Ports, *args: GearSetting | bool) -> None:
         """Initialize Motor."""
         self.port: Ports = index
-        self.reverse: bool = reverse
+
+        if len(args) == 1:
+            self.gear_setting: Optional[GearSetting] = None
+            self.reverse: bool = args[0]
+
+        else:
+            assert len(args) == 2
+            self.gear_setting, self.reverse = args
 
         self._rotation: dict[RotationUnits, float] = dict[RotationUnits, float]()  # noqa: E501
 
