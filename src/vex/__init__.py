@@ -69,6 +69,7 @@ from ._common_enums import (AnalogUnits,
                             PercentUnits, PERCENT,
                             PowerUnits,
                             RotationUnits, DEGREES, TURNS,
+                            TemperatureUnits,
                             VelocityUnits, RPM, DPS)
 
 from ._util.doc import robotmesh_doc
@@ -104,7 +105,6 @@ __all__: Sequence[LiteralString] = (
     'GearSetting',
     'TorqueUnits',
     'TurnType', 'LEFT', 'RIGHT',
-    'VelocityUnits', 'RPM', 'DPS',
     'VoltageUnits',
 
     'Bumper',
@@ -127,6 +127,8 @@ __all__: Sequence[LiteralString] = (
     'PercentUnits', 'PERCENT',
     'PowerUnits',
     'RotationUnits', 'DEGREES', 'TURNS',
+    'TemperatureUnits',
+    'VelocityUnits', 'RPM', 'DPS',
 
     'SYSTEM_DISPLAY_WIDTH', 'SYSTEM_DISPLAY_HEIGHT', 'STATUS_BAR_HEIGHT',
     'RUMBLE_LONG', 'RUMBLE_SHORT', 'RUMBLE_PULSE',

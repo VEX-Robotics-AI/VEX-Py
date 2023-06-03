@@ -12,6 +12,7 @@ from .orientation import OrientationType, ROLL, PITCH, YAW
 from .percent import PercentUnits, PERCENT
 from .power import PowerUnits
 from .rotation import RotationUnits, DEGREES, TURNS
+from .temperature import TemperatureUnits
 from .velocity import VelocityUnits, RPM, DPS
 
 
@@ -23,4 +24,5 @@ __all__: Sequence[LiteralString] = ('AnalogUnits',
                                     'PercentUnits', 'PERCENT',
                                     'PowerUnits',
                                     'RotationUnits', 'DEGREES', 'TURNS',
+                                    'TemperatureUnits',
                                     'VelocityUnits', 'RPM', 'DPS')
