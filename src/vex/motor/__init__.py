@@ -2,11 +2,11 @@
 
 
 from collections.abc import Sequence
-from typing import Literal, LiteralString, Optional, Self, overload
+from typing import Any, Literal, LiteralString, Optional, Self, overload
 
 from abm.decor import act, sense
 
-from .._device import Device
+from .._device import Device, V5DeviceType
 from ..brain.port import Ports
 from ..time import TimeUnits, SECONDS
 from .._common_enums.percent import PERCENT
@@ -929,3 +929,23 @@ class Motor(Device):
     def current(self: Self,
                 unit: Literal[CurrentUnits.AMP] = CurrentUnits.AMP, /) -> float:  # noqa: E501
         """Return electrical current."""
+
+    @robotmesh_doc("""
+        Get device type
+    """)
+    def type(self: Self, /) -> Literal[V5DeviceType.MOTOR]:
+        """Return device type, in the case of V5 only."""
+        return V5DeviceType.MOTOR
+
+    @robotmesh_doc("""
+        Gets status of what is installed
+
+        Returns: True if triport is installed, False if not
+    """)
+    @sense
+    def installed(self: Self, /) -> bool:
+        """Check if triport is installed."""
+
+    @sense
+    def value(self: Self, /) -> Any:
+        """Return (some kind of?) value."""
