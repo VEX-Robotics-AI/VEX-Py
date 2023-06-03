@@ -10,7 +10,7 @@ from .._device import Device
 from .._device.v5 import V5DeviceType
 from ..brain.port import Ports
 from ..time import TimeUnits, SECONDS
-from .._common_enums.percent import PERCENT
+from .._common_enums.percent import PercentUnits, PERCENT
 from .._common_enums.rotation import RotationUnits, DEGREES
 from .._common_enums.temperature import TemperatureUnits
 from .._common_enums.velocity import VelocityUnits
@@ -933,6 +933,19 @@ class Motor(Device):
         """Return electrical current."""
 
     @robotmesh_doc("""
+        Gets efficiency of motor
+
+        Parameters
+        - percentUnits: unit type of efficiency value
+
+        Returns: efficiency of motor in unit defined
+    """)
+    @sense
+    def efficiency(self: Self,
+                   percentUnits: PercentUnits = PercentUnits.PCT, /) -> Num:
+        """Return efficiency."""
+
+    @robotmesh_doc("""
         Gets temperature of motor
 
         Parameters
@@ -941,7 +954,9 @@ class Motor(Device):
         Returns: temperature of motor in unit defined
     """)
     @sense
-    def temperature(self: Self, temperatureUnits=TemperatureUnits.CELSIUS, /) -> Num:  # noqa: E501
+    def temperature(
+            self: Self,
+            temperatureUnits: TemperatureUnits = TemperatureUnits.CELSIUS, /) -> Num:  # noqa: E501
         """Return temperature."""
 
     @robotmesh_doc("""
