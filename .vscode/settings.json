@@ -26,6 +26,7 @@
   "python.linting.pylintArgs": [
     "--disable", "fixme",
     "--disable", "invalid-name",
+    "--disable", "isinstance-second-argument-not-valid-type",
   ],
 
   "python.linting.flake8Enabled": true,
