@@ -8,7 +8,7 @@ from typing import LiteralString
 from .._util.measurement_with_unit import _MeasurementWithUnitABC
 
 
-__all__: Sequence[LiteralString] = ('CurrentUnits',)
+__all__: Sequence[LiteralString] = 'CurrentUnits', '_Current'
 
 
 class CurrentUnits(IntEnum):

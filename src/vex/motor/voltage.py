@@ -9,7 +9,7 @@ from .._util.doc import robotmesh_doc
 from .._util.measurement_with_unit import _MeasurementWithUnitABC
 
 
-__all__: Sequence[LiteralString] = ('VoltageUnits',)
+__all__: Sequence[LiteralString] = 'VoltageUnits', '_Voltage'
 
 
 @robotmesh_doc("""

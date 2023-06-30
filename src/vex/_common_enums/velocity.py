@@ -11,7 +11,7 @@ from .._util.doc import robotmesh_doc
 from .._util.measurement_with_unit import _MeasurementWithUnitABC
 
 
-__all__: Sequence[LiteralString] = 'VelocityUnits', 'RPM', 'DPS'
+__all__: Sequence[LiteralString] = 'VelocityUnits', 'RPM', 'DPS', '_Velocity'
 
 
 @robotmesh_doc("""

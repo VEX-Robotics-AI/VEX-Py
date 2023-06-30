@@ -6,9 +6,10 @@ from enum import IntEnum
 from typing import LiteralString
 
 from .._util.doc import robotmesh_doc
+from .._util.measurement_with_unit import _MeasurementWithUnitABC
 
 
-__all__: Sequence[LiteralString] = ('PowerUnits',)
+__all__: Sequence[LiteralString] = 'PowerUnits', '_Power'
 
 
 @robotmesh_doc("""
@@ -21,3 +22,7 @@ class PowerUnits(IntEnum):
     """Power units."""
 
     WATT: int = 0  # unit representing values of power in watts
+
+
+class _Power(_MeasurementWithUnitABC):
+    unit: PowerUnits = PowerUnits.WATT
