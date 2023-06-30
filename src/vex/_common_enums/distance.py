@@ -2,7 +2,6 @@
 
 
 from collections.abc import Sequence
-from dataclasses import dataclass
 from enum import IntEnum
 from typing import LiteralString
 
@@ -32,6 +31,5 @@ MM: DistanceUnits = DistanceUnits.MM
 INCHES: DistanceUnits = DistanceUnits.IN
 
 
-@dataclass
 class _Distance(_MeasurementWithUnitABC):
     unit: DistanceUnits = MM
