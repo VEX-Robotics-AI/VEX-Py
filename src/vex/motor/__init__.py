@@ -933,6 +933,18 @@ class Motor(Device):
         """Return electrical current."""
 
     @robotmesh_doc("""
+        Gets torque of motor
+
+        Parameters:
+        - torqueUnits: Defines unit type of torque
+
+        Returns: double that represents torque of motor in unit defined
+    """)
+    @sense
+    def torque(self: Self, torqueUnits: TorqueUnits = TorqueUnits.NM) -> float:
+        """Return torque."""
+
+    @robotmesh_doc("""
         Gets efficiency of motor
 
         Parameters
