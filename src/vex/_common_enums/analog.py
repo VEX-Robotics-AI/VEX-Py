@@ -16,7 +16,7 @@ __all__: Sequence[LiteralString] = ('AnalogUnits',)
 @robotmesh_doc("""
     Analog units
 
-    Robot Mesg VEX V5 Python:
+    Robot Mesh VEX V5 Python:
     robotmesh.com/studio/content/docs/vexv5-python/html/classvex_1_1_analog_units.html
 """)
 class AnalogUnits(IntEnum):

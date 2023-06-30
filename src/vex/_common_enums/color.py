@@ -12,7 +12,7 @@ __all__: Sequence[LiteralString] = 'Color', 'ColorHue'
 
 
 @robotmesh_doc("""
-    Defined color hue values.
+    Defined color hue values
 
     Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_color_hue.html

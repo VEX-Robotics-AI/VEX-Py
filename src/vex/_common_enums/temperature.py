@@ -6,9 +6,10 @@ from enum import IntEnum
 from typing import LiteralString
 
 from .._util.doc import robotmesh_doc
+from .._util.measurement_with_unit import _MeasurementWithUnitABC
 
 
-__all__: Sequence[LiteralString] = ('TemperatureUnits',)
+__all__: Sequence[LiteralString] = 'TemperatureUnits', '_Temperature'
 
 
 @robotmesh_doc("""
@@ -23,3 +24,7 @@ class TemperatureUnits(IntEnum):
     CELSIUS: int = 0
     FAHRENHEIT: int = 1
     PCT: int = 0xFF
+
+
+class _Temperature(_MeasurementWithUnitABC):
+    unit: TemperatureUnits = TemperatureUnits.CELSIUS

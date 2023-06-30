@@ -14,8 +14,7 @@ from .._util.doc import vexcode_doc
 __all__: Sequence[LiteralString] = ('BrainBattery',)
 
 
-class BrainBattery(SingletonDevice):
-    # pylint: disable=too-few-public-methods
+class BrainBattery(SingletonDevice):  # pylint: disable=too-few-public-methods
     """Brain Battery."""
 
     @vexcode_doc("""

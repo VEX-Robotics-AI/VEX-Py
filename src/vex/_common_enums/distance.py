@@ -13,7 +13,7 @@ __all__: Sequence[LiteralString] = 'DistanceUnits', 'MM', 'INCHES', '_Distance'
 
 
 @robotmesh_doc("""
-    The measurement units for distance values.
+    Measurement units for distance values
 
     Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_distance_units.html

@@ -12,7 +12,7 @@ __all__: Sequence[LiteralString] = 'PercentUnits', 'PERCENT'
 
 
 @robotmesh_doc("""
-    Unit of Percentage.
+    Unit of Percentage
 
     Robot Mesh VEX V5 Python:
     robotmesh.com/studio/content/docs/vexv5-python/html/classvex_1_1_percent_units.html
