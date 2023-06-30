@@ -23,7 +23,9 @@ class AnalogUnits(IntEnum):
     """Analog units."""
 
     PCT: int = PERCENT  # analog unit representing values from 0% to 100%
+
     RANGE_8BIT: int = 1  # analog unit on an 8-bit range
     RANGE_10BIT: int = 2  # analog unit on a 10-bit range
     RANGE_12BIT: int = 3  # analog unit on a 12-bit range
+
     MV: int = 4  # milivolt unit
