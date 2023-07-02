@@ -17,6 +17,9 @@ __all__: Sequence[LiteralString] = 'TimeUnits', 'SECONDS', 'MSEC', '_Time'
 
     Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_time_units.html
+
+    Robot Mesh VEX V5 Python:
+    robotmesh.com/studio/content/docs/vexv5-python/html/classvex_1_1_time_units.html
 """)
 class TimeUnits(IntEnum):
     """Time units."""
