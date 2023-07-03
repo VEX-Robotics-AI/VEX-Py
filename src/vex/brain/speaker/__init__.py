@@ -6,7 +6,7 @@ from typing import LiteralString, Self
 
 from abm.decor import act
 
-from ..._abstract_device import SingletonDevice
+from ..._device import SingletonDevice
 from ...time import TimeUnits
 
 from ..._util.doc import robotmesh_doc, vexcode_doc

@@ -1,13 +1,13 @@
 """Optical Sensor."""
 
 
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from threading import Thread
 from typing import Literal, LiteralString, Self
 
 from abm.decor import act, sense
 
-from .._abstract_device import Device
+from .._device import Device
 from ..brain.port import Ports
 from .._common_enums.color import Color
 from .._common_enums.percent import PERCENT
@@ -225,7 +225,7 @@ class Optical(Device):
         as the callback parameter.
     """)
     @act
-    def object_detected(self: Self, callback: callable, /):
+    def object_detected(self: Self, callback: Callable, /):
         """Trigger callback function upon detecting an object."""
         def trigger_callback_whenever_near_object():
             while True:
@@ -250,7 +250,7 @@ class Optical(Device):
         when the event occurs as the callback parameter.
     """)
     @act
-    def object_lost(self: Self, callback: callable, /):
+    def object_lost(self: Self, callback: Callable, /):
         """Trigger callback function upon losing previously-detected object."""
         def trigger_callback_whenever_not_near_object():
             while True:
@@ -262,7 +262,7 @@ class Optical(Device):
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_up(self: Self, callback: callable, /):
+    def gesture_up(self: Self, callback: Callable, /):
         """Trigger callback function upon detecting UP gesture."""
         def trigger_callback_whenever_detecting_up_gesture():
             while True:
@@ -274,7 +274,7 @@ class Optical(Device):
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_down(self: Self, callback: callable, /):
+    def gesture_down(self: Self, callback: Callable, /):
         """Trigger callback function upon detecting DOWN gesture."""
         def trigger_callback_whenever_detecting_down_gesture():
             while True:
@@ -286,7 +286,7 @@ class Optical(Device):
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_left(self: Self, callback: callable, /):
+    def gesture_left(self: Self, callback: Callable, /):
         """Trigger callback function upon detecting LEFT gesture."""
         def trigger_callback_whenever_detecting_left_gesture():
             while True:
@@ -298,7 +298,7 @@ class Optical(Device):
 
     @vexcode_doc(GESTURE_CALLBACK_DOCSTR)
     @act
-    def gesture_right(self: Self, callback: callable, /):
+    def gesture_right(self: Self, callback: Callable, /):
         """Trigger callback function upon detecting RIGHT gesture."""
         def trigger_callback_whenever_detecting_right_gesture():
             while True:

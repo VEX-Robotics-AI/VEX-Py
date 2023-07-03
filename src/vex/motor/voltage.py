@@ -6,9 +6,10 @@ from enum import IntEnum
 from typing import LiteralString
 
 from .._util.doc import robotmesh_doc
+from .._util.measurement_with_unit import _MeasurementWithUnitABC
 
 
-__all__: Sequence[LiteralString] = ('VoltageUnits',)
+__all__: Sequence[LiteralString] = 'VoltageUnits', '_Voltage'
 
 
 @robotmesh_doc("""
@@ -22,3 +23,7 @@ class VoltageUnits(IntEnum):
 
     VOLT: int = 0
     MV: int = 1
+
+
+class _Voltage(_MeasurementWithUnitABC):
+    unit: VoltageUnits = VoltageUnits.VOLT

@@ -5,7 +5,7 @@ from collections.abc import Sequence
 from typing import LiteralString
 
 
-__all__: Sequence[LiteralString] = ('NumType',)
+__all__: Sequence[LiteralString] = ('Num',)
 
 
-NumType: type = float | int
+Num: type = float | int

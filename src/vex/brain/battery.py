@@ -6,7 +6,7 @@ from typing import LiteralString, Self
 
 from abm.decor import sense
 
-from .._abstract_device import SingletonDevice
+from .._device import SingletonDevice
 
 from .._util.doc import vexcode_doc
 
@@ -14,8 +14,7 @@ from .._util.doc import vexcode_doc
 __all__: Sequence[LiteralString] = ('BrainBattery',)
 
 
-class BrainBattery(SingletonDevice):
-    # pylint: disable=too-few-public-methods
+class BrainBattery(SingletonDevice):  # pylint: disable=too-few-public-methods
     """Brain Battery."""
 
     @vexcode_doc("""

@@ -4,7 +4,7 @@ from vex import Inertial
 from vex import DEGREES, VelocityUnits
 from vex._common_enums.axis import XAXIS, YAXIS, ZAXIS
 from vex._common_enums.orientation import PITCH, ROLL, YAW
-from ..io_utils import replace_stdin
+from vex._util.io import replace_stdin
 
 
 class TestInertialSensor(unittest.TestCase):

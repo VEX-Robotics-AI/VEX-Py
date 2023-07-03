@@ -12,15 +12,16 @@ robotmesh.com/studio/content/docs/vexv5-python/html/namespacevex.html
 """
 
 
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from importlib.metadata import version
+import string
 import sys
 from threading import Thread
 from typing import LiteralString, Optional
 
 from abm import interactive
 
-# from ._abstract_device import Device
+# from ._device import Device, TriDevice, V5DeviceType
 
 from .brain import (
     Brain, BrainBattery, BrainButton,
@@ -44,6 +45,7 @@ from .motor import (Motor,
                     BrakeType, COAST, BRAKE, HOLD,
                     CurrentUnits,
                     DirectionType, FORWARD, REVERSE,
+                    GearSetting,
                     TurnType, LEFT, RIGHT,
                     TorqueUnits,
                     VoltageUnits)
@@ -57,25 +59,27 @@ from .touch_led import Touchled, FadeType
 
 from .multi_device_group import MotorGroup, DriveTrain, SmartDrive
 
-from .time import TimeUnits, SECONDS, MSEC, clock, wait
+from .time import Timer, TimeUnits, SECONDS, MSEC, clock, wait
 
 from ._common_enums import (AnalogUnits,
                             AxisType, XAXIS, YAXIS, ZAXIS,
                             Color, ColorHue,
+                            DistanceUnits, MM, INCHES,
                             OrientationType, ROLL, PITCH, YAW,
                             PercentUnits, PERCENT,
-                            DistanceUnits, MM, INCHES,
+                            PowerUnits,
                             RotationUnits, DEGREES, TURNS,
+                            TemperatureUnits,
                             VelocityUnits, RPM, DPS)
 
 from ._util.doc import robotmesh_doc
-from ._util.type import NumType
+from ._util.type import Num
 
 
 __all__: Sequence[LiteralString] = (
     '__version__',
 
-    # 'Device',
+    # 'Device', 'TriDevice', 'V5DeviceType',
 
     'Brain', 'BrainBattery', 'BrainButton',
     'BrainLcd',
@@ -98,9 +102,9 @@ __all__: Sequence[LiteralString] = (
     'BrakeType', 'COAST', 'BRAKE', 'HOLD',
     'CurrentUnits',
     'DirectionType', 'FORWARD', 'REVERSE',
+    'GearSetting',
     'TorqueUnits',
     'TurnType', 'LEFT', 'RIGHT',
-    'VelocityUnits', 'RPM', 'DPS',
     'VoltageUnits',
 
     'Bumper',
@@ -113,18 +117,23 @@ __all__: Sequence[LiteralString] = (
 
     'MotorGroup', 'DriveTrain', 'SmartDrive',
 
-    'TimeUnits', 'SECONDS', 'MSEC', 'wait',
+    'Timer', 'TimeUnits', 'SECONDS', 'MSEC', 'wait',
 
     'AnalogUnits',
     'AxisType', 'XAXIS', 'YAXIS', 'ZAXIS',
     'Color', 'ColorHue',
+    'DistanceUnits', 'MM', 'INCHES',
     'OrientationType', 'ROLL', 'PITCH', 'YAW',
     'PercentUnits', 'PERCENT',
-    'DistanceUnits', 'MM', 'INCHES',
+    'PowerUnits',
     'RotationUnits', 'DEGREES', 'TURNS',
+    'TemperatureUnits',
+    'VelocityUnits', 'RPM', 'DPS',
 
     'SYSTEM_DISPLAY_WIDTH', 'SYSTEM_DISPLAY_HEIGHT', 'STATUS_BAR_HEIGHT',
     'RUMBLE_LONG', 'RUMBLE_SHORT', 'RUMBLE_PULSE',
+
+    'staticmethod',
 
     'interactive',
 )
@@ -154,7 +163,7 @@ RUMBLE_PULSE: LiteralString = '-.-.'
 @robotmesh_doc("""
     Runs the given function in a thread sharing the current global namespace.
 """)
-def run_in_thread(f: callable):  # pylint: disable=invalid-name
+def run_in_thread(f: Callable, /):  # pylint: disable=invalid-name
     """Run specified function in parallel thread."""
     Thread(group=None, target=f, name=None, args=(), kwargs={}, daemon=True).start()  # noqa: E501
 
@@ -172,8 +181,8 @@ def run_in_thread(f: callable):  # pylint: disable=invalid-name
     - check_period: time to wait between checks, in seconds;
                     default 0 (no wait)
 """)
-def wait_for(func: callable, value: bool = True,
-             timeout: Optional[int] = None, check_period: NumType = 0) -> bool:
+def wait_for(func: Callable, value: bool = True,
+             timeout: Optional[int] = None, check_period: Num = 0, /) -> bool:
     # pylint: disable=unused-argument
     """Wait for specified function to return specified target value."""
 
@@ -181,8 +190,33 @@ def wait_for(func: callable, value: bool = True,
 # ALIASES
 # =======
 
-sys.clock: callable = clock
-sys.sleep: callable = wait
+
+# STRING module
+# Robot Mesh VEX IQ Python B:
+# robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacestring.html
+# Robot Mesh VEX V5 Python:
+# robotmesh.com/studio/content/docs/vexv5-python/html/namespacestring.html
+# --------------------------------------------------------------------------
+
+string.letters: LiteralString = string.ascii_letters
+
+
+# SYS module
+# Robot Mesh VEX IQ Python B:
+# robotmesh.com/studio/content/docs/vexiq-python_b/html/namespacesys.html
+# Robot Mesh VEX V5 Python:
+# robotmesh.com/studio/content/docs/vexv5-python/html/namespacesys.html
+# -----------------------------------------------------------------------
+
+sys.clock: Callable[[], Num] = clock
+sys.sleep: Callable[[Num, TimeUnits], None] = wait
 sys.maxint: int = INT29_MAX
-sys.run_in_thread: callable = run_in_thread
-sys.wait_for: callable = wait_for
+sys.run_in_thread: Callable[[Callable], None] = run_in_thread
+sys.wait_for: Callable[[Callable, bool, Optional[int], Num], None] = wait_for
+
+
+# misc/other
+# ----------
+
+# pylint: disable=redefined-builtin
+staticmethod: Callable[[Callable], Callable] = staticmethod

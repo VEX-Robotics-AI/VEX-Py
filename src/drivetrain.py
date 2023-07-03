@@ -23,7 +23,7 @@ from vex._common_enums.rotation import RotationUnits
 from vex._common_enums.velocity import VelocityUnits
 
 from vex._util.doc import robotmesh_doc
-from vex._util.type import NumType
+from vex._util.type import Num
 
 from motor_group import MotorGroup
 
@@ -58,22 +58,22 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     def __init__(
             self,
             left_motor: DrivetrainMotorType, right_motor: DrivetrainMotorType,
-            wheel_travel: NumType = 200, track_width: NumType = 176,
+            wheel_travel: Num = 200, track_width: Num = 176,
             distanceUnits: DistanceUnits = DistanceUnits.MM,
-            gear_ratio: NumType = 1, /):
+            gear_ratio: Num = 1, /):
         """Initialize Drivetrain."""
         self.left_motor: DrivetrainMotorType = left_motor
         self.right_motor: DrivetrainMotorType = right_motor
-        self.wheel_travel: NumType = wheel_travel
-        self.track_width: NumType = track_width
+        self.wheel_travel: Num = wheel_travel
+        self.track_width: Num = track_width
         self.distance_unit: DistanceUnits = distanceUnits
-        self.gear_ratio: NumType = gear_ratio
+        self.gear_ratio: Num = gear_ratio
 
-        self.drive_velocities: dict[VelocityUnits, NumType] = \
-            dict[VelocityUnits, NumType]()
-        self.turn_velocities: dict[VelocityUnits, NumType] = \
-            dict[VelocityUnits, NumType]()
-        self.timeouts: dict[TimeUnits, NumType] = dict[TimeUnits, NumType]()
+        self.drive_velocities: dict[VelocityUnits, Num] = \
+            dict[VelocityUnits, Num]()
+        self.turn_velocities: dict[VelocityUnits, Num] = \
+            dict[VelocityUnits, Num]()
+        self.timeouts: dict[TimeUnits, Num] = dict[TimeUnits, Num]()
         self.stopping: Optional[BrakeType] = None
 
     def __eq__(self: Self, other: Self) -> bool:
@@ -104,7 +104,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     """)
     @act
     def drive(self: Self, directionType: DirectionType,
-              velocity: Optional[NumType] = None,
+              velocity: Optional[Num] = None,
               velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Drive."""
 
@@ -130,8 +130,8 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     @act
     def drive_for(
             self, directionType: DirectionType,
-            distance: NumType, distanceUnits: DistanceUnits = DistanceUnits.MM,
-            velocity: Optional[NumType] = None,
+            distance: Num, distanceUnits: DistanceUnits = DistanceUnits.MM,
+            velocity: Optional[Num] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
             waitForCompletion: bool = True, /) -> bool:
         """Drive for specified distance."""
@@ -152,8 +152,8 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     @act
     def start_drive_for(
             self, directionType: DirectionType,
-            distance: NumType, distanceUnits: DistanceUnits = DistanceUnits.MM,
-            velocity: Optional[NumType] = None,
+            distance: Num, distanceUnits: DistanceUnits = DistanceUnits.MM,
+            velocity: Optional[Num] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Start driving for specified distance."""
 
@@ -168,7 +168,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     """)
     @act
     def turn(self: Self, turnType: TurnType,
-             velocity: Optional[NumType] = None,
+             velocity: Optional[Num] = None,
              velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Turn."""
 
@@ -194,8 +194,8 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     """)
     @act
     def turn_for(self: Self, turnType: TurnType,
-                 angle: NumType, rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
-                 velocity: Optional[NumType] = None,
+                 angle: Num, rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
+                 velocity: Optional[Num] = None,
                  velocityUnits: VelocityUnits = VelocityUnits.PCT,
                  waitForCompletion: bool = True, /) -> bool:
         """Turn for specified rotational angle."""
@@ -217,8 +217,8 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     """)
     @act
     def start_turn_for(self: Self, turnType: TurnType,
-                       angle: NumType, angleUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
-                       velocity: Optional[NumType] = None,
+                       angle: Num, angleUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
+                       velocity: Optional[Num] = None,
                        velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Start turning for specified rotational angle."""
 
@@ -232,7 +232,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         - turnPower: percent power to apply to turning, -100..100
     """)
     @act
-    def arcade(self: Self, drivePower: NumType, turnPower: NumType, /):
+    def arcade(self: Self, drivePower: Num, turnPower: Num, /):
         """Arcade-drive."""
 
     @robotmesh_doc("""
@@ -253,9 +253,9 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         - gear_ratio: gear ratio value, usually 1.0
     """)
     @act
-    def set_gear_ratio(self: Self, gear_ratio: NumType, /):
+    def set_gear_ratio(self: Self, gear_ratio: Num, /):
         """Set gear ratio."""
-        self.gear_ratio: NumType = gear_ratio
+        self.gear_ratio: Num = gear_ratio
 
     @robotmesh_doc("""
         Set the velocity of the drive.
@@ -270,7 +270,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
                          a VelocityUnits enum value
     """)
     @act
-    def set_drive_velocity(self: Self, velocity: NumType,
+    def set_drive_velocity(self: Self, velocity: Num,
                            velocityUnits: VelocityUnits = VelocityUnits.PCT, /):  # noqa: E501
         """Set driving velocity."""
         self.drive_velocities[velocityUnits] = velocity
@@ -286,7 +286,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
                          a VelocityUnits enum value
     """)
     @act
-    def set_turn_velocity(self: Self, velocity: NumType,
+    def set_turn_velocity(self: Self, velocity: Num,
                           velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
         """Set turning velocity."""
         self.turn_velocities[velocityUnits] = velocity
@@ -303,7 +303,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
     """)
     @act
     def set_timeout(self: Self,
-                    time: NumType, timeUnits: TimeUnits = TimeUnits.SEC, /):
+                    time: Num, timeUnits: TimeUnits = TimeUnits.SEC, /):
         """Set motor timeout."""
         self.timeouts[timeUnits] = time
 
@@ -311,7 +311,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         Return a timeout in given time units.
     """)
     @sense
-    def timeout(self: Self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> NumType:  # noqa: E501
+    def timeout(self: Self, timeUnits: TimeUnits = TimeUnits.SEC, /) -> Num:  # noqa: E501
         """Return motor timeout."""
         return self.timeouts[timeUnits]
 

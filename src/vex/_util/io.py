@@ -6,7 +6,10 @@ from typing import LiteralString
 
 @contextmanager
 def replace_stdin(target: LiteralString):
-    """The provided input should be the text the user inputs. It support multiple lines for multiple inputs"""
+    """Replace stdin input by user with this string.
+
+    Multiple lines for multiple inputs are supported.
+    """
     orig = sys.stdin
     sys.stdin = StringIO(target)
     yield

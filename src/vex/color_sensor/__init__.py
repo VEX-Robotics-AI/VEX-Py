@@ -6,13 +6,13 @@ from typing import Literal, LiteralString, Self
 
 from abm.decor import act, sense
 
-from .._abstract_device import Device
+from .._device import Device
 from ..brain.port import Ports
 from .._common_enums.color import Color
 from .._common_enums.percent import PERCENT
 
 from .._util.doc import robotmesh_doc, vexcode_doc
-from .._util.type import NumType
+from .._util.type import Num
 
 
 __all__: Sequence[LiteralString] = 'ColorSensor', 'Colorsensor'
@@ -34,11 +34,11 @@ class ColorSensor(Device):
         - proximity: threshold (default 700)
     """)
     def __init__(self: Self, index: Ports,
-                 is_grayscale: bool = False, proximity: NumType = 700, /):
+                 is_grayscale: bool = False, proximity: Num = 700, /):
         """Initialize Color Sensor."""
         self.port: Ports = index
         self.is_grayscale: bool = is_grayscale
-        self.proximity_threshold: NumType = proximity
+        self.proximity_threshold: Num = proximity
 
     def __eq__(self: Self, other: Self) -> bool:
         """Check equality."""
@@ -58,9 +58,9 @@ class ColorSensor(Device):
         - proximity: threshold (higher is closer) (default 700)
     """)
     @act
-    def set_proximity_threshold(self: Self, proximity: NumType, /):
+    def set_proximity_threshold(self: Self, proximity: Num, /):
         """Set threshold for proximity."""
-        self.proximity_threshold: NumType = proximity
+        self.proximity_threshold: Num = proximity
 
     @vexcode_doc("""
         Set Color Sensor Light

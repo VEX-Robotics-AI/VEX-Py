@@ -8,18 +8,19 @@ from typing import LiteralString
 from .percent import PERCENT
 
 from .._util.doc import robotmesh_doc
+from .._util.measurement_with_unit import _MeasurementWithUnitABC
 
 
-__all__: Sequence[LiteralString] = 'VelocityUnits', 'RPM', 'DPS'
+__all__: Sequence[LiteralString] = 'VelocityUnits', 'RPM', 'DPS', '_Velocity'
 
 
 @robotmesh_doc("""
-    The measurement units for velocity values
+    Measurement units for velocity values
 
     Robot Mesh VEX IQ Python B:
     robotmesh.com/studio/content/docs/vexiq-python_b/html/classvex_1_1_velocity_units.html
 
-    Robot Mesg VEX V5 Python:
+    Robot Mesh VEX V5 Python:
     robotmesh.com/studio/content/docs/vexv5-python/html/classvex_1_1_velocity_units.html
 """)
 class VelocityUnits(IntEnum):
@@ -34,3 +35,7 @@ class VelocityUnits(IntEnum):
 # aliases
 RPM: VelocityUnits = VelocityUnits.RPM
 DPS: VelocityUnits = VelocityUnits.DPS
+
+
+class _Velocity(_MeasurementWithUnitABC):
+    unit: VelocityUnits = RPM

@@ -1,13 +1,13 @@
 """Bumper Switch Sensor."""
 
 
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from threading import Thread
 from typing import LiteralString, Self
 
 from abm.decor import sense
 
-from .._abstract_device import Device
+from .._device import Device
 from ..brain.port import Ports
 
 from .._util.doc import robotmesh_doc, vexcode_doc
@@ -71,7 +71,7 @@ class Bumper(Device):
         as an argument. The code inside the callback function will run
         whenever the event occurs.
     """)
-    def pressed(self: Self, callback: callable, /):
+    def pressed(self: Self, callback: Callable, /):
         """Trigger callback function upon being pressed."""
         def trigger_callback_whenever_pressing():
             while True:
@@ -97,7 +97,7 @@ class Bumper(Device):
         as an argument. The code inside the callback function will run
         whenever the event occurs.
     """)
-    def released(self: Self, callback: callable, /):
+    def released(self: Self, callback: Callable, /):
         """Trigger callback function upon being released."""
         def trigger_callback_whenever_not_pressing():
             while True:

@@ -6,12 +6,12 @@ from typing import LiteralString, Self, overload
 
 from abm.decor import act, sense
 
-from .._abstract_device import Device
+from .._device import Device
 from ..brain.port import Ports
 from .._common_enums.distance import DistanceUnits, MM, INCHES
 
 from .._util.doc import robotmesh_doc, vexcode_doc
-from .._util.type import NumType
+from .._util.type import Num
 
 
 __all__: Sequence[LiteralString] = ('Sonar',)
@@ -34,8 +34,8 @@ class Sonar(Device):
         """Initialize Sonar."""
         self.port: Ports = index
 
-        self.max_distance: dict[DistanceUnits, NumType] = \
-            dict[DistanceUnits, NumType]()
+        self.max_distance: dict[DistanceUnits, Num] = \
+            dict[DistanceUnits, Num]()
 
     def __hash__(self: Self) -> int:
         """Return integer hash."""
@@ -50,7 +50,7 @@ class Sonar(Device):
     """)
     @act
     def set_maximum(self: Self,
-                    distance: NumType, distanceUnits: DistanceUnits = MM, /):
+                    distance: Num, distanceUnits: DistanceUnits = MM, /):
         """Set maximum measurable distance."""
         self.max_distance[distanceUnits] = distance
 
