@@ -1005,5 +1005,5 @@ class Motor(Device):
         """Check if triport is installed."""
 
     @sense
-    def value(self: Self, /) -> Any:
-        """Return (some kind of?) value."""
+    def value(self: Self, /) -> int:
+        """Return (some kind of?) (integer/numerical?) value."""
