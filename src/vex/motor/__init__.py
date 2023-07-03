@@ -996,7 +996,7 @@ class Motor(Device):
         return V5DeviceType.MOTOR
 
     @robotmesh_doc("""
-        Gets status of what is installed
+        Get status of what is installed
 
         Returns: True if triport is installed, False if not
     """)
