@@ -56,6 +56,7 @@ from .distance_sensor import Distance, ObjectSizeType, Sonar
 from .gyro_sensor import Gyro, GyroCalibrationType
 from .optical_sensor import Optical, LedStateType, GestureType
 from .touch_led import Touchled, FadeType
+from .vision_sensor import Vision, VisionObject
 
 from .multi_device_group import MotorGroup, DriveTrain, SmartDrive
 
@@ -114,6 +115,7 @@ __all__: Sequence[LiteralString] = (
     'Sonar',
     'Gyro', 'GyroCalibrationType',
     'Touchled', 'FadeType',
+    'Vision', 'VisionObject',
 
     'MotorGroup', 'DriveTrain', 'SmartDrive',
 
