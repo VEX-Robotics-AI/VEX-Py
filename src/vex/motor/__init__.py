@@ -987,6 +987,8 @@ class Motor(Device):
             self: Self,
             temperatureUnits: TemperatureUnits = TemperatureUnits.CELSIUS, /) -> float:  # noqa: E501
         """Return temperature."""
+        assert isinstance(temperatureUnits, TemperatureUnits), \
+            TypeError(f'*** temperatureUnits={temperatureUnits} NOT OF TYPE TemperatureUnits ***')  # noqa: E501
 
     @robotmesh_doc("""
         Get device type
