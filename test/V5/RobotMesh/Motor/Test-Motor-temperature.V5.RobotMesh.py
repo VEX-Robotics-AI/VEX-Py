@@ -9,7 +9,7 @@ from vex import (
 )
 
 
-MOTOR_TEMPERATURE: float = 40
+MOTOR_TEMPERATURE: float = 40.0
 MOTOR_TEMPERATURE_C: float = 40.0
 MOTOR_TEMPERATURE_F: float = 104.0
 MOTOR_TEMPERATURE_PCT: float = 24.0
@@ -41,9 +41,10 @@ assert isinstance(motor_temperature_pct, float)
 assert motor_temperature_pct == MOTOR_TEMPERATURE_PCT
 
 
-brain.screen.print_line(1, motor_temperature_c)
-brain.screen.print_line(2, motor_temperature_f)
-brain.screen.print_line(3, motor_temperature_pct)
+brain.screen.print_line(1, motor_temperature)
+brain.screen.print_line(2, motor_temperature_c)
+brain.screen.print_line(3, motor_temperature_f)
+brain.screen.print_line(4, motor_temperature_pct)
 
 
 wait(3, SECONDS)
