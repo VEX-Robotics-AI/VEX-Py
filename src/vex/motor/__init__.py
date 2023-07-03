@@ -84,7 +84,7 @@ class Motor(Device):
         else:
             assert n_args == 2
             self.gear_setting, self.reverse = args
-            assert isinstance(self.reverse, GearSetting), \
+            assert isinstance(self.gear_setting, GearSetting), \
                 TypeError(f'*** 2ND ARG {self.gear_setting} MUST BE GearSetting ***')  # noqa: E501
             assert isinstance(self.reverse, bool), \
                 TypeError(f'*** 3ND ARG {self.reverse} MUST BE BOOLEAN ***')
