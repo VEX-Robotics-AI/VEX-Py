@@ -1,7 +1,7 @@
 import unittest
 
 from vex import Brain, SECONDS
-from ..io_utils import replace_stdin
+from vex_util.io import replace_stdin
 
 
 class TestBrainTimer(unittest.TestCase):

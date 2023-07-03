@@ -2,7 +2,7 @@ import unittest
 
 from vex import DriveTrain
 from vex import Motor, Ports, DEGREES, PERCENT, FORWARD, REVERSE, MM, LEFT, CurrentUnits
-from .io_utils import replace_stdin
+from vex._util.io import replace_stdin
 
 
 class TestDriveTrain(unittest.TestCase):
