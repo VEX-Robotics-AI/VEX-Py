@@ -15,28 +15,28 @@ MOTOR_TEMPERATURE_F: float = 104.0
 MOTOR_TEMPERATURE_PCT: float = 24.0
 
 
-brain = Brain()
+brain: Brain = Brain()
 
-motor = Motor(Ports.PORT1)
+motor: Motor = Motor(Ports.PORT1)
 
 
 motor.temperature(set=MOTOR_TEMPERATURE)
-motor_temperature = motor.temperature()
+motor_temperature: float = motor.temperature()
 assert isinstance(motor_temperature, float)
 assert MOTOR_TEMPERATURE == MOTOR_TEMPERATURE
 
 motor.temperature(TemperatureUnits.CELSIUS, set=MOTOR_TEMPERATURE_C)
-motor_temperature_c = motor.temperature(TemperatureUnits.CELSIUS)
+motor_temperature_c: float = motor.temperature(TemperatureUnits.CELSIUS)
 assert isinstance(motor_temperature_c, float)
 assert motor_temperature_c == MOTOR_TEMPERATURE_C
 
 motor.temperature(TemperatureUnits.FAHRENHEIT, set=MOTOR_TEMPERATURE_F)
-motor_temperature_f = motor.temperature(TemperatureUnits.FAHRENHEIT)
+motor_temperature_f: float = motor.temperature(TemperatureUnits.FAHRENHEIT)
 assert isinstance(motor_temperature_f, float)
 assert motor_temperature_f == MOTOR_TEMPERATURE_F
 
 motor.temperature(TemperatureUnits.PCT, set=MOTOR_TEMPERATURE_PCT)
-motor_temperature_pct = motor.temperature(TemperatureUnits.PCT)
+motor_temperature_pct: float = motor.temperature(TemperatureUnits.PCT)
 assert isinstance(motor_temperature_pct, float)
 assert motor_temperature_pct == MOTOR_TEMPERATURE_PCT
 
