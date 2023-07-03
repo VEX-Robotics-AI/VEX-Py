@@ -3,6 +3,8 @@
 
 # flake8: noqa: F401
 
+# pylama: ignore=W0611
+
 # pylint: disable=import-error,pointless-statement,redefined-builtin,reimported
 # pylint: disable=unused-import,wrong-import-position
 
@@ -10,7 +12,8 @@
 # VEX module
 # robotmesh.com/studio/content/docs/vexv5-python/html/namespacevex.html
 # =====================================================================
-from vex import (Device,
+from vex import (
+                 # Device,
 
                  # Brain, BrainButton, BrainLcd, BrainSound, NoteType,
 
@@ -79,11 +82,12 @@ from sys import (clock,
                  run_in_thread,
                  wait_for,
                  exit,
-                 gc,
-                 getb,
-                 heap,
-                 putb,
-                 thread_id)
+                 # gc,
+                 # getb,
+                 # heap,
+                 # putb,
+                 # thread_id
+                 )
 
 
 # MATH module
@@ -107,7 +111,7 @@ from math import (
     e, exp, log, log1p, log10, pow, sqrt,
 
     # misc/other
-    is_prime,
+    # is_prime,
 )
 
 
@@ -154,7 +158,7 @@ range
 sum
 type
 # pylint: disable=undefined-variable
-ismain  # noqa: F821
+# ismain  # noqa: F821
 
 
 # BUILT-INS module
@@ -166,7 +170,7 @@ ismain  # noqa: F821
 # DICT module
 # robotmesh.com/studio/content/docs/vexv5-python/html/namespacedict.html
 # ======================================================================
-from dict import _Autobox, clear, keys, has_key, values, update  # noqa: E402
+# from dict import _Autobox, clear, keys, has_key, values, update  # noqa: E402
 
 
 # FUNC module
@@ -178,10 +182,16 @@ from dict import _Autobox, clear, keys, has_key, values, update  # noqa: E402
 # LIST module
 # robotmesh.com/studio/content/docs/vexv5-python/html/namespacelist.html
 # ======================================================================
-from list import _Autobox, append, count, extend, index, insert, pop, remove  # noqa: E402,E501
+# from list import _Autobox, append, count, extend, index, insert, pop, remove  # noqa: E402,E501
 
 
 # STRING module
 # robotmesh.com/studio/content/docs/vexv5-python/html/namespacestring.html
 # ========================================================================
-from string import _Autobox, atoi, count, find, join, digits, hexdigits, letters  # noqa: E402,E501
+from string import (  # noqa: E402
+                    # _Autobox,
+                    # atoi,
+                    # count,
+                    # find,
+                    # join,
+                    digits, hexdigits, letters)
