@@ -78,10 +78,16 @@ class Motor(Device):
         elif n_args == 1:
             self.gear_setting: Optional[GearSetting] = None
             self.reverse: bool = args[0]
+            assert isinstance(self.reverse, bool), \
+                TypeError(f'*** 2ND ARG {self.reverse} MUST BE BOOLEAN ***')
 
         else:
             assert n_args == 2
             self.gear_setting, self.reverse = args
+            assert isinstance(self.gear_setting, GearSetting), \
+                TypeError(f'*** 2ND ARG {self.gear_setting} MUST BE GearSetting ***')  # noqa: E501
+            assert isinstance(self.reverse, bool), \
+                TypeError(f'*** 3ND ARG {self.reverse} MUST BE BOOLEAN ***')
 
         self._rotation: dict[RotationUnits, float] = dict[RotationUnits, float]()  # noqa: E501
 
@@ -99,11 +105,12 @@ class Motor(Device):
         """Check equality."""
         return (isinstance(other, type(self)) and
                 (other.port == self.port) and
+                (other.gear_setting == self.gear_setting) and
                 (other.reverse == self.reverse))
 
     def __hash__(self: Self) -> int:
         """Return integer hash."""
-        return hash((self.port, self.reverse))
+        return hash((self.port, self.gear_setting, self.reverse))
 
     def __repr__(self: Self) -> str:
         """Return string representation."""
