@@ -9,6 +9,7 @@ from vex import (
 )
 
 
+MOTOR_TEMPERATURE: float = 40
 MOTOR_TEMPERATURE_C: float = 40.0
 MOTOR_TEMPERATURE_F: float = 104.0
 MOTOR_TEMPERATURE_PCT: float = 24.0
@@ -18,6 +19,11 @@ brain = Brain()
 
 motor = Motor(Ports.PORT1)
 
+
+motor.temperature(set=MOTOR_TEMPERATURE)
+motor_temperature = motor.temperature()
+assert isinstance(motor_temperature, float)
+assert MOTOR_TEMPERATURE == MOTOR_TEMPERATURE
 
 motor.temperature(TemperatureUnits.CELSIUS, set=MOTOR_TEMPERATURE_C)
 motor_temperature_c = motor.temperature(TemperatureUnits.CELSIUS)
