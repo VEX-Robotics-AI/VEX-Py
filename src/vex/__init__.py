@@ -21,7 +21,7 @@ from typing import LiteralString, Optional
 
 from abm import interactive
 
-# from ._device import Device, TriDevice, V5DeviceType
+from ._device import Device, TriDevice, V5DeviceType
 
 from .brain import (
     Brain, BrainBattery, BrainButton,
@@ -56,6 +56,7 @@ from .distance_sensor import Distance, ObjectSizeType, Sonar
 from .gyro_sensor import Gyro, GyroCalibrationType
 from .optical_sensor import Optical, LedStateType, GestureType
 from .touch_led import Touchled, FadeType
+from .vision_sensor import Vision, VisionObject
 
 from .multi_device_group import MotorGroup, DriveTrain, SmartDrive
 
@@ -79,7 +80,7 @@ from ._util.type import Num
 __all__: Sequence[LiteralString] = (
     '__version__',
 
-    # 'Device', 'TriDevice', 'V5DeviceType',
+    'Device', 'TriDevice', 'V5DeviceType',
 
     'Brain', 'BrainBattery', 'BrainButton',
     'BrainLcd',
@@ -114,6 +115,7 @@ __all__: Sequence[LiteralString] = (
     'Sonar',
     'Gyro', 'GyroCalibrationType',
     'Touchled', 'FadeType',
+    'Vision', 'VisionObject',
 
     'MotorGroup', 'DriveTrain', 'SmartDrive',
 

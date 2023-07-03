@@ -6,11 +6,10 @@ from __future__ import annotations
 from collections.abc import Sequence
 from typing import LiteralString, Self, TYPE_CHECKING
 
-from ..brain.port import Ports
-
 from .._util.doc import robotmesh_doc
 
 if TYPE_CHECKING:
+    from ..brain.port import Ports
     from .v5 import V5DeviceType
 
 
