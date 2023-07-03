@@ -9,13 +9,13 @@ from vex import (
 )
 
 
-brain = Brain()
+brain: Brain = Brain()
 
-motor = Motor(Ports.PORT1)
+motor: Motor = Motor(Ports.PORT1)
 
 
-motor_type = motor.type()
-assert isinstance(motor_type, int)
+motor_type: V5DeviceType = motor.type()
+assert isinstance(motor_type, V5DeviceType)
 assert motor_type == V5DeviceType.MOTOR
 
 

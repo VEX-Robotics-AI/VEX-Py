@@ -18,8 +18,6 @@ motor: Motor = Motor(Ports.PORT1)
 
 
 motor.value(set=MOTOR_VALUE)
-
-
 motor_value: int = motor.value()
 assert isinstance(motor_value, int)
 assert motor_value == MOTOR_VALUE
