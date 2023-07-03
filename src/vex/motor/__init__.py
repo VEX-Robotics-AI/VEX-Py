@@ -82,7 +82,7 @@ class Motor(Device):
             self.reverse: bool = args[0]
 
             assert isinstance(self.reverse, bool), \
-                TypeError(f'*** 2ND ARG {self.reverse} MUST BE BOOLEAN ***')
+                TypeError(f'*** 2ND ARG {self.reverse} NOT BOOLEAN ***')
 
         else:
             assert n_args == 2
