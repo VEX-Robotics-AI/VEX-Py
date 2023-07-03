@@ -975,7 +975,7 @@ class Motor(Device):
         """Return efficiency."""
 
     @robotmesh_doc("""
-        Gets temperature of motor
+        Get temperature of motor
 
         Parameters
         - temperatureUnits: unit type of temperature value, default Celsius
@@ -985,7 +985,7 @@ class Motor(Device):
     @sense
     def temperature(
             self: Self,
-            temperatureUnits: TemperatureUnits = TemperatureUnits.CELSIUS, /) -> Num:  # noqa: E501
+            temperatureUnits: TemperatureUnits = TemperatureUnits.CELSIUS, /) -> float:  # noqa: E501
         """Return temperature."""
 
     @robotmesh_doc("""
