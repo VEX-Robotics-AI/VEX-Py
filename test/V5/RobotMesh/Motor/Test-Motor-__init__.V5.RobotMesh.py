@@ -1,4 +1,4 @@
-# noqa: D104
+"""robotmesh.com/studio/64a32968f47a886576b2fc04."""
 
 
 from vex import (
