@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 
-pytest tests/ --cov=src/
+pytest --cov=src/
