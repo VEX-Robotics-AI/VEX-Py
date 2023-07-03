@@ -27,4 +27,5 @@ class TemperatureUnits(IntEnum):
 
 
 class _Temperature(_MeasurementWithUnitABC):
+    measurement: float
     unit: TemperatureUnits = TemperatureUnits.CELSIUS
