@@ -157,3 +157,13 @@ requires = [
   'Wheel >= 0.40.0',
 ]
 build-backend = 'setuptools.build_meta'
+
+
+# TESTING
+# (PyTest)
+# ========
+
+[tool.pytest.ini_options]
+testpaths = [
+  'tests/**/*.py',
+]
