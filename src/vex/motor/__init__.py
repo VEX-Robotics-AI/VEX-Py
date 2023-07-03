@@ -71,12 +71,16 @@ class Motor(Device):
         """Initialize Motor."""
         self.port: Ports = index
 
-        if len(args) == 1:
+        if (n_args := len(args)) == 0:
+            self.gear_setting: Optional[GearSetting] = None
+            self.reverse: bool = False
+
+        elif n_args == 1:
             self.gear_setting: Optional[GearSetting] = None
             self.reverse: bool = args[0]
 
         else:
-            assert len(args) == 2
+            assert n_args == 2
             self.gear_setting, self.reverse = args
 
         self._rotation: dict[RotationUnits, float] = dict[RotationUnits, float]()  # noqa: E501
