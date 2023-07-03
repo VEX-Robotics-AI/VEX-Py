@@ -7,8 +7,8 @@ from vex import (
 )
 
 
-motor = Motor(Ports.PORT1)
+motor: Motor = Motor(Ports.PORT1)
 
-motor = Motor(Ports.PORT1, GearSetting.RATIO18_1, False)
+motor: Motor = Motor(Ports.PORT1, GearSetting.RATIO18_1, False)
 
-motor = Motor(Ports.PORT1, GearSetting.RATIO18_1, True)
+motor: Motor = Motor(Ports.PORT1, GearSetting.RATIO18_1, True)

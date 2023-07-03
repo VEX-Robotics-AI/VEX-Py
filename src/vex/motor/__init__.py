@@ -2,7 +2,7 @@
 
 
 from collections.abc import Sequence
-from typing import Any, Literal, LiteralString, Optional, Self, overload
+from typing import Literal, LiteralString, Optional, Self, overload
 
 from abm.decor import act, sense
 

@@ -9,13 +9,21 @@ from vex import (
 )
 
 
-brain = Brain()
-
-motor = Motor(Ports.PORT1)
+MOTOR_VALUE: int = 0
 
 
-motor_value = motor.value()
-# assert isinstance(motor_value, int)
+brain: Brain = Brain()
+
+motor: Motor = Motor(Ports.PORT1)
+
+
+motor.value(set=MOTOR_VALUE)
+
+
+motor_value: int = motor.value()
+assert isinstance(motor_value, int)
+assert motor_value == MOTOR_VALUE
+
 
 brain.screen.print_line(1, motor_value)
 
