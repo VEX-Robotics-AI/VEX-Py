@@ -40,7 +40,7 @@ jobs:
           pip install pytest pytest-cov
 
       - name: Run tests
-        run: tests/run
+        run: test/run
 
       - name: Upload coverage reports to Codecov
         run: |
