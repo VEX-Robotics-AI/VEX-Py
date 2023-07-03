@@ -67,27 +67,33 @@ class Motor(Device):
         - gearSetting (if specified): Sets gear setting.
         - reverse: Sets reverse flag.
     """)
-    def __init__(self: Self, index: Ports, *args: GearSetting | bool) -> None:
+    def __init__(self: Self, index: Ports, /, *args: GearSetting | bool) -> None:  # noqa: E501
         """Initialize Motor."""
         self.port: Ports = index
 
         if (n_args := len(args)) == 0:
             self.gear_setting: Optional[GearSetting] = None
+
             self.reverse: bool = False
 
         elif n_args == 1:
             self.gear_setting: Optional[GearSetting] = None
+
             self.reverse: bool = args[0]
+
             assert isinstance(self.reverse, bool), \
-                TypeError(f'*** 2ND ARG {self.reverse} MUST BE BOOLEAN ***')
+                TypeError(f'*** 2ND ARG reverse={self.reverse} NOT BOOL ***')
 
         else:
             assert n_args == 2
+
             self.gear_setting, self.reverse = args
+
             assert isinstance(self.gear_setting, GearSetting), \
-                TypeError(f'*** 2ND ARG {self.gear_setting} MUST BE GearSetting ***')  # noqa: E501
+                TypeError(f'*** 2ND ARG gearSetting={self.gear_setting} NOT GearSetting ***')  # noqa: E501
+
             assert isinstance(self.reverse, bool), \
-                TypeError(f'*** 3ND ARG {self.reverse} MUST BE BOOLEAN ***')
+                TypeError(f'*** 3ND ARG reverse={self.reverse} NOT BOOL ***')
 
         self._rotation: dict[RotationUnits, float] = dict[RotationUnits, float]()  # noqa: E501
 
@@ -98,7 +104,7 @@ class Motor(Device):
 
         self._timeout: dict[TimeUnits, Num] = dict[TimeUnits, Num]()
 
-        self.max_torque: dict[TorqueUnits, Num] = dict[TorqueUnits, Num]()  # noqa: E501
+        self.max_torque: dict[TorqueUnits, Num] = dict[TorqueUnits, Num]()
         self.max_torque_current: Optional[float] = None
 
     def __eq__(self: Self, other: Self) -> bool:
@@ -190,7 +196,7 @@ class Motor(Device):
             self._rotation[rotation_unit] = 0
 
     @overload
-    def set_velocity(self: Self, value: Num, unit: VelocityUnits = PERCENT, /):  # noqa: E501
+    def set_velocity(self: Self, value: Num, unit: VelocityUnits = PERCENT, /):
         ...
 
     @overload
