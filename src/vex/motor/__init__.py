@@ -950,7 +950,7 @@ class Motor(Device):
         """Return electrical current."""
 
     @robotmesh_doc("""
-        Gets torque of motor
+        Get torque of motor
 
         Parameters:
         - torqueUnits: Defines unit type of torque
@@ -960,9 +960,11 @@ class Motor(Device):
     @sense
     def torque(self: Self, torqueUnits: TorqueUnits = TorqueUnits.NM) -> float:
         """Return torque."""
+        assert isinstance(torqueUnits, TorqueUnits), \
+            TypeError(f'*** torqueUnits={TorqueUnits} NOT OF TYPE TorqueUnits ***')  # noqa: E501
 
     @robotmesh_doc("""
-        Gets efficiency of motor
+        Get efficiency of motor
 
         Parameters
         - percentUnits: unit type of efficiency value
@@ -970,12 +972,15 @@ class Motor(Device):
         Returns: efficiency of motor in unit defined
     """)
     @sense
-    def efficiency(self: Self,
-                   percentUnits: PercentUnits = PercentUnits.PCT, /) -> Num:
+    def efficiency(
+            self: Self,
+            percentUnits: Literal[PercentUnits.PCT] = PercentUnits.PCT, /) -> float:  # noqa: E501
         """Return efficiency."""
+        assert percentUnits is PERCENT, \
+            TypeError(f'*** percentUnits={percentUnits} NOT SAME AS `PERCENT`')
 
     @robotmesh_doc("""
-        Gets temperature of motor
+        Get temperature of motor
 
         Parameters
         - temperatureUnits: unit type of temperature value, default Celsius
@@ -985,8 +990,10 @@ class Motor(Device):
     @sense
     def temperature(
             self: Self,
-            temperatureUnits: TemperatureUnits = TemperatureUnits.CELSIUS, /) -> Num:  # noqa: E501
+            temperatureUnits: TemperatureUnits = TemperatureUnits.CELSIUS, /) -> float:  # noqa: E501
         """Return temperature."""
+        assert isinstance(temperatureUnits, TemperatureUnits), \
+            TypeError(f'*** temperatureUnits={temperatureUnits} NOT OF TYPE TemperatureUnits ***')  # noqa: E501
 
     @robotmesh_doc("""
         Get device type
@@ -996,7 +1003,7 @@ class Motor(Device):
         return V5DeviceType.MOTOR
 
     @robotmesh_doc("""
-        Gets status of what is installed
+        Get status of what is installed
 
         Returns: True if triport is installed, False if not
     """)
