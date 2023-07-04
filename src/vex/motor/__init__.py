@@ -950,7 +950,7 @@ class Motor(Device):
         """Return electrical current."""
 
     @robotmesh_doc("""
-        Gets torque of motor
+        Get torque of motor
 
         Parameters:
         - torqueUnits: Defines unit type of torque
@@ -960,6 +960,8 @@ class Motor(Device):
     @sense
     def torque(self: Self, torqueUnits: TorqueUnits = TorqueUnits.NM) -> float:
         """Return torque."""
+        assert isinstance(torqueUnits, TorqueUnits), \
+            TypeError(f'*** torqueUnits={TorqueUnits} NOT OF TYPE TorqueUnits ***')  # noqa: E501
 
     @robotmesh_doc("""
         Get efficiency of motor
