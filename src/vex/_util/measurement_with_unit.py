@@ -4,8 +4,9 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
 from enum import IntEnum
-from typing import LiteralString
+from typing import Literal, LiteralString
 
+from .._common_enums.percent import PERCENT
 from .._util.type import Num
 
 
@@ -15,4 +16,4 @@ __all__: Sequence[LiteralString] = ('_MeasurementWithUnitABC',)
 @dataclass
 class _MeasurementWithUnitABC:
     measurement: Num
-    unit: IntEnum
+    unit: IntEnum | Literal[PERCENT]
