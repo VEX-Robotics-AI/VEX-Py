@@ -962,7 +962,7 @@ class Motor(Device):
         """Return torque."""
 
     @robotmesh_doc("""
-        Gets efficiency of motor
+        Get efficiency of motor
 
         Parameters
         - percentUnits: unit type of efficiency value
@@ -970,9 +970,12 @@ class Motor(Device):
         Returns: efficiency of motor in unit defined
     """)
     @sense
-    def efficiency(self: Self,
-                   percentUnits: PercentUnits = PercentUnits.PCT, /) -> Num:
+    def efficiency(
+            self: Self,
+            percentUnits: Literal[PercentUnits.PCT] = PercentUnits.PCT, /) -> float:  # noqa: E501
         """Return efficiency."""
+        assert percentUnits is PERCENT, \
+            TypeError(f'*** percentUnits={percentUnits} NOT SAME AS `PERCENT`')
 
     @robotmesh_doc("""
         Get temperature of motor
