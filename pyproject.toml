@@ -166,8 +166,31 @@ build-backend = 'setuptools.build_meta'
 [tool.pytest.ini_options]
 
 addopts = [
+  "--ignore-glob='**/.*.py'",
+  # hidden test files containing code runnable on actual VEX Robotics hardware
+
   '--import-mode=importlib',
+  # docs.pytest.org/en/latest/explanation/pythonpath.html
+  # importlib: new in pytest-6.0, this mode uses more fine control mechanisms
+  # provided by importlib to import test modules.
+  # This gives full control over the import process,
+  # and doesn’t require changing sys.path.
+  # For this reason this doesn’t require test module names to be unique.
+  # One drawback however is that test modules are non-importable by each other.
+  # Also, utility modules in the tests directories are not automatically
+  # importable because the tests directory is no longer added to sys.path.
+  # Initially we intended to make importlib the default in future releases,
+  # however it is clear now that it has its own set of drawbacks
+  # so the default will remain prepend for the foreseeable future.
 ]
+
+# docs.pytest.org/en/latest/example/pythoncollection.html#changing-naming-conventions
+python_files = 'Test*.py test*.py'
+python_classes = 'Test'
+python_functions = 'test_*'
+
+# docs.pytest.org/en/latest/explanation/goodpractices.html#tests-outside-application-code
+pythonpath = 'src'
 
 testpaths = [
   'test/**/*.py',
