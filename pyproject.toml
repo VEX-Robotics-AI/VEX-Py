@@ -37,7 +37,7 @@ license = {file = 'LICENSE'}
 # PYTHON VERSION REQUIREMENT
 # ==========================
 
-requires-python = '>= 3.11'
+requires-python = '>= 3.12'
 
 
 # DYNAMIC METADATA
@@ -153,8 +153,8 @@ test = {file = 'metadata/requirements/test.txt'}
 
 [build-system]
 requires = [
-  'SetUpTools >= 68.0.0',
-  'Wheel >= 0.40.0',
+  'SetUpTools >= 68.2.2',
+  'Wheel >= 0.41.3',
 ]
 build-backend = 'setuptools.build_meta'
 
