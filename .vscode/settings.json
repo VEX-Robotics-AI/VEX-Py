@@ -13,39 +13,10 @@
     "**/__pycache__": true,
     "**/.pytest_cache": true,
     "**/.ropeproject": true,
-    ".vscode/*.log": true,
+    ".vscode/*.log": true
   },
 
   "python.analysis.diagnosticSeverityOverrides": {
     "reportShadowedImports": "none"
-  },
-
-  "python.linting.enabled": true,
-
-  "python.linting.pylintEnabled": true,
-  "python.linting.pylintArgs": [
-    "--disable", "fixme",
-    "--disable", "invalid-name",
-    "--disable", "isinstance-second-argument-not-valid-type",
-  ],
-
-  "python.linting.flake8Enabled": true,
-  "python.linting.flake8Args": [
-    "--ignore=N802,N803,W504",
-  ],
-
-  "python.linting.mypyEnabled": false,
-
-  "python.linting.pydocstyleEnabled": true,
-
-  "python.linting.pycodestyleEnabled": true,
-
-  "python.linting.prospectorEnabled": true,
-
-  "python.linting.pylamaEnabled": true,
-
-  "python.linting.banditEnabled": true,
-  "python.linting.banditArgs": [
-    "--skip=B101,B102",
-  ],
+  }
 }
