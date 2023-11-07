@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 
-pytest --cov=src/
+python3 -m pytest --cov=src/
