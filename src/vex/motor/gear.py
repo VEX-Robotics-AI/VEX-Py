@@ -19,10 +19,10 @@ class GearSetting(IntEnum):
     """Motor Gear Settings."""
 
     # unit representing gear setting for stock gears (red) (max rpm = 100)
-    RATIO36_1: int = 0
+    RATIO_36_1 = RATIO36_1 = 0
 
     # unit representing gear setting for upgraded gears (green) (max rpm = 200)
-    RATIO18_1: int = 1
+    RATIO_18_1 = RATIO18_1 = 1
 
     # unit representing gear setting for upgraded gears (blue) (max rpm = 600)
-    RATIO6_1: int = 2
+    RATIO_6_1 = RATIO6_1 = 2
