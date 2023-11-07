@@ -7,7 +7,7 @@ from enum import IntEnum
 from typing import Literal, LiteralString
 
 from .._common_enums.percent import PercentUnits, PERCENT
-from .._util.type import Num
+from .type import Num
 
 
 __all__: Sequence[LiteralString] = ('_MeasurementWithUnitABC',)
