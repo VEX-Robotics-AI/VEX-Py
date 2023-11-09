@@ -31,5 +31,5 @@ DEGREES: RotationUnits = RotationUnits.DEG
 TURNS: RotationUnits = RotationUnits.REV
 
 
-class _Rotation(_MeasurementWithUnitABC):
+class _Rotation(_MeasurementWithUnitABC):  # pylint: disable=too-few-public-methods
     unit: RotationUnits = DEGREES

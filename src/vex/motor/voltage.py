@@ -25,5 +25,5 @@ class VoltageUnits(IntEnum):
     MV: int = 1
 
 
-class _Voltage(_MeasurementWithUnitABC):
+class _Voltage(_MeasurementWithUnitABC):  # pylint: disable=too-few-public-methods
     unit: VoltageUnits = VoltageUnits.VOLT

@@ -26,6 +26,6 @@ class TemperatureUnits(IntEnum):
     PCT: int = 0xFF
 
 
-class _Temperature(_MeasurementWithUnitABC):
+class _Temperature(_MeasurementWithUnitABC):  # pylint: disable=too-few-public-methods
     measurement: float
     unit: TemperatureUnits = TemperatureUnits.CELSIUS
