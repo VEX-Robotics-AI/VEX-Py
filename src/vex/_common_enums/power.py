@@ -24,5 +24,5 @@ class PowerUnits(IntEnum):
     WATT: int = 0  # unit representing values of power in watts
 
 
-class _Power(_MeasurementWithUnitABC):
+class _Power(_MeasurementWithUnitABC):  # pylint: disable=too-few-public-methods
     unit: PowerUnits = PowerUnits.WATT

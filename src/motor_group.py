@@ -19,6 +19,7 @@ from vex.motor.direction import DirectionType
 from vex.motor.torque import TorqueUnits
 from vex.time.units import TimeUnits
 from vex._common_enums.rotation import RotationUnits
+from vex._common_enums.percent import PERCENT
 from vex._common_enums.velocity import VelocityUnits
 
 from vex._util.doc import robotmesh_doc
@@ -197,7 +198,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
                                         By default, this parameter is true.
     """)
     @act
-    def spin_to(self: Self,
+    def spin_to(self: Self,  # pylint: disable=too-many-arguments
                 rotation: Num, rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
                 velocity: Optional[Num] = None,
                 velocityUnits: VelocityUnits = VelocityUnits.PCT,
@@ -226,7 +227,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
                                         By default, this parameter is true.
     """)
     @act
-    def spin_for(self: Self,
+    def spin_for(self: Self,  # pylint: disable=too-many-arguments
                  dir: DirectionType,  # pylint: disable=redefined-builtin
                  rotation: Num, rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
                  velocity: Optional[Num] = None,
@@ -247,7 +248,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
                          a VelocityUnits enum value.
     """)
     @act
-    def spin_for_time(self: Self,
+    def spin_for_time(self: Self,  # pylint: disable=too-many-arguments
                       dir: DirectionType,  # pylint: disable=redefined-builtin
                       time: Num, timeUnits: TimeUnits = TimeUnits.SEC,
                       velocity: Optional[Num] = None,
@@ -286,7 +287,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
         - velocityUnits: The measurement unit for the velocity value.
     """)
     @act
-    def start_spin_for(self: Self,
+    def start_spin_for(self: Self,  # pylint: disable=too-many-arguments
                        dir: DirectionType,  # pylint: disable=redefined-builtin
                        rotation: Num,
                        rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
@@ -335,7 +336,7 @@ class MotorGroup:  # pylint: disable=too-many-public-methods
     @act
     def set_max_torque_percent(self: Self, value: int, /):
         """Set max torque percentage level."""
-        self.max_torque[TorqueUnits.PCT] = value
+        self.max_torque[PERCENT] = value
 
     @robotmesh_doc("""
         Set the max torque of all motors.

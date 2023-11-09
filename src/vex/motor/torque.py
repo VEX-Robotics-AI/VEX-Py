@@ -30,5 +30,5 @@ class TorqueUnits(IntEnum):
     IN_LB: int = 1  # torque unit measured in Inch Pounds
 
 
-class _Torque(_MeasurementWithUnitABC):
+class _Torque(_MeasurementWithUnitABC):  # pylint: disable=too-few-public-methods
     unit: TorqueUnits | PercentUnits | Literal[PERCENT] = PERCENT

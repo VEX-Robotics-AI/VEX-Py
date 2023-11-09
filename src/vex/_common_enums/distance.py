@@ -31,5 +31,5 @@ MM: DistanceUnits = DistanceUnits.MM
 INCHES: DistanceUnits = DistanceUnits.IN
 
 
-class _Distance(_MeasurementWithUnitABC):
+class _Distance(_MeasurementWithUnitABC):  # pylint: disable=too-few-public-methods
     unit: DistanceUnits = MM

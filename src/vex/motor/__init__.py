@@ -1,6 +1,9 @@
 """Motor."""
 
 
+# pylint: disable=too-many-lines
+
+
 from collections.abc import Sequence
 from typing import Literal, LiteralString, Optional, Self, overload
 
@@ -90,7 +93,8 @@ class Motor(Device):
             self.gear_setting, self.reverse = args
 
             assert isinstance(self.gear_setting, GearSetting), \
-                TypeError(f'*** 2ND ARG gearSetting={self.gear_setting} NOT GearSetting ***')  # noqa: E501
+                TypeError(f'*** 2ND ARG gearSetting={self.gear_setting} '
+                          'NOT GearSetting ***')
 
             assert isinstance(self.reverse, bool), \
                 TypeError(f'*** 3ND ARG reverse={self.reverse} NOT BOOL ***')
@@ -493,8 +497,8 @@ class Motor(Device):
         ...
 
     @overload
-    def spin_for(
-            self,
+    def spin_for(  # pylint: disable=too-many-arguments
+            self: Self,
             dir: Optional[DirectionType],  # pylint: disable=redefined-builtin
             rotation: Num,
             rotationUnits: RotationUnits = RotationUnits.DEG,
@@ -641,7 +645,7 @@ class Motor(Device):
                              By default, this parameter is true.
     """)
     @act
-    def spin_to(self: Self,
+    def spin_to(self: Self,  # pylint: disable=too-many-arguments
                 rotation: Num,
                 rotationUnits: RotationUnits = RotationUnits.DEG,
                 velocity: Optional[Num] = None,
@@ -677,8 +681,8 @@ class Motor(Device):
         - velocityUnits: measurement unit for velocity
     """)
     @act
-    def spin_for_time(
-            self,
+    def spin_for_time(  # pylint: disable=too-many-arguments
+            self: Self,
             dir: Optional[DirectionType],  # pylint: disable=redefined-builtin
             time: Num,
             timeUnits: TimeUnits = TimeUnits.SEC,
@@ -713,8 +717,8 @@ class Motor(Device):
         - velocityUnits: measurement unit for velocity
     """)
     @act
-    def start_spin_for(
-            self,
+    def start_spin_for(  # pylint: disable=too-many-arguments
+            self: Self,
             dir: Optional[DirectionType],  # pylint: disable=redefined-builtin
             rotation: Num,
             rotationUnits: RotationUnits = RotationUnits.DEG,
@@ -988,12 +992,13 @@ class Motor(Device):
         Returns: temperature of motor in unit defined
     """)
     @sense
-    def temperature(
-            self: Self,
-            temperatureUnits: TemperatureUnits = TemperatureUnits.CELSIUS, /) -> float:  # noqa: E501
+    def temperature(self: Self,
+                    temperatureUnits: TemperatureUnits = TemperatureUnits.CELSIUS,  # noqa: E501
+                    /) -> float:
         """Return temperature."""
         assert isinstance(temperatureUnits, TemperatureUnits), \
-            TypeError(f'*** temperatureUnits={temperatureUnits} NOT OF TYPE TemperatureUnits ***')  # noqa: E501
+            TypeError(f'*** temperatureUnits={temperatureUnits} '
+                      'NOT OF TYPE TemperatureUnits ***')
 
     @robotmesh_doc("""
         Get device type

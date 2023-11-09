@@ -3,7 +3,7 @@
 
 from collections.abc import Callable, Sequence
 from threading import Thread
-from typing import LiteralString, Self, TypeVar  # noqa: F401
+from typing import LiteralString, Self
 
 from abm.decor import sense
 

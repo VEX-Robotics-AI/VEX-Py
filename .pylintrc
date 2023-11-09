@@ -1,2 +1,5 @@
+[MESSAGES CONTROL]
+
 disable=
-  isinstance-second-argument-not-valid-type,
+  duplicate-code,
+  invalid-name,

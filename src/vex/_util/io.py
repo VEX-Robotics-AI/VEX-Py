@@ -1,3 +1,6 @@
+"""IO Utilities."""
+
+
 from contextlib import contextmanager
 from io import StringIO
 import sys

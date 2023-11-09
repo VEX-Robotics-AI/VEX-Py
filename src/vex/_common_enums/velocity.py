@@ -37,5 +37,5 @@ RPM: VelocityUnits = VelocityUnits.RPM
 DPS: VelocityUnits = VelocityUnits.DPS
 
 
-class _Velocity(_MeasurementWithUnitABC):
+class _Velocity(_MeasurementWithUnitABC):  # pylint: disable=too-few-public-methods
     unit: VelocityUnits = RPM

@@ -17,5 +17,5 @@ class CurrentUnits(IntEnum):
     AMP: int = auto()
 
 
-class _Current(_MeasurementWithUnitABC):
+class _Current(_MeasurementWithUnitABC):  # pylint: disable=too-few-public-methods
     unit: CurrentUnits = CurrentUnits.AMP

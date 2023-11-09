@@ -33,5 +33,5 @@ SECONDS: TimeUnits = TimeUnits.SEC
 MSEC: TimeUnits = TimeUnits.MSEC
 
 
-class _Time(_MeasurementWithUnitABC):
+class _Time(_MeasurementWithUnitABC):  # pylint: disable=too-few-public-methods
     unit: TimeUnits = SECONDS
