@@ -1,4 +1,4 @@
-name: Run tests
+name: Install, Lint & Test
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
           # github.com/actions/python-versions/blob/main/versions-manifest.json
 
     steps:
-      - name: Checkout repo
+      - name: Checkout Repo
         uses: actions/checkout@v2
 
       - name: Set Up Python ${{ matrix.python-version }}
@@ -28,11 +28,11 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
-
-      - name: Install dependencies
+      - name: Install Python Module(s)/Package(s) & Dependencies
         run: make install-editable
+
+      - name: Lint Python Code
+        run: make lint-all
 
       - name: Install pytest
         run: |
