@@ -197,6 +197,7 @@ class Touchled(Device):
     @act
     def blink_rgb(self: Self, red: int, green: int, blue: int,
                   on_time: float = 0.25, off_time: float = 0.25, /):
+        # pylint: disable=too-many-arguments
         """Blink RGB color."""
 
     @robotmesh_doc("""

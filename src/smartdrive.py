@@ -49,8 +49,8 @@ class Smartdrive(Drivetrain):
                          a DistanceUnits enum value
         - gear_ratio: external gear ratio, usually 1.0
     """)
-    def __init__(
-            self,
+    def __init__(  # pylint: disable=too-many-arguments
+            self: Self,
             left_motor: DrivetrainMotorType, right_motor: DrivetrainMotorType,
             gyro: Gyro,
             wheel_travel: Num = 200, track_width: Num = 176,
@@ -100,8 +100,8 @@ class Smartdrive(Drivetrain):
                                         By default, this parameter is true.
     """)
     @act
-    def turn_to_heading(
-            self,
+    def turn_to_heading(  # pylint: disable=too-many-arguments
+            self: Self,
             angle: Num, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[Num] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
@@ -112,8 +112,8 @@ class Smartdrive(Drivetrain):
         Turn to rotation.
     """)
     @act
-    def turn_to_rotation(
-            self,
+    def turn_to_rotation(  # pylint: disable=too-many-arguments
+            self: Self,
             angle: Num, angleUnits: RotationUnits = RotationUnits.DEG,
             velocity: Optional[Num] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,

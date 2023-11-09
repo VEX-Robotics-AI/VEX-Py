@@ -55,8 +55,8 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
                          a DistanceUnits enum value
         - gear_ratio: external gear ratio, usually 1.0
     """)
-    def __init__(
-            self,
+    def __init__(  # pylint: disable=too-many-arguments
+            self: Self,
             left_motor: DrivetrainMotorType, right_motor: DrivetrainMotorType,
             wheel_travel: Num = 200, track_width: Num = 176,
             distanceUnits: DistanceUnits = DistanceUnits.MM,
@@ -128,8 +128,8 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         True if the drivetrain has reached the target distance, False otherwise
     """)
     @act
-    def drive_for(
-            self, directionType: DirectionType,
+    def drive_for(  # pylint: disable=too-many-arguments
+            self: Self, directionType: DirectionType,
             distance: Num, distanceUnits: DistanceUnits = DistanceUnits.MM,
             velocity: Optional[Num] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT,
@@ -150,8 +150,8 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
                          a VelocityUnits enum value
     """)
     @act
-    def start_drive_for(
-            self, directionType: DirectionType,
+    def start_drive_for(  # pylint: disable=too-many-arguments
+            self: Self, directionType: DirectionType,
             distance: Num, distanceUnits: DistanceUnits = DistanceUnits.MM,
             velocity: Optional[Num] = None,
             velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
@@ -193,7 +193,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         Reimplemented from drivetrain.Drivetrain.
     """)
     @act
-    def turn_for(self: Self, turnType: TurnType,
+    def turn_for(self: Self, turnType: TurnType,  # pylint: disable=too-many-arguments
                  angle: Num, rotationUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
                  velocity: Optional[Num] = None,
                  velocityUnits: VelocityUnits = VelocityUnits.PCT,
@@ -216,7 +216,7 @@ class Drivetrain:  # pylint: disable=too-many-instance-attributes
         Reimplemented in smartdrive.Smartdrive.
     """)
     @act
-    def start_turn_for(self: Self, turnType: TurnType,
+    def start_turn_for(self: Self, turnType: TurnType,  # pylint: disable=too-many-arguments
                        angle: Num, angleUnits: RotationUnits = RotationUnits.DEG,  # noqa: E501
                        velocity: Optional[Num] = None,
                        velocityUnits: VelocityUnits = VelocityUnits.PCT, /):
