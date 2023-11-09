@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 
 
+lint/flake8
+lint/pycodestyle
+lint/pylama
 lint/pylint
