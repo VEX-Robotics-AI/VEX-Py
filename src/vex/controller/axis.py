@@ -13,7 +13,7 @@ from .._util.doc import robotmesh_doc, vexcode_doc
 __all__: Sequence[LiteralString] = ('ControllerAxis',)
 
 
-Controller = None  # *** FIXME: TypeVar(name='Controller') causes segfault! ***
+Controller = TypeVar(name='Controller')
 
 
 @robotmesh_doc("""
