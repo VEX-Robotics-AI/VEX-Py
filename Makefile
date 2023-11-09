@@ -1,2 +1,2 @@
 install-editable:
-	@ ./install-editable-dev
+	@ install/install-editable
