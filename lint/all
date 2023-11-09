@@ -2,4 +2,5 @@
 
 
 lint/flake8
+lint/pylama
 lint/pylint
