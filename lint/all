@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 
+lint/bandit
 lint/flake8
 lint/pycodestyle
 lint/pylama
