@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
 
+lint/flake8
 lint/pylint
